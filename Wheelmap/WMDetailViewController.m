@@ -43,5 +43,13 @@
     self.nodeTypeLabel.text = nodeTypeIdentifier;
 }
 
+/* Set a fixed size for view in popovers */
+
+- (CGSize)contentSizeForViewInPopover
+{
+    return CGSizeMake(320, 480);
+}
+
 
 @end
+

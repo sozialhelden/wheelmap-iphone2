@@ -11,6 +11,8 @@
 #import "WMDetailViewController.h"
 
 
+// TODO: re-position popover after orientation change
+
 @implementation WMMapViewController
 {
     NSArray *nodes;
@@ -45,7 +47,7 @@
 {
     nodes = [self.dataSource nodeList];
     
-    // TODO: don't remove annotations that will be added again
+    // TODO: optimization: don't remove annotations that will be added again
     [self.mapView removeAnnotations:self.mapView.annotations];
     
     [nodes enumerateObjectsUsingBlock:^(NSDictionary *node, NSUInteger idx, BOOL *stop) {
@@ -65,6 +67,7 @@
     UINavigationController *detailNavController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
     
     popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
+    
     CGRect annotationViewRect = [self.view convertRect:annotationView.bounds fromView:annotationView];
     [popover presentPopoverFromRect:annotationViewRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
@@ -72,7 +75,9 @@
 - (WMMapAnnotation*) annotationForNode:(NSDictionary*)node
 {
     for (WMMapAnnotation* annotation in  self.mapView.annotations) {
-        if ([annotation.node isEqual:node]) {
+        
+        // filter out MKUserLocation annotation
+        if ([annotation isKindOfClass:[WMMapAnnotation class]] && [annotation.node isEqual:node]) {
             return annotation;
         }
     }

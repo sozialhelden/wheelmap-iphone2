@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="353" y="-98"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Wheelchair Status View Controller-->
         <scene sceneID="JLg-RW-mGB">
             <objects>
-                <tableViewController id="Tn1-Jv-XsA" sceneMemberID="viewController">
+                <tableViewController id="Tn1-Jv-XsA" customClass="WMWheelchairStatusViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ABC-OA-V5c">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,6 +154,9 @@
                 <relationship kind="outlet" name="nodeTypeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="WMWheelchairStatusViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMWheelchairStatusViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

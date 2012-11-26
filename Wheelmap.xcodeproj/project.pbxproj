@@ -10,6 +10,7 @@
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
 		9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9817AF50164D617A00703A92 /* WMDetailViewController.m */; };
 		982AAB7D1657B5FD00BAA68C /* temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 982AAB7C1657B5FD00BAA68C /* temp.png */; };
+		9839CAE11663850600B8E3B5 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */; };
 		989927501649151300D9003B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		989927521649151300D9003B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		989927541649151300D9003B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
@@ -87,6 +88,8 @@
 		9817AF4F164D617A00703A92 /* WMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailViewController.h; sourceTree = "<group>"; };
 		9817AF50164D617A00703A92 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
 		982AAB7C1657B5FD00BAA68C /* temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp.png; sourceTree = "<group>"; };
+		9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
+		9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
 		9899274B1649151300D9003B /* Wheelmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9899274F1649151300D9003B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		989927511649151300D9003B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -253,6 +256,8 @@
 				9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */,
 				9817AF4F164D617A00703A92 /* WMDetailViewController.h */,
 				9817AF50164D617A00703A92 /* WMDetailViewController.m */,
+				9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */,
+				9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */,
 				989927561649151300D9003B /* Supporting Files */,
 			);
 			path = Wheelmap;
@@ -500,6 +505,7 @@
 				989927E7164ABDC700D9003B /* WMRootViewController_iPad.m in Sources */,
 				98ADC6E4164BF04F00251943 /* WMMapAnnotation.m in Sources */,
 				9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */,
+				9839CAE11663850600B8E3B5 /* WMWheelchairStatusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
