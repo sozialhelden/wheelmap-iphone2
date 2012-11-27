@@ -1,120 +1,32 @@
 //
-//  WMDataManager.m
+//  WMCoreDataManager.m
 //  Wheelmap
 //
-//  Created by Dorian Roy on 07.11.12.
+//  Created by Dorian Roy on 27.11.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
+#import "WMCoreDataManager.h"
 #import <CoreData/CoreData.h>
-#import "WMDataManager.h"
-#import "WMWheelmapAPI.h"
 
-#define WMSearchRadius 0.004
+@implementation WMCoreDataManager
 
-@interface WMDataManager()
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
-@end
-
-@implementation WMDataManager
-{
-    WMWheelmapAPI *api;
-    NSManagedObjectContext *_managedObjectContext;
-}
-
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        api = [[WMWheelmapAPI alloc] init];
-    }
-    return self;
-}
-
-
-#pragma mark - Fetch Nodes
-
-- (void) fetchNodesNear:(CLLocationCoordinate2D)location
-{
-    // get rect of area within search radius around current location
-    // this rect won"t have the same proportions as the map area on screen
-    CLLocationCoordinate2D southwest = CLLocationCoordinate2DMake(location.latitude - WMSearchRadius, location.longitude - WMSearchRadius);
-    CLLocationCoordinate2D northeast = CLLocationCoordinate2DMake(location.latitude + WMSearchRadius, location.longitude + WMSearchRadius);
-    
-    [self fetchNodesBetweenSouthwest:southwest northeast:northeast];
-}
-
-- (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast
-{
-    NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
-                         southwest.longitude,
-                         southwest.latitude,
-                         northeast.longitude,
-                         northeast.latitude];
-    [self fetchNodesWithParameters:@{@"bbox":coords}];
-}
-
-- (void) fetchNodesWithParameters:(NSDictionary*)parameters;
-{
-    [api requestResource:@"nodes"
-              parameters:parameters
-                    data:nil
-                  method:nil
-                   error:^(NSError *error) {
-                       [self.delegate dataManager:self fetchNodesFailedWithError:error];
-                   }
-                 success:^(NSDictionary *data) {
-                     [self didReceiveNodes:data[@"nodes"]];
-                 }
-     ];
-}
-
-- (void) didReceiveNodes:(NSArray *)nodes
-{
-    // TODO: cache nodes
-    [self.delegate dataManager:self didReceiveNodes:nodes];
-}
-
-
-#pragma mark - Sync Resources
-
-- (void) syncResources
-{
-    // TODO: fetch data and cache it
-    [self.delegate dataManagerDidFinishSyncingResources:self];
-}
-
-
-#pragma mark - Expose Data
-
-- (NSArray *)categories
-{
-    // TODO: return data
-    return nil;
-}
-
-- (NSArray *)types
-{
-    // TODO: return data
-    return nil;
-}
-
-
-#pragma mark - Core Data Stack
 
 /**
  Returns a single instance of a managed object context.
  If the context doesn't already exist, it is created with the preset
  database name and bound to a SQLite persistent store.
  */
-- (NSManagedObjectContext*) managedObjectContext
++ (NSManagedObjectContext*) managedObjectContext
 {
-    if (!_managedObjectContext) {
-        
+    // create single instance of managed object context
+    static NSManagedObjectContext *managedObjectContext = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] init];
         
         // create model
-        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"WMDataModel" withExtension:@"momd"];
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"EFBDataModel" withExtension:@"momd"];
         NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
         
         // create store coordinator
@@ -122,7 +34,7 @@
         
         // get store URL
         NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        NSURL *persistentStoreURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"WMDatabase.sqlite"];
+        NSURL *persistentStoreURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"EFBDatabase.sqlite"];
         
         NSError *error = nil;
         // if we can't add store to coordinator...
@@ -164,21 +76,17 @@
             // assign coordinator to context
             [moc setPersistentStoreCoordinator:persistentStoreCoordinator];
             
-            _managedObjectContext = moc;
+            // save context in the static variable
+            managedObjectContext = moc;
         }
-    }
+    });
     
-    return _managedObjectContext;
+    return managedObjectContext;
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     abort();
 }
 
-
 @end
-
-
-
-

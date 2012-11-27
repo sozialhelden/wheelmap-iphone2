@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class WMDataManager;
+
 @protocol WMDataManagerDelegate <NSObject>
 
-- (void) receivedNodes:(NSArray*)nodes;
+- (void) dataManager:(WMDataManager*)dataManager didReceiveNodes:(NSArray*)nodes;
+- (void) dataManager:(WMDataManager*)dataManager fetchNodesFailedWithError:(NSError*)error;
+- (void) dataManagerDidFinishSyncingResources:(WMDataManager*)dataManager;
+- (void) dataManager:(WMDataManager*)dataManager syncResourcesFailedWithError:(NSError*)error;
+
 
 @end

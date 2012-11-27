@@ -61,7 +61,7 @@
 
 #pragma mark - Datamanager Delegate
 
-- (void) receivedNodes:(NSArray *)nodesParam
+- (void) dataManager:(WMDataManager *)dataManager didReceiveNodes:(NSArray *)nodesParam
 {
     nodes = nodesParam;
     

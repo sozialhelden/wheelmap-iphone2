@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WMDataManagerDelegate.h"
 #import <CoreLocation/CoreLocation.h>
+#import "WMDataManagerDelegate.h"
 
 
 @interface WMDataManager : NSObject
@@ -18,5 +18,12 @@
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
 
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
+
+- (void) syncResources;
+
+- (NSArray*) categories;
+
+- (NSArray*) types;
+
 
 @end
