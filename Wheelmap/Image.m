@@ -2,7 +2,7 @@
 //  Image.m
 //  Wheelmap
 //
-//  Created by Dorian Roy on 27.11.12.
+//  Created by Dorian Roy on 28.11.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
@@ -12,10 +12,10 @@
 
 @implementation Image
 
-@dynamic width;
 @dynamic height;
-@dynamic url;
 @dynamic type;
+@dynamic url;
+@dynamic width;
 @dynamic photo;
 
 @end
