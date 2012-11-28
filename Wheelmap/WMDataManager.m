@@ -62,12 +62,13 @@
                     eTag:nil
                     data:nil
                   method:nil
-                   error:^(NSError *error) {
+                   error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                        [self.delegate dataManager:self fetchNodesFailedWithError:error];
                    }
-                 success:^(NSDictionary *data, NSString* eTag) {
-                     [self didReceiveNodes:data[@"nodes"]];
-                 }
+                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                       [self didReceiveNodes:JSON[@"nodes"]];
+                   }
+        startImmediately:YES
      ];
 }
 
@@ -91,8 +92,42 @@
 
 - (void) syncResources
 {
-    // TODO: fetch data and cache it
-    [self.delegate dataManagerDidFinishSyncingResources:self];
+    // fetch categories
+    NSOperationQueue *queue = [NSOperationQueue mainQueue];
+    NSOperation *op1 = [api requestResource:@"categories"
+                                  parameters:nil
+                                        eTag:nil
+                                        data:nil
+                                      method:nil
+                                       error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                           dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"1 error loading categories");});
+                                       }
+                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                         NSDictionary *headers = [response allHeaderFields];
+                                         NSString *eTag = [(NSString*)headers[@"ETag"] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                                         dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"1 received categories with etag %@", eTag);});
+                                     }
+                            startImmediately:NO
+         ];
+    [queue addOperation:op1];
+
+    // fetch node types
+    NSOperation *op2 = [api requestResource:@"node_types"
+                                 parameters:nil
+                                       eTag:nil
+                                       data:nil
+                                     method:nil
+                                      error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                          dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"2 error loading node types");});
+                                      }
+                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                        NSDictionary *headers = [response allHeaderFields];
+                                        NSString *eTag = [(NSString*)headers[@"ETag"] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                                        dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"2 received node types with etag %@", eTag);});
+                                    }
+                           startImmediately:NO
+                        ];
+    [queue addOperation:op2];
 }
 
 
@@ -106,25 +141,6 @@
 - (NSArray *)types
 {
     return [self fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
-}
-
-- (NSArray*) fetchObjectsOfEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate
-{
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
-    if (predicate) [fetchRequest setPredicate:predicate];
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    NSAssert(results, error.localizedDescription);
-    return results;
-}
-
-- (NSManagedObject*) fetchObjectOfEntity:(NSString*)entityName withId:(NSUInteger)object_id
-{
-    NSEntityDescription *entityDescr = self.managedObjectContext.persistentStoreCoordinator.managedObjectModel.entitiesByName[entityName];
-    NSAssert(entityDescr, @"can't get description of unknown entity");
-    NSArray *result = [self fetchObjectsOfEntity:entityName withPredicate:[NSPredicate predicateWithFormat:@"id==%i", object_id]];
-    NSAssert([result count] < 2, @"id should be unique");
-    return [result lastObject];
 }
 
 
@@ -168,6 +184,8 @@
             *error = [NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerManagedObjectCreationError userInfo:nil];
         }
     }
+    
+    [self saveData];
     
     return parsedObject;
 }
@@ -451,6 +469,25 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     abort();
+}
+
+- (NSArray*) fetchObjectsOfEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    if (predicate) [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSAssert(results, error.localizedDescription);
+    return results;
+}
+
+- (NSManagedObject*) fetchObjectOfEntity:(NSString*)entityName withId:(NSUInteger)object_id
+{
+    NSEntityDescription *entityDescr = self.managedObjectContext.persistentStoreCoordinator.managedObjectModel.entitiesByName[entityName];
+    NSAssert(entityDescr, @"can't get description of unknown entity");
+    NSArray *result = [self fetchObjectsOfEntity:entityName withPredicate:[NSPredicate predicateWithFormat:@"id==%i", object_id]];
+    NSAssert([result count] < 2, @"id should be unique");
+    return [result lastObject];
 }
 
 

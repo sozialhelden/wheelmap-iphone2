@@ -7,22 +7,23 @@
 //
 
 #import "WMWheelmapAPI.h"
-#import "WMWheelmapAPIRequest.h"
+#import "AFJSONRequestOperation.h"
+
 
 #define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm" //staging
-// @"Yy7DZrHnarGGJz4kSWiP" production
+#define WMAPIKey @"your api key here"
 
 
 @implementation WMWheelmapAPI
 
-- (WMWheelmapAPIRequest*) requestResource:(NSString *)resource
+- (NSOperation*) requestResource:(NSString *)resource
               parameters:(NSDictionary *)parameters
-                 eTag:(NSString *)eTag
+                    eTag:(NSString *)eTag
                     data:(id)data
                   method:(NSString *)method
-                   error:(void (^)(NSError *))errorBlock
-                 success:(void (^)(id, NSString*))successBlock
+                   error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON))errorBlock
+                 success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))successBlock
+        startImmediately:(BOOL)startImmediately
 {
     // create parameter string from parameter dictionary
     __block NSMutableString *parameterString;
@@ -51,8 +52,13 @@
     // set eTag if necessary
     if (eTag) [request setValue:eTag forHTTPHeaderField:@"ETag"];
     
-    // create api request
-    return [[WMWheelmapAPIRequest alloc] initWithURLRequest:request error:errorBlock success:successBlock];
+    // create request operation
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
+    
+    // start if necessary
+    if (startImmediately) [operation start];
+    
+    return operation;
 }
 
 
