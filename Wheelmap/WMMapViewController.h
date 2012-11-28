@@ -11,14 +11,14 @@
 #import "WMNodeListView.h"
 
 
-@class MKMapView;
+@class MKMapView, Node;
 
 @interface WMMapViewController : UIViewController <WMNodeListView, MKMapViewDelegate>
 
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
 
-- (void) showDetailPopoverForNode:(NSDictionary*)node;
+- (void) showDetailPopoverForNode:(Node*)node;
 
 - (IBAction) toggleMapTypeChanged:(id)sender;
 - (IBAction) returnToListViewTouched:(id)sender;

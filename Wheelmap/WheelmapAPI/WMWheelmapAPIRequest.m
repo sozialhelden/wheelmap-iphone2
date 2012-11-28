@@ -13,12 +13,12 @@
 {
     NSURLConnection *connection;
     void (^errorHandler)(NSError*);
-    void (^successHandler)(id);
+    void (^successHandler)(id, NSString*);
     NSHTTPURLResponse* response;
     NSMutableData *data;
 }
 
-- (id) initWithURLRequest:(NSURLRequest *)request error:(void (^)(NSError *))errorBlock success:(void (^)(id))successBlock
+- (id) initWithURLRequest:(NSURLRequest *)request error:(void (^)(NSError *))errorBlock success:(void (^)(id, NSString*))successBlock
 {
     self = [super init];
     if (self) {
@@ -75,8 +75,11 @@
     
     if (error) {
         errorHandler(error);
+        
     } else {
-        successHandler(jsonObject);
+        NSDictionary *headers = [response allHeaderFields];
+        NSString *eTag = [(NSString*)headers[@"ETag"] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        successHandler(jsonObject, eTag);
     }
 }
 

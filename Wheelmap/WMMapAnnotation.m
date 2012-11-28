@@ -7,6 +7,8 @@
 //
 
 #import "WMMapAnnotation.h"
+#import "Node.h"
+#import "NodeType.h"
 
 
 @implementation WMMapAnnotation
@@ -15,12 +17,12 @@
 }
 
 
-- (id) initWithNode:(NSDictionary *)node
+- (id) initWithNode:(Node *)node
 {
     self = [super init];
     if (self) {
         self.node = node;
-        _coordinate = CLLocationCoordinate2DMake([node[@"lat"] doubleValue], [node[@"lon"] doubleValue]);
+        _coordinate = CLLocationCoordinate2DMake([node.lat doubleValue], [node.lon doubleValue]);
     }
     return self;
 }
@@ -37,17 +39,12 @@
 
 - (NSString*) title
 {
-    return [[self.node allKeys] indexOfObject:@"name"]==NSNotFound || self.node[@"name"]==[NSNull null] ? @"?" : self.node[@"name"];
+    return self.node.name ?: @"?";
 }
 
 - (NSString*) subtitle
 {
-    NSDictionary *nodeType = [[self.node allKeys] indexOfObject:@"node_type"]==NSNotFound || self.node[@"node_type"]==[NSNull null] ? nil : self.node[@"node_type"];
-    NSString *nodeTypeIdentifier = nil;
-    if (nodeType) {
-        nodeTypeIdentifier = [[nodeType allKeys] indexOfObject:@"identifier"]==NSNotFound || nodeType[@"identifier"]==[NSNull null] ? nil : nodeType[@"identifier"];
-    }
-    return nodeTypeIdentifier;
+    return self.node.node_type.localized_name ?: @"?";
 }
 
 

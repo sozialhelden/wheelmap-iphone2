@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class CLLocation;
+@class CLLocation, Node;
+
 @protocol WMNodeListView;
 
 
@@ -21,10 +22,10 @@
 
 @protocol WMNodeListDelegate <NSObject>
 
-- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(NSDictionary*)node;
+- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node*)node;
 
 @optional
-- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(NSDictionary*)node;
+- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node*)node;
 
 @end
 
@@ -35,6 +36,6 @@
 @property (nonatomic, weak) IBOutlet id<WMNodeListDelegate> delegate;
 
 - (void) nodeListDidChange;
-- (void) selectNode:(NSDictionary*)node;
+- (void) selectNode:(Node*)node;
 
 @end

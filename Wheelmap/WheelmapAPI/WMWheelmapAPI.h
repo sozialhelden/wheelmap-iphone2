@@ -15,11 +15,12 @@
 @property (nonatomic) NSString* userId;
 @property (nonatomic) NSString* userAPIKey;
 
-- (WMWheelmapAPIRequest*) requestResource:(NSString*)resource
-                               parameters:(NSDictionary*)parameters
+- (WMWheelmapAPIRequest*) requestResource:(NSString *)resource
+                               parameters:(NSDictionary *)parameters
+                                     eTag:(NSString *)eTag
                                      data:(id)data
-                                   method:(NSString*)method
+                                   method:(NSString *)method
                                     error:(void(^)(NSError*))errorBlock
-                                  success:(void(^)(id))successBlock;
+                                  success:(void(^)(id, NSString*))successBlock;
 
 @end

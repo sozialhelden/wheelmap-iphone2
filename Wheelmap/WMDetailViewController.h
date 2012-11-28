@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Node;
+
 @interface WMDetailViewController : UIViewController
 
 @property (nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) IBOutlet UILabel *nodeTypeLabel;
 
-@property (nonatomic) NSDictionary *node;
+@property (nonatomic) Node *node;
 
 @end

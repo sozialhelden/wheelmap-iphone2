@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface WMNodeListCell : UITableViewCell
 
 @property (nonatomic) IBOutlet UILabel *titleLabel;

@@ -9,6 +9,8 @@
 #import "WMMapViewController.h"
 #import "WMMapAnnotation.h"
 #import "WMDetailViewController.h"
+#import "Node.h"
+#import "NodeType.h"
 
 
 // TODO: re-position popover after orientation change
@@ -50,13 +52,13 @@
     // TODO: optimization: don't remove annotations that will be added again
     [self.mapView removeAnnotations:self.mapView.annotations];
     
-    [nodes enumerateObjectsUsingBlock:^(NSDictionary *node, NSUInteger idx, BOOL *stop) {
+    [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
         WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
         [self.mapView addAnnotation:annotation];
     }];
 }
 
-- (void) showDetailPopoverForNode:(NSDictionary *)node
+- (void) showDetailPopoverForNode:(Node *)node
 {
     WMMapAnnotation *annotation = [self annotationForNode:node];
     MKAnnotationView *annotationView = [self.mapView viewForAnnotation:annotation];
@@ -72,7 +74,7 @@
     [popover presentPopoverFromRect:annotationViewRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
-- (WMMapAnnotation*) annotationForNode:(NSDictionary*)node
+- (WMMapAnnotation*) annotationForNode:(Node*)node
 {
     for (WMMapAnnotation* annotation in  self.mapView.annotations) {
         
@@ -92,7 +94,7 @@
     [self loadNodes];
 }
 
-- (void)selectNode:(NSDictionary *)node
+- (void)selectNode:(Node *)node
 {
     WMMapAnnotation *annotation = [self annotationForNode:node];
     [self.mapView selectAnnotation:annotation animated:YES];
@@ -104,10 +106,8 @@
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
-        NSDictionary *node = [(WMMapAnnotation*)annotation node];
-        id wheelchair = node[@"wheelchair"];
-        NSString *wheelchairString = wheelchair!=nil && wheelchair!=[NSNull null] ? wheelchair : @"unknown";
-        NSString *reuseId = [wheelchairString stringByAppendingString:node[@"node_type"][@"identifier"]];
+        Node *node = [(WMMapAnnotation*)annotation node];
+        NSString *reuseId = [node.wheelchair stringByAppendingString:node.node_type.identifier];
         MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
         if (!annotationView) {
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
@@ -115,7 +115,7 @@
             annotationView.centerOffset = CGPointMake(6, -14);
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
-        annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:wheelchairString]];
+        annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
         return annotationView;
     }
     return nil;

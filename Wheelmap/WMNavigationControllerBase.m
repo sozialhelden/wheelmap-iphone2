@@ -10,6 +10,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
 #import "WMDetailViewController.h"
+#import "Node.h"
 
 
 @implementation WMNavigationControllerBase
@@ -59,7 +60,7 @@
 }
 
 
-#pragma mark - Datamanager Delegate
+#pragma mark - Data Manager Delegate
 
 - (void) dataManager:(WMDataManager *)dataManager didReceiveNodes:(NSArray *)nodesParam
 {
@@ -73,6 +74,21 @@
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
         [(id<WMNodeListView>)self.topViewController nodeListDidChange];
     }
+}
+
+-(void)dataManager:(WMDataManager *)dataManager fetchNodesFailedWithError:(NSError *)error
+{
+    NSLog(@"error %@", error.localizedDescription);
+}
+
+- (void)dataManagerDidFinishSyncingResources:(WMDataManager *)dataManager
+{
+    NSLog(@"dataManagerDidFinishSyncingResources");
+}
+
+-(void)dataManager:(WMDataManager *)dataManager syncResourcesFailedWithError:(NSError *)error
+{
+    NSLog(@"syncResourcesFailedWithError");
 }
 
 
@@ -89,7 +105,7 @@
 /**
  * Called only on the iPhone
  */
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(NSDictionary *)node
+- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
 {
     // we don"t want to push a detail view when selecting a node on the map view, so
     // we check if this message comes from a table view
@@ -101,14 +117,14 @@
 /**
  * Called only on the iPhone
  */
-- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(NSDictionary *)node
+- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
 {
     if (node) {
         [self pushDetailsViewControllerForNode:node];
     }
 }
 
-- (void) pushDetailsViewControllerForNode:(NSDictionary*)node
+- (void) pushDetailsViewControllerForNode:(Node*)node
 {
     WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
     detailViewController.node = node;

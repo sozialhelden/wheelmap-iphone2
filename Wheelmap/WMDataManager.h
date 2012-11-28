@@ -25,5 +25,10 @@
 
 - (NSArray*) types;
 
+extern NSString *WMDataManagerErrorDomain;
+
+enum {
+    WMDataManagerManagedObjectCreationError
+};
 
 @end

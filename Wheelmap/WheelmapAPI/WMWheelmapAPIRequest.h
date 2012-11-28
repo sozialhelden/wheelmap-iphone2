@@ -11,7 +11,7 @@
 
 @interface WMWheelmapAPIRequest : NSObject<NSURLConnectionDataDelegate>
 
-- (id) initWithURLRequest:(NSURLRequest*)request error:(void (^)(NSError*))errorBlock success:(void (^)(id))successBlock;
+- (id) initWithURLRequest:(NSURLRequest*)request error:(void (^)(NSError*))errorBlock success:(void (^)(id, NSString*))successBlock;
 
 
 @end

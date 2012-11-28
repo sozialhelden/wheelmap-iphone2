@@ -76,12 +76,12 @@
 
 #pragma mark - Node List Delegate
 
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(NSDictionary *)node
+- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
 {
     [self.mapViewController showDetailPopoverForNode:node];
 }
 
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(NSDictionary *)node
+- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
 {
     // highlight node in both views
     [self.listViewController selectNode:node];
@@ -92,7 +92,7 @@
 
 #pragma mark - Node List Protocol
 
-- (void)selectNode:(NSDictionary *)node
+- (void)selectNode:(Node *)node
 {    
 }
 

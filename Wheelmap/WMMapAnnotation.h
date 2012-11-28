@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+
+@class Node;
+
+
 @interface WMMapAnnotation : NSObject<MKAnnotation>
 
-- (id) initWithNode:(NSDictionary*)node;
+- (id) initWithNode:(Node*)node;
 
-@property (nonatomic) NSDictionary* node;
+@property (nonatomic) Node* node;
 
 @end
