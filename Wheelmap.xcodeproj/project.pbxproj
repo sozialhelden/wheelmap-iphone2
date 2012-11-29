@@ -32,7 +32,6 @@
 		989927951649481300D9003B /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927941649481300D9003B /* WMNodeListViewController.m */; };
 		9899279D16494B5F00D9003B /* WMNodeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899279C16494B5F00D9003B /* WMNodeListCell.m */; };
 		989927A11649740B00D9003B /* WMWheelmapAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927A01649740B00D9003B /* WMWheelmapAPI.m */; };
-		989927BF164A6DA300D9003B /* Berlin, Friedrichstr.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 989927BE164A6DA300D9003B /* Berlin, Friedrichstr.gpx */; };
 		989927D4164A8AEF00D9003B /* WMNavigationControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927D3164A8AEF00D9003B /* WMNavigationControllerBase.m */; };
 		989927DB164A9EFD00D9003B /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927DA164A9EFD00D9003B /* WMMapViewController.m */; };
 		989927DE164AA0D100D9003B /* WMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927DD164AA0D100D9003B /* WMDataManager.m */; };
@@ -136,7 +135,6 @@
 		9899279C16494B5F00D9003B /* WMNodeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeListCell.m; sourceTree = "<group>"; };
 		9899279F1649740B00D9003B /* WMWheelmapAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMWheelmapAPI.h; path = WheelmapAPI/WMWheelmapAPI.h; sourceTree = "<group>"; };
 		989927A01649740B00D9003B /* WMWheelmapAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMWheelmapAPI.m; path = WheelmapAPI/WMWheelmapAPI.m; sourceTree = "<group>"; };
-		989927BE164A6DA300D9003B /* Berlin, Friedrichstr.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Berlin, Friedrichstr.gpx"; sourceTree = "<group>"; };
 		989927D2164A8AEF00D9003B /* WMNavigationControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationControllerBase.h; sourceTree = "<group>"; };
 		989927D3164A8AEF00D9003B /* WMNavigationControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNavigationControllerBase.m; sourceTree = "<group>"; };
 		989927D8164A900200D9003B /* WMNodeListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNodeListView.h; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				989927BE164A6DA300D9003B /* Berlin, Friedrichstr.gpx */,
 				989927551649151300D9003B /* Wheelmap */,
 				9899277C1649151300D9003B /* WheelmapTests */,
 				9899274E1649151300D9003B /* Frameworks */,
@@ -520,7 +517,6 @@
 				989927661649151300D9003B /* Default-568h@2x.png in Resources */,
 				989927691649151300D9003B /* MainStoryboard_iPhone.storyboard in Resources */,
 				9899276C1649151300D9003B /* MainStoryboard_iPad.storyboard in Resources */,
-				989927BF164A6DA300D9003B /* Berlin, Friedrichstr.gpx in Resources */,
 				98ADC6DA164BEEDA00251943 /* marker-limited.png in Resources */,
 				98ADC6DB164BEEDA00251943 /* marker-no.png in Resources */,
 				98ADC6DC164BEEDA00251943 /* marker-unknown.png in Resources */,

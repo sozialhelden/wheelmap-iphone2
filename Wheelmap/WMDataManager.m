@@ -12,7 +12,7 @@
 
 #define WMSearchRadius 0.004
 #define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMAPIKey @"your api key here"
+#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
 
 
 @interface WMDataManager()
