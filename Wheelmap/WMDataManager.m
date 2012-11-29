@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "WMDataManager.h"
 #import "WMWheelmapAPI.h"
+#import "Asset.h"
 
 #define WMSearchRadius 0.004
 #define WMBaseURL @"http://staging.wheelmap.org/api"
@@ -182,7 +183,6 @@
                               }
                             completionBlock:^(NSArray *operations) {
                                 NSLog(@"sync finished");
-                                
                             }
      ];
 }
@@ -194,7 +194,7 @@
         NSError *error = nil;
         [self parseDataObject:categories entityName:@"Category" error:&error];
         if (error) {
-            
+            // TODO: handle error
         } else {
             [self setETag:eTag forEntity:@"Category"];
         }
@@ -208,7 +208,7 @@
         NSError *error = nil;
         [self parseDataObject:nodeTypes entityName:@"NodeType" error:&error];
         if (error) {
-            
+            // TODO: handle error
         } else {
             [self setETag:eTag forEntity:@"NodeType"];
         }
@@ -217,19 +217,61 @@
 
 - (void) receivedAssets:(NSArray*)assets withETag:(NSString*) eTag
 {
-    // TODO: check if eTag has changed and load icons if so
-    
     NSLog(@"received %i assets", [assets count]);
     
-    if (assets) {
+    if (!assets) return;
+        
+    // if eTag has changed
+    if (![eTag isEqual:[self eTagForEntity:@"Asset"]]) {
+        
+        // store old icon modified date
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
+        Asset *icon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+        NSDate *oldLastModified = icon.modified_at;
+        
+        // parse data
         NSError *error = nil;
         [self parseDataObject:assets entityName:@"Asset" error:&error];
         if (error) {
+            // TODO: handle error
             
         } else {
+            
+            // update etag
             [self setETag:eTag forEntity:@"Asset"];
+            
+            // get new icon
+            icon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+            
+            // check if modified date has changed
+            if (![icon.modified_at isEqual:oldLastModified]) {
+                [self downloadFilesForAsset:icon];
+            }
         }
     }
+}
+
+- (void) downloadFilesForAsset:(Asset*)asset
+{
+    NSLog(@"download files for %@ :%@", asset.name, asset.url);
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"icons.zip"];
+    
+    NSOperation *operation = [api downloadFile:[NSURL URLWithString:asset.url]
+                                                     toPath:path
+                                                      error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                            NSLog(@"download error");
+                                        });
+                                                      }
+                                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response) {
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            NSLog(@"download success");
+                                                        });
+                                                    }
+                              startImmediately:YES
+    ];
 }
 
 - (NSString*) eTagForEntity:(NSString*)entityName

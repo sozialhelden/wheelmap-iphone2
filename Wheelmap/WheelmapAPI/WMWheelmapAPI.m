@@ -60,9 +60,38 @@
     return operation;
 }
 
+- (NSOperation *) downloadFile:(NSURL *)url
+                        toPath:(NSString*)path
+                         error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))errorBlock
+                       success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock
+              startImmediately:(BOOL)startImmediately
+{
+    // create basic http operation
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    // stream to destination file path
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
+    
+    // set result blocks that call our standard result blocks
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id response) {
+                                            successBlock(request, response);
+                                        }
+                                     failure:^(AFHTTPRequestOperation *op , NSError *error) {
+                                            errorBlock(request, op.response, error);
+                                        }
+    ];
+    
+    // start if necessary
+    if (startImmediately) [operation start];
+    
+    return operation;
+}
 
 
 @end
+
+
 
 
 
