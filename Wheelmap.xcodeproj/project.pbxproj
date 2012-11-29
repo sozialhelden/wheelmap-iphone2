@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980718DC1667684300580112 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 980718DB1667684300580112 /* Asset.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
 		9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9817AF50164D617A00703A92 /* WMDetailViewController.m */; };
 		982AAB7D1657B5FD00BAA68C /* temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 982AAB7C1657B5FD00BAA68C /* temp.png */; };
@@ -99,6 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		980718DA1667684300580112 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
+		980718DB1667684300580112 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
 		9817AF4F164D617A00703A92 /* WMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailViewController.h; sourceTree = "<group>"; };
 		9817AF50164D617A00703A92 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
@@ -243,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				989927BE164A6DA300D9003B /* Berlin, Friedrichstr.gpx */,
-				98CA22E8166676AA00DF0EA3 /* AFNetworking */,
 				989927551649151300D9003B /* Wheelmap */,
 				9899277C1649151300D9003B /* WheelmapTests */,
 				9899274E1649151300D9003B /* Frameworks */,
@@ -348,6 +350,7 @@
 		9899279E164973CF00D9003B /* WheelmapAPI */ = {
 			isa = PBXGroup;
 			children = (
+				98CA22E8166676AA00DF0EA3 /* AFNetworking */,
 				9899279F1649740B00D9003B /* WMWheelmapAPI.h */,
 				989927A01649740B00D9003B /* WMWheelmapAPI.m */,
 			);
@@ -396,14 +399,16 @@
 		98CA22DA16664C4D00DF0EA3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				98CA22D716664C1C00DF0EA3 /* Node.h */,
-				98CA22D816664C1C00DF0EA3 /* Node.m */,
-				98CA22D416664C1C00DF0EA3 /* Image.h */,
-				98CA22D516664C1C00DF0EA3 /* Image.m */,
-				98CA22D116664C1C00DF0EA3 /* NodeType.h */,
-				98CA22D216664C1C00DF0EA3 /* NodeType.m */,
+				980718DA1667684300580112 /* Asset.h */,
+				980718DB1667684300580112 /* Asset.m */,
 				98CA22CE16664C1C00DF0EA3 /* Category.h */,
 				98CA22CF16664C1C00DF0EA3 /* Category.m */,
+				98CA22D416664C1C00DF0EA3 /* Image.h */,
+				98CA22D516664C1C00DF0EA3 /* Image.m */,
+				98CA22D716664C1C00DF0EA3 /* Node.h */,
+				98CA22D816664C1C00DF0EA3 /* Node.m */,
+				98CA22D116664C1C00DF0EA3 /* NodeType.h */,
+				98CA22D216664C1C00DF0EA3 /* NodeType.m */,
 				98CA22CA16664C1B00DF0EA3 /* Photo.h */,
 				98CA22CB16664C1B00DF0EA3 /* Photo.m */,
 			);
@@ -433,7 +438,8 @@
 				98CA22FA166676AB00DF0EA3 /* UIImageView+AFNetworking.h */,
 				98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */,
 			);
-			path = AFNetworking;
+			name = AFNetworking;
+			path = ../AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -610,6 +616,7 @@
 				98CA2302166676AB00DF0EA3 /* AFURLConnectionOperation.m in Sources */,
 				98CA2303166676AB00DF0EA3 /* AFXMLRequestOperation.m in Sources */,
 				98CA2304166676AB00DF0EA3 /* UIImageView+AFNetworking.m in Sources */,
+				980718DC1667684300580112 /* Asset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

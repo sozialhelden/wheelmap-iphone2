@@ -14,22 +14,44 @@
 
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @end
 
 @implementation WMDataManager
 {
     WMWheelmapAPI *api;
     NSManagedObjectContext *_managedObjectContext;
+    NSPersistentStore *_persistentStore;
+}
+
+
++ (WMDataManager *)sharedInstance {
+    static WMDataManager *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[WMDataManager alloc] init];
+    });
+    return _sharedInstance;
 }
 
 - (id) init
 {
     self = [super init];
     if (self) {
-        api = [[WMWheelmapAPI alloc] init];
-        [self syncResources];
+        api = [[WMWheelmapAPI alloc] initWithBaseURL:[NSURL URLWithString:WMBaseURL] apiKey:WMAPIKey];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     }
     return self;
+}
+
+- (void) didBecomeActive:(NSNotification*)notification
+{
+    [self syncResources];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -92,42 +114,145 @@
 
 - (void) syncResources
 {
-    // fetch categories
-    NSOperationQueue *queue = [NSOperationQueue mainQueue];
-    NSOperation *op1 = [api requestResource:@"categories"
+    NSLog(@"num categories: %i", [[self fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
+    NSLog(@"num node types: %i", [[self fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
+    NSLog(@"num assets: %i", [[self fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
+    
+    // create categories request operation
+    NSOperation *categoriesOperation = [api requestResource:@"categories"
                                   parameters:nil
-                                        eTag:nil
+                                        eTag:[self eTagForEntity:@"Category"]
                                         data:nil
                                       method:nil
                                        error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                           dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"1 error loading categories");});
+                                           dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"error loading categories");});
                                        }
                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                         NSDictionary *headers = [response allHeaderFields];
-                                         NSString *eTag = [(NSString*)headers[@"ETag"] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-                                         dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"1 received categories with etag %@", eTag);});
+                                         NSString *eTag = [response allHeaderFields][@"ETag"];
+                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                             [self receivedCategories:JSON[@"categories"] withETag:eTag];
+                                         });
                                      }
                             startImmediately:NO
          ];
-    [queue addOperation:op1];
 
-    // fetch node types
-    NSOperation *op2 = [api requestResource:@"node_types"
+    // create node types request operation
+    NSOperation *nodeTypesOperation = [api requestResource:@"node_types"
                                  parameters:nil
-                                       eTag:nil
+                                       eTag:[self eTagForEntity:@"NodeType"]
                                        data:nil
                                      method:nil
                                       error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                           dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"2 error loading node types");});
                                       }
                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                        NSDictionary *headers = [response allHeaderFields];
-                                        NSString *eTag = [(NSString*)headers[@"ETag"] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-                                        dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"2 received node types with etag %@", eTag);});
+                                        NSString *eTag = [response allHeaderFields][@"ETag"];
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            [self receivedNodeTypes:JSON[@"node_types"] withETag:eTag];
+                                        });
                                     }
                            startImmediately:NO
-                        ];
-    [queue addOperation:op2];
+    ];
+    
+    // create assets operation
+    NSOperation *assetsOperation = [api requestResource:@"assets"
+                                                parameters:nil
+                                                      eTag:[self eTagForEntity:@"Asset"]
+                                                      data:nil
+                                                    method:nil
+                                                     error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                         dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"3 error loading assets");});
+                                                     }
+                                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                       NSString *eTag = [response allHeaderFields][@"ETag"];
+                                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                                           [self receivedAssets:JSON[@"assets"] withETag:eTag];
+                                                       });
+                                                   }
+                                          startImmediately:NO
+                                       ];
+    
+    // enqueue operations
+    [api enqueueBatchOfHTTPRequestOperations:@[categoriesOperation, nodeTypesOperation, assetsOperation]
+                              progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
+                                  // Maybe show this progress on splash screen at first launch
+                              }
+                            completionBlock:^(NSArray *operations) {
+                                NSLog(@"sync finished");
+                                
+                            }
+     ];
+}
+
+- (void) receivedCategories:(NSArray*)categories withETag:(NSString*) eTag
+{
+    NSLog(@"received %i categories", [categories count]);
+    if (categories) {
+        NSError *error = nil;
+        [self parseDataObject:categories entityName:@"Category" error:&error];
+        if (error) {
+            
+        } else {
+            [self setETag:eTag forEntity:@"Category"];
+        }
+    }
+}
+
+- (void) receivedNodeTypes:(NSArray*)nodeTypes withETag:(NSString*) eTag
+{
+    NSLog(@"received %i node types", [nodeTypes count]);
+    if (nodeTypes) {
+        NSError *error = nil;
+        [self parseDataObject:nodeTypes entityName:@"NodeType" error:&error];
+        if (error) {
+            
+        } else {
+            [self setETag:eTag forEntity:@"NodeType"];
+        }
+    }
+}
+
+- (void) receivedAssets:(NSArray*)assets withETag:(NSString*) eTag
+{
+    // TODO: check if eTag has changed and load icons if so
+    
+    NSLog(@"received %i assets", [assets count]);
+    
+    if (assets) {
+        NSError *error = nil;
+        [self parseDataObject:assets entityName:@"Asset" error:&error];
+        if (error) {
+            
+        } else {
+            [self setETag:eTag forEntity:@"Asset"];
+        }
+    }
+}
+
+- (NSString*) eTagForEntity:(NSString*)entityName
+{
+    NSDictionary *metaData = [self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
+    NSDictionary *eTags = metaData[@"eTags"];
+    return eTags[entityName];
+}
+
+- (void) setETag:(NSString*)eTag forEntity:(NSString*)entityName
+{
+    // get meta data from persistent store
+    NSMutableDictionary *metaData = [[self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
+    
+    // create eTags dictionary if necessary
+    NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
+    
+    // use entity name as key of eTag
+    eTags[entityName] = eTag;
+    
+    // save new eTags dictionary in meta data
+    [metaData setObject:eTags forKey:@"eTags"];
+    
+    // save altered meta data to persistent store
+    [self.managedObjectContext.persistentStoreCoordinator setMetadata:metaData forPersistentStore:self.persistentStore];
+    [self saveData];
 }
 
 
@@ -148,6 +273,9 @@
 
 - (id) parseDataObject:(id)object entityName:(NSString*)entityName error:(NSError**)error
 {
+    NSParameterAssert(object);
+    NSParameterAssert(entityName);
+    
     id parsedObject = nil;
     
     if ([object isKindOfClass:[NSArray class]]) {
@@ -419,13 +547,15 @@
         NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
         NSURL *persistentStoreURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"WMDatabase.sqlite"];
         
-        NSError *error = nil;
+        // try to add persistent store
+        _persistentStore = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                                    configuration:nil
+                                                                              URL:persistentStoreURL
+                                                                          options:nil
+                                                                            error:NULL];
         // if we can't add store to coordinator...
-        if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                      configuration:nil
-                                                                URL:persistentStoreURL
-                                                            options:nil
-                                                              error:NULL]) {
+        NSError *error = nil;
+        if (!_persistentStore) {
             
             // ... we ignore the error, and if the file already exists but is not compatible, we try to replace it with a new store file
             if ([[NSFileManager defaultManager] fileExistsAtPath:persistentStoreURL.path]) {
@@ -440,11 +570,11 @@
                     if ([[NSFileManager defaultManager] removeItemAtPath:persistentStoreURL.path error:&error]) {
                         
                         // try to add new store
-                        [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                                 configuration:nil
-                                                                           URL:persistentStoreURL
-                                                                       options:nil
-                                                                         error:&error];
+                        _persistentStore = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                                                    configuration:nil
+                                                                                              URL:persistentStoreURL
+                                                                                          options:nil
+                                                                                            error:&error];
                     }
                 }
             }

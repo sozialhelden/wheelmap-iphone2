@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Asset" representedClassName="Asset" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="modified_at" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="id" attributeType="Integer 32" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
@@ -49,5 +55,6 @@
         <element name="Node" positionX="160" positionY="192" width="128" height="270"/>
         <element name="NodeType" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Asset" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

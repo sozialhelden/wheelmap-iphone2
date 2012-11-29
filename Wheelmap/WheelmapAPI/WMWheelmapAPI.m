@@ -10,11 +10,29 @@
 #import "AFJSONRequestOperation.h"
 
 
-#define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMAPIKey @"your api key here"
-
-
 @implementation WMWheelmapAPI
+
+
+- (id)initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey {
+    self = [super initWithBaseURL:url];
+    if (!self) {
+        return nil;
+    }
+    
+    // use JSON requests per default
+    // TODO: test that other requests will be routed to different operation classes
+    [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    
+    // make sure status code 304 is treated as success
+    // 304 is returned when an eTag matched the version on the server, which
+    // indicates that the local data is current and no data transfer necessary
+    [AFHTTPRequestOperation addAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:304]];
+    
+	[self setDefaultHeader:@"Accept" value:@"application/json"];
+    [self setDefaultHeader:@"X-API-KEY" value:apiKey];
+    
+    return self;
+}
 
 - (NSOperation*) requestResource:(NSString *)resource
               parameters:(NSDictionary *)parameters
@@ -25,32 +43,13 @@
                  success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))successBlock
         startImmediately:(BOOL)startImmediately
 {
-    // create parameter string from parameter dictionary
-    __block NSMutableString *parameterString;
-    [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-        if (!parameterString) parameterString = [NSMutableString stringWithString:@"?"];
-        else [parameterString appendString:@"&"];
-        
-        // escape value string
-        NSString *escapedString = (__bridge NSString*)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)[parameters valueForKey:key], NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8);
-        [parameterString appendFormat:@"%@=%@", key, escapedString];
-    }];
+    NSMutableURLRequest *request = [self requestWithMethod:method?:@"GET" path:resource parameters:parameters];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@%@", WMBaseURL, resource, parameterString ?: @""];
+    // set If-None-Match header if an eTag is provided
+    if (eTag) [request setValue:eTag forHTTPHeaderField:@"If-None-Match"];
     
-    // create URL for resource
-    NSURL *url = [NSURL URLWithString:urlString relativeToURL:[NSURL URLWithString:WMBaseURL]];
-    
-    // create request
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    [request setHTTPMethod:method ?: @"GET"];
+    // add body
     [request setHTTPBody:data];
-    
-    // set api key
-    [request setValue:WMAPIKey forHTTPHeaderField:@"X-API-KEY"];
-    
-    // set eTag if necessary
-    if (eTag) [request setValue:eTag forHTTPHeaderField:@"ETag"];
     
     // create request operation
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
@@ -64,3 +63,6 @@
 
 
 @end
+
+
+

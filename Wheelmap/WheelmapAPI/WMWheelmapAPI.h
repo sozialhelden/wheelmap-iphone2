@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFHTTPClient.h"
 
-@interface WMWheelmapAPI : NSObject
+@interface WMWheelmapAPI : AFHTTPClient
 
-@property (nonatomic) NSString* userId;
-@property (nonatomic) NSString* userAPIKey;
+- (id) initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey;
 
 - (NSOperation*) requestResource:(NSString *)resource
                                  parameters:(NSDictionary *)parameters
