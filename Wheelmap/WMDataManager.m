@@ -11,6 +11,9 @@
 #import "WMWheelmapAPI.h"
 
 #define WMSearchRadius 0.004
+#define WMBaseURL @"http://staging.wheelmap.org/api"
+#define WMAPIKey @"your api key here"
+
 
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
