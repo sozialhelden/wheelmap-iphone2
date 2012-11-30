@@ -26,6 +26,11 @@
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) NSMutableArray *imageViewsInScrollView;
 
+@property (nonatomic, strong) UIButton *callButton;
+@property (nonatomic, strong) UIButton *websiteButton;
+@property (nonatomic, strong) UIButton *commentButton;
+@property (nonatomic, strong) UIButton *naviButton;
+
 @property (nonatomic) Node *node;
 
 @end

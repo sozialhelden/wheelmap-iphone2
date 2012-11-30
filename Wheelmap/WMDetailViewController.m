@@ -191,46 +191,47 @@
     int imagePlusGab = buttonWidth + (((self.view.bounds.size.width-40)-(4*buttonWidth)) / 3);
     
     
-    UIButton *callButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    callButton.frame = CGRectMake(0, 0,buttonWidth,buttonHeight);
-    [callButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
-    [callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
-    [callButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.callButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.callButton.frame = CGRectMake(0, 0,buttonWidth,buttonHeight);
+    [self.callButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
+    [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
+     [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
+    [self.callButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
 
     UILabel *callLabel = [self createBelowButtonLabel:@"Anrufen NL"];
     callLabel.frame = CGRectMake(0,buttonHeight+5,buttonWidth, 16);
 
     
-    UIButton *websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    websiteButton.frame = CGRectMake(imagePlusGab, 0,buttonWidth,buttonHeight);
-    [websiteButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
-    [websiteButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.websiteButton.frame = CGRectMake(imagePlusGab, 0,buttonWidth,buttonHeight);
+    [self.websiteButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
+    [self.websiteButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *websiteLabel = [self createBelowButtonLabel:@"Website NL"];
     websiteLabel.frame = CGRectMake(imagePlusGab,buttonHeight+5,buttonWidth, 16);
 
     
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    infoButton.frame = CGRectMake(2*imagePlusGab, 0,buttonWidth,buttonHeight);
-    [infoButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
-    [infoButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.commentButton.frame = CGRectMake(2*imagePlusGab, 0,buttonWidth,buttonHeight);
+    [self.commentButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
+    [self.commentButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *infoLabel = [self createBelowButtonLabel:@"Info NL"];
     infoLabel.frame = CGRectMake(2*imagePlusGab,buttonHeight+5,buttonWidth, 16);
 
-    UIButton *routeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    routeButton.frame = CGRectMake(3*imagePlusGab, 0,buttonWidth,buttonHeight);
-    [routeButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
-    [routeButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.naviButton.frame = CGRectMake(3*imagePlusGab, 0,buttonWidth,buttonHeight);
+    [self.naviButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
+    [self.naviButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *routeLabel = [self createBelowButtonLabel:@"Route NL"];
     routeLabel.frame = CGRectMake(3*imagePlusGab,buttonHeight+5,buttonWidth, 16);
 
     
-    [fourButtonView addSubview:callButton];
-    [fourButtonView addSubview:websiteButton];
-    [fourButtonView addSubview:infoButton];
-    [fourButtonView addSubview:routeButton];
+    [fourButtonView addSubview:self.callButton];
+    [fourButtonView addSubview:self.websiteButton];
+    [fourButtonView addSubview:self.commentButton];
+    [fourButtonView addSubview:self.naviButton];
     [fourButtonView addSubview:callLabel];
     [fourButtonView addSubview:websiteLabel];
     [fourButtonView addSubview:infoLabel];
