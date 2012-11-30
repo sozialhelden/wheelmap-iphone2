@@ -12,12 +12,8 @@
 #import "Asset.h"
 
 #define WMSearchRadius 0.004
-<<<<<<< HEAD
-#define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
-=======
 #define WMLogDataManager 1
->>>>>>> a615d97246aac18754174743324abbee2c2374c1
+
 
 
 @interface WMDataManager()
