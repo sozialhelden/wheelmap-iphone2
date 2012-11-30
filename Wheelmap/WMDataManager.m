@@ -15,14 +15,18 @@
 #define WMLogDataManager 1
 
 
+// TODO: fix etag check
+// TODO: delete zip in temp folder
+// TODO: make sure no old files exist in unzipped folder after update
+// TODO: use a regular queue to enqueue both http and zip operations when syncing
 
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @end
 
-@implementation WMDataManager
 
+@implementation WMDataManager
 
 - (id) init
 {
@@ -101,6 +105,9 @@
 
 #pragma mark - Sync Resources
 
+static BOOL syncInProgress;
+static BOOL assetDownloadInProgress;
+
 - (void) syncResources
 {
     if (WMLogDataManager) {
@@ -110,6 +117,14 @@
         NSLog(@"... num assets: %i", [[self fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
     }
     
+    // make sure there's only one sync running at a time
+    if (syncInProgress || assetDownloadInProgress) {
+        if (WMLogDataManager) NSLog(@"... sync already in progress, skipping");
+        return;
+    }
+    syncInProgress = YES;
+    assetDownloadInProgress = YES;
+    
     // create categories request operation
     NSOperation *categoriesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
                                   parameters:nil
@@ -117,9 +132,11 @@
                                         data:nil
                                       method:nil
                                        error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                           dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"error loading categories");});
+                                           dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"... error loading categories");});
                                        }
                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                         NSUInteger code = response.statusCode;
+                                         NSLog(@"status %i", code);
                                          NSString *eTag = [response allHeaderFields][@"ETag"];
                                          dispatch_async(dispatch_get_main_queue(), ^{
                                              [self receivedCategories:JSON[@"categories"] withETag:eTag];
@@ -135,7 +152,7 @@
                                        data:nil
                                      method:nil
                                       error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                          dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"2 error loading node types");});
+                                          dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"... error loading node types");});
                                       }
                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                         NSString *eTag = [response allHeaderFields][@"ETag"];
@@ -153,7 +170,7 @@
                                                       data:nil
                                                     method:nil
                                                      error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                         dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"3 error loading assets");});
+                                                         dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"... error loading assets");});
                                                      }
                                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                        NSString *eTag = [response allHeaderFields][@"ETag"];
@@ -170,15 +187,21 @@
                                   // Maybe show this progress on splash screen at first launch
                               }
                             completionBlock:^(NSArray *operations) {
-                                if (WMLogDataManager) NSLog(@"sync finished");
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    if (WMLogDataManager) NSLog(@"... sync assets finished");
+                                    syncInProgress = NO;
+                                    [self finishSync];
+                                });
                             }
      ];
 }
 
 - (void) receivedCategories:(NSArray*)categories withETag:(NSString*) eTag
 {
-    if (WMLogDataManager) NSLog(@"received %i categories", [categories count]);
-    if (categories) {
+    BOOL dataIsUpdated = ![eTag isEqual:[self eTagForEntity:@"Category"]];
+    if (WMLogDataManager) NSLog(@"... received %i categories %@", [categories count], dataIsUpdated?@"from cache":@"");
+    
+    if (dataIsUpdated && categories) {
         NSError *error = nil;
         [self parseDataObject:categories entityName:@"Category" error:&error];
         if (error) {
@@ -191,7 +214,8 @@
 
 - (void) receivedNodeTypes:(NSArray*)nodeTypes withETag:(NSString*) eTag
 {
-    if (WMLogDataManager) NSLog(@"received %i node types", [nodeTypes count]);
+    BOOL dataIsUpdated = ![eTag isEqual:[self eTagForEntity:@"NodeType"]];
+    if (WMLogDataManager) NSLog(@"... received %i node types %@", [nodeTypes count], dataIsUpdated?@"from cache":@"");
     if (nodeTypes) {
         NSError *error = nil;
         [self parseDataObject:nodeTypes entityName:@"NodeType" error:&error];
@@ -205,13 +229,13 @@
 
 - (void) receivedAssets:(NSArray*)assets withETag:(NSString*) eTag
 {
-    if (WMLogDataManager) NSLog(@"received %i assets", [assets count]);
+    if (WMLogDataManager) NSLog(@"... received %i assets", [assets count]);
     
     if (!assets) return;
         
-    // if eTag has changed
+    // if eTag has not changed
     if (![eTag isEqual:[self eTagForEntity:@"Asset"]]) {
-        
+       
         // store old icon modified date
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
         Asset *icon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
@@ -222,7 +246,6 @@
         [self parseDataObject:assets entityName:@"Asset" error:&error];
         if (error) {
             // TODO: handle error
-            
         } else {
             
             // update etag
@@ -234,28 +257,35 @@
             // check if modified date has changed
             if (![icon.modified_at isEqual:oldLastModified]) {
                 [self downloadFilesForAsset:icon];
+                return;
             }
         }
     }
+    
+    assetDownloadInProgress = NO;
+    [self finishSync];
 }
 
 - (void) downloadFilesForAsset:(Asset*)asset
 {
-    if (WMLogDataManager) NSLog(@"download file for asset %@ from %@", asset.name, asset.url);
+    if (WMLogDataManager) NSLog(@"... download file for asset %@ from %@", asset.name, asset.url);
 
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"icons.zip"];
-    
+    // use /tmp dir for archive download
+    NSString *path = [NSTemporaryDirectory() stringByAppendingFormat:@"%@.zip", asset.name];
+
     NSOperation *operation = [[WMWheelmapAPI sharedInstance] downloadFile:[NSURL URLWithString:asset.url]
                                                                    toPath:path
                                                                     error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                                                            if (WMLogDataManager) NSLog(@"download error");
+                                                                            if (WMLogDataManager) NSLog(@"... download error");
+                                                                            assetDownloadInProgress = NO;
+                                                                            [self finishSync];
                                                                         });
                                                                     } 
                                                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response) {
                                                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                                                          if (WMLogDataManager) NSLog(@"download success");
+                                                                          if (WMLogDataManager) NSLog(@"... download success");
+                                                                          [self didFinishFileDownload:path forAsset:asset];
                                                                       });
                                                                   }
                                                          startImmediately:NO
@@ -264,30 +294,38 @@
     [[WMWheelmapAPI sharedInstance] enqueueHTTPRequestOperation:(id)operation];// TODO: remove cast (it hides dependency on AFNetworking)
 }
 
-- (NSString*) eTagForEntity:(NSString*)entityName
+- (void) didFinishFileDownload:(NSString*)path forAsset:(Asset*)asset
 {
-    NSDictionary *metaData = [self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
-    NSDictionary *eTags = metaData[@"eTags"];
-    return eTags[entityName];
+    // get path where file should be unzipped
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *destinationPath = [paths objectAtIndex:0];
+    
+    // unzip file
+    NSError *error = nil;
+    [SSZipArchive unzipFileAtPath:path toDestination:destinationPath overwrite:YES password:nil error:&error delegate:self];
+    if (error) {
+        // TODO: handle error
+        if (WMLogDataManager) NSLog(@"... unzipping failed");
+        assetDownloadInProgress = NO;
+        [self finishSync];
+    } else {
+        if (WMLogDataManager) NSLog(@"... unzipping file");
+    }
 }
 
-- (void) setETag:(NSString*)eTag forEntity:(NSString*)entityName
+- (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath
 {
-    // get meta data from persistent store
-    NSMutableDictionary *metaData = [[self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
-    
-    // create eTags dictionary if necessary
-    NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
-    
-    // use entity name as key of eTag
-    eTags[entityName] = eTag;
-    
-    // save new eTags dictionary in meta data
-    [metaData setObject:eTags forKey:@"eTags"];
-    
-    // save altered meta data to persistent store
-    [self.managedObjectContext.persistentStoreCoordinator setMetadata:metaData forPersistentStore:self.persistentStore];
-    [self saveData];
+    if (WMLogDataManager) NSLog(@"... did unzip file");
+    assetDownloadInProgress = NO;
+    [self finishSync];
+}
+
+- (void) finishSync
+{
+    if (!syncInProgress && !assetDownloadInProgress) {
+        if (WMLogDataManager) NSLog(@"... finished sync and asset download");
+        [self.delegate dataManagerDidFinishSyncingResources:self];
+    }
 }
 
 
@@ -365,7 +403,6 @@
     NSParameterAssert(data != nil);
     
     NSManagedObject *object = nil;
-    
     
     // check if there is an entity with this name
     NSDictionary *entityDescriptionsByName = [self.managedObjectContext.persistentStoreCoordinator.managedObjectModel entitiesByName];
@@ -651,6 +688,9 @@
     abort();
 }
 
+
+#pragma mark - Core Data Utility Methods
+
 - (NSArray*) fetchObjectsOfEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
@@ -670,8 +710,31 @@
     return [result lastObject];
 }
 
+- (NSString*) eTagForEntity:(NSString*)entityName
+{
+    NSDictionary *metaData = [self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
+    NSDictionary *eTags = metaData[@"eTags"];
+    return eTags[entityName];
+}
 
-#pragma mark - Save to Database
+- (void) setETag:(NSString*)eTag forEntity:(NSString*)entityName
+{
+    // get meta data from persistent store
+    NSMutableDictionary *metaData = [[self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
+    
+    // create eTags dictionary if necessary
+    NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
+    
+    // use entity name as key of eTag
+    eTags[entityName] = eTag;
+    
+    // save new eTags dictionary in meta data
+    [metaData setObject:eTags forKey:@"eTags"];
+    
+    // save altered meta data to persistent store
+    [self.managedObjectContext.persistentStoreCoordinator setMetadata:metaData forPersistentStore:self.persistentStore];
+    [self saveData];
+}
 
 - (BOOL) saveData
 {
@@ -700,8 +763,8 @@
     if (WMLogDataManager) NSLog(@"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
 }
 
-@end
 
+@end
 
 NSString *WMDataManagerErrorDomain = @"WMDataManagerErrorDomain";
 

@@ -14,6 +14,12 @@
 		9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9817AF50164D617A00703A92 /* WMDetailViewController.m */; };
 		982AAB7D1657B5FD00BAA68C /* temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 982AAB7C1657B5FD00BAA68C /* temp.png */; };
 		9839CAE11663850600B8E3B5 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */; };
+		985CFDA31668F1B80006104A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 985CFD991668F1B80006104A /* ioapi.c */; };
+		985CFDA41668F1B80006104A /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 985CFD9B1668F1B80006104A /* mztools.c */; };
+		985CFDA51668F1B80006104A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 985CFD9D1668F1B80006104A /* unzip.c */; };
+		985CFDA61668F1B80006104A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 985CFD9F1668F1B80006104A /* zip.c */; };
+		985CFDA71668F1B80006104A /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 985CFDA21668F1B80006104A /* SSZipArchive.m */; };
+		985CFDAA166906D20006104A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 985CFDA9166906D20006104A /* libz.dylib */; };
 		989927501649151300D9003B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		989927521649151300D9003B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		989927541649151300D9003B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
@@ -138,6 +144,18 @@
 		982AAB7C1657B5FD00BAA68C /* temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp.png; sourceTree = "<group>"; };
 		9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
+		985CFD981668F1B80006104A /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		985CFD991668F1B80006104A /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		985CFD9A1668F1B80006104A /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		985CFD9B1668F1B80006104A /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		985CFD9C1668F1B80006104A /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		985CFD9D1668F1B80006104A /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		985CFD9E1668F1B80006104A /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		985CFD9F1668F1B80006104A /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		985CFDA01668F1B80006104A /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		985CFDA11668F1B80006104A /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		985CFDA21668F1B80006104A /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		985CFDA9166906D20006104A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9899274B1649151300D9003B /* Wheelmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9899274F1649151300D9003B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		989927511649151300D9003B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -272,6 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985CFDAA166906D20006104A /* libz.dylib in Frameworks */,
 				98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */,
 				989927E9164ACABD00D9003B /* CoreLocation.framework in Frameworks */,
 				989927921649462E00D9003B /* MapKit.framework in Frameworks */,
@@ -294,6 +313,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		985CFD961668F1B80006104A /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				985CFD971668F1B80006104A /* minizip */,
+				985CFDA11668F1B80006104A /* SSZipArchive.h */,
+				985CFDA21668F1B80006104A /* SSZipArchive.m */,
+			);
+			path = SSZipArchive;
+			sourceTree = "<group>";
+		};
+		985CFD971668F1B80006104A /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				985CFD981668F1B80006104A /* crypt.h */,
+				985CFD991668F1B80006104A /* ioapi.c */,
+				985CFD9A1668F1B80006104A /* ioapi.h */,
+				985CFD9B1668F1B80006104A /* mztools.c */,
+				985CFD9C1668F1B80006104A /* mztools.h */,
+				985CFD9D1668F1B80006104A /* unzip.c */,
+				985CFD9E1668F1B80006104A /* unzip.h */,
+				985CFD9F1668F1B80006104A /* zip.c */,
+				985CFDA01668F1B80006104A /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +362,7 @@
 		9899274E1649151300D9003B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				985CFDA9166906D20006104A /* libz.dylib */,
 				98E3B835166523DE00C23EBE /* CoreData.framework */,
 				989927E8164ACABC00D9003B /* CoreLocation.framework */,
 				989927911649462E00D9003B /* MapKit.framework */,
@@ -333,6 +379,7 @@
 			children = (
 				98CA22DA16664C4D00DF0EA3 /* Entities */,
 				98ADC6D1164BEEDA00251943 /* Resources */,
+				985CFD961668F1B80006104A /* SSZipArchive */,
 				9899279E164973CF00D9003B /* WheelmapAPI */,
 				98E3B8371665266B00C23EBE /* WMDataModel.xcdatamodeld */,
 				989927671649151300D9003B /* MainStoryboard_iPhone.storyboard */,
@@ -729,6 +776,11 @@
 				980718DC1667684300580112 /* Asset.m in Sources */,
 				980718F01667CC0C00580112 /* NodeType.m in Sources */,
 				980718F31667CC0D00580112 /* Category.m in Sources */,
+				985CFDA31668F1B80006104A /* ioapi.c in Sources */,
+				985CFDA41668F1B80006104A /* mztools.c in Sources */,
+				985CFDA51668F1B80006104A /* unzip.c in Sources */,
+				985CFDA61668F1B80006104A /* zip.c in Sources */,
+				985CFDA71668F1B80006104A /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
