@@ -1,0 +1,14 @@
+//
+//  Categories.h
+//  Wheelmap
+//
+//  Created by npng on 11/28/12.
+//  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
+//
+
+#ifndef Wheelmap_Categories_h
+#define Wheelmap_Categories_h
+
+#import "UIView+Geometry.h"
+
+#endif
