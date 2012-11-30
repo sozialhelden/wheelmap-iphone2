@@ -9,9 +9,22 @@
 #import "WMWheelmapAPI.h"
 #import "AFJSONRequestOperation.h"
 
+#define WMBaseURL @"http://staging.wheelmap.org/api"
+#define WMAPIKey @"your api key here"
+
 
 @implementation WMWheelmapAPI
 
+
++ (WMWheelmapAPI *)sharedInstance {
+    static WMWheelmapAPI *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[WMWheelmapAPI alloc] initWithBaseURL:[NSURL URLWithString:WMBaseURL] apiKey:WMAPIKey];
+    });
+    
+    return _sharedInstance;
+}
 
 - (id)initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey {
     self = [super initWithBaseURL:url];
@@ -60,9 +73,38 @@
     return operation;
 }
 
+- (NSOperation *) downloadFile:(NSURL *)url
+                        toPath:(NSString*)path
+                         error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))errorBlock
+                       success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock
+              startImmediately:(BOOL)startImmediately
+{
+    // create basic http operation
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    // stream to destination file path
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
+    
+    // set result blocks that call our standard result blocks
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id response) {
+                                            successBlock(request, response);
+                                        }
+                                     failure:^(AFHTTPRequestOperation *op , NSError *error) {
+                                            errorBlock(request, op.response, error);
+                                        }
+    ];
+    
+    // start if necessary
+    if (startImmediately) [operation start];
+    
+    return operation;
+}
 
 
 @end
+
+
 
 
 

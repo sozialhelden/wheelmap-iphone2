@@ -53,7 +53,7 @@
 	<array>
 		<dict>
 			<key>Bounds</key>
-			<string>{{173.32489522050955, 262.04484659129673}, {47, 14}}</string>
+			<string>{{173.45557942094155, 273.72593070368487}, {47, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -127,8 +127,8 @@
 			<integer>109</integer>
 			<key>Points</key>
 			<array>
-				<string>{196.40365137986876, 303.57612605149745}</string>
-				<string>{197.26978879442373, 232.57489059737938}</string>
+				<string>{196.71700775384613, 303.57611613017735}</string>
+				<string>{197.20754512671255, 256.59287597811323}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -152,7 +152,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{66.838258431284942, 143.0730072862456}, {261.96174421501809, 89.001920545269698}}</string>
+			<string>{{66.838258431284942, 143.0730072862456}, {261.96174421501809, 113.0198974609375}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -184,7 +184,10 @@
 - dataManager: didReceiveNodes:\
 - dataManager: fetchNodesFailedWithError:\
 - dataManagerDidFinishSyncingResources:\
-- dataManager: syncResourcesFailedWithError:}</string>
+- dataManager: syncResourcesFailedWithError:\
+\
+
+\b received search results}</string>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
@@ -449,46 +452,6 @@
 			</dict>
 			<key>Wrap</key>
 			<string>NO</string>
-		</dict>
-		<dict>
-			<key>Class</key>
-			<string>LineGraphic</string>
-			<key>FontInfo</key>
-			<dict>
-				<key>Font</key>
-				<string>Helvetica-Bold</string>
-				<key>Size</key>
-				<real>12</real>
-			</dict>
-			<key>Head</key>
-			<dict>
-				<key>ID</key>
-				<integer>4</integer>
-			</dict>
-			<key>ID</key>
-			<integer>102</integer>
-			<key>Points</key>
-			<array>
-				<string>{196.34338701851036, 556.63899344546337}</string>
-				<string>{197.25662756753746, 629.69813998247571}</string>
-			</array>
-			<key>Style</key>
-			<dict>
-				<key>stroke</key>
-				<dict>
-					<key>HeadArrow</key>
-					<string>FilledArrow</string>
-					<key>Legacy</key>
-					<true/>
-					<key>TailArrow</key>
-					<string>0</string>
-				</dict>
-			</dict>
-			<key>Tail</key>
-			<dict>
-				<key>ID</key>
-				<integer>3</integer>
-			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
@@ -2197,8 +2160,8 @@
 			<integer>20</integer>
 			<key>Points</key>
 			<array>
-				<string>{195.78086763191928, 405.67972656192069}</string>
-				<string>{195.78086763191928, 466.63711198639817}</string>
+				<string>{195.78086194026653, 482.90000245117551}</string>
+				<string>{195.78086194026653, 537.0999999945102}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -2220,7 +2183,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{64.800003374176981, 304.07608887146705}, {261.96174421501809, 101.1036376953125}}</string>
+			<string>{{64.800003374176981, 304.07608887146705}, {261.96174421501809, 178.32391357421875}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -2250,54 +2213,25 @@
 
 \b0 \
 - fetchNodesNear:\
-- fetchNodesBetweenSoutheast: northwest:\
+- fetchNodesBetweenSouthwest: northeast\
 - syncResources\
 - categories\
-- types}</string>
-			</dict>
-			<key>TextPlacement</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>Bounds</key>
-			<string>{{68.876527698584141, 630.19810090113253}, {257.88520816883016, 89.001920545269698}}</string>
-			<key>Class</key>
-			<string>ShapedGraphic</string>
-			<key>FontInfo</key>
-			<dict>
-				<key>Font</key>
-				<string>Helvetica-Bold</string>
-				<key>Size</key>
-				<real>12</real>
-			</dict>
-			<key>ID</key>
-			<integer>4</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
-			<key>Style</key>
-			<dict/>
-			<key>Text</key>
-			<dict>
-				<key>Align</key>
-				<integer>0</integer>
-				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
-\f0\b\fs20 \cf0 WheelmapAPIRequest
+\b - nodeTypes
 \b0 \
 \
-- initWithURLRequest: error: success: \
-}</string>
+
+\b - search\
+- put \
+- post\
+- foto upload}</string>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{64.800002646303028, 467.13711198153931}, {261.96174421501809, 89.001920545269698}}</string>
+			<string>{{64.799999594545199, 537.60000000000002}, {261.96174421501809, 126.40000152587891}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -2323,11 +2257,14 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
-\f0\b\fs20 \cf0 WheelmapAPI
-\b0 \
+\f0\b\fs20 \cf0 WheelmapAPI\
 \
-- requestResource: parameters: data: method: error: success\
+
+\b0 + sharedInstance\
 \
+- requestResource:resource parameters: eTag: data: method: error: success: startImmediately:\
+\
+- downloadFile: toPath: error: success: startImmediately\
 \
 }</string>
 			</dict>
@@ -2382,7 +2319,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-11-29 08:52:40 +0000</string>
+	<string>2012-11-30 10:28:58 +0000</string>
 	<key>Modifier</key>
 	<string>Dorian Roy</string>
 	<key>NotesVisible</key>
@@ -2463,7 +2400,7 @@
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{0, 182}, {1920, 996}}</string>
+		<string>{{0, 4}, {1280, 774}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -2477,7 +2414,7 @@
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{0, 96.799999999999997}, {1428, 685.60000000000002}}</string>
+		<string>{{0, 75.200000000000003}, {916, 508.00000000000006}}</string>
 		<key>Zoom</key>
 		<real>1.25</real>
 		<key>ZoomValues</key>

@@ -2,14 +2,14 @@
 //  NodeType.h
 //  Wheelmap
 //
-//  Created by Dorian Roy on 28.11.12.
+//  Created by Dorian Roy on 29.11.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Node;
+@class Category, Node;
 
 @interface NodeType : NSManagedObject
 
@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSString * localized_name;
 @property (nonatomic, retain) NSSet *node;
+@property (nonatomic, retain) Category *category;
 @end
 
 @interface NodeType (CoreDataGeneratedAccessors)

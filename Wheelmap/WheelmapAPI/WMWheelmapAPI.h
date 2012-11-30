@@ -11,6 +11,9 @@
 
 @interface WMWheelmapAPI : AFHTTPClient
 
+
++ (WMWheelmapAPI *)sharedInstance;
+
 - (id) initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey;
 
 - (NSOperation*) requestResource:(NSString *)resource
@@ -21,5 +24,11 @@
                                       error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON))errorBlock
                                     success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))successBlock
                            startImmediately:(BOOL)startImmediately;
+
+- (NSOperation *) downloadFile:(NSURL *)url
+                        toPath:(NSString*)path
+                         error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))errorBlock
+                       success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock
+              startImmediately:(BOOL)startImmediately;
 
 @end
