@@ -86,6 +86,33 @@
 		98CA2304166676AB00DF0EA3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */; };
 		98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E3B835166523DE00C23EBE /* CoreData.framework */; };
 		98E3B8391665266B00C23EBE /* WMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98E3B8371665266B00C23EBE /* WMDataModel.xcdatamodeld */; };
+		D5E0F0DE1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */; };
+		D5E0F0E81667C7E700B78F57 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0E41667C7E700B78F57 /* details_btn-status-limited.png */; };
+		D5E0F0E91667C7E700B78F57 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0E51667C7E700B78F57 /* details_btn-status-no.png */; };
+		D5E0F0EA1667C7E700B78F57 /* details_btn-status-unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0E61667C7E700B78F57 /* details_btn-status-unknown.png */; };
+		D5E0F0EB1667C7E700B78F57 /* details_btn-status-yes.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0E71667C7E700B78F57 /* details_btn-status-yes.png */; };
+		D5E0F0F01667CDCF00B78F57 /* details_btn-more-phone-active.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0EC1667CDCF00B78F57 /* details_btn-more-phone-active.png */; };
+		D5E0F0F11667CDCF00B78F57 /* details_btn-more-phone-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0ED1667CDCF00B78F57 /* details_btn-more-phone-active@2x.png */; };
+		D5E0F0F21667CDCF00B78F57 /* details_btn-more-phone-inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0EE1667CDCF00B78F57 /* details_btn-more-phone-inactive.png */; };
+		D5E0F0F31667CDCF00B78F57 /* details_btn-more-phone-inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0EF1667CDCF00B78F57 /* details_btn-more-phone-inactive@2x.png */; };
+		D5E0F0F61667DA8900B78F57 /* details_btn-more-inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0F41667DA8900B78F57 /* details_btn-more-inactive.png */; };
+		D5E0F0F71667DA8900B78F57 /* details_btn-more-inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0F51667DA8900B78F57 /* details_btn-more-inactive@2x.png */; };
+		D5E0F0FA1667DAB600B78F57 /* details_btn-more-active.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0F81667DAB600B78F57 /* details_btn-more-active.png */; };
+		D5E0F0FB1667DAB600B78F57 /* details_btn-more-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0F91667DAB600B78F57 /* details_btn-more-active@2x.png */; };
+		D5E0F1001667EED400B78F57 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0FC1667EED300B78F57 /* details_btn-status-limited@2x.png */; };
+		D5E0F1011667EED400B78F57 /* details_btn-status-no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0FD1667EED300B78F57 /* details_btn-status-no@2x.png */; };
+		D5E0F1021667EED400B78F57 /* details_btn-status-unknown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0FE1667EED300B78F57 /* details_btn-status-unknown@2x.png */; };
+		D5E0F1031667EED400B78F57 /* details_btn-status-yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0FF1667EED400B78F57 /* details_btn-status-yes@2x.png */; };
+		D5E0F1061667EEEF00B78F57 /* details_btn-photoupload.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F1041667EEEF00B78F57 /* details_btn-photoupload.png */; };
+		D5E0F1071667EEEF00B78F57 /* details_btn-photoupload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F1051667EEEF00B78F57 /* details_btn-photoupload@2x.png */; };
+		D5E0F10A1667EFE300B78F57 /* details_background-photoupload.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F1081667EFE300B78F57 /* details_background-photoupload.png */; };
+		D5E0F10B1667EFE300B78F57 /* details_background-photoupload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F1091667EFE300B78F57 /* details_background-photoupload@2x.png */; };
+		D5E0F10E1667F33A00B78F57 /* details_background-thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F10C1667F33A00B78F57 /* details_background-thumbnail.png */; };
+		D5E0F10F1667F33A00B78F57 /* details_background-thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F10D1667F33A00B78F57 /* details_background-thumbnail@2x.png */; };
+		D5E0F11616681F6200B78F57 /* details_btn-additional-info.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F11416681F6100B78F57 /* details_btn-additional-info.png */; };
+		D5E0F11716681F6200B78F57 /* details_btn-additional-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F11516681F6100B78F57 /* details_btn-additional-info@2x.png */; };
+		D5E0F11A1668D18700B78F57 /* details_btn-more-comment-active.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F1181668D18700B78F57 /* details_btn-more-comment-active.png */; };
+		D5E0F11B1668D18700B78F57 /* details_btn-more-comment-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F1191668D18700B78F57 /* details_btn-more-comment-active@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +238,33 @@
 		98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		98E3B835166523DE00C23EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		98E3B8381665266B00C23EBE /* WMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WMDataModel.xcdatamodel; sourceTree = "<group>"; };
+		D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Berlin, Friedrichstr.gpx"; sourceTree = "<group>"; };
+		D5E0F0E41667C7E700B78F57 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-limited.png"; sourceTree = "<group>"; };
+		D5E0F0E51667C7E700B78F57 /* details_btn-status-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-no.png"; sourceTree = "<group>"; };
+		D5E0F0E61667C7E700B78F57 /* details_btn-status-unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-unknown.png"; sourceTree = "<group>"; };
+		D5E0F0E71667C7E700B78F57 /* details_btn-status-yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-yes.png"; sourceTree = "<group>"; };
+		D5E0F0EC1667CDCF00B78F57 /* details_btn-more-phone-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-phone-active.png"; sourceTree = "<group>"; };
+		D5E0F0ED1667CDCF00B78F57 /* details_btn-more-phone-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-phone-active@2x.png"; sourceTree = "<group>"; };
+		D5E0F0EE1667CDCF00B78F57 /* details_btn-more-phone-inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-phone-inactive.png"; sourceTree = "<group>"; };
+		D5E0F0EF1667CDCF00B78F57 /* details_btn-more-phone-inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-phone-inactive@2x.png"; sourceTree = "<group>"; };
+		D5E0F0F41667DA8900B78F57 /* details_btn-more-inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-inactive.png"; sourceTree = "<group>"; };
+		D5E0F0F51667DA8900B78F57 /* details_btn-more-inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-inactive@2x.png"; sourceTree = "<group>"; };
+		D5E0F0F81667DAB600B78F57 /* details_btn-more-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-active.png"; sourceTree = "<group>"; };
+		D5E0F0F91667DAB600B78F57 /* details_btn-more-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-active@2x.png"; sourceTree = "<group>"; };
+		D5E0F0FC1667EED300B78F57 /* details_btn-status-limited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-limited@2x.png"; sourceTree = "<group>"; };
+		D5E0F0FD1667EED300B78F57 /* details_btn-status-no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-no@2x.png"; sourceTree = "<group>"; };
+		D5E0F0FE1667EED300B78F57 /* details_btn-status-unknown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-unknown@2x.png"; sourceTree = "<group>"; };
+		D5E0F0FF1667EED400B78F57 /* details_btn-status-yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-status-yes@2x.png"; sourceTree = "<group>"; };
+		D5E0F1041667EEEF00B78F57 /* details_btn-photoupload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-photoupload.png"; sourceTree = "<group>"; };
+		D5E0F1051667EEEF00B78F57 /* details_btn-photoupload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-photoupload@2x.png"; sourceTree = "<group>"; };
+		D5E0F1081667EFE300B78F57 /* details_background-photoupload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_background-photoupload.png"; sourceTree = "<group>"; };
+		D5E0F1091667EFE300B78F57 /* details_background-photoupload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_background-photoupload@2x.png"; sourceTree = "<group>"; };
+		D5E0F10C1667F33A00B78F57 /* details_background-thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_background-thumbnail.png"; sourceTree = "<group>"; };
+		D5E0F10D1667F33A00B78F57 /* details_background-thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_background-thumbnail@2x.png"; sourceTree = "<group>"; };
+		D5E0F11416681F6100B78F57 /* details_btn-additional-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-additional-info.png"; sourceTree = "<group>"; };
+		D5E0F11516681F6100B78F57 /* details_btn-additional-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-additional-info@2x.png"; sourceTree = "<group>"; };
+		D5E0F1181668D18700B78F57 /* details_btn-more-comment-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-comment-active.png"; sourceTree = "<group>"; };
+		D5E0F1191668D18700B78F57 /* details_btn-more-comment-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-comment-active@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +297,7 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
+				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927551649151300D9003B /* Wheelmap */,
 				9899277C1649151300D9003B /* WheelmapTests */,
 				9899274E1649151300D9003B /* Frameworks */,
@@ -357,6 +412,11 @@
 		98ADC6D1164BEEDA00251943 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D5E0F1081667EFE300B78F57 /* details_background-photoupload.png */,
+				D5E0F1091667EFE300B78F57 /* details_background-photoupload@2x.png */,
+				D5E0F10C1667F33A00B78F57 /* details_background-thumbnail.png */,
+				D5E0F10D1667F33A00B78F57 /* details_background-thumbnail@2x.png */,
+				D5E0F0E31667C60100B78F57 /* Buttons */,
 				98ADC6E7164C15A600251943 /* bg.png */,
 				982AAB7C1657B5FD00BAA68C /* temp.png */,
 				98ADC6E8164C15A700251943 /* navigationbar_adbutton.png */,
@@ -437,6 +497,35 @@
 			);
 			name = AFNetworking;
 			path = ../AFNetworking;
+			sourceTree = "<group>";
+		};
+		D5E0F0E31667C60100B78F57 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D5E0F1181668D18700B78F57 /* details_btn-more-comment-active.png */,
+				D5E0F1191668D18700B78F57 /* details_btn-more-comment-active@2x.png */,
+				D5E0F11416681F6100B78F57 /* details_btn-additional-info.png */,
+				D5E0F11516681F6100B78F57 /* details_btn-additional-info@2x.png */,
+				D5E0F1041667EEEF00B78F57 /* details_btn-photoupload.png */,
+				D5E0F1051667EEEF00B78F57 /* details_btn-photoupload@2x.png */,
+				D5E0F0FC1667EED300B78F57 /* details_btn-status-limited@2x.png */,
+				D5E0F0FD1667EED300B78F57 /* details_btn-status-no@2x.png */,
+				D5E0F0FE1667EED300B78F57 /* details_btn-status-unknown@2x.png */,
+				D5E0F0FF1667EED400B78F57 /* details_btn-status-yes@2x.png */,
+				D5E0F0F41667DA8900B78F57 /* details_btn-more-inactive.png */,
+				D5E0F0F51667DA8900B78F57 /* details_btn-more-inactive@2x.png */,
+				D5E0F0F81667DAB600B78F57 /* details_btn-more-active.png */,
+				D5E0F0F91667DAB600B78F57 /* details_btn-more-active@2x.png */,
+				D5E0F0EC1667CDCF00B78F57 /* details_btn-more-phone-active.png */,
+				D5E0F0ED1667CDCF00B78F57 /* details_btn-more-phone-active@2x.png */,
+				D5E0F0EE1667CDCF00B78F57 /* details_btn-more-phone-inactive.png */,
+				D5E0F0EF1667CDCF00B78F57 /* details_btn-more-phone-inactive@2x.png */,
+				D5E0F0E41667C7E700B78F57 /* details_btn-status-limited.png */,
+				D5E0F0E51667C7E700B78F57 /* details_btn-status-no.png */,
+				D5E0F0E61667C7E700B78F57 /* details_btn-status-unknown.png */,
+				D5E0F0E71667C7E700B78F57 /* details_btn-status-yes.png */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -551,6 +640,33 @@
 				98ADC714164C15A700251943 /* toolbar-icon-search.png in Resources */,
 				9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */,
 				982AAB7D1657B5FD00BAA68C /* temp.png in Resources */,
+				D5E0F0DE1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx in Resources */,
+				D5E0F0E81667C7E700B78F57 /* details_btn-status-limited.png in Resources */,
+				D5E0F0E91667C7E700B78F57 /* details_btn-status-no.png in Resources */,
+				D5E0F0EA1667C7E700B78F57 /* details_btn-status-unknown.png in Resources */,
+				D5E0F0EB1667C7E700B78F57 /* details_btn-status-yes.png in Resources */,
+				D5E0F0F01667CDCF00B78F57 /* details_btn-more-phone-active.png in Resources */,
+				D5E0F0F11667CDCF00B78F57 /* details_btn-more-phone-active@2x.png in Resources */,
+				D5E0F0F21667CDCF00B78F57 /* details_btn-more-phone-inactive.png in Resources */,
+				D5E0F0F31667CDCF00B78F57 /* details_btn-more-phone-inactive@2x.png in Resources */,
+				D5E0F0F61667DA8900B78F57 /* details_btn-more-inactive.png in Resources */,
+				D5E0F0F71667DA8900B78F57 /* details_btn-more-inactive@2x.png in Resources */,
+				D5E0F0FA1667DAB600B78F57 /* details_btn-more-active.png in Resources */,
+				D5E0F0FB1667DAB600B78F57 /* details_btn-more-active@2x.png in Resources */,
+				D5E0F1001667EED400B78F57 /* details_btn-status-limited@2x.png in Resources */,
+				D5E0F1011667EED400B78F57 /* details_btn-status-no@2x.png in Resources */,
+				D5E0F1021667EED400B78F57 /* details_btn-status-unknown@2x.png in Resources */,
+				D5E0F1031667EED400B78F57 /* details_btn-status-yes@2x.png in Resources */,
+				D5E0F1061667EEEF00B78F57 /* details_btn-photoupload.png in Resources */,
+				D5E0F1071667EEEF00B78F57 /* details_btn-photoupload@2x.png in Resources */,
+				D5E0F10A1667EFE300B78F57 /* details_background-photoupload.png in Resources */,
+				D5E0F10B1667EFE300B78F57 /* details_background-photoupload@2x.png in Resources */,
+				D5E0F10E1667F33A00B78F57 /* details_background-thumbnail.png in Resources */,
+				D5E0F10F1667F33A00B78F57 /* details_background-thumbnail@2x.png in Resources */,
+				D5E0F11616681F6200B78F57 /* details_btn-additional-info.png in Resources */,
+				D5E0F11716681F6200B78F57 /* details_btn-additional-info@2x.png in Resources */,
+				D5E0F11A1668D18700B78F57 /* details_btn-more-comment-active.png in Resources */,
+				D5E0F11B1668D18700B78F57 /* details_btn-more-comment-active@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
