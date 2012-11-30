@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UIButton *websiteButton;
 @property (nonatomic, strong) UIButton *commentButton;
 @property (nonatomic, strong) UIButton *naviButton;
+@property (assign) int gabIfStatusUnknown;
 
 @property (nonatomic) Node *node;
 
