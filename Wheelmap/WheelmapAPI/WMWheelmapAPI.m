@@ -9,9 +9,22 @@
 #import "WMWheelmapAPI.h"
 #import "AFJSONRequestOperation.h"
 
+#define WMBaseURL @"http://staging.wheelmap.org/api"
+#define WMAPIKey @"your api key here"
+
 
 @implementation WMWheelmapAPI
 
+
++ (WMWheelmapAPI *)sharedInstance {
+    static WMWheelmapAPI *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[WMWheelmapAPI alloc] initWithBaseURL:[NSURL URLWithString:WMBaseURL] apiKey:WMAPIKey];
+    });
+    
+    return _sharedInstance;
+}
 
 - (id)initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey {
     self = [super initWithBaseURL:url];

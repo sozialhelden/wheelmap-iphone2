@@ -11,6 +11,9 @@
 
 @interface WMWheelmapAPI : AFHTTPClient
 
+
++ (WMWheelmapAPI *)sharedInstance;
+
 - (id) initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey;
 
 - (NSOperation*) requestResource:(NSString *)resource

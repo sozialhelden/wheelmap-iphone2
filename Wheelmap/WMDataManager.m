@@ -12,8 +12,7 @@
 #import "Asset.h"
 
 #define WMSearchRadius 0.004
-#define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMAPIKey @"your api key here"
+#define WMLogDataManager 1
 
 
 @interface WMDataManager()
@@ -22,27 +21,12 @@
 @end
 
 @implementation WMDataManager
-{
-    WMWheelmapAPI *api;
-    NSManagedObjectContext *_managedObjectContext;
-    NSPersistentStore *_persistentStore;
-}
 
-
-+ (WMDataManager *)sharedInstance {
-    static WMDataManager *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[WMDataManager alloc] init];
-    });
-    return _sharedInstance;
-}
 
 - (id) init
 {
     self = [super init];
     if (self) {
-        api = [[WMWheelmapAPI alloc] initWithBaseURL:[NSURL URLWithString:WMBaseURL] apiKey:WMAPIKey];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     }
     return self;
@@ -83,7 +67,7 @@
 
 - (void) fetchNodesWithParameters:(NSDictionary*)parameters;
 {
-    [api requestResource:@"nodes"
+    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
               parameters:parameters
                     eTag:nil
                     data:nil
@@ -118,12 +102,15 @@
 
 - (void) syncResources
 {
-    NSLog(@"num categories: %i", [[self fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
-    NSLog(@"num node types: %i", [[self fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
-    NSLog(@"num assets: %i", [[self fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
+    if (WMLogDataManager) {
+        NSLog(@"syncResources");
+        NSLog(@"... num categories: %i", [[self fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
+        NSLog(@"... num node types: %i", [[self fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
+        NSLog(@"... num assets: %i", [[self fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
+    }
     
     // create categories request operation
-    NSOperation *categoriesOperation = [api requestResource:@"categories"
+    NSOperation *categoriesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
                                   parameters:nil
                                         eTag:[self eTagForEntity:@"Category"]
                                         data:nil
@@ -141,7 +128,7 @@
          ];
 
     // create node types request operation
-    NSOperation *nodeTypesOperation = [api requestResource:@"node_types"
+    NSOperation *nodeTypesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"node_types"
                                  parameters:nil
                                        eTag:[self eTagForEntity:@"NodeType"]
                                        data:nil
@@ -159,7 +146,7 @@
     ];
     
     // create assets operation
-    NSOperation *assetsOperation = [api requestResource:@"assets"
+    NSOperation *assetsOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"assets"
                                                 parameters:nil
                                                       eTag:[self eTagForEntity:@"Asset"]
                                                       data:nil
@@ -177,19 +164,19 @@
                                        ];
     
     // enqueue operations
-    [api enqueueBatchOfHTTPRequestOperations:@[categoriesOperation, nodeTypesOperation, assetsOperation]
+    [[WMWheelmapAPI sharedInstance] enqueueBatchOfHTTPRequestOperations:@[categoriesOperation, nodeTypesOperation, assetsOperation]
                               progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
                                   // Maybe show this progress on splash screen at first launch
                               }
                             completionBlock:^(NSArray *operations) {
-                                NSLog(@"sync finished");
+                                if (WMLogDataManager) NSLog(@"sync finished");
                             }
      ];
 }
 
 - (void) receivedCategories:(NSArray*)categories withETag:(NSString*) eTag
 {
-    NSLog(@"received %i categories", [categories count]);
+    if (WMLogDataManager) NSLog(@"received %i categories", [categories count]);
     if (categories) {
         NSError *error = nil;
         [self parseDataObject:categories entityName:@"Category" error:&error];
@@ -203,7 +190,7 @@
 
 - (void) receivedNodeTypes:(NSArray*)nodeTypes withETag:(NSString*) eTag
 {
-    NSLog(@"received %i node types", [nodeTypes count]);
+    if (WMLogDataManager) NSLog(@"received %i node types", [nodeTypes count]);
     if (nodeTypes) {
         NSError *error = nil;
         [self parseDataObject:nodeTypes entityName:@"NodeType" error:&error];
@@ -217,7 +204,7 @@
 
 - (void) receivedAssets:(NSArray*)assets withETag:(NSString*) eTag
 {
-    NSLog(@"received %i assets", [assets count]);
+    if (WMLogDataManager) NSLog(@"received %i assets", [assets count]);
     
     if (!assets) return;
         
@@ -253,25 +240,27 @@
 
 - (void) downloadFilesForAsset:(Asset*)asset
 {
-    NSLog(@"download files for %@ :%@", asset.name, asset.url);
+    if (WMLogDataManager) NSLog(@"download file for asset %@ from %@", asset.name, asset.url);
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"icons.zip"];
     
-    NSOperation *operation = [api downloadFile:[NSURL URLWithString:asset.url]
-                                                     toPath:path
-                                                      error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                            NSLog(@"download error");
-                                        });
-                                                      }
-                                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response) {
-                                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                                            NSLog(@"download success");
-                                                        });
-                                                    }
-                              startImmediately:YES
+    NSOperation *operation = [[WMWheelmapAPI sharedInstance] downloadFile:[NSURL URLWithString:asset.url]
+                                                                   toPath:path
+                                                                    error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                                            if (WMLogDataManager) NSLog(@"download error");
+                                                                        });
+                                                                    } 
+                                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response) {
+                                                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                                                          if (WMLogDataManager) NSLog(@"download success");
+                                                                      });
+                                                                  }
+                                                         startImmediately:NO
     ];
+    
+    [[WMWheelmapAPI sharedInstance] enqueueHTTPRequestOperation:(id)operation];// TODO: remove cast (it hides dependency on AFNetworking)
 }
 
 - (NSString*) eTagForEntity:(NSString*)entityName
@@ -320,6 +309,8 @@
 {
     NSParameterAssert(object);
     NSParameterAssert(entityName);
+    
+    if (WMLogDataManager) NSLog(@"parsing %@", entityName);
     
     id parsedObject = nil;
     
@@ -374,12 +365,13 @@
     
     NSManagedObject *object = nil;
     
+    
     // check if there is an entity with this name
     NSDictionary *entityDescriptionsByName = [self.managedObjectContext.persistentStoreCoordinator.managedObjectModel entitiesByName];
     NSEntityDescription *descr = entityDescriptionsByName[entityName];
     
     if (!descr) {
-        NSLog(@"no entity description for %@", entityName);
+        if (WMLogDataManager) NSLog(@"... no entity description for %@", entityName);
         
     } else {
         
@@ -390,7 +382,7 @@
             
             NSNumber *object_id = data[@"id"];
             if (!object_id || ![object_id isKindOfClass:[NSNumber class]]) {
-                NSLog(@"received object with invalid id");
+                if (WMLogDataManager) NSLog(@"... received object with invalid id");
                 return nil;
             }
             
@@ -401,7 +393,11 @@
         
         // if there is no object to update, create new object for entity name
         if (!objectExisted) {
+            if (WMLogDataManager) NSLog(@"... creating %@", entityName);
             object = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
+            
+        } else {
+            if (WMLogDataManager) NSLog(@"... updating %@", entityName);
         }
         
         // copy all attributes to the object
@@ -412,7 +408,7 @@
             
             // abort if an attribute cannot be converted
             if (!conversionSuccess) {
-                NSLog(@"...property conversion failed for key %@", key);
+                if (WMLogDataManager) NSLog(@"... property conversion failed for key %@", key);
                 *stop = YES;
             }
         }];
@@ -452,6 +448,8 @@
  */
 - (BOOL) managedObject:(NSManagedObject*)managedObject convertAndSetValue:(id)value forKey:(NSString*)key
 {
+     if (WMLogDataManager) NSLog(@"...... setting value %@ for key %@", value, key);
+    
     if (value == [NSNull null]) {
         value = nil;
     }
@@ -496,7 +494,7 @@
                 break;
                 
             default:
-                NSLog(@"Unexpected attribute type %i in entity %@", type, managedObject.entity.name);
+                if (WMLogDataManager) NSLog(@"...... Unexpected attribute type %i in entity %@", type, managedObject.entity.name);
                 return NO;
         }
         
@@ -511,7 +509,7 @@
         // if it is a to-many relationship
         if ([relationship isToMany]) {
             
-            NSAssert([value isKindOfClass:[NSArray class]], @"Expected array as value of to-many-relationship");
+            NSAssert([value isKindOfClass:[NSArray class]], @"...... Expected array as value of to-many-relationship");
             NSArray *array = (NSArray*) value;
             
             // create temp set
@@ -560,12 +558,11 @@
         
     } else {
         // the property is not part of the local data model and will be ignored
-        NSLog(@"ignored property %@ on entity %@", key, managedObject.entity.name);
+        if (WMLogDataManager) NSLog(@"...... ignored property %@ on entity %@", key, managedObject.entity.name);
     }
     
     return YES;
 }
-
 
 
 #pragma mark - Core Data Stack
@@ -577,7 +574,9 @@
  */
 - (NSManagedObjectContext*) managedObjectContext
 {
-    if (!_managedObjectContext) {
+    static NSManagedObjectContext *_managedObjectContext = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         
         NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] init];
         
@@ -602,6 +601,8 @@
         NSError *error = nil;
         if (!_persistentStore) {
             
+            NSLog(@"cannot add persistent store");
+            
             // ... we ignore the error, and if the file already exists but is not compatible, we try to replace it with a new store file
             if ([[NSFileManager defaultManager] fileExistsAtPath:persistentStoreURL.path]) {
                 
@@ -610,6 +611,8 @@
                 
                 // if meta data can't be read or model is not compatible
                 if (!metaData || ![managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:metaData]) {
+                    
+                    NSLog(@"persistent store meta data can't be read or is not compatible");
                     
                     // if old store file can be removed
                     if ([[NSFileManager defaultManager] removeItemAtPath:persistentStoreURL.path error:&error]) {
@@ -627,6 +630,7 @@
         
         if (error) {
             // this is an unrecoverable error, so we show an alert and crash
+            NSLog(@"cannot add persistent store, aborting");
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Fatal Error" message:@"Could not create local database" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             
@@ -636,7 +640,7 @@
             
             _managedObjectContext = moc;
         }
-    }
+    });
     
     return _managedObjectContext;
 }
@@ -675,7 +679,7 @@
         [self logValidationError:error];
         return NO;
     }
-    NSLog(@"Context saved");
+    if (WMLogDataManager) NSLog(@"Context saved");
     return YES;
 }
 
@@ -692,7 +696,7 @@
     }
     NSString *entityName;
     NSString *object_id;
-    NSLog(@"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
+    if (WMLogDataManager) NSLog(@"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
 }
 
 @end

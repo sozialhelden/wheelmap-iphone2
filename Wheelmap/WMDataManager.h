@@ -15,8 +15,6 @@
 
 @property (nonatomic, weak) id<WMDataManagerDelegate> delegate;
 
-+ (WMDataManager *)sharedInstance;
-
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
 
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
