@@ -297,7 +297,7 @@
     return [self fetchObjectsOfEntity:@"Category" withPredicate:nil];
 }
 
-- (NSArray *)types
+- (NSArray *)nodeTypes
 {
     return [self fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
 }

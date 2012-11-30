@@ -53,7 +53,7 @@
 	<array>
 		<dict>
 			<key>Bounds</key>
-			<string>{{173.45557942094155, 273.72593070368487}, {47, 14}}</string>
+			<string>{{173.37813508286345, 273.72593026069069}, {47, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -127,8 +127,8 @@
 			<integer>109</integer>
 			<key>Points</key>
 			<array>
-				<string>{196.71700775384613, 303.57611613017735}</string>
-				<string>{197.20754512671255, 256.59287597811323}</string>
+				<string>{196.65529168566846, 303.57611265504403}</string>
+				<string>{197.11348946436141, 256.59288161652063}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -152,7 +152,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{66.838258431284942, 143.0730072862456}, {261.96174421501809, 113.0198974609375}}</string>
+			<string>{{66.838258431284942, 110.40000313585494}, {261.96174421501809, 145.69290161132812}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -185,9 +185,10 @@
 - dataManager: fetchNodesFailedWithError:\
 - dataManagerDidFinishSyncingResources:\
 - dataManager: syncResourcesFailedWithError:\
+- dataManager: didReceiveSearchResults:\
+- dataManager: searchFailedWithError:\
 \
-
-\b received search results}</string>
+}</string>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
@@ -2216,15 +2217,18 @@
 - fetchNodesBetweenSouthwest: northeast\
 - syncResources\
 - categories\
+- nodeTypes\
+- searchFor:\
+- createNode
+\b \
 
-\b - nodeTypes
-\b0 \
-\
+\b0 - putNode:
+\b \
 
-\b - search\
-- put \
-- post\
-- foto upload}</string>
+\b0 - postNode:
+\b \
+
+\b0 - uploadImage:forNode:}</string>
 			</dict>
 			<key>TextPlacement</key>
 			<integer>0</integer>
@@ -2319,7 +2323,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-11-30 10:28:58 +0000</string>
+	<string>2012-11-30 12:40:16 +0000</string>
 	<key>Modifier</key>
 	<string>Dorian Roy</string>
 	<key>NotesVisible</key>
@@ -2400,7 +2404,7 @@
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{0, 4}, {1280, 774}}</string>
+		<string>{{299, 355}, {1280, 774}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -2414,7 +2418,7 @@
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{0, 75.200000000000003}, {916, 508.00000000000006}}</string>
+		<string>{{0, 0}, {916, 508}}</string>
 		<key>Zoom</key>
 		<real>1.25</real>
 		<key>ZoomValues</key>

@@ -16,6 +16,7 @@
 - (void) dataManager:(WMDataManager*)dataManager fetchNodesFailedWithError:(NSError*)error;
 - (void) dataManagerDidFinishSyncingResources:(WMDataManager*)dataManager;
 - (void) dataManager:(WMDataManager*)dataManager syncResourcesFailedWithError:(NSError*)error;
-
+- (void) dataManager:(WMDataManager*)dataManager didReceiveSearchResults:(NSArray*)results;
+- (void) dataManager:(WMDataManager*)dataManager searchFailedWithError:(NSError*)error;
 
 @end

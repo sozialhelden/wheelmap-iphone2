@@ -10,20 +10,22 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 
+@class Node;
 
 @interface WMDataManager : NSObject
 
 @property (nonatomic, weak) id<WMDataManagerDelegate> delegate;
 
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
-
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
-
 - (void) syncResources;
-
 - (NSArray*) categories;
-
-- (NSArray*) types;
+- (NSArray*) nodeTypes;
+- (void) searchFor:(NSString*)query;
+- (Node*)createNode;
+- (void) putNode:(Node*)node;
+- (void) postNode:(Node*)node;
+- (void) uploadImage:(id)image forNode:(Node*)node;
 
 extern NSString *WMDataManagerErrorDomain;
 
