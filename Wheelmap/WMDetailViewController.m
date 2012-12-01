@@ -332,7 +332,8 @@
 }
 
 - (void) askFriendsForStatusButtonPressed {
-    NSLog(@"Ask Friends for Status Button pressed");
+    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMAskFriendsViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

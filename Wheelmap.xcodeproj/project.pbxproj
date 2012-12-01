@@ -64,6 +64,15 @@
 		98CA2304166676AB00DF0EA3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */; };
 		98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E3B835166523DE00C23EBE /* CoreData.framework */; };
 		98E3B8391665266B00C23EBE /* WMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98E3B8371665266B00C23EBE /* WMDataModel.xcdatamodeld */; };
+		D5406D5A166A49650016E275 /* Social_btn-email.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D52166A49650016E275 /* Social_btn-email.png */; };
+		D5406D5B166A49650016E275 /* Social_btn-email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D53166A49650016E275 /* Social_btn-email@2x.png */; };
+		D5406D5C166A49650016E275 /* Social_btn-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D54166A49650016E275 /* Social_btn-facebook.png */; };
+		D5406D5D166A49650016E275 /* Social_btn-facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D55166A49650016E275 /* Social_btn-facebook@2x.png */; };
+		D5406D5E166A49650016E275 /* Social_btn-sms.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D56166A49650016E275 /* Social_btn-sms.png */; };
+		D5406D5F166A49650016E275 /* Social_btn-sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D57166A49650016E275 /* Social_btn-sms@2x.png */; };
+		D5406D60166A49650016E275 /* Social_btn-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D58166A49650016E275 /* Social_btn-twitter.png */; };
+		D5406D61166A49650016E275 /* Social_btn-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */; };
+		D5406D64166A4AA40016E275 /* WMAskFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5406D63166A4AA40016E275 /* WMAskFriendsViewController.m */; };
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -268,6 +277,16 @@
 		98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		98E3B835166523DE00C23EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		98E3B8381665266B00C23EBE /* WMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WMDataModel.xcdatamodel; sourceTree = "<group>"; };
+		D5406D52166A49650016E275 /* Social_btn-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-email.png"; sourceTree = "<group>"; };
+		D5406D53166A49650016E275 /* Social_btn-email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-email@2x.png"; sourceTree = "<group>"; };
+		D5406D54166A49650016E275 /* Social_btn-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-facebook.png"; sourceTree = "<group>"; };
+		D5406D55166A49650016E275 /* Social_btn-facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-facebook@2x.png"; sourceTree = "<group>"; };
+		D5406D56166A49650016E275 /* Social_btn-sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-sms.png"; sourceTree = "<group>"; };
+		D5406D57166A49650016E275 /* Social_btn-sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-sms@2x.png"; sourceTree = "<group>"; };
+		D5406D58166A49650016E275 /* Social_btn-twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-twitter.png"; sourceTree = "<group>"; };
+		D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-twitter@2x.png"; sourceTree = "<group>"; };
+		D5406D62166A4AA40016E275 /* WMAskFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAskFriendsViewController.h; sourceTree = "<group>"; };
+		D5406D63166A4AA40016E275 /* WMAskFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAskFriendsViewController.m; sourceTree = "<group>"; };
 		D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited.png"; path = "Details/WheelAccess/details_btn-status-limited.png"; sourceTree = "<group>"; };
 		D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited@2x.png"; path = "Details/WheelAccess/details_btn-status-limited@2x.png"; sourceTree = "<group>"; };
 		D56F71F3166A33D6002CE692 /* details_btn-status-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-no.png"; path = "Details/WheelAccess/details_btn-status-no.png"; sourceTree = "<group>"; };
@@ -585,6 +604,21 @@
 			path = ../AFNetworking;
 			sourceTree = "<group>";
 		};
+		D5406D50166A49530016E275 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				D5406D52166A49650016E275 /* Social_btn-email.png */,
+				D5406D53166A49650016E275 /* Social_btn-email@2x.png */,
+				D5406D54166A49650016E275 /* Social_btn-facebook.png */,
+				D5406D55166A49650016E275 /* Social_btn-facebook@2x.png */,
+				D5406D56166A49650016E275 /* Social_btn-sms.png */,
+				D5406D57166A49650016E275 /* Social_btn-sms@2x.png */,
+				D5406D58166A49650016E275 /* Social_btn-twitter.png */,
+				D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
 		D56F71EA166A3180002CE692 /* PhotoUpload */ = {
 			isa = PBXGroup;
 			children = (
@@ -748,6 +782,7 @@
 		DBA621CE1668F303009FA5DF /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				D5406D50166A49530016E275 /* Social */,
 				D56F71F0166A3327002CE692 /* WheelAccess */,
 				D56F71EA166A3180002CE692 /* PhotoUpload */,
 				D5E0F0E31667C60100B78F57 /* 4 Buttons */,
@@ -875,6 +910,8 @@
 				9817AF50164D617A00703A92 /* WMDetailViewController.m */,
 				9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */,
 				9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */,
+				D5406D62166A4AA40016E275 /* WMAskFriendsViewController.h */,
+				D5406D63166A4AA40016E275 /* WMAskFriendsViewController.m */,
 			);
 			name = NodeDetailScreen;
 			sourceTree = "<group>";
@@ -1080,6 +1117,14 @@
 				D56F7224166A376A002CE692 /* details_share-location@2x.png in Resources */,
 				D56F723B166A37F1002CE692 /* details_unknown-info.png in Resources */,
 				D56F723C166A37F1002CE692 /* details_unknown-info@2x.png in Resources */,
+				D5406D5A166A49650016E275 /* Social_btn-email.png in Resources */,
+				D5406D5B166A49650016E275 /* Social_btn-email@2x.png in Resources */,
+				D5406D5C166A49650016E275 /* Social_btn-facebook.png in Resources */,
+				D5406D5D166A49650016E275 /* Social_btn-facebook@2x.png in Resources */,
+				D5406D5E166A49650016E275 /* Social_btn-sms.png in Resources */,
+				D5406D5F166A49650016E275 /* Social_btn-sms@2x.png in Resources */,
+				D5406D60166A49650016E275 /* Social_btn-twitter.png in Resources */,
+				D5406D61166A49650016E275 /* Social_btn-twitter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1153,6 +1198,7 @@
 				DBA6226E1668F83D009FA5DF /* UIView+Geometry.m in Sources */,
 				DBA622711668F85F009FA5DF /* WMWheelchairStatusButton.m in Sources */,
 				DBA6227A1668FABB009FA5DF /* WMWheelChairStatusFilterPopoverView.m in Sources */,
+				D5406D64166A4AA40016E275 /* WMAskFriendsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
