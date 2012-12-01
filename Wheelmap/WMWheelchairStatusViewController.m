@@ -38,4 +38,28 @@
     return CGSizeMake(320, 480);
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIImage *statusImage = [UIImage imageNamed:@"details_label-no.png"];
+    UITableViewCell *cell = [UITableViewCell new];
+    UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, statusImage.size.width, statusImage.size.height)];
+    av.backgroundColor = [UIColor clearColor];
+    av.opaque = NO;
+    av.image = [UIImage imageNamed:@"details_label-no.png"];
+    cell.backgroundView = av;
+
+    if (indexPath.section == 0) {
+        av.image = [UIImage imageNamed:@"details_label-yes.png"];
+    
+    } else if(indexPath.section == 1) {
+        av.image = [UIImage imageNamed:@"details_label-limited.png"];
+    
+    } else if(indexPath.section == 2) {
+        av.image = [UIImage imageNamed:@"details_label-no.png"];
+    } 
+    
+    return cell;
+}
+
+
 @end

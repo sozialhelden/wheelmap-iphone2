@@ -34,6 +34,7 @@
     [super viewDidLoad];
     
     self.title = @"Details";
+    self.gabIfStatusUnknown = 0;
 
 	
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
@@ -41,8 +42,6 @@
     
     // SCROLLVIEW
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 640);
-    [self.view addSubview:self.scrollView];    
     
     // MAPVIEW
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110)];
@@ -76,6 +75,8 @@
     self.nodeTypeLabel.text = self.node.node_type.localized_name ?: @"?";
     [self.scrollView addSubview:self.nodeTypeLabel];
 
+    
+    
     // WHEEL ACCESS BUTTON
     UIImage *accessImage;
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
@@ -86,35 +87,39 @@
         accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
     } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
         accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
+        self.gabIfStatusUnknown = 62;
+        [self createAskFriendsForStatusButton];
     }
-              
+          
     self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.wheelAccessButton.titleLabel.text = self.node.wheelchair_description;
-    self.wheelAccessButton.frame = CGRectMake(10, 175, accessImage.size.width, accessImage.size.height);
+    self.wheelAccessButton.frame = CGRectMake(10, 170, accessImage.size.width, accessImage.size.height);
     [self.wheelAccessButton setImage: accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.wheelAccessButton];
     
     // STREET
-    self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 234, 225, 16)];
+    self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 234+self.gabIfStatusUnknown, 225, 16)];
    // self.streetLabel.backgroundColor = [UIColor orangeColor];
     self.streetLabel.textColor = [UIColor darkGrayColor];
     self.streetLabel.font = [UIFont systemFontOfSize:11];
-    NSString *houseNumber = self.node.housenumber ?: @"";
-    self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", self.node.street, houseNumber];
+    NSString *street = self.node.street ?: @"?";
+    NSString *houseNumber = self.node.housenumber ?: @"?";
+    self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
     [self.scrollView addSubview:self.streetLabel];
     
     // POSTCODE AND CITY
-    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 250, 225, 16)];
+    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 250+self.gabIfStatusUnknown, 225, 16)];
    // self.postcodeAndCityLabel.backgroundColor = [UIColor orangeColor];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
     self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:11];
-    NSString *postcodeAndCity = [NSString stringWithFormat:@"%@, %@", self.node.postcode, self.node.city];
-    self.postcodeAndCityLabel.text = postcodeAndCity ?: @"Postcode and City";
+    NSString *postcode = self.node.postcode ?: @"?";
+    NSString *city = self.node.city ?: @"?";
+    self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
     [self.scrollView addSubview:self.postcodeAndCityLabel];
     
     // DISTANCE
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, 265, 60, 20)];
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, 265+self.gabIfStatusUnknown, 60, 20)];
     //self.distanceLabel.backgroundColor = [UIColor orangeColor];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.font = [UIFont systemFontOfSize:11];
@@ -132,12 +137,24 @@
     UIImage *moreInfo = [UIImage imageNamed:@"details_btn-additional-info.png"];
     self.moreInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.moreInfoButton.titleLabel.text = self.node.wheelchair_description;
-    self.moreInfoButton.frame = CGRectMake(10, 480, moreInfo.size.width, moreInfo.size.height);
+    self.moreInfoButton.frame = CGRectMake(10, 480+self.gabIfStatusUnknown, moreInfo.size.width, moreInfo.size.height);
     [self.moreInfoButton setImage: moreInfo forState: UIControlStateNormal];
     [self.moreInfoButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.moreInfoButton];
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 640 + self.gabIfStatusUnknown);
+    [self.view addSubview:self.scrollView];
+    
 }
 
+- (void) createAskFriendsForStatusButton {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 220, self.view.bounds.size.width, buttonImage.size.height);
+    [button addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:button];
+}
 
 - (void) createAndAddImageScrollView {
     
@@ -146,7 +163,7 @@
    
     UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
     
-    self.imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 294, self.view.bounds.size.width, uploadBackground.size.height)];
+    self.imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 294+self.gabIfStatusUnknown, self.view.bounds.size.width, uploadBackground.size.height)];
     self.imageScrollView.backgroundColor = [UIColor colorWithPatternImage:uploadBackground];
     [self.imageScrollView setShowsHorizontalScrollIndicator:NO];
     
@@ -183,7 +200,7 @@
     int buttonWidth = buttonBackgroundImage.size.width;
     int buttonHeight = buttonBackgroundImage.size.height;
     
-    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(20, 390, self.view.bounds.size.width-40, 75)];
+    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(20, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-40, 75)];
     //fourButtonView.backgroundColor = [UIColor greenColor];
     
    
@@ -191,46 +208,47 @@
     int imagePlusGab = buttonWidth + (((self.view.bounds.size.width-40)-(4*buttonWidth)) / 3);
     
     
-    UIButton *callButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    callButton.frame = CGRectMake(0, 0,buttonWidth,buttonHeight);
-    [callButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
-    [callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
-    [callButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.callButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.callButton.frame = CGRectMake(0, 0,buttonWidth,buttonHeight);
+    [self.callButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
+    [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
+     [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
+    [self.callButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
 
     UILabel *callLabel = [self createBelowButtonLabel:@"Anrufen NL"];
     callLabel.frame = CGRectMake(0,buttonHeight+5,buttonWidth, 16);
 
     
-    UIButton *websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    websiteButton.frame = CGRectMake(imagePlusGab, 0,buttonWidth,buttonHeight);
-    [websiteButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
-    [websiteButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.websiteButton.frame = CGRectMake(imagePlusGab, 0,buttonWidth,buttonHeight);
+    [self.websiteButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
+    [self.websiteButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *websiteLabel = [self createBelowButtonLabel:@"Website NL"];
     websiteLabel.frame = CGRectMake(imagePlusGab,buttonHeight+5,buttonWidth, 16);
 
     
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    infoButton.frame = CGRectMake(2*imagePlusGab, 0,buttonWidth,buttonHeight);
-    [infoButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
-    [infoButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.commentButton.frame = CGRectMake(2*imagePlusGab, 0,buttonWidth,buttonHeight);
+    [self.commentButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
+    [self.commentButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *infoLabel = [self createBelowButtonLabel:@"Info NL"];
     infoLabel.frame = CGRectMake(2*imagePlusGab,buttonHeight+5,buttonWidth, 16);
 
-    UIButton *routeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    routeButton.frame = CGRectMake(3*imagePlusGab, 0,buttonWidth,buttonHeight);
-    [routeButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
-    [routeButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.naviButton.frame = CGRectMake(3*imagePlusGab, 0,buttonWidth,buttonHeight);
+    [self.naviButton setImage: buttonBackgroundImage forState: UIControlStateNormal];
+    [self.naviButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *routeLabel = [self createBelowButtonLabel:@"Route NL"];
     routeLabel.frame = CGRectMake(3*imagePlusGab,buttonHeight+5,buttonWidth, 16);
 
     
-    [fourButtonView addSubview:callButton];
-    [fourButtonView addSubview:websiteButton];
-    [fourButtonView addSubview:infoButton];
-    [fourButtonView addSubview:routeButton];
+    [fourButtonView addSubview:self.callButton];
+    [fourButtonView addSubview:self.websiteButton];
+    [fourButtonView addSubview:self.commentButton];
+    [fourButtonView addSubview:self.naviButton];
     [fourButtonView addSubview:callLabel];
     [fourButtonView addSubview:websiteLabel];
     [fourButtonView addSubview:infoLabel];
@@ -265,6 +283,30 @@
     [super viewDidUnload];
 }
 
+#pragma mark - imagePicker delegates
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImageView *selectedImage = [self.imageViewsInScrollView objectAtIndex:0];
+    selectedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
+#pragma mark - button delegates
+
+- (void) askFriendsForStatusButtonPressed {
+    NSLog(@"Ask Friends for Status Button pressed");
+    
+}
+
 - (void) showAccessOptions {
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusView"];
     [self.navigationController pushViewController:vc animated:YES];
@@ -286,21 +328,6 @@
     }
     
     [self presentModalViewController:self.imagePicker animated:YES];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
-    
-    [self dismissModalViewControllerAnimated:YES];
-    
-}
-
-- (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImageView *selectedImage = [self.imageViewsInScrollView objectAtIndex:0];
-    selectedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    [self dismissModalViewControllerAnimated:YES];
-    
 }
 
 
