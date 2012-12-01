@@ -14,5 +14,6 @@
 #import "WMLabel.h"
 #import "WMButton.h"
 #import "WMViewController.h"
+#import "WMTableViewController.h"
 
 #endif

@@ -30,6 +30,8 @@
 {
     [super viewWillAppear:animated];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     
@@ -40,10 +42,7 @@
     locationManager.delegate = self;
     locationManager.distanceFilter = 50.0f;
 	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    
-    // hide standard navigation bar
-    self.navigationBar.hidden = YES;
-    
+        
     // configure initial vc from storyboard
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
         id<WMNodeListView> initialNodeListView = (id<WMNodeListView>)self.topViewController;
@@ -51,16 +50,14 @@
         initialNodeListView.delegate = self;
     }
     
-    
-    
     // set custom nagivation and tool bars
-    self.customNavigationBar = [[WMNavigationBar alloc] initWithSize:CGSizeMake(self.view.frame.size.width, 50)];
+    self.toolbar.backgroundColor = [UIColor whiteColor];
+    self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
     self.customNavigationBar.delegate = self;
-    [self.view addSubview:self.customNavigationBar];
-    
-    self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-62, self.view.frame.size.width, 62)];
+    [self.navigationBar addSubview:self.customNavigationBar];
+    self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, 0, /*self.view.frame.size.height-60,*/ self.view.frame.size.width, 60)];
     self.customToolBar.delegate = self;
-    [self.view addSubview:self.customToolBar];
+    [self.toolbar addSubview:self.customToolBar];
     
     // set filter popovers.
     wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.customToolBar.frame.origin.y-60)];
@@ -191,6 +188,7 @@
 #pragma mark - Push/Pop ViewControllers
 - (void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    
     if ([viewController conformsToProtocol:@protocol(WMNodeListView)]) {
         id<WMNodeListView> nodeListViewController = (id<WMNodeListView>)viewController;
         nodeListViewController.dataSource = self;
@@ -250,19 +248,16 @@
             navigationTitle = @"Orte in deiner Nähe";
         }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
-        [self.customToolBar showToolbar];
     } else if ([vc isKindOfClass:[WMNodeListViewController class]]) {
         if (self.viewControllers.count == 1) {
             navigationTitle = @"Orte in deiner Nähe";
         }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
-        [self.customToolBar showToolbar];
     } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         navigationTitle = @"Details";
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categporyFilterPopover];
-        [self.customToolBar hideToolbar];
         
     } else if ([vc isKindOfClass:[WMWheelchairStatusViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
@@ -270,7 +265,6 @@
         navigationTitle = @"Bearbeiten";
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categporyFilterPopover];
-        [self.customToolBar hideToolbar];
     }
     
     self.customNavigationBar.leftButtonStyle = leftButtonStyle;

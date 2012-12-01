@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WMWheelchairStatusViewController : UITableViewController
+@interface WMWheelchairStatusViewController : WMTableViewController
 
 @end

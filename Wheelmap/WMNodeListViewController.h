@@ -10,6 +10,6 @@
 #import "WMNodeListView.h"
 
 
-@interface WMNodeListViewController : UITableViewController <WMNodeListView>
+@interface WMNodeListViewController : WMTableViewController <WMNodeListView>
 
 @end

@@ -13,9 +13,9 @@
 @synthesize rightButtonStyle = _rightButtonStyle;
 @synthesize title = _title;
 
-- (id)initWithSize:(CGSize)size
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:CGRectMake(0, 20, size.width, size.height)];    // 20pt for the status bar height
+    self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         backgroundImg = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -42,13 +42,13 @@
         // back button
         UIImageView* backBtnBgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
         backBtnBgImg.image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 10)];
-        WMLabel* backBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, 100, 37)];
-        backBtnLabel.fontSize = 15.0;
+        WMLabel* backBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(15, 0, 100, 35)];
+        backBtnLabel.fontSize = 13.0;
         backBtnLabel.text = @"Zurück";
         backBtnLabel.textColor = [UIColor whiteColor];
         CGSize expSize = [backBtnLabel.text sizeWithFont:backBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
         backBtnLabel.frame = CGRectMake(backBtnLabel.frame.origin.x, backBtnLabel.frame.origin.y, expSize.width, backBtnLabel.frame.size.height);
-        backBtnBgImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
+        backBtnBgImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+20, 37);
         [backBtnBgImg addSubview:backBtnLabel];
         backButton = [WMButton buttonWithType:UIButtonTypeCustom];
         backButton.frame = CGRectMake(5, 6, backBtnBgImg.frame.size.width, backBtnBgImg.frame.size.height);
@@ -65,7 +65,7 @@
         [self addSubview:cancelButton];
         
         
-        CGRect rightButtonRect = CGRectMake(size.width-5-40, 5, 40, 40);
+        CGRect rightButtonRect = CGRectMake(self.frame.size.width-5-40, 5, 40, 40);
         contributeButton = [WMButton buttonWithType:UIButtonTypeCustom];
         contributeButton.frame = rightButtonRect;
         contributeButton.backgroundColor = [UIColor clearColor];
@@ -102,10 +102,10 @@
         self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         self.title = @"Orte in deiner Nähe";
         
-        self.transform = CGAffineTransformMakeTranslation(0, -55);
-        isVisible = NO;
+        //self.transform = CGAffineTransformMakeTranslation(0, -55);
+        //isVisible = NO;
         
-        [self showNavigationBar];
+        //[self showNavigationBar];
     }
     
     return self;

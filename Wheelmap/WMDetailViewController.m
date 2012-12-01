@@ -33,14 +33,11 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Details";
-
-	
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
     
     
     // SCROLLVIEW
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    //self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 640);
     [self.view addSubview:self.scrollView];    
     

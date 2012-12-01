@@ -41,7 +41,5 @@ typedef enum {
 @property (nonatomic, strong) WMWheelchairStatusButton* wheelChairStatusFilterButton;
 @property (nonatomic) CGFloat middlePointOfWheelchairFilterButton; // this will be updated by initialisation of the button
 @property (nonatomic) CGFloat middlePointOfCategoryFilterButton; // this too
--(void)toggleToolbar;
--(void)showToolbar;
--(void)hideToolbar;
+
 @end

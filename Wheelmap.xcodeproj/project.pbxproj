@@ -173,6 +173,9 @@
 		DBA6226E1668F83D009FA5DF /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA6225D1668F79E009FA5DF /* UIView+Geometry.m */; };
 		DBA622711668F85F009FA5DF /* WMWheelchairStatusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622701668F85F009FA5DF /* WMWheelchairStatusButton.m */; };
 		DBA6227A1668FABB009FA5DF /* WMWheelChairStatusFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622781668FAB7009FA5DF /* WMWheelChairStatusFilterPopoverView.m */; };
+		DBA62280166A3876009FA5DF /* UIToolbar+CustomSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA6227F166A3876009FA5DF /* UIToolbar+CustomSize.m */; };
+		DBA62283166A3BBF009FA5DF /* UINavigationBar+CustomSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62282166A3BBF009FA5DF /* UINavigationBar+CustomSize.m */; };
+		DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62285166A421B009FA5DF /* WMTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -398,6 +401,12 @@
 		DBA622701668F85F009FA5DF /* WMWheelchairStatusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusButton.m; sourceTree = "<group>"; };
 		DBA622771668FAB7009FA5DF /* WMWheelChairStatusFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelChairStatusFilterPopoverView.h; sourceTree = "<group>"; };
 		DBA622781668FAB7009FA5DF /* WMWheelChairStatusFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelChairStatusFilterPopoverView.m; sourceTree = "<group>"; };
+		DBA6227E166A3876009FA5DF /* UIToolbar+CustomSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+CustomSize.h"; sourceTree = "<group>"; };
+		DBA6227F166A3876009FA5DF /* UIToolbar+CustomSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+CustomSize.m"; sourceTree = "<group>"; };
+		DBA62281166A3BBE009FA5DF /* UINavigationBar+CustomSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomSize.h"; sourceTree = "<group>"; };
+		DBA62282166A3BBF009FA5DF /* UINavigationBar+CustomSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomSize.m"; sourceTree = "<group>"; };
+		DBA62284166A421B009FA5DF /* WMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTableViewController.h; sourceTree = "<group>"; };
+		DBA62285166A421B009FA5DF /* WMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -778,6 +787,8 @@
 				DBA622521668F442009FA5DF /* WMLabel.m */,
 				DBA6225F1668F7B8009FA5DF /* WMViewController.h */,
 				DBA622601668F7B8009FA5DF /* WMViewController.m */,
+				DBA62284166A421B009FA5DF /* WMTableViewController.h */,
+				DBA62285166A421B009FA5DF /* WMTableViewController.m */,
 			);
 			name = CustomWidgets;
 			sourceTree = "<group>";
@@ -786,8 +797,12 @@
 			isa = PBXGroup;
 			children = (
 				DBA6225A1668F77D009FA5DF /* Categories.h */,
+				DBA62281166A3BBE009FA5DF /* UINavigationBar+CustomSize.h */,
+				DBA62282166A3BBF009FA5DF /* UINavigationBar+CustomSize.m */,
 				DBA6225C1668F79E009FA5DF /* UIView+Geometry.h */,
 				DBA6225D1668F79E009FA5DF /* UIView+Geometry.m */,
+				DBA6227E166A3876009FA5DF /* UIToolbar+CustomSize.h */,
+				DBA6227F166A3876009FA5DF /* UIToolbar+CustomSize.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1140,6 +1155,9 @@
 				DBA6226E1668F83D009FA5DF /* UIView+Geometry.m in Sources */,
 				DBA622711668F85F009FA5DF /* WMWheelchairStatusButton.m in Sources */,
 				DBA6227A1668FABB009FA5DF /* WMWheelChairStatusFilterPopoverView.m in Sources */,
+				DBA62280166A3876009FA5DF /* UIToolbar+CustomSize.m in Sources */,
+				DBA62283166A3BBF009FA5DF /* UINavigationBar+CustomSize.m in Sources */,
+				DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

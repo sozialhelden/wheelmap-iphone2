@@ -11,9 +11,9 @@
 
 @class Node;
 
-@interface WMDetailViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate>
+@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate>
 
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIScrollView *imageScrollView;
 @property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) UIButton *wheelAccessButton;
