@@ -175,6 +175,7 @@
 		DBA62280166A3876009FA5DF /* UIToolbar+CustomSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA6227F166A3876009FA5DF /* UIToolbar+CustomSize.m */; };
 		DBA62283166A3BBF009FA5DF /* UINavigationBar+CustomSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62282166A3BBF009FA5DF /* UINavigationBar+CustomSize.m */; };
 		DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62285166A421B009FA5DF /* WMTableViewController.m */; };
+		DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA6228C166A6846009FA5DF /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -410,6 +411,7 @@
 		DBA62282166A3BBF009FA5DF /* UINavigationBar+CustomSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomSize.m"; sourceTree = "<group>"; };
 		DBA62284166A421B009FA5DF /* WMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTableViewController.h; sourceTree = "<group>"; };
 		DBA62285166A421B009FA5DF /* WMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTableViewController.m; sourceTree = "<group>"; };
+		DBA6228C166A6846009FA5DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +419,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */,
 				98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */,
 				989927E9164ACABD00D9003B /* CoreLocation.framework in Frameworks */,
 				989927921649462E00D9003B /* MapKit.framework in Frameworks */,
@@ -463,6 +466,7 @@
 		9899274E1649151300D9003B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBA6228C166A6846009FA5DF /* QuartzCore.framework */,
 				98E3B835166523DE00C23EBE /* CoreData.framework */,
 				989927E8164ACABC00D9003B /* CoreLocation.framework */,
 				989927911649462E00D9003B /* MapKit.framework */,

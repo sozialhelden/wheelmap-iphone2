@@ -96,28 +96,6 @@
             <point key="canvasLocation" x="-559" y="-224"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="WMMapViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="returnToListViewTouched:"/>
-                <relationship kind="action" name="toggleMapTypeChanged:"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="WMNavigationControllerBase" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNavigationControllerBase.h"/>
-        </class>
-        <class className="WMNodeListViewController" superclassName="WMTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNodeListViewController.h"/>
-        </class>
-        <class className="WMTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMTableViewController.h"/>
-        </class>
-        <class className="WMViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

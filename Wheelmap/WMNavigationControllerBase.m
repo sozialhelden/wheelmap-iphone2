@@ -7,6 +7,7 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
 #import "WMDetailViewController.h"
@@ -186,6 +187,29 @@
 }
 
 #pragma mark - Push/Pop ViewControllers
+- (void)pushFadeViewController:(UIViewController*)vc
+{
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromTop;
+    
+    [self.view.layer addAnimation:transition forKey:kCATransition];
+    [self pushViewController:vc animated:NO];
+}
+
+-(void)popFadeViewController
+{
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromTop;
+    
+    [self.view.layer addAnimation:transition forKey:kCATransition];
+    [self popViewControllerAnimated:NO];
+
+}
+
 - (void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     
@@ -311,11 +335,11 @@
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         //  the node list view is on the screen. push the map view controller
         WMMapViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
-        [self pushViewController:vc animated:YES];
+        [self pushFadeViewController:vc];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         //  the map view is on the screen. pop the map view controller
-        [self popViewControllerAnimated:YES];
+        [self popFadeViewController];
     }
     
 }
