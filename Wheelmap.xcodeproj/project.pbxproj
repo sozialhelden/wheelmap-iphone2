@@ -39,6 +39,11 @@
 		989927DE164AA0D100D9003B /* WMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927DD164AA0D100D9003B /* WMDataManager.m */; };
 		989927E7164ABDC700D9003B /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927E6164ABDC700D9003B /* WMRootViewController_iPad.m */; };
 		989927E9164ACABD00D9003B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927E8164ACABC00D9003B /* CoreLocation.framework */; };
+		98AC54AB166AA09A00E87965 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54A1166AA09A00E87965 /* ioapi.c */; };
+		98AC54AC166AA09A00E87965 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54A3166AA09A00E87965 /* mztools.c */; };
+		98AC54AD166AA09A00E87965 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54A5166AA09A00E87965 /* unzip.c */; };
+		98AC54AE166AA09A00E87965 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54A7166AA09A00E87965 /* zip.c */; };
+		98AC54AF166AA09A00E87965 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54AA166AA09A00E87965 /* SSZipArchive.m */; };
 		98ADC6DA164BEEDA00251943 /* marker-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADC6D2164BEEDA00251943 /* marker-limited.png */; };
 		98ADC6DB164BEEDA00251943 /* marker-no.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADC6D3164BEEDA00251943 /* marker-no.png */; };
 		98ADC6DC164BEEDA00251943 /* marker-unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADC6D4164BEEDA00251943 /* marker-unknown.png */; };
@@ -241,6 +246,17 @@
 		989927E5164ABDC700D9003B /* WMRootViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRootViewController_iPad.h; sourceTree = "<group>"; };
 		989927E6164ABDC700D9003B /* WMRootViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRootViewController_iPad.m; sourceTree = "<group>"; };
 		989927E8164ACABC00D9003B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		98AC54A0166AA09A00E87965 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		98AC54A1166AA09A00E87965 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		98AC54A2166AA09A00E87965 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		98AC54A3166AA09A00E87965 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		98AC54A4166AA09A00E87965 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		98AC54A5166AA09A00E87965 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		98AC54A6166AA09A00E87965 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		98AC54A7166AA09A00E87965 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		98AC54A8166AA09A00E87965 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		98AC54A9166AA09A00E87965 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		98AC54AA166AA09A00E87965 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		98ADC6D2164BEEDA00251943 /* marker-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-limited.png"; sourceTree = "<group>"; };
 		98ADC6D3164BEEDA00251943 /* marker-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-no.png"; sourceTree = "<group>"; };
 		98ADC6D4164BEEDA00251943 /* marker-unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-unknown.png"; sourceTree = "<group>"; };
@@ -448,7 +464,6 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				982E68E8166A9FC10062715C /* libz.dylib */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -470,6 +485,7 @@
 		9899274E1649151300D9003B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				982E68E8166A9FC10062715C /* libz.dylib */,
 				DBA6228C166A6846009FA5DF /* QuartzCore.framework */,
 				98E3B835166523DE00C23EBE /* CoreData.framework */,
 				989927E8164ACABC00D9003B /* CoreLocation.framework */,
@@ -536,10 +552,38 @@
 			children = (
 				DBA622761668F915009FA5DF /* DataManager */,
 				98CA22E8166676AA00DF0EA3 /* AFNetworking */,
+				98AC549E166AA09A00E87965 /* SSZipArchive */,
 				9899279F1649740B00D9003B /* WMWheelmapAPI.h */,
 				989927A01649740B00D9003B /* WMWheelmapAPI.m */,
 			);
 			name = WheelmapAPI;
+			sourceTree = "<group>";
+		};
+		98AC549E166AA09A00E87965 /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				98AC549F166AA09A00E87965 /* minizip */,
+				98AC54A9166AA09A00E87965 /* SSZipArchive.h */,
+				98AC54AA166AA09A00E87965 /* SSZipArchive.m */,
+			);
+			name = SSZipArchive;
+			path = ../SSZipArchive;
+			sourceTree = "<group>";
+		};
+		98AC549F166AA09A00E87965 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				98AC54A0166AA09A00E87965 /* crypt.h */,
+				98AC54A1166AA09A00E87965 /* ioapi.c */,
+				98AC54A2166AA09A00E87965 /* ioapi.h */,
+				98AC54A3166AA09A00E87965 /* mztools.c */,
+				98AC54A4166AA09A00E87965 /* mztools.h */,
+				98AC54A5166AA09A00E87965 /* unzip.c */,
+				98AC54A6166AA09A00E87965 /* unzip.h */,
+				98AC54A7166AA09A00E87965 /* zip.c */,
+				98AC54A8166AA09A00E87965 /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 		98ADC6D1164BEEDA00251943 /* Resources */ = {
@@ -1181,6 +1225,11 @@
 				DBA62283166A3BBF009FA5DF /* UINavigationBar+CustomSize.m in Sources */,
 				DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */,
 				D5406D64166A4AA40016E275 /* WMAskFriendsViewController.m in Sources */,
+				98AC54AB166AA09A00E87965 /* ioapi.c in Sources */,
+				98AC54AC166AA09A00E87965 /* mztools.c in Sources */,
+				98AC54AD166AA09A00E87965 /* unzip.c in Sources */,
+				98AC54AE166AA09A00E87965 /* zip.c in Sources */,
+				98AC54AF166AA09A00E87965 /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

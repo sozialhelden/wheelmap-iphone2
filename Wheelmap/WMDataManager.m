@@ -12,7 +12,7 @@
 #import "Asset.h"
 
 #define WMSearchRadius 0.004
-#define WMLogDataManager 1
+#define WMLogDataManager 0
 
 
 // TODO: fix etag check
@@ -296,7 +296,6 @@ static BOOL assetDownloadInProgress;
 
 - (void) didFinishFileDownload:(NSString*)path forAsset:(Asset*)asset
 {
-    /*
     // get path where file should be unzipped
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *destinationPath = [paths objectAtIndex:0];
@@ -311,15 +310,15 @@ static BOOL assetDownloadInProgress;
         [self finishSync];
     } else {
         if (WMLogDataManager) NSLog(@"... unzipping file");
-    }*/
+    }
 }
-//
-//- (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath
-//{
-//    if (WMLogDataManager) NSLog(@"... did unzip file");
-//    assetDownloadInProgress = NO;
-//    [self finishSync];
-//}
+
+- (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath
+{
+    if (WMLogDataManager) NSLog(@"... did unzip file");
+    assetDownloadInProgress = NO;
+    [self finishSync];
+}
 
 - (void) finishSync
 {
