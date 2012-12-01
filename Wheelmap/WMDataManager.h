@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
-#import "SSZipArchive.h"
+//#import "SSZipArchive.h"
 
 @class Node;
 
-@interface WMDataManager : NSObject<SSZipArchiveDelegate>
+@interface WMDataManager : NSObject//<SSZipArchiveDelegate>
 
 @property (nonatomic, weak) id<WMDataManagerDelegate> delegate;
 

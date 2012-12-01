@@ -10,4 +10,5 @@
 
 @interface WMViewController : UIViewController
 
+@property (nonatomic, strong) UIView* contentView;
 @end

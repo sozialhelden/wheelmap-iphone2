@@ -58,7 +58,7 @@ typedef enum {
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) id<WMNavigationBarDelegate> delegate;
 
--(id)initWithSize:(CGSize)size;
+//-(id)initWithSize:(CGSize)size;
 -(void)showNavigationBar;
 -(void)hideNavigationBar;
 @end

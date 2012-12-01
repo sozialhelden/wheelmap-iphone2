@@ -27,9 +27,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    self.view.frame = CGRectMake(0, 45, self.view.frame.size.width, self.view.frame.size.height-95);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.titleView = [[UIView alloc] init];
+    }
+    self.view.backgroundColor = [UIColor whiteColor];
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.view.frame = CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height-110);
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {

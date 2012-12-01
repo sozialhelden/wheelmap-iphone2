@@ -11,27 +11,30 @@
 
 @class Node;
 
-@interface WMDetailViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate>
+@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate>
 
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIScrollView *imageScrollView;
 @property (nonatomic, strong) MKMapView *mapView;
-@property (nonatomic, strong) UIButton *wheelAccessButton;
-@property (nonatomic, strong) UIButton *moreInfoButton;
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) NSMutableArray *imageViewsInScrollView;
+@property (assign) int gabIfStatusUnknown;
+@property (assign) int imageCount;
+@property (nonatomic) Node *node;
+
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *nodeTypeLabel;
 @property (nonatomic, strong) UILabel *streetLabel;
 @property (nonatomic, strong) UILabel *postcodeAndCityLabel;
 @property (nonatomic, strong) UILabel *distanceLabel;
-@property (nonatomic, strong) UIImagePickerController *imagePicker;
-@property (nonatomic, strong) NSMutableArray *imageViewsInScrollView;
 
+@property (nonatomic, strong) UIButton *wheelAccessButton;
+@property (nonatomic, strong) UIButton *moreInfoButton;
 @property (nonatomic, strong) UIButton *callButton;
 @property (nonatomic, strong) UIButton *websiteButton;
 @property (nonatomic, strong) UIButton *commentButton;
 @property (nonatomic, strong) UIButton *naviButton;
-@property (assign) int gabIfStatusUnknown;
+@property (nonatomic, strong) UIButton *shareLocationButton;
 
-@property (nonatomic) Node *node;
 
 @end

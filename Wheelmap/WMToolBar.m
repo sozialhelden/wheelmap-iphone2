@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        backgroundImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 2, frame.size.width, 60)];
+        backgroundImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 60)];
         backgroundImg.image = [UIImage imageNamed:@"toolbar_background.png"];
         [self addSubview:backgroundImg];
         
@@ -28,7 +28,7 @@
         [self addSubview:currentLocationButton];
         
         searchButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 3, 58, 58);
+        searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 1, 58, 58);
         [searchButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [searchButton setImage:[UIImage imageNamed:@"toolbar_icon-search.png"] forState:UIControlStateNormal];
 
@@ -37,7 +37,7 @@
         
         // toggle button uses setView:forControlState: method
         toggleButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        toggleButton.frame = CGRectMake(floor((self.frame.size.width-71)/2.0), 0, 71, 62);
+        toggleButton.frame = CGRectMake(floor((self.frame.size.width-71)/2.0), -2, 71, 62);
         UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:toggleButton.bounds];
         toggleBtnNormalView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         UIImageView* toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
@@ -67,20 +67,18 @@
         [self addSubview:toggleButton];
         
         categoryFilterButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 3, 58, 58);
+        categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 1, 58, 58);
         [categoryFilterButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [categoryFilterButton setImage:[UIImage imageNamed:@"toolbar_icon-category.png"] forState:UIControlStateNormal];
         [categoryFilterButton addTarget:self action:@selector(pressedCategoryFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:categoryFilterButton];
         self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
         
-        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 3, 58, 58)];
+        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 1, 58, 58)];
         [self.wheelChairStatusFilterButton addTarget:self action:@selector(pressedWheelChairStatusFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.wheelChairStatusFilterButton];
         self.middlePointOfWheelchairFilterButton = self.wheelChairStatusFilterButton.frame.origin.x+(self.wheelChairStatusFilterButton.frame.size.width/2.0);
         
-        isVisible = YES;
-    
     }
     
     return self;
@@ -120,57 +118,6 @@
 {
     if ([self.delegate respondsToSelector:@selector(pressedCategoryFilterButton:)]) {
         [self.delegate pressedCategoryFilterButton:self];
-    }
-}
-
-#pragma mark - Toggle Toolbar
-
--(void)showToolbar
-{
-    if (isVisible)
-        return;
-    
-    [self toggleToolbar];
-}
-
--(void)hideToolbar
-{
-    if (!isVisible)
-        return;
-    
-    [self toggleToolbar];
-    
-}
--(void)toggleToolbar
-{
-    if (isVisible) {
-        [UIView animateWithDuration:0.3
-                              delay:0.0
-                            options:UIViewAnimationCurveEaseOut
-                         animations:^(void)
-         {
-             self.transform = CGAffineTransformMakeTranslation(0, 65);
-         }
-                         completion:^(BOOL finished)
-         {
-             isVisible = NO;
-             
-         }
-         ];
-    } else {
-        [UIView animateWithDuration:0.3
-                              delay:0.0
-                            options:UIViewAnimationCurveEaseIn
-                         animations:^(void)
-         {
-             self.transform = CGAffineTransformMakeTranslation(0, 0);
-         }
-                         completion:^(BOOL finished)
-         {
-             isVisible = YES;
-             
-         }
-         ];
     }
 }
 

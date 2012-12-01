@@ -13,7 +13,7 @@
 
 @class MKMapView, Node;
 
-@interface WMMapViewController : UIViewController <WMNodeListView, MKMapViewDelegate>
+@interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate>
 
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
