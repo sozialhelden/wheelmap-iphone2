@@ -33,24 +33,13 @@
 {
     [super viewDidLoad];
     
-<<<<<<< HEAD
-=======
-    self.title = @"Details";
     self.gabIfStatusUnknown = 0;
 
-	
->>>>>>> 9004fb2bed281d289156e553ddc3f3ca93d60762
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
     
-    
     // SCROLLVIEW
-<<<<<<< HEAD
-    //self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 640);
     [self.view addSubview:self.scrollView];    
-=======
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
->>>>>>> 9004fb2bed281d289156e553ddc3f3ca93d60762
     
     // MAPVIEW
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110)];

@@ -60,12 +60,12 @@
     [self.toolbar addSubview:self.customToolBar];
     
     // set filter popovers.
-    wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.customToolBar.frame.origin.y-60)];
+    wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
     wheelChairFilterPopover.hidden = YES;
     wheelChairFilterPopover.delegate = self;
     [self.view addSubview:wheelChairFilterPopover];
     
-    categporyFilterPopover = [[WMCateogryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.customToolBar.frame.origin.y)];
+    categporyFilterPopover = [[WMCateogryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y)];
     categporyFilterPopover.hidden = YES;
     [self.view addSubview:categporyFilterPopover];
 }

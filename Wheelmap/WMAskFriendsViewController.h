@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WMAskFriendsViewController : UIViewController
+@interface WMAskFriendsViewController : WMViewController
 
 - (IBAction)twitterButtonPressed:(id)sender;
 - (IBAction)facebookButtonPressed:(id)sender;
