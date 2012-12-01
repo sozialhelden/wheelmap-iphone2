@@ -52,10 +52,10 @@
     }
     
     // set custom nagivation and tool bars
-    self.toolbar.backgroundColor = [UIColor whiteColor];
     self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
     self.customNavigationBar.delegate = self;
     [self.navigationBar addSubview:self.customNavigationBar];
+    self.toolbar.backgroundColor = [UIColor whiteColor];
     self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, 0, /*self.view.frame.size.height-60,*/ self.view.frame.size.width, 60)];
     self.customToolBar.delegate = self;
     [self.toolbar addSubview:self.customToolBar];
@@ -254,7 +254,6 @@
     // if the current navigation stack size is 2,then we always show DashboardButton on the left
     WMNavigationBarLeftButtonStyle leftButtonStyle;
     WMNavigationBarRightButtonStyle rightButtonStyle;
-    NSString* navigationTitle = nil;
     
     if (self.viewControllers.count == 1) {  // THIS SHOULD BE CHANGED AFTER IMPLEMENTING DASHBOARD!
         leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
@@ -269,31 +268,25 @@
     if ([vc isKindOfClass:[WMMapViewController class]]) {
         if (self.viewControllers.count == 2) {
             leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;   // single exception. this is the first level!
-            navigationTitle = @"Orte in deiner Nähe";
         }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
     } else if ([vc isKindOfClass:[WMNodeListViewController class]]) {
-        if (self.viewControllers.count == 1) {
-            navigationTitle = @"Orte in deiner Nähe";
-        }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
     } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
-        navigationTitle = @"Details";
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categporyFilterPopover];
         
     } else if ([vc isKindOfClass:[WMWheelchairStatusViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
-        navigationTitle = @"Bearbeiten";
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categporyFilterPopover];
     }
     
     self.customNavigationBar.leftButtonStyle = leftButtonStyle;
     self.customNavigationBar.rightButtonStyle = rightButtonStyle;
-    self.customNavigationBar.title = navigationTitle;
+    self.customNavigationBar.title = vc.title;
 }
 
 #pragma mark - WMNavigationBar Delegate

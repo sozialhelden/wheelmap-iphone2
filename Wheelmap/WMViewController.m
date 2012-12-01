@@ -27,8 +27,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationController.title = @"";
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.titleView = [[UIView alloc] init];
+    }
     self.view.backgroundColor = [UIColor whiteColor];
 }
 

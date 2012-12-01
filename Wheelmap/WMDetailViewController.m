@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.title = @"DETAILS";
     self.gabIfStatusUnknown = 0;
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
