@@ -27,9 +27,9 @@
 
 #pragma mark - Lifecycle
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
