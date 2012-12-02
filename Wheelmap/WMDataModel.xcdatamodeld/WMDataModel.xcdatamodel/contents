@@ -39,6 +39,7 @@
     </entity>
     <entity name="NodeType" representedClassName="NodeType" syncable="YES">
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="localized_name" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,7 +57,7 @@
         <element name="Category" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Node" positionX="160" positionY="192" width="128" height="270"/>
-        <element name="NodeType" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="NodeType" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

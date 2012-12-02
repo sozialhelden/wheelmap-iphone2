@@ -10,9 +10,11 @@
 #import "WMDataManager.h"
 #import "WMWheelmapAPI.h"
 #import "Asset.h"
+#import "NodeType.h"
+
 
 #define WMSearchRadius 0.004
-#define WMLogDataManager 0
+#define WMLogDataManager 1
 
 
 // TODO: fix etag check
@@ -27,6 +29,9 @@
 
 
 @implementation WMDataManager
+{
+    NSMutableArray* syncErrors;
+}
 
 - (id) init
 {
@@ -78,7 +83,9 @@
                     data:nil
                   method:nil
                    error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                       [self.delegate dataManager:self fetchNodesFailedWithError:error];
+                       if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
+                           [self.delegate dataManager:self fetchNodesFailedWithError:error];
+                       }
                    }
                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                        [self didReceiveNodes:JSON[@"nodes"]];
@@ -94,10 +101,10 @@
     NSArray *parsedNodes = [self parseDataObject:nodes entityName:@"Node" error:&error];
     
     if (error) {
-        if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
             [self.delegate dataManager:self fetchNodesFailedWithError:error];
         }
-    } else {
+    } else if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
         [self.delegate dataManager:self didReceiveNodes:parsedNodes];
     }
 }
@@ -105,6 +112,8 @@
 
 #pragma mark - Sync Resources
 
+// use static variables to make sure there's only one sync running at a time
+// across all instances of WMDatamanager
 static BOOL syncInProgress;
 static BOOL assetDownloadInProgress;
 
@@ -122,8 +131,10 @@ static BOOL assetDownloadInProgress;
         if (WMLogDataManager) NSLog(@"... sync already in progress, skipping");
         return;
     }
+    
     syncInProgress = YES;
     assetDownloadInProgress = YES;
+    syncErrors = nil;
     
     // create categories request operation
     NSOperation *categoriesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
@@ -132,7 +143,10 @@ static BOOL assetDownloadInProgress;
                                         data:nil
                                       method:nil
                                        error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                           dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"... error loading categories");});
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               if (WMLogDataManager) NSLog(@"... error loading categories");
+                                               [self syncOperationFailedWithError:error];
+                                           });
                                        }
                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                          NSUInteger code = response.statusCode;
@@ -152,7 +166,10 @@ static BOOL assetDownloadInProgress;
                                        data:nil
                                      method:nil
                                       error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                          dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"... error loading node types");});
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              if (WMLogDataManager) NSLog(@"... error loading node types");
+                                              [self syncOperationFailedWithError:error];
+                                          });
                                       }
                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                         NSString *eTag = [response allHeaderFields][@"ETag"];
@@ -170,7 +187,11 @@ static BOOL assetDownloadInProgress;
                                                       data:nil
                                                     method:nil
                                                      error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                         dispatch_async(dispatch_get_main_queue(), ^{NSLog(@"... error loading assets");});
+                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                             if (WMLogDataManager) NSLog(@"... error loading assets");
+                                                             [self syncOperationFailedWithError:error];
+                                                             assetDownloadInProgress = NO;
+                                                         });
                                                      }
                                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                        NSString *eTag = [response allHeaderFields][@"ETag"];
@@ -196,6 +217,12 @@ static BOOL assetDownloadInProgress;
      ];
 }
 
+- (void) syncOperationFailedWithError:(NSError*)error
+{
+    if (!syncErrors) syncErrors = [NSMutableArray array];
+    [syncErrors addObject:error];
+}
+
 - (void) receivedCategories:(NSArray*)categories withETag:(NSString*) eTag
 {
     BOOL dataIsUpdated = ![eTag isEqual:[self eTagForEntity:@"Category"]];
@@ -205,7 +232,7 @@ static BOOL assetDownloadInProgress;
         NSError *error = nil;
         [self parseDataObject:categories entityName:@"Category" error:&error];
         if (error) {
-            // TODO: handle error
+            [self syncOperationFailedWithError:error];
         } else {
             [self setETag:eTag forEntity:@"Category"];
         }
@@ -220,7 +247,7 @@ static BOOL assetDownloadInProgress;
         NSError *error = nil;
         [self parseDataObject:nodeTypes entityName:@"NodeType" error:&error];
         if (error) {
-            // TODO: handle error
+            [self syncOperationFailedWithError:error];
         } else {
             [self setETag:eTag forEntity:@"NodeType"];
         }
@@ -245,7 +272,7 @@ static BOOL assetDownloadInProgress;
         NSError *error = nil;
         [self parseDataObject:assets entityName:@"Asset" error:&error];
         if (error) {
-            // TODO: handle error
+            [self syncOperationFailedWithError:error];
         } else {
             
             // update etag
@@ -278,6 +305,7 @@ static BOOL assetDownloadInProgress;
                                                                     error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                                                         dispatch_async(dispatch_get_main_queue(), ^{
                                                                             if (WMLogDataManager) NSLog(@"... download error");
+                                                                            [self syncOperationFailedWithError:error];
                                                                             assetDownloadInProgress = NO;
                                                                             [self finishSync];
                                                                         });
@@ -302,20 +330,52 @@ static BOOL assetDownloadInProgress;
     
     // unzip file
     NSError *error = nil;
-    [SSZipArchive unzipFileAtPath:path toDestination:destinationPath overwrite:YES password:nil error:&error delegate:self];
-    if (error) {
-        // TODO: handle error
+    if (![SSZipArchive unzipFileAtPath:path toDestination:destinationPath overwrite:YES password:nil error:&error delegate:self]) {
+        
         if (WMLogDataManager) NSLog(@"... unzipping failed");
+        
+        [self syncOperationFailedWithError:error];
         assetDownloadInProgress = NO;
         [self finishSync];
+        
     } else {
-        if (WMLogDataManager) NSLog(@"... unzipping file");
+        if (WMLogDataManager) NSLog(@"... unzipping successful");
     }
+}
+
+- (void)zipArchiveDidUnzipFile:(NSString *)destinationPath
+{
+    NSString *filename = [destinationPath lastPathComponent];
+    if (WMLogDataManager) NSLog(@"...... unzipped %@", filename);
+    [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
+        if ([nodeType.icon isEqual:filename]) {
+            if (WMLogDataManager) NSLog(@"......... set iconPath for type %@", nodeType.identifier);
+            nodeType.iconPath = destinationPath;
+            // multiple node types might use the same icon, so we don't break this loop here
+        }
+    }];
 }
 
 - (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath
 {
     if (WMLogDataManager) NSLog(@"... did unzip file");
+    
+    // delete downloaded zip file from tmp folder
+    NSError *error = nil;
+    if (![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
+        if (WMLogDataManager) NSLog(@"... can't delete temp file %@", path);
+        [self syncOperationFailedWithError:error];
+    }
+    
+    // log icons missing from the archive
+    if (WMLogDataManager) {
+        [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
+            if (!nodeType.iconPath) {
+                NSLog(@"... icon %@ not found for type %@", nodeType.icon, nodeType.identifier);
+            }
+        }];
+    }
+       
     assetDownloadInProgress = NO;
     [self finishSync];
 }
@@ -323,8 +383,18 @@ static BOOL assetDownloadInProgress;
 - (void) finishSync
 {
     if (!syncInProgress && !assetDownloadInProgress) {
-        if (WMLogDataManager) NSLog(@"... finished sync and asset download");
-        [self.delegate dataManagerDidFinishSyncingResources:self];
+        
+        if (syncErrors) {
+            if (WMLogDataManager) NSLog(@"... finished sync and asset download with %i errors", [syncErrors count]);
+            if ([self.delegate respondsToSelector:@selector(didFinishSyncingResourcesWithErrors:)]) {
+                [self.delegate dataManager:self didFinishSyncingResourcesWithErrors:syncErrors];
+            }
+        } else {
+            if (WMLogDataManager) NSLog(@"... finished sync and asset download");
+            if ([self.delegate respondsToSelector:@selector(dataManagerDidFinishSyncingResources:)]) {
+                [self.delegate dataManagerDidFinishSyncingResources:self];
+            }
+        }
     }
 }
 
