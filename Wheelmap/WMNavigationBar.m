@@ -102,10 +102,6 @@
         self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         self.title = @"Orte in deiner Nähe";
         
-        //self.transform = CGAffineTransformMakeTranslation(0, -55);
-        //isVisible = NO;
-        
-        //[self showNavigationBar];
     }
     
     return self;
