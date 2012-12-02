@@ -208,52 +208,55 @@
     int buttonWidth = buttonBackgroundImage.size.width;
     int buttonHeight = buttonBackgroundImage.size.height;
     
-    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(20, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-40, 75)];
+    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-20, 75)];
     //fourButtonView.backgroundColor = [UIColor greenColor];
     
    
     
     int imagePlusGab = buttonWidth + (((self.view.bounds.size.width-40)-(4*buttonWidth)) / 3);
+    int gabBetweenLabels = 3;
+    int labelWidth = fourButtonView.frame.size.width / 4 - gabBetweenLabels;
+    int startLabelX = (labelWidth-buttonWidth)/2;
     
     // PHONE
     self.callButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.callButton.frame = CGRectMake(0, 0,buttonWidth,buttonHeight);
+    self.callButton.frame = CGRectMake(10, 0,buttonWidth,buttonHeight);
     [self.callButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
     [self.callButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
     [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-inactive.png"] forState: UIControlStateDisabled];
     [self.callButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
 
-    UILabel *callLabel = [self createBelowButtonLabel:@"Anrufen NL"];
-    callLabel.frame = CGRectMake(0,buttonHeight+5,buttonWidth, 16);
+    UILabel *callLabel = [self createBelowButtonLabel:@"Anrufen"];
+    callLabel.frame = CGRectMake(self.callButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // WEBSITE
     self.websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.websiteButton.frame = CGRectMake(imagePlusGab, 0,buttonWidth,buttonHeight);
+    self.websiteButton.frame = CGRectMake(imagePlusGab+10, 0,buttonWidth,buttonHeight);
     [self.websiteButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
     [self.websiteButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.websiteButton setImage: [UIImage imageNamed:@"details_btn-more-url-active.png"] forState: UIControlStateNormal];
     [self.websiteButton setImage: [UIImage imageNamed:@"details_btn-more-url-inactive.png"] forState: UIControlStateDisabled];
     [self.websiteButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *websiteLabel = [self createBelowButtonLabel:@"Website NL"];
-    websiteLabel.frame = CGRectMake(imagePlusGab,buttonHeight+5,buttonWidth, 16);
+    UILabel *websiteLabel = [self createBelowButtonLabel:@"Website"];
+    websiteLabel.frame = CGRectMake(self.websiteButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // COMMENT
     self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.commentButton.frame = CGRectMake(2*imagePlusGab, 0,buttonWidth,buttonHeight);
+    self.commentButton.frame = CGRectMake(2*imagePlusGab+10, 0,buttonWidth,buttonHeight);
     [self.commentButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
     [self.commentButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.commentButton setImage: [UIImage imageNamed:@"details_btn-more-comment-active.png"] forState: UIControlStateNormal];
     [self.commentButton setImage: [UIImage imageNamed:@"details_btn-more-comment-inactive.png"] forState: UIControlStateDisabled];
     [self.commentButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *infoLabel = [self createBelowButtonLabel:@"Info NL"];
-    infoLabel.frame = CGRectMake(2*imagePlusGab,buttonHeight+5,buttonWidth, 16);
+    UILabel *infoLabel = [self createBelowButtonLabel:@"Info"];
+    infoLabel.frame = CGRectMake(self.commentButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // ROUTE
     self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.naviButton.frame = CGRectMake(3*imagePlusGab, 0,buttonWidth,buttonHeight);
+    self.naviButton.frame = CGRectMake(3*imagePlusGab+10, 0,buttonWidth,buttonHeight);
     [self.naviButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
     [self.naviButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.naviButton setImage: [UIImage imageNamed:@"details_btn-more-route-active.png"] forState: UIControlStateNormal];
@@ -261,8 +264,8 @@
 
     [self.naviButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *routeLabel = [self createBelowButtonLabel:@"Route NL"];
-    routeLabel.frame = CGRectMake(3*imagePlusGab,buttonHeight+5,buttonWidth, 16);
+    UILabel *routeLabel = [self createBelowButtonLabel:@"Route"];
+    routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // add all buttons and labels
     [fourButtonView addSubview:self.callButton];
