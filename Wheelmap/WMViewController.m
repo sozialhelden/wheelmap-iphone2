@@ -37,7 +37,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.view.frame = CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height-110);
 
 }
 
