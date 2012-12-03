@@ -5,12 +5,131 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
+        <!--Dashboard View Controller-->
+        <scene sceneID="gbT-Ud-8j3">
+            <objects>
+                <viewController id="WwW-IJ-J40" customClass="WMDashboardViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LAb-k1-rkp">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HNV-p4-Q8K">
+                                <rect key="frame" x="20" y="130" width="130" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="start_icon-grid-locallist.png" backgroundImage="start_btn-grid.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedNodeListButton:" destination="WwW-IJ-J40" eventType="touchUpInside" id="JAn-Jl-JWZ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="start_logo.png" id="TUN-sA-MVk">
+                                <rect key="frame" x="0.0" y="16" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="start_searchbar.png" id="5ha-Zh-CKZ">
+                                <rect key="frame" x="20" y="73" width="280" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nach Ort Suchen" minimumFontSize="17" id="tNJ-yc-nG9">
+                                <rect key="frame" x="33" y="78" width="230" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a4m-Nz-7Yn">
+                                <rect key="frame" x="170" y="130" width="130" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="start_icon-grid-map.png" backgroundImage="start_btn-grid.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedMapButton:" destination="WwW-IJ-J40" eventType="touchUpInside" id="onP-Sg-rlz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hgi-g5-jv4">
+                                <rect key="frame" x="20" y="273" width="130" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="start_icon-grid-category.png" backgroundImage="start_btn-grid.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YUc-Dj-aCR">
+                                <rect key="frame" x="170" y="273" width="130" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="start_icon-grid-help.png" backgroundImage="start_btn-grid.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="41a-ZN-xe8">
+                                <rect key="frame" x="20" y="418" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="start_icon-credits.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wJJ-fI-xar">
+                                <rect key="frame" x="270" y="418" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="start_icon-login.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="?????? Orte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l6u-5v-jvR" customClass="WMLabel">
+                                <rect key="frame" x="58" y="420" width="205" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.3411764705882353" green="0.39215686274509803" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15294117647058825" green="0.21176470588235294" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="29C-yd-aZr"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gC3-9t-d3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-54" y="-224"/>
+        </scene>
         <!--Node List View Controller - Orte in deiner Nähe-->
         <scene sceneID="czU-OA-vJg">
             <objects>
-                <tableViewController title="Orte in deiner Nähe" id="Dwz-RS-ZVC" customClass="WMNodeListViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WMNodeListViewController" title="Orte in deiner Nähe" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dwz-RS-ZVC" customClass="WMNodeListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ReO-Bh-1CS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -31,25 +150,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lUS-o2-5L6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="-224"/>
+            <point key="canvasLocation" x="463" y="-224"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="XdE-iv-aNx">
             <objects>
                 <viewController storyboardIdentifier="WMMapViewController" title="Orte in deiner Nähe" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5R3-yI-jjZ" userLabel="Map View Controller" customClass="WMMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oW3-Iu-wcE">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="xPX-T4-pL4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="5R3-yI-jjZ" id="OqL-JD-H3d"/>
                                 </connections>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="RR8-0C-kXs">
-                                <rect key="frame" x="40" y="441" width="240" height="44"/>
+                                <rect key="frame" x="40" y="353" width="240" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <segments>
                                     <segment title="Standard"/>
@@ -72,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7M-WF-JEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="-224"/>
+            <point key="canvasLocation" x="900" y="-224"/>
         </scene>
         <!--Navigation Controller Base-->
         <scene sceneID="UTl-qZ-At0">
@@ -84,43 +203,32 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1P9-Nm-Plx">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="Dwz-RS-ZVC" kind="relationship" relationship="rootViewController" id="mse-wx-QEV"/>
+                        <segue destination="WwW-IJ-J40" kind="relationship" relationship="rootViewController" id="h1u-Qt-jwr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uK9-UA-ybv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-559" y="-224"/>
+            <point key="canvasLocation" x="-485" y="-224"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="WMMapViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="returnToListViewTouched:"/>
-                <relationship kind="action" name="toggleMapTypeChanged:"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="WMNavigationControllerBase" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNavigationControllerBase.h"/>
-        </class>
-        <class className="WMNodeListViewController" superclassName="WMTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNodeListViewController.h"/>
-        </class>
-        <class className="WMTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMTableViewController.h"/>
-        </class>
-        <class className="WMViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>
-        </class>
-    </classes>
+    <resources>
+        <image name="start_btn-grid.png" width="130" height="121"/>
+        <image name="start_icon-credits.png" width="30" height="30"/>
+        <image name="start_icon-grid-category.png" width="50" height="50"/>
+        <image name="start_icon-grid-help.png" width="50" height="50"/>
+        <image name="start_icon-grid-locallist.png" width="50" height="50"/>
+        <image name="start_icon-grid-map.png" width="50" height="50"/>
+        <image name="start_icon-login.png" width="30" height="30"/>
+        <image name="start_logo.png" width="180" height="45"/>
+        <image name="start_searchbar.png" width="280" height="40"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

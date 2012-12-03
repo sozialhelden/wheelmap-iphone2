@@ -36,35 +36,35 @@
         [self addSubview:searchButton];
         
         // toggle button uses setView:forControlState: method
-        toggleButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        toggleButton.frame = CGRectMake(floor((self.frame.size.width-71)/2.0), -2, 71, 62);
-        UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:toggleButton.bounds];
+        self.toggleButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        self.toggleButton.frame = CGRectMake(floor((self.frame.size.width-71)/2.0), -2, 71, 62);
+        UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         toggleBtnNormalView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         UIImageView* toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
         toggleBtnListIcon.image = [UIImage imageNamed:@"toolbar_toggle-map.png"];
         toggleBtnListIcon.contentMode = UIViewContentModeCenter;
         [toggleBtnNormalView addSubview:toggleBtnListIcon];
-        [toggleButton setView:toggleBtnNormalView forControlState:UIControlStateNormal];
+        [self.toggleButton setView:toggleBtnNormalView forControlState:UIControlStateNormal];
         
-        UIImageView* toggleBtnHighlightedView = [[UIImageView alloc] initWithFrame:toggleButton.bounds];
+        UIImageView* toggleBtnHighlightedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         toggleBtnHighlightedView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
         toggleBtnListIcon.image = [UIImage imageNamed:@"toolbar_toggle-map.png"];
         toggleBtnListIcon.contentMode = UIViewContentModeCenter;
         [toggleBtnHighlightedView addSubview:toggleBtnListIcon];
-        [toggleButton setView:toggleBtnHighlightedView forControlState:UIControlStateHighlighted];
+        [self.toggleButton setView:toggleBtnHighlightedView forControlState:UIControlStateHighlighted];
         
-        UIImageView* toggleBtnSelectedView = [[UIImageView alloc] initWithFrame:toggleButton.bounds];
+        UIImageView* toggleBtnSelectedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         toggleBtnSelectedView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         UIImageView* toggleBtnMapIcon = [[UIImageView alloc] initWithFrame:toggleBtnSelectedView.bounds];
         toggleBtnMapIcon.image = [UIImage imageNamed:@"toolbar_toggle-list.png"];
         toggleBtnMapIcon.contentMode = UIViewContentModeCenter;
         [toggleBtnSelectedView addSubview:toggleBtnMapIcon];
-        [toggleButton setView:toggleBtnSelectedView forControlState:UIControlStateSelected];
-        toggleButton.enabledToggle = YES;
+        [self.toggleButton setView:toggleBtnSelectedView forControlState:UIControlStateSelected];
+        self.toggleButton.enabledToggle = YES;
     
-        [toggleButton addTarget:self action:@selector(pressedToggleButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:toggleButton];
+        [self.toggleButton addTarget:self action:@selector(pressedToggleButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.toggleButton];
         
         categoryFilterButton = [WMButton buttonWithType:UIButtonTypeCustom];
         categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 1, 58, 58);

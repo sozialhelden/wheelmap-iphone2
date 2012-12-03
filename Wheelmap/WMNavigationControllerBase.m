@@ -11,6 +11,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
 #import "WMDetailViewController.h"
+#import "WMDashboardViewController.h"
 #import "Node.h"
 
 
@@ -43,13 +44,6 @@
     locationManager.delegate = self;
     locationManager.distanceFilter = 50.0f;
 	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        
-    // configure initial vc from storyboard
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        id<WMNodeListView> initialNodeListView = (id<WMNodeListView>)self.topViewController;
-        initialNodeListView.dataSource = self;
-        initialNodeListView.delegate = self;
-    }
     
     // set custom nagivation and tool bars
     self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
@@ -233,7 +227,6 @@
 -(NSArray*)popToRootViewControllerAnimated:(BOOL)animated
 {
     NSArray* lastViewControllers = [super popToRootViewControllerAnimated:animated];
-    [self changeScreenStatusFor:[self.viewControllers lastObject]];
     
     return lastViewControllers;
 }
@@ -246,6 +239,12 @@
     return lastViewControllers;
 }
 
+-(void)setViewControllers:(NSArray *)viewControllers animated:(BOOL)animated
+{
+    [super setViewControllers:viewControllers animated:animated];
+    [self changeScreenStatusFor:[viewControllers lastObject]];
+}
+
 -(void)changeScreenStatusFor:(UIViewController*)vc
 {
     // show/hide navigation bar. only hide it on the dashboard!
@@ -255,7 +254,7 @@
     WMNavigationBarLeftButtonStyle leftButtonStyle;
     WMNavigationBarRightButtonStyle rightButtonStyle;
     
-    if (self.viewControllers.count == 1) {  // THIS SHOULD BE CHANGED AFTER IMPLEMENTING DASHBOARD!
+    if (self.viewControllers.count == 2) {
         leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
     } else {
         // otherwise, default left button is BackButton. This will be changed according to the current screen later
@@ -266,12 +265,15 @@
     // special left buttons and right button should be set according to the current screen
     
     if ([vc isKindOfClass:[WMMapViewController class]]) {
-        if (self.viewControllers.count == 2) {
+        self.customToolBar.toggleButton.selected = YES;
+        if (self.viewControllers.count == 3) {
             leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;   // single exception. this is the first level!
         }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
     } else if ([vc isKindOfClass:[WMNodeListViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
+        self.customToolBar.toggleButton.selected = NO;
+        
     } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];

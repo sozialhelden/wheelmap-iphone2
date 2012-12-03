@@ -37,6 +37,14 @@
 {
     [super viewDidLoad];
     
+    if (self.navigationController.navigationBarHidden) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    
+    if (self.navigationController.toolbarHidden) {
+        [self.navigationController setToolbarHidden:NO animated:YES];
+    }
+    
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
 }
 

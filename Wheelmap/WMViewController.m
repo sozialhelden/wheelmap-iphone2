@@ -31,7 +31,6 @@
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
     }
-    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated
