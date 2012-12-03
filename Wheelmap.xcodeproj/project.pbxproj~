@@ -1325,8 +1325,11 @@
 				98AC54AD166AA09A00E87965 /* unzip.c in Sources */,
 				98AC54AE166AA09A00E87965 /* zip.c in Sources */,
 				98AC54AF166AA09A00E87965 /* SSZipArchive.m in Sources */,
+<<<<<<< HEAD
 				DB6E4770166B9B7A00D9CAD9 /* WMDashboardViewController.m in Sources */,
+=======
 				98B15792166BB17F007FD897 /* NodeType.m in Sources */,
+>>>>>>> ef6bac2116584298ae9068a0482b3ed71ec3c431
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

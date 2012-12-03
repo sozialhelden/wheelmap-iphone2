@@ -216,15 +216,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="start_btn-grid.png" width="130" height="121"/>
-        <image name="start_icon-credits.png" width="30" height="30"/>
-        <image name="start_icon-grid-category.png" width="50" height="50"/>
-        <image name="start_icon-grid-help.png" width="50" height="50"/>
-        <image name="start_icon-grid-locallist.png" width="50" height="50"/>
-        <image name="start_icon-grid-map.png" width="50" height="50"/>
-        <image name="start_icon-login.png" width="30" height="30"/>
-        <image name="start_logo.png" width="180" height="45"/>
-        <image name="start_searchbar.png" width="280" height="40"/>
+        <image name="start_btn-grid.png" width="16" height="16"/>
+        <image name="start_icon-credits.png" width="16" height="16"/>
+        <image name="start_icon-grid-category.png" width="16" height="16"/>
+        <image name="start_icon-grid-help.png" width="16" height="16"/>
+        <image name="start_icon-grid-locallist.png" width="16" height="16"/>
+        <image name="start_icon-grid-map.png" width="16" height="16"/>
+        <image name="start_icon-login.png" width="16" height="16"/>
+        <image name="start_logo.png" width="16" height="16"/>
+        <image name="start_searchbar.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
