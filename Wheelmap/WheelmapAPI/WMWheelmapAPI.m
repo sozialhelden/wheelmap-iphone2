@@ -10,7 +10,7 @@
 #import "AFJSONRequestOperation.h"
 
 #define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
+#define WMAPIKey @"your api key"
 
 
 @implementation WMWheelmapAPI
