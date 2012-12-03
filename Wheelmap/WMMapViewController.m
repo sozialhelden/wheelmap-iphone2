@@ -11,6 +11,7 @@
 #import "WMDetailViewController.h"
 #import "Node.h"
 #import "NodeType.h"
+#import "WMNavigationControllerBase.h"
 
 
 // TODO: re-position popover after orientation change
@@ -19,6 +20,7 @@
 {
     NSArray *nodes;
     UIPopoverController *popover;
+    
 }
 
 @synthesize dataSource, delegate;
@@ -99,6 +101,8 @@
 
 - (void) nodeListDidChange
 {
+    [self.loadingWheel stopAnimating];
+    self.loadingWheel.hidden = YES;
     [self loadNodes];
 }
 
@@ -124,6 +128,12 @@
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
         annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, -3, 20, 15)];
+        icon.contentMode = UIViewContentModeScaleAspectFit;
+        icon.backgroundColor = [UIColor clearColor];
+        icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/icons/%@", ROOT_STORAGE_PATH, node.node_type.icon]];
+        [annotationView addSubview:icon];
+        
         return annotationView;
     }
     return nil;
@@ -131,6 +141,10 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
+        return;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(nodeListView:didSelectNode:)]) {
         WMMapAnnotation *annotation = (WMMapAnnotation*)view.annotation;
         [self.delegate nodeListView:self didSelectNode:annotation.node];
@@ -159,12 +173,14 @@
     }
 }
 
-- (IBAction)returnToListViewTouched:(id)sender
+#pragma mark - Map Interactions
+
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    self.loadingWheel.hidden = NO;
+    [self.loadingWheel startAnimating];
+    [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
 }
-
-
 
 @end
 

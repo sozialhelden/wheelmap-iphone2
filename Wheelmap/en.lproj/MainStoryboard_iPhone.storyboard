@@ -179,6 +179,11 @@
                                     <action selector="toggleMapTypeChanged:" destination="5R3-yI-jjZ" eventType="valueChanged" id="hW4-lr-vAO"/>
                                 </connections>
                             </segmentedControl>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="x4V-PY-xS1">
+                                <rect key="frame" x="275" y="13" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -186,6 +191,7 @@
                     <navigationItem key="navigationItem" id="7nG-cx-TpY"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="loadingWheel" destination="x4V-PY-xS1" id="6wk-Jv-ioS"/>
                         <outlet property="mapView" destination="xPX-T4-pL4" id="6aE-rE-Gdo"/>
                     </connections>
                 </viewController>
@@ -216,15 +222,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="start_btn-grid.png" width="16" height="16"/>
-        <image name="start_icon-credits.png" width="16" height="16"/>
-        <image name="start_icon-grid-category.png" width="16" height="16"/>
-        <image name="start_icon-grid-help.png" width="16" height="16"/>
-        <image name="start_icon-grid-locallist.png" width="16" height="16"/>
-        <image name="start_icon-grid-map.png" width="16" height="16"/>
-        <image name="start_icon-login.png" width="16" height="16"/>
-        <image name="start_logo.png" width="16" height="16"/>
-        <image name="start_searchbar.png" width="16" height="16"/>
+        <image name="start_btn-grid.png" width="130" height="121"/>
+        <image name="start_icon-credits.png" width="30" height="30"/>
+        <image name="start_icon-grid-category.png" width="50" height="50"/>
+        <image name="start_icon-grid-help.png" width="50" height="50"/>
+        <image name="start_icon-grid-locallist.png" width="50" height="50"/>
+        <image name="start_icon-grid-map.png" width="50" height="50"/>
+        <image name="start_icon-login.png" width="30" height="30"/>
+        <image name="start_logo.png" width="180" height="45"/>
+        <image name="start_searchbar.png" width="280" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

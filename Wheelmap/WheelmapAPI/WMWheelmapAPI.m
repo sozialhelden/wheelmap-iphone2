@@ -31,7 +31,6 @@
     if (!self) {
         return nil;
     }
-    
     // use JSON requests per default
     // TODO: test that other requests will be routed to different operation classes
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];

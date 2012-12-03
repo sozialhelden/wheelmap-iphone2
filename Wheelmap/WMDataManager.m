@@ -14,7 +14,7 @@
 
 
 #define WMSearchRadius 0.004
-#define WMLogDataManager 1
+#define WMLogDataManager 0
 
 
 // TODO: fix etag check
@@ -51,6 +51,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
 
 
 #pragma mark - Fetch Nodes
@@ -325,8 +327,8 @@ static BOOL assetDownloadInProgress;
 - (void) didFinishFileDownload:(NSString*)path forAsset:(Asset*)asset
 {
     // get path where file should be unzipped
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *destinationPath = [paths objectAtIndex:0];
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *destinationPath = ROOT_STORAGE_PATH;
     
     // unzip file
     NSError *error = nil;

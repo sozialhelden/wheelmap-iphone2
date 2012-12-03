@@ -95,6 +95,7 @@
 -(void)dataManager:(WMDataManager *)dataManager fetchNodesFailedWithError:(NSError *)error
 {
     NSLog(@"error %@", error.localizedDescription);
+    [self refreshNodeList];
 }
 
 - (void)dataManagerDidFinishSyncingResources:(WMDataManager *)dataManager
@@ -115,6 +116,21 @@
     return nodes;
 }
 
+-(void)updateNodesNear:(CLLocationCoordinate2D)coord
+{
+    [dataManager fetchNodesNear:coord];
+    
+}
+
+-(void)updateNodesWithRegion:(MKCoordinateRegion)region
+{
+    CLLocationCoordinate2D southWest;
+    CLLocationCoordinate2D northEast;
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+    
+    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast];
+}
 
 #pragma mark - Node List Delegate
 

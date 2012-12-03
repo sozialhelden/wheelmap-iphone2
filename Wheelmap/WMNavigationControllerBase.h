@@ -29,4 +29,7 @@ WMWheelChairStatusFilterPopoverViewDelegate>
 
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
 @property (nonatomic, strong) WMToolBar* customToolBar;
+
+-(void)updateNodesNear:(CLLocationCoordinate2D)coord;
+-(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 @end
