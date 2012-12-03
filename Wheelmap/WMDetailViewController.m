@@ -210,7 +210,7 @@
     int buttonHeight = buttonBackgroundImage.size.height;
     
     UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-20, 75)];
-    //fourButtonView.backgroundColor = [UIColor greenColor];
+    fourButtonView.backgroundColor = [UIColor greenColor];
     
    
     

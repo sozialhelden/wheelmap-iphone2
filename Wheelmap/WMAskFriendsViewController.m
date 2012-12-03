@@ -30,8 +30,7 @@
 	// Do any additional setup after loading the view.
     self.title = @"ASK_FRIEND";
     
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1640);
-    self.scrollView.backgroundColor = [UIColor orangeColor];
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 500);
 }
 
 - (void)didReceiveMemoryWarning
