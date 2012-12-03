@@ -95,11 +95,12 @@
         self.gabIfStatusUnknown = 62;
         [self createAskFriendsForStatusButton];
     }
-          
+    
     self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.wheelAccessButton.titleLabel.text = self.node.wheelchair_description;
     self.wheelAccessButton.frame = CGRectMake(10, 170, accessImage.size.width, accessImage.size.height);
-    [self.wheelAccessButton setImage: accessImage forState: UIControlStateNormal];
+    [self.wheelAccessButton setBackgroundImage: accessImage forState: UIControlStateNormal];
+    [self.wheelAccessButton setTitle:@"sdfhsifhdoshoidsu" forState:UIControlStateNormal];
+    self.wheelAccessButton.titleLabel.textColor = [UIColor blackColor];
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.wheelAccessButton];
     

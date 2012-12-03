@@ -19,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+       
     }
     return self;
 }
@@ -28,6 +29,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"ASK_FRIEND";
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1640);
+    self.scrollView.backgroundColor = [UIColor orangeColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,5 +54,9 @@
 
 - (IBAction)emailButtonPressed:(id)sender {
         NSLog(@"EMail Button pressed");
+}
+- (void)viewDidUnload {
+    [self setScrollView:nil];
+    [super viewDidUnload];
 }
 @end

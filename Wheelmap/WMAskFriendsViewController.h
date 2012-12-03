@@ -10,6 +10,8 @@
 
 @interface WMAskFriendsViewController : WMViewController
 
+@property (nonatomic) IBOutlet UIScrollView *scrollView;
+
 - (IBAction)twitterButtonPressed:(id)sender;
 - (IBAction)facebookButtonPressed:(id)sender;
 - (IBAction)smsButtonPressed:(id)sender;
