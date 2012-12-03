@@ -179,32 +179,6 @@
         <image name="Social_btn-sms.png" width="290" height="50"/>
         <image name="Social_btn-twitter.png" width="290" height="50"/>
     </resources>
-    <classes>
-        <class className="WMAskFriendsViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMAskFriendsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="emailButtonPressed:"/>
-                <relationship kind="action" name="facebookButtonPressed:"/>
-                <relationship kind="action" name="smsButtonPressed:"/>
-                <relationship kind="action" name="twitterButtonPressed:"/>
-            </relationships>
-        </class>
-        <class className="WMDetailViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="WMTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMTableViewController.h"/>
-        </class>
-        <class className="WMViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>
-        </class>
-        <class className="WMWheelchairStatusViewController" superclassName="WMTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMWheelchairStatusViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
