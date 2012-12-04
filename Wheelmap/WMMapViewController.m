@@ -57,7 +57,7 @@
 
 - (void) loadNodes
 {
-    nodes = [self.dataSource nodeList];
+    nodes = [self.dataSource filteredNodeList];
     
     // TODO: optimization: don't remove annotations that will be added again
     [self.mapView removeAnnotations:self.mapView.annotations];

@@ -16,6 +16,7 @@
 @protocol WMNodeListDataSource <NSObject>
 
 - (NSArray*) nodeList;
+- (NSArray*) filteredNodeList;
 
 @end
 

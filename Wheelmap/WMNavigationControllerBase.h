@@ -17,7 +17,7 @@
 #import "WMDetailViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMWheelChairStatusFilterPopoverView.h"
-#import "WMCateogryFilterPopoverView.h"
+#import "WMCategoryFilterPopoverView.h"
 
 @class WMDataManager;
 
@@ -25,11 +25,15 @@
 <WMDataManagerDelegate, WMNodeListDataSource,
 WMNodeListDelegate, CLLocationManagerDelegate,
 WMNavigationBarDelegate, WMToolBarDelegate,
-WMWheelChairStatusFilterPopoverViewDelegate>
+WMWheelChairStatusFilterPopoverViewDelegate,
+WMCategoryFilterPopoverViewDelegate>
 
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
 @property (nonatomic, strong) WMToolBar* customToolBar;
+@property (nonatomic, strong) NSMutableDictionary* wheelChairFilterStatus;
+@property (nonatomic, strong) NSMutableDictionary* categoryFilterStatus;
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
+
 @end

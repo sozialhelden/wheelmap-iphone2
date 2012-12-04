@@ -214,7 +214,7 @@
 		DBA622581668F456009FA5DF /* WMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA6224B1668F3E7009FA5DF /* WMToolBar.m */; };
 		DBA6226A1668F82F009FA5DF /* WMCategoryFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622651668F82F009FA5DF /* WMCategoryFilterTableViewCell.m */; };
 		DBA6226B1668F82F009FA5DF /* WMCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622671668F82F009FA5DF /* WMCategoryListViewController.m */; };
-		DBA6226C1668F82F009FA5DF /* WMCateogryFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622691668F82F009FA5DF /* WMCateogryFilterPopoverView.m */; };
+		DBA6226C1668F82F009FA5DF /* WMCategoryFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622691668F82F009FA5DF /* WMCategoryFilterPopoverView.m */; };
 		DBA6226D1668F837009FA5DF /* WMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622601668F7B8009FA5DF /* WMViewController.m */; };
 		DBA6226E1668F83D009FA5DF /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA6225D1668F79E009FA5DF /* UIView+Geometry.m */; };
 		DBA622711668F85F009FA5DF /* WMWheelchairStatusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA622701668F85F009FA5DF /* WMWheelchairStatusButton.m */; };
@@ -501,8 +501,8 @@
 		DBA622651668F82F009FA5DF /* WMCategoryFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryFilterTableViewCell.m; sourceTree = "<group>"; };
 		DBA622661668F82F009FA5DF /* WMCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryListViewController.h; sourceTree = "<group>"; };
 		DBA622671668F82F009FA5DF /* WMCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryListViewController.m; sourceTree = "<group>"; };
-		DBA622681668F82F009FA5DF /* WMCateogryFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCateogryFilterPopoverView.h; sourceTree = "<group>"; };
-		DBA622691668F82F009FA5DF /* WMCateogryFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCateogryFilterPopoverView.m; sourceTree = "<group>"; };
+		DBA622681668F82F009FA5DF /* WMCategoryFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryFilterPopoverView.h; sourceTree = "<group>"; };
+		DBA622691668F82F009FA5DF /* WMCategoryFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryFilterPopoverView.m; sourceTree = "<group>"; };
 		DBA6226F1668F85F009FA5DF /* WMWheelchairStatusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusButton.h; sourceTree = "<group>"; };
 		DBA622701668F85F009FA5DF /* WMWheelchairStatusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusButton.m; sourceTree = "<group>"; };
 		DBA622771668FAB7009FA5DF /* WMWheelChairStatusFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelChairStatusFilterPopoverView.h; sourceTree = "<group>"; };
@@ -1032,8 +1032,8 @@
 				DBA622651668F82F009FA5DF /* WMCategoryFilterTableViewCell.m */,
 				DBA622661668F82F009FA5DF /* WMCategoryListViewController.h */,
 				DBA622671668F82F009FA5DF /* WMCategoryListViewController.m */,
-				DBA622681668F82F009FA5DF /* WMCateogryFilterPopoverView.h */,
-				DBA622691668F82F009FA5DF /* WMCateogryFilterPopoverView.m */,
+				DBA622681668F82F009FA5DF /* WMCategoryFilterPopoverView.h */,
+				DBA622691668F82F009FA5DF /* WMCategoryFilterPopoverView.m */,
 				DBA622771668FAB7009FA5DF /* WMWheelChairStatusFilterPopoverView.h */,
 				DBA622781668FAB7009FA5DF /* WMWheelChairStatusFilterPopoverView.m */,
 			);
@@ -1393,7 +1393,7 @@
 				DBA622581668F456009FA5DF /* WMToolBar.m in Sources */,
 				DBA6226A1668F82F009FA5DF /* WMCategoryFilterTableViewCell.m in Sources */,
 				DBA6226B1668F82F009FA5DF /* WMCategoryListViewController.m in Sources */,
-				DBA6226C1668F82F009FA5DF /* WMCateogryFilterPopoverView.m in Sources */,
+				DBA6226C1668F82F009FA5DF /* WMCategoryFilterPopoverView.m in Sources */,
 				DBA6226D1668F837009FA5DF /* WMViewController.m in Sources */,
 				DBA6226E1668F83D009FA5DF /* UIView+Geometry.m in Sources */,
 				DBA622711668F85F009FA5DF /* WMWheelchairStatusButton.m in Sources */,

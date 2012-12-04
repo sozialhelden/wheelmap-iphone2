@@ -50,7 +50,7 @@
 
 - (void) loadNodes
 {
-    nodes = [self.dataSource nodeList];
+    nodes = [self.dataSource filteredNodeList];
     
     [self.tableView reloadData];
 }

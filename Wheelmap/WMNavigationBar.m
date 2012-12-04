@@ -116,7 +116,7 @@
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = @"Edit";
+        normalBtnLabel.text = @"Save";
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
@@ -124,11 +124,11 @@
         normalBtnImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
-
         saveButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        saveButton.frame = rightButtonRect;
-        saveButton.backgroundColor = [UIColor greenColor];
+        saveButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        saveButton.backgroundColor = [UIColor clearColor];
         saveButton.hidden = YES;
+        [saveButton setView:normalBtnImg forControlState:UIControlStateNormal];
         [saveButton addTarget:self action:@selector(pressedSaveButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:saveButton];
         
