@@ -15,6 +15,7 @@
 #import "WMCommentViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
+#import "WMMoreInfoViewController.h"
 
 
 #define STARTLEFT 15
@@ -41,8 +42,7 @@
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
     
     // SCROLLVIEW
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 640);
-    [self.view addSubview:self.scrollView];    
+    [self.view addSubview:self.scrollView];
     
     // MAPVIEW
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110)];
@@ -160,7 +160,7 @@
     [self.moreInfoButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.moreInfoButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.moreInfoButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
-    [self.moreInfoButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
+    [self.moreInfoButton addTarget:self action:@selector(showMoreInfoView) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.moreInfoButton];
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 550 + self.gabIfStatusUnknown);
@@ -231,19 +231,16 @@
     int buttonWidth = buttonBackgroundImage.size.width;
     int buttonHeight = buttonBackgroundImage.size.height;
     
-<<<<<<< HEAD
-    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-20, 75)];
-    //fourButtonView.backgroundColor = [UIColor greenColor];
-=======
-    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.scrollView.bounds.size.width-20, 75)];
-    fourButtonView.backgroundColor = [UIColor greenColor];
->>>>>>> 93a239a385b65fe561a184d9f5e3cbac25d24493
+    self.fourButtonView = [UIView new];
+    self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
+  //  self.fourButtonView.backgroundColor = [UIColor greenColor];
+
     
    
     
-    int imagePlusGab = buttonWidth + (((self.scrollView.bounds.size.width-40)-(4*buttonWidth)) / 3);
+    int imagePlusGab = buttonWidth + (((320-40)-(4*buttonWidth)) / 3);
     int gabBetweenLabels = 3;
-    int labelWidth = fourButtonView.frame.size.width / 4 - gabBetweenLabels;
+    int labelWidth = self.fourButtonView.frame.size.width / 4 - gabBetweenLabels;
     int startLabelX = (labelWidth-buttonWidth)/2;
     
     // PHONE
@@ -295,17 +292,17 @@
     routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // add all buttons and labels
-    [fourButtonView addSubview:self.callButton];
-    [fourButtonView addSubview:self.websiteButton];
-    [fourButtonView addSubview:self.commentButton];
-    [fourButtonView addSubview:self.naviButton];
-    [fourButtonView addSubview:callLabel];
-    [fourButtonView addSubview:websiteLabel];
-    [fourButtonView addSubview:infoLabel];
-    [fourButtonView addSubview:routeLabel];
+    [self.fourButtonView addSubview:self.callButton];
+    [self.fourButtonView addSubview:self.websiteButton];
+    [self.fourButtonView addSubview:self.commentButton];
+    [self.fourButtonView addSubview:self.naviButton];
+    [self.fourButtonView addSubview:callLabel];
+    [self.fourButtonView addSubview:websiteLabel];
+    [self.fourButtonView addSubview:infoLabel];
+    [self.fourButtonView addSubview:routeLabel];
     
     
-    [self.scrollView addSubview:fourButtonView];
+    [self.scrollView addSubview:self.fourButtonView];
 }
 
 - (UILabel*) createBelowButtonLabel: (NSString*) title {
@@ -362,7 +359,13 @@
     [self checkForStatusOfButtons];
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
-    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 640);
+    self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
+
 }
 
 #pragma mark - Map View Delegate
@@ -447,25 +450,24 @@
 - (void) showAccessOptions {
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
+    vc.title = @"WHEEL ACCESS";
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
-- (IBAction)accessButtonPressed:(UIButton*)button {
+- (IBAction)accessButtonPressed:(NSString*)wheelchairAccess {
     
-    if (button.tag == 0) {
+    if (wheelchairAccess == @"yes") {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-        self.node.wheelchair = @"yes";
-    } else if (button.tag == 1) {
+    } else if (wheelchairAccess == @"limited") {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-        self.node.wheelchair = @"limited";
-    } else if (button.tag == 2) {
+    } else if (wheelchairAccess == @"no") {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-        self.node.wheelchair = @"no";
     }
+    self.node.wheelchair = wheelchairAccess;
 }
 
 
@@ -484,6 +486,14 @@
 - (void) showCommentView {
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
+    vc.title = @"COMMENT";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) showMoreInfoView {
+    WMMoreInfoViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMoreInfoViewController"];
+    vc.node = self.node;
+    vc.title = @"MORE INFO";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -491,7 +501,6 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
     actionSheet.tag = 1;
     [actionSheet showInView:self.view];
-    
 }
 
 - (void) cameraButtonPressed {

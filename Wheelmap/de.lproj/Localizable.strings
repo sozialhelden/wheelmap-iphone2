@@ -31,3 +31,12 @@
 "DetailsViewUploadOptionPhotoAlbum" = "Fotoalbum";
 
 "DetailsViewMoreInfoButtonLabel" = "Weitere Informationen";
+
+"EditPOIViewNameLabel" = "Name";
+"EditPOIViewCategoryLabel" = "Kategorie";
+"EditPOIViewPositionLabel" = "Position";
+"EditPOIViewPhoneLabel" = "Telefon";
+"EditPOIViewAddressLabel" = "Adresse";
+"EditPOIViewWebsiteLabel" = "Webseite";
+"EditPOIViewInfoLabel" = "Info";
+"EditPOIViewSetMarkerButton" = "Markierung setzen";

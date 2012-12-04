@@ -29,7 +29,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"Bearbeiten";
 }
 
 
@@ -51,17 +50,20 @@
 
 - (IBAction)accessButtonPressed:(id)sender {
     
-    [self.delegate accessButtonPressed:sender];
-    
     UIButton *button = (UIButton*) sender;
     
     if (button.tag == 0) {
-        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX YES");
+        self.wheelchairAccess = @"yes";
     } else if (button.tag == 1) {
-        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX LIMITED");
+        self.wheelchairAccess = @"limited";
     } else if (button.tag == 2) {
-        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX NO");
+        self.wheelchairAccess = @"no";
     }
+}
+
+- (void) saveAccessStatus {
+    [self.delegate accessButtonPressed:self.wheelchairAccess];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

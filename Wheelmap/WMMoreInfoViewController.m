@@ -1,18 +1,18 @@
 //
-//  WMCommentViewController.m
+//  WMMoreInfoViewController.m
 //  Wheelmap
 //
-//  Created by Andrea Gerlach on 03.12.12.
+//  Created by Andrea Gerlach on 04.12.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMCommentViewController.h"
+#import "WMMoreInfoViewController.h"
 
-@interface WMCommentViewController ()
+@interface WMMoreInfoViewController ()
 
 @end
 
-@implementation WMCommentViewController
+@implementation WMMoreInfoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.commentText.text = self.currentNode.wheelchair_description;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,8 +35,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-    [self setCommentText:nil];
-    [super viewDidUnload];
-}
 @end

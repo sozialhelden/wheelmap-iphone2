@@ -23,6 +23,7 @@
 @property (nonatomic) Node *node;
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
+@property (nonatomic, strong) UIView *fourButtonView;
 
 
 @property (nonatomic, strong) UILabel *titleLabel;

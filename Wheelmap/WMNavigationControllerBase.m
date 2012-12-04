@@ -11,6 +11,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
 #import "WMDetailViewController.h"
+#import "WMWheelchairStatusViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "Node.h"
@@ -393,8 +394,12 @@
 
 -(void)pressedSaveButton:(WMNavigationBar *)navigationBar
 {
-    NSLog(@"[NavigationControllerBase] pressed save button!");
+    WMViewController* currentViewController = [self.viewControllers lastObject];
+    if ([currentViewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
+        [(WMWheelchairStatusViewController*)currentViewController saveAccessStatus];
+    }
 }
+
 #pragma mark - WMToolBar Delegate
 -(void)pressedToggleButton:(WMButton *)sender
 {
