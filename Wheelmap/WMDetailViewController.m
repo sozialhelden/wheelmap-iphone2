@@ -36,6 +36,7 @@
 {
     [super viewDidLoad];
     self.title = @"DETAILS";
+    self.navigationBarTitle = self.title;
     self.gabIfStatusUnknown = 0;
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
@@ -231,13 +232,10 @@
     int buttonWidth = buttonBackgroundImage.size.width;
     int buttonHeight = buttonBackgroundImage.size.height;
     
-<<<<<<< HEAD
-    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-20, 75)];
-    //fourButtonView.backgroundColor = [UIColor greenColor];
-=======
+
     UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.scrollView.bounds.size.width-20, 75)];
-    fourButtonView.backgroundColor = [UIColor greenColor];
->>>>>>> 93a239a385b65fe561a184d9f5e3cbac25d24493
+    //fourButtonView.backgroundColor = [UIColor greenColor];
+
     
    
     

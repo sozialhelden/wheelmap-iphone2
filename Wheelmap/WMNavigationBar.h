@@ -18,7 +18,8 @@ typedef enum {
 typedef enum {
     kWMNavigationBarRightButtonStyleContributeButton,
     kWMNavigationBarRightButtonStyleEditButton,
-    kWMNavigationBarRightButtonStyleSaveButton
+    kWMNavigationBarRightButtonStyleSaveButton,
+    kWMNavigationBarRightButtonStyleNone
 } WMNavigationBarRightButtonStyle;
 
 
@@ -35,6 +36,7 @@ typedef enum {
     WMButton* contributeButton; // Mithilfe Button
     WMButton* backButton;
     WMButton* saveButton;
+    WMButton* noneButton;
     
     UIView* currentLeftButton;  // both pointers hook the current button objects
     UIView* currentRightButton;

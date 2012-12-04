@@ -11,4 +11,5 @@
 @interface WMViewController : UIViewController
 
 @property (nonatomic, strong) UIView* contentView;
+@property (nonatomic, strong) NSString* navigationBarTitle;
 @end

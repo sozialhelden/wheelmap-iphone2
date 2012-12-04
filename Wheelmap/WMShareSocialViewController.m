@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.title = @"SHARE";
+    self.navigationBarTitle = self.title;
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 500);
 }
 

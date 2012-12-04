@@ -10,7 +10,7 @@
 #import "WMNodeListCell.h"
 #import "Node.h"
 #import "NodeType.h"    
-
+#import "WMNavigationControllerBase.h"
 
 @implementation WMNodeListViewController
 {
@@ -41,6 +41,7 @@
     if (self.navigationController.toolbarHidden) {
         [self.navigationController setToolbarHidden:NO animated:YES];
     }
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated

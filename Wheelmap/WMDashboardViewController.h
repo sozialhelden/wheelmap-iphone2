@@ -12,5 +12,7 @@
 
 -(IBAction)pressedNodeListButton:(id)sender;
 -(IBAction)pressedMapButton:(id)sender;
+-(IBAction)pressedContributeButton:(id)sender;
+-(IBAction)pressedCategoriesButton:(id)sender;
 
 @end

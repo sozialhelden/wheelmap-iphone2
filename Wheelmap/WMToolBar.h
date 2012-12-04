@@ -16,6 +16,13 @@ typedef enum {
     kWMToolBarToggleViewStateMap
 } WMToolBarToggleViewState;
 
+typedef enum {
+    kWMToolBarButtonCurrentLocation,
+    kWMToolBarButtonSearch,
+    kWMToolBarButtonWheelChairFilter,
+    kWMToolBarButtonCategoryFilter
+} WMToolBarButtonType;
+
 @protocol WMToolBarDelegate <NSObject>
 
 @required
@@ -41,5 +48,9 @@ typedef enum {
 @property (nonatomic, strong) WMButton* toggleButton;
 @property (nonatomic) CGFloat middlePointOfWheelchairFilterButton; // this will be updated by initialisation of the button
 @property (nonatomic) CGFloat middlePointOfCategoryFilterButton; // this too
+
+-(void)showAllButtons;
+-(void)showButton:(WMToolBarButtonType)type;
+-(void)hideButton:(WMToolBarButtonType)type;
 
 @end

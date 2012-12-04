@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "WMNodeListView.h"
 
+typedef enum {
+    kWMNodeListViewControllerUseCaseNormal,
+    kWMNodeListViewControllerUseCaseContribute,
+    kWMNodeListViewControllerUseCaseCategory
+} WMNodeListViewControllerUseCase;
 
 @interface WMNodeListViewController : WMTableViewController <WMNodeListView>
 
+
+@property (nonatomic) WMNodeListViewControllerUseCase useCase;
 @end

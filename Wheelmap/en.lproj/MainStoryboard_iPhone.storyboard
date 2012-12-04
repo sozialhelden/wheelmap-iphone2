@@ -69,6 +69,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="pressedCategoriesButton:" destination="WwW-IJ-J40" eventType="touchUpInside" id="ZIK-pn-OAH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YUc-Dj-aCR">
                                 <rect key="frame" x="170" y="273" width="130" height="121"/>
@@ -81,6 +84,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="pressedContributeButton:" destination="WwW-IJ-J40" eventType="touchUpInside" id="i3H-t2-I9I"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="41a-ZN-xe8">
                                 <rect key="frame" x="20" y="418" width="30" height="30"/>
@@ -124,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="-54" y="-224"/>
         </scene>
-        <!--Node List View Controller - Orte in deiner Nähe-->
+        <!--Node List View Controller-->
         <scene sceneID="czU-OA-vJg">
             <objects>
-                <tableViewController storyboardIdentifier="WMNodeListViewController" title="Orte in deiner Nähe" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dwz-RS-ZVC" customClass="WMNodeListViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WMNodeListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dwz-RS-ZVC" customClass="WMNodeListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ReO-Bh-1CS">
                         <rect key="frame" x="0.0" y="20" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +161,7 @@
         <!--Map View Controller-->
         <scene sceneID="XdE-iv-aNx">
             <objects>
-                <viewController storyboardIdentifier="WMMapViewController" title="Orte in deiner Nähe" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5R3-yI-jjZ" userLabel="Map View Controller" customClass="WMMapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5R3-yI-jjZ" userLabel="Map View Controller" customClass="WMMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oW3-Iu-wcE">
                         <rect key="frame" x="0.0" y="20" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

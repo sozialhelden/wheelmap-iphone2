@@ -10,4 +10,5 @@
 
 @interface WMTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSString* navigationBarTitle;
 @end

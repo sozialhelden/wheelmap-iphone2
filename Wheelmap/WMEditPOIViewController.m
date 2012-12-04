@@ -32,6 +32,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.title = @"BEARBEITEN";
+    self.navigationBarTitle = self.title;
+    
     [self setAccessState];
     
     [self styleInputView:self.nameInputView];

@@ -29,6 +29,7 @@
 	// Do any additional setup after loading the view.
     
     self.title = @"COMMENT";
+    self.navigationBarTitle = self.title;
     self.commentText.text = self.currentNode.wheelchair_description;
 }
 
