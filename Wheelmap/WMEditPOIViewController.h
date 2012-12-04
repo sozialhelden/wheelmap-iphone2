@@ -46,6 +46,6 @@
 
 
 - (IBAction)showAccesOptions:(id)sender;
-
+- (void) saveEditedData;
 
 @end

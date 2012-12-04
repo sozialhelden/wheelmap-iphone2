@@ -356,6 +356,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [self checkForStatusOfButtons];
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];

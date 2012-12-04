@@ -11,6 +11,7 @@
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMSetMarkerViewController.h"
+#import "NodeType.h"
 
 @interface WMEditPOIViewController ()
 
@@ -60,7 +61,7 @@
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
 
     self.nameTextField.text = self.node.name;
-  //  self.categoryTextField.text = self.node.node_type.localized_name;
+    self.categoryTextField.text = self.node.node_type.localized_name;
     self.infoTextView.text = self.node.wheelchair_description;
     
     self.streetTextField.text = self.node.street;
@@ -169,4 +170,10 @@
     vc.node = self.node;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (void) saveEditedData {
+//    [self.delegate accessButtonPressed:self.wheelchairAccess];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

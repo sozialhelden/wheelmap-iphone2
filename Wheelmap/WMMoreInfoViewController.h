@@ -11,5 +11,6 @@
 
 @interface WMMoreInfoViewController : WMViewController
 @property (nonatomic, strong) Node *node;
+@property (weak, nonatomic) IBOutlet UITextView *moreInfoTextView;
 
 @end
