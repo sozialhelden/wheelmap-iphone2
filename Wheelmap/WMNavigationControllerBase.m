@@ -12,6 +12,7 @@
 #import "WMDataManager.h"
 #import "WMDetailViewController.h"
 #import "WMDashboardViewController.h"
+#import "WMEditPOIViewController.h"
 #import "Node.h"
 
 
@@ -317,7 +318,10 @@
 
 -(void)pressedEditButton:(WMNavigationBar *)navigationBar
 {
-    NSLog(@"[NavigationControllerBase] pressed edit button!");
+    WMViewController* currentViewController = [self.viewControllers lastObject];
+    if ([currentViewController isKindOfClass:[WMDetailViewController class]]) {
+        [(WMDetailViewController*)currentViewController pushEditViewController];
+    }
 }
 
 -(void)pressedSaveButton:(WMNavigationBar *)navigationBar

@@ -74,7 +74,7 @@
 		D5406D5F166A49650016E275 /* Social_btn-sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D57166A49650016E275 /* Social_btn-sms@2x.png */; };
 		D5406D60166A49650016E275 /* Social_btn-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D58166A49650016E275 /* Social_btn-twitter.png */; };
 		D5406D61166A49650016E275 /* Social_btn-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */; };
-		D5406D64166A4AA40016E275 /* WMAskFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5406D63166A4AA40016E275 /* WMAskFriendsViewController.m */; };
+		D5406D64166A4AA40016E275 /* WMShareSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */; };
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -123,7 +123,11 @@
 		D5A102C3166CC9FF00558BF7 /* details_btn-more-url-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A102AF166CC9FF00558BF7 /* details_btn-more-url-active@2x.png */; };
 		D5A102C4166CC9FF00558BF7 /* details_btn-more-url-inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A102B0166CC9FF00558BF7 /* details_btn-more-url-inactive.png */; };
 		D5A102C5166CC9FF00558BF7 /* details_btn-more-url-inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A102B1166CC9FF00558BF7 /* details_btn-more-url-inactive@2x.png */; };
+		D5A102C9166CE9E800558BF7 /* details_btn-additional-info.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A102C7166CE9E800558BF7 /* details_btn-additional-info.png */; };
+		D5A102CA166CE9E800558BF7 /* details_btn-additional-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A102C8166CE9E800558BF7 /* details_btn-additional-info@2x.png */; };
+		D5A102CD166CF27E00558BF7 /* WMCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A102CC166CF27E00558BF7 /* WMCommentViewController.m */; };
 		D5E0F0DE1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */; };
+		D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */; };
 		DB6E4770166B9B7A00D9CAD9 /* WMDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */; };
 		DB6E4777166BF0BB00D9CAD9 /* marker_limited.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */; };
 		DB6E4778166BF0BB00D9CAD9 /* marker_no.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4773166BF0BB00D9CAD9 /* marker_no.png */; };
@@ -342,8 +346,8 @@
 		D5406D57166A49650016E275 /* Social_btn-sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-sms@2x.png"; sourceTree = "<group>"; };
 		D5406D58166A49650016E275 /* Social_btn-twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-twitter.png"; sourceTree = "<group>"; };
 		D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-twitter@2x.png"; sourceTree = "<group>"; };
-		D5406D62166A4AA40016E275 /* WMAskFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAskFriendsViewController.h; sourceTree = "<group>"; };
-		D5406D63166A4AA40016E275 /* WMAskFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAskFriendsViewController.m; sourceTree = "<group>"; };
+		D5406D62166A4AA40016E275 /* WMShareSocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShareSocialViewController.h; sourceTree = "<group>"; };
+		D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShareSocialViewController.m; sourceTree = "<group>"; };
 		D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited.png"; path = "Details/WheelAccess/details_btn-status-limited.png"; sourceTree = "<group>"; };
 		D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited@2x.png"; path = "Details/WheelAccess/details_btn-status-limited@2x.png"; sourceTree = "<group>"; };
 		D56F71F3166A33D6002CE692 /* details_btn-status-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-no.png"; path = "Details/WheelAccess/details_btn-status-no.png"; sourceTree = "<group>"; };
@@ -392,11 +396,17 @@
 		D5A102AF166CC9FF00558BF7 /* details_btn-more-url-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-url-active@2x.png"; sourceTree = "<group>"; };
 		D5A102B0166CC9FF00558BF7 /* details_btn-more-url-inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-url-inactive.png"; sourceTree = "<group>"; };
 		D5A102B1166CC9FF00558BF7 /* details_btn-more-url-inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-more-url-inactive@2x.png"; sourceTree = "<group>"; };
+		D5A102C7166CE9E800558BF7 /* details_btn-additional-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-additional-info.png"; sourceTree = "<group>"; };
+		D5A102C8166CE9E800558BF7 /* details_btn-additional-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-additional-info@2x.png"; sourceTree = "<group>"; };
+		D5A102CB166CF27E00558BF7 /* WMCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCommentViewController.h; sourceTree = "<group>"; };
+		D5A102CC166CF27E00558BF7 /* WMCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCommentViewController.m; sourceTree = "<group>"; };
 		D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Berlin, Friedrichstr.gpx"; sourceTree = "<group>"; };
 		D5E0F1081667EFE300B78F57 /* details_background-photoupload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_background-photoupload.png"; path = "/Users/andreager/Desktop/Git/wheelmap-iphone2/Wheelmap/Resources/details_background-photoupload.png"; sourceTree = "<absolute>"; };
 		D5E0F1091667EFE300B78F57 /* details_background-photoupload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_background-photoupload@2x.png"; path = "/Users/andreager/Desktop/Git/wheelmap-iphone2/Wheelmap/Resources/details_background-photoupload@2x.png"; sourceTree = "<absolute>"; };
 		D5E0F10C1667F33A00B78F57 /* details_background-thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_background-thumbnail.png"; path = "/Users/andreager/Desktop/Git/wheelmap-iphone2/Wheelmap/Resources/details_background-thumbnail.png"; sourceTree = "<absolute>"; };
 		D5E0F10D1667F33A00B78F57 /* details_background-thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_background-thumbnail@2x.png"; path = "/Users/andreager/Desktop/Git/wheelmap-iphone2/Wheelmap/Resources/details_background-thumbnail@2x.png"; sourceTree = "<absolute>"; };
+		D5EE56A3166E1378008E389D /* WMEditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIViewController.h; sourceTree = "<group>"; };
+		D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
 		DB6E476E166B9B7A00D9CAD9 /* WMDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardViewController.h; sourceTree = "<group>"; };
 		DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardViewController.m; sourceTree = "<group>"; };
 		DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_limited.png; sourceTree = "<group>"; };
@@ -940,6 +950,8 @@
 				D5E0F0E31667C60100B78F57 /* 4 Buttons */,
 				D56F7239166A37F0002CE692 /* details_unknown-info.png */,
 				D56F723A166A37F0002CE692 /* details_unknown-info@2x.png */,
+				D5A102C7166CE9E800558BF7 /* details_btn-additional-info.png */,
+				D5A102C8166CE9E800558BF7 /* details_btn-additional-info@2x.png */,
 				D56F7221166A376A002CE692 /* details_share-location.png */,
 				D56F7222166A376A002CE692 /* details_share-location@2x.png */,
 			);
@@ -1068,8 +1080,12 @@
 				9817AF50164D617A00703A92 /* WMDetailViewController.m */,
 				9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */,
 				9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */,
-				D5406D62166A4AA40016E275 /* WMAskFriendsViewController.h */,
-				D5406D63166A4AA40016E275 /* WMAskFriendsViewController.m */,
+				D5406D62166A4AA40016E275 /* WMShareSocialViewController.h */,
+				D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */,
+				D5A102CB166CF27E00558BF7 /* WMCommentViewController.h */,
+				D5A102CC166CF27E00558BF7 /* WMCommentViewController.m */,
+				D5EE56A3166E1378008E389D /* WMEditPOIViewController.h */,
+				D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */,
 			);
 			name = NodeDetailScreen;
 			sourceTree = "<group>";
@@ -1324,6 +1340,8 @@
 				D5A102C3166CC9FF00558BF7 /* details_btn-more-url-active@2x.png in Resources */,
 				D5A102C4166CC9FF00558BF7 /* details_btn-more-url-inactive.png in Resources */,
 				D5A102C5166CC9FF00558BF7 /* details_btn-more-url-inactive@2x.png in Resources */,
+				D5A102C9166CE9E800558BF7 /* details_btn-additional-info.png in Resources */,
+				D5A102CA166CE9E800558BF7 /* details_btn-additional-info@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,7 +1417,7 @@
 				DBA62280166A3876009FA5DF /* UIToolbar+CustomSize.m in Sources */,
 				DBA62283166A3BBF009FA5DF /* UINavigationBar+CustomSize.m in Sources */,
 				DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */,
-				D5406D64166A4AA40016E275 /* WMAskFriendsViewController.m in Sources */,
+				D5406D64166A4AA40016E275 /* WMShareSocialViewController.m in Sources */,
 				98AC54AB166AA09A00E87965 /* ioapi.c in Sources */,
 				98AC54AC166AA09A00E87965 /* mztools.c in Sources */,
 				98AC54AD166AA09A00E87965 /* unzip.c in Sources */,
@@ -1407,6 +1425,8 @@
 				98AC54AF166AA09A00E87965 /* SSZipArchive.m in Sources */,
 				DB6E4770166B9B7A00D9CAD9 /* WMDashboardViewController.m in Sources */,
 				98B15792166BB17F007FD897 /* NodeType.m in Sources */,
+				D5A102CD166CF27E00558BF7 /* WMCommentViewController.m in Sources */,
+				D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

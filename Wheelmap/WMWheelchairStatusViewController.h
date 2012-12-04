@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WMWheelchairStatusViewController : WMTableViewController
+@interface WMWheelchairStatusViewController : WMViewController
+
+@property (weak, nonatomic) IBOutlet UIButton *yesButton;
+@property (weak, nonatomic) IBOutlet UIButton *limitedButton;
+@property (weak, nonatomic) IBOutlet UIButton *noButton;
+@property (strong, nonatomic) id delegate;
+
+- (IBAction)accessButtonPressed:(id)sender;
+
 
 @end

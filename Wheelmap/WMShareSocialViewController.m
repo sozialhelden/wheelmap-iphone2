@@ -1,18 +1,18 @@
 //
-//  WMAskFriendsViewController.m
+//  WMShareSocialViewController.m
 //  Wheelmap
 //
 //  Created by Andrea Gerlach on 01.12.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMAskFriendsViewController.h"
+#import "WMShareSocialViewController.h"
 
-@interface WMAskFriendsViewController ()
+@interface WMShareSocialViewController ()
 
 @end
 
-@implementation WMAskFriendsViewController
+@implementation WMShareSocialViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,8 +28,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"ASK_FRIEND";
-    
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 500);
 }
 

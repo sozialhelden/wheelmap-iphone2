@@ -11,7 +11,7 @@
 
 @class Node;
 
-@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate>
+@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIScrollView *imageScrollView;
@@ -21,6 +21,9 @@
 @property (assign) int gabIfStatusUnknown;
 @property (assign) int imageCount;
 @property (nonatomic) Node *node;
+@property (nonatomic, strong) UIImage *accessImage;
+@property (nonatomic, strong) NSString *wheelchairAccess;
+
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *nodeTypeLabel;
@@ -36,5 +39,6 @@
 @property (nonatomic, strong) UIButton *naviButton;
 @property (nonatomic, strong) UIButton *shareLocationButton;
 
+- (void) pushEditViewController;
 
 @end

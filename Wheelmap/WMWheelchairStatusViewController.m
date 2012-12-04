@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.noButton.titleLabel.text = @"";
     }
     return self;
 }
@@ -39,28 +40,28 @@
     return CGSizeMake(320, 480);
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UIImage *statusImage = [UIImage imageNamed:@"details_label-no.png"];
-    UITableViewCell *cell = [UITableViewCell new];
-    UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, statusImage.size.width, statusImage.size.height)];
-    av.backgroundColor = [UIColor clearColor];
-    av.opaque = NO;
-    av.image = [UIImage imageNamed:@"details_label-no.png"];
-    cell.backgroundView = av;
 
-    if (indexPath.section == 0) {
-        av.image = [UIImage imageNamed:@"details_label-yes.png"];
-    
-    } else if(indexPath.section == 1) {
-        av.image = [UIImage imageNamed:@"details_label-limited.png"];
-    
-    } else if(indexPath.section == 2) {
-        av.image = [UIImage imageNamed:@"details_label-no.png"];
-    } 
-    
-    return cell;
+
+- (void)viewDidUnload {
+    [self setYesButton:nil];
+    [self setLimitedButton:nil];
+    [self setNoButton:nil];
+    [super viewDidUnload];
 }
 
+- (IBAction)accessButtonPressed:(id)sender {
+    
+    [self.delegate accessButtonPressed:sender];
+    
+    UIButton *button = (UIButton*) sender;
+    
+    if (button.tag == 0) {
+        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX YES");
+    } else if (button.tag == 1) {
+        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX LIMITED");
+    } else if (button.tag == 2) {
+        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX NO");
+    }
+}
 
 @end

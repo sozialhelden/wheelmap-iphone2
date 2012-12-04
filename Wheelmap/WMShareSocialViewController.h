@@ -1,5 +1,5 @@
 //
-//  WMAskFriendsViewController.h
+//  WMShareSocialViewController.h
 //  Wheelmap
 //
 //  Created by Andrea Gerlach on 01.12.12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WMAskFriendsViewController : WMViewController
+@interface WMShareSocialViewController : WMViewController
 
 @property (nonatomic) IBOutlet UIScrollView *scrollView;
 

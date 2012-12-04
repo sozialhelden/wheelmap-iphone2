@@ -11,6 +11,9 @@
 #import "Node.h"
 #import "NodeType.h"
 #import "WMWheelchairStatusViewController.h"
+#import "WMShareSocialViewController.h"
+#import "WMCommentViewController.h"
+#import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
 
 
@@ -45,7 +48,8 @@
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110)];
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mapView.layer.borderWidth = 1.0f;
-    [self.scrollView addSubview:self.mapView];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    self.mapView.delegate = self;
     WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
     [self.mapView addAnnotation:annotation];
     // location to zoom in
@@ -56,6 +60,7 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 100, 50);
     // display the region
     [self.mapView setRegion:viewRegion animated:YES];
+    [self.scrollView addSubview:self.mapView];
     
     // SHARE LOCATION BUTTON
     UIImage *shareLocationImage = [UIImage imageNamed:@"details_share-location.png"];
@@ -65,12 +70,11 @@
     [self.shareLocationButton addTarget:self action:@selector(shareLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.shareLocationButton];
     
-    
     // NAME
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 125, self.view.bounds.size.width-STARTLEFT*2, 20)];
    // self.titleLabel.backgroundColor = [UIColor orangeColor];
     self.titleLabel.textColor = [UIColor blackColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.titleLabel.text = self.node.name ?: @"?";
     [self.scrollView addSubview:self.titleLabel];
 
@@ -83,24 +87,30 @@
     [self.scrollView addSubview:self.nodeTypeLabel];
     
     // WHEEL ACCESS BUTTON
-    UIImage *accessImage;
+     
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
-        accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
     } else if ([self.node.wheelchair isEqualToString:@"no"]) {
-        accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
     } else if ([self.node.wheelchair isEqualToString:@"limited"]) {
-        accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
     } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
-        accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
         self.gabIfStatusUnknown = 62;
         [self createAskFriendsForStatusButton];
     }
     
     self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.wheelAccessButton.frame = CGRectMake(10, 170, accessImage.size.width, accessImage.size.height);
-    [self.wheelAccessButton setBackgroundImage: accessImage forState: UIControlStateNormal];
-    [self.wheelAccessButton setTitle:@"sdfhsifhdoshoidsu" forState:UIControlStateNormal];
-    self.wheelAccessButton.titleLabel.textColor = [UIColor blackColor];
+    self.wheelAccessButton.frame = CGRectMake(10, 170, self.accessImage.size.width, self.accessImage.size.height);
+    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
+    [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.wheelAccessButton];
     
@@ -142,9 +152,14 @@
     // MORE INFO BUTTON
     UIImage *moreInfo = [UIImage imageNamed:@"details_btn-additional-info.png"];
     self.moreInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.moreInfoButton.titleLabel.text = self.node.wheelchair_description;
     self.moreInfoButton.frame = CGRectMake(10, 480+self.gabIfStatusUnknown, moreInfo.size.width, moreInfo.size.height);
-    [self.moreInfoButton setImage: moreInfo forState: UIControlStateNormal];
+    [self.moreInfoButton setTitle:NSLocalizedString(@"DetailsViewMoreInfoButtonLabel", @"") forState:UIControlStateNormal];
+    [self.moreInfoButton setBackgroundImage: moreInfo forState: UIControlStateNormal];
+    self.moreInfoButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    [self.moreInfoButton setContentEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+    [self.moreInfoButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self.moreInfoButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [self.moreInfoButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
     [self.moreInfoButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.moreInfoButton];
     
@@ -156,8 +171,15 @@
 - (void) createAskFriendsForStatusButton {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 220, self.view.bounds.size.width, buttonImage.size.height);
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
+    button.titleLabel.numberOfLines = 2;
+    [button setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    button.titleLabel.textColor = [UIColor darkGrayColor];
+
+    button.frame = CGRectMake(20, 220, self.view.bounds.size.width-40, buttonImage.size.height);
     [button addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:button];
 }
@@ -210,7 +232,7 @@
     int buttonHeight = buttonBackgroundImage.size.height;
     
     UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-20, 75)];
-    fourButtonView.backgroundColor = [UIColor greenColor];
+    //fourButtonView.backgroundColor = [UIColor greenColor];
     
    
     
@@ -226,9 +248,9 @@
     [self.callButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
     [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-inactive.png"] forState: UIControlStateDisabled];
-    [self.callButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    [self.callButton addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
 
-    UILabel *callLabel = [self createBelowButtonLabel:@"Anrufen"];
+    UILabel *callLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewCallLabel", @"")];
     callLabel.frame = CGRectMake(self.callButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // WEBSITE
@@ -238,9 +260,9 @@
     [self.websiteButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.websiteButton setImage: [UIImage imageNamed:@"details_btn-more-url-active.png"] forState: UIControlStateNormal];
     [self.websiteButton setImage: [UIImage imageNamed:@"details_btn-more-url-inactive.png"] forState: UIControlStateDisabled];
-    [self.websiteButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    [self.websiteButton addTarget:self action:@selector(openWebpage) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *websiteLabel = [self createBelowButtonLabel:@"Website"];
+    UILabel *websiteLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewWebsiteLabel", @"")];
     websiteLabel.frame = CGRectMake(self.websiteButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // COMMENT
@@ -250,9 +272,9 @@
     [self.commentButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.commentButton setImage: [UIImage imageNamed:@"details_btn-more-comment-active.png"] forState: UIControlStateNormal];
     [self.commentButton setImage: [UIImage imageNamed:@"details_btn-more-comment-inactive.png"] forState: UIControlStateDisabled];
-    [self.commentButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    [self.commentButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *infoLabel = [self createBelowButtonLabel:@"Info"];
+    UILabel *infoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"")];
     infoLabel.frame = CGRectMake(self.commentButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // ROUTE
@@ -262,10 +284,9 @@
     [self.naviButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
     [self.naviButton setImage: [UIImage imageNamed:@"details_btn-more-route-active.png"] forState: UIControlStateNormal];
     [self.naviButton setImage: [UIImage imageNamed:@"details_btn-more-route-inactive.png"] forState: UIControlStateDisabled];
-
-    [self.naviButton addTarget:self action:@selector(showAccessOptions:) forControlEvents:UIControlEventTouchUpInside];
+    [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *routeLabel = [self createBelowButtonLabel:@"Route"];
+    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewRouteLabel", @"")];
     routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
 
     // add all buttons and labels
@@ -285,12 +306,37 @@
 - (UILabel*) createBelowButtonLabel: (NSString*) title {
     
     UILabel *belowButtonLabel = [UILabel new];
-    belowButtonLabel.backgroundColor = [UIColor orangeColor];
+   // belowButtonLabel.backgroundColor = [UIColor orangeColor];
     belowButtonLabel.text = title;
     belowButtonLabel.font = [UIFont systemFontOfSize:11];
     belowButtonLabel.textColor = [UIColor darkGrayColor];
     belowButtonLabel.textAlignment = UITextAlignmentCenter;
     return belowButtonLabel;
+}
+
+- (void) checkForStatusOfButtons {
+
+    if(self.node.phone == nil || [self.node.phone isEqualToString:@""]) {
+        self.callButton.enabled = NO;
+    } else {
+        self.callButton.enabled = YES;
+    }
+    if(self.node.website == nil || [self.node.website isEqualToString:@""]) {
+        self.websiteButton.enabled = NO;
+    } else {
+        self.websiteButton.enabled = YES;
+    }
+    if(self.node.wheelchair_description == nil || [self.node.wheelchair_description isEqualToString:@""]) {
+        self.commentButton.enabled = NO;
+    } else {
+        self.commentButton.enabled = YES;
+    }
+    if(self.node.street == nil || [self.node.street isEqualToString:@""]) {
+        self.naviButton.enabled = NO;
+    } else {
+        self.naviButton.enabled = YES;
+    }
+
 }
 
 /* Set a fixed size for view in popovers */
@@ -305,6 +351,34 @@
     [self setStreetLabel:nil];
     [self setPostcodeAndCityLabel:nil];
     [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self checkForStatusOfButtons];
+    [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
+    [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
+    
+}
+
+#pragma mark - Map View Delegate
+
+- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    
+    if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
+        Node *node = [(WMMapAnnotation*)annotation node];
+        NSString *reuseId = [node.wheelchair stringByAppendingString:node.node_type.identifier];
+        MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+        if (!annotationView) {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+            annotationView.canShowCallout = YES;
+            annotationView.centerOffset = CGPointMake(6, -14);
+            annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        }
+        annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+        return annotationView;
+    }
+    return nil;
 }
 
 #pragma mark - imagePicker delegates
@@ -326,42 +400,116 @@
     
 }
 
+#pragma mark - actionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    if (actionSheet.tag == 0) {
+        if (buttonIndex == 0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.node.website]];
+        }
+    } else if (actionSheet.tag == 1) {
+        if (buttonIndex == 0) {
+            NSLog(@"XXXXXXXX open map");
+        }
+    } else if (actionSheet.tag == 2) {
+        if (buttonIndex == 0) {
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentModalViewController:self.imagePicker animated:YES];
+        } else if (buttonIndex == 1) {
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentModalViewController:self.imagePicker animated:YES];
+        }
+    }
+}
+
 #pragma mark - button handlers
 
 - (void) shareLocationButtonPressed {
-    NSLog(@"Share Location Button pressed");
+    WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
+    vc.title = @"SHARE LOCATION";
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 - (void) askFriendsForStatusButtonPressed {
-    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMAskFriendsViewController"];
+    WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
+    vc.title = @"ASK FRIENDS";
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 - (void) showAccessOptions {
-    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusView"];
+    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+- (IBAction)accessButtonPressed:(UIButton*)button {
+    
+    if (button.tag == 0) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
+        self.node.wheelchair = @"yes";
+    } else if (button.tag == 1) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
+        self.node.wheelchair = @"limited";
+    } else if (button.tag == 2) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
+        self.node.wheelchair = @"no";
+    }
+}
+
+
+-(void)call {
+    
+    
+}
+
+-(void)openWebpage {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
+
+}
+
+- (void) showCommentView {
+    WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
+    vc.currentNode = self.node;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void) cameraButtonPressed {
-    NSLog(@"Camera Button pressed");
-    self.imagePicker = [[UIImagePickerController alloc] init];
-    self.imagePicker.delegate = self;
-     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
-    } else {
-        
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-    }
+-(void)openMap {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+    actionSheet.tag = 1;
+    [actionSheet showInView:self.view];
     
-    [self presentModalViewController:self.imagePicker animated:YES];
 }
 
+- (void) cameraButtonPressed {
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.delegate = self;
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailsViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailsViewUploadOptionCamera", @""), NSLocalizedString(@"DetailsViewUploadOptionPhotoAlbum", @""), nil];
+        actionSheet.tag = 2;
+        [actionSheet showInView:self.view];
+    } else {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentModalViewController:self.imagePicker animated:YES];
+    }
+
+    
+}
+
+- (void) pushEditViewController {
+    WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
+    vc.node = self.node;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 

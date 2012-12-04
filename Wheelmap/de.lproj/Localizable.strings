@@ -7,3 +7,27 @@
 */
 
 "No Loc Error Message" = "adskljfs";
+
+"Cancel" = "Abbrechen";
+"Yes" = "Ja";
+"No" = "Nein";
+"LeaveApp" = "Wollen Sie die App wirklich verlassen?";
+
+
+"WheelchairAccessYes" = "Voll Rollstuhlgerecht";
+"WheelchairAccessLimited" = "Teilweise Rollstuhlgerecht";
+"WheelchairAccessNo" = "Nicht Rollstuhlgerecht";
+"WheelchairAccessUnknown" = "Unbekannter Status";
+
+"DetailsView4ButtonViewCallLabel" = "Anrufen";
+"DetailsView4ButtonViewWebsiteLabel" = "Webseite";
+"DetailsView4ButtonViewInfoLabel" = "Hinweis";
+"DetailsView4ButtonViewRouteLabel" = "Route";
+
+"DetailsViewAskFriendsButtonLabel" = "Hilf mit: Frag deine Freunde, ob dieser Ort rollstuhlgerecht ist";
+
+"DetailsViewChoosePhotoSource" = "Fotoquelle wählen";
+"DetailsViewUploadOptionCamera" = "Kamera";
+"DetailsViewUploadOptionPhotoAlbum" = "Fotoalbum";
+
+"DetailsViewMoreInfoButtonLabel" = "Weitere Informationen";
