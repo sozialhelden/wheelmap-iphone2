@@ -514,6 +514,7 @@
 		DBA62284166A421B009FA5DF /* WMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTableViewController.h; sourceTree = "<group>"; };
 		DBA62285166A421B009FA5DF /* WMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTableViewController.m; sourceTree = "<group>"; };
 		DBA6228C166A6846009FA5DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1013,6 +1014,7 @@
 			children = (
 				DBA622481668F3E7009FA5DF /* WMNavigationBar.h */,
 				DBA622491668F3E7009FA5DF /* WMNavigationBar.m */,
+				DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */,
 			);
 			name = NavigationBar;
 			sourceTree = "<group>";

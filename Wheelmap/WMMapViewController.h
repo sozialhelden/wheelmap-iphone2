@@ -15,7 +15,6 @@
 
 @interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate>
 
-
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
 
