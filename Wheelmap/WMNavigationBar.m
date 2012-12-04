@@ -57,15 +57,29 @@
         [backButton addTarget:self action:@selector(pressedBackButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backButton];
         
+        // cancel button
+        UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
+        normalBtnLabel.fontSize = 13.0;
+        normalBtnLabel.text = @"Cancel";
+        normalBtnLabel.textAlignment = UITextAlignmentCenter;
+        normalBtnLabel.textColor = [UIColor whiteColor];
+        expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
+        normalBtnImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
+        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
+        [normalBtnImg addSubview:normalBtnLabel];
         cancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        cancelButton.frame = leftButtonRect;
-        cancelButton.backgroundColor = UIColorFromRGB(0xDB4D6D);
+        cancelButton.frame = CGRectMake(5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        cancelButton.backgroundColor = [UIColor clearColor];
+        [cancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
         cancelButton.hidden = YES;
         [cancelButton addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:cancelButton];
         
-        
         CGRect rightButtonRect = CGRectMake(self.frame.size.width-5-40, 5, 40, 40);
+        // mithilfe button
         contributeButton = [WMButton buttonWithType:UIButtonTypeCustom];
         contributeButton.frame = rightButtonRect;
         contributeButton.backgroundColor = [UIColor clearColor];
@@ -75,17 +89,46 @@
         [contributeButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:contributeButton];
         
+        
+        // edit button
+        normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
+        normalBtnLabel.fontSize = 13.0;
+        normalBtnLabel.text = @"Edit";
+        normalBtnLabel.textAlignment = UITextAlignmentCenter;
+        normalBtnLabel.textColor = [UIColor whiteColor];
+        expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
+        normalBtnImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
+        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
+        [normalBtnImg addSubview:normalBtnLabel];
         editButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        editButton.frame = rightButtonRect;
-        editButton.backgroundColor = [UIColor blackColor];
+        editButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        editButton.backgroundColor = [UIColor clearColor];
+        [editButton setView:normalBtnImg forControlState:UIControlStateNormal];
         editButton.hidden = YES;
         [editButton addTarget:self action:@selector(pressedEditButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:editButton];
         
+        // save button
+        normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
+        normalBtnLabel.fontSize = 13.0;
+        normalBtnLabel.text = @"Save";
+        normalBtnLabel.textAlignment = UITextAlignmentCenter;
+        normalBtnLabel.textColor = [UIColor whiteColor];
+        expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
+        normalBtnImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
+        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
+        [normalBtnImg addSubview:normalBtnLabel];
         saveButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        saveButton.frame = rightButtonRect;
-        saveButton.backgroundColor = [UIColor greenColor];
+        saveButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        saveButton.backgroundColor = [UIColor clearColor];
         saveButton.hidden = YES;
+        [saveButton setView:normalBtnImg forControlState:UIControlStateNormal];
         [saveButton addTarget:self action:@selector(pressedSaveButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:saveButton];
         

@@ -7,11 +7,8 @@
 //
 
 #import "WMRootViewController_iPad.h"
-#import "WMNodeListViewController.h"
-#import "WMMapViewController.h"
 #import "WMDetailViewController.h"
-
-
+#import "WMNavigationControllerBase.h"
 
 @implementation WMRootViewController_iPad
 
@@ -65,13 +62,29 @@
     }];
 }
 
-
 #pragma mark - Node List Data Source
 
 - (NSArray*)nodeList
 {
     return [self.dataSource nodeList];
 }
+
+-(NSArray*)filteredNodeList
+{
+    return [self.dataSource filteredNodeList];
+}
+
+-(void)updateNodesNear:(CLLocationCoordinate2D)coord
+{
+    [(WMNavigationControllerBase*)self.dataSource updateNodesNear:coord];
+    
+}
+
+-(void)updateNodesWithRegion:(MKCoordinateRegion)region
+{
+    [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:region];
+}
+
 
 
 #pragma mark - Node List Delegate

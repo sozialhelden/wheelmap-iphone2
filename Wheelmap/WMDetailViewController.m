@@ -231,12 +231,17 @@
     int buttonWidth = buttonBackgroundImage.size.width;
     int buttonHeight = buttonBackgroundImage.size.height;
     
+<<<<<<< HEAD
     UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.view.bounds.size.width-20, 75)];
     //fourButtonView.backgroundColor = [UIColor greenColor];
+=======
+    UIView *fourButtonView = [[UIView alloc] initWithFrame:CGRectMake(10, 390+self.gabIfStatusUnknown, self.scrollView.bounds.size.width-20, 75)];
+    fourButtonView.backgroundColor = [UIColor greenColor];
+>>>>>>> 93a239a385b65fe561a184d9f5e3cbac25d24493
     
    
     
-    int imagePlusGab = buttonWidth + (((self.view.bounds.size.width-40)-(4*buttonWidth)) / 3);
+    int imagePlusGab = buttonWidth + (((self.scrollView.bounds.size.width-40)-(4*buttonWidth)) / 3);
     int gabBetweenLabels = 3;
     int labelWidth = fourButtonView.frame.size.width / 4 - gabBetweenLabels;
     int startLabelX = (labelWidth-buttonWidth)/2;

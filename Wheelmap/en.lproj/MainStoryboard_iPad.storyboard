@@ -46,15 +46,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem image="toolbar_icon-toggle-list.png" style="plain" id="eyg-3c-0jt">
-                            <connections>
-                                <action selector="toggleListButtonTouched:" destination="2" id="34Z-9h-B1E"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="0Pl-LM-VUs"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="listContainerView" destination="k1w-q9-Qa6" id="zep-CK-tXq"/>
                         <outlet property="mapContainerView" destination="XtM-f8-K8q" id="bCh-vg-xgj"/>
@@ -133,9 +126,6 @@
             <point key="canvasLocation" x="-636" y="323"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="toolbar_icon-toggle-list.png" width="33" height="32"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

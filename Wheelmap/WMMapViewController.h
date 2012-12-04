@@ -15,13 +15,13 @@
 
 @interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate>
 
-
 @property (nonatomic) IBOutlet MKMapView *mapView;
+@property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
 
 - (void) showDetailPopoverForNode:(Node*)node;
 
 - (IBAction) toggleMapTypeChanged:(id)sender;
-- (IBAction) returnToListViewTouched:(id)sender;
+//- (IBAction) returnToListViewTouched:(id)sender;
 
 
 @end

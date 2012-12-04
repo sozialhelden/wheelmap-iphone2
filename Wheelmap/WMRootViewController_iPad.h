@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WMNodeListView.h"
+#import "WMNodeListViewController.h"
+#import "WMMapViewController.h"
 
 @class WMNodeListViewController, WMMapViewController;
 
@@ -21,4 +23,6 @@
 
 - (IBAction)toggleListButtonTouched:(id)sender;
 
+-(void)updateNodesNear:(CLLocationCoordinate2D)coord;
+-(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 @end

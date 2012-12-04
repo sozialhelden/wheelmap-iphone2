@@ -10,7 +10,7 @@
 #import "AFJSONRequestOperation.h"
 
 #define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMAPIKey @"api key"
+#define WMAPIKey @"your api key"
 
 
 @implementation WMWheelmapAPI
@@ -31,7 +31,6 @@
     if (!self) {
         return nil;
     }
-    
     // use JSON requests per default
     // TODO: test that other requests will be routed to different operation classes
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];

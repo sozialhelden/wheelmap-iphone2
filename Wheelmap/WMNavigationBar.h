@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class WMNavigationBar;
+#import "WMNavigationBarDelegate.h"
 
 typedef enum {
     kWMNavigationBarLeftButtonStyleDashboardButton,
@@ -22,16 +21,7 @@ typedef enum {
     kWMNavigationBarRightButtonStyleSaveButton
 } WMNavigationBarRightButtonStyle;
 
-@protocol WMNavigationBarDelegate <NSObject>
-@required
--(void)pressedBackButton:(WMNavigationBar*)navigationBar;
--(void)pressedDashboardButton:(WMNavigationBar*)navigationBar;
--(void)pressedEditButton:(WMNavigationBar*)navigationBar;
--(void)pressedCancelButton:(WMNavigationBar*)navigationBar;
--(void)pressedSaveButton:(WMNavigationBar*)navigationBar;
--(void)pressedContributeButton:(WMNavigationBar*)navigationBar;
 
-@end
 
 @interface WMNavigationBar : UIView
 {

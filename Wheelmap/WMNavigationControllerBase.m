@@ -14,6 +14,7 @@
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "Node.h"
+#import "Category.h"
 
 
 @implementation WMNavigationControllerBase
@@ -23,7 +24,7 @@
     CLLocationManager *locationManager;
     
     WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
-    WMCateogryFilterPopoverView* categporyFilterPopover;
+    WMCategoryFilterPopoverView* categoryFilterPopover;
     
 }
 
@@ -46,12 +47,30 @@
     locationManager.distanceFilter = 50.0f;
 	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     
+    // configure initial vc from storyboard. this is necessary for iPad, since iPad's topVC is not the Dashboard!
+    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
+        id<WMNodeListView> initialNodeListView = (id<WMNodeListView>)self.topViewController;
+        initialNodeListView.dataSource = self;
+        initialNodeListView.delegate = self;
+    }
+    
+    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"yes",
+                                   [NSNumber numberWithBool:YES], @"limited",
+                                   [NSNumber numberWithBool:YES], @"no",
+                                   [NSNumber numberWithBool:YES], @"unknown",nil];
+    self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
+    for (Category* c in dataManager.categories) {
+        [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
+    }
+    
     // set custom nagivation and tool bars
+    self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, 50);
     self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
     self.customNavigationBar.delegate = self;
     [self.navigationBar addSubview:self.customNavigationBar];
+    self.toolbar.frame = CGRectMake(0, self.toolbar.frame.origin.y, self.view.frame.size.width, 60);
     self.toolbar.backgroundColor = [UIColor whiteColor];
-    self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, 0, /*self.view.frame.size.height-60,*/ self.view.frame.size.width, 60)];
+    self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, 60)];
     self.customToolBar.delegate = self;
     [self.toolbar addSubview:self.customToolBar];
     
@@ -61,10 +80,14 @@
     wheelChairFilterPopover.delegate = self;
     [self.view addSubview:wheelChairFilterPopover];
     
-    categporyFilterPopover = [[WMCateogryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y)];
-    categporyFilterPopover.hidden = YES;
-    [self.view addSubview:categporyFilterPopover];
+    categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+    categoryFilterPopover.delegate = self;
+    categoryFilterPopover.hidden = YES;
+    [self.view addSubview:categoryFilterPopover];
+    
+    
 }
+
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -96,11 +119,18 @@
 -(void)dataManager:(WMDataManager *)dataManager fetchNodesFailedWithError:(NSError *)error
 {
     NSLog(@"error %@", error.localizedDescription);
+    [self refreshNodeList];
 }
 
-- (void)dataManagerDidFinishSyncingResources:(WMDataManager *)dataManager
+- (void)dataManagerDidFinishSyncingResources:(WMDataManager *)aDataManager
 {
     NSLog(@"dataManagerDidFinishSyncingResources");
+    [categoryFilterPopover refreshViewWithCategories:aDataManager.categories];
+    [self.categoryFilterStatus removeAllObjects];
+    for (Category* c in dataManager.categories) {
+        [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
+    }
+    
 }
 
 -(void)dataManager:(WMDataManager *)dataManager syncResourcesFailedWithError:(NSError *)error
@@ -109,6 +139,12 @@
 }
 
 
+#pragma mark - category data source
+-(NSArray*) categories
+{
+    return dataManager.categories;
+}
+
 #pragma mark - Node List Data Source
 
 - (NSArray*) nodeList
@@ -116,6 +152,37 @@
     return nodes;
 }
 
+- (NSArray*) filteredNodeList
+{
+    // filter nodes here
+    NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
+    for (Node* node in nodes) {
+        NSNumber* categoryID = node.category.id;
+        NSString* wheelChairStatus = node.wheelchair;
+        if ([[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES &&
+            [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
+            [newNodeList addObject:node];
+        }
+    }
+    
+    return newNodeList;
+}
+
+-(void)updateNodesNear:(CLLocationCoordinate2D)coord
+{
+    [dataManager fetchNodesNear:coord];
+    
+}
+
+-(void)updateNodesWithRegion:(MKCoordinateRegion)region
+{
+    CLLocationCoordinate2D southWest;
+    CLLocationCoordinate2D northEast;
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+    
+    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast];
+}
 
 #pragma mark - Node List Delegate
 
@@ -278,13 +345,13 @@
     } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];
-        [self hidePopover:categporyFilterPopover];
+        [self hidePopover:categoryFilterPopover];
         
     } else if ([vc isKindOfClass:[WMWheelchairStatusViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
         [self hidePopover:wheelChairFilterPopover];
-        [self hidePopover:categporyFilterPopover];
+        [self hidePopover:categoryFilterPopover];
     }
     
     self.customNavigationBar.leftButtonStyle = leftButtonStyle;
@@ -356,8 +423,8 @@
 -(void)pressedWheelChairStatusFilterButton:(WMToolBar *)toolBar
 {
     NSLog(@"[ToolBar] wheelchair status filter buttton is pressed!");
-    if (!categporyFilterPopover.hidden) {
-        [self hidePopover:categporyFilterPopover];
+    if (!categoryFilterPopover.hidden) {
+        [self hidePopover:categoryFilterPopover];
     }
     
     if (wheelChairFilterPopover.hidden) {
@@ -375,10 +442,10 @@
         [self hidePopover:wheelChairFilterPopover];
     }
     
-    if (categporyFilterPopover.hidden) {
-        [self showPopover:categporyFilterPopover];
+    if (categoryFilterPopover.hidden) {
+        [self showPopover:categoryFilterPopover];
     } else {
-        [self hidePopover:categporyFilterPopover];
+        [self hidePopover:categoryFilterPopover];
     }
 }
 
@@ -426,26 +493,52 @@
 #pragma mark - WMWheelchairStatusFilter Delegate
 -(void)pressedButtonOfDotType:(DotType)type selected:(BOOL)selected
 {
+    NSString* wheelchairStatusString = @"unknown";
     switch (type) {
         case kDotTypeGreen:
             self.customToolBar.wheelChairStatusFilterButton.selectedGreenDot = selected;
+            wheelchairStatusString = @"yes";
             break;
             
         case kDotTypeYellow:
             self.customToolBar.wheelChairStatusFilterButton.selectedYellowDot = selected;
+            wheelchairStatusString = @"limited";
             break;
             
         case kDotTypeRed:
             self.customToolBar.wheelChairStatusFilterButton.selectedRedDot = selected;
+            wheelchairStatusString = @"no";
             break;
             
         case kDotTypeNone:
             self.customToolBar.wheelChairStatusFilterButton.selectedNoneDot = selected;
+            wheelchairStatusString = @"unknown";
             break;
             
         default:
             break;
     }
+    
+    if (selected) {
+        [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:wheelchairStatusString];
+    } else {
+        [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:NO] forKey:wheelchairStatusString];
+    }
+    
+    [self refreshNodeList];
+    
+}
+
+#pragma mark -WMCategoryFilterPopoverView Delegate
+-(void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected
+{
+    if (selected) {
+        [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:categoryID];
+    } else {
+        [self.categoryFilterStatus setObject:[NSNumber numberWithBool:NO] forKey:categoryID];
+    }
+    
+    [self refreshNodeList];
 }
 @end
 
