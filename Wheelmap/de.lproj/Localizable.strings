@@ -13,7 +13,6 @@
 "No" = "Nein";
 "LeaveApp" = "Wollen Sie die App wirklich verlassen?";
 
-
 "WheelchairAccessYes" = "Voll Rollstuhlgerecht";
 "WheelchairAccessLimited" = "Teilweise Rollstuhlgerecht";
 "WheelchairAccessNo" = "Nicht Rollstuhlgerecht";
@@ -35,6 +34,7 @@
 
 "ShareLocationViewHeadline" = "Ort teilen";
 
+"EditPOIViewHeadline" = "Bearbeiten";
 "EditPOIViewNameLabel" = "Name";
 "EditPOIViewCategoryLabel" = "Kategorie";
 "EditPOIViewPositionLabel" = "Position";

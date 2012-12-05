@@ -34,8 +34,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"EDIT";
-    
+        
     // WHEEL ACCESS
     [self setWheelAccessButton];
     self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];

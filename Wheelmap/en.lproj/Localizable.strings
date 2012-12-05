@@ -24,7 +24,6 @@
 "DetailsView4ButtonViewWebsiteLabel" = "Website";
 "DetailsView4ButtonViewInfoLabel" = "Info";
 "DetailsView4ButtonViewRouteLabel" = "Route";
-
 "DetailsViewAskFriendsButtonLabel" = "Help us: Aks your friends whether this place is wheelchair accessible";
 "DetailsViewChoosePhotoSource" = "Please choose source";
 "DetailsViewUploadOptionCamera" = "Take Photo";
@@ -35,6 +34,7 @@
 
 "ShareLocationViewHeadline" = "Share Location";
 
+"EditPOIViewHeadline" = "Edit";
 "EditPOIViewNameLabel" = "Name";
 "EditPOIViewCategoryLabel" = "Category";
 "EditPOIViewPositionLabel" = "Position";

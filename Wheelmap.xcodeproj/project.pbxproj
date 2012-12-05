@@ -1586,11 +1586,15 @@
 		989927891649151300D9003B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				INFOPLIST_FILE = "Wheelmap/Wheelmap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "51F6B035-54C7-46C0-B382-84917CE5AA3A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "51F6B035-54C7-46C0-B382-84917CE5AA3A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

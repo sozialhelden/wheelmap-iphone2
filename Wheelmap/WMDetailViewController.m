@@ -51,10 +51,13 @@
     self.mapView.layer.borderWidth = 1.0f;
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.mapView.delegate = self;
-    WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
-    [self.mapView addAnnotation:annotation];
+    self.annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
+    [self.mapView addAnnotation:self.annotation];
     // location to zoom in
     [self.scrollView addSubview:self.mapView];
+    self.mapView.showsUserLocation=YES;
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+    
     
     // SHARE LOCATION BUTTON
     UIImage *shareLocationImage = [UIImage imageNamed:@"details_share-location.png"];
@@ -304,21 +307,23 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 640);
     self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
+    // MAP
+    CLLocationCoordinate2D poiLocation;
+    poiLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
+    poiLocation.longitude = self.node.lon.doubleValue; // increase to move to the right
+    // region to display
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(poiLocation, 100, 50);
+    viewRegion.center = poiLocation;
+
+    // display the region
+    [self.mapView setRegion:viewRegion animated:YES];
 
 }
 
 
 - (void) updateFields {
     
-    // MAP
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
-    zoomLocation.longitude = self.node.lon.doubleValue; // increase to move to the right
-    // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 100, 50);
-    // display the region
-    [self.mapView setRegion:viewRegion animated:YES];
-   
+      
     
     // TEXTFIELDS
     self.titleLabel.text = self.node.name ?: @"?";
@@ -332,7 +337,7 @@
     
     [self checkForStatusOfButtons];
     [self setWheelAccessButton];
-    
+    [self updateDistanceToAnnotation];
       
 }
 
@@ -407,6 +412,62 @@
     return nil;
 }
 
+
+
+-(void)updateDistanceToAnnotation {
+    
+        
+    if (self.mapView.userLocation.location == nil) {
+        self.distanceLabel.text = @"User location is unknown";
+        return;
+    }
+    
+    CLLocation *pinLocation = [[CLLocation alloc]
+                               initWithLatitude:self.annotation.coordinate.latitude
+                               longitude:self.annotation.coordinate.longitude];
+    
+    CLLocation *userLocation = [[CLLocation alloc]
+                                initWithLatitude:self.mapView.userLocation.coordinate.latitude
+                                longitude:self.mapView.userLocation.coordinate.longitude];
+    
+    CLLocationDistance distance = [pinLocation distanceFromLocation:userLocation];
+    
+    if (distance > 999) {
+         [self.distanceLabel setText: [NSString stringWithFormat:@"%.1f km", distance/1000.0f]];
+    } else {
+        [self.distanceLabel setText: [NSString stringWithFormat:@"%.0f m", distance]];        
+    }
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    
+    if (mapView.selectedAnnotations.count == 0)
+        //no annotation is currently selected
+        [self updateDistanceToAnnotation];
+    else
+        //first object in array is currently selected annotation
+        [self updateDistanceToAnnotation];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
+        return;
+    }
+    [self updateDistanceToAnnotation];
+}
+
+- (WMMapAnnotation*) annotationForNode:(Node*)node
+{
+    for (WMMapAnnotation* annotation in  self.mapView.annotations) {
+        
+        // filter out MKUserLocation annotation
+        if ([annotation isKindOfClass:[WMMapAnnotation class]] && [annotation.node isEqual:node]) {
+            return annotation;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - imagePicker delegates
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
@@ -425,6 +486,7 @@
     [self dismissModalViewControllerAnimated:YES];
     
 }
+
 
 #pragma mark - actionSheetDelegate
 
@@ -468,7 +530,7 @@
 - (void) showAccessOptions {
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
-    vc.title = @"WheelAccessStatusViewHeadline";
+    vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -533,6 +595,7 @@
 - (void) pushEditViewController {
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.node = self.node;
+    vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
