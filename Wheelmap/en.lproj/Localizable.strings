@@ -17,19 +17,23 @@
 "WheelchairAccessLimited" = "Limited Wheelchair Access";
 "WheelchairAccessNo" = "No Wheelchair Access";
 "WheelchairAccessUnknown" = "Unknown Status";
+"WheelAccessStatusViewHeadline" = "Status";
 
+"DetailsViewHeadline" = "Details";
 "DetailsView4ButtonViewCallLabel" = "Phone";
 "DetailsView4ButtonViewWebsiteLabel" = "Website";
 "DetailsView4ButtonViewInfoLabel" = "Info";
 "DetailsView4ButtonViewRouteLabel" = "Route";
 
 "DetailsViewAskFriendsButtonLabel" = "Help us: Aks your friends whether this place is wheelchair accessible";
-
 "DetailsViewChoosePhotoSource" = "Please choose source";
 "DetailsViewUploadOptionCamera" = "Take Photo";
 "DetailsViewUploadOptionPhotoAlbum" = "Choose Existing";
-
 "DetailsViewMoreInfoButtonLabel" = "More Information";
+
+"MoreInfoViewHeadline" = "More Info";
+
+"ShareLocationViewHeadline" = "Share Location";
 
 "EditPOIViewNameLabel" = "Name";
 "EditPOIViewCategoryLabel" = "Category";

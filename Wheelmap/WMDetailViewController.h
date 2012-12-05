@@ -41,5 +41,6 @@
 @property (nonatomic, strong) UIButton *shareLocationButton;
 
 - (void) pushEditViewController;
+- (void) setUpdatedNode: (Node*) node;
 
 @end

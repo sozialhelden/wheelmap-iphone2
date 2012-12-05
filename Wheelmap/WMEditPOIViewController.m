@@ -10,6 +10,7 @@
 
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
+#import "WMDetailViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "NodeType.h"
 
@@ -34,7 +35,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"EDIT";
-    [self setAccessState];
+    
+    // WHEEL ACCESS
+    [self setWheelAccessButton];
+    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
+    [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    
+    
+    
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
     self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
     self.infoLabel.text = NSLocalizedString(@"EditPOIViewInfoLabel", @"");
@@ -57,21 +67,24 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
-    [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
+    [self updateFields];
+}
 
+
+- (void) updateFields {
     self.nameTextField.text = self.node.name;
     self.categoryTextField.text = self.node.node_type.localized_name;
     self.infoTextView.text = self.node.wheelchair_description;
-    
     self.streetTextField.text = self.node.street;
     self.housenumberTextField.text = self.node.housenumber;
     self.postcodeTextField.text = self.node.postcode;
     self.cityTextField.text = self.node.city;
     self.websiteTextField.text = self.node.website;
-    
     self.phoneTextField.text = self.node.phone;
+    
+    [self setWheelAccessButton];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -110,9 +123,9 @@
     [super viewDidUnload];
 }
 
-- (void) setAccessState {
+
+- (void)setWheelAccessButton {
     
-    // WHEEL ACCESS BUTTON
     
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
@@ -123,15 +136,10 @@
     } else if ([self.node.wheelchair isEqualToString:@"limited"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
-    }
+    } 
     
-    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
-    [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
+    [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
     
 }
 
@@ -145,21 +153,10 @@
 
 
 - (IBAction)accessButtonPressed:(NSString*)wheelchairAccess {
-    
-    if (wheelchairAccess == @"yes") {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if (wheelchairAccess == @"limited") {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if (wheelchairAccess == @"no") {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    }
-    self.node.wheelchair = wheelchairAccess;
+      self.node.wheelchair = wheelchairAccess;
 }
 
-- (IBAction)showAccesOptions:(id)sender {
+- (IBAction)showAccessOptions:(id)sender {
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
@@ -172,7 +169,7 @@
 }
 
 - (void) saveEditedData {
-//    [self.delegate accessButtonPressed:self.wheelchairAccess];
+    [self.delegate setUpdatedNode:self.node];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

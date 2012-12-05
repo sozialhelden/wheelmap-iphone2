@@ -143,7 +143,7 @@
                                                 <rect key="frame" x="93" y="2" width="187" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -164,7 +164,7 @@
                                                 <rect key="frame" x="93" y="2" width="187" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -212,7 +212,7 @@
                                                 <rect key="frame" x="93" y="2" width="187" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -233,7 +233,7 @@
                                                 <rect key="frame" x="93" y="2" width="187" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -254,28 +254,28 @@
                                                 <rect key="frame" x="93" y="7" width="187" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="housenumber" minimumFontSize="17" clearButtonMode="whileEditing" id="TmK-lb-V1P">
                                                 <rect key="frame" x="93" y="37" width="187" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="postcode" minimumFontSize="17" clearButtonMode="whileEditing" id="F7S-uO-V9B">
                                                 <rect key="frame" x="93" y="67" width="187" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="city" minimumFontSize="17" clearButtonMode="whileEditing" id="wxN-VT-T3z">
                                                 <rect key="frame" x="93" y="97" width="187" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -323,7 +323,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="showAccesOptions:" destination="1Xb-3o-iQI" eventType="touchUpInside" id="19h-eD-nVf"/>
+                                            <action selector="showAccessOptions:" destination="1Xb-3o-iQI" eventType="touchUpInside" id="oJv-Lz-B9F"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -465,7 +465,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZpS-Xp-fgm">
-                                        <rect key="frame" x="15" y="269" width="290" height="50"/>
+                                        <rect key="frame" x="15" y="327" width="290" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -481,7 +481,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l8N-oi-wSA">
-                                        <rect key="frame" x="15" y="327" width="290" height="50"/>
+                                        <rect key="frame" x="15" y="269" width="290" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -521,6 +521,88 @@
         <image name="details_label-yes.png" width="300" height="120"/>
         <image name="textfield_-share.png" width="290" height="120"/>
     </resources>
+    <classes>
+        <class className="WMCommentViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMCommentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="commentText" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="WMDetailViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="accessButtonPressed:" candidateClass="NSString"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="WMEditPOIViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMEditPOIViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="accessButtonPressed:" candidateClass="NSString"/>
+                <relationship kind="action" name="showAccessOptions:"/>
+                <relationship kind="outlet" name="addressInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="categoryInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="categoryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="categoryTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="cityTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="housenumberTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="infoInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="nameInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phoneInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="phoneLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="positionInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="postcodeTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="setMarkerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="streetTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="websiteInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="websiteLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="websiteTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="wheelAccessButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="WMMoreInfoViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMoreInfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="moreInfoTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="WMSetMarkerViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMSetMarkerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="WMShareSocialViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMShareSocialViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="emailButtonPressed:"/>
+                <relationship kind="action" name="facebookButtonPressed:"/>
+                <relationship kind="action" name="smsButtonPressed:"/>
+                <relationship kind="action" name="twitterButtonPressed:"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="WMViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>
+        </class>
+        <class className="WMWheelchairStatusViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMWheelchairStatusViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="accessButtonPressed:"/>
+                <relationship kind="outlet" name="limitedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="noButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="yesButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

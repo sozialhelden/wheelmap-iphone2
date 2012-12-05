@@ -33,10 +33,11 @@
 }
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"DETAILS";
+    self.title = NSLocalizedString(@"DetailsViewHeadline", @"");
     self.gabIfStatusUnknown = 0;
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
@@ -53,13 +54,6 @@
     WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
     [self.mapView addAnnotation:annotation];
     // location to zoom in
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
-    zoomLocation.longitude = self.node.lon.doubleValue; // increase to move to the right
-    // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 100, 50);
-    // display the region
-    [self.mapView setRegion:viewRegion animated:YES];
     [self.scrollView addSubview:self.mapView];
     
     // SHARE LOCATION BUTTON
@@ -72,73 +66,44 @@
     
     // NAME
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 125, self.view.bounds.size.width-STARTLEFT*2, 20)];
-   // self.titleLabel.backgroundColor = [UIColor orangeColor];
     self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.titleLabel.text = self.node.name ?: @"?";
     [self.scrollView addSubview:self.titleLabel];
 
     // CATEGORY / NOTE TYPE
     self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 147, self.view.bounds.size.width-STARTLEFT*2, 16)];
- //   self.nodeTypeLabel.backgroundColor = [UIColor orangeColor];
     self.nodeTypeLabel.textColor = [UIColor darkGrayColor];
-    self.nodeTypeLabel.font = [UIFont systemFontOfSize:11];
-    self.nodeTypeLabel.text = self.node.node_type.localized_name ?: @"?";
+    self.nodeTypeLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.nodeTypeLabel];
     
     // WHEEL ACCESS BUTTON
-     
-    if ([self.node.wheelchair isEqualToString:@"yes"]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.node.wheelchair isEqualToString:@"no"]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.node.wheelchair isEqualToString:@"limited"]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
-        self.gabIfStatusUnknown = 62;
-        [self createAskFriendsForStatusButton];
-    }
-    
+    [self setWheelAccessButton];
     self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.wheelAccessButton.frame = CGRectMake(10, 170, self.accessImage.size.width, self.accessImage.size.height);
     self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
-
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.wheelAccessButton];
     
     // STREET
     self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 234+self.gabIfStatusUnknown, 225, 16)];
-   // self.streetLabel.backgroundColor = [UIColor orangeColor];
     self.streetLabel.textColor = [UIColor darkGrayColor];
-    self.streetLabel.font = [UIFont systemFontOfSize:11];
-    NSString *street = self.node.street ?: @"?";
-    NSString *houseNumber = self.node.housenumber ?: @"?";
-    self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
+    self.streetLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.streetLabel];
     
     // POSTCODE AND CITY
     self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 250+self.gabIfStatusUnknown, 225, 16)];
-   // self.postcodeAndCityLabel.backgroundColor = [UIColor orangeColor];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
-    self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:11];
-    NSString *postcode = self.node.postcode ?: @"?";
-    NSString *city = self.node.city ?: @"?";
-    self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
+    self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.postcodeAndCityLabel];
     
     // DISTANCE
     self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, 265+self.gabIfStatusUnknown, 60, 20)];
     //self.distanceLabel.backgroundColor = [UIColor orangeColor];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
-    self.distanceLabel.font = [UIFont systemFontOfSize:11];
+    self.distanceLabel.font = [UIFont systemFontOfSize:12];
     self.distanceLabel.textAlignment = UITextAlignmentCenter;
     self.distanceLabel.text = @"3,5 km" ?: @"N/A";
     [self.scrollView addSubview:self.distanceLabel];
@@ -316,8 +281,63 @@
     return belowButtonLabel;
 }
 
-- (void) checkForStatusOfButtons {
 
+/* Set a fixed size for view in popovers */
+
+- (CGSize)contentSizeForViewInPopover
+{
+    return CGSizeMake(320, 480);
+}
+
+
+- (void)viewDidUnload {
+    [self setStreetLabel:nil];
+    [self setPostcodeAndCityLabel:nil];
+    [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self updateFields];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 640);
+    self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
+
+}
+
+
+- (void) updateFields {
+    
+    // MAP
+    CLLocationCoordinate2D zoomLocation;
+    zoomLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
+    zoomLocation.longitude = self.node.lon.doubleValue; // increase to move to the right
+    // region to display
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 100, 50);
+    // display the region
+    [self.mapView setRegion:viewRegion animated:YES];
+   
+    
+    // TEXTFIELDS
+    self.titleLabel.text = self.node.name ?: @"?";
+    self.nodeTypeLabel.text = self.node.node_type.localized_name ?: @"?";
+    NSString *street = self.node.street ?: @"?";
+    NSString *houseNumber = self.node.housenumber ?: @"?";
+    self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
+    NSString *postcode = self.node.postcode ?: @"?";
+    NSString *city = self.node.city ?: @"?";
+    self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
+    
+    [self checkForStatusOfButtons];
+    [self setWheelAccessButton];
+    
+      
+}
+
+- (void) checkForStatusOfButtons {
+    
     if(self.node.phone == nil || [self.node.phone isEqualToString:@""]) {
         self.callButton.enabled = NO;
     } else {
@@ -338,36 +358,33 @@
     } else {
         self.naviButton.enabled = YES;
     }
-
-}
-
-/* Set a fixed size for view in popovers */
-
-- (CGSize)contentSizeForViewInPopover
-{
-    return CGSizeMake(320, 480);
-}
-
-
-- (void)viewDidUnload {
-    [self setStreetLabel:nil];
-    [self setPostcodeAndCityLabel:nil];
-    [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
     
-    [self checkForStatusOfButtons];
+}
+
+- (void)setWheelAccessButton {
+    
+    
+    if ([self.node.wheelchair isEqualToString:@"yes"]) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
+    } else if ([self.node.wheelchair isEqualToString:@"no"]) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
+    } else if ([self.node.wheelchair isEqualToString:@"limited"]) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
+    } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
+        self.gabIfStatusUnknown = 62;
+        [self createAskFriendsForStatusButton];
+    }
+    
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 640);
-    self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
-
-}
 
 #pragma mark - Map View Delegate
 
@@ -436,14 +453,14 @@
 
 - (void) shareLocationButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-    vc.title = @"SHARE LOCATION";
+    vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 - (void) askFriendsForStatusButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-    vc.title = @"ASK FRIENDS";
+   // vc.title = @"ASK FRIENDS";
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -451,23 +468,12 @@
 - (void) showAccessOptions {
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
-    vc.title = @"WHEEL ACCESS";
+    vc.title = @"WheelAccessStatusViewHeadline";
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 - (IBAction)accessButtonPressed:(NSString*)wheelchairAccess {
-    
-    if (wheelchairAccess == @"yes") {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if (wheelchairAccess == @"limited") {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if (wheelchairAccess == @"no") {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    }
     self.node.wheelchair = wheelchairAccess;
 }
 
@@ -487,14 +493,14 @@
 - (void) showCommentView {
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
-    vc.title = @"COMMENT";
+    vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) showMoreInfoView {
     WMMoreInfoViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMoreInfoViewController"];
     vc.node = self.node;
-    vc.title = @"MORE INFO";
+    vc.title = NSLocalizedString(@"MoreInfoViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -520,9 +526,14 @@
     
 }
 
+- (void) setUpdatedNode: (Node*) node {
+    self.node = node;
+}
+
 - (void) pushEditViewController {
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.node = self.node;
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
