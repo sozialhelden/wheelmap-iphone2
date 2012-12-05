@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "WMNodeListView.h"
+#import <CoreLocation/CoreLocation.h>
 
-
-@interface WMNodeListViewController : WMTableViewController <WMNodeListView>
+@interface WMNodeListViewController : WMTableViewController <WMNodeListView, CLLocationManagerDelegate> {
+    
+    CLLocationManager *locationManager;
+}
 
 @end
