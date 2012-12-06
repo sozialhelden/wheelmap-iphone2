@@ -7,6 +7,7 @@
 //
 
 #import "WMLoginViewController.h"
+#import "WMUser.h"
 
 @implementation WMLoginViewController
 
@@ -60,7 +61,7 @@
 }
 
 - (IBAction)loginPressed:(id)sender {
-
+    [[WMUser sharedUser] loginWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text];
 }
 
 - (IBAction)donePressed:(id)sender {

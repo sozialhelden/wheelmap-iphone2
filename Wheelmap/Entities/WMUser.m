@@ -17,21 +17,18 @@
 
 - (void)sendLoginRequestWithUsername:(NSString *)name andPassword:(NSString *)password {
     
-    NSOperation *operation = [[WMWheelmapAPI sharedInstance] requestLoginWithUsername:name
+    [[WMWheelmapAPI sharedInstance] requestLoginWithUsername:name
                                                     password:password
-                                                                                 error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                         NSLog(@"... login error: %d %@", response.statusCode, error.localizedDescription);
-                                                                                     });
-                                                                                 }
-                                                                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response) {
-                                                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                         NSLog(@"... login success %d", response.statusCode);
-                                                                                     });
-                                                                                 }];
-    
-    
-    [[WMWheelmapAPI sharedInstance] enqueueHTTPRequestOperation:(id)operation];
+                                                       error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                                               NSLog(@"... login error: %d %@", response.statusCode, error.localizedDescription);
+                                                           });
+                                                       }
+                                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response) {
+                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                             NSLog(@"... login success %d", response.statusCode);
+                                                         });
+                                                     }];
 }
 
 + (WMUser *)sharedUser {
