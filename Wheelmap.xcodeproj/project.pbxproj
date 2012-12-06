@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03F30BFB1670A1F700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
 		980718DC1667684300580112 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 980718DB1667684300580112 /* Asset.m */; };
 		980718F31667CC0D00580112 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 980718F21667CC0D00580112 /* Category.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -244,6 +245,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
+		03F30BFA1670A1F700241466 /* WMDashboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardButton.m; sourceTree = "<group>"; };
 		980718DA1667684300580112 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
 		980718DB1667684300580112 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		980718F11667CC0D00580112 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
@@ -988,6 +991,8 @@
 			children = (
 				DB6E476E166B9B7A00D9CAD9 /* WMDashboardViewController.h */,
 				DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */,
+				03F30BF91670A1F700241466 /* WMDashboardButton.h */,
+				03F30BFA1670A1F700241466 /* WMDashboardButton.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -1449,6 +1454,7 @@
 				D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */,
 				D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */,
 				D5EE56B4166E6B16008E389D /* WMMoreInfoViewController.m in Sources */,
+				03F30BFB1670A1F700241466 /* WMDashboardButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
