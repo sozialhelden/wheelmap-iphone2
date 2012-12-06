@@ -33,10 +33,12 @@
 
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"DetailsViewHeadline", @"");
+
     self.gabIfStatusUnknown = 0;
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
@@ -183,9 +185,9 @@
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"details_btn-more-active.png"];
     UIImage *buttonBackgroundImageDisabled = [UIImage imageNamed:@"details_btn-more-inactive.png"];
     
+
     self.fourButtonView = [UIView new];
     self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
-   // self.fourButtonView.backgroundColor = [UIColor greenColor];
    
     int buttonWidth = 68;
     int buttonHeight = 62;
@@ -277,6 +279,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    if (!self.navigationController.toolbarHidden) {
+        [self.navigationController setToolbarHidden:YES animated:YES];
+    }
+
     [self updateFields];
     
 }
@@ -366,7 +372,6 @@
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
 
 }
-
 
 #pragma mark - Map View Delegate
 

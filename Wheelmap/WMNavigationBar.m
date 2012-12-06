@@ -132,6 +132,11 @@
         [saveButton addTarget:self action:@selector(pressedSaveButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:saveButton];
         
+        noneButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        noneButton.frame = rightButtonRect;
+        noneButton.hidden = YES;
+        [self addSubview:noneButton];
+        
                 
         // titleLabel
         titleLabel = [[WMLabel alloc] initWithFrame:self.bounds];
@@ -143,7 +148,6 @@
         // initial styles
         self.leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
         self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
-        self.title = @"Orte in deiner Nähe";
         
     }
     
@@ -254,6 +258,9 @@
         case kWMNavigationBarRightButtonStyleSaveButton:
             currentRightButton = saveButton;
             break;
+        case kWMNavigationBarRightButtonStyleNone:
+            currentRightButton = noneButton;
+            break;
         default:
             currentRightButton = contributeButton;
             break;
@@ -289,7 +296,7 @@
 
 -(void)setTitle:(NSString *)title
 {
-    if ([_title isEqualToString:title]) {
+    if ([_title isEqualToString:title] || title.length == 0) {
         return; // same string. do not need to update title!
     }
     _title = title;
@@ -316,7 +323,9 @@
 {
     CGFloat originX = currentLeftButton.frame.origin.x+currentLeftButton.frame.size.width;
     CGFloat width = currentRightButton.frame.origin.x - originX;
+    
     titleLabel.frame = CGRectMake(originX+5, titleLabel.frame.origin.y, width-10, titleLabel.frame.size.height);
+    
 }
 
 -(void)showNavigationBar

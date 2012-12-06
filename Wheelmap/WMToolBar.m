@@ -121,4 +121,97 @@
     }
 }
 
+#pragma mark - Show/Hide buttons
+-(void)showAllButtons
+{
+    currentLocationButton.hidden = NO;
+    searchButton.hidden = NO;
+    self.wheelChairStatusFilterButton.hidden = NO;
+    categoryFilterButton.hidden = NO;
+
+    [UIView animateWithDuration:0.3 animations:^(void)
+     {
+         currentLocationButton.alpha = 1.0;
+         searchButton.alpha = 1.0;
+         self.wheelChairStatusFilterButton.alpha = 1.0;
+         categoryFilterButton.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     }
+     ];
+    
+}
+-(void)showButton:(WMToolBarButtonType)type
+{
+    UIView* targetButton;
+    
+    switch (type) {
+        case kWMToolBarButtonCurrentLocation:
+            targetButton = currentLocationButton;
+            break;
+        case kWMToolBarButtonSearch:
+            targetButton = searchButton;
+            break;
+        case kWMToolBarButtonWheelChairFilter:
+            targetButton = self.wheelChairStatusFilterButton;
+            break;
+        case kWMToolBarButtonCategoryFilter:
+            targetButton = categoryFilterButton;
+            break;
+        default:
+            break;
+    }
+    
+    targetButton.hidden = NO;
+    [UIView animateWithDuration:0.3 animations:^(void)
+     {
+         targetButton.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     }
+     ];
+    
+    
+}
+-(void)hideButton:(WMToolBarButtonType)type
+{
+    UIView* targetButton;
+    
+    switch (type) {
+        case kWMToolBarButtonCurrentLocation:
+            targetButton = currentLocationButton;
+            break;
+        case kWMToolBarButtonSearch:
+            targetButton = searchButton;
+            break;
+        case kWMToolBarButtonWheelChairFilter:
+            targetButton = self.wheelChairStatusFilterButton;
+            break;
+        case kWMToolBarButtonCategoryFilter:
+            targetButton = categoryFilterButton;
+            break;
+        default:
+            break;
+    }
+    
+    
+    [UIView animateWithDuration:0.3 animations:^(void)
+     {
+         targetButton.alpha = 0.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         targetButton.hidden = YES;
+         
+     }
+     ];
+
+}
+
 @end
