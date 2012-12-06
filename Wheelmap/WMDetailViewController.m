@@ -145,6 +145,8 @@
     
     for (int i = 0; i < self.imageCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(start+i*thumbnailImage.size.width+i*gab, 9, thumbnailImage.size.width, thumbnailImage.size.height)];
+        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        imageView.layer.borderWidth = 1;
         [self.imageScrollView addSubview:imageView];
         [self.imageViewsInScrollView addObject:imageView];
     }
@@ -492,13 +494,21 @@
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
     vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
+    NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
+    NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
+    NSURL *url = [NSURL URLWithString: urlString];
+    vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
     
 }
 
 - (void) askFriendsForStatusButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-   // vc.title = @"ASK FRIENDS";
     [self.navigationController pushViewController:vc animated:YES];
+    NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
+    NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
+    NSURL *url = [NSURL URLWithString: urlString];
+    vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+    vc.smsButton.hidden = YES;
     
 }
 
