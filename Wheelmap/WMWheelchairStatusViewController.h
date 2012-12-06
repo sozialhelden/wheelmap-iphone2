@@ -7,15 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Node.h"
 
 @interface WMWheelchairStatusViewController : WMViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *yesButton;
-@property (weak, nonatomic) IBOutlet UIButton *limitedButton;
-@property (weak, nonatomic) IBOutlet UIButton *noButton;
+@property (nonatomic, strong) Node *node;
+
+@property (weak, nonatomic) IBOutlet WMButton *yesButton;
+@property (weak, nonatomic) IBOutlet WMButton *limitedButton;
+@property (weak, nonatomic) IBOutlet WMButton *noButton;
+
+@property (nonatomic, strong) UIImageView *yesCheckMarkImageView;
+@property (nonatomic, strong) UIImageView *limitedCheckMarkImageView;
+@property (nonatomic, strong) UIImageView *noCheckMarkImageView;
+
+//@property (weak, nonatomic) IBOutlet UIButton *yesButton;
+//@property (weak, nonatomic) IBOutlet UIButton *limitedButton;
+//@property (weak, nonatomic) IBOutlet UIButton *noButton;
 @property (strong, nonatomic) id delegate;
 @property (nonatomic, strong) NSString *wheelchairAccess;
+
 
 - (IBAction)accessButtonPressed:(id)sender;
 - (void) saveAccessStatus;
