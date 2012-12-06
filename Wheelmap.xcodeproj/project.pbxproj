@@ -587,24 +587,6 @@
 		03F30C5C1670DDB900241466 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				03F30C5D1670DDCC00241466 /* buttons_btn-signup.png */,
-				03F30C5E1670DDCC00241466 /* buttons_btn-signup@2x.png */,
-				03F30C2F1670B06700241466 /* more-buttons_info-deactive@2x.png */,
-				03F30C301670B06700241466 /* more-buttons_info–deactive.png */,
-				03F30C311670B06700241466 /* more-buttons_info.png */,
-				03F30C321670B06700241466 /* more-buttons_info@2x.png */,
-				03F30C331670B06700241466 /* more-buttons_phone-deactive.png */,
-				03F30C341670B06700241466 /* more-buttons_phone-deactive@2x.png */,
-				03F30C351670B06700241466 /* more-buttons_phone.png */,
-				03F30C361670B06700241466 /* more-buttons_phone@2x.png */,
-				03F30C371670B06700241466 /* more-buttons_route-deactive.png */,
-				03F30C381670B06700241466 /* more-buttons_route-deactive@2x.png */,
-				03F30C391670B06700241466 /* more-buttons_route.png */,
-				03F30C3A1670B06700241466 /* more-buttons_route@2x.png */,
-				03F30C3B1670B06700241466 /* more-buttons_url-deactive.png */,
-				03F30C3C1670B06700241466 /* more-buttons_url-deactive@2x.png */,
-				03F30C3D1670B06700241466 /* more-buttons_url.png */,
-				03F30C3E1670B06700241466 /* more-buttons_url@2x.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -857,6 +839,24 @@
 		D5E0F0E31667C60100B78F57 /* 4 Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				03F30C5D1670DDCC00241466 /* buttons_btn-signup.png */,
+				03F30C5E1670DDCC00241466 /* buttons_btn-signup@2x.png */,
+				03F30C2F1670B06700241466 /* more-buttons_info-deactive@2x.png */,
+				03F30C301670B06700241466 /* more-buttons_info–deactive.png */,
+				03F30C311670B06700241466 /* more-buttons_info.png */,
+				03F30C321670B06700241466 /* more-buttons_info@2x.png */,
+				03F30C331670B06700241466 /* more-buttons_phone-deactive.png */,
+				03F30C341670B06700241466 /* more-buttons_phone-deactive@2x.png */,
+				03F30C351670B06700241466 /* more-buttons_phone.png */,
+				03F30C361670B06700241466 /* more-buttons_phone@2x.png */,
+				03F30C371670B06700241466 /* more-buttons_route-deactive.png */,
+				03F30C381670B06700241466 /* more-buttons_route-deactive@2x.png */,
+				03F30C391670B06700241466 /* more-buttons_route.png */,
+				03F30C3A1670B06700241466 /* more-buttons_route@2x.png */,
+				03F30C3B1670B06700241466 /* more-buttons_url-deactive.png */,
+				03F30C3C1670B06700241466 /* more-buttons_url-deactive@2x.png */,
+				03F30C3D1670B06700241466 /* more-buttons_url.png */,
+				03F30C3E1670B06700241466 /* more-buttons_url@2x.png */,
 			);
 			name = "4 Buttons";
 			path = "/Users/andreager/Desktop/Git/wheelmap-iphone2/Wheelmap/Resources";
