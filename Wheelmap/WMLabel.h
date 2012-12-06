@@ -11,7 +11,8 @@
 typedef enum {
     kWMLabelFontTypeRegular,
     kWMLabelFontTypeItalic,
-    kWMLabelFontTypeBold
+    kWMLabelFontTypeBold,
+    kWMLabelFontTypeMedium
 } WMLabelFontType;
 
 @interface WMLabel : UILabel

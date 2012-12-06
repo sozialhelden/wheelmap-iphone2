@@ -50,4 +50,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    self.navigationBarTitle = title;
+}
+
+-(NSString*)title
+{
+    return [super title];
+}
+
 @end

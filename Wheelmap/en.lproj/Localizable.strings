@@ -13,24 +13,33 @@
 "No" = "No";
 "LeaveApp" = "Are you sure you want to leave this app?";
 
+"twitter" = "Twitter";
+"facebook" = "Facebook";
+"email" = "Email";
+"sms" = "Text";
+
 "WheelchairAccessYes" = "Full Wheelchair Access";
 "WheelchairAccessLimited" = "Limited Wheelchair Access";
 "WheelchairAccessNo" = "No Wheelchair Access";
 "WheelchairAccessUnknown" = "Unknown Status";
+"WheelAccessStatusViewHeadline" = "Status";
 
+"DetailsViewHeadline" = "Details";
 "DetailsView4ButtonViewCallLabel" = "Phone";
 "DetailsView4ButtonViewWebsiteLabel" = "Website";
 "DetailsView4ButtonViewInfoLabel" = "Info";
 "DetailsView4ButtonViewRouteLabel" = "Route";
-
 "DetailsViewAskFriendsButtonLabel" = "Help us: Aks your friends whether this place is wheelchair accessible";
-
 "DetailsViewChoosePhotoSource" = "Please choose source";
 "DetailsViewUploadOptionCamera" = "Take Photo";
 "DetailsViewUploadOptionPhotoAlbum" = "Choose Existing";
-
 "DetailsViewMoreInfoButtonLabel" = "More Information";
 
+"MoreInfoViewHeadline" = "More Info";
+
+"ShareLocationViewHeadline" = "Share Location";
+
+"EditPOIViewHeadline" = "Edit";
 "EditPOIViewNameLabel" = "Name";
 "EditPOIViewCategoryLabel" = "Category";
 "EditPOIViewPositionLabel" = "Position";
@@ -39,3 +48,7 @@
 "EditPOIViewWebsiteLabel" = "Website";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Set Marker";
+
+"CommentViewLabel" = "Here you can find additional information about the wheelchair accessibility of the location";
+"ShareLocationLabel" = "I have found the following location on Wheelmap.org:";
+"AskFriendsLabel" = "Do you know whether the following location is wheelchair accessible?";

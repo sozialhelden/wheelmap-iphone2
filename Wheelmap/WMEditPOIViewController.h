@@ -44,8 +44,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *setMarkerButton;
 
+@property (strong) id delegate;
 
-- (IBAction)showAccesOptions:(id)sender;
+- (IBAction)showAccessOptions:(id)sender;
 - (void) saveEditedData;
 
 @end

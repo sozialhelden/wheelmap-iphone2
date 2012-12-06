@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "WMMapAnnotation.h"
 
 @class Node;
 
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) NSString *wheelchairAccess;
 @property (nonatomic, strong) UIView *fourButtonView;
 
+@property (nonatomic, strong) WMMapAnnotation *annotation;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *nodeTypeLabel;
@@ -40,6 +42,8 @@
 @property (nonatomic, strong) UIButton *naviButton;
 @property (nonatomic, strong) UIButton *shareLocationButton;
 
+
 - (void) pushEditViewController;
+- (void) setUpdatedNode: (Node*) node;
 
 @end

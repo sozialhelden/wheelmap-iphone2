@@ -13,25 +13,33 @@
 "No" = "Nein";
 "LeaveApp" = "Wollen Sie die App wirklich verlassen?";
 
+"twitter" = "Twitter";
+"facebook" = "Facebook";
+"email" = "E-Mail";
+"sms" = "SMS";
 
 "WheelchairAccessYes" = "Voll Rollstuhlgerecht";
 "WheelchairAccessLimited" = "Teilweise Rollstuhlgerecht";
 "WheelchairAccessNo" = "Nicht Rollstuhlgerecht";
 "WheelchairAccessUnknown" = "Unbekannter Status";
+"WheelAccessStatusViewHeadline" = "Status";
 
+"DetailsViewHeadline" = "Detailansicht";
 "DetailsView4ButtonViewCallLabel" = "Anrufen";
 "DetailsView4ButtonViewWebsiteLabel" = "Webseite";
 "DetailsView4ButtonViewInfoLabel" = "Hinweis";
 "DetailsView4ButtonViewRouteLabel" = "Route";
-
 "DetailsViewAskFriendsButtonLabel" = "Hilf mit: Frag deine Freunde, ob dieser Ort rollstuhlgerecht ist";
-
 "DetailsViewChoosePhotoSource" = "Fotoquelle wählen";
 "DetailsViewUploadOptionCamera" = "Kamera";
 "DetailsViewUploadOptionPhotoAlbum" = "Fotoalbum";
-
 "DetailsViewMoreInfoButtonLabel" = "Weitere Informationen";
 
+"MoreInfoViewHeadline" = "Weitere Infos";
+
+"ShareLocationViewHeadline" = "Ort teilen";
+
+"EditPOIViewHeadline" = "Bearbeiten";
 "EditPOIViewNameLabel" = "Name";
 "EditPOIViewCategoryLabel" = "Kategorie";
 "EditPOIViewPositionLabel" = "Position";
@@ -40,3 +48,7 @@
 "EditPOIViewWebsiteLabel" = "Webseite";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Markierung setzen";
+
+"CommentViewLabel" = "Hier findest du weitere Infos uir Rollstuhlgerechtigkeit des Ortes";
+"ShareLocationLabel" = "Ich habe folgenden Ort auf Wheelmap.org gefunden:";
+"AskFriendsLabel" = "Weißt du ob folgender Ort rollstuhlgerecht ist?";
