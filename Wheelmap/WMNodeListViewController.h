@@ -16,7 +16,7 @@ typedef enum {
     kWMNodeListViewControllerUseCaseCategory
 } WMNodeListViewControllerUseCase;
 
-@interface WMNodeListViewController : WMViewController <WMNodeListView, CLLocationManagerDelegate> {
+@interface WMNodeListViewController : WMViewController <WMNodeListView, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     CLLocationManager *locationManager;
 }

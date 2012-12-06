@@ -196,7 +196,7 @@
 {
     // we don"t want to push a detail view when selecting a node on the map view, so
     // we check if this message comes from a table view
-    if (node && [nodeListView isKindOfClass:[UITableViewController class]]) {
+    if (node && [nodeListView isKindOfClass:[WMNodeListViewController class]]) {
         [self pushDetailsViewControllerForNode:node];
     }
 }

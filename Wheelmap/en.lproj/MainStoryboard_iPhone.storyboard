@@ -201,46 +201,6 @@
         <image name="start_logo.png" width="180" height="45"/>
         <image name="start_searchbar.png" width="280" height="40"/>
     </resources>
-    <classes>
-        <class className="WMCategoryViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMCategoryViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WMDashboardViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDashboardViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pressedCategoriesButton:"/>
-                <relationship kind="action" name="pressedContributeButton:"/>
-                <relationship kind="action" name="pressedMapButton:"/>
-                <relationship kind="action" name="pressedNodeListButton:"/>
-            </relationships>
-        </class>
-        <class className="WMLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMLabel.h"/>
-        </class>
-        <class className="WMMapViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="toggleMapTypeChanged:"/>
-                <relationship kind="outlet" name="loadingWheel" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="WMNavigationControllerBase" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNavigationControllerBase.h"/>
-        </class>
-        <class className="WMNodeListViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNodeListViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WMViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
