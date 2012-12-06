@@ -10,6 +10,7 @@
 #import "AFJSONRequestOperation.h"
 
 #define WMBaseURL @"http://staging.wheelmap.org/api"
+#define WMLOGINURLPOSTFIX @"/users/authenticate?"
 #define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
 
 
@@ -96,6 +97,29 @@
     
     // start if necessary
     if (startImmediately) [operation start];
+    
+    return operation;
+}
+
+- (NSOperation*) requestLoginWithUsername:(NSString *)username
+                                 password:(NSString *)password
+                                    error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))errorBlock
+                                  success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock {
+ 
+    // create basic http operation
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:WMLOGINURLPOSTFIX]];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    // set result blocks that call our standard result blocks
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id response) {
+        successBlock(request, response);
+    }
+                                     failure:^(AFHTTPRequestOperation *op , NSError *error) {
+                                         errorBlock(request, op.response, error);
+                                     }
+     ];
+    
+    [operation start];
     
     return operation;
 }

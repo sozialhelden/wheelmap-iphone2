@@ -31,4 +31,8 @@
                        success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock
               startImmediately:(BOOL)startImmediately;
 
+- (NSOperation*) requestLoginWithUsername:(NSString *)username
+                                 password:(NSString *)password
+                                    error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))errorBlock
+                                  success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock;
 @end
