@@ -68,22 +68,28 @@
     [self.shareLocationButton addTarget:self action:@selector(shareLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.shareLocationButton];
     
+    int startY = 125;
+    
     // NAME
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 125, self.view.bounds.size.width-STARTLEFT*2, 20)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, self.view.bounds.size.width-STARTLEFT*2, 20)];
     self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [self.scrollView addSubview:self.titleLabel];
+    
+    startY += 22;
 
     // CATEGORY / NOTE TYPE
-    self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 147, self.view.bounds.size.width-STARTLEFT*2, 16)];
+    self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, self.view.bounds.size.width-STARTLEFT*2, 16)];
     self.nodeTypeLabel.textColor = [UIColor darkGrayColor];
     self.nodeTypeLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.nodeTypeLabel];
     
+    startY += 23;
+    
     // WHEEL ACCESS BUTTON
     [self setWheelAccessButton];
     self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.wheelAccessButton.frame = CGRectMake(10, 170, self.accessImage.size.width, self.accessImage.size.height);
+    self.wheelAccessButton.frame = CGRectMake(10, startY, self.accessImage.size.width, self.accessImage.size.height);
     self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -91,40 +97,53 @@
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.wheelAccessButton];
     
+    startY += 64;
+    
     // STREET
-    self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 234+self.gabIfStatusUnknown, 225, 16)];
+    self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
     self.streetLabel.textColor = [UIColor darkGrayColor];
     self.streetLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.streetLabel];
     
+    // COMPASS
+    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
+    self.compassView = [[UIImageView alloc] initWithFrame:CGRectMake(260, startY+1+self.gabIfStatusUnknown, compassImage.size.width, compassImage.size.height)];
+    self.compassView.image = compassImage;
+    [self.scrollView addSubview:self.compassView];
+    
+    startY += 16;
+    
     // POSTCODE AND CITY
-    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 250+self.gabIfStatusUnknown, 225, 16)];
+    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
     self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.postcodeAndCityLabel];
     
-    // COMPASS
-    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
-    self.compassView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 235, compassImage.size.width, compassImage.size.height)];
-    self.compassView.image = compassImage;
-    [self.scrollView addSubview:self.compassView];
+    startY += 15;
     
     // DISTANCE
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, 265+self.gabIfStatusUnknown, 60, 20)];
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, startY+self.gabIfStatusUnknown, 60, 20)];
     //self.distanceLabel.backgroundColor = [UIColor orangeColor];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.font = [UIFont systemFontOfSize:12];
     self.distanceLabel.textAlignment = UITextAlignmentCenter;
-    self.distanceLabel.text = @"3,5 km" ?: @"N/A";
     [self.scrollView addSubview:self.distanceLabel];
  
+    startY += 30;
+    
     // IMAGESCROLLVIEW
     [self createAndAddImageScrollView];
+    self.imageScrollView.frame = CGRectMake(0, startY+self.gabIfStatusUnknown, self.view.bounds.size.width, 80);
+    
+    startY += 100;
     
     // UIVIEW with 4 Buttons
     [self createAndAddFourButtonView];
+    self.fourButtonView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, 75);
 
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 520 + self.gabIfStatusUnknown);
+    startY += 85;
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, startY + self.gabIfStatusUnknown);
     [self.view addSubview:self.scrollView];
     
 }
@@ -170,7 +189,7 @@
    
     UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
     
-    self.imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 294+self.gabIfStatusUnknown, self.view.bounds.size.width, uploadBackground.size.height)];
+    self.imageScrollView = [UIScrollView new];
     self.imageScrollView.backgroundColor = [UIColor colorWithPatternImage:uploadBackground];
     [self.imageScrollView setShowsHorizontalScrollIndicator:NO];
     
@@ -193,8 +212,7 @@
     
 
     self.fourButtonView = [UIView new];
-    self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
-   
+       
     int buttonWidth = 68;
     int buttonHeight = 62;
     int imagePlusGab = buttonWidth + (((300)-(4*buttonWidth)) / 3);
@@ -312,8 +330,6 @@
 
 - (void) updateFields {
     
-      
-    
     // TEXTFIELDS
     self.titleLabel.text = self.node.name ?: @"?";
     self.nodeTypeLabel.text = self.node.node_type.localized_name ?: @"?";
@@ -327,6 +343,9 @@
     [self checkForStatusOfButtons];
     [self setWheelAccessButton];
     [self updateDistanceToAnnotation];
+    
+    self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:self.node.wheelchair]];
+
       
 }
 
@@ -357,6 +376,7 @@
 
 - (void)setWheelAccessButton {
     
+    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
     
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
@@ -387,15 +407,15 @@
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         Node *node = [(WMMapAnnotation*)annotation node];
         NSString *reuseId = [node.wheelchair stringByAppendingString:node.node_type.identifier];
-        MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
-        if (!annotationView) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-            annotationView.canShowCallout = YES;
-            annotationView.centerOffset = CGPointMake(6, -14);
-            annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        self.annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+        if (!self.annotationView) {
+            self.annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+            self.annotationView.canShowCallout = NO;
+            self.annotationView.centerOffset = CGPointMake(6, -14);
+            self.annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
-        annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-        return annotationView;
+        self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+        return self.annotationView;
     }
     return nil;
 }

@@ -11,7 +11,8 @@
 
 @interface WMCommentViewController : WMViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *commentText;
+@property (weak, nonatomic) IBOutlet UITextView *commentText;
+
 @property (strong, nonatomic) Node *currentNode;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 

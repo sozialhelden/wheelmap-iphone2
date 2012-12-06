@@ -35,9 +35,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @"BEARBEITEN";
-    
-    //[self setAccessState];
+     //[self setAccessState];
         
     // WHEEL ACCESS
     [self setWheelAccessButton];
@@ -172,6 +170,22 @@
 }
 
 - (void) saveEditedData {
+    
+#warning put these when finished editing each of the textfields
+    
+    self.node.name = self.nameTextField.text;
+    //self.node.category = self.categoryTextField.text;
+    //self.node.lat =
+    //self.node.lon =
+    self.node.wheelchair = self.node.wheelchair;
+    self.node.wheelchair_description = self.infoTextView.text;
+    self.node.street = self.streetTextField.text;
+    self.node.housenumber = self.housenumberTextField.text;
+    self.node.postcode = self.postcodeTextField.text;
+    self.node.city = self.cityTextField.text;
+    self.node.website = self.websiteTextField.text;
+    self.node.phone = self.phoneTextField.text;
+    
     [self.delegate setUpdatedNode:self.node];
     [self.navigationController popViewControllerAnimated:YES];
 }

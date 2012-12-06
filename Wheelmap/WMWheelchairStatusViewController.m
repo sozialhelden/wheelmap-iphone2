@@ -85,7 +85,6 @@
 - (void) updateCheckMarks {
     
     if ([self.wheelchairAccess isEqualToString:@"yes"]) {
-        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX yes");
         self.yesCheckMarkImageView.hidden = NO;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = YES;
@@ -97,6 +96,10 @@
         self.yesCheckMarkImageView.hidden = YES;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = NO;
+    }  else if ([self.wheelchairAccess isEqualToString:@"unknown"]) {
+        self.yesCheckMarkImageView.hidden = YES;
+        self.limitedCheckMarkImageView.hidden = YES;
+        self.noCheckMarkImageView.hidden = YES;
     }
 }
 
