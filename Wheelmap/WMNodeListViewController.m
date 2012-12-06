@@ -9,7 +9,8 @@
 #import "WMNodeListViewController.h"
 #import "WMNodeListCell.h"
 #import "Node.h"
-#import "NodeType.h"    
+#import "NodeType.h"  
+#import <CoreLocation/CoreLocation.h>
 
 
 @implementation WMNodeListViewController
@@ -32,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
     
     if (self.navigationController.navigationBarHidden) {
@@ -46,6 +48,13 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [self loadNodes];
+    
+    if (locationManager == nil) {
+        locationManager = [[CLLocationManager alloc] init];
+    }
+    locationManager.delegate = self;
+	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation];
 }
 
 - (void) loadNodes
@@ -105,11 +114,24 @@
     // show node type
     cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"?";
     
+    CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+
+    CLLocationDistance distance = [locationManager.location distanceFromLocation:nodeLocation];
+    // show node distance
+    if (distance > 999) {
+        cell.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance/1000.0f];
+    } else {
+        cell.distanceLabel.text = [NSString stringWithFormat:@"%.0f m", distance];
+    }
+
     return cell;
 }
 
-
 #pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0f;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -131,6 +153,22 @@
     [self.delegate nodeListView:self didSelectDetailsForNode:nodes[indexPath.row]];
 }
 
+#pragma mark - Location Manager Delegate
+
+-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
+                                                        message:NSLocalizedString(@"No Loc Error Message", @"")
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                              otherButtonTitles:nil];
+	[alertView show];
+}
+
+-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    [self.tableView reloadData];
+}
 
 
 @end

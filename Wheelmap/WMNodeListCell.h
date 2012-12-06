@@ -13,6 +13,7 @@
 
 @property (nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) IBOutlet UILabel *nodeTypeLabel;
+@property (nonatomic) IBOutlet UILabel *distanceLabel;
 
 @property (nonatomic) IBOutlet UIImageView *iconImage;
 
