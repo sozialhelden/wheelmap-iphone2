@@ -33,10 +33,12 @@
 
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"DetailsViewHeadline", @"");
+
     self.gabIfStatusUnknown = 0;
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
@@ -145,6 +147,8 @@
     
     for (int i = 0; i < self.imageCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(start+i*thumbnailImage.size.width+i*gab, 9, thumbnailImage.size.width, thumbnailImage.size.height)];
+        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        imageView.layer.borderWidth = 1;
         [self.imageScrollView addSubview:imageView];
         [self.imageViewsInScrollView addObject:imageView];
     }
@@ -181,9 +185,9 @@
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"details_btn-more-active.png"];
     UIImage *buttonBackgroundImageDisabled = [UIImage imageNamed:@"details_btn-more-inactive.png"];
     
+
     self.fourButtonView = [UIView new];
     self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
-   // self.fourButtonView.backgroundColor = [UIColor greenColor];
    
     int buttonWidth = 68;
     int buttonHeight = 62;
@@ -275,6 +279,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    if (!self.navigationController.toolbarHidden) {
+        [self.navigationController setToolbarHidden:YES animated:YES];
+    }
+
     [self updateFields];
     
 }
@@ -364,7 +372,6 @@
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
 
 }
-
 
 #pragma mark - Map View Delegate
 
@@ -492,13 +499,21 @@
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
     vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
+    NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
+    NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
+    NSURL *url = [NSURL URLWithString: urlString];
+    vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
     
 }
 
 - (void) askFriendsForStatusButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-   // vc.title = @"ASK FRIENDS";
     [self.navigationController pushViewController:vc animated:YES];
+    NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
+    NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
+    NSURL *url = [NSURL URLWithString: urlString];
+    vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+    vc.smsButton.hidden = YES;
     
 }
 

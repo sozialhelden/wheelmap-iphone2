@@ -10,9 +10,18 @@
 #import "WMNodeListView.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface WMNodeListViewController : WMTableViewController <WMNodeListView, CLLocationManagerDelegate> {
+typedef enum {
+    kWMNodeListViewControllerUseCaseNormal,
+    kWMNodeListViewControllerUseCaseContribute,
+    kWMNodeListViewControllerUseCaseCategory
+} WMNodeListViewControllerUseCase;
+
+@interface WMNodeListViewController : WMViewController <WMNodeListView, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     CLLocationManager *locationManager;
 }
 
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) NSNumber* selectedCategoryID;
+@property (nonatomic) WMNodeListViewControllerUseCase useCase;
 @end

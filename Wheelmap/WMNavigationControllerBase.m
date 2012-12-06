@@ -14,6 +14,8 @@
 #import "WMWheelchairStatusViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
+#import "WMShareSocialViewController.h"
+#import "WMCategoryViewController.h"
 #import "Node.h"
 #import "Category.h"
 
@@ -194,7 +196,7 @@
 {
     // we don"t want to push a detail view when selecting a node on the map view, so
     // we check if this message comes from a table view
-    if (node && [nodeListView isKindOfClass:[UITableViewController class]]) {
+    if (node && [nodeListView isKindOfClass:[WMNodeListViewController class]]) {
         [self pushDetailsViewControllerForNode:node];
     }
 }
@@ -316,9 +318,6 @@
 
 -(void)changeScreenStatusFor:(UIViewController*)vc
 {
-    // show/hide navigation bar. only hide it on the dashboard!
-    [self.customNavigationBar showNavigationBar];
-    
     // if the current navigation stack size is 2,then we always show DashboardButton on the left
     WMNavigationBarLeftButtonStyle leftButtonStyle;
     WMNavigationBarRightButtonStyle rightButtonStyle;
@@ -340,24 +339,58 @@
         }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
     } else if ([vc isKindOfClass:[WMNodeListViewController class]]) {
+        WMNodeListViewController* nodeListVC = (WMNodeListViewController*)vc;
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         self.customToolBar.toggleButton.selected = NO;
+        switch (nodeListVC.useCase) {
+            case kWMNodeListViewControllerUseCaseNormal:
+                nodeListVC.navigationBarTitle = @"Orte in deiner Nähe";
+                [self.customToolBar showAllButtons];
+                break;
+            case kWMNodeListViewControllerUseCaseContribute:
+                nodeListVC.navigationBarTitle = @"Mithelfen";
+                [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
+                [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
+                rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
+                break;
+            case kWMNodeListViewControllerUseCaseCategory:
+                [self.customToolBar showButton:kWMToolBarButtonWheelChairFilter];
+                [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
+                break;
+            default:
+                break;
+        }
         
     } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
-        
     } else if ([vc isKindOfClass:[WMWheelchairStatusViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
+    } else if ([vc isKindOfClass:[WMEditPOIViewController class]]) {
+        rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
+        leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
+        [self hidePopover:wheelChairFilterPopover];
+        [self hidePopover:categoryFilterPopover];
+        
+    }  else if ([vc isKindOfClass:[WMShareSocialViewController class]]) {
+        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
+        leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
+        [self hidePopover:wheelChairFilterPopover];
+        [self hidePopover:categoryFilterPopover];
+        
+    } else if ([vc isKindOfClass:[WMCategoryViewController class]]) {
+        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     
     self.customNavigationBar.leftButtonStyle = leftButtonStyle;
     self.customNavigationBar.rightButtonStyle = rightButtonStyle;
-    self.customNavigationBar.title = vc.title;
+    if ([vc respondsToSelector:@selector(navigationBarTitle)]) {
+        self.customNavigationBar.title = [vc performSelector:@selector(navigationBarTitle)];
+    }
 }
 
 #pragma mark - WMNavigationBar Delegate
@@ -365,11 +398,15 @@
 {
     // In the future, the dashboard would be the root VC.
     [self popToRootViewControllerAnimated:YES];
+    [self hidePopover:wheelChairFilterPopover];
+    [self hidePopover:categoryFilterPopover];
 }
 
 -(void)pressedBackButton:(WMNavigationBar *)navigationBar
 {
     [self popViewControllerAnimated:YES];
+    [self hidePopover:wheelChairFilterPopover];
+    [self hidePopover:categoryFilterPopover];
     
 }
 
@@ -406,6 +443,8 @@
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         //  the node list view is on the screen. push the map view controller
         WMMapViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+        WMViewController* currentVC = (WMViewController*)self.topViewController;
+        vc.navigationBarTitle = currentVC.navigationBarTitle;
         [self pushFadeViewController:vc];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
@@ -534,6 +573,13 @@
     
 }
 
+-(void)clearWheelChairFilterStatus
+{
+    for (NSNumber* key in [self.wheelChairFilterStatus allKeys]) {
+        [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
+    }
+}
+
 #pragma mark -WMCategoryFilterPopoverView Delegate
 -(void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected
 {
@@ -544,6 +590,13 @@
     }
     
     [self refreshNodeList];
+}
+
+-(void)clearCategoryFilterStatus
+{
+    for (NSNumber* key in [self.categoryFilterStatus allKeys]) {
+        [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
+    }
 }
 @end
 

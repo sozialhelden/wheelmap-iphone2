@@ -34,6 +34,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.title = @"BEARBEITEN";
+    
+    //[self setAccessState];
         
     // WHEEL ACCESS
     [self setWheelAccessButton];
@@ -41,9 +45,7 @@
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
-    
-    
-    
+
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
     self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
     self.infoLabel.text = NSLocalizedString(@"EditPOIViewInfoLabel", @"");

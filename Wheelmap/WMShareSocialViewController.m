@@ -28,7 +28,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 500);
+    self.title = @"SHARE";
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.smsButton.frame.origin.y + self.smsButton.frame.size.height+10);
+    [self.twitterButton setTitle:NSLocalizedString(@"twitter", @"") forState:UIControlStateNormal];
+    [self.facebookButton setTitle:NSLocalizedString(@"facebook", @"") forState:UIControlStateNormal];
+    [self.emailButton setTitle:NSLocalizedString(@"email", @"") forState:UIControlStateNormal];
+    [self.smsButton setTitle:NSLocalizedString(@"sms", @"") forState:UIControlStateNormal];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +60,12 @@
 }
 - (void)viewDidUnload {
     [self setScrollView:nil];
+    [self setShareLocationLabel:nil];
+    [self setSmsButton:nil];
+    [self setTwitterButton:nil];
+    [self setFacebookButton:nil];
+    [self setEmailButton:nil];
+    [self setSmsButton:nil];
     [super viewDidUnload];
 }
 @end

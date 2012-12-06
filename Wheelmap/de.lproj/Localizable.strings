@@ -13,6 +13,11 @@
 "No" = "Nein";
 "LeaveApp" = "Wollen Sie die App wirklich verlassen?";
 
+"twitter" = "Twitter";
+"facebook" = "Facebook";
+"email" = "E-Mail";
+"sms" = "SMS";
+
 "WheelchairAccessYes" = "Voll Rollstuhlgerecht";
 "WheelchairAccessLimited" = "Teilweise Rollstuhlgerecht";
 "WheelchairAccessNo" = "Nicht Rollstuhlgerecht";
@@ -45,3 +50,5 @@
 "EditPOIViewSetMarkerButton" = "Markierung setzen";
 
 "CommentViewLabel" = "Hier findest du weitere Infos uir Rollstuhlgerechtigkeit des Ortes";
+"ShareLocationLabel" = "Ich habe folgenden Ort auf Wheelmap.org gefunden:";
+"AskFriendsLabel" = "Weißt du ob folgender Ort rollstuhlgerecht ist?";

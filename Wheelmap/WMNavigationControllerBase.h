@@ -36,4 +36,7 @@ WMCategoryFilterPopoverViewDelegate>
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 
+-(void)clearWheelChairFilterStatus;
+-(void)clearCategoryFilterStatus;
+
 @end

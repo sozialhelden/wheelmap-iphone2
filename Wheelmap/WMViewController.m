@@ -37,6 +37,10 @@
 {
     [super viewWillAppear:animated];
 
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.titleView = [[UIView alloc] init];
+    }
 }
 
 
@@ -44,6 +48,17 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    self.navigationBarTitle = title;
+}
+
+-(NSString*)title
+{
+    return [super title];
 }
 
 @end
