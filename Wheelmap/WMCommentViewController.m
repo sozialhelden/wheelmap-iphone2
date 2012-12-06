@@ -28,6 +28,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.commentText.text = self.currentNode.wheelchair_description;
+    self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", @"");
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,6 +39,7 @@
 
 - (void)viewDidUnload {
     [self setCommentText:nil];
+    [self setCommentLabel:nil];
     [super viewDidUnload];
 }
 @end

@@ -43,3 +43,5 @@
 "EditPOIViewWebsiteLabel" = "Website";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Set Marker";
+
+"CommentViewLabel" = "Here you can find additional information about the wheelchair accessibility of the location";

@@ -61,7 +61,8 @@
     [self styleInputView:self.websiteInputView];
     [self styleInputView:self.phoneInputView];
     
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, 900)];
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 10)];
+
 }
 
 

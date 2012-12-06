@@ -15,7 +15,6 @@
 #import "WMCommentViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
-#import "WMMoreInfoViewController.h"
 
 
 #define STARTLEFT 15
@@ -117,21 +116,7 @@
     // UIVIEW with 4 Buttons
     [self createAndAddFourButtonView];
 
-    // MORE INFO BUTTON
-    UIImage *moreInfo = [UIImage imageNamed:@"details_btn-additional-info.png"];
-    self.moreInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.moreInfoButton.frame = CGRectMake(10, 480+self.gabIfStatusUnknown, moreInfo.size.width, moreInfo.size.height);
-    [self.moreInfoButton setTitle:NSLocalizedString(@"DetailsViewMoreInfoButtonLabel", @"") forState:UIControlStateNormal];
-    [self.moreInfoButton setBackgroundImage: moreInfo forState: UIControlStateNormal];
-    self.moreInfoButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    [self.moreInfoButton setContentEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
-    [self.moreInfoButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [self.moreInfoButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [self.moreInfoButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
-    [self.moreInfoButton addTarget:self action:@selector(showMoreInfoView) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.moreInfoButton];
-    
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 550 + self.gabIfStatusUnknown);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 520 + self.gabIfStatusUnknown);
     [self.view addSubview:self.scrollView];
     
 }
@@ -196,28 +181,22 @@
     UIImage *buttonBackgroundImage = [UIImage imageNamed:@"details_btn-more-active.png"];
     UIImage *buttonBackgroundImageDisabled = [UIImage imageNamed:@"details_btn-more-inactive.png"];
     
-    int buttonWidth = buttonBackgroundImage.size.width;
-    int buttonHeight = buttonBackgroundImage.size.height;
-    
     self.fourButtonView = [UIView new];
     self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
-  //  self.fourButtonView.backgroundColor = [UIColor greenColor];
-
-    
+   // self.fourButtonView.backgroundColor = [UIColor greenColor];
    
-    
-    int imagePlusGab = buttonWidth + (((320-40)-(4*buttonWidth)) / 3);
+    int buttonWidth = 68;
+    int buttonHeight = 62;
+    int imagePlusGab = buttonWidth + (((300)-(4*buttonWidth)) / 3);
     int gabBetweenLabels = 3;
     int labelWidth = self.fourButtonView.frame.size.width / 4 - gabBetweenLabels;
     int startLabelX = (labelWidth-buttonWidth)/2;
     
     // PHONE
     self.callButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.callButton.frame = CGRectMake(10, 0,buttonWidth,buttonHeight);
-    [self.callButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
-    [self.callButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
-    [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-active.png"] forState: UIControlStateNormal];
-    [self.callButton setImage: [UIImage imageNamed:@"details_btn-more-phone-inactive.png"] forState: UIControlStateDisabled];
+    self.callButton.frame = CGRectMake(0, 0,buttonWidth,buttonHeight);
+    [self.callButton setImage: [UIImage imageNamed:@"more-buttons_phone.png"] forState: UIControlStateNormal];
+    [self.callButton setImage: [UIImage imageNamed:@"more-buttons_phone-deactive.png"] forState: UIControlStateDisabled];
     [self.callButton addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
 
     UILabel *callLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewCallLabel", @"")];
@@ -225,11 +204,9 @@
 
     // WEBSITE
     self.websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.websiteButton.frame = CGRectMake(imagePlusGab+10, 0,buttonWidth,buttonHeight);
-    [self.websiteButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
-    [self.websiteButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
-    [self.websiteButton setImage: [UIImage imageNamed:@"details_btn-more-url-active.png"] forState: UIControlStateNormal];
-    [self.websiteButton setImage: [UIImage imageNamed:@"details_btn-more-url-inactive.png"] forState: UIControlStateDisabled];
+    self.websiteButton.frame = CGRectMake(imagePlusGab+0, 0,buttonWidth,buttonHeight);
+    [self.websiteButton setImage: [UIImage imageNamed:@"more-buttons_url.png"] forState: UIControlStateNormal];
+    [self.websiteButton setImage: [UIImage imageNamed:@"more-buttons_url-deactive.png"] forState: UIControlStateDisabled];
     [self.websiteButton addTarget:self action:@selector(openWebpage) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *websiteLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewWebsiteLabel", @"")];
@@ -237,11 +214,9 @@
 
     // COMMENT
     self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.commentButton.frame = CGRectMake(2*imagePlusGab+10, 0,buttonWidth,buttonHeight);
-    [self.commentButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
-    [self.commentButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
-    [self.commentButton setImage: [UIImage imageNamed:@"details_btn-more-comment-active.png"] forState: UIControlStateNormal];
-    [self.commentButton setImage: [UIImage imageNamed:@"details_btn-more-comment-inactive.png"] forState: UIControlStateDisabled];
+    self.commentButton.frame = CGRectMake(2*imagePlusGab+0, 0,buttonWidth,buttonHeight);
+    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info.png"] forState: UIControlStateNormal];
+    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info-deactive.png"] forState: UIControlStateDisabled];
     [self.commentButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *infoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"")];
@@ -249,11 +224,11 @@
 
     // ROUTE
     self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.naviButton.frame = CGRectMake(3*imagePlusGab+10, 0,buttonWidth,buttonHeight);
+    self.naviButton.frame = CGRectMake(3*imagePlusGab+0, 0,buttonWidth,buttonHeight);
     [self.naviButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
     [self.naviButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
-    [self.naviButton setImage: [UIImage imageNamed:@"details_btn-more-route-active.png"] forState: UIControlStateNormal];
-    [self.naviButton setImage: [UIImage imageNamed:@"details_btn-more-route-inactive.png"] forState: UIControlStateDisabled];
+    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route.png"] forState: UIControlStateNormal];
+    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route-deactive.png"] forState: UIControlStateDisabled];
     [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewRouteLabel", @"")];
@@ -305,7 +280,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 640);
+    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 10);
     self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
     // MAP
     CLLocationCoordinate2D poiLocation;
@@ -540,12 +515,15 @@
 }
 
 
--(void)call {
+- (void) call {
     
-    
+    NSString *phoneLinkString = [NSString stringWithFormat:@"tel:%@", self.node.phone];
+    NSURL *phoneLinkURL = [NSURL URLWithString:phoneLinkString];
+    [[UIApplication sharedApplication] openURL:phoneLinkURL];
+
 }
 
--(void)openWebpage {
+- (void)openWebpage {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
     actionSheet.tag = 0;
     [actionSheet showInView:self.view];
@@ -556,13 +534,6 @@
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
     vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void) showMoreInfoView {
-    WMMoreInfoViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMoreInfoViewController"];
-    vc.node = self.node;
-    vc.title = NSLocalizedString(@"MoreInfoViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 

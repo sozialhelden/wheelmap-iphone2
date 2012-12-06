@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *commentText;
 @property (strong, nonatomic) Node *currentNode;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
 @end
