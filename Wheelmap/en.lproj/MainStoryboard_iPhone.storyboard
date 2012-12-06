@@ -168,10 +168,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="start_icon-credits.png" width="30" height="30"/>
-        <image name="start_icon-login.png" width="30" height="30"/>
-        <image name="start_logo.png" width="180" height="45"/>
-        <image name="start_searchbar.png" width="280" height="40"/>
+        <image name="start_icon-credits.png" width="16" height="16"/>
+        <image name="start_icon-login.png" width="16" height="16"/>
+        <image name="start_logo.png" width="16" height="16"/>
+        <image name="start_searchbar.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

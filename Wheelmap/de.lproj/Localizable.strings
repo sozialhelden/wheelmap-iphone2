@@ -43,3 +43,5 @@
 "EditPOIViewWebsiteLabel" = "Webseite";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Markierung setzen";
+
+"CommentViewLabel" = "Hier findest du weitere Infos uir Rollstuhlgerechtigkeit des Ortes";
