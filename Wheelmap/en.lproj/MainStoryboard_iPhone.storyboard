@@ -51,6 +51,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="5Ta-cN-i2J" kind="modal" id="VS7-D1-lJ0"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="?????? Orte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l6u-5v-jvR" customClass="WMLabel">
                                 <rect key="frame" x="58" y="420" width="205" height="28"/>
@@ -154,24 +157,63 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8iQ-N6-wam">
-                                <rect key="frame" x="20" y="397" width="280" height="44"/>
+                                <rect key="frame" x="15" y="390" width="290" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button" image="buttons_btn-signup.png">
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Neu registrieren" backgroundImage="buttons_btn-signup.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="oC4-gD-8Gt"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="FEn-2i-HbD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_background.png" id="7Vz-L1-bT3">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Anmelden" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RUF-Rd-CnZ">
+                                        <rect key="frame" x="89" y="14" width="143" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="P1u-e5-3lQ">
+                                        <rect key="frame" x="240" y="6" width="72" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                        <state key="normal" title="Fertig" backgroundImage="buttons_btn.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="donePressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="0tq-vQ-ldC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="view" destination="equ-e3-EoV" id="Ohj-YU-fh4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9Y-kZ-aNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1345" y="-224"/>
+            <point key="canvasLocation" x="463" y="355"/>
         </scene>
         <!--Navigation Controller Base-->
         <scene sceneID="UTl-qZ-At0">
@@ -197,6 +239,8 @@
     </scenes>
     <resources>
         <image name="buttons_btn-signup.png" width="290" height="50"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
         <image name="start_icon-credits.png" width="30" height="30"/>
         <image name="start_icon-login.png" width="30" height="30"/>
         <image name="start_logo.png" width="180" height="45"/>
@@ -206,6 +250,8 @@
         <class className="WMDashboardViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDashboardViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pressedCategoriesButton:"/>
+                <relationship kind="action" name="pressedContributeButton:"/>
                 <relationship kind="action" name="pressedMapButton:"/>
                 <relationship kind="action" name="pressedNodeListButton:"/>
             </relationships>
@@ -215,6 +261,10 @@
         </class>
         <class className="WMLoginViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMLoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="donePressed:"/>
+                <relationship kind="action" name="loginPressed:"/>
+            </relationships>
         </class>
         <class className="WMMapViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapViewController.h"/>
@@ -227,11 +277,11 @@
         <class className="WMNavigationControllerBase" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNavigationControllerBase.h"/>
         </class>
-        <class className="WMNodeListViewController" superclassName="WMTableViewController">
+        <class className="WMNodeListViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNodeListViewController.h"/>
-        </class>
-        <class className="WMTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="WMViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>

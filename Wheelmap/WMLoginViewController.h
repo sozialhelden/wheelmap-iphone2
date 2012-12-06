@@ -10,4 +10,7 @@
 
 @interface WMLoginViewController : WMViewController
 
+- (IBAction)loginPressed:(id)sender;
+- (IBAction)donePressed:(id)sender;
+
 @end

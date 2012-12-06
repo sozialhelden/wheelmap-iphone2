@@ -37,4 +37,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)loginPressed:(id)sender {
+
+}
+
+- (IBAction)donePressed:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 @end
