@@ -31,7 +31,6 @@
 	// Do any additional setup after loading the view.
     
     self.title = @"Kategorien";
-    self.navigationBarTitle = @"Kategorien";
     
     
     dataManager = [[WMDataManager alloc] init];
