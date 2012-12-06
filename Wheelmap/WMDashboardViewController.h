@@ -7,8 +7,14 @@
 //
 
 #import "WMViewController.h"
+#import "WMDashboardButton.h"
 
 @interface WMDashboardViewController : WMViewController
+
+@property (nonatomic, strong) WMDashboardButton *nearbyButton;
+@property (nonatomic, strong) WMDashboardButton *mapButton;
+@property (nonatomic, strong) WMDashboardButton *categoriesButton;
+@property (nonatomic, strong) WMDashboardButton *helpButton;
 
 -(IBAction)pressedNodeListButton:(id)sender;
 -(IBAction)pressedMapButton:(id)sender;
