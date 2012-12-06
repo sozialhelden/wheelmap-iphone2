@@ -108,6 +108,13 @@
 		D5A102CD166CF27E00558BF7 /* WMCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A102CC166CF27E00558BF7 /* WMCommentViewController.m */; };
 		D5E0F0DE1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */; };
 		D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */; };
+		D5EE56AD166E4C52008E389D /* textfield_-share.png in Resources */ = {isa = PBXBuildFile; fileRef = D5EE56AB166E4C52008E389D /* textfield_-share.png */; };
+		D5EE56AE166E4C52008E389D /* textfield_-share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5EE56AC166E4C52008E389D /* textfield_-share@2x.png */; };
+		D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
+		D5EE56B4166E6B16008E389D /* WMMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B3166E6B15008E389D /* WMMoreInfoViewController.m */; };
+		DB56839D166E97FC005B2EE5 /* misc_position-info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839B166E97FC005B2EE5 /* misc_position-info.png */; };
+		DB56839E166E97FC005B2EE5 /* misc_position-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */; };
+		DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
 		DB6E4770166B9B7A00D9CAD9 /* WMDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */; };
 		DB6E4777166BF0BB00D9CAD9 /* marker_limited.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */; };
 		DB6E4778166BF0BB00D9CAD9 /* marker_no.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4773166BF0BB00D9CAD9 /* marker_no.png */; };
@@ -387,6 +394,16 @@
 		D5E0F10D1667F33A00B78F57 /* details_background-thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_background-thumbnail@2x.png"; path = "/Users/andreager/Desktop/Git/wheelmap-iphone2/Wheelmap/Resources/details_background-thumbnail@2x.png"; sourceTree = "<absolute>"; };
 		D5EE56A3166E1378008E389D /* WMEditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIViewController.h; sourceTree = "<group>"; };
 		D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
+		D5EE56AB166E4C52008E389D /* textfield_-share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield_-share.png"; sourceTree = "<group>"; };
+		D5EE56AC166E4C52008E389D /* textfield_-share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield_-share@2x.png"; sourceTree = "<group>"; };
+		D5EE56AF166E6604008E389D /* WMSetMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSetMarkerViewController.h; sourceTree = "<group>"; };
+		D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSetMarkerViewController.m; sourceTree = "<group>"; };
+		D5EE56B2166E6B15008E389D /* WMMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMoreInfoViewController.h; sourceTree = "<group>"; };
+		D5EE56B3166E6B15008E389D /* WMMoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMoreInfoViewController.m; sourceTree = "<group>"; };
+		DB56839B166E97FC005B2EE5 /* misc_position-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info.png"; sourceTree = "<group>"; };
+		DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info@2x.png"; sourceTree = "<group>"; };
+		DB5683A0166E9F35005B2EE5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
+		DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryViewController.m; sourceTree = "<group>"; };
 		DB6E476E166B9B7A00D9CAD9 /* WMDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardViewController.h; sourceTree = "<group>"; };
 		DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardViewController.m; sourceTree = "<group>"; };
 		DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_limited.png; sourceTree = "<group>"; };
@@ -689,6 +706,7 @@
 				DBA621CE1668F303009FA5DF /* DetailView */,
 				D5EFDE211668E45B00CEB2C0 /* Navigationbar */,
 				D5EFDE201668E44100CEB2C0 /* Marker */,
+				DB56839A166E97FC005B2EE5 /* Mithilfe */,
 				D5EFDE1E1668E42B00CEB2C0 /* Toolbar */,
 			);
 			path = Resources;
@@ -919,8 +937,19 @@
 		DB568394166E6F4E005B2EE5 /* CategoryScreen */ = {
 			isa = PBXGroup;
 			children = (
+				DB5683A0166E9F35005B2EE5 /* WMCategoryViewController.h */,
+				DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */,
 			);
 			name = CategoryScreen;
+			sourceTree = "<group>";
+		};
+		DB56839A166E97FC005B2EE5 /* Mithilfe */ = {
+			isa = PBXGroup;
+			children = (
+				DB56839B166E97FC005B2EE5 /* misc_position-info.png */,
+				DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */,
+			);
+			path = Mithilfe;
 			sourceTree = "<group>";
 		};
 		DB6E477C166BF21D00D9CAD9 /* Dashboard */ = {
@@ -952,6 +981,8 @@
 		DBA621CE1668F303009FA5DF /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				D5EE56AB166E4C52008E389D /* textfield_-share.png */,
+				D5EE56AC166E4C52008E389D /* textfield_-share@2x.png */,
 				D5406D50166A49530016E275 /* Social */,
 				D56F71F0166A3327002CE692 /* WheelAccess */,
 				D56F71EA166A3180002CE692 /* PhotoUpload */,
@@ -1096,6 +1127,10 @@
 				D5A102CC166CF27E00558BF7 /* WMCommentViewController.m */,
 				D5EE56A3166E1378008E389D /* WMEditPOIViewController.h */,
 				D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */,
+				D5EE56AF166E6604008E389D /* WMSetMarkerViewController.h */,
+				D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */,
+				D5EE56B2166E6B15008E389D /* WMMoreInfoViewController.h */,
+				D5EE56B3166E6B15008E389D /* WMMoreInfoViewController.m */,
 			);
 			name = NodeDetailScreen;
 			sourceTree = "<group>";
@@ -1352,6 +1387,10 @@
 				DB6E47D9166CCAFD00D9CAD9 /* details_btn-more-url-active@2x.png in Resources */,
 				DB6E47DA166CCAFD00D9CAD9 /* details_btn-more-url-inactive.png in Resources */,
 				DB6E47DB166CCAFD00D9CAD9 /* details_btn-more-url-inactive@2x.png in Resources */,
+				D5EE56AD166E4C52008E389D /* textfield_-share.png in Resources */,
+				D5EE56AE166E4C52008E389D /* textfield_-share@2x.png in Resources */,
+				DB56839D166E97FC005B2EE5 /* misc_position-info.png in Resources */,
+				DB56839E166E97FC005B2EE5 /* misc_position-info@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1437,6 +1476,9 @@
 				98B15792166BB17F007FD897 /* NodeType.m in Sources */,
 				D5A102CD166CF27E00558BF7 /* WMCommentViewController.m in Sources */,
 				D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */,
+				D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */,
+				D5EE56B4166E6B16008E389D /* WMMoreInfoViewController.m in Sources */,
+				DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

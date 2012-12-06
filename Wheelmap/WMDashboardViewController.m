@@ -10,6 +10,7 @@
 #import "WMNodeListViewController.h"
 #import "WMMapViewController.h"
 #import "WMNavigationControllerBase.h"
+#import "WMCategoryViewController.h"
 
 @interface WMDashboardViewController ()
 
@@ -97,7 +98,9 @@
 
 -(IBAction)pressedCategoriesButton:(id)sender
 {
+    WMCategoryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryViewController"];
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

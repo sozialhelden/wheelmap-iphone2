@@ -10,6 +10,8 @@
 
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
+#import "WMSetMarkerViewController.h"
+#import "NodeType.h"
 
 @interface WMEditPOIViewController ()
 
@@ -36,6 +38,14 @@
     self.navigationBarTitle = self.title;
     
     [self setAccessState];
+    self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
+    self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
+    self.infoLabel.text = NSLocalizedString(@"EditPOIViewInfoLabel", @"");
+    self.addressLabel.text = NSLocalizedString(@"EditPOIViewAddressLabel", @"");
+    self.websiteLabel.text = NSLocalizedString(@"EditPOIViewWebsiteLabel", @"");
+    self.phoneLabel.text = NSLocalizedString(@"EditPOIViewPhoneLabel", @"");
+    [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
+    [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
     
     [self styleInputView:self.nameInputView];
     [self styleInputView:self.categoryInputView];
@@ -44,12 +54,26 @@
     [self styleInputView:self.addressInputView];
     [self styleInputView:self.websiteInputView];
     [self styleInputView:self.phoneInputView];
+    
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, 900)];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
+
+    self.nameTextField.text = self.node.name;
+    self.categoryTextField.text = self.node.node_type.localized_name;
+    self.infoTextView.text = self.node.wheelchair_description;
     
+    self.streetTextField.text = self.node.street;
+    self.housenumberTextField.text = self.node.housenumber;
+    self.postcodeTextField.text = self.node.postcode;
+    self.cityTextField.text = self.node.city;
+    self.websiteTextField.text = self.node.website;
+    
+    self.phoneTextField.text = self.node.phone;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -69,6 +93,23 @@
     [self setWebsiteInputView:nil];
     [self setPhoneInputView:nil];
     [self setWheelAccessButton:nil];
+    [self setNameTextField:nil];
+    [self setCategoryTextField:nil];
+    [self setWebsiteTextField:nil];
+    [self setPhoneTextField:nil];
+    [self setNameLabel:nil];
+    [self setCategoryLabel:nil];
+    [self setPosition:nil];
+    [self setInfoLabel:nil];
+    [self setWebsiteLabel:nil];
+    [self setPhoneLabel:nil];
+    [self setAddressLabel:nil];
+    [self setStreetTextField:nil];
+    [self setHousenumberTextField:nil];
+    [self setPostcodeTextField:nil];
+    [self setCityTextField:nil];
+    [self setSetMarkerButton:nil];
+    [self setInfoTextView:nil];
     [super viewDidUnload];
 }
 
@@ -106,22 +147,19 @@
 }
 
 
-- (IBAction)accessButtonPressed:(UIButton*)button {
-  
-    if (button.tag == 0) {
+- (IBAction)accessButtonPressed:(NSString*)wheelchairAccess {
+    
+    if (wheelchairAccess == @"yes") {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-      //  self.node.wheelchair = @"yes";
-    } else if (button.tag == 1) {
+    } else if (wheelchairAccess == @"limited") {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-      //  self.node.wheelchair = @"limited";
-    } else if (button.tag == 2) {
+    } else if (wheelchairAccess == @"no") {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-       // self.node.wheelchair = @"no";
     }
-  
+    self.node.wheelchair = wheelchairAccess;
 }
 
 - (IBAction)showAccesOptions:(id)sender {
@@ -129,4 +167,16 @@
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (void) pushToSetMarkerView {
+    WMSetMarkerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMSetMarkerViewController"];
+    vc.node = self.node;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) saveEditedData {
+//    [self.delegate accessButtonPressed:self.wheelchairAccess];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

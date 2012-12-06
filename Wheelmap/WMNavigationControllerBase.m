@@ -11,9 +11,11 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
 #import "WMDetailViewController.h"
+#import "WMWheelchairStatusViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
+#import "WMCategoryViewController.h"
 #import "Node.h"
 #import "Category.h"
 
@@ -316,9 +318,6 @@
 
 -(void)changeScreenStatusFor:(UIViewController*)vc
 {
-    // show/hide navigation bar. only hide it on the dashboard!
-    [self.customNavigationBar showNavigationBar];
-    
     // if the current navigation stack size is 2,then we always show DashboardButton on the left
     WMNavigationBarLeftButtonStyle leftButtonStyle;
     WMNavigationBarRightButtonStyle rightButtonStyle;
@@ -349,7 +348,7 @@
                 [self.customToolBar showAllButtons];
                 break;
             case kWMNodeListViewControllerUseCaseContribute:
-                nodeListVC.navigationBarTitle = @"MITHELFEN";
+                nodeListVC.navigationBarTitle = @"Mithelfen";
                 [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
                 [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
@@ -383,6 +382,8 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
         
+    } else if ([vc isKindOfClass:[WMCategoryViewController class]]) {
+        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     
     self.customNavigationBar.leftButtonStyle = leftButtonStyle;
@@ -430,8 +431,12 @@
 
 -(void)pressedSaveButton:(WMNavigationBar *)navigationBar
 {
-    NSLog(@"[NavigationControllerBase] pressed save button!");
+    WMViewController* currentViewController = [self.viewControllers lastObject];
+    if ([currentViewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
+        [(WMWheelchairStatusViewController*)currentViewController saveAccessStatus];
+    }
 }
+
 #pragma mark - WMToolBar Delegate
 -(void)pressedToggleButton:(WMButton *)sender
 {

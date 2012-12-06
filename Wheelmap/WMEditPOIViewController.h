@@ -24,7 +24,28 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *wheelAccessButton;
 
-- (IBAction)showAccesOptions:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *categoryTextField;
+@property (weak, nonatomic) IBOutlet UITextField *websiteTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
+@property (weak, nonatomic) IBOutlet UITextView *infoTextView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *position;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *websiteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UITextField *streetTextField;
+@property (weak, nonatomic) IBOutlet UITextField *housenumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField *postcodeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *cityTextField;
+
+@property (weak, nonatomic) IBOutlet UIButton *setMarkerButton;
+
+
+- (IBAction)showAccesOptions:(id)sender;
+- (void) saveEditedData;
 
 @end

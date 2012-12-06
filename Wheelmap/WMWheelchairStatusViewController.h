@@ -15,8 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *limitedButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
 @property (strong, nonatomic) id delegate;
+@property (nonatomic, strong) NSString *wheelchairAccess;
 
 - (IBAction)accessButtonPressed:(id)sender;
-
+- (void) saveAccessStatus;
 
 @end

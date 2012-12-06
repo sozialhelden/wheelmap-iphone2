@@ -30,3 +30,12 @@
 "DetailsViewUploadOptionPhotoAlbum" = "Choose Existing";
 
 "DetailsViewMoreInfoButtonLabel" = "More Information";
+
+"EditPOIViewNameLabel" = "Name";
+"EditPOIViewCategoryLabel" = "Category";
+"EditPOIViewPositionLabel" = "Position";
+"EditPOIViewPhoneLabel" = "Phone";
+"EditPOIViewAddressLabel" = "Address";
+"EditPOIViewWebsiteLabel" = "Website";
+"EditPOIViewInfoLabel" = "Info";
+"EditPOIViewSetMarkerButton" = "Set Marker";

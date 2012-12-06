@@ -15,8 +15,9 @@ typedef enum {
     kWMNodeListViewControllerUseCaseCategory
 } WMNodeListViewControllerUseCase;
 
-@interface WMNodeListViewController : WMTableViewController <WMNodeListView>
+@interface WMNodeListViewController : WMViewController <WMNodeListView>
 
-
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) NSNumber* selectedCategoryID;
 @property (nonatomic) WMNodeListViewControllerUseCase useCase;
 @end
