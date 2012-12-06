@@ -103,6 +103,12 @@
     self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.postcodeAndCityLabel];
     
+    // COMPASS
+    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
+    self.compassView = [[UIImageView alloc] initWithFrame:CGRectMake(260, 235, compassImage.size.width, compassImage.size.height)];
+    self.compassView.image = compassImage;
+    [self.scrollView addSubview:self.compassView];
+    
     // DISTANCE
     self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, 265+self.gabIfStatusUnknown, 60, 20)];
     //self.distanceLabel.backgroundColor = [UIColor orangeColor];
