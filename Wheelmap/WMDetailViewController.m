@@ -520,6 +520,7 @@
 - (void) showAccessOptions {
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
+    vc.node = self.node;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
     

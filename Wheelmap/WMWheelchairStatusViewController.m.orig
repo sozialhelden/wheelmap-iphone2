@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+<<<<<<< HEAD
     
     UIImage  *statusYesImage = [UIImage imageNamed:@"details_label-yes.png"];
 
@@ -74,6 +75,10 @@
     [self.view addSubview:self.noButton];
     
  
+=======
+    self.title = @"Bearbeiten";
+    self.navigationBarTitle = self.title;
+>>>>>>> 05a813e9664631749b6c5903eb4649ac3b55958d
 }
 
 - (void) viewWillAppear:(BOOL)animated {

@@ -188,7 +188,7 @@
                                 <rect key="frame" x="15" y="397" width="290" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Neu registrieren" backgroundImage="buttons_btn-signup.png">
+                                <state key="normal" backgroundImage="buttons_btn-signup.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -207,7 +207,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Anmelden" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RUF-Rd-CnZ">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RUF-Rd-CnZ">
                                         <rect key="frame" x="89" y="14" width="143" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
@@ -218,7 +218,7 @@
                                         <rect key="frame" x="240" y="6" width="72" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" title="Fertig" backgroundImage="buttons_btn.png">
+                                        <state key="normal" backgroundImage="buttons_btn.png">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -236,39 +236,39 @@
                                 <rect key="frame" x="83" y="64" width="155" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="blt-ZI-Wkm">
-                                <rect key="frame" x="20" y="102" width="280" height="67"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="blt-ZI-Wkm">
+                                <rect key="frame" x="15" y="102" width="290" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lorem ipsum dolor sit amet, consetetur sadipscing asfn khskf" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="viA-74-l5N">
-                                <rect key="frame" x="20" y="336" width="280" height="51"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="viA-74-l5N">
+                                <rect key="frame" x="15" y="336" width="290" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Benutzername" minimumFontSize="17" clearButtonMode="whileEditing" id="SYC-n0-7i9">
-                                <rect key="frame" x="20" y="181" width="280" height="40"/>
+                                <rect key="frame" x="9" y="181" width="303" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Passwort" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" id="pkX-PT-U9F">
-                                <rect key="frame" x="20" y="241" width="280" height="40"/>
+                                <rect key="frame" x="9" y="241" width="303" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7L1-bg-SOP">
-                                <rect key="frame" x="228" y="288" width="72" height="37"/>
+                                <rect key="frame" x="233" y="289" width="72" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="Login" backgroundImage="buttons_btn.png">
+                                <state key="normal" backgroundImage="buttons_btn.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -283,7 +283,13 @@
                         <color key="backgroundColor" red="0.92941182851791382" green="0.92549026012420654" blue="0.91764712333679199" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <connections>
+                        <outlet property="bottomTextLabel" destination="viA-74-l5N" id="2hB-SM-jnS"/>
+                        <outlet property="doneButton" destination="P1u-e5-3lQ" id="XAo-LM-gul"/>
+                        <outlet property="loginButton" destination="7L1-bg-SOP" id="quU-fP-j0G"/>
                         <outlet property="passwordTextField" destination="pkX-PT-U9F" id="T8B-Rv-5yj"/>
+                        <outlet property="registerButton" destination="8iQ-N6-wam" id="cHx-nD-F4D"/>
+                        <outlet property="titleLabel" destination="RUF-Rd-CnZ" id="gbY-hV-1ME"/>
+                        <outlet property="topTextLabel" destination="blt-ZI-Wkm" id="9QZ-yz-rWb"/>
                         <outlet property="usernameTextField" destination="SYC-n0-7i9" id="0xP-oR-mL0"/>
                         <outlet property="view" destination="equ-e3-EoV" id="Ohj-YU-fh4"/>
                     </connections>
@@ -349,7 +355,13 @@
                 <relationship kind="action" name="donePressed:"/>
                 <relationship kind="action" name="loginPressed:"/>
                 <relationship kind="action" name="registerPressed:"/>
+                <relationship kind="outlet" name="bottomTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="registerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topTextLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>

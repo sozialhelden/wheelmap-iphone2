@@ -16,6 +16,13 @@
 @property (nonatomic, weak) IBOutlet UITextField *usernameTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 
+@property (nonatomic, weak) IBOutlet UIButton *doneButton;
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+@property (nonatomic, weak) IBOutlet UIButton *registerButton;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *topTextLabel;
+@property (nonatomic, weak) IBOutlet UILabel *bottomTextLabel;
+
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)donePressed:(id)sender;
 - (IBAction)registerPressed:(id)sender;

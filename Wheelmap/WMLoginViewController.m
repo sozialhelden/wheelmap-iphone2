@@ -36,6 +36,14 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
+    
+    self.titleLabel.text = NSLocalizedString(@"Anmelden", nil);
+    self.topTextLabel.text = NSLocalizedString(@"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.", nil);
+    self.bottomTextLabel.text = NSLocalizedString(@"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.", nil);
+    [self.doneButton setTitle:NSLocalizedString(@"Fertig", nil) forState:UIControlStateNormal];
+    [self.loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
+    [self.registerButton setTitle:NSLocalizedString(@"Neu registrieren", nil) forState:UIControlStateNormal];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -103,13 +111,7 @@
 }
 
 - (void)keyboardWillHide:(NSNotification *)n
-{
-    NSDictionary* userInfo = [n userInfo];
-    
-    // get the size of the keyboard
-    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    
+{    
     // resize the scrollview
     CGRect viewFrame = self.view.frame;
     // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
@@ -131,11 +133,6 @@
     if (keyboardIsShown) {
         return;
     }
-    
-    NSDictionary* userInfo = [n userInfo];
-    
-    // get the size of the keyboard
-    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     // resize the noteView
     CGRect viewFrame = self.view.frame;
