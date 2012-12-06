@@ -24,6 +24,10 @@
 		03F30C4C1670B06700241466 /* more-buttons_url-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C3C1670B06700241466 /* more-buttons_url-deactive@2x.png */; };
 		03F30C4D1670B06700241466 /* more-buttons_url.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C3D1670B06700241466 /* more-buttons_url.png */; };
 		03F30C4E1670B06700241466 /* more-buttons_url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C3E1670B06700241466 /* more-buttons_url@2x.png */; };
+		03F30C511670B5CC00241466 /* WMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C501670B5CC00241466 /* WMUser.m */; };
+		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
+		03F30C5F1670DDCC00241466 /* buttons_btn-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C5D1670DDCC00241466 /* buttons_btn-signup.png */; };
+		03F30C601670DDCC00241466 /* buttons_btn-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C5E1670DDCC00241466 /* buttons_btn-signup@2x.png */; };
 		980718DC1667684300580112 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 980718DB1667684300580112 /* Asset.m */; };
 		980718F31667CC0D00580112 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 980718F21667CC0D00580112 /* Category.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -258,6 +262,12 @@
 		03F30C3C1670B06700241466 /* more-buttons_url-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_url-deactive@2x.png"; sourceTree = "<group>"; };
 		03F30C3D1670B06700241466 /* more-buttons_url.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_url.png"; sourceTree = "<group>"; };
 		03F30C3E1670B06700241466 /* more-buttons_url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_url@2x.png"; sourceTree = "<group>"; };
+		03F30C4F1670B5CC00241466 /* WMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUser.h; sourceTree = "<group>"; };
+		03F30C501670B5CC00241466 /* WMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUser.m; sourceTree = "<group>"; };
+		03F30C531670B80600241466 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
+		03F30C541670B80600241466 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
+		03F30C5D1670DDCC00241466 /* buttons_btn-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup.png"; sourceTree = "<group>"; };
+		03F30C5E1670DDCC00241466 /* buttons_btn-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup@2x.png"; sourceTree = "<group>"; };
 		980718DA1667684300580112 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
 		980718DB1667684300580112 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		980718F11667CC0D00580112 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
@@ -574,6 +584,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03F30C521670B7E200241466 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				03F30C531670B80600241466 /* WMLoginViewController.h */,
+				03F30C541670B80600241466 /* WMLoginViewController.m */,
+			);
+			name = LoginScreen;
+			sourceTree = "<group>";
+		};
+		03F30C5C1670DDB900241466 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				03F30C5D1670DDCC00241466 /* buttons_btn-signup.png */,
+				03F30C5E1670DDCC00241466 /* buttons_btn-signup@2x.png */,
+				03F30C2F1670B06700241466 /* more-buttons_info-deactive@2x.png */,
+				03F30C301670B06700241466 /* more-buttons_info–deactive.png */,
+				03F30C311670B06700241466 /* more-buttons_info.png */,
+				03F30C321670B06700241466 /* more-buttons_info@2x.png */,
+				03F30C331670B06700241466 /* more-buttons_phone-deactive.png */,
+				03F30C341670B06700241466 /* more-buttons_phone-deactive@2x.png */,
+				03F30C351670B06700241466 /* more-buttons_phone.png */,
+				03F30C361670B06700241466 /* more-buttons_phone@2x.png */,
+				03F30C371670B06700241466 /* more-buttons_route-deactive.png */,
+				03F30C381670B06700241466 /* more-buttons_route-deactive@2x.png */,
+				03F30C391670B06700241466 /* more-buttons_route.png */,
+				03F30C3A1670B06700241466 /* more-buttons_route@2x.png */,
+				03F30C3B1670B06700241466 /* more-buttons_url-deactive.png */,
+				03F30C3C1670B06700241466 /* more-buttons_url-deactive@2x.png */,
+				03F30C3D1670B06700241466 /* more-buttons_url.png */,
+				03F30C3E1670B06700241466 /* more-buttons_url@2x.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
@@ -703,22 +747,7 @@
 		98ADC6D1164BEEDA00251943 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				03F30C2F1670B06700241466 /* more-buttons_info-deactive@2x.png */,
-				03F30C301670B06700241466 /* more-buttons_info–deactive.png */,
-				03F30C311670B06700241466 /* more-buttons_info.png */,
-				03F30C321670B06700241466 /* more-buttons_info@2x.png */,
-				03F30C331670B06700241466 /* more-buttons_phone-deactive.png */,
-				03F30C341670B06700241466 /* more-buttons_phone-deactive@2x.png */,
-				03F30C351670B06700241466 /* more-buttons_phone.png */,
-				03F30C361670B06700241466 /* more-buttons_phone@2x.png */,
-				03F30C371670B06700241466 /* more-buttons_route-deactive.png */,
-				03F30C381670B06700241466 /* more-buttons_route-deactive@2x.png */,
-				03F30C391670B06700241466 /* more-buttons_route.png */,
-				03F30C3A1670B06700241466 /* more-buttons_route@2x.png */,
-				03F30C3B1670B06700241466 /* more-buttons_url-deactive.png */,
-				03F30C3C1670B06700241466 /* more-buttons_url-deactive@2x.png */,
-				03F30C3D1670B06700241466 /* more-buttons_url.png */,
-				03F30C3E1670B06700241466 /* more-buttons_url@2x.png */,
+				03F30C5C1670DDB900241466 /* Buttons */,
 				DB6E477C166BF21D00D9CAD9 /* Dashboard */,
 				DBA621CE1668F303009FA5DF /* DetailView */,
 				D5EFDE211668E45B00CEB2C0 /* Navigationbar */,
@@ -743,6 +772,8 @@
 				98CA22D816664C1C00DF0EA3 /* Node.m */,
 				98CA22CA16664C1B00DF0EA3 /* Photo.h */,
 				98CA22CB16664C1B00DF0EA3 /* Photo.m */,
+				03F30C4F1670B5CC00241466 /* WMUser.h */,
+				03F30C501670B5CC00241466 /* WMUser.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -994,6 +1025,7 @@
 		DBA622451668F390009FA5DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				03F30C521670B7E200241466 /* LoginScreen */,
 				DBA622751668F8F4009FA5DF /* NodeListScreen */,
 				DBA622741668F8E8009FA5DF /* NodeDetailScreen */,
 				DBA622731668F8DC009FA5DF /* MapScreen */,
@@ -1378,6 +1410,8 @@
 				03F30C4C1670B06700241466 /* more-buttons_url-deactive@2x.png in Resources */,
 				03F30C4D1670B06700241466 /* more-buttons_url.png in Resources */,
 				03F30C4E1670B06700241466 /* more-buttons_url@2x.png in Resources */,
+				03F30C5F1670DDCC00241466 /* buttons_btn-signup.png in Resources */,
+				03F30C601670DDCC00241466 /* buttons_btn-signup@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1465,6 +1499,8 @@
 				D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */,
 				D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */,
 				03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */,
+				03F30C511670B5CC00241466 /* WMUser.m in Sources */,
+				03F30C551670B80600241466 /* WMLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
