@@ -99,7 +99,6 @@
         
         
     }
-    [self loadNodes];
     
     if (locationManager == nil) {
         locationManager = [[CLLocationManager alloc] init];
@@ -107,15 +106,37 @@
     locationManager.delegate = self;
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
+    
+    [self loadNodes];
 }
 
 - (void) loadNodes
 {
     nodes = [self.dataSource filteredNodeList];
     
+    [self sortNodesByDistance];
+    
     [self.tableView reloadData];
 }
 
+- (void)sortNodesByDistance {
+    
+    for (Node *node in nodes) {
+        CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+        
+        CLLocationDistance distance = [locationManager.location distanceFromLocation:nodeLocation];
+        node.distance = [NSNumber numberWithFloat:distance];
+    }
+    
+    NSArray *sortedArray;
+    sortedArray = [nodes sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSNumber *first = [(Node*)a distance];
+        NSNumber *second = [(Node*)b distance];
+        return [first compare:second];
+    }];
+    
+    nodes = sortedArray;
+}
 
 #pragma mark - Node View Protocol
 
@@ -166,14 +187,12 @@
     // show node type
     cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"?";
     
-    CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
-
-    CLLocationDistance distance = [locationManager.location distanceFromLocation:nodeLocation];
+    
     // show node distance
-    if (distance > 999) {
-        cell.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", distance/1000.0f];
+    if (node.distance.floatValue > 999) {
+        cell.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", node.distance.floatValue/1000.0f];
     } else {
-        cell.distanceLabel.text = [NSString stringWithFormat:@"%.0f m", distance];
+        cell.distanceLabel.text = [NSString stringWithFormat:@"%.0f m", node.distance.floatValue];
     }
 
     return cell;
@@ -219,6 +238,7 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    [self loadNodes];
     [self.tableView reloadData];
 }
 
