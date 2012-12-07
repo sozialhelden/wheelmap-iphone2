@@ -164,7 +164,27 @@
 
 - (void) saveAccessStatus {
     [self.delegate accessButtonPressed:self.wheelchairAccess];
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
+    [dataManager putNode:self.node];
+    
+}
+
+#pragma mark WMDataManager Delegate
+-(void)dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString *)msg
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_SUCESS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    NSLog(@"PUT NODE WHEELCHAIR STATUS SUCCEED. MSG FROM BACKEND: %@", msg);
+    [alert show];
+}
+
+-(void)dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_FAILED", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    
+    NSLog(@"PUT THE NODE WHELLCHAIR STATUS FAILED! %@", error);
 }
 
 @end

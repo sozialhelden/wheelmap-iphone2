@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Node.h"
-
-@interface WMWheelchairStatusViewController : WMViewController
-
+#import "WMDataManager.h"
+@interface WMWheelchairStatusViewController : WMViewController <WMDataManagerDelegate, UIAlertViewDelegate>
+{
+    WMDataManager* dataManager;
+}
 @property (nonatomic, strong) Node *node;
 
 @property (weak, nonatomic) IBOutlet WMButton *yesButton;

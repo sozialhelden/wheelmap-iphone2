@@ -11,6 +11,7 @@
 #import "WMWheelmapAPI.h"
 #import "Asset.h"
 #import "NodeType.h"
+#import "Node.h"
 
 
 #define WMSearchRadius 0.004
@@ -111,6 +112,32 @@
     }
 }
 
+#pragma mark - Post a node
+-(void)putNode:(Node *)node
+{
+    NSLog(@"[WMDataManager] put wheelchair status %@", node.wheelchair);
+    NSString* resource = [NSString stringWithFormat:@"nodes/%@/update_wheelchair", node.id];
+    
+    NSDictionary* parameters = @{@"wheelchair":node.wheelchair};
+    [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:@"PUT"
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingWheelChairStatusWithError:)]) {
+                                                      [self.delegate dataManager:self failedPuttingWheelChairStatusWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingWheelChairStatusWithMsg:)])
+                                                    [self.delegate dataManager:self didFinishPuttingWheelChairStatusWithMsg:JSON[@"message"]];
+                                            }
+                                   startImmediately:YES
+     ];
+
+    
+}
 
 #pragma mark - Sync Resources
 
