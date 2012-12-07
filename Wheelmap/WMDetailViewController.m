@@ -315,6 +315,11 @@
     if (!self.navigationController.toolbarHidden) {
         [self.navigationController setToolbarHidden:YES animated:YES];
     }
+    
+    // MAP
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    self.annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
+    [self.mapView addAnnotation:self.annotation];
 
     [self updateFields];
     
@@ -323,11 +328,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
-    // MAP
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    self.mapView.delegate = self;
-    self.annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
-    [self.mapView addAnnotation:self.annotation];
+    
 
     CLLocationCoordinate2D poiLocation;
     poiLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
