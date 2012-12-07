@@ -6,7 +6,10 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "WMCommentViewController.h"
+
 
 @interface WMCommentViewController ()
 
@@ -31,12 +34,13 @@
     self.navigationBarTitle = self.title;
 
     self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", @"");
+    self.commentText.layer.borderWidth = 1.0f;
+    self.commentText.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [self.commentText.layer setCornerRadius:5.0f];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     self.commentText.text = self.currentNode.wheelchair_description;
-    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX, %@", self.currentNode.wheelchair_description);
-    
 }
 
 - (void)didReceiveMemoryWarning

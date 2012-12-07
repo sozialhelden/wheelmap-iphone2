@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+
 #import "WMMapAnnotation.h"
 
 @class Node;
 
-@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate>
+@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIScrollView *imageScrollView;
@@ -28,9 +30,10 @@
 @property (nonatomic, strong) MKAnnotationView *annotationView;
 
 @property (nonatomic, strong) UIImageView *compassView;
-
+@property (nonatomic, assign) int startY;
 @property (nonatomic, strong) WMMapAnnotation *annotation;
 
+@property (nonatomic, strong) UILabel *headingLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *nodeTypeLabel;
 @property (nonatomic, strong) UILabel *streetLabel;
@@ -44,6 +47,9 @@
 @property (nonatomic, strong) UIButton *commentButton;
 @property (nonatomic, strong) UIButton *naviButton;
 @property (nonatomic, strong) UIButton *shareLocationButton;
+@property (nonatomic, strong) UIButton *askFriendsButton;
+
+@property (nonatomic, retain) CLLocationManager	*locationManager;
 
 
 - (void) pushEditViewController;

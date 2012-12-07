@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+
 #import "WMDetailViewController.h"
 #import "Node.h"
 #import "NodeType.h"
@@ -43,8 +44,10 @@
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
     
+    
     // SCROLLVIEW
     [self.view addSubview:self.scrollView];
+    
     
     // MAPVIEW
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110)];
@@ -111,6 +114,12 @@
     self.compassView.image = compassImage;
     [self.scrollView addSubview:self.compassView];
     
+    self.locationManager=[[CLLocationManager alloc] init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate=self;
+    //Start the compass updates.
+    [self.locationManager startUpdatingHeading];
+    
     startY += 16;
     
     // POSTCODE AND CITY
@@ -135,45 +144,48 @@
     [self createAndAddImageScrollView];
     self.imageScrollView.frame = CGRectMake(0, startY+self.gabIfStatusUnknown, self.view.bounds.size.width, 80);
     
-    startY += 100;
+    startY += self.imageScrollView.frame.size.height+14;
     
     // UIVIEW with 4 Buttons
     [self createAndAddFourButtonView];
-    self.fourButtonView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, 75);
+    self.fourButtonView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, 100);
 
     startY += 85;
     
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, startY + self.gabIfStatusUnknown);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20 + self.gabIfStatusUnknown);
     [self.view addSubview:self.scrollView];
+    
+    // TEST
+    self.headingLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 250, 130, 30)];
+    self.headingLabel.backgroundColor = [UIColor orangeColor];
+    [self.scrollView addSubview:self.headingLabel];
     
 }
 
 - (void) createAskFriendsForStatusButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
-    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [button setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:13];
-    button.titleLabel.numberOfLines = 2;
-    [button setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
-    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    button.titleLabel.textColor = [UIColor darkGrayColor];
+    [self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.askFriendsButton setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
+    self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.askFriendsButton.titleLabel.numberOfLines = 2;
+    [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
+    [self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
 
-    button.frame = CGRectMake(20, 220, self.view.bounds.size.width-40, buttonImage.size.height);
-    [button addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:button];
+    self.askFriendsButton.frame = CGRectMake(20, 220, self.view.bounds.size.width-40, buttonImage.size.height);
+    [self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:self.askFriendsButton];
 }
 
 - (void)createThumbnails {
-    int start = 18+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
-    int gab = 8;
-    
-    UIImage *thumbnailImage = [UIImage imageNamed:@"details_background-thumbnail.png"];
+    int start = 22+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
+    int gab = 16;
     
     for (int i = 0; i < self.imageCount; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(start+i*thumbnailImage.size.width+i*gab, 9, thumbnailImage.size.width, thumbnailImage.size.height)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(start+i*80+i*gab, 10, 85, 60)];
         imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        imageView.layer.borderWidth = 1;
+        imageView.layer.borderWidth = 2;
         [self.imageScrollView addSubview:imageView];
         [self.imageViewsInScrollView addObject:imageView];
     }
@@ -217,7 +229,7 @@
     int buttonHeight = 62;
     int imagePlusGab = buttonWidth + (((300)-(4*buttonWidth)) / 3);
     int gabBetweenLabels = 3;
-    int labelWidth = self.fourButtonView.frame.size.width / 4 - gabBetweenLabels;
+    int labelWidth = 300 / 4 - gabBetweenLabels;
     int startLabelX = (labelWidth-buttonWidth)/2;
     
     // PHONE
@@ -229,7 +241,7 @@
 
     UILabel *callLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewCallLabel", @"")];
     callLabel.frame = CGRectMake(self.callButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
-
+   
     // WEBSITE
     self.websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.websiteButton.frame = CGRectMake(imagePlusGab+0, 0,buttonWidth,buttonHeight);
@@ -312,8 +324,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 10);
-    self.fourButtonView.frame = CGRectMake(10, 390+self.gabIfStatusUnknown, 320-20, 75);
+    self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
     // MAP
     CLLocationCoordinate2D poiLocation;
     poiLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
@@ -330,15 +342,23 @@
 
 - (void) updateFields {
     
+    
     // TEXTFIELDS
+    
     self.titleLabel.text = self.node.name ?: @"?";
     self.nodeTypeLabel.text = self.node.node_type.localized_name ?: @"?";
-    NSString *street = self.node.street ?: @"?";
-    NSString *houseNumber = self.node.housenumber ?: @"?";
-    self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
-    NSString *postcode = self.node.postcode ?: @"?";
-    NSString *city = self.node.city ?: @"?";
-    self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
+
+    
+    if (self.node.street == nil && self.node.housenumber == nil && self.node.postcode == nil && self.node.city == nil) {
+        self.postcodeAndCityLabel.text = @"no info available";
+    } else {
+        NSString *street = self.node.street ?: @"";
+        NSString *houseNumber = self.node.housenumber ?: @"";
+        self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
+        NSString *postcode = self.node.postcode ?: @"";
+        NSString *city = self.node.city ?: @"";
+        self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];   
+    }
     
     [self checkForStatusOfButtons];
     [self setWheelAccessButton];
@@ -376,8 +396,15 @@
 
 - (void)setWheelAccessButton {
     
-    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
-    
+    if (![self.node.wheelchair isEqualToString:@"unknown"] && self.askFriendsButton != nil) {
+        [self.askFriendsButton removeFromSuperview];
+        self.streetLabel.frame = CGRectMake(self.streetLabel.frame.origin.x, self.streetLabel.frame.origin.y-self.gabIfStatusUnknown, self.streetLabel.frame.size.width, self.streetLabel.frame.size.height);
+        self.postcodeAndCityLabel.frame = CGRectMake(self.postcodeAndCityLabel.frame.origin.x, self.postcodeAndCityLabel.frame.origin.y-self.gabIfStatusUnknown, self.postcodeAndCityLabel.frame.size.width, self.postcodeAndCityLabel.frame.size.height);
+        self.compassView.frame = CGRectMake(self.compassView.frame.origin.x, self.compassView.frame.origin.y-self.gabIfStatusUnknown, self.compassView.frame.size.width, self.compassView.frame.size.height);
+        self.distanceLabel.frame = CGRectMake(self.distanceLabel.frame.origin.x, self.distanceLabel.frame.origin.y-self.gabIfStatusUnknown, self.distanceLabel.frame.size.width, self.distanceLabel.frame.size.height);
+        self.imageScrollView.frame = CGRectMake(self.imageScrollView.frame.origin.x, self.imageScrollView.frame.origin.y-self.gabIfStatusUnknown, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
+        self.fourButtonView.frame = CGRectMake(self.fourButtonView.frame.origin.x, self.fourButtonView.frame.origin.y-self.gabIfStatusUnknown, self.fourButtonView.frame.size.width, self.fourButtonView.frame.size.height);
+    }
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
@@ -390,8 +417,11 @@
     } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
-        self.gabIfStatusUnknown = 62;
-        [self createAskFriendsForStatusButton];
+        if (self.askFriendsButton == nil) {
+            self.gabIfStatusUnknown = 62;
+            [self createAskFriendsForStatusButton];
+        }
+  
     }
     
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
@@ -500,15 +530,15 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 
-    if (actionSheet.tag == 0) {
+    if (actionSheet.tag == 0) { // WEBSITE
         if (buttonIndex == 0) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.node.website]];
         }
-    } else if (actionSheet.tag == 1) {
+    } else if (actionSheet.tag == 1) { // MAP
         if (buttonIndex == 0) {
             NSLog(@"XXXXXXXX open map");
         }
-    } else if (actionSheet.tag == 2) {
+    } else if (actionSheet.tag == 2) { // PHOTOUPLOAD
         if (buttonIndex == 0) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentModalViewController:self.imagePicker animated:YES];
@@ -516,7 +546,34 @@
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentModalViewController:self.imagePicker animated:YES];
         }
+    } else if (actionSheet.tag == 3) {
+        NSString *phoneLinkString = [NSString stringWithFormat:@"tel:%@", self.node.phone];
+        NSURL *phoneLinkURL = [NSURL URLWithString:phoneLinkString];
+        [[UIApplication sharedApplication] openURL:phoneLinkURL];
+        
     }
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+    
+	NSLog(@"New magnetic heading: %f", newHeading.magneticHeading);
+    NSLog(@"New true heading: %f", newHeading.trueHeading);
+    
+    float mHeading = newHeading.magneticHeading;
+    [self.headingLabel setText:[NSString stringWithFormat:@"%.2f degress", newHeading.magneticHeading]];
+
+	if ((mHeading >= 350) || (mHeading <= 10)) {
+		[self.headingLabel setText:@"North"];
+    }else if ((mHeading > 80) && (mHeading <= 110)) {
+        [self.headingLabel setText:@"East"];
+    }else if ((mHeading > 170) && (mHeading <= 190)) {
+        [self.headingLabel setText:@"South"];
+    }else if ((mHeading > 280) && (mHeading <= 300)) {
+        [self.headingLabel setText:@"West"];
+    }
+    self.compassView.transform = CGAffineTransformMakeRotation(mHeading);
 }
 
 #pragma mark - button handlers
@@ -558,11 +615,13 @@
 
 
 - (void) call {
-    
-    NSString *phoneLinkString = [NSString stringWithFormat:@"tel:%@", self.node.phone];
-    NSURL *phoneLinkURL = [NSURL URLWithString:phoneLinkString];
-    [[UIApplication sharedApplication] openURL:phoneLinkURL];
 
+    NSString *callString = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Call", @""), self.node.phone];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:callString delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+    actionSheet.tag = 3;
+    [actionSheet showInView:self.view];
+
+    
 }
 
 - (void)openWebpage {

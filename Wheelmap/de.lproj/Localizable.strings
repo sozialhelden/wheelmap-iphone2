@@ -12,6 +12,7 @@
 "Yes" = "Ja";
 "No" = "Nein";
 "LeaveApp" = "Wollen Sie die App wirklich verlassen?";
+"Call" = "Wollen Sie folgende Telefonnummer wählen?";
 
 "twitter" = "Twitter";
 "facebook" = "Facebook";
@@ -52,6 +53,6 @@
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Markierung setzen";
 
-"CommentViewLabel" = "Hier findest du weitere Infos uir Rollstuhlgerechtigkeit des Ortes";
+"CommentViewLabel" = "Hier findest du weitere Infos zur Rollstuhlgerechtigkeit des Ortes";
 "ShareLocationLabel" = "Ich habe folgenden Ort auf Wheelmap.org gefunden:";
 "AskFriendsLabel" = "Weißt du ob folgender Ort rollstuhlgerecht ist?";

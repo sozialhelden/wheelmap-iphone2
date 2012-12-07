@@ -12,6 +12,7 @@
 "Yes" = "Yes";
 "No" = "No";
 "LeaveApp" = "Are you sure you want to leave this app?";
+"Call" = "Would you like to call the following number?";
 
 "twitter" = "Twitter";
 "facebook" = "Facebook";
@@ -32,7 +33,7 @@
 "DetailsView4ButtonViewWebsiteLabel" = "Website";
 "DetailsView4ButtonViewInfoLabel" = "Info";
 "DetailsView4ButtonViewRouteLabel" = "Route";
-"DetailsViewAskFriendsButtonLabel" = "Help us: Aks your friends whether this place is wheelchair accessible";
+"DetailsViewAskFriendsButtonLabel" = "Help us: Ask your friends whether this place is wheelchair accessible";
 "DetailsViewChoosePhotoSource" = "Please choose source";
 "DetailsViewUploadOptionCamera" = "Take Photo";
 "DetailsViewUploadOptionPhotoAlbum" = "Choose Existing";

@@ -34,6 +34,7 @@
     [self.emailButton setTitle:NSLocalizedString(@"email", @"") forState:UIControlStateNormal];
     [self.smsButton setTitle:NSLocalizedString(@"sms", @"") forState:UIControlStateNormal];
 
+
 }
 
 - (void)didReceiveMemoryWarning
