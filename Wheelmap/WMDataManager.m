@@ -113,7 +113,7 @@
 }
 
 #pragma mark - Post a node
--(void)putNode:(Node *)node
+-(void)putWheelChairStatusForNode:(Node *)node
 {
     NSLog(@"[WMDataManager] put wheelchair status %@", node.wheelchair);
     NSString* resource = [NSString stringWithFormat:@"nodes/%@/update_wheelchair", node.id];

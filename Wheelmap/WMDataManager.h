@@ -25,6 +25,7 @@
 - (void) searchFor:(NSString*)query;
 - (Node*) createNode;
 - (void) putNode:(Node*)node;
+- (void) putWheelChairStatusForNode:(Node*)node;    // the node should already have the changed status!
 - (void) postNode:(Node*)node;
 - (void) uploadImage:(id)image forNode:(Node*)node;
 

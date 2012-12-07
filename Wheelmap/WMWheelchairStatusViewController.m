@@ -30,6 +30,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
+    
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
@@ -179,9 +182,7 @@
 - (void) saveAccessStatus {
     [self.delegate accessButtonPressed:self.wheelchairAccess];
     //[self.navigationController popViewControllerAnimated:YES];
-    dataManager = [[WMDataManager alloc] init];
-    dataManager.delegate = self;
-    [dataManager putNode:self.node];
+    [dataManager putWheelChairStatusForNode:self.node];
     
 }
 
@@ -189,6 +190,7 @@
 -(void)dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString *)msg
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_SUCESS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    alert.tag = 1000;
     NSLog(@"PUT NODE WHEELCHAIR STATUS SUCCEED. MSG FROM BACKEND: %@", msg);
     [alert show];
 }
@@ -199,6 +201,13 @@
     [alert show];
     
     NSLog(@"PUT THE NODE WHELLCHAIR STATUS FAILED! %@", error);
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag = 1000) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end
