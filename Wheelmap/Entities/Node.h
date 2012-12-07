@@ -28,6 +28,8 @@
 @property (nonatomic, retain) Category *category;
 @property (nonatomic, retain) NodeType *node_type;
 @property (nonatomic, retain) NSSet *photos;
+@property (nonatomic, retain) NSNumber *distance;
+
 @end
 
 @interface Node (CoreDataGeneratedAccessors)

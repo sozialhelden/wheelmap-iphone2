@@ -43,6 +43,8 @@
     self.helpButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 273.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeHelp];
     [self.helpButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
 
+    self.searchTextField.delegate = self;
+    
     [self.view addSubview:self.nearbyButton];
     [self.view addSubview:self.mapButton];
     [self.view addSubview:self.categoriesButton];
@@ -116,6 +118,11 @@
     WMCategoryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryViewController"];
     
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

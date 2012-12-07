@@ -20,4 +20,7 @@
 - (void) dataManager:(WMDataManager*)dataManager didReceiveSearchResults:(NSArray*)results;
 - (void) dataManager:(WMDataManager*)dataManager searchFailedWithError:(NSError*)error;
 
+- (void) dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString*)msg;
+- (void) dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error;
+
 @end

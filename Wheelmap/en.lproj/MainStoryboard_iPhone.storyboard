@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="41a-ZN-xe8">
                                 <rect key="frame" x="20" y="418" width="30" height="30"/>
@@ -68,6 +68,9 @@
                     <navigationItem key="navigationItem" id="29C-yd-aZr"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchTextField" destination="tNJ-yc-nG9" id="raA-1Y-NQe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gC3-9t-d3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -344,6 +347,7 @@
                 <relationship kind="action" name="pressedContributeButton:"/>
                 <relationship kind="action" name="pressedMapButton:"/>
                 <relationship kind="action" name="pressedNodeListButton:"/>
+                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="WMLabel" superclassName="UILabel">

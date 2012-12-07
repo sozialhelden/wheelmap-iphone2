@@ -53,11 +53,8 @@
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110)];
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mapView.layer.borderWidth = 1.0f;
-    [self.mapView removeAnnotations:self.mapView.annotations];
     self.mapView.delegate = self;
-    self.annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
-    [self.mapView addAnnotation:self.annotation];
-    // location to zoom in
+        // location to zoom in
     [self.scrollView addSubview:self.mapView];
     self.mapView.showsUserLocation=YES;
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
@@ -327,6 +324,11 @@
     self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
     // MAP
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    self.mapView.delegate = self;
+    self.annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
+    [self.mapView addAnnotation:self.annotation];
+
     CLLocationCoordinate2D poiLocation;
     poiLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
     poiLocation.longitude = self.node.lon.doubleValue; // increase to move to the right

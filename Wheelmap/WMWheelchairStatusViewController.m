@@ -30,6 +30,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    
     UIImage  *statusYesImage = [UIImage imageNamed:@"details_label-yes.png"];
 
     int startY = 10;
@@ -69,10 +72,13 @@
     self.noCheckMarkImageView = [self createCheckMarkImageView];
     [self.noButton addSubview:self.noCheckMarkImageView];
     
-    [self.view addSubview:self.yesButton];
-    [self.view addSubview:self.limitedButton];
-    [self.view addSubview:self.noButton];
+    [self.scrollView addSubview:self.yesButton];
+    [self.scrollView addSubview:self.limitedButton];
+    [self.scrollView addSubview:self.noButton];
+
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.noButton.frame.origin.y + self.noButton.frame.size.height + 20.0f);
     
+    [self.view addSubview:self.scrollView];
  
 }
 
@@ -106,7 +112,7 @@
 - (UIImageView*) createButtonViewWithHealine: (NSString*) headline image: (UIImage*) image andString: (NSString*) contentString {
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-    imageView.image = image;
+    imageView.image = [image stretchableImageWithLeftCapWidth:0 topCapHeight:50];
 
     WMLabel *headlineLabel = [[WMLabel alloc] initWithFrame:CGRectMake(40, 10, 220, 22)];
     [headlineLabel setText:headline];
@@ -120,10 +126,15 @@
   //  contentTextField.backgroundColor = [UIColor blueColor];
     contentTextField.font = [UIFont systemFontOfSize:15];
     contentTextField.textColor = [UIColor whiteColor];
-    contentTextField.numberOfLines = 100;
+    contentTextField.numberOfLines = 0;
     contentTextField.textAlignment = NSTextAlignmentLeft;
     [contentTextField setText:contentString];
     [imageView addSubview:contentTextField];
+    [contentTextField adjustHeightToContent];
+    
+    imageView.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y,
+                                 imageView.frame.size.width, MAX(image.size.height, headlineLabel.frame.size.height + contentTextField.frame.size.height + 25.0f));
+    
     return imageView;
 }
 
@@ -167,7 +178,27 @@
 
 - (void) saveAccessStatus {
     [self.delegate accessButtonPressed:self.wheelchairAccess];
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
+    [dataManager putNode:self.node];
+    
+}
+
+#pragma mark WMDataManager Delegate
+-(void)dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString *)msg
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_SUCESS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    NSLog(@"PUT NODE WHEELCHAIR STATUS SUCCEED. MSG FROM BACKEND: %@", msg);
+    [alert show];
+}
+
+-(void)dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_FAILED", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    
+    NSLog(@"PUT THE NODE WHELLCHAIR STATUS FAILED! %@", error);
 }
 
 @end
