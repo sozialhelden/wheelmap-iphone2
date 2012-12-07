@@ -30,6 +30,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    
     UIImage  *statusYesImage = [UIImage imageNamed:@"details_label-yes.png"];
 
     int startY = 10;
@@ -69,10 +72,13 @@
     self.noCheckMarkImageView = [self createCheckMarkImageView];
     [self.noButton addSubview:self.noCheckMarkImageView];
     
-    [self.view addSubview:self.yesButton];
-    [self.view addSubview:self.limitedButton];
-    [self.view addSubview:self.noButton];
+    [self.scrollView addSubview:self.yesButton];
+    [self.scrollView addSubview:self.limitedButton];
+    [self.scrollView addSubview:self.noButton];
+
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.noButton.frame.origin.y + self.noButton.frame.size.height + 20.0f);
     
+    [self.view addSubview:self.scrollView];
  
 }
 
@@ -85,7 +91,6 @@
 - (void) updateCheckMarks {
     
     if ([self.wheelchairAccess isEqualToString:@"yes"]) {
-        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX yes");
         self.yesCheckMarkImageView.hidden = NO;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = YES;
@@ -97,13 +102,17 @@
         self.yesCheckMarkImageView.hidden = YES;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = NO;
+    }  else if ([self.wheelchairAccess isEqualToString:@"unknown"]) {
+        self.yesCheckMarkImageView.hidden = YES;
+        self.limitedCheckMarkImageView.hidden = YES;
+        self.noCheckMarkImageView.hidden = YES;
     }
 }
 
 - (UIImageView*) createButtonViewWithHealine: (NSString*) headline image: (UIImage*) image andString: (NSString*) contentString {
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-    imageView.image = image;
+    imageView.image = [image stretchableImageWithLeftCapWidth:0 topCapHeight:50];
 
     WMLabel *headlineLabel = [[WMLabel alloc] initWithFrame:CGRectMake(40, 10, 220, 22)];
     [headlineLabel setText:headline];
@@ -117,10 +126,15 @@
   //  contentTextField.backgroundColor = [UIColor blueColor];
     contentTextField.font = [UIFont systemFontOfSize:15];
     contentTextField.textColor = [UIColor whiteColor];
-    contentTextField.numberOfLines = 100;
+    contentTextField.numberOfLines = 0;
     contentTextField.textAlignment = NSTextAlignmentLeft;
     [contentTextField setText:contentString];
     [imageView addSubview:contentTextField];
+    [contentTextField adjustHeightToContent];
+    
+    imageView.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y,
+                                 imageView.frame.size.width, MAX(image.size.height, headlineLabel.frame.size.height + contentTextField.frame.size.height + 25.0f));
+    
     return imageView;
 }
 

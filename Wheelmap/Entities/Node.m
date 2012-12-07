@@ -29,5 +29,5 @@
 @dynamic category;
 @dynamic node_type;
 @dynamic photos;
-
+@synthesize distance;
 @end

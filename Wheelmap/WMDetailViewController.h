@@ -25,6 +25,9 @@
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
 @property (nonatomic, strong) UIView *fourButtonView;
+@property (nonatomic, strong) MKAnnotationView *annotationView;
+
+@property (nonatomic, strong) UIImageView *compassView;
 
 @property (nonatomic, strong) WMMapAnnotation *annotation;
 

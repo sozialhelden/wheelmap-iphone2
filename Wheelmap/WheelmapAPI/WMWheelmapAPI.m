@@ -107,7 +107,12 @@
                                   success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock {
  
     // create basic http operation
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:WMLOGINURLPOSTFIX]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", WMBaseURL, WMLOGINURLPOSTFIX]]];
+    [request addValue:username forHTTPHeaderField:@"email"];
+    [request addValue:password forHTTPHeaderField:@"password"];
+    
+    NSLog(@"REQUEST: %@", request.URL);
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
     // set result blocks that call our standard result blocks

@@ -20,4 +20,6 @@ typedef enum {
 @property (nonatomic) WMLabelFontType fontType;
 @property (nonatomic) CGFloat fontSize;
 
+- (void)adjustHeightToContent;
+
 @end

@@ -435,6 +435,9 @@
     if ([currentViewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
         [(WMWheelchairStatusViewController*)currentViewController saveAccessStatus];
     }
+    if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
+        [(WMEditPOIViewController*)currentViewController saveEditedData];
+    }
 }
 
 #pragma mark - WMToolBar Delegate
