@@ -153,9 +153,9 @@
     [self.view addSubview:self.scrollView];
     
     // TEST
-    self.headingLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 250, 130, 30)];
-    self.headingLabel.backgroundColor = [UIColor orangeColor];
-    [self.scrollView addSubview:self.headingLabel];
+//    self.headingLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 250, 130, 30)];
+//    self.headingLabel.backgroundColor = [UIColor orangeColor];
+//    [self.scrollView addSubview:self.headingLabel];
     
 }
 
