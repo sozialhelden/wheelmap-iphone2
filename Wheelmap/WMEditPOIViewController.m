@@ -61,7 +61,7 @@
     [self styleInputView:self.websiteInputView];
     [self styleInputView:self.phoneInputView];
     
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 10)];
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 10 + 500)];
 
 }
 
@@ -136,7 +136,10 @@
     } else if ([self.node.wheelchair isEqualToString:@"limited"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } 
+    } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
+    }
     
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
