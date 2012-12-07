@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) Node *node;
 
+@property (strong, nonatomic) UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet WMButton *yesButton;
 @property (weak, nonatomic) IBOutlet WMButton *limitedButton;
 @property (weak, nonatomic) IBOutlet WMButton *noButton;
