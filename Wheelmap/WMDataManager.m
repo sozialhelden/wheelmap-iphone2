@@ -112,7 +112,7 @@
     }
 }
 
-#pragma mark - Post a node
+#pragma mark - Put/Post a node
 -(void)putWheelChairStatusForNode:(Node *)node
 {
     NSLog(@"[WMDataManager] put wheelchair status %@", node.wheelchair);
@@ -136,6 +136,77 @@
                                    startImmediately:YES
      ];
 
+    
+}
+
+-(void)putNode:(Node *)node
+{
+    NSLog(@"[WMDataManager] put a node %@", node);
+    NSString* resource = [NSString stringWithFormat:@"nodes/%@/", node.id];
+    
+    NSDictionary* parameters = [self getParamDictFromNode:node];
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:@"PUT"
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingWheelChairStatusWithError:)]) {
+                                                      [self.delegate dataManager:self failedPuttingWheelChairStatusWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingWheelChairStatusWithMsg:)])
+                                                    [self.delegate dataManager:self didFinishPuttingWheelChairStatusWithMsg:JSON[@"message"]];
+                                            }
+                                   startImmediately:YES
+     ];
+
+    
+}
+
+-(void)postNode:(Node *)node
+{
+    NSLog(@"[WMDataManager] post a node %@", node);
+    NSString* resource = [NSString stringWithFormat:@"nodes"];
+    
+    NSDictionary* parameters = [self getParamDictFromNode:node];
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:@"POST"
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingWheelChairStatusWithError:)]) {
+                                                      [self.delegate dataManager:self failedPuttingWheelChairStatusWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingWheelChairStatusWithMsg:)])
+                                                    [self.delegate dataManager:self didFinishPuttingWheelChairStatusWithMsg:JSON[@"message"]];
+                                            }
+                                   startImmediately:YES
+     ];
+    
+}
+
+-(NSDictionary*)getParamDictFromNode:(Node*)node
+{
+    NSMutableDictionary* outputDict = [[NSMutableDictionary alloc] init];
+    if (node.name)
+        [outputDict setObject:node.name forKey:@"name"];
+    /*
+    NSMutableDictionary* parameters = @{@"name":node.name, @"type":node.node_type.id,
+    @"lat":node.lat, @"lon":node.lon};
+    @"wheelchair":node.wheelchair,
+    @"wheelchair_description":node.wheelchair_description, @"street":node.street,
+    @"housenumber":node.housenumber, @"city":node.city, @"postcode":node.postcode,
+    @"website":node.website, @"phone":node.phone};
+    */
+    
+    return outputDict;
     
 }
 
