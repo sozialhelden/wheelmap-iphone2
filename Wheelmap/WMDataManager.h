@@ -17,17 +17,27 @@
 
 @property (nonatomic, weak) id<WMDataManagerDelegate> delegate;
 
+- (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
+- (BOOL) userIsAuthenticated;
+
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
+
 - (void) syncResources;
+
 - (NSArray*) categories;
 - (NSArray*) nodeTypes;
+
 - (void) searchFor:(NSString*)query;
+
 - (Node*) createNode;
+
 - (void) putNode:(Node*)node;
 - (void) putWheelChairStatusForNode:(Node*)node;    // the node should already have the changed status!
 - (void) postNode:(Node*)node;
+
 - (void) uploadImage:(id)image forNode:(Node*)node;
+
 
 extern NSString *WMDataManagerErrorDomain;
 
