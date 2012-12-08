@@ -19,8 +19,6 @@
 
 
 // TODO: fix etag check
-// TODO: delete zip in temp folder
-// TODO: make sure no old files exist in unzipped folder after update
 // TODO: use a regular queue to enqueue both http and zip operations when syncing
 
 @interface WMDataManager()
@@ -236,6 +234,22 @@ static BOOL assetDownloadInProgress;
     assetDownloadInProgress = YES;
     syncErrors = nil;
     
+    // check if cached assets are available on disk (could have been purged by the system)
+    [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
+        if (nodeType.iconPath && ![[NSFileManager defaultManager] fileExistsAtPath:nodeType.iconPath]) {
+            if(WMLogDataManager) NSLog(@"... cached icon not found: %@", nodeType.iconPath);
+            
+            // if any file is missing, reset eTag and modified date to force reload of assets
+            [self setETag:nil forEntity:@"Asset"];
+            
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
+            Asset *icon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+            icon.modified_at = [NSDate dateWithTimeIntervalSince1970:0];
+            
+            *stop = YES;
+        }
+    }];
+    
     // create categories request operation
     NSOperation *categoriesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
                                   parameters:nil
@@ -427,7 +441,7 @@ static BOOL assetDownloadInProgress;
     // get path where file should be unzipped
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *destinationPath = [paths objectAtIndex:0];
-    
+
     // unzip file
     NSError *error = nil;
     if (![SSZipArchive unzipFileAtPath:path toDestination:destinationPath overwrite:YES password:nil error:&error delegate:self]) {
@@ -441,6 +455,10 @@ static BOOL assetDownloadInProgress;
     } else {
         if (WMLogDataManager) NSLog(@"... unzipping successful");
     }
+    
+    // NOTE: any files in the destination dir that are not used by the new data will
+    // remain on disk. however, since this is in the caches dir, if this dir gets too big,
+    // it will eventually be cleaned up by the system. the app should then reload all assets.
 }
 
 - (void)zipArchiveDidUnzipFile:(NSString *)destinationPath
@@ -889,6 +907,8 @@ static BOOL assetDownloadInProgress;
 
 - (void) setETag:(NSString*)eTag forEntity:(NSString*)entityName
 {
+    NSParameterAssert(entityName);
+    
     // get meta data from persistent store
     NSMutableDictionary *metaData = [[self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
     
@@ -896,7 +916,13 @@ static BOOL assetDownloadInProgress;
     NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
     
     // use entity name as key of eTag
-    eTags[entityName] = eTag;
+    if (eTag) {
+        eTags[entityName] = eTag;
+
+    } else {
+        // remove key if eTag is nil
+        [eTags removeObjectForKey:entityName];
+    }
     
     // save new eTags dictionary in meta data
     [metaData setObject:eTags forKey:@"eTags"];
