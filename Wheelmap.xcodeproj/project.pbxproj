@@ -979,12 +979,12 @@
 			isa = PBXGroup;
 			children = (
 				DB6E477D166BF21D00D9CAD9 /* start_btn-grid.png */,
+				DB6E4783166BF21D00D9CAD9 /* start_icon-grid-help.png */,
 				DB6E477E166BF21D00D9CAD9 /* start_btn-grid@2x.png */,
 				DB6E477F166BF21D00D9CAD9 /* start_icon-credits.png */,
 				DB6E4780166BF21D00D9CAD9 /* start_icon-credits@2x.png */,
 				DB6E4781166BF21D00D9CAD9 /* start_icon-grid-category.png */,
 				DB6E4782166BF21D00D9CAD9 /* start_icon-grid-category@2x.png */,
-				DB6E4783166BF21D00D9CAD9 /* start_icon-grid-help.png */,
 				DB6E4784166BF21D00D9CAD9 /* start_icon-grid-help@2x.png */,
 				DB6E4785166BF21D00D9CAD9 /* start_icon-grid-locallist.png */,
 				DB6E4786166BF21D00D9CAD9 /* start_icon-grid-locallist@2x.png */,

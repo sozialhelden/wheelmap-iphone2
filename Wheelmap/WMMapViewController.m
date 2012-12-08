@@ -131,7 +131,7 @@
         UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, -3, 20, 15)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
-        icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/icons/%@", ROOT_STORAGE_PATH, node.node_type.icon]];
+        icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];
         [annotationView addSubview:icon];
         
         return annotationView;

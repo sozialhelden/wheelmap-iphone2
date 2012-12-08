@@ -45,6 +45,8 @@
 
 - (void) didBecomeActive:(NSNotification*)notification
 {
+    // start sync process whenever the app becomes active, e.g. on
+    // startup and when it moves to foreground
     [self syncResources];
 }
 
@@ -52,8 +54,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-
 
 
 #pragma mark - Fetch Nodes
@@ -425,8 +425,8 @@ static BOOL assetDownloadInProgress;
 - (void) didFinishFileDownload:(NSString*)path forAsset:(Asset*)asset
 {
     // get path where file should be unzipped
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *destinationPath = ROOT_STORAGE_PATH;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *destinationPath = [paths objectAtIndex:0];
     
     // unzip file
     NSError *error = nil;

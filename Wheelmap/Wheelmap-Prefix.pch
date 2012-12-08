@@ -33,7 +33,3 @@ typedef enum {
     kDotTypeRed,
     kDotTypeNone
 } DotType;
-
-// root storage path
-
-#define ROOT_STORAGE_PATH [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
