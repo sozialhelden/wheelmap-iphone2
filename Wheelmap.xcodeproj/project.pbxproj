@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
-		03F30C511670B5CC00241466 /* WMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C501670B5CC00241466 /* WMUser.m */; };
 		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		03F30C7A1670F34D00241466 /* more-buttons_info-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C6A1670F34D00241466 /* more-buttons_info-deactive@2x.png */; };
 		03F30C7B1670F34D00241466 /* more-buttons_info–deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C6B1670F34D00241466 /* more-buttons_info–deactive.png */; };
@@ -251,8 +250,6 @@
 /* Begin PBXFileReference section */
 		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
 		03F30BFA1670A1F700241466 /* WMDashboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardButton.m; sourceTree = "<group>"; };
-		03F30C4F1670B5CC00241466 /* WMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUser.h; sourceTree = "<group>"; };
-		03F30C501670B5CC00241466 /* WMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUser.m; sourceTree = "<group>"; };
 		03F30C531670B80600241466 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
 		03F30C541670B80600241466 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
 		03F30C6A1670F34D00241466 /* more-buttons_info-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info-deactive@2x.png"; path = "Wheelmap/Resources/more-buttons_info-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -752,8 +749,6 @@
 				98CA22D816664C1C00DF0EA3 /* Node.m */,
 				98CA22CA16664C1B00DF0EA3 /* Photo.h */,
 				98CA22CB16664C1B00DF0EA3 /* Photo.m */,
-				03F30C4F1670B5CC00241466 /* WMUser.h */,
-				03F30C501670B5CC00241466 /* WMUser.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1505,7 +1500,6 @@
 				D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */,
 				DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */,
 				03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */,
-				03F30C511670B5CC00241466 /* WMUser.m in Sources */,
 				03F30C551670B80600241466 /* WMLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

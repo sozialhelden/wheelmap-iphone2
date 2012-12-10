@@ -16,8 +16,10 @@
 
 #define WMSearchRadius 0.004
 #define WMLogDataManager 0
+#define WMLOGINURLPOSTFIX @"/users/authenticate?"
+#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
 
-
+// TODO: load api key from plist file
 // TODO: fix etag check
 // TODO: use a regular queue to enqueue both http and zip operations when syncing
 
@@ -54,6 +56,17 @@
 }
 
 
+#pragma mark - API Key
+
+- (NSString*) apiKey
+{
+    // TODO: check if a user key is stored in keychain
+    
+    // if not, return app key
+    return WMAPIKey;
+}
+
+
 #pragma mark - Fetch Nodes
 
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location
@@ -79,19 +92,20 @@
 - (void) fetchNodesWithParameters:(NSDictionary*)parameters;
 {
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
-              parameters:parameters
-                    eTag:nil
-                    data:nil
-                  method:nil
-                   error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                             apiKey:[self apiKey]
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:nil
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                        if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
                            [self.delegate dataManager:self fetchNodesFailedWithError:error];
                        }
                    }
-                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                        [self didReceiveNodes:JSON[@"nodes"]];
                    }
-        startImmediately:YES
+                                   startImmediately:YES
      ];
 }
 
@@ -118,6 +132,7 @@
     
     NSDictionary* parameters = @{@"wheelchair":node.wheelchair};
     [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                             apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
@@ -145,6 +160,7 @@
     NSDictionary* parameters = [self getParamDictFromNode:node];
     
     [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                             apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
@@ -172,6 +188,7 @@
     NSDictionary* parameters = [self getParamDictFromNode:node];
     
     [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                             apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
@@ -252,6 +269,7 @@ static BOOL assetDownloadInProgress;
     
     // create categories request operation
     NSOperation *categoriesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
+                                      apiKey:[self apiKey]
                                   parameters:nil
                                         eTag:[self eTagForEntity:@"Category"]
                                         data:nil
@@ -275,6 +293,7 @@ static BOOL assetDownloadInProgress;
 
     // create node types request operation
     NSOperation *nodeTypesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"node_types"
+                                     apiKey:[self apiKey]
                                  parameters:nil
                                        eTag:[self eTagForEntity:@"NodeType"]
                                        data:nil
@@ -296,6 +315,7 @@ static BOOL assetDownloadInProgress;
     
     // create assets operation
     NSOperation *assetsOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"assets"
+                                                    apiKey:[self apiKey]
                                                 parameters:nil
                                                       eTag:[self eTagForEntity:@"Asset"]
                                                       data:nil

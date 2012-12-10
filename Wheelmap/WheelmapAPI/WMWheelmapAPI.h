@@ -14,16 +14,17 @@
 
 + (WMWheelmapAPI *)sharedInstance;
 
-- (id) initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey;
+- (id) initWithBaseURL:(NSURL *)url;
 
 - (NSOperation*) requestResource:(NSString *)resource
-                                 parameters:(NSDictionary *)parameters
-                                       eTag:(NSString *)eTag
-                                       data:(id)data
-                                     method:(NSString *)method
-                                      error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON))errorBlock
-                                    success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))successBlock
-                           startImmediately:(BOOL)startImmediately;
+                          apiKey:(NSString*)apiKey
+                      parameters:(NSDictionary *)parameters
+                            eTag:(NSString *)eTag
+                            data:(id)data
+                          method:(NSString *)method
+                           error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON))errorBlock
+                         success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))successBlock
+                    startImmediately:(BOOL)startImmediately;
 
 - (NSOperation *) downloadFile:(NSURL *)url
                         toPath:(NSString*)path
@@ -31,8 +32,4 @@
                        success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock
               startImmediately:(BOOL)startImmediately;
 
-- (NSOperation*) requestLoginWithUsername:(NSString *)username
-                                 password:(NSString *)password
-                                    error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))errorBlock
-                                  success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock;
 @end

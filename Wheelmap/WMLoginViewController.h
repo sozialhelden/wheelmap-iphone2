@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WMDataManagerDelegate.h"
 
-@interface WMLoginViewController : WMViewController <UITextFieldDelegate> {
+
+@interface WMLoginViewController : WMViewController <UITextFieldDelegate, WMDataManagerDelegate> {
     
     BOOL keyboardIsShown;
 }

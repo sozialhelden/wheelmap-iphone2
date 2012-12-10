@@ -10,8 +10,6 @@
 #import "AFJSONRequestOperation.h"
 
 #define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMLOGINURLPOSTFIX @"/users/authenticate?"
-#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
 
 
 @implementation WMWheelmapAPI
@@ -21,13 +19,13 @@
     static WMWheelmapAPI *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedInstance = [[WMWheelmapAPI alloc] initWithBaseURL:[NSURL URLWithString:WMBaseURL] apiKey:WMAPIKey];
+        _sharedInstance = [[WMWheelmapAPI alloc] initWithBaseURL:[NSURL URLWithString:WMBaseURL]];
     });
     
     return _sharedInstance;
 }
 
-- (id)initWithBaseURL:(NSURL *)url apiKey:(NSString*)apiKey {
+- (id)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (!self) {
         return nil;
@@ -42,23 +40,24 @@
     [AFHTTPRequestOperation addAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:304]];
     
 	[self setDefaultHeader:@"Accept" value:@"application/json"];
-    [self setDefaultHeader:@"X-API-KEY" value:apiKey];
     
     return self;
 }
 
 - (NSOperation*) requestResource:(NSString *)resource
-              parameters:(NSDictionary *)parameters
-                    eTag:(NSString *)eTag
-                    data:(id)data
-                  method:(NSString *)method
-                   error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON))errorBlock
-                 success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))successBlock
-        startImmediately:(BOOL)startImmediately
+                          apiKey:(NSString *)apiKey
+                      parameters:(NSDictionary *)parameters
+                            eTag:(NSString *)eTag
+                            data:(id)data
+                          method:(NSString *)method
+                           error:(void (^)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id))errorBlock
+                         success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, id))successBlock
+                startImmediately:(BOOL)startImmediately
 {
     NSMutableURLRequest *request = [self requestWithMethod:method?:@"GET" path:resource parameters:parameters];
     
-    // set If-None-Match header if an eTag is provided
+    if (apiKey) [request setValue:apiKey forHTTPHeaderField:@"X-API-KEY"];
+    
     if (eTag) [request setValue:eTag forHTTPHeaderField:@"If-None-Match"];
     
     // add body
@@ -97,34 +96,6 @@
     
     // start if necessary
     if (startImmediately) [operation start];
-    
-    return operation;
-}
-
-- (NSOperation*) requestLoginWithUsername:(NSString *)username
-                                 password:(NSString *)password
-                                    error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))errorBlock
-                                  success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock {
- 
-    // create basic http operation
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", WMBaseURL, WMLOGINURLPOSTFIX]]];
-    [request addValue:username forHTTPHeaderField:@"email"];
-    [request addValue:password forHTTPHeaderField:@"password"];
-    
-    NSLog(@"REQUEST: %@", request.URL);
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    
-    // set result blocks that call our standard result blocks
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id response) {
-        successBlock(request, response);
-    }
-                                     failure:^(AFHTTPRequestOperation *op , NSError *error) {
-                                         errorBlock(request, op.response, error);
-                                     }
-     ];
-    
-    [operation start];
     
     return operation;
 }
