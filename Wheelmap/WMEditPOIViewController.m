@@ -35,7 +35,28 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-     //[self setAccessState];
+    self.nameTextField.delegate = self;
+    self.categoryTextField.delegate = self;
+    self.infoTextView.delegate = self;
+    self.streetTextField.delegate = self;
+    self.housenumberTextField.delegate = self;
+    self.postcodeTextField.delegate = self;
+    self.cityTextField.delegate = self;
+    self.websiteTextField.delegate = self;
+    self.phoneTextField.delegate = self;
+    
+
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:self.view.window];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:self.view.window];
+    
         
     // WHEEL ACCESS
     [self setWheelAccessButton];
@@ -53,6 +74,8 @@
     [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
     [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
     
+  
+    
     [self styleInputView:self.nameInputView];
     [self styleInputView:self.categoryInputView];
     [self styleInputView:self.positionInputView];
@@ -61,9 +84,11 @@
     [self styleInputView:self.websiteInputView];
     [self styleInputView:self.phoneInputView];
     
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 10 + 500)];
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height)];
 
+    
 }
+
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,6 +117,10 @@
 }
 
 - (void)viewDidUnload {
+    
+    
+    [super viewDidUnload];
+
     [self setScrollView:nil];
     [self setNameInputView:nil];
     [self setCategoryInputView:nil];
@@ -120,7 +149,15 @@
     [self setCityTextField:nil];
     [self setSetMarkerButton:nil];
     [self setInfoTextView:nil];
-    [super viewDidUnload];
+    
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 
@@ -192,5 +229,71 @@
     [self.delegate setUpdatedNode:self.node];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)dealloc {
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textViewShouldReturn:(UITextView *)textView{
+    [textView resignFirstResponder];
+    return YES;
+}
+
+
+- (void)keyboardWillHide:(NSNotification *)n {
+    
+   // resize the scrollview
+    CGRect viewFrame = self.view.frame;
+    // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
+  //  viewFrame.origin.y += 50.0f;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    // The kKeyboardAnimationDuration I am using is 0.3
+    [UIView setAnimationDuration:0.2];
+    [self.view setFrame:viewFrame];
+    [UIView commitAnimations];
+    
+    self.keyboardIsShown = NO;
+}
+
+- (void)keyboardWillShow:(NSNotification *)n {
+    
+    // This is an ivar I'm using to ensure that we do not do the frame size adjustment on the UIScrollView if the keyboard is already shown.  This can happen if the user, after fixing editing a UITextField, scrolls the resized UIScrollView to another UITextField and attempts to edit the next UITextField.  If we were to resize the UIScrollView again, it would be disastrous.  NOTE: The keyboard notification will fire even when the keyboard is already shown.
+    if (self.keyboardIsShown) {
+        return;
+    }
+    
+    // resize the noteView
+    CGRect viewFrame = self.view.frame;
+    // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
+ //   viewFrame.origin.y -= 50.0f;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    // The kKeyboardAnimationDuration I am using is 0.3
+    [UIView setAnimationDuration:0.2];
+    [self.view setFrame:viewFrame];
+    [UIView commitAnimations];
+    
+    self.keyboardIsShown = YES;
+}
+
 
 @end

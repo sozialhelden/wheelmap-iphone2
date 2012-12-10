@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Node.h"
 
-@interface WMEditPOIViewController : WMViewController
+@interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *nameInputView;
 @property (weak, nonatomic) IBOutlet UIView *categoryInputView;
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
 @property (nonatomic) Node *node;
+@property (nonatomic, assign) BOOL keyboardIsShown;
 
 @property (weak, nonatomic) IBOutlet UIButton *wheelAccessButton;
 
