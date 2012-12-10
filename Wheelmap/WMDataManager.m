@@ -16,11 +16,11 @@
 
 #define WMSearchRadius 0.004
 #define WMLogDataManager 0
+#define WMLOGINURLPOSTFIX @"/users/authenticate?"
+#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
 
-
+// TODO: load api key from plist file
 // TODO: fix etag check
-// TODO: delete zip in temp folder
-// TODO: make sure no old files exist in unzipped folder after update
 // TODO: use a regular queue to enqueue both http and zip operations when syncing
 
 @interface WMDataManager()
@@ -45,6 +45,8 @@
 
 - (void) didBecomeActive:(NSNotification*)notification
 {
+    // start sync process whenever the app becomes active, e.g. on
+    // startup and when it moves to foreground
     [self syncResources];
 }
 
@@ -54,6 +56,15 @@
 }
 
 
+#pragma mark - API Key
+
+- (NSString*) apiKey
+{
+    // TODO: check if a user key is stored in keychain
+    
+    // if not, return app key
+    return WMAPIKey;
+}
 
 
 #pragma mark - Fetch Nodes
@@ -81,19 +92,20 @@
 - (void) fetchNodesWithParameters:(NSDictionary*)parameters;
 {
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
-              parameters:parameters
-                    eTag:nil
-                    data:nil
-                  method:nil
-                   error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                             apiKey:[self apiKey]
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:nil
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                        if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
                            [self.delegate dataManager:self fetchNodesFailedWithError:error];
                        }
                    }
-                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                        [self didReceiveNodes:JSON[@"nodes"]];
                    }
-        startImmediately:YES
+                                   startImmediately:YES
      ];
 }
 
@@ -120,6 +132,7 @@
     
     NSDictionary* parameters = @{@"wheelchair":node.wheelchair};
     [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                             apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
@@ -147,6 +160,7 @@
     NSDictionary* parameters = [self getParamDictFromNode:node];
     
     [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                             apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
@@ -174,6 +188,7 @@
     NSDictionary* parameters = [self getParamDictFromNode:node];
     
     [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                             apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
@@ -236,8 +251,25 @@ static BOOL assetDownloadInProgress;
     assetDownloadInProgress = YES;
     syncErrors = nil;
     
+    // check if cached assets are available on disk (could have been purged by the system)
+    [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
+        if (nodeType.iconPath && ![[NSFileManager defaultManager] fileExistsAtPath:nodeType.iconPath]) {
+            if(WMLogDataManager) NSLog(@"... cached icon not found: %@", nodeType.iconPath);
+            
+            // if any file is missing, reset eTag and modified date to force reload of assets
+            [self setETag:nil forEntity:@"Asset"];
+            
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
+            Asset *icon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+            icon.modified_at = [NSDate dateWithTimeIntervalSince1970:0];
+            
+            *stop = YES;
+        }
+    }];
+    
     // create categories request operation
     NSOperation *categoriesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
+                                      apiKey:[self apiKey]
                                   parameters:nil
                                         eTag:[self eTagForEntity:@"Category"]
                                         data:nil
@@ -261,6 +293,7 @@ static BOOL assetDownloadInProgress;
 
     // create node types request operation
     NSOperation *nodeTypesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"node_types"
+                                     apiKey:[self apiKey]
                                  parameters:nil
                                        eTag:[self eTagForEntity:@"NodeType"]
                                        data:nil
@@ -282,6 +315,7 @@ static BOOL assetDownloadInProgress;
     
     // create assets operation
     NSOperation *assetsOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"assets"
+                                                    apiKey:[self apiKey]
                                                 parameters:nil
                                                       eTag:[self eTagForEntity:@"Asset"]
                                                       data:nil
@@ -425,9 +459,9 @@ static BOOL assetDownloadInProgress;
 - (void) didFinishFileDownload:(NSString*)path forAsset:(Asset*)asset
 {
     // get path where file should be unzipped
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *destinationPath = ROOT_STORAGE_PATH;
-    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *destinationPath = [paths objectAtIndex:0];
+
     // unzip file
     NSError *error = nil;
     if (![SSZipArchive unzipFileAtPath:path toDestination:destinationPath overwrite:YES password:nil error:&error delegate:self]) {
@@ -441,6 +475,10 @@ static BOOL assetDownloadInProgress;
     } else {
         if (WMLogDataManager) NSLog(@"... unzipping successful");
     }
+    
+    // NOTE: any files in the destination dir that are not used by the new data will
+    // remain on disk. however, since this is in the caches dir, if this dir gets too big,
+    // it will eventually be cleaned up by the system. the app should then reload all assets.
 }
 
 - (void)zipArchiveDidUnzipFile:(NSString *)destinationPath
@@ -889,6 +927,8 @@ static BOOL assetDownloadInProgress;
 
 - (void) setETag:(NSString*)eTag forEntity:(NSString*)entityName
 {
+    NSParameterAssert(entityName);
+    
     // get meta data from persistent store
     NSMutableDictionary *metaData = [[self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
     
@@ -896,7 +936,13 @@ static BOOL assetDownloadInProgress;
     NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
     
     // use entity name as key of eTag
-    eTags[entityName] = eTag;
+    if (eTag) {
+        eTags[entityName] = eTag;
+
+    } else {
+        // remove key if eTag is nil
+        [eTags removeObjectForKey:entityName];
+    }
     
     // save new eTags dictionary in meta data
     [metaData setObject:eTags forKey:@"eTags"];

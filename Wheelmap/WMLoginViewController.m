@@ -7,7 +7,7 @@
 //
 
 #import "WMLoginViewController.h"
-#import "WMUser.h"
+#import "WMDataManager.h"
 
 @implementation WMLoginViewController
 
@@ -60,8 +60,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loginPressed:(id)sender {
-    [[WMUser sharedUser] loginWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text];
+- (IBAction)loginPressed:(id)sender
+{
+    WMDataManager *dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
+    [dataManager authenticateUserWithEmail:self.usernameTextField.text password:self.passwordTextField.text];
+}
+
+- (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error
+{
+    // TODO: handle error
+}
+
+- (void)dataManagerDidAuthenticateUser:(WMDataManager *)dataManager
+{
+    // TODO: handle success, dismiss view controller
 }
 
 - (IBAction)donePressed:(id)sender {
