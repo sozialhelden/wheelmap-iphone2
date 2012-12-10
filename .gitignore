@@ -10,3 +10,5 @@ xcschememanagement.plist
 *xcsettings
 
 *.xcuserdatad
+
+WMConfig.plist
