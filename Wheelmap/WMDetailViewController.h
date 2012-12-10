@@ -38,6 +38,8 @@
 @property (nonatomic, strong) UILabel *nodeTypeLabel;
 @property (nonatomic, strong) UILabel *streetLabel;
 @property (nonatomic, strong) UILabel *postcodeAndCityLabel;
+@property (nonatomic, strong) UITextView *websiteLabel;
+@property (nonatomic, strong) UITextView *phoneLabel;
 @property (nonatomic, strong) UILabel *distanceLabel;
 
 @property (nonatomic, strong) UIButton *wheelAccessButton;

@@ -98,6 +98,7 @@
 		D5406D60166A49650016E275 /* Social_btn-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D58166A49650016E275 /* Social_btn-twitter.png */; };
 		D5406D61166A49650016E275 /* Social_btn-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */; };
 		D5406D64166A4AA40016E275 /* WMShareSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */; };
+		D555D3861675E4A600C58813 /* WMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3851675E4A500C58813 /* WMCompassView.m */; };
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -383,6 +384,8 @@
 		D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-twitter@2x.png"; sourceTree = "<group>"; };
 		D5406D62166A4AA40016E275 /* WMShareSocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShareSocialViewController.h; sourceTree = "<group>"; };
 		D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShareSocialViewController.m; sourceTree = "<group>"; };
+		D555D3841675E4A500C58813 /* WMCompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCompassView.h; sourceTree = "<group>"; };
+		D555D3851675E4A500C58813 /* WMCompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCompassView.m; sourceTree = "<group>"; };
 		D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited.png"; path = "Details/WheelAccess/details_btn-status-limited.png"; sourceTree = "<group>"; };
 		D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited@2x.png"; path = "Details/WheelAccess/details_btn-status-limited@2x.png"; sourceTree = "<group>"; };
 		D56F71F3166A33D6002CE692 /* details_btn-status-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-no.png"; path = "Details/WheelAccess/details_btn-status-no.png"; sourceTree = "<group>"; };
@@ -1157,6 +1160,8 @@
 				D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */,
 				D5EE56AF166E6604008E389D /* WMSetMarkerViewController.h */,
 				D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */,
+				D555D3841675E4A500C58813 /* WMCompassView.h */,
+				D555D3851675E4A500C58813 /* WMCompassView.m */,
 			);
 			name = NodeDetailScreen;
 			sourceTree = "<group>";
@@ -1507,6 +1512,7 @@
 				03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */,
 				03F30C511670B5CC00241466 /* WMUser.m in Sources */,
 				03F30C551670B80600241466 /* WMLoginViewController.m in Sources */,
+				D555D3861675E4A600C58813 /* WMCompassView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

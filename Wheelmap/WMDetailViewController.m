@@ -16,6 +16,7 @@
 #import "WMCommentViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
+#import "WMCompassView.h"
 
 
 #define STARTLEFT 15
@@ -105,31 +106,49 @@
     self.streetLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.streetLabel];
     
-    // COMPASS
-    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
-    self.compassView = [[UIImageView alloc] initWithFrame:CGRectMake(260, startY+1+self.gabIfStatusUnknown, compassImage.size.width, compassImage.size.height)];
-    self.compassView.image = compassImage;
-    [self.scrollView addSubview:self.compassView];
-    
-    self.locationManager=[[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate=self;
-    //Start the compass updates.
-    [self.locationManager startUpdatingHeading];
     
     startY += 16;
-    
-    // POSTCODE AND CITY
+  
+        // POSTCODE AND CITY
     self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
     self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:12];
     [self.scrollView addSubview:self.postcodeAndCityLabel];
     
-    startY += 15;
+    startY += 18;
     
-    // DISTANCE
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, startY+self.gabIfStatusUnknown, 60, 20)];
-    //self.distanceLabel.backgroundColor = [UIColor orangeColor];
+    // COMPASS
+    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
+    WMCompassView *compassView = [[WMCompassView alloc] initWithFrame:CGRectMake(265, startY+self.gabIfStatusUnknown-10, compassImage.size.width, compassImage.size.height)];
+    compassView.node = self.node;
+   
+    [self.scrollView addSubview:compassView];
+    
+    // WEBSITE
+    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 22)];
+    self.websiteLabel.textColor = [UIColor darkGrayColor];
+    self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
+    self.websiteLabel.editable = NO;
+    self.websiteLabel.scrollEnabled = NO;
+    self.websiteLabel.font = [UIFont systemFontOfSize:12];
+    self.websiteLabel.backgroundColor = [UIColor orangeColor];
+    [self.scrollView addSubview:self.websiteLabel];
+    
+    
+    startY += 23;
+
+    // Phone
+    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 42)];
+    self.phoneLabel.textColor = [UIColor darkGrayColor];
+    self.phoneLabel.font = [UIFont systemFontOfSize:12];
+    self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+    self.phoneLabel.editable = NO;
+    self.phoneLabel.scrollEnabled = NO;
+    self.phoneLabel.backgroundColor = [UIColor greenColor];
+    [self.scrollView addSubview:self.phoneLabel];
+    
+     // DISTANCE
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, startY+self.gabIfStatusUnknown, 70, 16)];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.font = [UIFont systemFontOfSize:12];
     self.distanceLabel.textAlignment = UITextAlignmentCenter;
@@ -153,9 +172,9 @@
     [self.view addSubview:self.scrollView];
     
     // TEST
-//    self.headingLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 250, 130, 30)];
-//    self.headingLabel.backgroundColor = [UIColor orangeColor];
-//    [self.scrollView addSubview:self.headingLabel];
+    self.headingLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 250, 130, 30)];
+    self.headingLabel.backgroundColor = [UIColor orangeColor];
+  //  [self.scrollView addSubview:self.headingLabel];
     
 }
 
@@ -229,26 +248,6 @@
     int labelWidth = 300 / 4 - gabBetweenLabels;
     int startLabelX = (labelWidth-buttonWidth)/2;
     
-    // PHONE
-    self.callButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.callButton.frame = CGRectMake(0, 0,buttonWidth,buttonHeight);
-    [self.callButton setImage: [UIImage imageNamed:@"more-buttons_phone.png"] forState: UIControlStateNormal];
-    [self.callButton setImage: [UIImage imageNamed:@"more-buttons_phone-deactive.png"] forState: UIControlStateDisabled];
-    [self.callButton addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
-
-    UILabel *callLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewCallLabel", @"")];
-    callLabel.frame = CGRectMake(self.callButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
-   
-    // WEBSITE
-    self.websiteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.websiteButton.frame = CGRectMake(imagePlusGab+0, 0,buttonWidth,buttonHeight);
-    [self.websiteButton setImage: [UIImage imageNamed:@"more-buttons_url.png"] forState: UIControlStateNormal];
-    [self.websiteButton setImage: [UIImage imageNamed:@"more-buttons_url-deactive.png"] forState: UIControlStateDisabled];
-    [self.websiteButton addTarget:self action:@selector(openWebpage) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *websiteLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewWebsiteLabel", @"")];
-    websiteLabel.frame = CGRectMake(self.websiteButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
-
     // COMMENT
     self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.commentButton.frame = CGRectMake(2*imagePlusGab+0, 0,buttonWidth,buttonHeight);
@@ -276,8 +275,6 @@
     [self.fourButtonView addSubview:self.websiteButton];
     [self.fourButtonView addSubview:self.commentButton];
     [self.fourButtonView addSubview:self.naviButton];
-    [self.fourButtonView addSubview:callLabel];
-    [self.fourButtonView addSubview:websiteLabel];
     [self.fourButtonView addSubview:infoLabel];
     [self.fourButtonView addSubview:routeLabel];
     
@@ -353,7 +350,7 @@
 
     
     if (self.node.street == nil && self.node.housenumber == nil && self.node.postcode == nil && self.node.city == nil) {
-        self.postcodeAndCityLabel.text = @"no info available";
+        self.postcodeAndCityLabel.text = @"no address available";
     } else {
         NSString *street = self.node.street ?: @"";
         NSString *houseNumber = self.node.housenumber ?: @"";
@@ -362,7 +359,10 @@
         NSString *city = self.node.city ?: @"";
         self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];   
     }
-    
+
+    self.websiteLabel.text = self.node.website ?: @"no website available";
+    self.phoneLabel.text = self.node.phone ?: @"no phone available";
+
     [self checkForStatusOfButtons];
     [self setWheelAccessButton];
     [self updateDistanceToAnnotation];
@@ -403,10 +403,13 @@
         [self.askFriendsButton removeFromSuperview];
         self.streetLabel.frame = CGRectMake(self.streetLabel.frame.origin.x, self.streetLabel.frame.origin.y-self.gabIfStatusUnknown, self.streetLabel.frame.size.width, self.streetLabel.frame.size.height);
         self.postcodeAndCityLabel.frame = CGRectMake(self.postcodeAndCityLabel.frame.origin.x, self.postcodeAndCityLabel.frame.origin.y-self.gabIfStatusUnknown, self.postcodeAndCityLabel.frame.size.width, self.postcodeAndCityLabel.frame.size.height);
+        self.websiteLabel.frame = CGRectMake(self.websiteLabel.frame.origin.x, self.websiteLabel.frame.origin.y-self.gabIfStatusUnknown, self.websiteLabel.frame.size.width, self.websiteLabel.frame.size.height);
+        self.phoneLabel.frame = CGRectMake(self.postcodeAndCityLabel.frame.origin.x, self.phoneLabel.frame.origin.y-self.gabIfStatusUnknown, self.phoneLabel.frame.size.width, self.phoneLabel.frame.size.height);
         self.compassView.frame = CGRectMake(self.compassView.frame.origin.x, self.compassView.frame.origin.y-self.gabIfStatusUnknown, self.compassView.frame.size.width, self.compassView.frame.size.height);
         self.distanceLabel.frame = CGRectMake(self.distanceLabel.frame.origin.x, self.distanceLabel.frame.origin.y-self.gabIfStatusUnknown, self.distanceLabel.frame.size.width, self.distanceLabel.frame.size.height);
         self.imageScrollView.frame = CGRectMake(self.imageScrollView.frame.origin.x, self.imageScrollView.frame.origin.y-self.gabIfStatusUnknown, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
         self.fourButtonView.frame = CGRectMake(self.fourButtonView.frame.origin.x, self.fourButtonView.frame.origin.y-self.gabIfStatusUnknown, self.fourButtonView.frame.size.width, self.fourButtonView.frame.size.height);
+        self.askFriendsButton = nil;
     }
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
@@ -555,28 +558,6 @@
         [[UIApplication sharedApplication] openURL:phoneLinkURL];
         
     }
-}
-
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-    
-	NSLog(@"New magnetic heading: %f", newHeading.magneticHeading);
-    NSLog(@"New true heading: %f", newHeading.trueHeading);
-    
-    float mHeading = newHeading.magneticHeading;
-    [self.headingLabel setText:[NSString stringWithFormat:@"%.2f degress", newHeading.magneticHeading]];
-
-	if ((mHeading >= 350) || (mHeading <= 10)) {
-		[self.headingLabel setText:@"North"];
-    }else if ((mHeading > 80) && (mHeading <= 110)) {
-        [self.headingLabel setText:@"East"];
-    }else if ((mHeading > 170) && (mHeading <= 190)) {
-        [self.headingLabel setText:@"South"];
-    }else if ((mHeading > 280) && (mHeading <= 300)) {
-        [self.headingLabel setText:@"West"];
-    }
-    self.compassView.transform = CGAffineTransformMakeRotation(mHeading);
 }
 
 #pragma mark - button handlers
