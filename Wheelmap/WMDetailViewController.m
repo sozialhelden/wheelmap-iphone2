@@ -17,6 +17,10 @@
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
 #import "WMCompassView.h"
+#import "WMPhotoViewController.h"
+#import "WMInfinitePhotoViewController.h"
+#import "UIImageView+AFNetworking.h"
+
 
 
 #define STARTLEFT 15
@@ -24,22 +28,32 @@
 @implementation WMDetailViewController
 
 
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
         // Custom initialization
+        self.imageURLArray = [NSMutableArray new];
+        
+        [self.imageURLArray addObject:@"http://1.bp.blogspot.com/_zdaKzlmvgJc/SLjcZhKw16I/AAAAAAAAADQ/_PuqR3GJmko/s400/golden%2Bgirls%2Bmm.jpg"];
+        [self.imageURLArray addObject:@"http://images1.wikia.nocookie.net/__cb20120725020018/creepypasta/images/6/66/The-golden-girls.jpg"];
+        [self.imageURLArray addObject:@"http://upload.wikimedia.org/wikipedia/en/thumb/5/58/Golden_Girls_cast_miami_song.jpg/220px-Golden_Girls_cast_miami_song.jpg"];
+        [self.imageURLArray addObject:@"http://images4.fanpop.com/image/photos/23500000/Golden-Girls-the-golden-girls-23583048-750-458.jpg"];
+        [self.imageURLArray addObject:@"http://2ndfloorliving.com/wp-content/uploads/2009/10/Golden-Girls-tv-show-16.jpg"];
+        [self.imageURLArray addObject:@"http://images5.fanpop.com/image/photos/30700000/Dorothy-the-golden-girls-30775692-1741-2560.jpg"];
+
     }
     return self;
 }
 
 
-
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"DetailsViewHeadline", @"");
+    self.title = NSLocalizedString(@"DetailViewHeadline", @"");
 
     self.gabIfStatusUnknown = 0;
 
@@ -113,9 +127,10 @@
     self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
     self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:12];
+    //self.postcodeAndCityLabel.backgroundColor = [UIColor greenColor];
     [self.scrollView addSubview:self.postcodeAndCityLabel];
     
-    startY += 18;
+    startY += 20;
     
     // COMPASS
     UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
@@ -125,26 +140,28 @@
     [self.scrollView addSubview:compassView];
     
     // WEBSITE
-    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 22)];
+    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
     self.websiteLabel.textColor = [UIColor darkGrayColor];
     self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
     self.websiteLabel.editable = NO;
     self.websiteLabel.scrollEnabled = NO;
     self.websiteLabel.font = [UIFont systemFontOfSize:12];
-    self.websiteLabel.backgroundColor = [UIColor orangeColor];
+    //self.websiteLabel.backgroundColor = [UIColor orangeColor];
+    self.websiteLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
     [self.scrollView addSubview:self.websiteLabel];
     
     
-    startY += 23;
+    startY += 20;
 
     // Phone
-    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 42)];
+    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
     self.phoneLabel.textColor = [UIColor darkGrayColor];
     self.phoneLabel.font = [UIFont systemFontOfSize:12];
     self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
     self.phoneLabel.editable = NO;
     self.phoneLabel.scrollEnabled = NO;
-    self.phoneLabel.backgroundColor = [UIColor greenColor];
+    //self.phoneLabel.backgroundColor = [UIColor greenColor];
+    self.phoneLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
     [self.scrollView addSubview:self.phoneLabel];
     
      // DISTANCE
@@ -178,130 +195,6 @@
     
 }
 
-- (void) createAskFriendsForStatusButton {
-    self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
-    [self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.askFriendsButton setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
-    self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
-    self.askFriendsButton.titleLabel.numberOfLines = 2;
-    [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
-    [self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
-
-    self.askFriendsButton.frame = CGRectMake(20, 220, self.view.bounds.size.width-40, buttonImage.size.height);
-    [self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.askFriendsButton];
-}
-
-- (void)createThumbnails {
-    int start = 22+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
-    int gab = 16;
-    
-    for (int i = 0; i < self.imageCount; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(start+i*80+i*gab, 10, 85, 60)];
-        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        imageView.layer.borderWidth = 2;
-        [self.imageScrollView addSubview:imageView];
-        [self.imageViewsInScrollView addObject:imageView];
-    }
-    
-    int scrollWidth = (self.imageCount+1)*[UIImage imageNamed:@"details_btn-photoupload.png"].size.width+(self.imageCount+3)*gab;
-    self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
-}
-
-- (void) createAndAddImageScrollView {
-    
-    self.imageViewsInScrollView = [NSMutableArray new];
-    
-   
-    UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
-    
-    self.imageScrollView = [UIScrollView new];
-    self.imageScrollView.backgroundColor = [UIColor colorWithPatternImage:uploadBackground];
-    [self.imageScrollView setShowsHorizontalScrollIndicator:NO];
-    
-    UIImage *cameraButtonImage = [UIImage imageNamed:@"details_btn-photoupload.png"];
-    UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cameraButton.frame = CGRectMake(10, 9, cameraButtonImage.size.width, cameraButtonImage.size.height);
-    [cameraButton setImage: cameraButtonImage forState: UIControlStateNormal];
-    [cameraButton addTarget:self action:@selector(cameraButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self createThumbnails];
-    
-    [self.imageScrollView addSubview:cameraButton];
-    [self.scrollView addSubview:self.imageScrollView];
-}
-
-- (void)createAndAddFourButtonView {
-  
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"details_btn-more-active.png"];
-    UIImage *buttonBackgroundImageDisabled = [UIImage imageNamed:@"details_btn-more-inactive.png"];
-    
-
-    self.fourButtonView = [UIView new];
-       
-    int buttonWidth = 68;
-    int buttonHeight = 62;
-    int imagePlusGab = buttonWidth + (((300)-(4*buttonWidth)) / 3);
-    int gabBetweenLabels = 3;
-    int labelWidth = 300 / 4 - gabBetweenLabels;
-    int startLabelX = (labelWidth-buttonWidth)/2;
-    
-    // COMMENT
-    self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.commentButton.frame = CGRectMake(2*imagePlusGab+0, 0,buttonWidth,buttonHeight);
-    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info.png"] forState: UIControlStateNormal];
-    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info-deactive.png"] forState: UIControlStateDisabled];
-    [self.commentButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *infoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"")];
-    infoLabel.frame = CGRectMake(self.commentButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
-
-    // ROUTE
-    self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.naviButton.frame = CGRectMake(3*imagePlusGab+0, 0,buttonWidth,buttonHeight);
-    [self.naviButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
-    [self.naviButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
-    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route.png"] forState: UIControlStateNormal];
-    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route-deactive.png"] forState: UIControlStateDisabled];
-    [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewRouteLabel", @"")];
-    routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
-
-    // add all buttons and labels
-    [self.fourButtonView addSubview:self.callButton];
-    [self.fourButtonView addSubview:self.websiteButton];
-    [self.fourButtonView addSubview:self.commentButton];
-    [self.fourButtonView addSubview:self.naviButton];
-    [self.fourButtonView addSubview:infoLabel];
-    [self.fourButtonView addSubview:routeLabel];
-    
-    
-    [self.scrollView addSubview:self.fourButtonView];
-}
-
-- (UILabel*) createBelowButtonLabel: (NSString*) title {
-    
-    UILabel *belowButtonLabel = [UILabel new];
-   // belowButtonLabel.backgroundColor = [UIColor orangeColor];
-    belowButtonLabel.text = title;
-    belowButtonLabel.font = [UIFont systemFontOfSize:11];
-    belowButtonLabel.textColor = [UIColor darkGrayColor];
-    belowButtonLabel.textAlignment = UITextAlignmentCenter;
-    return belowButtonLabel;
-}
-
-
-/* Set a fixed size for view in popovers */
-
-- (CGSize)contentSizeForViewInPopover
-{
-    return CGSizeMake(320, 480);
-}
-
-
 - (void)viewDidUnload {
     [self setStreetLabel:nil];
     [self setPostcodeAndCityLabel:nil];
@@ -317,7 +210,7 @@
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
     [self.mapView addAnnotation:self.annotation];
-
+    
     [self updateFields];
     
 }
@@ -326,18 +219,45 @@
     self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
     
-
+    
     CLLocationCoordinate2D poiLocation;
     poiLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
     poiLocation.longitude = self.node.lon.doubleValue; // increase to move to the right
     // region to display
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(poiLocation, 100, 50);
     viewRegion.center = poiLocation;
-
+    
     // display the region
     [self.mapView setRegion:viewRegion animated:YES];
-
+    
 }
+
+#pragma mark - UI element creation
+
+- (void) createAskFriendsForStatusButton {
+    self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
+    [self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.askFriendsButton setTitle:NSLocalizedString(@"DetailViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
+    self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.askFriendsButton.titleLabel.numberOfLines = 2;
+    [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
+    [self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
+
+    self.askFriendsButton.frame = CGRectMake(20, 220, self.view.bounds.size.width-40, buttonImage.size.height);
+    [self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:self.askFriendsButton];
+}
+
+/* Set a fixed size for view in popovers */
+
+- (CGSize)contentSizeForViewInPopover
+{
+    return CGSizeMake(320, 480);
+}
+
+
 
 
 - (void) updateFields {
@@ -347,43 +267,44 @@
     
     self.titleLabel.text = self.node.name ?: @"?";
     self.nodeTypeLabel.text = self.node.node_type.localized_name ?: @"?";
-
+    
     
     if (self.node.street == nil && self.node.housenumber == nil && self.node.postcode == nil && self.node.city == nil) {
-        self.postcodeAndCityLabel.text = @"no address available";
+        self.postcodeAndCityLabel.text = NSLocalizedString(@"DetailViewNoAddressAvailable", @"");
     } else {
         NSString *street = self.node.street ?: @"";
         NSString *houseNumber = self.node.housenumber ?: @"";
         self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
         NSString *postcode = self.node.postcode ?: @"";
         NSString *city = self.node.city ?: @"";
-        self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];   
+        self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
     }
-
-    self.websiteLabel.text = self.node.website ?: @"no website available";
-    self.phoneLabel.text = self.node.phone ?: @"no phone available";
-
+    
+    self.websiteLabel.text = self.node.website ?: NSLocalizedString(@"DetailViewNoWebsiteAvailable", @"");
+    self.phoneLabel.text = self.node.phone ?: NSLocalizedString(@"DetailViewNoPhoneNumberAvailable", @"");
+    
     [self checkForStatusOfButtons];
     [self setWheelAccessButton];
     [self updateDistanceToAnnotation];
     
     self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:self.node.wheelchair]];
-
-      
+    
+    
 }
 
+
 - (void) checkForStatusOfButtons {
-    
-    if(self.node.phone == nil || [self.node.phone isEqualToString:@""]) {
-        self.callButton.enabled = NO;
-    } else {
-        self.callButton.enabled = YES;
-    }
-    if(self.node.website == nil || [self.node.website isEqualToString:@""]) {
-        self.websiteButton.enabled = NO;
-    } else {
-        self.websiteButton.enabled = YES;
-    }
+    /*
+     if(self.node.phone == nil || [self.node.phone isEqualToString:@""]) {
+     self.callButton.enabled = NO;
+     } else {
+     self.callButton.enabled = YES;
+     }
+     if(self.node.website == nil || [self.node.website isEqualToString:@""]) {
+     self.websiteButton.enabled = NO;
+     } else {
+     self.websiteButton.enabled = YES;
+     } */
     if(self.node.wheelchair_description == nil || [self.node.wheelchair_description isEqualToString:@""]) {
         self.commentButton.enabled = NO;
     } else {
@@ -427,15 +348,109 @@
             self.gabIfStatusUnknown = 62;
             [self createAskFriendsForStatusButton];
         }
-  
+        
     }
     
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
-
+    
 }
 
-#pragma mark - Map View Delegate
+
+
+#pragma mark - Phone, Website, Comment, Navi
+
+- (void)createAndAddFourButtonView {
+  
+    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"details_btn-more-active.png"];
+    UIImage *buttonBackgroundImageDisabled = [UIImage imageNamed:@"details_btn-more-inactive.png"];
+    
+
+    self.fourButtonView = [UIView new];
+       
+    int buttonWidth = 68;
+    int buttonHeight = 62;
+    int imagePlusGab = buttonWidth + (((300)-(4*buttonWidth)) / 3);
+    int gabBetweenLabels = 3;
+    int labelWidth = 300 / 4 - gabBetweenLabels;
+    int startLabelX = (labelWidth-buttonWidth)/2;
+    
+    // COMMENT
+    self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.commentButton.frame = CGRectMake(2*imagePlusGab+0, 0,buttonWidth,buttonHeight);
+    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info.png"] forState: UIControlStateNormal];
+    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info-deactive.png"] forState: UIControlStateDisabled];
+    [self.commentButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *infoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"")];
+    infoLabel.frame = CGRectMake(self.commentButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
+
+    // ROUTE
+    self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.naviButton.frame = CGRectMake(3*imagePlusGab+0, 0,buttonWidth,buttonHeight);
+    [self.naviButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
+    [self.naviButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
+    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route.png"] forState: UIControlStateNormal];
+    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route-deactive.png"] forState: UIControlStateDisabled];
+    [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewRouteLabel", @"")];
+    routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
+
+    // add all buttons and labels
+    [self.fourButtonView addSubview:self.commentButton];
+    [self.fourButtonView addSubview:self.naviButton];
+    [self.fourButtonView addSubview:infoLabel];
+    [self.fourButtonView addSubview:routeLabel];
+    
+    
+    [self.scrollView addSubview:self.fourButtonView];
+}
+
+- (UILabel*) createBelowButtonLabel: (NSString*) title {
+    
+    UILabel *belowButtonLabel = [UILabel new];
+   // belowButtonLabel.backgroundColor = [UIColor orangeColor];
+    belowButtonLabel.text = title;
+    belowButtonLabel.font = [UIFont systemFontOfSize:11];
+    belowButtonLabel.textColor = [UIColor darkGrayColor];
+    belowButtonLabel.textAlignment = UITextAlignmentCenter;
+    return belowButtonLabel;
+}
+
+
+- (void) call {
+    
+    NSString *callString = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Call", @""), self.node.phone];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:callString delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+    actionSheet.tag = 3;
+    [actionSheet showInView:self.view];
+    
+    
+}
+
+- (void)openWebpage {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
+    
+}
+
+- (void) showCommentView {
+    WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
+    vc.currentNode = self.node;
+    vc.title = NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"");
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)openMap {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+    actionSheet.tag = 1;
+    [actionSheet showInView:self.view];
+}
+
+
+#pragma mark - Map
 
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -512,27 +527,10 @@
     return nil;
 }
 
-#pragma mark - imagePicker delegates
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
-    
-    [self dismissModalViewControllerAnimated:YES];
-    
-}
-
-- (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    self.imageCount++;
-    [self createThumbnails];
-    UIImageView *selectedImage = [self.imageViewsInScrollView objectAtIndex:self.imageViewsInScrollView.count-1];
-    selectedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    [self dismissModalViewControllerAnimated:YES];
-    
-}
 
 
-#pragma mark - actionSheetDelegate
+
+#pragma mark - ActionSheets
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 
@@ -560,7 +558,108 @@
     }
 }
 
-#pragma mark - button handlers
+
+#pragma mark - PhotoUpload (UI, imagepicker, delegates etc.)
+
+- (void) createAndAddImageScrollView {
+    
+    self.imageViewsInScrollView = [NSMutableArray new];
+    
+    
+    UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
+    
+    self.imageScrollView = [UIScrollView new];
+    self.imageScrollView.backgroundColor = [UIColor colorWithPatternImage:uploadBackground];
+    [self.imageScrollView setShowsHorizontalScrollIndicator:NO];
+    
+    UIImage *cameraButtonImage = [UIImage imageNamed:@"details_btn-photoupload.png"];
+    UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cameraButton.frame = CGRectMake(10, 9, cameraButtonImage.size.width, cameraButtonImage.size.height);
+    [cameraButton setImage: cameraButtonImage forState: UIControlStateNormal];
+    [cameraButton addTarget:self action:@selector(cameraButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self createThumbnails];
+    
+    [self.imageScrollView addSubview:cameraButton];
+    [self.scrollView addSubview:self.imageScrollView];
+}
+
+- (void)createThumbnails {
+    
+    self.start = 22+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
+    self.gab = 16;
+    
+    for (int i = 0; i < self.imageURLArray.count; i++) {
+        [self addThumbnail:i];
+    }
+    
+    int scrollWidth = (self.imageURLArray.count+1)*[UIImage imageNamed:@"details_btn-photoupload.png"].size.width+(self.imageURLArray.count+3)*self.gab;
+    self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
+}
+
+- (void) addThumbnail: (int) i {
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start+i*80+i*self.gab, 10, 85, 60)];
+    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    imageView.layer.borderWidth = 2;
+    imageView.tag = i;
+    imageView.userInteractionEnabled = YES;
+    [imageView setImageWithURL: [NSURL URLWithString:[self.imageURLArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbnailTapped:)];
+    [imageView addGestureRecognizer:tapRecognizer];
+    
+    [self.imageScrollView addSubview:imageView];
+    [self.imageViewsInScrollView addObject:imageView];
+}
+
+- (void)thumbnailTapped:(UITapGestureRecognizer*)sender {
+    
+ //   WMPhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPhotoViewController"];
+    WMInfinitePhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMInfinitePhotoViewController"];
+    vc.imageURLArray = self.imageURLArray;
+    vc.tappedImage = sender.view.tag;
+    [self presentModalViewController:vc animated:YES];
+}
+
+- (void) cameraButtonPressed {
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.delegate = self;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailViewUploadOptionCamera", @""), NSLocalizedString(@"DetailViewUploadOptionPhotoAlbum", @""), nil];
+        actionSheet.tag = 2;
+        [actionSheet showInView:self.view];
+    } else {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentModalViewController:self.imagePicker animated:YES];
+    }
+    
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    //    self.imageCount++;
+    //    [self addThumbnail:self.imageCount-1];
+    //    int scrollWidth = (self.imageCount+1)*[UIImage imageNamed:@"details_btn-photoupload.png"].size.width+(self.imageCount+3)*self.gab;
+    //    self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
+    
+    
+    UIImageView *selectedImage = [self.imageViewsInScrollView objectAtIndex:self.imageViewsInScrollView.count-1];
+    selectedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
+#pragma mark - Other Button Handlers
 
 - (void) shareLocationButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
@@ -598,51 +697,6 @@
 }
 
 
-- (void) call {
-
-    NSString *callString = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Call", @""), self.node.phone];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:callString delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
-    actionSheet.tag = 3;
-    [actionSheet showInView:self.view];
-
-    
-}
-
-- (void)openWebpage {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
-    actionSheet.tag = 0;
-    [actionSheet showInView:self.view];
-
-}
-
-- (void) showCommentView {
-    WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
-    vc.currentNode = self.node;
-    vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
--(void)openMap {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
-    actionSheet.tag = 1;
-    [actionSheet showInView:self.view];
-}
-
-- (void) cameraButtonPressed {
-    self.imagePicker = [[UIImagePickerController alloc] init];
-    self.imagePicker.delegate = self;
-
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailsViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailsViewUploadOptionCamera", @""), NSLocalizedString(@"DetailsViewUploadOptionPhotoAlbum", @""), nil];
-        actionSheet.tag = 2;
-        [actionSheet showInView:self.view];
-    } else {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentModalViewController:self.imagePicker animated:YES];
-    }
-
-    
-}
 
 - (void) setUpdatedNode: (Node*) node {
     self.node = node;
@@ -655,8 +709,6 @@
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-
 
 @end
 
