@@ -50,8 +50,8 @@
     [self.view addSubview:self.categoriesButton];
     [self.view addSubview:self.helpButton];
 
-    self.searchTextField.placeholder = NSLocalizedString(@"Nach Ort Suchen", nil);
-    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"?????", NSLocalizedString(@"Orte", nil)];
+    self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
+    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"?????", NSLocalizedString(@"Places", nil)];
 }
 
 -(void)viewWillAppear:(BOOL)animated
