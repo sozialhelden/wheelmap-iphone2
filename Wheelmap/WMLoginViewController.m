@@ -42,10 +42,10 @@
     self.topTextLabel.text = NSLocalizedString(@"TopLabelText", nil);
     self.bottomTextLabel.text = NSLocalizedString(@"BottomLabelText", nil);
     [self.doneButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
-    [self.loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
+    [self.loginButton setTitle:NSLocalizedString(@"Sign In Button", nil) forState:UIControlStateNormal];
     [self.registerButton setTitle:NSLocalizedString(@"RegisterNew", nil) forState:UIControlStateNormal];
     self.usernameTextField.placeholder = NSLocalizedString(@"UsernamePlaceholder", nil);
-    self.passwordTextField.placeholder = NSLocalizedString(@"PasswordPlaceholder", nil);
+    self.passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
 
 }
 

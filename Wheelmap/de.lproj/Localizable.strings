@@ -65,11 +65,14 @@
 "SearchForPlace" = "Nach Ort Suchen";
 "Places" = "Orte";
 
-"Anmelden" = "Anmelden";
+"Sign In" = "Anmelden";
 "TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
 "BottomLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.";
 "Ready" = "Fertig";
-"Login" = "Login";
+"Sign In Button" = "Login";
 "RegisterNew" = "Neu registrieren";
 "UsernamePlaceholder" = "Benutzername";
-"PasswordPlaceholder" = "Passwort";
+"Password" = "Passwort";
+"MapHybrid" = "Hybrid";
+"MapStandard" = "Standard";
+"MapSatellite" = "Satellite";

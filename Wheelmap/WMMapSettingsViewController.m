@@ -28,6 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.standardButton setTitle:NSLocalizedString(@"MapStandard", nil) forState:UIControlStateNormal];
+    [self.hybridButton setTitle:NSLocalizedString(@"MapHybrid", nil) forState:UIControlStateNormal];
+    [self.satelliteButton setTitle:NSLocalizedString(@"MapSatellite", nil) forState:UIControlStateNormal];
+    
     switch (selectedMapType) {
         case 0:
             self.standardButton.selected = YES;
