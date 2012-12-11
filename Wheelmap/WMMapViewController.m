@@ -12,7 +12,7 @@
 #import "Node.h"
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
-
+#import "WMMapSettingsViewController.h"
 
 // TODO: re-position popover after orientation change
 
@@ -96,7 +96,6 @@
     return nil;
 }
 
-
 #pragma mark - Node List View Protocol
 
 - (void) nodeListDidChange
@@ -164,9 +163,9 @@
     [self.delegate nodeListView:self didSelectDetailsForNode:annotation.node];
 }
 
-- (IBAction)toggleMapTypeChanged:(UISegmentedControl*)segmentedControl
+- (IBAction)toggleMapTypeChanged:(UIButton *)sender
 {
-    switch (segmentedControl.selectedSegmentIndex) {
+    switch (sender.tag) {
         case 0: self.mapView.mapType = MKMapTypeStandard; break;
         case 1: self.mapView.mapType = MKMapTypeHybrid; break;
         case 2: self.mapView.mapType = MKMapTypeSatellite; break;
