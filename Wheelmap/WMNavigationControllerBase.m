@@ -344,11 +344,11 @@
         self.customToolBar.toggleButton.selected = NO;
         switch (nodeListVC.useCase) {
             case kWMNodeListViewControllerUseCaseNormal:
-                nodeListVC.navigationBarTitle = @"Orte in deiner Nähe";
+                nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
                 [self.customToolBar showAllButtons];
                 break;
             case kWMNodeListViewControllerUseCaseContribute:
-                nodeListVC.navigationBarTitle = @"Mithelfen";
+                nodeListVC.navigationBarTitle = NSLocalizedString(@"DashboardHelp", nil);
                 [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
                 [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;

@@ -76,3 +76,6 @@
 "MapHybrid" = "Hybrid";
 "MapStandard" = "Standard";
 "MapSatellite" = "Satellite";
+
+"PlacesNearby" = "Orte in deiner Nähe";
+"HelpByMarking" = "Hilf mit und markiere die Rollstuhlgerechtigkeit dieser Orte in deiner Nähe";

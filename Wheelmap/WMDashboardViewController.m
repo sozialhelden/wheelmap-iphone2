@@ -89,7 +89,7 @@
     
     WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     WMMapViewController* mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
-    mapVC.navigationBarTitle = @"Orte in deiner Nähe";
+    mapVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
     [self.navigationController pushViewController:nodeListVC animated:NO];
     [self.navigationController pushViewController:mapVC animated:YES];
     
