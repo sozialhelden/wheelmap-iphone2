@@ -30,19 +30,19 @@
         switch (type) {
             case WMDashboardButtonTypeNearby:
                 buttonImageStringNormal = @"start_icon-grid-locallist.png";
-                titleString = NSLocalizedString(@"IN DER NÄHE", nil);
+                titleString = NSLocalizedString(@"DashboardNearby", nil);
                 break;
             case WMDashboardButtonTypeMap:
                 buttonImageStringNormal = @"start_icon-grid-map.png";
-                titleString = NSLocalizedString(@"KARTE", nil);
+                titleString = NSLocalizedString(@"DashboardMap", nil);
                 break;
             case WMDashboardButtonTypeCategories:
                 buttonImageStringNormal = @"start_icon-grid-category.png";
-                titleString = NSLocalizedString(@"KATEGORIEN", nil);
+                titleString = NSLocalizedString(@"DashboardCategories", nil);
                 break;
             case WMDashboardButtonTypeHelp:
                 buttonImageStringNormal = @"start_icon-grid-help.png";
-                titleString = NSLocalizedString(@"MITHELFEN", nil);
+                titleString = NSLocalizedString(@"DashboardHelp", nil);
                 break;
             default:
                 break;

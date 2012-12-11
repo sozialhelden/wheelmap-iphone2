@@ -15,7 +15,8 @@
 @implementation WMWheelmapAPI
 
 
-+ (WMWheelmapAPI *)sharedInstance {
++ (WMWheelmapAPI *)sharedInstance
+{
     static WMWheelmapAPI *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -25,7 +26,8 @@
     return _sharedInstance;
 }
 
-- (id)initWithBaseURL:(NSURL *)url {
+- (id)initWithBaseURL:(NSURL *)url
+{
     self = [super initWithBaseURL:url];
     if (!self) {
         return nil;

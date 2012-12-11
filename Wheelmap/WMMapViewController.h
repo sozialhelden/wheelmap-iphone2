@@ -10,7 +10,6 @@
 #import <MapKit/MapKit.h>
 #import "WMNodeListView.h"
 
-
 @class MKMapView, Node;
 
 @interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate>
@@ -20,7 +19,8 @@
 
 - (void) showDetailPopoverForNode:(Node*)node;
 
-- (IBAction) toggleMapTypeChanged:(id)sender;
+- (IBAction) toggleMapTypeChanged:(UIButton *)sender;
+
 //- (IBAction) returnToListViewTouched:(id)sender;
 
 

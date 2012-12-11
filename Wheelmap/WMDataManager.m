@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "WMDataManager.h"
 #import "WMWheelmapAPI.h"
+#import "WMKeychainWrapper.h"
 #import "Asset.h"
 #import "NodeType.h"
 #import "Node.h"
@@ -16,22 +17,22 @@
 
 #define WMSearchRadius 0.004
 #define WMLogDataManager 0
-#define WMLOGINURLPOSTFIX @"/users/authenticate?"
-#define WMAPIKey @"mWCcf9AGZz7Zzvp9KWxm"
 
-// TODO: load api key from plist file
+
 // TODO: fix etag check
 // TODO: use a regular queue to enqueue both http and zip operations when syncing
 
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
+@property (nonatomic, readonly) WMKeychainWrapper *keychainWrapper;
 @end
 
 
 @implementation WMDataManager
 {
     NSMutableArray* syncErrors;
+    NSString *appApiKey;
 }
 
 - (id) init
@@ -58,12 +59,100 @@
 
 #pragma mark - API Key
 
+- (WMKeychainWrapper*) keychainWrapper
+{
+    static WMKeychainWrapper *_keychainWrapper = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _keychainWrapper = [[WMKeychainWrapper alloc] init];
+    });
+    return _keychainWrapper;
+}
+
 - (NSString*) apiKey
 {
-    // TODO: check if a user key is stored in keychain
+    // check if a user key is stored in the keychain
+    NSString *userToken = [self.keychainWrapper tokenForAccount:nil];
+    if ([userToken length] > 0) {
+        return userToken;
+    }
     
-    // if not, return app key
-    return WMAPIKey;
+    // else, use app key
+    if (!appApiKey) {
+        // load it from config file if necessary
+        NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WMConfig" ofType:@"plist"]];
+        appApiKey = config[@"appAPIKey"];
+    }
+    
+    return appApiKey;
+}
+
+
+#pragma mark - Authentication
+
+- (void)authenticateUserWithEmail:(NSString *)email password:(NSString *)password
+{
+    if (WMLogDataManager) NSLog(@"authenticate user w email:%@ pw:%@", email, password);
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:@"users/authenticate"
+                                             apiKey:[self apiKey]
+                                         parameters:@{@"email":email, @"password":password}
+                                               eTag:nil
+                                               data:nil
+                                             method:nil
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:userAuthenticationFailedWithError:)]) {
+                                                      [self.delegate dataManager:self userAuthenticationFailedWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                [self didReceiveAuthenticationData:JSON[@"user"] forAccount:email];
+                                            }
+                                   startImmediately:YES
+     ];
+}
+
+- (void) didReceiveAuthenticationData:(NSDictionary*)user forAccount:(NSString*)account
+{
+    NSString *userToken = user[@"api_key"];
+    if (WMLogDataManager) NSLog(@"received user token %@", userToken);
+    
+    if (userToken) {
+        
+        // save token to keychain
+        BOOL saveSuccess = [self.keychainWrapper saveToken:userToken forAccount:account];
+        if (WMLogDataManager) NSLog(@"saved user token to keychain with %@", saveSuccess ? @"success" : @"error");
+        
+        if (saveSuccess) {
+            // now that we have saved a token, we can delete legacy keychain data
+            [self.keychainWrapper deleteLegacyAccountData];
+        }
+        
+        if ([self.delegate respondsToSelector:@selector(dataManagerDidAuthenticateUser:)]) {
+            [self.delegate dataManagerDidAuthenticateUser:self];
+        }
+        
+    } else if ([self.delegate respondsToSelector:@selector(dataManager:userAuthenticationFailedWithError:)]) {
+        NSError *error = [NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerInvalidUserKeyError userInfo:nil];
+        [self.delegate dataManager:self userAuthenticationFailedWithError:error];
+    }
+}
+
+- (BOOL) userIsAuthenticated
+{
+    NSString *userToken = [self.keychainWrapper tokenForAccount:nil];
+    return ([userToken length] > 0);
+}
+
+- (void)removeUserAuthentication
+{
+    BOOL deleteSuccess = [self.keychainWrapper deleteTokenForAccount:nil];
+    if (WMLogDataManager) NSLog(@"removed user token from keychain with %@", deleteSuccess ? @"success" : @"error");
+}
+
+- (NSDictionary *) legacyUserCredentials
+{
+    return [self.keychainWrapper legacyAccountData];
 }
 
 

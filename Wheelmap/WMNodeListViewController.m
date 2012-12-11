@@ -71,7 +71,7 @@
         headerTextLabel.numberOfLines = 3;
         headerTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
         headerTextLabel.textColor = [UIColor whiteColor];
-        headerTextLabel.text = @"Hilf mit und markiere die Rollstuhlgerechtigkeit dieser Orte in deiner Nähe";
+        headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
         [accesoryHeader addSubview:headerTextLabel];
         
         accesoryHeader.alpha = 0.0;

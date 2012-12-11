@@ -12,6 +12,7 @@
 @interface WMDashboardViewController : WMViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UITextField *searchTextField;
+@property (nonatomic, strong) IBOutlet UILabel *numberOfPlacesLabel;
 
 @property (nonatomic, strong) WMDashboardButton *nearbyButton;
 @property (nonatomic, strong) WMDashboardButton *mapButton;

@@ -50,6 +50,8 @@
     [self.view addSubview:self.categoriesButton];
     [self.view addSubview:self.helpButton];
 
+    self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
+    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"?????", NSLocalizedString(@"Places", nil)];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -87,7 +89,7 @@
     
     WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     WMMapViewController* mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
-    mapVC.navigationBarTitle = @"Orte in deiner Nähe";
+    mapVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
     [self.navigationController pushViewController:nodeListVC animated:NO];
     [self.navigationController pushViewController:mapVC animated:YES];
     

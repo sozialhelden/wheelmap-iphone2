@@ -18,7 +18,9 @@
 @property (nonatomic, weak) id<WMDataManagerDelegate> delegate;
 
 - (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
+- (void) removeUserAuthentication;
 - (BOOL) userIsAuthenticated;
+- (NSDictionary*) legacyUserCredentials;
 
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
@@ -42,7 +44,8 @@
 extern NSString *WMDataManagerErrorDomain;
 
 enum {
-    WMDataManagerManagedObjectCreationError
+    WMDataManagerManagedObjectCreationError,
+    WMDataManagerInvalidUserKeyError
 };
 
 @end
