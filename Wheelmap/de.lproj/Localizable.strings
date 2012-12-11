@@ -56,3 +56,20 @@
 "CommentViewLabel" = "Hier findest du weitere Infos zur Rollstuhlgerechtigkeit des Ortes";
 "ShareLocationLabel" = "Ich habe folgenden Ort auf Wheelmap.org gefunden:";
 "AskFriendsLabel" = "Weißt du ob folgender Ort rollstuhlgerecht ist?";
+
+"DashboardNearby" = "IN DER NÄHE";
+"DashboardMap" = "KARTE";
+"DashboardCategories" = "KATEGORIEN";
+"DashboardHelp" = "MITHELFEN";
+
+"SearchForPlace" = "Nach Ort Suchen";
+"Places" = "Orte";
+
+"Anmelden" = "Anmelden";
+"TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
+"BottomLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.";
+"Ready" = "Fertig";
+"Login" = "Login";
+"RegisterNew" = "Neu registrieren";
+"UsernamePlaceholder" = "Benutzername";
+"PasswordPlaceholder" = "Passwort";
