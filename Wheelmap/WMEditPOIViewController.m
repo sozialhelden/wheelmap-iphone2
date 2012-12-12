@@ -14,6 +14,8 @@
 #import "WMSetMarkerViewController.h"
 #import "NodeType.h"
 #import "WMCategoryTableViewController.h"
+#import "WMDataManagerDelegate.h"
+#import "Category.h"
 
 @interface WMEditPOIViewController ()
 
@@ -35,7 +37,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.currentCategory = self.node.node_type.localized_name;
+    self.currentCategory = self.node.category;
     self.nameTextField.delegate = self;
     self.categoryTextField.delegate = self;
     self.infoTextView.delegate = self;
@@ -107,7 +109,7 @@
     self.cityTextField.text = self.node.city;
     self.websiteTextField.text = self.node.website;
     self.phoneTextField.text = self.node.phone;
-    [self.setCategoryButton setTitle:self.currentCategory forState:UIControlStateNormal];
+    [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
     
     [self setWheelAccessButton];
 }
@@ -198,7 +200,7 @@
       self.node.wheelchair = wheelchairAccess;
 }
 
-- (IBAction)categoryChosen:(NSString*)category {
+- (IBAction)categoryChosen:(Category*)category {
     self.currentCategory = category;
 }
 
@@ -228,7 +230,8 @@
 
     
     self.node.name = self.nameTextField.text;
-  //  self.node.category = self.categoryTextField.text;
+  
+    self.node.category = self.currentCategory;
     //self.node.lat =
     //self.node.lon =
     self.node.wheelchair = self.node.wheelchair;
@@ -241,6 +244,7 @@
     self.node.phone = self.phoneTextField.text;
     
     WMDataManager *dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
     [dataManager putNode:self.node];
     [self.delegate setUpdatedNode:self.node];
     [self.navigationController popViewControllerAnimated:YES];

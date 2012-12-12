@@ -143,7 +143,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Category *cat = [self.categoryArray objectAtIndex:indexPath.row];
-    [self.delegate categoryChosen:cat.localized_name];
+    [self.delegate categoryChosen:cat];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

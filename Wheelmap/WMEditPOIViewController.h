@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Node.h"
+#import "WMDataManagerDelegate.h"
 
-@interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate>
+@interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *nameInputView;
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *phoneInputView;
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
-@property (nonatomic, strong) NSString *currentCategory;
+@property (nonatomic, strong) Category *currentCategory;
 
 @property (nonatomic) Node *node;
 @property (nonatomic, assign) BOOL keyboardIsShown;
@@ -53,7 +54,7 @@
 
 - (IBAction)setCategory:(id)sender;
 - (IBAction)showAccessOptions:(id)sender;
-- (IBAction)categoryChosen:(NSString*)category;
+- (IBAction)categoryChosen:(Category*)category;
 - (void) saveEditedData;
 
 @end
