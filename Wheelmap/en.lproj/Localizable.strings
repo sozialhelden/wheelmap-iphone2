@@ -59,3 +59,8 @@
 "CommentViewLabel" = "Here you can find additional information about the wheelchair accessibility of the location";
 "ShareLocationLabel" = "I have found the following location on Wheelmap.org:";
 "AskFriendsLabel" = "Do you know whether the following location is wheelchair accessible?";
+
+"BackButton" = "Back";
+"NavBarEditButton" = "Edit";
+"NavBarSaveButton" = "Save";
+"NavBarCancelButton" = "Cancel";

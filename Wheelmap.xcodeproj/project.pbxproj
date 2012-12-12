@@ -121,7 +121,6 @@
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3F91678956500C58813 /* WMCategoryTableViewController.m */; };
-		D555D4041678C3B900C58813 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D555D4031678C3B900C58813 /* WMConfig.plist */; };
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -264,6 +263,7 @@
 		DBCA979816789B4D0042358C /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979716789B4D0042358C /* HockeySDK.framework */; };
 		DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCA979916789B610042358C /* HockeySDKResources.bundle */; };
 		DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979B16789B910042358C /* SystemConfiguration.framework */; };
+		DBCA97B31678D1780042358C /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBCA97B21678D1780042358C /* WMConfig.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -440,7 +440,6 @@
 		D555D3D816778C2800C58813 /* InfiniteGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteGallery.m; sourceTree = "<group>"; };
 		D555D3F81678956400C58813 /* WMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryTableViewController.h; sourceTree = "<group>"; };
 		D555D3F91678956500C58813 /* WMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryTableViewController.m; sourceTree = "<group>"; };
-		D555D4031678C3B900C58813 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../../Downloads/WMConfig.plist; sourceTree = "<group>"; };
 		D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited.png"; path = "Details/WheelAccess/details_btn-status-limited.png"; sourceTree = "<group>"; };
 		D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited@2x.png"; path = "Details/WheelAccess/details_btn-status-limited@2x.png"; sourceTree = "<group>"; };
 		D56F71F3166A33D6002CE692 /* details_btn-status-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-no.png"; path = "Details/WheelAccess/details_btn-status-no.png"; sourceTree = "<group>"; };
@@ -610,6 +609,7 @@
 		DBCA979716789B4D0042358C /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "3rd-party-sdks/HockeySDK.framework"; sourceTree = "<group>"; };
 		DBCA979916789B610042358C /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HockeySDKResources.bundle; path = "3rd-party-sdks/HockeySDKResources.bundle"; sourceTree = "<group>"; };
 		DBCA979B16789B910042358C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DBCA97B21678D1780042358C /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
 		DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -692,7 +692,7 @@
 			isa = PBXGroup;
 			children = (
 				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
-				D555D4031678C3B900C58813 /* WMConfig.plist */,
+				DBCA97B21678D1780042358C /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -1543,7 +1543,7 @@
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
-				D555D4041678C3B900C58813 /* WMConfig.plist in Resources */,
+				DBCA97B31678D1780042358C /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
