@@ -44,7 +44,7 @@
         backBtnBgImg.image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 10)];
         WMLabel* backBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(15, 0, 100, 35)];
         backBtnLabel.fontSize = 13.0;
-        backBtnLabel.text = @"Zurück";
+        backBtnLabel.text = NSLocalizedString(@"BackButton", nil);
         backBtnLabel.textColor = [UIColor whiteColor];
         CGSize expSize = [backBtnLabel.text sizeWithFont:backBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
         backBtnLabel.frame = CGRectMake(backBtnLabel.frame.origin.x, backBtnLabel.frame.origin.y, expSize.width, backBtnLabel.frame.size.height);
@@ -62,7 +62,7 @@
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = @"Cancel";
+        normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
@@ -95,7 +95,7 @@
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = @"Edit";
+        normalBtnLabel.text = NSLocalizedString(@"NavBarEditButton", nil);
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
@@ -116,7 +116,7 @@
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = @"Save";
+        normalBtnLabel.text = NSLocalizedString(@"NavBarSaveButton", nil);
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];

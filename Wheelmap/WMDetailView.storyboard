@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3BP-Lp-3Qn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3BP-Lp-3Qn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Detail View Controller-->
@@ -462,6 +462,90 @@
         <image name="Social_btn-twitter.png" width="290" height="50"/>
         <image name="textfield_-share.png" width="290" height="120"/>
     </resources>
+    <classes>
+        <class className="WMButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMButton.h"/>
+        </class>
+        <class className="WMCommentViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMCommentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="commentText" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="WMDetailViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="accessButtonPressed:" candidateClass="NSString"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="WMEditPOIViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMEditPOIViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showAccessOptions:"/>
+                <relationship kind="outlet" name="addressInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="categoryInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="categoryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="categoryTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="cityTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="housenumberTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="infoInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="nameInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="phoneInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="phoneLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="position" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="positionInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="postcodeTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="setMarkerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="streetTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="websiteInputView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="websiteLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="websiteTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="wheelAccessButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="WMSetMarkerViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMSetMarkerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="WMShareSocialViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMShareSocialViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="emailButtonPressed:"/>
+                <relationship kind="action" name="facebookButtonPressed:"/>
+                <relationship kind="action" name="smsButtonPressed:"/>
+                <relationship kind="action" name="twitterButtonPressed:"/>
+                <relationship kind="outlet" name="emailButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="facebookButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="shareLocationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="smsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="twitterButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="WMViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>
+        </class>
+        <class className="WMWheelchairStatusViewController" superclassName="WMViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMWheelchairStatusViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="accessButtonPressed:"/>
+                <relationship kind="outlet" name="limitedButton" candidateClass="WMButton"/>
+                <relationship kind="outlet" name="noButton" candidateClass="WMButton"/>
+                <relationship kind="outlet" name="yesButton" candidateClass="WMButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

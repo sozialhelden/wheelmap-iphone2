@@ -350,7 +350,7 @@
 
     
     if (self.node.street == nil && self.node.housenumber == nil && self.node.postcode == nil && self.node.city == nil) {
-        self.postcodeAndCityLabel.text = @"no address available";
+        self.postcodeAndCityLabel.text = NSLocalizedString(@"NoAddress", nil);
     } else {
         NSString *street = self.node.street ?: @"";
         NSString *houseNumber = self.node.housenumber ?: @"";
@@ -360,8 +360,8 @@
         self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];   
     }
 
-    self.websiteLabel.text = self.node.website ?: @"no website available";
-    self.phoneLabel.text = self.node.phone ?: @"no phone available";
+    self.websiteLabel.text = self.node.website ?: NSLocalizedString(@"NoWebsite", nil);
+    self.phoneLabel.text = self.node.phone ?: NSLocalizedString(@"NoPhone", nil);
 
     [self checkForStatusOfButtons];
     [self setWheelAccessButton];

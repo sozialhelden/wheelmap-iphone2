@@ -8,7 +8,7 @@
 
 "No Loc Error Message" = "adskljfs";
 
-"Cancel" = "Abbrechen";
+"Cancel" = "Abbr.";
 "Yes" = "Ja";
 "No" = "Nein";
 "LeaveApp" = "Wollen Sie die App wirklich verlassen?";
@@ -79,3 +79,11 @@
 
 "PlacesNearby" = "Orte in deiner Nähe";
 "HelpByMarking" = "Hilf mit und markiere die Rollstuhlgerechtigkeit dieser Orte in deiner Nähe";
+
+"NoAddress" = "Keine Addresse verfügbar";
+"NoWebsite" = "Keine Website verfügbar";
+"NoPhone" = "Keine Telefonnummer verfügbar";
+
+"BackButton" = "Zurück";
+"NavBarEditButton" = "Bearb.";
+"NavBarSaveButton" = "Speich.";
