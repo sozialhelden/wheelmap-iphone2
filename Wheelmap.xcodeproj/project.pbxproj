@@ -259,6 +259,9 @@
 		DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62285166A421B009FA5DF /* WMTableViewController.m */; };
 		DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA6228C166A6846009FA5DF /* QuartzCore.framework */; };
 		DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCA978F167892440042358C /* WMLogoutViewController.m */; };
+		DBCA979816789B4D0042358C /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979716789B4D0042358C /* HockeySDK.framework */; };
+		DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCA979916789B610042358C /* HockeySDKResources.bundle */; };
+		DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979B16789B910042358C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -600,6 +603,9 @@
 		DBCA975F167774090042358C /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
 		DBCA978E167892440042358C /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
 		DBCA978F167892440042358C /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
+		DBCA979716789B4D0042358C /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "3rd-party-sdks/HockeySDK.framework"; sourceTree = "<group>"; };
+		DBCA979916789B610042358C /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HockeySDKResources.bundle; path = "3rd-party-sdks/HockeySDKResources.bundle"; sourceTree = "<group>"; };
+		DBCA979B16789B910042358C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -608,6 +614,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */,
 				98655CC41675FD14007083DF /* Security.framework in Frameworks */,
 				982E68E9166A9FC10062715C /* libz.dylib in Frameworks */,
 				DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */,
@@ -617,6 +624,7 @@
 				989927501649151300D9003B /* UIKit.framework in Frameworks */,
 				989927521649151300D9003B /* Foundation.framework in Frameworks */,
 				989927541649151300D9003B /* CoreGraphics.framework in Frameworks */,
+				DBCA979816789B4D0042358C /* HockeySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +687,7 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
+				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
 				DBCA975F167774090042358C /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
@@ -701,6 +710,8 @@
 		9899274E1649151300D9003B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBCA979916789B610042358C /* HockeySDKResources.bundle */,
+				DBCA979716789B4D0042358C /* HockeySDK.framework */,
 				98655CC31675FD14007083DF /* Security.framework */,
 				982E68E8166A9FC10062715C /* libz.dylib */,
 				DBA6228C166A6846009FA5DF /* QuartzCore.framework */,
@@ -1525,6 +1536,7 @@
 				034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */,
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
+				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1746,10 +1758,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/3rd-party-sdks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				INFOPLIST_FILE = "Wheelmap/Wheelmap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -1761,10 +1779,16 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/3rd-party-sdks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				INFOPLIST_FILE = "Wheelmap/Wheelmap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "51F6B035-54C7-46C0-B382-84917CE5AA3A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "51F6B035-54C7-46C0-B382-84917CE5AA3A";
