@@ -72,11 +72,14 @@
 - (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error
 {
     // TODO: handle error
+    NSLog(@"Login failed! %@", error);
 }
 
 - (void)dataManagerDidAuthenticateUser:(WMDataManager *)dataManager
 {
     // TODO: handle success, dismiss view controller
+    NSLog(@"Login success!");
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)donePressed:(id)sender {

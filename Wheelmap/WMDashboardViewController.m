@@ -11,6 +11,9 @@
 #import "WMMapViewController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMCategoryViewController.h"
+#import "WMLoginViewController.h"
+#import "WMLogoutViewController.h"
+
 
 @interface WMDashboardViewController ()
 
@@ -33,6 +36,8 @@
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController setToolbarHidden:YES animated:NO];
+    
+    dataManager = [[WMDataManager alloc] init];
     
     self.nearbyButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeNearby];
     [self.nearbyButton addTarget:self action:@selector(pressedNodeListButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -120,6 +125,19 @@
     WMCategoryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryViewController"];
     
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(IBAction)pressedLoginButton:(id)sender
+{
+    WMViewController* vc;
+    if (!dataManager.userIsAuthenticated) {
+        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    } else {
+        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
+    }
+    
+    [self presentModalViewController:vc animated:YES];
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

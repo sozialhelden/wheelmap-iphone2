@@ -21,6 +21,8 @@
 
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;
 
+- (void) relocateMapTo:(CLLocationCoordinate2D)coord;
+
 //- (IBAction) returnToListViewTouched:(id)sender;
 
 
