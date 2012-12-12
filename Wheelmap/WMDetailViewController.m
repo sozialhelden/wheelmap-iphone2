@@ -500,8 +500,7 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     
-    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX didupdateuserlocation");
-        self.currentLocation = userLocation;
+    self.currentLocation = userLocation;
     if (mapView.selectedAnnotations.count == 0)
         //no annotation is currently selected
         [self updateDistanceToAnnotation];
@@ -540,8 +539,7 @@
         }
     } else if (actionSheet.tag == 1) { // MAP
         if (buttonIndex == 0) {
-            NSLog(@"XXXXXXXX open map");
-    
+           
             CLLocationCoordinate2D start = { self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude };
             CLLocationCoordinate2D destination = { self.poiLocation.latitude, self.poiLocation.longitude };
             

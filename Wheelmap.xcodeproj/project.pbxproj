@@ -121,6 +121,7 @@
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D555D3E61677A66800C58813 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D555D3E51677A66800C58813 /* WMConfig.plist */; };
+		D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3F91678956500C58813 /* WMCategoryTableViewController.m */; };
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -434,6 +435,8 @@
 		D555D3D716778C2800C58813 /* InfiniteGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteGallery.h; sourceTree = "<group>"; };
 		D555D3D816778C2800C58813 /* InfiniteGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteGallery.m; sourceTree = "<group>"; };
 		D555D3E51677A66800C58813 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../../Downloads/WMConfig.plist; sourceTree = "<group>"; };
+		D555D3F81678956400C58813 /* WMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryTableViewController.h; sourceTree = "<group>"; };
+		D555D3F91678956500C58813 /* WMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryTableViewController.m; sourceTree = "<group>"; };
 		D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited.png"; path = "Details/WheelAccess/details_btn-status-limited.png"; sourceTree = "<group>"; };
 		D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited@2x.png"; path = "Details/WheelAccess/details_btn-status-limited@2x.png"; sourceTree = "<group>"; };
 		D56F71F3166A33D6002CE692 /* details_btn-status-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-no.png"; path = "Details/WheelAccess/details_btn-status-no.png"; sourceTree = "<group>"; };
@@ -1243,6 +1246,8 @@
 				D555D38C167640AF00C58813 /* WMPhotoViewController.m */,
 				D555D3D41677897D00C58813 /* WMInfinitePhotoViewController.h */,
 				D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */,
+				D555D3F81678956400C58813 /* WMCategoryTableViewController.h */,
+				D555D3F91678956500C58813 /* WMCategoryTableViewController.m */,
 			);
 			name = NodeDetailScreen;
 			sourceTree = "<group>";
@@ -1617,6 +1622,7 @@
 				D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */,
 				D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */,
 				034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */,
+				D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
