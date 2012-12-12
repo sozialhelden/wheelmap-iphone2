@@ -13,6 +13,7 @@
 #import "WMDetailViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "NodeType.h"
+#import "WMCategoryTableViewController.h"
 
 @interface WMEditPOIViewController ()
 
@@ -34,7 +35,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    self.currentCategory = self.node.node_type.localized_name;
     self.nameTextField.delegate = self;
     self.categoryTextField.delegate = self;
     self.infoTextView.delegate = self;
@@ -106,6 +107,7 @@
     self.cityTextField.text = self.node.city;
     self.websiteTextField.text = self.node.website;
     self.phoneTextField.text = self.node.phone;
+    [self.setCategoryButton setTitle:self.currentCategory forState:UIControlStateNormal];
     
     [self setWheelAccessButton];
 }
@@ -119,8 +121,8 @@
 - (void)viewDidUnload {
     
     
+    [self setSetCategoryButton:nil];
     [super viewDidUnload];
-
     [self setScrollView:nil];
     [self setNameInputView:nil];
     [self setCategoryInputView:nil];
@@ -196,10 +198,22 @@
       self.node.wheelchair = wheelchairAccess;
 }
 
+- (IBAction)categoryChosen:(NSString*)category {
+    self.currentCategory = category;
+}
+
 - (IBAction)showAccessOptions:(id)sender {
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
     vc.node = self.node;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)setCategory:(id)sender {
+    WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
+    vc.delegate = self;
+    WMDataManager *dataManager = [[WMDataManager alloc] init];
+    vc.categoryArray = [[NSArray alloc] initWithArray:dataManager.categories];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -211,10 +225,10 @@
 
 - (void) saveEditedData {
     
-#warning put these when finished editing each of the textfields
+
     
     self.node.name = self.nameTextField.text;
-    //self.node.category = self.categoryTextField.text;
+  //  self.node.category = self.categoryTextField.text;
     //self.node.lat =
     //self.node.lon =
     self.node.wheelchair = self.node.wheelchair;
@@ -226,6 +240,8 @@
     self.node.website = self.websiteTextField.text;
     self.node.phone = self.phoneTextField.text;
     
+    WMDataManager *dataManager = [[WMDataManager alloc] init];
+    [dataManager putNode:self.node];
     [self.delegate setUpdatedNode:self.node];
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -116,7 +116,6 @@
 }
 
 - (void) backButtonPressed:(id) sender {
-    NSLog(@"XXXXXXXX Hier bin ich heuiwheuirf XXXXXXXX");
     [self dismissModalViewControllerAnimated:YES];
 }
 

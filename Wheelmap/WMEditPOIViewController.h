@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIView *phoneInputView;
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
+@property (nonatomic, strong) NSString *currentCategory;
+
 @property (nonatomic) Node *node;
 @property (nonatomic, assign) BOOL keyboardIsShown;
 
@@ -45,10 +47,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 
 @property (weak, nonatomic) IBOutlet UIButton *setMarkerButton;
+@property (weak, nonatomic) IBOutlet UIButton *setCategoryButton;
 
 @property (strong) id delegate;
 
+- (IBAction)setCategory:(id)sender;
 - (IBAction)showAccessOptions:(id)sender;
+- (IBAction)categoryChosen:(NSString*)category;
 - (void) saveEditedData;
 
 @end
