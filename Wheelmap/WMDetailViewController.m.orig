@@ -270,7 +270,11 @@
     
     
     if (self.node.street == nil && self.node.housenumber == nil && self.node.postcode == nil && self.node.city == nil) {
+<<<<<<< HEAD
         self.postcodeAndCityLabel.text = NSLocalizedString(@"NoAddress", nil);
+=======
+        self.postcodeAndCityLabel.text = NSLocalizedString(@"DetailViewNoAddressAvailable", @"");
+>>>>>>> cbf85b114e626ec10e580c4e2ae22c49510509ba
     } else {
         NSString *street = self.node.street ?: @"";
         NSString *houseNumber = self.node.housenumber ?: @"";
@@ -279,10 +283,17 @@
         NSString *city = self.node.city ?: @"";
         self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
     }
+<<<<<<< HEAD
 
     self.websiteLabel.text = self.node.website ?: NSLocalizedString(@"NoWebsite", nil);
     self.phoneLabel.text = self.node.phone ?: NSLocalizedString(@"NoPhone", nil);
 
+=======
+    
+    self.websiteLabel.text = self.node.website ?: NSLocalizedString(@"DetailViewNoWebsiteAvailable", @"");
+    self.phoneLabel.text = self.node.phone ?: NSLocalizedString(@"DetailViewNoPhoneNumberAvailable", @"");
+    
+>>>>>>> cbf85b114e626ec10e580c4e2ae22c49510509ba
     [self checkForStatusOfButtons];
     [self setWheelAccessButton];
     [self updateDistanceToAnnotation];
