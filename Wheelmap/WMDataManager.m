@@ -258,13 +258,13 @@
                                                data:nil
                                              method:@"PUT"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingWheelChairStatusWithError:)]) {
-                                                      [self.delegate dataManager:self failedPuttingWheelChairStatusWithError:error];
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingNodeWithError:)]) {
+                                                      [self.delegate dataManager:self failedPuttingNodeWithError:error];
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingWheelChairStatusWithMsg:)])
-                                                    [self.delegate dataManager:self didFinishPuttingWheelChairStatusWithMsg:JSON[@"message"]];
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingNodeWithMsg:)])
+                                                    [self.delegate dataManager:self didFinishPuttingNodeWithMsg:JSON[@"message"]];
                                             }
                                    startImmediately:YES
      ];
@@ -286,13 +286,13 @@
                                                data:nil
                                              method:@"POST"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingWheelChairStatusWithError:)]) {
-                                                      [self.delegate dataManager:self failedPuttingWheelChairStatusWithError:error];
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPostingNodeWithError:)]) {
+                                                      [self.delegate dataManager:self failedPostingNodeWithError:error];
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingWheelChairStatusWithMsg:)])
-                                                    [self.delegate dataManager:self didFinishPuttingWheelChairStatusWithMsg:JSON[@"message"]];
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPostingNodeWithMsg:)])
+                                                    [self.delegate dataManager:self didFinishPostingNodeWithMsg:JSON[@"message"]];
                                             }
                                    startImmediately:YES
      ];
