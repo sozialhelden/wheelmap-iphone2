@@ -28,16 +28,19 @@
 "WheelchairAccessContentLimited" = "Eingang max. 1 Stufe (7cm hoch), die wichtigsten Räume stufenlos, WC egal.";
 "WheelchairAccessContentNo" = "Eingang hat höhere oder mehrere Stufen, Räume nicht erreichbar.";
 
-"DetailsViewHeadline" = "Detailansicht";
-"DetailsView4ButtonViewCallLabel" = "Anrufen";
-"DetailsView4ButtonViewWebsiteLabel" = "Webseite";
-"DetailsView4ButtonViewInfoLabel" = "Hinweis";
-"DetailsView4ButtonViewRouteLabel" = "Route";
-"DetailsViewAskFriendsButtonLabel" = "Hilf mit: Frag deine Freunde, ob dieser Ort rollstuhlgerecht ist";
-"DetailsViewChoosePhotoSource" = "Fotoquelle wählen";
-"DetailsViewUploadOptionCamera" = "Kamera";
-"DetailsViewUploadOptionPhotoAlbum" = "Fotoalbum";
-"DetailsViewMoreInfoButtonLabel" = "Weitere Informationen";
+"DetailViewHeadline" = "Detailansicht";
+"DetailView4ButtonViewCallLabel" = "Anrufen";
+"DetailView4ButtonViewWebsiteLabel" = "Webseite";
+"DetailView4ButtonViewInfoLabel" = "Hinweis";
+"DetailView4ButtonViewRouteLabel" = "Route";
+"DetailViewAskFriendsButtonLabel" = "Hilf mit: Frag deine Freunde, ob dieser Ort rollstuhlgerecht ist";
+"DetailViewChoosePhotoSource" = "Fotoquelle wählen";
+"DetailViewUploadOptionCamera" = "Kamera";
+"DetailViewUploadOptionPhotoAlbum" = "Fotoalbum";
+"DetailViewMoreInfoButtonLabel" = "Weitere Informationen";
+"DetailViewNoPhoneNumberAvailable" = "Keine Telefonnummer verfügbar";
+"DetailViewNoWebsiteAvailable" = "Keine Webseite verfügbar";
+"DetailViewNoAddressAvailable" = "Keine Adresse verfügbar";
 
 "MoreInfoViewHeadline" = "Weitere Infos";
 
@@ -79,6 +82,7 @@
 
 "PlacesNearby" = "Orte in deiner Nähe";
 "HelpByMarking" = "Hilf mit und markiere die Rollstuhlgerechtigkeit dieser Orte in deiner Nähe";
+<<<<<<< HEAD
 
 "NoAddress" = "Keine Addresse verfügbar";
 "NoWebsite" = "Keine Website verfügbar";
@@ -87,3 +91,5 @@
 "BackButton" = "Zurück";
 "NavBarEditButton" = "Bearb.";
 "NavBarSaveButton" = "Speich.";
+=======
+>>>>>>> cbf85b114e626ec10e580c4e2ae22c49510509ba
