@@ -28,4 +28,10 @@
 - (void) dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString*)msg;
 - (void) dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error;
 
+- (void) dataManager:(WMDataManager *)dataManager didFinishPuttingNodeWithMsg:(NSString*)msg;
+- (void) dataManager:(WMDataManager *)dataManager failedPuttingNodeWithError:(NSError *)error;
+
+- (void) dataManager:(WMDataManager *)dataManager didFinishPostingNodeWithMsg:(NSString*)msg;
+- (void) dataManager:(WMDataManager *)dataManager failedPostingNodeWithError:(NSError *)error;
+
 @end
