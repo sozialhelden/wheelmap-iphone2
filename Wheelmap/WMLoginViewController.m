@@ -39,11 +39,13 @@
                                                object:self.view.window];
     
     self.titleLabel.text = NSLocalizedString(@"Anmelden", nil);
-    self.topTextLabel.text = NSLocalizedString(@"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.", nil);
-    self.bottomTextLabel.text = NSLocalizedString(@"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.", nil);
-    [self.doneButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
-    [self.loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
-    [self.registerButton setTitle:NSLocalizedString(@"Neu registrieren", nil) forState:UIControlStateNormal];
+    self.topTextLabel.text = NSLocalizedString(@"TopLabelText", nil);
+    self.bottomTextLabel.text = NSLocalizedString(@"BottomLabelText", nil);
+    [self.doneButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
+    [self.loginButton setTitle:NSLocalizedString(@"Sign In Button", nil) forState:UIControlStateNormal];
+    [self.registerButton setTitle:NSLocalizedString(@"RegisterNew", nil) forState:UIControlStateNormal];
+    self.usernameTextField.placeholder = NSLocalizedString(@"UsernamePlaceholder", nil);
+    self.passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
 
 }
 

@@ -21,8 +21,9 @@
 @property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) NSMutableArray *imageViewsInScrollView;
+@property (nonatomic, strong) NSMutableArray *imageURLArray;
+
 @property (assign) int gabIfStatusUnknown;
-@property (assign) int imageCount;
 @property (nonatomic) Node *node;
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
@@ -31,6 +32,9 @@
 
 @property (nonatomic, strong) UIImageView *compassView;
 @property (nonatomic, assign) int startY;
+@property (nonatomic, assign) int start;
+@property (nonatomic, assign) int gab;
+
 @property (nonatomic, strong) WMMapAnnotation *annotation;
 
 @property (nonatomic, strong) UILabel *headingLabel;
@@ -51,7 +55,9 @@
 @property (nonatomic, strong) UIButton *shareLocationButton;
 @property (nonatomic, strong) UIButton *askFriendsButton;
 
-@property (nonatomic, retain) CLLocationManager	*locationManager;
+@property (nonatomic) CLLocationCoordinate2D poiLocation;
+@property (nonatomic, strong) MKUserLocation *currentLocation;
+
 
 
 - (void) pushEditViewController;

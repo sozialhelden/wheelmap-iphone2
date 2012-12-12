@@ -28,16 +28,19 @@
 "WheelchairAccessContentLimited" = "English translation needed: Eingang max. 1 Stufe (7cm hoch), die wichtigsten Räume stufenlos, WC egal.";
 "WheelchairAccessContentNo" = "English translation needed: Eingang hat höhere oder mehrere Stufen, Räume nicht erreichbar.";
 
-"DetailsViewHeadline" = "Details";
-"DetailsView4ButtonViewCallLabel" = "Phone";
-"DetailsView4ButtonViewWebsiteLabel" = "Website";
-"DetailsView4ButtonViewInfoLabel" = "Info";
-"DetailsView4ButtonViewRouteLabel" = "Route";
-"DetailsViewAskFriendsButtonLabel" = "Help us: Ask your friends whether this place is wheelchair accessible";
-"DetailsViewChoosePhotoSource" = "Please choose source";
-"DetailsViewUploadOptionCamera" = "Take Photo";
-"DetailsViewUploadOptionPhotoAlbum" = "Choose Existing";
-"DetailsViewMoreInfoButtonLabel" = "More Information";
+"DetailViewHeadline" = "Details";
+"DetailView4ButtonViewCallLabel" = "Phone";
+"DetailView4ButtonViewWebsiteLabel" = "Website";
+"DetailView4ButtonViewInfoLabel" = "Info";
+"DetailView4ButtonViewRouteLabel" = "Route";
+"DetailViewAskFriendsButtonLabel" = "Help us: Ask your friends whether this place is wheelchair accessible";
+"DetailViewChoosePhotoSource" = "Please choose source";
+"DetailViewUploadOptionCamera" = "Take Photo";
+"DetailViewUploadOptionPhotoAlbum" = "Choose Existing";
+"DetailViewMoreInfoButtonLabel" = "More Information";
+"DetailViewNoPhoneNumberAvailable" = "No phone number available";
+"DetailViewNoWebsiteAvailable" = "No website available";
+"DetailViewNoAddressAvailable" = "No address available";
 
 "MoreInfoViewHeadline" = "More Info";
 

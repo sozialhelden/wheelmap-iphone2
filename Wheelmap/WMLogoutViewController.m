@@ -30,7 +30,7 @@
 	// Do any additional setup after loading the view.
     
     self.titleLabel.text = NSLocalizedString(@"Abmelden", nil);
-    self.topTextLabel.text = NSLocalizedString(@"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.", nil);
+    self.topTextLabel.text = NSLocalizedString(@"Angemeldet: [logon email]", nil);
 
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.logoutButton setTitle:NSLocalizedString(@"Logout", nil) forState:UIControlStateNormal];

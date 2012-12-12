@@ -7,23 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */; };
-		034D38DE167738C10071EC05 /* Curl_btn-left-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CE167738C10071EC05 /* Curl_btn-left-active.png */; };
-		034D38DF167738C10071EC05 /* Curl_btn-left-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CF167738C10071EC05 /* Curl_btn-left-active@2x.png */; };
-		034D38E0167738C10071EC05 /* Curl_btn-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D0167738C10071EC05 /* Curl_btn-left.png */; };
-		034D38E1167738C10071EC05 /* Curl_btn-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D1167738C10071EC05 /* Curl_btn-left@2x.png */; };
-		034D38E2167738C10071EC05 /* Curl_btn-mid-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D2167738C10071EC05 /* Curl_btn-mid-active.png */; };
-		034D38E3167738C10071EC05 /* Curl_btn-mid-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D3167738C10071EC05 /* Curl_btn-mid-active@2x.png */; };
-		034D38E4167738C10071EC05 /* Curl_btn-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D4167738C10071EC05 /* Curl_btn-mid.png */; };
-		034D38E5167738C10071EC05 /* Curl_btn-mid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D5167738C10071EC05 /* Curl_btn-mid@2x.png */; };
-		034D38E6167738C10071EC05 /* Curl_btn-right-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D6167738C10071EC05 /* Curl_btn-right-active.png */; };
-		034D38E7167738C10071EC05 /* Curl_btn-right-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D7167738C10071EC05 /* Curl_btn-right-active@2x.png */; };
-		034D38E8167738C10071EC05 /* Curl_btn-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D8167738C10071EC05 /* Curl_btn-right.png */; };
-		034D38E9167738C10071EC05 /* Curl_btn-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */; };
-		034D38EA167738C10071EC05 /* Curl_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DA167738C10071EC05 /* Curl_button.png */; };
-		034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
-		034D38EC167738C10071EC05 /* Curl_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DC167738C10071EC05 /* Curl_screen.png */; };
-		034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DD167738C10071EC05 /* Curl_screen@2x.png */; };
 		03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
 		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		03F30C7A1670F34D00241466 /* more-buttons_info-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C6A1670F34D00241466 /* more-buttons_info-deactive@2x.png */; };
@@ -50,8 +33,6 @@
 		9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9817AF50164D617A00703A92 /* WMDetailViewController.m */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		9839CAE11663850600B8E3B5 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */; };
-		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
-		98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E94C921675F62E00994DBA /* WMKeychainWrapper.m */; };
 		989927501649151300D9003B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		989927521649151300D9003B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		989927541649151300D9003B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
@@ -258,7 +239,6 @@
 		DBA62283166A3BBF009FA5DF /* UINavigationBar+CustomSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62282166A3BBF009FA5DF /* UINavigationBar+CustomSize.m */; };
 		DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62285166A421B009FA5DF /* WMTableViewController.m */; };
 		DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA6228C166A6846009FA5DF /* QuartzCore.framework */; };
-		DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCA978F167892440042358C /* WMLogoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,24 +252,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		034D38C8167735BF0071EC05 /* WMMapSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapSettingsViewController.h; sourceTree = "<group>"; };
-		034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapSettingsViewController.m; sourceTree = "<group>"; };
-		034D38CE167738C10071EC05 /* Curl_btn-left-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-left-active.png"; sourceTree = "<group>"; };
-		034D38CF167738C10071EC05 /* Curl_btn-left-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-left-active@2x.png"; sourceTree = "<group>"; };
-		034D38D0167738C10071EC05 /* Curl_btn-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-left.png"; sourceTree = "<group>"; };
-		034D38D1167738C10071EC05 /* Curl_btn-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-left@2x.png"; sourceTree = "<group>"; };
-		034D38D2167738C10071EC05 /* Curl_btn-mid-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-mid-active.png"; sourceTree = "<group>"; };
-		034D38D3167738C10071EC05 /* Curl_btn-mid-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-mid-active@2x.png"; sourceTree = "<group>"; };
-		034D38D4167738C10071EC05 /* Curl_btn-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-mid.png"; sourceTree = "<group>"; };
-		034D38D5167738C10071EC05 /* Curl_btn-mid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-mid@2x.png"; sourceTree = "<group>"; };
-		034D38D6167738C10071EC05 /* Curl_btn-right-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-right-active.png"; sourceTree = "<group>"; };
-		034D38D7167738C10071EC05 /* Curl_btn-right-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-right-active@2x.png"; sourceTree = "<group>"; };
-		034D38D8167738C10071EC05 /* Curl_btn-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-right.png"; sourceTree = "<group>"; };
-		034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-right@2x.png"; sourceTree = "<group>"; };
-		034D38DA167738C10071EC05 /* Curl_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_button.png; sourceTree = "<group>"; };
-		034D38DB167738C10071EC05 /* Curl_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_button@2x.png"; sourceTree = "<group>"; };
-		034D38DC167738C10071EC05 /* Curl_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_screen.png; sourceTree = "<group>"; };
-		034D38DD167738C10071EC05 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
 		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
 		03F30BFA1670A1F700241466 /* WMDashboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardButton.m; sourceTree = "<group>"; };
 		03F30C531670B80600241466 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
@@ -322,7 +284,6 @@
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
-		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9899274B1649151300D9003B /* Wheelmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9899274F1649151300D9003B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		989927511649151300D9003B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -411,8 +372,6 @@
 		98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		98E3B835166523DE00C23EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		98E3B8381665266B00C23EBE /* WMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WMDataModel.xcdatamodel; sourceTree = "<group>"; };
-		98E94C911675F62E00994DBA /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
-		98E94C921675F62E00994DBA /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
 		D53D23D61670F4290062B8D3 /* details_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_compass.png; sourceTree = "<group>"; };
 		D53D23D71670F4290062B8D3 /* details_compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_compass@2x.png"; sourceTree = "<group>"; };
 		D5406D52166A49650016E275 /* Social_btn-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-email.png"; sourceTree = "<group>"; };
@@ -597,9 +556,6 @@
 		DBA62284166A421B009FA5DF /* WMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTableViewController.h; sourceTree = "<group>"; };
 		DBA62285166A421B009FA5DF /* WMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTableViewController.m; sourceTree = "<group>"; };
 		DBA6228C166A6846009FA5DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		DBCA975F167774090042358C /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
-		DBCA978E167892440042358C /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
-		DBCA978F167892440042358C /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
 		DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -608,7 +564,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98655CC41675FD14007083DF /* Security.framework in Frameworks */,
 				982E68E9166A9FC10062715C /* libz.dylib in Frameworks */,
 				DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */,
 				98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */,
@@ -633,36 +588,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		034D38CD167738C10071EC05 /* Curl */ = {
-			isa = PBXGroup;
-			children = (
-				034D38CE167738C10071EC05 /* Curl_btn-left-active.png */,
-				034D38CF167738C10071EC05 /* Curl_btn-left-active@2x.png */,
-				034D38D0167738C10071EC05 /* Curl_btn-left.png */,
-				034D38D1167738C10071EC05 /* Curl_btn-left@2x.png */,
-				034D38D2167738C10071EC05 /* Curl_btn-mid-active.png */,
-				034D38D3167738C10071EC05 /* Curl_btn-mid-active@2x.png */,
-				034D38D4167738C10071EC05 /* Curl_btn-mid.png */,
-				034D38D5167738C10071EC05 /* Curl_btn-mid@2x.png */,
-				034D38D6167738C10071EC05 /* Curl_btn-right-active.png */,
-				034D38D7167738C10071EC05 /* Curl_btn-right-active@2x.png */,
-				034D38D8167738C10071EC05 /* Curl_btn-right.png */,
-				034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */,
-				034D38DA167738C10071EC05 /* Curl_button.png */,
-				034D38DB167738C10071EC05 /* Curl_button@2x.png */,
-				034D38DC167738C10071EC05 /* Curl_screen.png */,
-				034D38DD167738C10071EC05 /* Curl_screen@2x.png */,
-			);
-			path = Curl;
-			sourceTree = "<group>";
-		};
 		03F30C521670B7E200241466 /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
 				03F30C531670B80600241466 /* WMLoginViewController.h */,
 				03F30C541670B80600241466 /* WMLoginViewController.m */,
-				DBCA978E167892440042358C /* WMLogoutViewController.h */,
-				DBCA978F167892440042358C /* WMLogoutViewController.m */,
 			);
 			name = LoginScreen;
 			sourceTree = "<group>";
@@ -679,7 +609,6 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				DBCA975F167774090042358C /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -701,7 +630,6 @@
 		9899274E1649151300D9003B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				98655CC31675FD14007083DF /* Security.framework */,
 				982E68E8166A9FC10062715C /* libz.dylib */,
 				DBA6228C166A6846009FA5DF /* QuartzCore.framework */,
 				98E3B835166523DE00C23EBE /* CoreData.framework */,
@@ -809,7 +737,6 @@
 		98ADC6D1164BEEDA00251943 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				034D38CD167738C10071EC05 /* Curl */,
 				03F30C5C1670DDB900241466 /* Buttons */,
 				DB6E477C166BF21D00D9CAD9 /* Dashboard */,
 				DBA621CE1668F303009FA5DF /* DetailView */,
@@ -1219,8 +1146,6 @@
 				989927DA164A9EFD00D9003B /* WMMapViewController.m */,
 				98ADC6E2164BF04F00251943 /* WMMapAnnotation.h */,
 				98ADC6E3164BF04F00251943 /* WMMapAnnotation.m */,
-				034D38C8167735BF0071EC05 /* WMMapSettingsViewController.h */,
-				034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */,
 			);
 			name = MapScreen;
 			sourceTree = "<group>";
@@ -1267,8 +1192,6 @@
 		DBA622761668F915009FA5DF /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				98E94C911675F62E00994DBA /* WMKeychainWrapper.h */,
-				98E94C921675F62E00994DBA /* WMKeychainWrapper.m */,
 				989927DC164AA0D100D9003B /* WMDataManager.h */,
 				989927DD164AA0D100D9003B /* WMDataManager.m */,
 				989927E4164AA31400D9003B /* WMDataManagerDelegate.h */,
@@ -1509,22 +1432,6 @@
 				03F30C8D1670F36B00241466 /* buttons_btn-signup@2x.png in Resources */,
 				D53D23D81670F42A0062B8D3 /* details_compass.png in Resources */,
 				D53D23D91670F42A0062B8D3 /* details_compass@2x.png in Resources */,
-				034D38DE167738C10071EC05 /* Curl_btn-left-active.png in Resources */,
-				034D38DF167738C10071EC05 /* Curl_btn-left-active@2x.png in Resources */,
-				034D38E0167738C10071EC05 /* Curl_btn-left.png in Resources */,
-				034D38E1167738C10071EC05 /* Curl_btn-left@2x.png in Resources */,
-				034D38E2167738C10071EC05 /* Curl_btn-mid-active.png in Resources */,
-				034D38E3167738C10071EC05 /* Curl_btn-mid-active@2x.png in Resources */,
-				034D38E4167738C10071EC05 /* Curl_btn-mid.png in Resources */,
-				034D38E5167738C10071EC05 /* Curl_btn-mid@2x.png in Resources */,
-				034D38E6167738C10071EC05 /* Curl_btn-right-active.png in Resources */,
-				034D38E7167738C10071EC05 /* Curl_btn-right-active@2x.png in Resources */,
-				034D38E8167738C10071EC05 /* Curl_btn-right.png in Resources */,
-				034D38E9167738C10071EC05 /* Curl_btn-right@2x.png in Resources */,
-				034D38EA167738C10071EC05 /* Curl_button.png in Resources */,
-				034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */,
-				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
-				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1614,13 +1521,10 @@
 				DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */,
 				03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */,
 				03F30C551670B80600241466 /* WMLoginViewController.m in Sources */,
-				98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */,
 				D555D3861675E4A600C58813 /* WMCompassView.m in Sources */,
 				D555D38D167640AF00C58813 /* WMPhotoViewController.m in Sources */,
 				D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */,
 				D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */,
-				034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */,
-				DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,7 +1600,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
