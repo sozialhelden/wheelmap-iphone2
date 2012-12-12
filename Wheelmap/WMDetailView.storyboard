@@ -541,11 +541,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Social_btn-email.png" width="290" height="50"/>
-        <image name="Social_btn-facebook.png" width="290" height="50"/>
-        <image name="Social_btn-sms.png" width="290" height="50"/>
-        <image name="Social_btn-twitter.png" width="290" height="50"/>
-        <image name="textfield_-share.png" width="290" height="120"/>
+        <image name="Social_btn-email.png" width="16" height="16"/>
+        <image name="Social_btn-facebook.png" width="16" height="16"/>
+        <image name="Social_btn-sms.png" width="16" height="16"/>
+        <image name="Social_btn-twitter.png" width="16" height="16"/>
+        <image name="textfield_-share.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
