@@ -92,14 +92,17 @@
 
 - (void)authenticateUserWithEmail:(NSString *)email password:(NSString *)password
 {
-    if (WMLogDataManager) NSLog(@"authenticate user w email:%@ pw:%@", email, password);
+    NSString* percentEscapedEmail = [email stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* percentEscapedPassword = [password stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    if (WMLogDataManager) NSLog(@"authenticate user w email:%@ pw:%@", percentEscapedEmail, percentEscapedPassword);
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"users/authenticate"
                                              apiKey:[self apiKey]
-                                         parameters:@{@"email":email, @"password":password}
+                                         parameters:@{@"email":percentEscapedEmail, @"password":percentEscapedPassword}
                                                eTag:nil
                                                data:nil
-                                             method:nil
+                                             method:@"POST"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:userAuthenticationFailedWithError:)]) {
                                                       [self.delegate dataManager:self userAuthenticationFailedWithError:error];

@@ -181,6 +181,16 @@
     [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
 }
 
+- (void) relocateMapTo:(CLLocationCoordinate2D)coord
+{
+    MKCoordinateRegion newRegion;
+    newRegion.center = coord;
+    newRegion.span = self.mapView.region.span;
+    
+    [self.mapView setRegion:newRegion animated:YES];
+    
+}
+
 @end
 
 

@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Node.h"
 #import "WMDataManager.h"
-@interface WMWheelchairStatusViewController : WMViewController <WMDataManagerDelegate, UIAlertViewDelegate>
+@interface WMWheelchairStatusViewController : WMViewController <WMDataManagerDelegate>
 {
     WMDataManager* dataManager;
+    
+    UIActivityIndicatorView* progressWheel;
 }
 @property (nonatomic, strong) Node *node;
 

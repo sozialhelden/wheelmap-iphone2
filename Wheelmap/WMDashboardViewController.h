@@ -8,8 +8,13 @@
 
 #import "WMViewController.h"
 #import "WMDashboardButton.h"
+#import "WMDataManager.h"
+#import "WMDataManagerDelegate.h"
 
 @interface WMDashboardViewController : WMViewController <UITextFieldDelegate>
+{
+    WMDataManager* dataManager;
+}
 
 @property (nonatomic, strong) IBOutlet UITextField *searchTextField;
 
@@ -22,5 +27,6 @@
 -(IBAction)pressedMapButton:(id)sender;
 -(IBAction)pressedContributeButton:(id)sender;
 -(IBAction)pressedCategoriesButton:(id)sender;
+-(IBAction)pressedLoginButton:(id)sender;
 
 @end

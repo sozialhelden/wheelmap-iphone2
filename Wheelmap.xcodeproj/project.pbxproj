@@ -105,7 +105,6 @@
 		98CA2304166676AB00DF0EA3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */; };
 		98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E3B835166523DE00C23EBE /* CoreData.framework */; };
 		98E3B8391665266B00C23EBE /* WMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98E3B8371665266B00C23EBE /* WMDataModel.xcdatamodeld */; };
-		98E94C8B1675F14000994DBA /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98E94C8A1675F14000994DBA /* WMConfig.plist */; };
 		D53D23D81670F42A0062B8D3 /* details_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D61670F4290062B8D3 /* details_compass.png */; };
 		D53D23D91670F42A0062B8D3 /* details_compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D71670F4290062B8D3 /* details_compass@2x.png */; };
 		D5406D5A166A49650016E275 /* Social_btn-email.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D52166A49650016E275 /* Social_btn-email.png */; };
@@ -256,6 +255,8 @@
 		DBA62283166A3BBF009FA5DF /* UINavigationBar+CustomSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62282166A3BBF009FA5DF /* UINavigationBar+CustomSize.m */; };
 		DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62285166A421B009FA5DF /* WMTableViewController.m */; };
 		DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA6228C166A6846009FA5DF /* QuartzCore.framework */; };
+		DBCA9760167774090042358C /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBCA975F167774090042358C /* WMConfig.plist */; };
+		DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCA978F167892440042358C /* WMLogoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -408,7 +409,6 @@
 		98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		98E3B835166523DE00C23EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		98E3B8381665266B00C23EBE /* WMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WMDataModel.xcdatamodel; sourceTree = "<group>"; };
-		98E94C8A1675F14000994DBA /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		98E94C911675F62E00994DBA /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
 		98E94C921675F62E00994DBA /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
 		D53D23D61670F4290062B8D3 /* details_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_compass.png; sourceTree = "<group>"; };
@@ -589,6 +589,9 @@
 		DBA62284166A421B009FA5DF /* WMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTableViewController.h; sourceTree = "<group>"; };
 		DBA62285166A421B009FA5DF /* WMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTableViewController.m; sourceTree = "<group>"; };
 		DBA6228C166A6846009FA5DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DBCA975F167774090042358C /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
+		DBCA978E167892440042358C /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
+		DBCA978F167892440042358C /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
 		DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -650,6 +653,8 @@
 			children = (
 				03F30C531670B80600241466 /* WMLoginViewController.h */,
 				03F30C541670B80600241466 /* WMLoginViewController.m */,
+				DBCA978E167892440042358C /* WMLogoutViewController.h */,
+				DBCA978F167892440042358C /* WMLogoutViewController.m */,
 			);
 			name = LoginScreen;
 			sourceTree = "<group>";
@@ -666,7 +671,7 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				98E94C8A1675F14000994DBA /* WMConfig.plist */,
+				DBCA975F167774090042358C /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -1490,7 +1495,6 @@
 				03F30C8D1670F36B00241466 /* buttons_btn-signup@2x.png in Resources */,
 				D53D23D81670F42A0062B8D3 /* details_compass.png in Resources */,
 				D53D23D91670F42A0062B8D3 /* details_compass@2x.png in Resources */,
-				98E94C8B1675F14000994DBA /* WMConfig.plist in Resources */,
 				034D38DE167738C10071EC05 /* Curl_btn-left-active.png in Resources */,
 				034D38DF167738C10071EC05 /* Curl_btn-left-active@2x.png in Resources */,
 				034D38E0167738C10071EC05 /* Curl_btn-left.png in Resources */,
@@ -1507,6 +1511,7 @@
 				034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */,
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
+				DBCA9760167774090042358C /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1599,6 +1604,7 @@
 				98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */,
 				D555D3861675E4A600C58813 /* WMCompassView.m in Sources */,
 				034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */,
+				DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

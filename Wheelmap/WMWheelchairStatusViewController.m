@@ -7,7 +7,7 @@
 //
 
 #import "WMWheelchairStatusViewController.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @interface WMWheelchairStatusViewController ()
 
@@ -82,7 +82,17 @@
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.noButton.frame.origin.y + self.noButton.frame.size.height + 20.0f);
     
     [self.view addSubview:self.scrollView];
- 
+    
+    // progress wheel
+    progressWheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    progressWheel.frame = CGRectMake(0, 0, 50, 50);
+    progressWheel.backgroundColor = [UIColor blackColor];
+    progressWheel.center = CGPointMake(self.view.center.x, self.view.center.y-40);
+    progressWheel.hidden = YES;
+    progressWheel.layer.cornerRadius = 5.0;
+    progressWheel.layer.masksToBounds = YES;
+    [self.view addSubview:progressWheel];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -183,31 +193,27 @@
     [self.delegate accessButtonPressed:self.wheelchairAccess];
     //[self.navigationController popViewControllerAnimated:YES];
     [dataManager putWheelChairStatusForNode:self.node];
+    [progressWheel startAnimating];
+    progressWheel.hidden = NO;
     
 }
 
 #pragma mark WMDataManager Delegate
 -(void)dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString *)msg
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_SUCESS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    alert.tag = 1000;
-    NSLog(@"PUT NODE WHEELCHAIR STATUS SUCCEED. MSG FROM BACKEND: %@", msg);
-    [alert show];
+    progressWheel.hidden = YES;
+    [progressWheel stopAnimating];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error
 {
+    progressWheel.hidden = YES;
+    [progressWheel stopAnimating];
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_FAILED", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     
     NSLog(@"PUT THE NODE WHELLCHAIR STATUS FAILED! %@", error);
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag = 1000) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 
 @end

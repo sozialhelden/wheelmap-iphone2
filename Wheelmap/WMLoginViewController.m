@@ -41,7 +41,7 @@
     self.titleLabel.text = NSLocalizedString(@"Anmelden", nil);
     self.topTextLabel.text = NSLocalizedString(@"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.", nil);
     self.bottomTextLabel.text = NSLocalizedString(@"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.", nil);
-    [self.doneButton setTitle:NSLocalizedString(@"Fertig", nil) forState:UIControlStateNormal];
+    [self.doneButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
     [self.registerButton setTitle:NSLocalizedString(@"Neu registrieren", nil) forState:UIControlStateNormal];
 
@@ -70,11 +70,14 @@
 - (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error
 {
     // TODO: handle error
+    NSLog(@"Login failed! %@", error);
 }
 
 - (void)dataManagerDidAuthenticateUser:(WMDataManager *)dataManager
 {
     // TODO: handle success, dismiss view controller
+    NSLog(@"Login success!");
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)donePressed:(id)sender {

@@ -165,8 +165,8 @@
             break;
     }
     
-    targetButton.hidden = NO;
-    [UIView animateWithDuration:0.3 animations:^(void)
+    targetButton.userInteractionEnabled = YES;
+    [UIView animateWithDuration:0.5 animations:^(void)
      {
          targetButton.alpha = 1.0;
      }
@@ -201,13 +201,13 @@
     }
     
     
-    [UIView animateWithDuration:0.3 animations:^(void)
+    [UIView animateWithDuration:0.5 animations:^(void)
      {
-         targetButton.alpha = 0.0;
+         targetButton.alpha = 0.3;
      }
                      completion:^(BOOL finished)
      {
-         targetButton.hidden = YES;
+         targetButton.userInteractionEnabled = NO;
          
      }
      ];

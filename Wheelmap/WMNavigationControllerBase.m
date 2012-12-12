@@ -233,7 +233,12 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    [dataManager fetchNodesNear:newLocation.coordinate];
+    if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+        WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
+        [currentVC relocateMapTo:newLocation.coordinate];
+    } else {
+        [dataManager fetchNodesNear:newLocation.coordinate];
+    }
 }
 
 
@@ -460,6 +465,7 @@
 -(void)pressedCurrentLocationButton:(WMToolBar *)toolBar
 {
     NSLog(@"[ToolBar] update current location button is pressed!");
+    [locationManager startUpdatingLocation];
     
 }
 -(void)pressedSearchButton:(WMToolBar *)toolBar
