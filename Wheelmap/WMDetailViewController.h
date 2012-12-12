@@ -55,7 +55,9 @@
 @property (nonatomic, strong) UIButton *shareLocationButton;
 @property (nonatomic, strong) UIButton *askFriendsButton;
 
-@property (nonatomic, retain) CLLocationManager	*locationManager;
+@property (nonatomic) CLLocationCoordinate2D poiLocation;
+@property (nonatomic, strong) MKUserLocation *currentLocation;
+
 
 
 - (void) pushEditViewController;

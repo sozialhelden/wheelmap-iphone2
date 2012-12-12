@@ -105,7 +105,6 @@
 		98CA2304166676AB00DF0EA3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */; };
 		98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E3B835166523DE00C23EBE /* CoreData.framework */; };
 		98E3B8391665266B00C23EBE /* WMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98E3B8371665266B00C23EBE /* WMDataModel.xcdatamodeld */; };
-		98E94C8B1675F14000994DBA /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98E94C8A1675F14000994DBA /* WMConfig.plist */; };
 		D53D23D81670F42A0062B8D3 /* details_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D61670F4290062B8D3 /* details_compass.png */; };
 		D53D23D91670F42A0062B8D3 /* details_compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D71670F4290062B8D3 /* details_compass@2x.png */; };
 		D5406D5A166A49650016E275 /* Social_btn-email.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D52166A49650016E275 /* Social_btn-email.png */; };
@@ -121,6 +120,7 @@
 		D555D38D167640AF00C58813 /* WMPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D38C167640AF00C58813 /* WMPhotoViewController.m */; };
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D555D3E61677A66800C58813 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D555D3E51677A66800C58813 /* WMConfig.plist */; };
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -411,7 +411,6 @@
 		98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		98E3B835166523DE00C23EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		98E3B8381665266B00C23EBE /* WMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WMDataModel.xcdatamodel; sourceTree = "<group>"; };
-		98E94C8A1675F14000994DBA /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		98E94C911675F62E00994DBA /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
 		98E94C921675F62E00994DBA /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
 		D53D23D61670F4290062B8D3 /* details_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_compass.png; sourceTree = "<group>"; };
@@ -434,6 +433,7 @@
 		D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInfinitePhotoViewController.m; sourceTree = "<group>"; };
 		D555D3D716778C2800C58813 /* InfiniteGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteGallery.h; sourceTree = "<group>"; };
 		D555D3D816778C2800C58813 /* InfiniteGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteGallery.m; sourceTree = "<group>"; };
+		D555D3E51677A66800C58813 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../../Downloads/WMConfig.plist; sourceTree = "<group>"; };
 		D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited.png"; path = "Details/WheelAccess/details_btn-status-limited.png"; sourceTree = "<group>"; };
 		D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited@2x.png"; path = "Details/WheelAccess/details_btn-status-limited@2x.png"; sourceTree = "<group>"; };
 		D56F71F3166A33D6002CE692 /* details_btn-status-no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-no.png"; path = "Details/WheelAccess/details_btn-status-no.png"; sourceTree = "<group>"; };
@@ -675,7 +675,7 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				98E94C8A1675F14000994DBA /* WMConfig.plist */,
+				D555D3E51677A66800C58813 /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -1505,7 +1505,6 @@
 				03F30C8D1670F36B00241466 /* buttons_btn-signup@2x.png in Resources */,
 				D53D23D81670F42A0062B8D3 /* details_compass.png in Resources */,
 				D53D23D91670F42A0062B8D3 /* details_compass@2x.png in Resources */,
-				98E94C8B1675F14000994DBA /* WMConfig.plist in Resources */,
 				034D38DE167738C10071EC05 /* Curl_btn-left-active.png in Resources */,
 				034D38DF167738C10071EC05 /* Curl_btn-left-active@2x.png in Resources */,
 				034D38E0167738C10071EC05 /* Curl_btn-left.png in Resources */,
@@ -1522,6 +1521,7 @@
 				034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */,
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
+				D555D3E61677A66800C58813 /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

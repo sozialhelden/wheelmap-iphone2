@@ -220,12 +220,12 @@
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
     
     
-    CLLocationCoordinate2D poiLocation;
-    poiLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
-    poiLocation.longitude = self.node.lon.doubleValue; // increase to move to the right
+    self.poiLocation = CLLocationCoordinate2DMake(self.node.lat.doubleValue, self.node.lon.doubleValue);
+    [self checkForStatusOfButtons];
+
     // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(poiLocation, 100, 50);
-    viewRegion.center = poiLocation;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.poiLocation, 100, 50);
+    viewRegion.center = self.poiLocation;
     
     // display the region
     [self.mapView setRegion:viewRegion animated:YES];
@@ -310,7 +310,7 @@
     } else {
         self.commentButton.enabled = YES;
     }
-    if(self.node.street == nil || [self.node.street isEqualToString:@""]) {
+    if(self.currentLocation == nil) {
         self.naviButton.enabled = NO;
     } else {
         self.naviButton.enabled = YES;
@@ -500,6 +500,8 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     
+    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX didupdateuserlocation");
+        self.currentLocation = userLocation;
     if (mapView.selectedAnnotations.count == 0)
         //no annotation is currently selected
         [self updateDistanceToAnnotation];
@@ -528,8 +530,6 @@
 }
 
 
-
-
 #pragma mark - ActionSheets
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -541,6 +541,16 @@
     } else if (actionSheet.tag == 1) { // MAP
         if (buttonIndex == 0) {
             NSLog(@"XXXXXXXX open map");
+    
+            CLLocationCoordinate2D start = { self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude };
+            CLLocationCoordinate2D destination = { self.poiLocation.latitude, self.poiLocation.longitude };
+            
+            NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
+                                             start.latitude, start.longitude, destination.latitude, destination.longitude];
+            NSURL *url = [NSURL URLWithString:googleMapsURLString];
+            
+            [[UIApplication sharedApplication] openURL:url];
+ 
         }
     } else if (actionSheet.tag == 2) { // PHOTOUPLOAD
         if (buttonIndex == 0) {
