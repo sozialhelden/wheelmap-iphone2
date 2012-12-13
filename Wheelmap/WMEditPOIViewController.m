@@ -212,6 +212,8 @@
 }
 
 - (IBAction)showAccessOptions:(id)sender {
+    [self buttonPressed];
+    
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
     vc.node = self.node;
@@ -219,6 +221,8 @@
 }
 
 - (IBAction)setNodeType:(id)sender {
+    [self buttonPressed];
+    
     WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
     vc.delegate = self;
     WMDataManager *dataManager = [[WMDataManager alloc] init];
@@ -228,6 +232,8 @@
 }
 
 - (IBAction)setCategory:(id)sender {
+    [self buttonPressed];
+    
     WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
     vc.delegate = self;
     WMDataManager *dataManager = [[WMDataManager alloc] init];
@@ -236,13 +242,36 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void) buttonPressed {
+    [self saveCurrentEntriesToCurrentNode];
+    [self.nameTextField resignFirstResponder];
+    [self.infoTextView resignFirstResponder];
+    [self.streetTextField resignFirstResponder];
+    [self.housenumberTextField resignFirstResponder];
+    [self.postcodeTextField resignFirstResponder];
+    [self.cityTextField resignFirstResponder];
+    [self.websiteTextField resignFirstResponder];
+    [self.phoneTextField resignFirstResponder];
+    
+}
+
 - (void) pushToSetMarkerView {
+    [self.nameTextField resignFirstResponder];
+    [self.infoTextView resignFirstResponder];
+    [self.streetTextField resignFirstResponder];
+    [self.housenumberTextField resignFirstResponder];
+    [self.postcodeTextField resignFirstResponder];
+    [self.cityTextField resignFirstResponder];
+    [self.websiteTextField resignFirstResponder];
+    [self.phoneTextField resignFirstResponder];
+    
     WMSetMarkerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMSetMarkerViewController"];
     vc.node = self.node;
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
-- (void) saveEditedData {
+- (void)saveCurrentEntriesToCurrentNode {
     
     self.node.name = self.nameTextField.text;
     self.node.category = self.currentCategory;
@@ -254,6 +283,11 @@
     self.node.city = self.cityTextField.text;
     self.node.website = self.websiteTextField.text;
     self.node.phone = self.phoneTextField.text;
+}
+
+- (void) saveEditedData {
+    
+    [self saveCurrentEntriesToCurrentNode];
     
     WMDataManager *dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
@@ -292,28 +326,48 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self saveCurrentEntriesToCurrentNode];
+    
     [textField resignFirstResponder];
+    
+    if (textField == self.streetTextField) {
+        [self.housenumberTextField becomeFirstResponder];
+    } else if (textField == self.housenumberTextField) {
+        [self.postcodeTextField becomeFirstResponder];
+
+    } else if (textField == self.postcodeTextField) {
+        [self.cityTextField becomeFirstResponder];
+        
+    }
     return YES;
 }
 
 - (BOOL)textViewShouldReturn:(UITextView *)textView{
+    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
     [textView resignFirstResponder];
     return YES;
+}
+
+- (BOOL)textView:(UITextView *)aTextView shouldChangeTextInRange:(NSRange)aRange replacementText:(NSString *)aText {
+    
+    NSString* newText = [self.infoTextView.text stringByReplacingCharactersInRange:aRange withString:aText];
+    
+    if([newText length] > 255) {
+        return NO; // can't enter more text
+    } else {
+        return YES;
+    }
 }
 
 
 - (void)keyboardWillHide:(NSNotification *)n {
     
-   // resize the scrollview
-    CGRect viewFrame = self.view.frame;
-    // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
-  //  viewFrame.origin.y += 50.0f;
-    
+     self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height + 218);
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     // The kKeyboardAnimationDuration I am using is 0.3
     [UIView setAnimationDuration:0.2];
-    [self.view setFrame:viewFrame];
+ //   [self.view setFrame:viewFrame];
     [UIView commitAnimations];
     
     self.keyboardIsShown = NO;
@@ -321,21 +375,15 @@
 
 - (void)keyboardWillShow:(NSNotification *)n {
     
-    // This is an ivar I'm using to ensure that we do not do the frame size adjustment on the UIScrollView if the keyboard is already shown.  This can happen if the user, after fixing editing a UITextField, scrolls the resized UIScrollView to another UITextField and attempts to edit the next UITextField.  If we were to resize the UIScrollView again, it would be disastrous.  NOTE: The keyboard notification will fire even when the keyboard is already shown.
     if (self.keyboardIsShown) {
         return;
     }
     
-    // resize the noteView
-    CGRect viewFrame = self.view.frame;
-    // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
- //   viewFrame.origin.y -= 50.0f;
-    
+    self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height - 218);
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    // The kKeyboardAnimationDuration I am using is 0.3
     [UIView setAnimationDuration:0.2];
-    [self.view setFrame:viewFrame];
     [UIView commitAnimations];
     
     self.keyboardIsShown = YES;
