@@ -20,7 +20,7 @@
 #import "WMPhotoViewController.h"
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "Category.h"
 
 
 #define STARTLEFT 15
@@ -72,6 +72,7 @@
         // location to zoom in
     [self.scrollView addSubview:self.mapView];
     self.mapView.showsUserLocation=YES;
+    self.mapView.userInteractionEnabled = NO;
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
     
     
@@ -89,6 +90,7 @@
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, self.view.bounds.size.width-STARTLEFT*2, 20)];
     self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:self.titleLabel];
     
     startY += 22;
@@ -97,6 +99,7 @@
     self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, self.view.bounds.size.width-STARTLEFT*2, 16)];
     self.nodeTypeLabel.textColor = [UIColor darkGrayColor];
     self.nodeTypeLabel.font = [UIFont systemFontOfSize:12];
+    self.nodeTypeLabel.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:self.nodeTypeLabel];
     
     startY += 23;
@@ -114,64 +117,16 @@
     
     startY += 64;
     
-    // STREET
-    self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
-    self.streetLabel.textColor = [UIColor darkGrayColor];
-    self.streetLabel.font = [UIFont systemFontOfSize:12];
-    [self.scrollView addSubview:self.streetLabel];
+    // CONTACT INFO
+    UIView *contactInfoView = [self createContactInfoView];
+    contactInfoView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, contactInfoView.bounds.size.height);
+    contactInfoView.backgroundColor = [UIColor whiteColor];
+    contactInfoView.layer.borderWidth = 1.0f;
+    contactInfoView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [contactInfoView.layer setCornerRadius:5.0f];
+    [self.scrollView addSubview:contactInfoView];
     
-    
-    startY += 16;
-  
-        // POSTCODE AND CITY
-    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
-    self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
-    self.postcodeAndCityLabel.font = [UIFont systemFontOfSize:12];
-    //self.postcodeAndCityLabel.backgroundColor = [UIColor greenColor];
-    [self.scrollView addSubview:self.postcodeAndCityLabel];
-    
-    startY += 20;
-    
-    // COMPASS
-    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
-    WMCompassView *compassView = [[WMCompassView alloc] initWithFrame:CGRectMake(265, startY+self.gabIfStatusUnknown-10, compassImage.size.width, compassImage.size.height)];
-    compassView.node = self.node;
-   
-    [self.scrollView addSubview:compassView];
-    
-    // WEBSITE
-    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
-    self.websiteLabel.textColor = [UIColor darkGrayColor];
-    self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
-    self.websiteLabel.editable = NO;
-    self.websiteLabel.scrollEnabled = NO;
-    self.websiteLabel.font = [UIFont systemFontOfSize:12];
-    //self.websiteLabel.backgroundColor = [UIColor orangeColor];
-    self.websiteLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
-    [self.scrollView addSubview:self.websiteLabel];
-    
-    
-    startY += 20;
-
-    // Phone
-    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY+self.gabIfStatusUnknown, 225, 16)];
-    self.phoneLabel.textColor = [UIColor darkGrayColor];
-    self.phoneLabel.font = [UIFont systemFontOfSize:12];
-    self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
-    self.phoneLabel.editable = NO;
-    self.phoneLabel.scrollEnabled = NO;
-    //self.phoneLabel.backgroundColor = [UIColor greenColor];
-    self.phoneLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
-    [self.scrollView addSubview:self.phoneLabel];
-    
-     // DISTANCE
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, startY+self.gabIfStatusUnknown, 70, 16)];
-    self.distanceLabel.textColor = [UIColor darkGrayColor];
-    self.distanceLabel.font = [UIFont systemFontOfSize:12];
-    self.distanceLabel.textAlignment = UITextAlignmentCenter;
-    [self.scrollView addSubview:self.distanceLabel];
- 
-    startY += 30;
+    startY += contactInfoView.bounds.size.height + 16;
     
     // IMAGESCROLLVIEW
     [self createAndAddImageScrollView];
@@ -234,6 +189,77 @@
 
 #pragma mark - UI element creation
 
+- (UIView*) createContactInfoView {
+    
+    UIView *infoView = [UIView new];
+    infoView.backgroundColor = [UIColor orangeColor];
+    int startY = 10;
+    
+    // STREET
+    self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
+    self.streetLabel.textColor = [UIColor darkGrayColor];
+    self.streetLabel.font = [UIFont boldSystemFontOfSize:12];
+    self.streetLabel.backgroundColor = [UIColor clearColor];
+    [infoView addSubview:self.streetLabel];
+    
+    
+    startY += 16;
+    
+    // POSTCODE AND CITY
+    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
+    self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
+    self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:12];
+    self.postcodeAndCityLabel.backgroundColor = [UIColor clearColor];
+    [infoView addSubview:self.postcodeAndCityLabel];
+    
+    startY += 30;
+    
+    // COMPASS
+    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
+    WMCompassView *compassView = [[WMCompassView alloc] initWithFrame:CGRectMake(260, startY-10, compassImage.size.width, compassImage.size.height)];
+    compassView.node = self.node;
+    compassView.backgroundColor = [UIColor clearColor];
+    [infoView addSubview:compassView];
+    
+    // WEBSITE
+    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
+    self.websiteLabel.textColor = [UIColor darkGrayColor];
+    self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
+    self.websiteLabel.editable = NO;
+    self.websiteLabel.scrollEnabled = NO;
+    self.websiteLabel.font = [UIFont systemFontOfSize:12];
+    self.websiteLabel.backgroundColor = [UIColor clearColor];
+    self.websiteLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
+    
+    infoView.frame = CGRectMake(0, 0, 300, startY+30);
+    [infoView addSubview:self.websiteLabel];
+    
+    
+    startY += 20;
+    
+    // Phone
+    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
+    self.phoneLabel.textColor = [UIColor darkGrayColor];
+    self.phoneLabel.font = [UIFont systemFontOfSize:12];
+    self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+    self.phoneLabel.editable = NO;
+    self.phoneLabel.scrollEnabled = NO;
+    self.phoneLabel.backgroundColor = [UIColor clearColor];
+    self.phoneLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
+    [infoView addSubview:self.phoneLabel];
+    
+    // DISTANCE
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, startY, 70, 16)];
+    self.distanceLabel.textColor = [UIColor darkGrayColor];
+    self.distanceLabel.font = [UIFont systemFontOfSize:12];
+    self.distanceLabel.backgroundColor = [UIColor clearColor];
+    self.distanceLabel.textAlignment = UITextAlignmentCenter;
+    [infoView addSubview:self.distanceLabel];
+    
+    infoView.frame = CGRectMake(0, 0, 300, startY+26);
+    return infoView;
+}
+
 - (void) createAskFriendsForStatusButton {
     self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
@@ -266,7 +292,10 @@
     // TEXTFIELDS
     
     self.titleLabel.text = self.node.name ?: @"?";
-    self.nodeTypeLabel.text = self.node.node_type.localized_name ?: @"?";
+    NSString *nodeTypeString = self.node.node_type.localized_name ?: @"?";
+    NSString *catString = self.node.category.localized_name ?: @"?";
+    NSString *nodeTypeAndCatString = [NSString stringWithFormat:@"%@ / %@", nodeTypeString, catString];
+    self.nodeTypeLabel.text = nodeTypeAndCatString;
     
     
     if (self.node.street == nil && self.node.housenumber == nil && self.node.postcode == nil && self.node.city == nil) {
@@ -477,7 +506,7 @@
     
         
     if (self.mapView.userLocation.location == nil) {
-        self.distanceLabel.text = @"User location is unknown";
+        self.distanceLabel.text = @"n/a";
         return;
     }
     
@@ -705,16 +734,10 @@
 }
 
 
-
-- (void) setUpdatedNode: (Node*) node {
-    self.node = node;
-}
-
 - (void) pushEditViewController {
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.node = self.node;
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

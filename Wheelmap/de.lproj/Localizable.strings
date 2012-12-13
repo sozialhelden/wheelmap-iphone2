@@ -45,6 +45,7 @@
 
 "EditPOIViewHeadline" = "Bearbeiten";
 "EditPOIViewNameLabel" = "Name";
+"EditPOIViewNodeTypeLabel" = "Typ";
 "EditPOIViewCategoryLabel" = "Kategorie";
 "EditPOIViewPositionLabel" = "Position";
 "EditPOIViewPhoneLabel" = "Telefon";

@@ -47,6 +47,7 @@
 "ShareLocationViewHeadline" = "Share Location";
 
 "EditPOIViewHeadline" = "Edit";
+"EditPOIViewNodeTypeLabel" = "Type";
 "EditPOIViewNameLabel" = "Name";
 "EditPOIViewCategoryLabel" = "Category";
 "EditPOIViewPositionLabel" = "Position";

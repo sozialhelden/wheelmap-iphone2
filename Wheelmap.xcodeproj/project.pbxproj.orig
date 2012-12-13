@@ -122,9 +122,11 @@
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3F91678956500C58813 /* WMCategoryTableViewController.m */; };
+
 		D555D4041678C3B900C58813 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D555D4031678C3B900C58813 /* WMConfig.plist */; };
 		D555D40C1678E1F600C58813 /* buttons_close.png in Resources */ = {isa = PBXBuildFile; fileRef = D555D40A1678E1F600C58813 /* buttons_close.png */; };
 		D555D40D1678E1F600C58813 /* buttons_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D555D40B1678E1F600C58813 /* buttons_close@2x.png */; };
+
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -161,8 +163,6 @@
 		D5EE56AD166E4C52008E389D /* textfield_-share.png in Resources */ = {isa = PBXBuildFile; fileRef = D5EE56AB166E4C52008E389D /* textfield_-share.png */; };
 		D5EE56AE166E4C52008E389D /* textfield_-share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5EE56AC166E4C52008E389D /* textfield_-share@2x.png */; };
 		D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
-		DB18F81C1679DCE400855296 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81B1679DCE300855296 /* Default.png */; };
-		DB18F81F1679DCE700855296 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81E1679DCE700855296 /* Default@2x.png */; };
 		DB56839D166E97FC005B2EE5 /* misc_position-info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839B166E97FC005B2EE5 /* misc_position-info.png */; };
 		DB56839E166E97FC005B2EE5 /* misc_position-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */; };
 		DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
@@ -494,8 +494,6 @@
 		D5EE56AC166E4C52008E389D /* textfield_-share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield_-share@2x.png"; sourceTree = "<group>"; };
 		D5EE56AF166E6604008E389D /* WMSetMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSetMarkerViewController.h; sourceTree = "<group>"; };
 		D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSetMarkerViewController.m; sourceTree = "<group>"; };
-		DB18F81B1679DCE300855296 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		DB18F81E1679DCE700855296 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DB56839B166E97FC005B2EE5 /* misc_position-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info.png"; sourceTree = "<group>"; };
 		DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info@2x.png"; sourceTree = "<group>"; };
 		DB5683A0166E9F35005B2EE5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
@@ -704,8 +702,6 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				DB18F81E1679DCE700855296 /* Default@2x.png */,
-				DB18F81B1679DCE300855296 /* Default.png */,
 				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
 				DBCA97B21678D1780042358C /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
@@ -1562,9 +1558,10 @@
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
+				D555D4041678C3B900C58813 /* WMConfig.plist in Resources */,
+				D555D40C1678E1F600C58813 /* buttons_close.png in Resources */,
+				D555D40D1678E1F600C58813 /* buttons_close@2x.png in Resources */,
 				DBCA97B31678D1780042358C /* WMConfig.plist in Resources */,
-				DB18F81C1679DCE400855296 /* Default.png in Resources */,
-				DB18F81F1679DCE700855296 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
