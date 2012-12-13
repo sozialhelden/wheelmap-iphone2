@@ -21,6 +21,7 @@
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Category.h"
+#import "WMPOIMapViewController.h"
 
 
 #define STARTLEFT 15
@@ -71,7 +72,11 @@
     self.mapView.delegate = self;
     self.mapView.userInteractionEnabled = NO;
     self.mapView.scrollEnabled = NO;
-        // location to zoom in
+    self.mapView.zoomEnabled = NO;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapViewTapped:)];
+    [self.mapView addGestureRecognizer:tapRecognizer];
+   
+    // location to zoom in
     [self.scrollView addSubview:self.mapView];
     self.mapView.showsUserLocation=YES;
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
@@ -547,6 +552,14 @@
         }
     }
     return nil;
+}
+
+- (void)mapViewTapped:(UITapGestureRecognizer*)sender {
+    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
+    
+    WMPOIMapViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIMapViewController"];
+    vc.node = self.node;
+    [self presentModalViewController:vc animated:YES];
 }
 
 

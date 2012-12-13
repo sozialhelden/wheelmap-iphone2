@@ -226,7 +226,7 @@
     WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
     vc.delegate = self;
     WMDataManager *dataManager = [[WMDataManager alloc] init];
-    vc.nodeArray = [[NSArray alloc] initWithArray:dataManager.nodeTypes];
+    vc.nodeArray = [[NSSet alloc] initWithSet:self.currentCategory.nodeType];
     vc.title = self.title = NSLocalizedString(@"SetNodeType", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }

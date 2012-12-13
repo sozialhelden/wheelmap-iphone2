@@ -10,7 +10,7 @@
 
 @interface WMNodeTypeTableViewController : WMTableViewController
 
-@property (nonatomic, strong) NSArray *nodeArray;
+@property (nonatomic, strong) NSSet *nodeArray;
 @property (strong, nonatomic) id delegate;
 
 @end
