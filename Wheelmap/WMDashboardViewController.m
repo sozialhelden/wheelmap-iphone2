@@ -51,6 +51,9 @@
     [self.helpButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
 
     self.searchTextField.delegate = self;
+    self.searchTextFieldBg.image = [self.searchTextFieldBg.image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 50)];
+    searchTextFieldOriginalWidth = self.searchTextField.frame.size.width;
+    searchTextFieldBgOriginalWidth = self.searchTextFieldBg.frame.size.width;
     
     [self.view addSubview:self.nearbyButton];
     [self.view addSubview:self.mapButton];
@@ -59,6 +62,28 @@
 
     self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
     self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"300,000", NSLocalizedString(@"Places", nil)];
+    
+    // search cancel button
+    UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    normalBtnLabel.fontSize = 13.0;
+    normalBtnLabel.text = NSLocalizedString(@"NavBarCancelButton", nil);
+    normalBtnLabel.textAlignment = UITextAlignmentCenter;
+    normalBtnLabel.textColor = [UIColor whiteColor];
+    CGSize expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+    if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
+    normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
+    normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 40);
+    normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
+    [normalBtnImg addSubview:normalBtnLabel];
+    searchCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
+    searchCancelButton.frame = CGRectMake(self.searchTextFieldBg.topRightX, self.searchTextFieldBg.frame.origin.y, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+    searchCancelButton.backgroundColor = [UIColor clearColor];
+    [searchCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
+    searchCancelButton.hidden = YES;
+    [searchCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:searchCancelButton];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -67,14 +92,19 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
     
-    
-
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)pressedSearchCancelButton:(WMButton*)btn
+{
+    // dismiss the keyboard
+    self.searchTextField.text = nil;
+    [self textFieldShouldReturn:self.searchTextField];
 }
 
 -(IBAction)pressedNodeListButton:(id)sender
@@ -145,9 +175,63 @@
     
 }
 
+#pragma mark - Search text field delegates
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self showCancelButton];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self hideCancelButton];
+    
     [textField resignFirstResponder];
     return YES;
 }
 
+#pragma mark - Search Cancel Button animation
+-(void)showCancelButton
+{
+    searchCancelButton.alpha = 0.0;
+    searchCancelButton.hidden = NO;
+    [UIView animateWithDuration:0.3
+                          delay:0.0 options:UIViewAnimationOptionCurveEaseOut
+                     animations:^(void)
+     {
+         self.searchTextField.frame = CGRectMake(self.searchTextField.frame.origin.x, self.searchTextField.frame.origin.y, searchTextFieldOriginalWidth-searchCancelButton.frame.size.width-5, self.searchTextField.frame.size.height);
+         self.searchTextFieldBg.frame = CGRectMake(self.searchTextFieldBg.frame.origin.x, self.searchTextFieldBg.frame.origin.y, searchTextFieldBgOriginalWidth-searchCancelButton.frame.size.width-5, self.searchTextFieldBg.frame.size.height);
+         
+         searchCancelButton.transform = CGAffineTransformMakeTranslation(-searchCancelButton.frame.size.width, 0);
+         searchCancelButton.alpha = 1.0;
+         
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     }];
+    
+}
+
+-(void)hideCancelButton
+{
+    searchCancelButton.alpha = 1.0;
+    searchCancelButton.hidden = NO;
+    [UIView animateWithDuration:0.3
+                          delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^(void)
+     {
+         self.searchTextField.frame = CGRectMake(self.searchTextField.frame.origin.x, self.searchTextField.frame.origin.y, searchTextFieldOriginalWidth, self.searchTextField.frame.size.height);
+         self.searchTextFieldBg.frame = CGRectMake(self.searchTextFieldBg.frame.origin.x, self.searchTextFieldBg.frame.origin.y, searchTextFieldBgOriginalWidth, self.searchTextFieldBg.frame.size.height);
+         
+         searchCancelButton.transform = CGAffineTransformMakeTranslation(0, 0);
+         searchCancelButton.alpha = 0.0;
+         
+     }
+                     completion:^(BOOL finished)
+     {
+         searchCancelButton.hidden = YES;
+         
+     }];
+    
+}
 @end

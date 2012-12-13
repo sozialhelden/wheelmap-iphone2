@@ -11,11 +11,14 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "WMMapAnnotation.h"
+#import "WMDataManager.h"
 
 @class Node;
 
-@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate>
-
+@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate>
+{
+    WMDataManager* dataManager;
+}
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIScrollView *imageScrollView;
 @property (nonatomic, strong) MKMapView *mapView;

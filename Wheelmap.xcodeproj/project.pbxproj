@@ -117,6 +117,8 @@
 		D5406D61166A49650016E275 /* Social_btn-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */; };
 		D5406D64166A4AA40016E275 /* WMShareSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */; };
 		D544B6D5167919380077F5B7 /* WMNodeTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D544B6D4167919380077F5B7 /* WMNodeTypeTableViewController.m */; };
+		D544B6EE1679D3D00077F5B7 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D544B6ED1679D3D00077F5B7 /* WMConfig.plist */; };
+		D544B6F2167A21D20077F5B7 /* WMPOIMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D544B6F1167A21D20077F5B7 /* WMPOIMapViewController.m */; };
 		D555D3861675E4A600C58813 /* WMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3851675E4A500C58813 /* WMCompassView.m */; };
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -434,6 +436,9 @@
 		D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShareSocialViewController.m; sourceTree = "<group>"; };
 		D544B6D3167919380077F5B7 /* WMNodeTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeTypeTableViewController.h; sourceTree = "<group>"; };
 		D544B6D4167919380077F5B7 /* WMNodeTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeTypeTableViewController.m; sourceTree = "<group>"; };
+		D544B6ED1679D3D00077F5B7 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../WMConfig.plist; sourceTree = "<group>"; };
+		D544B6F0167A21D10077F5B7 /* WMPOIMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIMapViewController.h; sourceTree = "<group>"; };
+		D544B6F1167A21D20077F5B7 /* WMPOIMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIMapViewController.m; sourceTree = "<group>"; };
 		D555D3841675E4A500C58813 /* WMCompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCompassView.h; sourceTree = "<group>"; };
 		D555D3851675E4A500C58813 /* WMCompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCompassView.m; sourceTree = "<group>"; };
 		D555D3D41677897D00C58813 /* WMInfinitePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInfinitePhotoViewController.h; sourceTree = "<group>"; };
@@ -1274,6 +1279,8 @@
 				D555D3F91678956500C58813 /* WMCategoryTableViewController.m */,
 				D544B6D3167919380077F5B7 /* WMNodeTypeTableViewController.h */,
 				D544B6D4167919380077F5B7 /* WMNodeTypeTableViewController.m */,
+				D544B6F0167A21D10077F5B7 /* WMPOIMapViewController.h */,
+				D544B6F1167A21D20077F5B7 /* WMPOIMapViewController.m */,
 			);
 			name = NodeDetailScreen;
 			sourceTree = "<group>";
@@ -1653,6 +1660,7 @@
 				D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */,
 				DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */,
 				D544B6D5167919380077F5B7 /* WMNodeTypeTableViewController.m in Sources */,
+				D544B6F2167A21D20077F5B7 /* WMPOIMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

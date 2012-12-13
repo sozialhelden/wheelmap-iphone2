@@ -39,7 +39,7 @@
 - (void) putWheelChairStatusForNode:(Node*)node;    // the node should already have the changed status!
 - (void) postNode:(Node*)node;
 
-- (void) uploadImage:(id)image forNode:(Node*)node;
+- (void) uploadImage:(UIImage*)image forNode:(Node*)node;
 
 
 extern NSString *WMDataManagerErrorDomain;
