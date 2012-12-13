@@ -21,6 +21,7 @@
 - (void) removeUserAuthentication;
 - (BOOL) userIsAuthenticated;
 - (NSDictionary*) legacyUserCredentials;
+- (NSString*)currentUserName;
 
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;

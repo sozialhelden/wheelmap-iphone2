@@ -158,6 +158,15 @@
     return [self.keychainWrapper legacyAccountData];
 }
 
+- (NSString*)currentUserName
+{
+    if (self.userIsAuthenticated) {
+        return self.keychainWrapper.userAccount;
+    } else {
+        return nil;
+    }
+}
+
 
 #pragma mark - Fetch Nodes
 

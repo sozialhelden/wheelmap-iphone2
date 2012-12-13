@@ -56,7 +56,7 @@
     [self.view addSubview:self.helpButton];
 
     self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
-    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"?????", NSLocalizedString(@"Places", nil)];
+    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"300,000", NSLocalizedString(@"Places", nil)];
 }
 
 -(void)viewWillAppear:(BOOL)animated
