@@ -91,6 +91,13 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.view.backgroundColor = UIColorFromRGB(0x304152);
+}
+
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -259,24 +266,36 @@
 #pragma mark - Push/Pop ViewControllers
 - (void)pushFadeViewController:(UIViewController*)vc
 {
-    CATransition* transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.type = kCATransitionFade;
-    transition.subtype = kCATransitionFromTop;
     
-    [self.view.layer addAnimation:transition forKey:kCATransition];
+    WMViewController* lastVC = [self.viewControllers lastObject];
+    
+    [UIView transitionFromView:lastVC.view
+                        toView:vc.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    completion:nil];
+    
     [self pushViewController:vc animated:NO];
+ 
+    
 }
 
 -(void)popFadeViewController
 {
-    CATransition* transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.type = kCATransitionFade;
-    transition.subtype = kCATransitionFromTop;
     
-    [self.view.layer addAnimation:transition forKey:kCATransition];
+  
+    
+    WMViewController* fromVC = [self.viewControllers lastObject];
+    WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
+    
+    [UIView transitionFromView:fromVC.view
+                        toView:toVC.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    completion:nil];
+    
     [self popViewControllerAnimated:NO];
+   
 
 }
 

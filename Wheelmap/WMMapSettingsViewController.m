@@ -55,6 +55,13 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+     self.view.backgroundColor = UIColorFromRGB(0x304152);
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -91,6 +98,8 @@
             [(WMMapViewController *)topController toggleMapTypeChanged:sender];
         }
     }
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

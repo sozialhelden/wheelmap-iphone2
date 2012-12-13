@@ -38,6 +38,7 @@
         
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
     
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -52,7 +53,7 @@
         [self.navigationController setToolbarHidden:NO animated:YES];
     }
     
-    [self loadNodes];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated

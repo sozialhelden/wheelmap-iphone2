@@ -118,13 +118,9 @@
 		D5406D64166A4AA40016E275 /* WMShareSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5406D63166A4AA40016E275 /* WMShareSocialViewController.m */; };
 		D544B6D5167919380077F5B7 /* WMNodeTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D544B6D4167919380077F5B7 /* WMNodeTypeTableViewController.m */; };
 		D555D3861675E4A600C58813 /* WMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3851675E4A500C58813 /* WMCompassView.m */; };
-		D555D38D167640AF00C58813 /* WMPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D38C167640AF00C58813 /* WMPhotoViewController.m */; };
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3F91678956500C58813 /* WMCategoryTableViewController.m */; };
-		D555D4041678C3B900C58813 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D555D4031678C3B900C58813 /* WMConfig.plist */; };
-		D555D40C1678E1F600C58813 /* buttons_close.png in Resources */ = {isa = PBXBuildFile; fileRef = D555D40A1678E1F600C58813 /* buttons_close.png */; };
-		D555D40D1678E1F600C58813 /* buttons_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D555D40B1678E1F600C58813 /* buttons_close@2x.png */; };
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -440,15 +436,12 @@
 		D544B6D4167919380077F5B7 /* WMNodeTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeTypeTableViewController.m; sourceTree = "<group>"; };
 		D555D3841675E4A500C58813 /* WMCompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCompassView.h; sourceTree = "<group>"; };
 		D555D3851675E4A500C58813 /* WMCompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCompassView.m; sourceTree = "<group>"; };
-		D555D38B167640AF00C58813 /* WMPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoViewController.h; sourceTree = "<group>"; };
-		D555D38C167640AF00C58813 /* WMPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoViewController.m; sourceTree = "<group>"; };
 		D555D3D41677897D00C58813 /* WMInfinitePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInfinitePhotoViewController.h; sourceTree = "<group>"; };
 		D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInfinitePhotoViewController.m; sourceTree = "<group>"; };
 		D555D3D716778C2800C58813 /* InfiniteGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteGallery.h; sourceTree = "<group>"; };
 		D555D3D816778C2800C58813 /* InfiniteGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteGallery.m; sourceTree = "<group>"; };
 		D555D3F81678956400C58813 /* WMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryTableViewController.h; sourceTree = "<group>"; };
 		D555D3F91678956500C58813 /* WMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryTableViewController.m; sourceTree = "<group>"; };
-		D555D4031678C3B900C58813 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../../Downloads/WMConfig.plist; sourceTree = "<group>"; };
 		D555D40A1678E1F600C58813 /* buttons_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttons_close.png; sourceTree = "<group>"; };
 		D555D40B1678E1F600C58813 /* buttons_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_close@2x.png"; sourceTree = "<group>"; };
 		D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "details_btn-status-limited.png"; path = "Details/WheelAccess/details_btn-status-limited.png"; sourceTree = "<group>"; };
@@ -1275,8 +1268,6 @@
 				D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */,
 				D555D3841675E4A500C58813 /* WMCompassView.h */,
 				D555D3851675E4A500C58813 /* WMCompassView.m */,
-				D555D38B167640AF00C58813 /* WMPhotoViewController.h */,
-				D555D38C167640AF00C58813 /* WMPhotoViewController.m */,
 				D555D3D41677897D00C58813 /* WMInfinitePhotoViewController.h */,
 				D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */,
 				D555D3F81678956400C58813 /* WMCategoryTableViewController.h */,
@@ -1656,7 +1647,6 @@
 				03F30C551670B80600241466 /* WMLoginViewController.m in Sources */,
 				98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */,
 				D555D3861675E4A600C58813 /* WMCompassView.m in Sources */,
-				D555D38D167640AF00C58813 /* WMPhotoViewController.m in Sources */,
 				D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */,
 				D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */,
 				034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */,

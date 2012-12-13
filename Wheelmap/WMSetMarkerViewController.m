@@ -28,7 +28,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"SET MARKER";
     
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.mapView.delegate = self;
@@ -42,6 +41,14 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 100, 320);
     // display the region
     [self.mapView setRegion:viewRegion animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.title = NSLocalizedString(@"SetMarker", nil);
+    self.navigationBarTitle = self.title;
 }
 
 - (void)didReceiveMemoryWarning

@@ -37,6 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
 	// Do any additional setup after loading the view.
     self.currentCategory = self.node.category;
     self.nameTextField.delegate = self;
@@ -91,12 +94,24 @@
     
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
 
+    // progress wheel
+    progressWheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    progressWheel.frame = CGRectMake(0, 0, 50, 50);
+    progressWheel.backgroundColor = [UIColor blackColor];
+    progressWheel.center = CGPointMake(self.view.center.x, self.view.center.y-40);
+    progressWheel.hidden = YES;
+    progressWheel.layer.cornerRadius = 5.0;
+    progressWheel.layer.masksToBounds = YES;
+    [self.view addSubview:progressWheel];
     
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.title = NSLocalizedString(@"Edit", nil);
+    self.navigationBarTitle = self.title;
+    
     [self updateFields];
 }
 
@@ -223,7 +238,6 @@
     vc.delegate = self;
     WMDataManager *dataManager = [[WMDataManager alloc] init];
     vc.nodeArray = [[NSArray alloc] initWithArray:dataManager.nodeTypes];
-    vc.title = self.title = NSLocalizedString(@"SetNodeType", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -232,7 +246,6 @@
     vc.delegate = self;
     WMDataManager *dataManager = [[WMDataManager alloc] init];
     vc.categoryArray = [[NSArray alloc] initWithArray:dataManager.categories];
-     vc.title = self.title = NSLocalizedString(@"SetCategory", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -258,21 +271,30 @@
     WMDataManager *dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     [dataManager putNode:self.node];
+    
+    progressWheel.hidden = NO;
+    [progressWheel startAnimating];
 
 }
 
 
 - (void) dataManager:(WMDataManager *)dataManager didFinishPuttingNodeWithMsg:(NSString *)msg {
- //   progressWheel.hidden = YES;
- //   [progressWheel stopAnimating];
+    progressWheel.hidden = YES;
+    [progressWheel stopAnimating];
     NSLog(@"XXXXXXXX FINISHED %@", msg);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) dataManager:(WMDataManager *)dataManager didFailPuttingNodeWithMsg:(NSString *)msg {
     NSLog(@"XXXXXXXX FINISHED %@", msg);
-    //   progressWheel.hidden = YES;
-    //   [progressWheel stopAnimating];
+    progressWheel.hidden = YES;
+    [progressWheel stopAnimating];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SaveNodeFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    
+    [alert show];
+    
+    
     
 }
 

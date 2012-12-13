@@ -53,7 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"DetailViewHeadline", @"");
+    
 
     self.gabIfStatusUnknown = 0;
 
@@ -157,6 +157,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    self.title = NSLocalizedString(@"DetailViewHeadline", @"");
+    self.navigationBarTitle = self.title;
+    
     if (!self.navigationController.toolbarHidden) {
         [self.navigationController setToolbarHidden:YES animated:YES];
     }

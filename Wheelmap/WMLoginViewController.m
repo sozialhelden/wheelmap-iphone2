@@ -41,7 +41,7 @@
     self.titleLabel.text = NSLocalizedString(@"Anmelden", nil);
     self.topTextLabel.text = NSLocalizedString(@"TopLabelText", nil);
     self.bottomTextLabel.text = NSLocalizedString(@"BottomLabelText", nil);
-    [self.doneButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
+    [self.doneButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"Sign In Button", nil) forState:UIControlStateNormal];
     [self.registerButton setTitle:NSLocalizedString(@"RegisterNew", nil) forState:UIControlStateNormal];
     self.usernameTextField.placeholder = NSLocalizedString(@"UsernamePlaceholder", nil);
@@ -52,8 +52,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
