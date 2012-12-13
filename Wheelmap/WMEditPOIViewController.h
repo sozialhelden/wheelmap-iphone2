@@ -58,6 +58,7 @@
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
 @property (nonatomic, strong) Category *currentCategory;
+@property (nonatomic, strong) NodeType *currentNodeType;
 
 
 

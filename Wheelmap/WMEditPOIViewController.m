@@ -39,6 +39,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.currentCategory = self.node.category;
+    self.currentNodeType = self.node.node_type;
     self.nameTextField.delegate = self;
     self.infoTextView.delegate = self;
     self.streetTextField.delegate = self;
@@ -91,19 +92,14 @@
     
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
 
-    
-}
-
-
-
-- (void)viewWillAppear:(BOOL)animated {
     [self updateFields];
+    
 }
 
 
 - (void) updateFields {
     self.nameTextField.text = self.node.name;
-    [self.setNodeTypeButton setTitle:self.node.node_type.localized_name forState:UIControlStateNormal];
+    [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
     [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
     [self setWheelAccessButton];
     self.infoTextView.text = self.node.wheelchair_description;
@@ -201,14 +197,18 @@
 
 - (void)accessButtonPressed:(NSString*)wheelchairAccess {
       self.node.wheelchair = wheelchairAccess;
+    [self setWheelAccessButton];
 }
 
 - (void)categoryChosen:(Category *)category {
     self.currentCategory = category;
+    [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
+
 }
 
 - (void)nodeTypeChosen:(NodeType*)nodeType {
-    self.node.node_type = nodeType;
+    self.currentNodeType= nodeType;
+    [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
 }
 
 - (IBAction)showAccessOptions:(id)sender {
@@ -225,7 +225,6 @@
     
     WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
     vc.delegate = self;
-    WMDataManager *dataManager = [[WMDataManager alloc] init];
     vc.nodeArray = [[NSSet alloc] initWithSet:self.currentCategory.nodeType];
     vc.title = self.title = NSLocalizedString(@"SetNodeType", @"");
     [self.navigationController pushViewController:vc animated:YES];
@@ -243,7 +242,6 @@
 }
 
 - (void) buttonPressed {
-    [self saveCurrentEntriesToCurrentNode];
     [self.nameTextField resignFirstResponder];
     [self.infoTextView resignFirstResponder];
     [self.streetTextField resignFirstResponder];
@@ -275,6 +273,7 @@
     
     self.node.name = self.nameTextField.text;
     self.node.category = self.currentCategory;
+    self.node.node_type = self.currentNodeType;
     self.node.wheelchair = self.node.wheelchair;
     self.node.wheelchair_description = self.infoTextView.text;
     self.node.street = self.streetTextField.text;
@@ -326,7 +325,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self saveCurrentEntriesToCurrentNode];
     
     [textField resignFirstResponder];
     
@@ -343,7 +341,7 @@
 }
 
 - (BOOL)textViewShouldReturn:(UITextView *)textView{
-    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
+    
     [textView resignFirstResponder];
     return YES;
 }

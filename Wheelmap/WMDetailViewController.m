@@ -555,7 +555,6 @@
 }
 
 - (void)mapViewTapped:(UITapGestureRecognizer*)sender {
-    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
     
     WMPOIMapViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIMapViewController"];
     vc.node = self.node;
