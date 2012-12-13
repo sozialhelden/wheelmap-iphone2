@@ -47,6 +47,7 @@
         backBtnLabel.text = NSLocalizedString(@"BackButton", nil);
         backBtnLabel.textColor = [UIColor whiteColor];
         CGSize expSize = [backBtnLabel.text sizeWithFont:backBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
         backBtnLabel.frame = CGRectMake(backBtnLabel.frame.origin.x, backBtnLabel.frame.origin.y, expSize.width, backBtnLabel.frame.size.height);
         backBtnBgImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+20, 37);
         [backBtnBgImg addSubview:backBtnLabel];
@@ -62,12 +63,13 @@
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
+        normalBtnLabel.text = NSLocalizedString(@"NavBarCancelButton", nil);
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
         normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-        normalBtnImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
+        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 37);
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
         cancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
@@ -99,8 +101,9 @@
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
         normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-        normalBtnImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
+        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 37);
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
         editButton = [WMButton buttonWithType:UIButtonTypeCustom];
@@ -120,8 +123,9 @@
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
         normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-        normalBtnImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+10, 37);
+        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 37);
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
         saveButton = [WMButton buttonWithType:UIButtonTypeCustom];

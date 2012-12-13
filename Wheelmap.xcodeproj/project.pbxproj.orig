@@ -122,9 +122,11 @@
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3F91678956500C58813 /* WMCategoryTableViewController.m */; };
+
 		D555D4041678C3B900C58813 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D555D4031678C3B900C58813 /* WMConfig.plist */; };
 		D555D40C1678E1F600C58813 /* buttons_close.png in Resources */ = {isa = PBXBuildFile; fileRef = D555D40A1678E1F600C58813 /* buttons_close.png */; };
 		D555D40D1678E1F600C58813 /* buttons_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D555D40B1678E1F600C58813 /* buttons_close@2x.png */; };
+
 		D56F7203166A33D6002CE692 /* details_btn-status-limited.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F1166A33D6002CE692 /* details_btn-status-limited.png */; };
 		D56F7204166A33D6002CE692 /* details_btn-status-limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F2166A33D6002CE692 /* details_btn-status-limited@2x.png */; };
 		D56F7205166A33D6002CE692 /* details_btn-status-no.png in Resources */ = {isa = PBXBuildFile; fileRef = D56F71F3166A33D6002CE692 /* details_btn-status-no.png */; };
@@ -1556,6 +1558,9 @@
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
+				D555D4041678C3B900C58813 /* WMConfig.plist in Resources */,
+				D555D40C1678E1F600C58813 /* buttons_close.png in Resources */,
+				D555D40D1678E1F600C58813 /* buttons_close@2x.png in Resources */,
 				DBCA97B31678D1780042358C /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

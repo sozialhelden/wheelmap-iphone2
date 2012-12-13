@@ -19,8 +19,7 @@
 {
     // Override point for customization after application launch.
     
-    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:@"BETA_IDENTIFIER"
-                                                         liveIdentifier:@"LIVE_IDENTIFIER"
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"e9092b2c04cebaec2c0b074407fc60ef"
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
     

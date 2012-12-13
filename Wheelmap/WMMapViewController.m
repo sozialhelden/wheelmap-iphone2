@@ -39,6 +39,11 @@
 {
     [super viewDidLoad];
     
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
     if (self.navigationController.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
@@ -47,11 +52,6 @@
         [self.navigationController setToolbarHidden:NO animated:YES];
     }
     
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
     [self loadNodes];
 }
 
