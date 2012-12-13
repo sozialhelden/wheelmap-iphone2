@@ -13,48 +13,59 @@
 @interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+
+//NAME
 @property (weak, nonatomic) IBOutlet UIView *nameInputView;
-@property (weak, nonatomic) IBOutlet UIView *categoryInputView;
-@property (weak, nonatomic) IBOutlet UIView *positionInputView;
-@property (weak, nonatomic) IBOutlet UIView *infoInputView;
-@property (weak, nonatomic) IBOutlet UIView *addressInputView;
-@property (weak, nonatomic) IBOutlet UIView *websiteInputView;
-@property (weak, nonatomic) IBOutlet UIView *phoneInputView;
-@property (nonatomic, strong) UIImage *accessImage;
-@property (nonatomic, strong) NSString *wheelchairAccess;
-@property (nonatomic, strong) Category *currentCategory;
-
-@property (nonatomic) Node *node;
-@property (nonatomic, assign) BOOL keyboardIsShown;
-
-@property (weak, nonatomic) IBOutlet UIButton *wheelAccessButton;
-
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *categoryTextField;
-@property (weak, nonatomic) IBOutlet UITextField *websiteTextField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-
-@property (weak, nonatomic) IBOutlet UITextView *infoTextView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+//TYPE
+@property (weak, nonatomic) IBOutlet UIView *nodeTypeInputView;
+@property (weak, nonatomic) IBOutlet UILabel *nodeTypeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *setNodeTypeButton;
+//CATEGORY
+@property (weak, nonatomic) IBOutlet UIView *categoryInputView;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UIButton *setCategoryButton;
+//SETMARKER
+@property (weak, nonatomic) IBOutlet UIView *positionInputView;
 @property (weak, nonatomic) IBOutlet UILabel *position;
+@property (weak, nonatomic) IBOutlet UIButton *setMarkerButton;
+//WHEELACCESSBUTTON
+@property (weak, nonatomic) IBOutlet UIButton *wheelAccessButton;
+//INFO
+@property (weak, nonatomic) IBOutlet UIView *infoInputView;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *websiteLabel;
-@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UITextView *infoTextView;
+//ADDRESS
+@property (weak, nonatomic) IBOutlet UIView *addressInputView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UITextField *streetTextField;
 @property (weak, nonatomic) IBOutlet UITextField *housenumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *postcodeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cityTextField;
+//WEBSITE
+@property (weak, nonatomic) IBOutlet UIView *websiteInputView;
+@property (weak, nonatomic) IBOutlet UILabel *websiteLabel;
+@property (weak, nonatomic) IBOutlet UITextField *websiteTextField;
+//PHONE
+@property (weak, nonatomic) IBOutlet UIView *phoneInputView;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+//VARIOUS
+@property (nonatomic) Node *node;
+@property (nonatomic, assign) BOOL keyboardIsShown;
+@property (nonatomic, strong) UIImage *accessImage;
+@property (nonatomic, strong) NSString *wheelchairAccess;
+@property (nonatomic, strong) Category *currentCategory;
 
-@property (weak, nonatomic) IBOutlet UIButton *setMarkerButton;
-@property (weak, nonatomic) IBOutlet UIButton *setCategoryButton;
 
-@property (strong) id delegate;
 
+- (IBAction)setNodeType:(id)sender;
 - (IBAction)setCategory:(id)sender;
 - (IBAction)showAccessOptions:(id)sender;
-- (IBAction)categoryChosen:(Category*)category;
+- (void)categoryChosen:(Category*)category;
+- (void)nodeTypeChosen:(NodeType*)nodeType;
 - (void) saveEditedData;
 
 @end

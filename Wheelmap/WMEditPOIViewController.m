@@ -14,6 +14,7 @@
 #import "WMSetMarkerViewController.h"
 #import "NodeType.h"
 #import "WMCategoryTableViewController.h"
+#import "WMNodeTypeTableViewController.h"
 #import "WMDataManagerDelegate.h"
 #import "Category.h"
 
@@ -39,7 +40,6 @@
 	// Do any additional setup after loading the view.
     self.currentCategory = self.node.category;
     self.nameTextField.delegate = self;
-    self.categoryTextField.delegate = self;
     self.infoTextView.delegate = self;
     self.streetTextField.delegate = self;
     self.housenumberTextField.delegate = self;
@@ -69,6 +69,7 @@
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
 
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
+    self.nodeTypeLabel.text = NSLocalizedString(@"EditPOIViewNodeTypeLabel", @"");
     self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
     self.infoLabel.text = NSLocalizedString(@"EditPOIViewInfoLabel", @"");
     self.addressLabel.text = NSLocalizedString(@"EditPOIViewAddressLabel", @"");
@@ -80,6 +81,7 @@
   
     
     [self styleInputView:self.nameInputView];
+    [self styleInputView:self.nodeTypeInputView];
     [self styleInputView:self.categoryInputView];
     [self styleInputView:self.positionInputView];
     [self styleInputView:self.infoInputView];
@@ -87,7 +89,7 @@
     [self styleInputView:self.websiteInputView];
     [self styleInputView:self.phoneInputView];
     
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height)];
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
 
     
 }
@@ -101,7 +103,9 @@
 
 - (void) updateFields {
     self.nameTextField.text = self.node.name;
-    self.categoryTextField.text = self.node.node_type.localized_name;
+    [self.setNodeTypeButton setTitle:self.node.node_type.localized_name forState:UIControlStateNormal];
+    [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
+    [self setWheelAccessButton];
     self.infoTextView.text = self.node.wheelchair_description;
     self.streetTextField.text = self.node.street;
     self.housenumberTextField.text = self.node.housenumber;
@@ -109,9 +113,6 @@
     self.cityTextField.text = self.node.city;
     self.websiteTextField.text = self.node.website;
     self.phoneTextField.text = self.node.phone;
-    [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
-    
-    [self setWheelAccessButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,6 +125,9 @@
     
     
     [self setSetCategoryButton:nil];
+    [self setNodeTypeInputView:nil];
+    [self setNodeTypeLabel:nil];
+    [self setSetNodeTypeButton:nil];
     [super viewDidUnload];
     [self setScrollView:nil];
     [self setNameInputView:nil];
@@ -137,7 +141,6 @@
     [self setPhoneInputView:nil];
     [self setWheelAccessButton:nil];
     [self setNameTextField:nil];
-    [self setCategoryTextField:nil];
     [self setWebsiteTextField:nil];
     [self setPhoneTextField:nil];
     [self setNameLabel:nil];
@@ -196,12 +199,16 @@
 }
 
 
-- (IBAction)accessButtonPressed:(NSString*)wheelchairAccess {
+- (void)accessButtonPressed:(NSString*)wheelchairAccess {
       self.node.wheelchair = wheelchairAccess;
 }
 
-- (IBAction)categoryChosen:(Category*)category {
+- (void)categoryChosen:(Category *)category {
     self.currentCategory = category;
+}
+
+- (void)nodeTypeChosen:(NodeType*)nodeType {
+    self.node.node_type = nodeType;
 }
 
 - (IBAction)showAccessOptions:(id)sender {
@@ -211,11 +218,21 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (IBAction)setNodeType:(id)sender {
+    WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
+    vc.delegate = self;
+    WMDataManager *dataManager = [[WMDataManager alloc] init];
+    vc.nodeArray = [[NSArray alloc] initWithArray:dataManager.nodeTypes];
+    vc.title = self.title = NSLocalizedString(@"SetNodeType", @"");
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (IBAction)setCategory:(id)sender {
     WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
     vc.delegate = self;
     WMDataManager *dataManager = [[WMDataManager alloc] init];
     vc.categoryArray = [[NSArray alloc] initWithArray:dataManager.categories];
+     vc.title = self.title = NSLocalizedString(@"SetCategory", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -227,13 +244,8 @@
 
 - (void) saveEditedData {
     
-
-    
     self.node.name = self.nameTextField.text;
-  
     self.node.category = self.currentCategory;
-    //self.node.lat =
-    //self.node.lon =
     self.node.wheelchair = self.node.wheelchair;
     self.node.wheelchair_description = self.infoTextView.text;
     self.node.street = self.streetTextField.text;
@@ -246,8 +258,22 @@
     WMDataManager *dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     [dataManager putNode:self.node];
-    [self.delegate setUpdatedNode:self.node];
+
+}
+
+
+- (void) dataManager:(WMDataManager *)dataManager didFinishPuttingNodeWithMsg:(NSString *)msg {
+ //   progressWheel.hidden = YES;
+ //   [progressWheel stopAnimating];
+    NSLog(@"XXXXXXXX FINISHED %@", msg);
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) dataManager:(WMDataManager *)dataManager didFailPuttingNodeWithMsg:(NSString *)msg {
+    NSLog(@"XXXXXXXX FINISHED %@", msg);
+    //   progressWheel.hidden = YES;
+    //   [progressWheel stopAnimating];
+    
 }
 
 - (void)dealloc {
