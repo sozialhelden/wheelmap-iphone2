@@ -73,6 +73,9 @@
 {
     // TODO: handle error
     NSLog(@"Login failed! %@", error);
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"LoginFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 - (void)dataManagerDidAuthenticateUser:(WMDataManager *)dataManager
