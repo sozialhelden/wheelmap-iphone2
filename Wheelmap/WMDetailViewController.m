@@ -69,10 +69,11 @@
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mapView.layer.borderWidth = 1.0f;
     self.mapView.delegate = self;
+    self.mapView.userInteractionEnabled = NO;
+    self.mapView.scrollEnabled = NO;
         // location to zoom in
     [self.scrollView addSubview:self.mapView];
     self.mapView.showsUserLocation=YES;
-    self.mapView.userInteractionEnabled = NO;
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
     
     
@@ -118,15 +119,15 @@
     startY += 64;
     
     // CONTACT INFO
-    UIView *contactInfoView = [self createContactInfoView];
-    contactInfoView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, contactInfoView.bounds.size.height);
-    contactInfoView.backgroundColor = [UIColor whiteColor];
-    contactInfoView.layer.borderWidth = 1.0f;
-    contactInfoView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [contactInfoView.layer setCornerRadius:5.0f];
-    [self.scrollView addSubview:contactInfoView];
+    self.contactInfoView = [self createContactInfoView];
+    self.contactInfoView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, self.contactInfoView.bounds.size.height);
+    self.contactInfoView.backgroundColor = [UIColor whiteColor];
+    self.contactInfoView.layer.borderWidth = 1.0f;
+    self.contactInfoView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [self.contactInfoView.layer setCornerRadius:5.0f];
+    [self.scrollView addSubview:self.contactInfoView];
     
-    startY += contactInfoView.bounds.size.height + 16;
+    startY += self.contactInfoView.bounds.size.height + 16;
     
     // IMAGESCROLLVIEW
     [self createAndAddImageScrollView];
@@ -142,11 +143,6 @@
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20 + self.gabIfStatusUnknown);
     [self.view addSubview:self.scrollView];
-    
-    // TEST
-    self.headingLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 250, 130, 30)];
-    self.headingLabel.backgroundColor = [UIColor orangeColor];
-  //  [self.scrollView addSubview:self.headingLabel];
     
 }
 
@@ -171,6 +167,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    
     self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
     
@@ -192,7 +190,6 @@
 - (UIView*) createContactInfoView {
     
     UIView *infoView = [UIView new];
-    infoView.backgroundColor = [UIColor orangeColor];
     int startY = 10;
     
     // STREET
@@ -216,7 +213,7 @@
     
     // COMPASS
     UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
-    WMCompassView *compassView = [[WMCompassView alloc] initWithFrame:CGRectMake(260, startY-10, compassImage.size.width, compassImage.size.height)];
+    WMCompassView *compassView = [[WMCompassView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-62, startY-10, compassImage.size.width, compassImage.size.height)];
     compassView.node = self.node;
     compassView.backgroundColor = [UIColor clearColor];
     [infoView addSubview:compassView];
@@ -249,7 +246,7 @@
     [infoView addSubview:self.phoneLabel];
     
     // DISTANCE
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-75, startY, 70, 16)];
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-80, startY, 60, 16)];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.font = [UIFont systemFontOfSize:12];
     self.distanceLabel.backgroundColor = [UIColor clearColor];
@@ -351,12 +348,7 @@
     
     if (![self.node.wheelchair isEqualToString:@"unknown"] && self.askFriendsButton != nil) {
         [self.askFriendsButton removeFromSuperview];
-        self.streetLabel.frame = CGRectMake(self.streetLabel.frame.origin.x, self.streetLabel.frame.origin.y-self.gabIfStatusUnknown, self.streetLabel.frame.size.width, self.streetLabel.frame.size.height);
-        self.postcodeAndCityLabel.frame = CGRectMake(self.postcodeAndCityLabel.frame.origin.x, self.postcodeAndCityLabel.frame.origin.y-self.gabIfStatusUnknown, self.postcodeAndCityLabel.frame.size.width, self.postcodeAndCityLabel.frame.size.height);
-        self.websiteLabel.frame = CGRectMake(self.websiteLabel.frame.origin.x, self.websiteLabel.frame.origin.y-self.gabIfStatusUnknown, self.websiteLabel.frame.size.width, self.websiteLabel.frame.size.height);
-        self.phoneLabel.frame = CGRectMake(self.postcodeAndCityLabel.frame.origin.x, self.phoneLabel.frame.origin.y-self.gabIfStatusUnknown, self.phoneLabel.frame.size.width, self.phoneLabel.frame.size.height);
-        self.compassView.frame = CGRectMake(self.compassView.frame.origin.x, self.compassView.frame.origin.y-self.gabIfStatusUnknown, self.compassView.frame.size.width, self.compassView.frame.size.height);
-        self.distanceLabel.frame = CGRectMake(self.distanceLabel.frame.origin.x, self.distanceLabel.frame.origin.y-self.gabIfStatusUnknown, self.distanceLabel.frame.size.width, self.distanceLabel.frame.size.height);
+        self.contactInfoView.frame = CGRectMake(self.contactInfoView.frame.origin.x, self.contactInfoView.frame.origin.y-self.gabIfStatusUnknown, self.contactInfoView.frame.size.width, self.contactInfoView.frame.size.height);
         self.imageScrollView.frame = CGRectMake(self.imageScrollView.frame.origin.x, self.imageScrollView.frame.origin.y-self.gabIfStatusUnknown, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
         self.fourButtonView.frame = CGRectMake(self.fourButtonView.frame.origin.x, self.fourButtonView.frame.origin.y-self.gabIfStatusUnknown, self.fourButtonView.frame.size.width, self.fourButtonView.frame.size.height);
         self.askFriendsButton = nil;
@@ -630,7 +622,7 @@
         [self addThumbnail:i];
     }
     
-    int scrollWidth = (self.imageURLArray.count+1)*[UIImage imageNamed:@"details_btn-photoupload.png"].size.width+(self.imageURLArray.count+3)*self.gab;
+    int scrollWidth = ((self.imageURLArray.count+1)*([UIImage imageNamed:@"details_btn-photoupload.png"].size.width + self.gab))+self.gab;
     self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
 }
 
@@ -652,7 +644,6 @@
 
 - (void)thumbnailTapped:(UITapGestureRecognizer*)sender {
     
- //   WMPhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPhotoViewController"];
     WMInfinitePhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMInfinitePhotoViewController"];
     vc.imageURLArray = self.imageURLArray;
     vc.tappedImage = sender.view.tag;
@@ -682,16 +673,18 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    //    self.imageCount++;
-    //    [self addThumbnail:self.imageCount-1];
-    //    int scrollWidth = (self.imageCount+1)*[UIImage imageNamed:@"details_btn-photoupload.png"].size.width+(self.imageCount+3)*self.gab;
-    //    self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
-    
-    
-    UIImageView *selectedImage = [self.imageViewsInScrollView objectAtIndex:self.imageViewsInScrollView.count-1];
-    selectedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
+   
+    #warning image needs to be uploaded to backend
+    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+
+    /* NOT NEEDED
+        self.imageCount++;
+        [self addThumbnail:self.imageCount-1];
+        int scrollWidth = (self.imageCount+1)*[UIImage imageNamed:@"details_btn-photoupload.png"].size.width+(self.imageCount+3)*self.gab;
+        self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
+        UIImageView *selectedImage = [self.imageViewsInScrollView objectAtIndex:self.imageViewsInScrollView.count-1];
+        selectedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    */
     [self dismissModalViewControllerAnimated:YES];
     
 }
