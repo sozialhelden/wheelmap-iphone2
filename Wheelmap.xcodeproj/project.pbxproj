@@ -159,6 +159,7 @@
 		D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
 		DB18F81C1679DCE400855296 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81B1679DCE300855296 /* Default.png */; };
 		DB18F81F1679DCE700855296 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81E1679DCE700855296 /* Default@2x.png */; };
+		DB18F82F167A083A00855296 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB18F82E167A083A00855296 /* WMConfig.plist */; };
 		DB56839D166E97FC005B2EE5 /* misc_position-info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839B166E97FC005B2EE5 /* misc_position-info.png */; };
 		DB56839E166E97FC005B2EE5 /* misc_position-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */; };
 		DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
@@ -265,7 +266,6 @@
 		DBCA979816789B4D0042358C /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979716789B4D0042358C /* HockeySDK.framework */; };
 		DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCA979916789B610042358C /* HockeySDKResources.bundle */; };
 		DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979B16789B910042358C /* SystemConfiguration.framework */; };
-		DBCA97B31678D1780042358C /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBCA97B21678D1780042358C /* WMConfig.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -489,6 +489,7 @@
 		D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSetMarkerViewController.m; sourceTree = "<group>"; };
 		DB18F81B1679DCE300855296 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DB18F81E1679DCE700855296 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DB18F82E167A083A00855296 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
 		DB56839B166E97FC005B2EE5 /* misc_position-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info.png"; sourceTree = "<group>"; };
 		DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info@2x.png"; sourceTree = "<group>"; };
 		DB5683A0166E9F35005B2EE5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
@@ -615,7 +616,6 @@
 		DBCA979716789B4D0042358C /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "3rd-party-sdks/HockeySDK.framework"; sourceTree = "<group>"; };
 		DBCA979916789B610042358C /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HockeySDKResources.bundle; path = "3rd-party-sdks/HockeySDKResources.bundle"; sourceTree = "<group>"; };
 		DBCA979B16789B910042358C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		DBCA97B21678D1780042358C /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
 		DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -700,7 +700,7 @@
 				DB18F81E1679DCE700855296 /* Default@2x.png */,
 				DB18F81B1679DCE300855296 /* Default.png */,
 				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
-				DBCA97B21678D1780042358C /* WMConfig.plist */,
+				DB18F82E167A083A00855296 /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -1553,9 +1553,9 @@
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
-				DBCA97B31678D1780042358C /* WMConfig.plist in Resources */,
 				DB18F81C1679DCE400855296 /* Default.png in Resources */,
 				DB18F81F1679DCE700855296 /* Default@2x.png in Resources */,
+				DB18F82F167A083A00855296 /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

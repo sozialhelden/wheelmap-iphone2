@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) NSMutableArray *imageViewsInScrollView;
 @property (nonatomic, strong) NSMutableArray *imageURLArray;
+@property (nonatomic, strong) UIView *contactInfoView;
 
 @property (assign) int gabIfStatusUnknown;
 @property (nonatomic) Node *node;
