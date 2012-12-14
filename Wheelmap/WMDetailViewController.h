@@ -21,6 +21,7 @@
 }
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *mainView;
+@property (nonatomic, strong) Node *node;
 
 //// 2 MAIN COMPONENTS OF THE MAIN VIEW
 
