@@ -21,7 +21,15 @@
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Category.h"
-#import "WMPOIMapViewController.h"
+
+#define GABIFSTATUSUNKNOWN 62
+#define MAPOPENADDITION 266
+#define MAPVIEWCLOSEDSTATE CGRectMake(0, 0, 320, 110)
+#define MAPVIEWOPENSTATE CGRectMake(0, 0, 320, 110+MAPOPENADDITION)
+#define CONTENTVIEWCLOSEDMAPSTATE CGRectMake(0, 110+2, 320, 420)
+#define CONTENTVIEWOPENMAPSTATE CGRectMake(0, 110+MAPOPENADDITION+2, 320, 420)
+#define CONTENTVIEWCLOSEDMAPSTATEGAB CGRectMake(0, 110+2, 320, 420+GABIFSTATUSUNKNOWN)
+#define CONTENTVIEWOPENMAPSTATEGAB CGRectMake(0, 110+MAPOPENADDITION+2, 320, 420+GABIFSTATUSUNKNOWN)
 
 
 #define STARTLEFT 15
@@ -43,6 +51,7 @@
         [self.imageURLArray addObject:@"http://images4.fanpop.com/image/photos/23500000/Golden-Girls-the-golden-girls-23583048-750-458.jpg"];
         [self.imageURLArray addObject:@"http://2ndfloorliving.com/wp-content/uploads/2009/10/Golden-Girls-tv-show-16.jpg"];
         [self.imageURLArray addObject:@"http://images5.fanpop.com/image/photos/30700000/Dorothy-the-golden-girls-30775692-1741-2560.jpg"];
+        self.mapViewOpen = NO;
 
     }
     return self;
@@ -51,8 +60,8 @@
 
 #pragma mark - Life Cycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     // data manager
@@ -63,94 +72,80 @@
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
     
-    
-    // SCROLLVIEW
-    [self.view addSubview:self.scrollView];
-    
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.mainView = [UIView new];
+    self.mainView.backgroundColor = [UIColor clearColor];
     
     // MAPVIEW
-    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 110)];
+    self.mapView = [[MKMapView alloc] initWithFrame:MAPVIEWCLOSEDSTATE];
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mapView.layer.borderWidth = 1.0f;
     self.mapView.delegate = self;
-    self.mapView.userInteractionEnabled = NO;
     self.mapView.scrollEnabled = NO;
     self.mapView.zoomEnabled = NO;
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapViewTapped:)];
-    [self.mapView addGestureRecognizer:tapRecognizer];
-   
-    // location to zoom in
-    [self.scrollView addSubview:self.mapView];
     self.mapView.showsUserLocation=YES;
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+    [self.mainView addSubview:self.mapView];
     
+    // ENLARGE MAP BUTTON
+    UIImage *enlargeMapImage = [UIImage imageNamed:@"details_share-location.png"];
+    self.enlargeMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.enlargeMapButton.frame = CGRectMake(10, 10, enlargeMapImage.size.width, enlargeMapImage.size.height);
+    [self.enlargeMapButton setImage: enlargeMapImage forState: UIControlStateNormal];
+    [self.enlargeMapButton addTarget:self action:@selector(enlargeMapButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.mapView addSubview:self.enlargeMapButton];
     
-    // SHARE LOCATION BUTTON
-    UIImage *shareLocationImage = [UIImage imageNamed:@"details_share-location.png"];
-    self.shareLocationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.shareLocationButton.frame = CGRectMake(275, 70, shareLocationImage.size.width, shareLocationImage.size.height);
-    [self.shareLocationButton setImage: shareLocationImage forState: UIControlStateNormal];
-    [self.shareLocationButton addTarget:self action:@selector(shareLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.shareLocationButton];
+    // CONTENT VIEW
+    self.contentView = [UIView new];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    [self.mainView addSubview:self.contentView];
     
-    int startY = 125;
+    self.startY = 0;
     
-    // NAME
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, self.view.bounds.size.width-STARTLEFT*2, 20)];
-    self.titleLabel.textColor = [UIColor blackColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    [self.scrollView addSubview:self.titleLabel];
+    // MAIN INFO VIEW
+    self.mainInfoView = [self createMainInfoView];
+    self.mainInfoView.frame = CGRectMake(0, self.startY, 320, 50);
+    [self.contentView addSubview:self.mainInfoView];
     
-    startY += 22;
+    self.startY += self.mainInfoView.bounds.size.height+2;
+    
+    // WHEEL ACCESS AND ASK FRIENDS BUTTON VIEW
+    self.wheelAccessView = [self createWheelAccessView];
+    self.wheelAccessView.frame = CGRectMake(0, self.startY, 320, 65 + self.gabIfStatusUnknown);
+    [self.contentView addSubview:self.wheelAccessView];
 
-    // CATEGORY / NOTE TYPE
-    self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, self.view.bounds.size.width-STARTLEFT*2, 16)];
-    self.nodeTypeLabel.textColor = [UIColor darkGrayColor];
-    self.nodeTypeLabel.font = [UIFont systemFontOfSize:12];
-    self.nodeTypeLabel.backgroundColor = [UIColor clearColor];
-    [self.scrollView addSubview:self.nodeTypeLabel];
+    self.startY += self.wheelAccessView.bounds.size.height+2;
     
-    startY += 23;
-    
-    // WHEEL ACCESS BUTTON
-    [self setWheelAccessButton];
-    self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.wheelAccessButton.frame = CGRectMake(10, startY, self.accessImage.size.width, self.accessImage.size.height);
-    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
-    [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
-    [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.wheelAccessButton];
-    
-    startY += 64;
-    
-    // CONTACT INFO
+    // CONTACT INFO VIEW
     self.contactInfoView = [self createContactInfoView];
-    self.contactInfoView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, self.contactInfoView.bounds.size.height);
-    self.contactInfoView.backgroundColor = [UIColor whiteColor];
-    self.contactInfoView.layer.borderWidth = 1.0f;
-    self.contactInfoView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [self.contactInfoView.layer setCornerRadius:5.0f];
-    [self.scrollView addSubview:self.contactInfoView];
-    
-    startY += self.contactInfoView.bounds.size.height + 16;
-    
-    // IMAGESCROLLVIEW
-    [self createAndAddImageScrollView];
-    self.imageScrollView.frame = CGRectMake(0, startY+self.gabIfStatusUnknown, self.view.bounds.size.width, 80);
-    
-    startY += self.imageScrollView.frame.size.height+14;
-    
-    // UIVIEW with 4 Buttons
-    [self createAndAddFourButtonView];
-    self.fourButtonView.frame = CGRectMake(10, startY+self.gabIfStatusUnknown, 300, 100);
+    self.contactInfoView.frame = CGRectMake(10, self.startY, 300, 100);
+    [self.contentView addSubview:self.contactInfoView];
 
-    startY += 85;
+    self.startY += self.contactInfoView.bounds.size.height+10;
+
+    // IMAGESCROLLVIEW
+    self.imageScrollView = [self createImageScrollView];
+    self.imageScrollView.frame = CGRectMake(0, self.startY, 320, 80);
+    [self.contentView addSubview:self.imageScrollView];
+    [self createThumbnails];
+
+    self.startY += self.imageScrollView.bounds.size.height+2;
+  
+    // ADDITIONALINFOVIEW
+    self.additionalButtonView = [self createAdditionalButtonView];
+    self.additionalButtonView.frame = CGRectMake(320/2-self.threeButtonWidth/2, self.startY, self.threeButtonWidth, 95);
+    [self.contentView addSubview:self.additionalButtonView];
+
+    if ([self.node.wheelchair isEqualToString:@"unknown"]) {
+        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
+        self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
+    } else {
+        self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
+    }
+    self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height);
+    self.scrollView.contentSize = self.mainView.frame.size;
     
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20 + self.gabIfStatusUnknown);
-    [self.view addSubview:self.scrollView];
+    [self.scrollView addSubview:self.mainView];
     
 }
 
@@ -181,8 +176,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     
     
-    self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
+   // self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
+   // self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
     
     
     self.poiLocation = CLLocationCoordinate2DMake(self.node.lat.doubleValue, self.node.lon.doubleValue);
@@ -199,9 +194,72 @@
 
 #pragma mark - UI element creation
 
-- (UIView*) createContactInfoView {
+
+- (UIView*) createMainInfoView {
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
     
-    UIView *infoView = [UIView new];
+    // NAME
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 10, self.view.bounds.size.width-STARTLEFT*2, 20)];
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    [view addSubview:self.titleLabel];
+    
+    // CATEGORY / NOTE TYPE
+    self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 32, self.view.bounds.size.width-STARTLEFT*2, 16)];
+    self.nodeTypeLabel.textColor = [UIColor darkGrayColor];
+    self.nodeTypeLabel.font = [UIFont systemFontOfSize:12];
+    self.nodeTypeLabel.backgroundColor = [UIColor clearColor];
+    [view addSubview:self.nodeTypeLabel];
+
+    return view;
+}
+
+-(UIView*) createWheelAccessView {
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    
+    [self setWheelAccessButton];
+    self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.wheelAccessButton.frame = CGRectMake(10, 10, self.accessImage.size.width, self.accessImage.size.height);
+    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
+    [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.wheelAccessButton];
+
+    if ([self.node.wheelchair isEqualToString:@"unknown"]) {
+        NSLog(@"XXXXXXXX adding askfriendsbutton");
+        self.gabIfStatusUnknown = GABIFSTATUSUNKNOWN;
+        
+        self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
+        [self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+        [self.askFriendsButton setTitle:NSLocalizedString(@"DetailViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
+        self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        self.askFriendsButton.titleLabel.numberOfLines = 2;
+        [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
+        [self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
+        self.askFriendsButton.frame = CGRectMake(20, self.gabIfStatusUnknown, self.view.bounds.size.width-40, buttonImage.size.height);
+        [self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+
+        [view addSubview:self.askFriendsButton];
+    }
+    return  view;
+}
+
+- (UIView*)createContactInfoView {
+    
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor whiteColor];
+   
+    view.layer.borderWidth = 1.0f;
+    view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [view.layer setCornerRadius:5.0f];
+    
     int startY = 10;
     
     // STREET
@@ -209,7 +267,7 @@
     self.streetLabel.textColor = [UIColor darkGrayColor];
     self.streetLabel.font = [UIFont boldSystemFontOfSize:12];
     self.streetLabel.backgroundColor = [UIColor clearColor];
-    [infoView addSubview:self.streetLabel];
+    [view addSubview:self.streetLabel];
     
     
     startY += 16;
@@ -219,7 +277,7 @@
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
     self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:12];
     self.postcodeAndCityLabel.backgroundColor = [UIColor clearColor];
-    [infoView addSubview:self.postcodeAndCityLabel];
+    [view addSubview:self.postcodeAndCityLabel];
     
     startY += 30;
     
@@ -228,7 +286,7 @@
     WMCompassView *compassView = [[WMCompassView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-62, startY-10, compassImage.size.width, compassImage.size.height)];
     compassView.node = self.node;
     compassView.backgroundColor = [UIColor clearColor];
-    [infoView addSubview:compassView];
+    [view addSubview:compassView];
     
     // WEBSITE
     self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
@@ -239,14 +297,11 @@
     self.websiteLabel.font = [UIFont systemFontOfSize:12];
     self.websiteLabel.backgroundColor = [UIColor clearColor];
     self.websiteLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
+    [view addSubview:self.websiteLabel];
     
-    infoView.frame = CGRectMake(0, 0, 300, startY+30);
-    [infoView addSubview:self.websiteLabel];
+     startY += 20;
     
-    
-    startY += 20;
-    
-    // Phone
+    // PHONE
     self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.phoneLabel.textColor = [UIColor darkGrayColor];
     self.phoneLabel.font = [UIFont systemFontOfSize:12];
@@ -255,7 +310,7 @@
     self.phoneLabel.scrollEnabled = NO;
     self.phoneLabel.backgroundColor = [UIColor clearColor];
     self.phoneLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
-    [infoView addSubview:self.phoneLabel];
+    [view addSubview:self.phoneLabel];
     
     // DISTANCE
     self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-80, startY, 60, 16)];
@@ -263,26 +318,115 @@
     self.distanceLabel.font = [UIFont systemFontOfSize:12];
     self.distanceLabel.backgroundColor = [UIColor clearColor];
     self.distanceLabel.textAlignment = UITextAlignmentCenter;
-    [infoView addSubview:self.distanceLabel];
+    [view addSubview:self.distanceLabel];
     
-    infoView.frame = CGRectMake(0, 0, 300, startY+26);
-    return infoView;
+    return view;
 }
 
-- (void) createAskFriendsForStatusButton {
-    self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
-    [self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.askFriendsButton setTitle:NSLocalizedString(@"DetailViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
-    self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
-    self.askFriendsButton.titleLabel.numberOfLines = 2;
-    [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
-    [self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
+-(UIScrollView*)createImageScrollView {
+  
+    self.imageViewsInScrollView = [NSMutableArray new];
+    UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
+    
+    UIScrollView *scrollView = [UIScrollView new];
+    scrollView.backgroundColor = [UIColor colorWithPatternImage:uploadBackground];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    
+    UIImage *cameraButtonImage = [UIImage imageNamed:@"details_btn-photoupload.png"];
+    UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cameraButton.frame = CGRectMake(10, 9, cameraButtonImage.size.width, cameraButtonImage.size.height);
+    [cameraButton setImage: cameraButtonImage forState: UIControlStateNormal];
+    [cameraButton addTarget:self action:@selector(cameraButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    [scrollView addSubview:cameraButton];
+    return scrollView;
+}
 
-    self.askFriendsButton.frame = CGRectMake(20, 220, self.view.bounds.size.width-40, buttonImage.size.height);
-    [self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.askFriendsButton];
+- (void)createThumbnails {
+    
+    self.start = 22+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
+    self.gab = 16;
+    
+    for (int i = 0; i < self.imageURLArray.count; i++) {
+        [self addThumbnail:i];
+    }
+    
+    int scrollWidth = ((self.imageURLArray.count+1)*([UIImage imageNamed:@"details_btn-photoupload.png"].size.width + self.gab))+self.gab;
+    self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
+}
+
+- (void) addThumbnail: (int) i {
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start+i*80+i*self.gab, 10, 85, 60)];
+    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    imageView.layer.borderWidth = 2;
+    imageView.tag = i;
+    imageView.userInteractionEnabled = YES;
+    [imageView setImageWithURL: [NSURL URLWithString:[self.imageURLArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbnailTapped:)];
+    [imageView addGestureRecognizer:tapRecognizer];
+    
+    [self.imageScrollView addSubview:imageView];
+    [self.imageViewsInScrollView addObject:imageView];
+}
+
+-(UIView*)createAdditionalButtonView {
+  
+    int buttonWidth = 68;
+    int buttonHeight = 62;
+    int gab = 10;
+    
+    self.threeButtonWidth = 3*buttonWidth + 2*gab;
+    
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    
+    // SHARELOCATION
+    self.shareLocationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.shareLocationButton.frame = CGRectMake(0, 10, buttonWidth, buttonHeight);
+    [self.shareLocationButton setImage: [UIImage imageNamed:@"more-buttons_share.png"] forState: UIControlStateNormal];
+    [self.shareLocationButton setImage: [UIImage imageNamed:@"more-buttons_share-deactive.png"] forState: UIControlStateDisabled];
+    [self.shareLocationButton addTarget:self action:@selector(shareLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.shareLocationButton];
+    UILabel *shareLocationLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"")];
+    shareLocationLabel.frame = CGRectMake(self.shareLocationButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
+    [view addSubview:shareLocationLabel];
+    
+    // MOREINFO
+    self.moreInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.moreInfoButton.frame = CGRectMake(buttonWidth+gab, 10,buttonWidth,buttonHeight);
+    [self.moreInfoButton setImage: [UIImage imageNamed:@"more-buttons_info.png"] forState: UIControlStateNormal];
+    [self.moreInfoButton setImage: [UIImage imageNamed:@"more-buttons_info-deactive.png"] forState: UIControlStateDisabled];
+    [self.moreInfoButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.moreInfoButton];
+    UILabel *moreInfoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"")];
+    moreInfoLabel.frame = CGRectMake(self.moreInfoButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
+    [view addSubview:moreInfoLabel];
+
+    // ROUTE
+    self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.naviButton.frame = CGRectMake(2*buttonWidth+2*gab, 10,buttonWidth,buttonHeight);
+    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route.png"] forState: UIControlStateNormal];
+    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route-deactive.png"] forState: UIControlStateDisabled];
+    [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:self.naviButton];
+    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewRouteLabel", @"")];
+    routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
+    [view addSubview:routeLabel];
+    
+    return view;
+}
+
+- (UILabel*)createBelowButtonLabel: (NSString*) title {
+    
+    UILabel *belowButtonLabel = [UILabel new];
+    belowButtonLabel.backgroundColor = [UIColor clearColor];
+    belowButtonLabel.text = title;
+    belowButtonLabel.font = [UIFont systemFontOfSize:11];
+    belowButtonLabel.textColor = [UIColor darkGrayColor];
+    belowButtonLabel.textAlignment = UITextAlignmentCenter;
+    return belowButtonLabel;
 }
 
 /* Set a fixed size for view in popovers */
@@ -292,10 +436,7 @@
     return CGSizeMake(320, 480);
 }
 
-
-
-
-- (void) updateFields {
+- (void)updateFields {
     
     
     // TEXTFIELDS
@@ -332,37 +473,27 @@
 
 
 - (void) checkForStatusOfButtons {
-    /*
-     if(self.node.phone == nil || [self.node.phone isEqualToString:@""]) {
-     self.callButton.enabled = NO;
-     } else {
-     self.callButton.enabled = YES;
-     }
-     if(self.node.website == nil || [self.node.website isEqualToString:@""]) {
-     self.websiteButton.enabled = NO;
-     } else {
-     self.websiteButton.enabled = YES;
-     } */
+
     if(self.node.wheelchair_description == nil || [self.node.wheelchair_description isEqualToString:@""]) {
-        self.commentButton.enabled = NO;
+        self.moreInfoButton.enabled = NO;
     } else {
-        self.commentButton.enabled = YES;
+        self.moreInfoButton.enabled = YES;
     }
     if(self.currentLocation == nil) {
         self.naviButton.enabled = NO;
     } else {
         self.naviButton.enabled = YES;
     }
-    
 }
 
 - (void)setWheelAccessButton {
     
     if (![self.node.wheelchair isEqualToString:@"unknown"] && self.askFriendsButton != nil) {
         [self.askFriendsButton removeFromSuperview];
+        self.wheelAccessView.frame = CGRectMake(self.wheelAccessView.frame.origin.x, self.wheelAccessView.frame.origin.y, self.wheelAccessView.frame.size.width, self.wheelAccessView.frame.size.height-self.gabIfStatusUnknown);
         self.contactInfoView.frame = CGRectMake(self.contactInfoView.frame.origin.x, self.contactInfoView.frame.origin.y-self.gabIfStatusUnknown, self.contactInfoView.frame.size.width, self.contactInfoView.frame.size.height);
         self.imageScrollView.frame = CGRectMake(self.imageScrollView.frame.origin.x, self.imageScrollView.frame.origin.y-self.gabIfStatusUnknown, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
-        self.fourButtonView.frame = CGRectMake(self.fourButtonView.frame.origin.x, self.fourButtonView.frame.origin.y-self.gabIfStatusUnknown, self.fourButtonView.frame.size.width, self.fourButtonView.frame.size.height);
+        self.additionalButtonView.frame = CGRectMake(self.additionalButtonView.frame.origin.x, self.additionalButtonView.frame.origin.y-self.gabIfStatusUnknown, self.additionalButtonView.frame.size.width, self.additionalButtonView.frame.size.height);
         self.askFriendsButton = nil;
     }
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
@@ -377,10 +508,7 @@
     } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
-        if (self.askFriendsButton == nil) {
-            self.gabIfStatusUnknown = 62;
-            [self createAskFriendsForStatusButton];
-        }
+        
         
     }
     
@@ -393,66 +521,7 @@
 
 #pragma mark - Phone, Website, Comment, Navi
 
-- (void)createAndAddFourButtonView {
-  
-    UIImage *buttonBackgroundImage = [UIImage imageNamed:@"details_btn-more-active.png"];
-    UIImage *buttonBackgroundImageDisabled = [UIImage imageNamed:@"details_btn-more-inactive.png"];
-    
-
-    self.fourButtonView = [UIView new];
-       
-    int buttonWidth = 68;
-    int buttonHeight = 62;
-    int imagePlusGab = buttonWidth + (((300)-(4*buttonWidth)) / 3);
-    int gabBetweenLabels = 3;
-    int labelWidth = 300 / 4 - gabBetweenLabels;
-    int startLabelX = (labelWidth-buttonWidth)/2;
-    
-    // COMMENT
-    self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.commentButton.frame = CGRectMake(2*imagePlusGab+0, 0,buttonWidth,buttonHeight);
-    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info.png"] forState: UIControlStateNormal];
-    [self.commentButton setImage: [UIImage imageNamed:@"more-buttons_info-deactive.png"] forState: UIControlStateDisabled];
-    [self.commentButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *infoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"")];
-    infoLabel.frame = CGRectMake(self.commentButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
-
-    // ROUTE
-    self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.naviButton.frame = CGRectMake(3*imagePlusGab+0, 0,buttonWidth,buttonHeight);
-    [self.naviButton setBackgroundImage:buttonBackgroundImage forState: UIControlStateNormal];
-    [self.naviButton setBackgroundImage:buttonBackgroundImageDisabled forState: UIControlStateDisabled];
-    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route.png"] forState: UIControlStateNormal];
-    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route-deactive.png"] forState: UIControlStateDisabled];
-    [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewRouteLabel", @"")];
-    routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x-startLabelX,buttonHeight+5,labelWidth, 16);
-
-    // add all buttons and labels
-    [self.fourButtonView addSubview:self.commentButton];
-    [self.fourButtonView addSubview:self.naviButton];
-    [self.fourButtonView addSubview:infoLabel];
-    [self.fourButtonView addSubview:routeLabel];
-    
-    
-    [self.scrollView addSubview:self.fourButtonView];
-}
-
-- (UILabel*) createBelowButtonLabel: (NSString*) title {
-    
-    UILabel *belowButtonLabel = [UILabel new];
-   // belowButtonLabel.backgroundColor = [UIColor orangeColor];
-    belowButtonLabel.text = title;
-    belowButtonLabel.font = [UIFont systemFontOfSize:11];
-    belowButtonLabel.textColor = [UIColor darkGrayColor];
-    belowButtonLabel.textAlignment = UITextAlignmentCenter;
-    return belowButtonLabel;
-}
-
-
-- (void) call {
+- (void)call {
     
     NSString *callString = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Call", @""), self.node.phone];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:callString delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
@@ -469,7 +538,7 @@
     
 }
 
-- (void) showCommentView {
+- (void)showCommentView {
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
     vc.title = NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"");
@@ -567,11 +636,57 @@
     return nil;
 }
 
-- (void)mapViewTapped:(UITapGestureRecognizer*)sender {
-    
-    WMPOIMapViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIMapViewController"];
-    vc.node = self.node;
-    [self presentModalViewController:vc animated:YES];
+- (void)enlargeMapButtonPressed {
+
+    if (self.mapViewOpen) {
+        NSLog(@"XXXXXXXX map is closing");
+        
+        [UIView animateWithDuration:0.8
+                              delay:0.0
+                            options:UIViewAnimationCurveEaseIn
+                         animations:^{
+                             self.mapView.frame = MAPVIEWCLOSEDSTATE;
+                             if ([self.node.wheelchair isEqualToString:@"unknown"]) {
+                                 self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
+                             } else {
+                                 self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
+                             }
+                             self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height-MAPOPENADDITION);
+                             self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height-MAPOPENADDITION);
+                         }
+                         completion:^(BOOL finished) {
+                             NSLog(@"XXXXXXXX DONE CLOSING");
+                             self.mapViewOpen = NO;
+                             self.mapView.scrollEnabled = NO;
+                             self.mapView.zoomEnabled = NO;
+                         }
+         ];
+        
+    } else {
+        NSLog(@"XXXXXXXX map is opening");
+        
+        [UIView animateWithDuration:0.8
+                        delay:0.0
+                        options:UIViewAnimationCurveEaseIn
+                        animations:^{
+                            self.mapView.frame = MAPVIEWOPENSTATE;
+                            if ([self.node.wheelchair isEqualToString:@"unknown"]) {
+                                self.contentView.frame = CONTENTVIEWOPENMAPSTATEGAB;
+                            } else {
+                                self.contentView.frame = CONTENTVIEWOPENMAPSTATE;
+                            }
+                            self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height);
+                            self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height+MAPOPENADDITION);
+                        }
+                        completion:^(BOOL finished) {
+                            NSLog(@"XXXXXXXX DONE OPENING");
+                            self.mapViewOpen = YES;
+                            self.mapView.scrollEnabled = YES;
+                            self.mapView.zoomEnabled = YES;
+                        }
+         ];
+        
+    }
 }
 
 
@@ -613,59 +728,8 @@
 }
 
 
-#pragma mark - PhotoUpload (UI, imagepicker, delegates etc.)
+#pragma mark - PhotoUpload
 
-- (void) createAndAddImageScrollView {
-    
-    self.imageViewsInScrollView = [NSMutableArray new];
-    
-    
-    UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
-    
-    self.imageScrollView = [UIScrollView new];
-    self.imageScrollView.backgroundColor = [UIColor colorWithPatternImage:uploadBackground];
-    [self.imageScrollView setShowsHorizontalScrollIndicator:NO];
-    
-    UIImage *cameraButtonImage = [UIImage imageNamed:@"details_btn-photoupload.png"];
-    UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cameraButton.frame = CGRectMake(10, 9, cameraButtonImage.size.width, cameraButtonImage.size.height);
-    [cameraButton setImage: cameraButtonImage forState: UIControlStateNormal];
-    [cameraButton addTarget:self action:@selector(cameraButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self createThumbnails];
-    
-    [self.imageScrollView addSubview:cameraButton];
-    [self.scrollView addSubview:self.imageScrollView];
-}
-
-- (void)createThumbnails {
-    
-    self.start = 22+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
-    self.gab = 16;
-    
-    for (int i = 0; i < self.imageURLArray.count; i++) {
-        [self addThumbnail:i];
-    }
-    
-    int scrollWidth = ((self.imageURLArray.count+1)*([UIImage imageNamed:@"details_btn-photoupload.png"].size.width + self.gab))+self.gab;
-    self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
-}
-
-- (void) addThumbnail: (int) i {
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start+i*80+i*self.gab, 10, 85, 60)];
-    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    imageView.layer.borderWidth = 2;
-    imageView.tag = i;
-    imageView.userInteractionEnabled = YES;
-    [imageView setImageWithURL: [NSURL URLWithString:[self.imageURLArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbnailTapped:)];
-    [imageView addGestureRecognizer:tapRecognizer];
-    
-    [self.imageScrollView addSubview:imageView];
-    [self.imageViewsInScrollView addObject:imageView];
-}
 
 - (void)thumbnailTapped:(UITapGestureRecognizer*)sender {
     
@@ -730,12 +794,12 @@
 - (void) shareLocationButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
     vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
-    [self.navigationController pushViewController:vc animated:YES];
     NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
     NSURL *url = [NSURL URLWithString: urlString];
     vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
-    
+ //   [self.navigationController pushViewController:vc animated:YES];
+    [self presentModalViewController:vc animated:YES];
 }
 
 - (void) askFriendsForStatusButtonPressed {
