@@ -39,6 +39,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
     
     
+    
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -59,6 +61,13 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (locationManager == nil) {
+        locationManager = [[CLLocationManager alloc] init];
+    }
+    locationManager.delegate = self;
+	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         isAccesoryHeaderVisible = YES;
         
@@ -96,19 +105,18 @@
              
          }
          ];
-
         
+        [locationManager startUpdatingLocation];
+        [self loadNodes];
         
-    }
+    } else if (self.useCase == kWMNodeListViewControllerUseCaseSearch) {
+        // do nothing!
+        
+    } else {
     
-    if (locationManager == nil) {
-        locationManager = [[CLLocationManager alloc] init];
+        [locationManager startUpdatingLocation];
+        [self loadNodes];
     }
-    locationManager.delegate = self;
-	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
-    
-    [self loadNodes];
 }
 
 - (void) loadNodes

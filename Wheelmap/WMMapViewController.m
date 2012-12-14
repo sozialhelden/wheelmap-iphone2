@@ -54,7 +54,7 @@
     }
      
      
-    
+    self.loadingWheel.hidden = YES;
     [self loadNodes];
 }
 
@@ -176,12 +176,13 @@
 }
 
 #pragma mark - Map Interactions
-
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    self.loadingWheel.hidden = NO;
-    [self.loadingWheel startAnimating];
-    [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+    if (self.useCase != kWMNodeListViewControllerUseCaseSearch) {
+        self.loadingWheel.hidden = NO;
+        [self.loadingWheel startAnimating];
+        [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+    }
 }
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord

@@ -194,6 +194,17 @@
     [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast];
 }
 
+-(void)updateNodesWithQuery:(NSString*)query
+{
+    [dataManager fetchNodesWithQuery:query];
+    
+}
+
+-(void)updateNodesWithQuery:(NSString*) andRegion:(MKCoordinateRegion)region
+{
+    
+}
+
 #pragma mark - Node List Delegate
 
 /**
@@ -381,6 +392,9 @@
                 [self.customToolBar showButton:kWMToolBarButtonWheelChairFilter];
                 [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 break;
+            case kWMNodeListViewControllerUseCaseSearch:
+                nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
+                rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
             default:
                 break;
         }
@@ -472,6 +486,8 @@
         WMMapViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         WMViewController* currentVC = (WMViewController*)self.topViewController;
         vc.navigationBarTitle = currentVC.navigationBarTitle;
+        if ([currentVC respondsToSelector:@selector(useCase)])
+            vc.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
         [self pushFadeViewController:vc];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
