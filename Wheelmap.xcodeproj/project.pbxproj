@@ -89,7 +89,6 @@
 		98CA2304166676AB00DF0EA3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA22FB166676AB00DF0EA3 /* UIImageView+AFNetworking.m */; };
 		98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E3B835166523DE00C23EBE /* CoreData.framework */; };
 		98E3B8391665266B00C23EBE /* WMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98E3B8371665266B00C23EBE /* WMDataModel.xcdatamodeld */; };
-		D51117F2167AA423005B2289 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51117F1167AA423005B2289 /* WMConfig.plist */; };
 		D53D23D81670F42A0062B8D3 /* details_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D61670F4290062B8D3 /* details_compass.png */; };
 		D53D23D91670F42A0062B8D3 /* details_compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D71670F4290062B8D3 /* details_compass@2x.png */; };
 		D5406D5A166A49650016E275 /* Social_btn-email.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D52166A49650016E275 /* Social_btn-email.png */; };
@@ -144,6 +143,19 @@
 		D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
 		DB18F81C1679DCE400855296 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81B1679DCE300855296 /* Default.png */; };
 		DB18F81F1679DCE700855296 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81E1679DCE700855296 /* Default@2x.png */; };
+		DB18F84C167B320C00855296 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84B167B320C00855296 /* WMConfig.plist */; };
+		DB18F85A167B33E400855296 /* more-buttons_info-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84E167B33E400855296 /* more-buttons_info-deactive@2x.png */; };
+		DB18F85B167B33E400855296 /* more-buttons_info–deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84F167B33E400855296 /* more-buttons_info–deactive.png */; };
+		DB18F85C167B33E400855296 /* more-buttons_info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F850167B33E400855296 /* more-buttons_info.png */; };
+		DB18F85D167B33E400855296 /* more-buttons_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F851167B33E400855296 /* more-buttons_info@2x.png */; };
+		DB18F85E167B33E400855296 /* more-buttons_route-deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F852167B33E400855296 /* more-buttons_route-deactive.png */; };
+		DB18F85F167B33E400855296 /* more-buttons_route-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F853167B33E400855296 /* more-buttons_route-deactive@2x.png */; };
+		DB18F860167B33E400855296 /* more-buttons_route.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F854167B33E400855296 /* more-buttons_route.png */; };
+		DB18F861167B33E400855296 /* more-buttons_route@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F855167B33E400855296 /* more-buttons_route@2x.png */; };
+		DB18F862167B33E400855296 /* more-buttons_share-deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F856167B33E400855296 /* more-buttons_share-deactive.png */; };
+		DB18F863167B33E400855296 /* more-buttons_share-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F857167B33E400855296 /* more-buttons_share-deactive@2x.png */; };
+		DB18F864167B33E400855296 /* more-buttons_share.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F858167B33E400855296 /* more-buttons_share.png */; };
+		DB18F865167B33E400855296 /* more-buttons_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F859167B33E400855296 /* more-buttons_share@2x.png */; };
 		DB56839D166E97FC005B2EE5 /* misc_position-info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839B166E97FC005B2EE5 /* misc_position-info.png */; };
 		DB56839E166E97FC005B2EE5 /* misc_position-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */; };
 		DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
@@ -388,19 +400,6 @@
 		98E3B8381665266B00C23EBE /* WMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WMDataModel.xcdatamodel; sourceTree = "<group>"; };
 		98E94C911675F62E00994DBA /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
 		98E94C921675F62E00994DBA /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
-		D51117D5167A9FAA005B2289 /* more-buttons_info-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_info-deactive@2x.png"; sourceTree = "<group>"; };
-		D51117D6167A9FAA005B2289 /* more-buttons_info–deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_info–deactive.png"; sourceTree = "<group>"; };
-		D51117D7167A9FAA005B2289 /* more-buttons_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_info.png"; sourceTree = "<group>"; };
-		D51117D8167A9FAA005B2289 /* more-buttons_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_info@2x.png"; sourceTree = "<group>"; };
-		D51117D9167A9FAA005B2289 /* more-buttons_route-deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_route-deactive.png"; sourceTree = "<group>"; };
-		D51117DA167A9FAA005B2289 /* more-buttons_route-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_route-deactive@2x.png"; sourceTree = "<group>"; };
-		D51117DB167A9FAA005B2289 /* more-buttons_route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_route.png"; sourceTree = "<group>"; };
-		D51117DC167A9FAA005B2289 /* more-buttons_route@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_route@2x.png"; sourceTree = "<group>"; };
-		D51117DD167A9FAA005B2289 /* more-buttons_share-deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_share-deactive.png"; sourceTree = "<group>"; };
-		D51117DE167A9FAA005B2289 /* more-buttons_share-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_share-deactive@2x.png"; sourceTree = "<group>"; };
-		D51117DF167A9FAA005B2289 /* more-buttons_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_share.png"; sourceTree = "<group>"; };
-		D51117E0167A9FAA005B2289 /* more-buttons_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-buttons_share@2x.png"; sourceTree = "<group>"; };
-		D51117F1167AA423005B2289 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../WMConfig.plist; sourceTree = "<group>"; };
 		D53D23D61670F4290062B8D3 /* details_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_compass.png; sourceTree = "<group>"; };
 		D53D23D71670F4290062B8D3 /* details_compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_compass@2x.png"; sourceTree = "<group>"; };
 		D5406D52166A49650016E275 /* Social_btn-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-email.png"; sourceTree = "<group>"; };
@@ -470,6 +469,19 @@
 		D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSetMarkerViewController.m; sourceTree = "<group>"; };
 		DB18F81B1679DCE300855296 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DB18F81E1679DCE700855296 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DB18F84B167B320C00855296 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
+		DB18F84E167B33E400855296 /* more-buttons_info-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info-deactive@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_info-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
+		DB18F84F167B33E400855296 /* more-buttons_info–deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info–deactive.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_info–deactive.png"; sourceTree = SOURCE_ROOT; };
+		DB18F850167B33E400855296 /* more-buttons_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_info.png"; sourceTree = SOURCE_ROOT; };
+		DB18F851167B33E400855296 /* more-buttons_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_info@2x.png"; sourceTree = SOURCE_ROOT; };
+		DB18F852167B33E400855296 /* more-buttons_route-deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_route-deactive.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_route-deactive.png"; sourceTree = SOURCE_ROOT; };
+		DB18F853167B33E400855296 /* more-buttons_route-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_route-deactive@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_route-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
+		DB18F854167B33E400855296 /* more-buttons_route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_route.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_route.png"; sourceTree = SOURCE_ROOT; };
+		DB18F855167B33E400855296 /* more-buttons_route@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_route@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_route@2x.png"; sourceTree = SOURCE_ROOT; };
+		DB18F856167B33E400855296 /* more-buttons_share-deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_share-deactive.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_share-deactive.png"; sourceTree = SOURCE_ROOT; };
+		DB18F857167B33E400855296 /* more-buttons_share-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_share-deactive@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_share-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
+		DB18F858167B33E400855296 /* more-buttons_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_share.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_share.png"; sourceTree = SOURCE_ROOT; };
+		DB18F859167B33E400855296 /* more-buttons_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_share@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_share@2x.png"; sourceTree = SOURCE_ROOT; };
 		DB56839B166E97FC005B2EE5 /* misc_position-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info.png"; sourceTree = "<group>"; };
 		DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info@2x.png"; sourceTree = "<group>"; };
 		DB5683A0166E9F35005B2EE5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
@@ -680,7 +692,7 @@
 				DB18F81E1679DCE700855296 /* Default@2x.png */,
 				DB18F81B1679DCE300855296 /* Default.png */,
 				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
-				D51117F1167AA423005B2289 /* WMConfig.plist */,
+				DB18F84B167B320C00855296 /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -930,18 +942,18 @@
 		D5E0F0E31667C60100B78F57 /* AdditionalButtons */ = {
 			isa = PBXGroup;
 			children = (
-				D51117D5167A9FAA005B2289 /* more-buttons_info-deactive@2x.png */,
-				D51117D6167A9FAA005B2289 /* more-buttons_info–deactive.png */,
-				D51117D7167A9FAA005B2289 /* more-buttons_info.png */,
-				D51117D8167A9FAA005B2289 /* more-buttons_info@2x.png */,
-				D51117D9167A9FAA005B2289 /* more-buttons_route-deactive.png */,
-				D51117DA167A9FAA005B2289 /* more-buttons_route-deactive@2x.png */,
-				D51117DB167A9FAA005B2289 /* more-buttons_route.png */,
-				D51117DC167A9FAA005B2289 /* more-buttons_route@2x.png */,
-				D51117DD167A9FAA005B2289 /* more-buttons_share-deactive.png */,
-				D51117DE167A9FAA005B2289 /* more-buttons_share-deactive@2x.png */,
-				D51117DF167A9FAA005B2289 /* more-buttons_share.png */,
-				D51117E0167A9FAA005B2289 /* more-buttons_share@2x.png */,
+				DB18F84E167B33E400855296 /* more-buttons_info-deactive@2x.png */,
+				DB18F84F167B33E400855296 /* more-buttons_info–deactive.png */,
+				DB18F850167B33E400855296 /* more-buttons_info.png */,
+				DB18F851167B33E400855296 /* more-buttons_info@2x.png */,
+				DB18F852167B33E400855296 /* more-buttons_route-deactive.png */,
+				DB18F853167B33E400855296 /* more-buttons_route-deactive@2x.png */,
+				DB18F854167B33E400855296 /* more-buttons_route.png */,
+				DB18F855167B33E400855296 /* more-buttons_route@2x.png */,
+				DB18F856167B33E400855296 /* more-buttons_share-deactive.png */,
+				DB18F857167B33E400855296 /* more-buttons_share-deactive@2x.png */,
+				DB18F858167B33E400855296 /* more-buttons_share.png */,
+				DB18F859167B33E400855296 /* more-buttons_share@2x.png */,
 			);
 			name = AdditionalButtons;
 			path = "/Users/andreager/Desktop/Git/wheelmap-iphone2/Wheelmap/Resources";
@@ -1515,7 +1527,19 @@
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
 				DB18F81C1679DCE400855296 /* Default.png in Resources */,
 				DB18F81F1679DCE700855296 /* Default@2x.png in Resources */,
-				D51117F2167AA423005B2289 /* WMConfig.plist in Resources */,
+				DB18F84C167B320C00855296 /* WMConfig.plist in Resources */,
+				DB18F85A167B33E400855296 /* more-buttons_info-deactive@2x.png in Resources */,
+				DB18F85B167B33E400855296 /* more-buttons_info–deactive.png in Resources */,
+				DB18F85C167B33E400855296 /* more-buttons_info.png in Resources */,
+				DB18F85D167B33E400855296 /* more-buttons_info@2x.png in Resources */,
+				DB18F85E167B33E400855296 /* more-buttons_route-deactive.png in Resources */,
+				DB18F85F167B33E400855296 /* more-buttons_route-deactive@2x.png in Resources */,
+				DB18F860167B33E400855296 /* more-buttons_route.png in Resources */,
+				DB18F861167B33E400855296 /* more-buttons_route@2x.png in Resources */,
+				DB18F862167B33E400855296 /* more-buttons_share-deactive.png in Resources */,
+				DB18F863167B33E400855296 /* more-buttons_share-deactive@2x.png in Resources */,
+				DB18F864167B33E400855296 /* more-buttons_share.png in Resources */,
+				DB18F865167B33E400855296 /* more-buttons_share@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
