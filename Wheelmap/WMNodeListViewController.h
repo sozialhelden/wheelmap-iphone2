@@ -10,12 +10,6 @@
 #import "WMNodeListView.h"
 #import <CoreLocation/CoreLocation.h>
 
-typedef enum {
-    kWMNodeListViewControllerUseCaseNormal,
-    kWMNodeListViewControllerUseCaseContribute,
-    kWMNodeListViewControllerUseCaseCategory
-} WMNodeListViewControllerUseCase;
-
 @interface WMNodeListViewController : WMViewController <WMNodeListView, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate> {
     
     CLLocationManager *locationManager;

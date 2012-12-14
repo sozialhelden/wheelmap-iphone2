@@ -16,6 +16,7 @@
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
+@property WMNodeListViewControllerUseCase useCase;
 
 - (void) showDetailPopoverForNode:(Node*)node;
 

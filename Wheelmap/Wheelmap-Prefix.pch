@@ -33,3 +33,10 @@ typedef enum {
     kDotTypeRed,
     kDotTypeNone
 } DotType;
+
+typedef enum {
+    kWMNodeListViewControllerUseCaseNormal,
+    kWMNodeListViewControllerUseCaseSearch,
+    kWMNodeListViewControllerUseCaseContribute,
+    kWMNodeListViewControllerUseCaseCategory
+} WMNodeListViewControllerUseCase;

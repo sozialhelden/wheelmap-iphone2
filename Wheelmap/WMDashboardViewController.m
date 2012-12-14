@@ -104,7 +104,8 @@
 {
     // dismiss the keyboard
     self.searchTextField.text = nil;
-    [self textFieldShouldReturn:self.searchTextField];
+    [self hideCancelButton];
+    [self.searchTextField resignFirstResponder];
 }
 
 -(IBAction)pressedNodeListButton:(id)sender
@@ -182,9 +183,21 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self hideCancelButton];
-    
     [textField resignFirstResponder];
+    
+    [self hideCancelButton];
+    if (textField.text == nil || textField.text.length == 0)
+        return YES;
+    
+    WMNavigationControllerBase* dataSource = (WMNavigationControllerBase*)self.navigationController;
+    [dataSource updateNodesWithQuery:textField.text];
+    
+    WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
+    vc.useCase = kWMNodeListViewControllerUseCaseSearch;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
     return YES;
 }
 

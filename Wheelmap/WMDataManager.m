@@ -190,6 +190,7 @@
     [self fetchNodesWithParameters:@{@"bbox":coords}];
 }
 
+
 - (void) fetchNodesWithParameters:(NSDictionary*)parameters;
 {
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
@@ -208,6 +209,29 @@
                    }
                                    startImmediately:YES
      ];
+}
+
+- (void)fetchNodesWithQuery:(NSString*)query
+{
+    NSDictionary* parameters = @{@"q":query};
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes/search"
+                                             apiKey:[self apiKey]
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:nil
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
+                                                      [self.delegate dataManager:self fetchNodesFailedWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                [self didReceiveNodes:JSON[@"nodes"]];
+                                            }
+                                   startImmediately:YES
+     ];
+    
 }
 
 - (void) didReceiveNodes:(NSArray *)nodes
@@ -645,7 +669,8 @@ static BOOL assetDownloadInProgress;
     NSString *rootPath = [paths objectAtIndex:0];
     NSString* destinationPath = [rootPath stringByAppendingPathComponent:@"temp_image.jpg"];
     
-    [UIImageJPEGRepresentation(image, 1.0) writeToFile:destinationPath atomically:YES];
+    NSData* data = UIImageJPEGRepresentation(image, 1.0);
+    [data writeToFile:destinationPath atomically:YES];
     
     NSLog(@"[WMDataManager] post an image for node %@", node);
     NSString* resource = [NSString stringWithFormat:@"nodes/%@/photos", node.id];
@@ -655,7 +680,7 @@ static BOOL assetDownloadInProgress;
                                              apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
-                                               data:nil
+                                               data:data
                                              method:@"POST"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:failedPostingImageWithError:)]) {
