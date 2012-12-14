@@ -63,7 +63,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"DetailViewHeadline", @"");
+    
+    // data manager
+    dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
 
     self.gabIfStatusUnknown = 0;
 
@@ -153,6 +156,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    self.title = NSLocalizedString(@"DetailViewHeadline", @"");
+    self.navigationBarTitle = self.title;
+    
     if (!self.navigationController.toolbarHidden) {
         [self.navigationController setToolbarHidden:YES animated:YES];
     }
@@ -561,6 +568,12 @@
             self.annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
         self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 17, 13)];
+        icon.contentMode = UIViewContentModeScaleAspectFit;
+        icon.backgroundColor = [UIColor clearColor];
+        icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];
+        [self.annotationView addSubview:icon];
+        
         return self.annotationView;
     }
     return nil;
@@ -750,19 +763,30 @@
 
 - (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
    
-    #warning image needs to be uploaded to backend
     UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    /* NOT NEEDED
-        self.imageCount++;
-        [self addThumbnail:self.imageCount-1];
-        int scrollWidth = (self.imageCount+1)*[UIImage imageNamed:@"details_btn-photoupload.png"].size.width+(self.imageCount+3)*self.gab;
-        self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
-        UIImageView *selectedImage = [self.imageViewsInScrollView objectAtIndex:self.imageViewsInScrollView.count-1];
-        selectedImage.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    */
+    NSLog(@"[LOG] UPLOAD THE PICKED IMAGE!");
+    [dataManager uploadImage:chosenImage forNode:self.node];
+    
     [self dismissModalViewControllerAnimated:YES];
     
+}
+
+#pragma mark - WMDataManager Delegates
+-(void)dataManager:(WMDataManager *)dataManager didFinishPostingImageWithMsg:(NSString *)msg
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PHOTO_UPLOAD_SUCCESS", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+    [alert show];
+    
+    NSLog(@"[LOG] photo upload success! %@", msg);
+}
+
+-(void)dataManager:(WMDataManager *)dataManager failedPostingImageWithError:(NSError *)error
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PHOTO_UPLOAD_FAILD", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+    [alert show];
+    
+    NSLog(@"[LOG] photo upload failed! %@", error);
 }
 
 #pragma mark - Other Button Handlers

@@ -31,7 +31,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.navigationBarTitle = self.title;
+    
 
     self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", @"");
     self.commentText.layer.borderWidth = 1.0f;
@@ -41,6 +41,14 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     self.commentText.text = self.currentNode.wheelchair_description;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.title = NSLocalizedString(@"Comments", nil);
+    self.navigationBarTitle = self.title;
 }
 
 - (void)didReceiveMemoryWarning

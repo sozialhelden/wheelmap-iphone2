@@ -11,7 +11,9 @@
 #import "WMDataManagerDelegate.h"
 
 @interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate>
-
+{
+    UIActivityIndicatorView* progressWheel;
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 

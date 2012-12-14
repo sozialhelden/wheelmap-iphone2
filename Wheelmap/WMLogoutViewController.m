@@ -10,7 +10,9 @@
 #import "WMDataManager.h"
 
 @interface WMLogoutViewController ()
-
+{
+    WMDataManager* dataManager;
+}
 @end
 
 @implementation WMLogoutViewController
@@ -29,8 +31,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    dataManager = [[WMDataManager alloc] init];
+    
     self.titleLabel.text = NSLocalizedString(@"Abmelden", nil);
-    self.topTextLabel.text = NSLocalizedString(@"Angemeldet: [logon email]", nil);
+    self.topTextLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Angemeldet", nil), dataManager.currentUserName];
 
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.logoutButton setTitle:NSLocalizedString(@"Logout", nil) forState:UIControlStateNormal];
@@ -45,7 +50,7 @@
 
 -(IBAction)pressedLogoutButton:(id)sender
 {
-    WMDataManager* dataManager = [[WMDataManager alloc] init];
+    
     [dataManager removeUserAuthentication];
     
     [self dismissModalViewControllerAnimated: YES];

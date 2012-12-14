@@ -34,4 +34,6 @@
 - (void) dataManager:(WMDataManager *)dataManager didFinishPostingNodeWithMsg:(NSString*)msg;
 - (void) dataManager:(WMDataManager *)dataManager failedPostingNodeWithError:(NSError *)error;
 
+- (void) dataManager:(WMDataManager *)dataManager didFinishPostingImageWithMsg:(NSString*)msg;
+- (void) dataManager:(WMDataManager *)dataManager failedPostingImageWithError:(NSError *)error;
 @end

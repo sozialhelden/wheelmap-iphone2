@@ -28,7 +28,7 @@
         [self addSubview:currentLocationButton];
         
         searchButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 1, 58, 58);
+        searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 3, 58, 58);
         [searchButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [searchButton setImage:[UIImage imageNamed:@"toolbar_icon-search.png"] forState:UIControlStateNormal];
 
@@ -37,7 +37,8 @@
         
         // toggle button uses setView:forControlState: method
         self.toggleButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.toggleButton.frame = CGRectMake(floor((self.frame.size.width-71)/2.0), -2, 71, 62);
+        self.toggleButton.frame = CGRectMake(0, -2, 70, 62);
+        self.toggleButton.center = CGPointMake(self.center.x, self.toggleButton.center.y);
         UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         toggleBtnNormalView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         UIImageView* toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
@@ -67,14 +68,14 @@
         [self addSubview:self.toggleButton];
         
         categoryFilterButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 1, 58, 58);
+        categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 3, 58, 58);
         [categoryFilterButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [categoryFilterButton setImage:[UIImage imageNamed:@"toolbar_icon-category.png"] forState:UIControlStateNormal];
         [categoryFilterButton addTarget:self action:@selector(pressedCategoryFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:categoryFilterButton];
         self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
         
-        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 1, 58, 58)];
+        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 3, 58, 58)];
         [self.wheelChairStatusFilterButton addTarget:self action:@selector(pressedWheelChairStatusFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.wheelChairStatusFilterButton];
         self.middlePointOfWheelchairFilterButton = self.wheelChairStatusFilterButton.frame.origin.x+(self.wheelChairStatusFilterButton.frame.size.width/2.0);

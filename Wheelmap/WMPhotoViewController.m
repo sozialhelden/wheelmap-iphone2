@@ -89,12 +89,8 @@
     
     [self.scrollView setPagingEnabled:YES];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(280, 10, 30, 20);
-    [button setTitle:@"x" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-
+    UITapGestureRecognizer* tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backButtonPressed:)];
+    [self.view addGestureRecognizer:tapGR];
 }
 
 

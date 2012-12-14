@@ -115,7 +115,6 @@
 		D544B6D5167919380077F5B7 /* WMNodeTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D544B6D4167919380077F5B7 /* WMNodeTypeTableViewController.m */; };
 		D544B6EE1679D3D00077F5B7 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D544B6ED1679D3D00077F5B7 /* WMConfig.plist */; };
 		D555D3861675E4A600C58813 /* WMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3851675E4A500C58813 /* WMCompassView.m */; };
-		D555D38D167640AF00C58813 /* WMPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D38C167640AF00C58813 /* WMPhotoViewController.m */; };
 		D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
 		D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D816778C2800C58813 /* InfiniteGallery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3F91678956500C58813 /* WMCategoryTableViewController.m */; };
@@ -155,6 +154,9 @@
 		D5EE56AD166E4C52008E389D /* textfield_-share.png in Resources */ = {isa = PBXBuildFile; fileRef = D5EE56AB166E4C52008E389D /* textfield_-share.png */; };
 		D5EE56AE166E4C52008E389D /* textfield_-share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5EE56AC166E4C52008E389D /* textfield_-share@2x.png */; };
 		D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
+		DB18F81C1679DCE400855296 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81B1679DCE300855296 /* Default.png */; };
+		DB18F81F1679DCE700855296 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81E1679DCE700855296 /* Default@2x.png */; };
+		DB18F82F167A083A00855296 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB18F82E167A083A00855296 /* WMConfig.plist */; };
 		DB56839D166E97FC005B2EE5 /* misc_position-info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839B166E97FC005B2EE5 /* misc_position-info.png */; };
 		DB56839E166E97FC005B2EE5 /* misc_position-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */; };
 		DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
@@ -428,8 +430,6 @@
 		D544B6ED1679D3D00077F5B7 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../WMConfig.plist; sourceTree = "<group>"; };
 		D555D3841675E4A500C58813 /* WMCompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCompassView.h; sourceTree = "<group>"; };
 		D555D3851675E4A500C58813 /* WMCompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCompassView.m; sourceTree = "<group>"; };
-		D555D38B167640AF00C58813 /* WMPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoViewController.h; sourceTree = "<group>"; };
-		D555D38C167640AF00C58813 /* WMPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoViewController.m; sourceTree = "<group>"; };
 		D555D3D41677897D00C58813 /* WMInfinitePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInfinitePhotoViewController.h; sourceTree = "<group>"; };
 		D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInfinitePhotoViewController.m; sourceTree = "<group>"; };
 		D555D3D716778C2800C58813 /* InfiniteGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteGallery.h; sourceTree = "<group>"; };
@@ -481,6 +481,9 @@
 		D5EE56AC166E4C52008E389D /* textfield_-share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield_-share@2x.png"; sourceTree = "<group>"; };
 		D5EE56AF166E6604008E389D /* WMSetMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSetMarkerViewController.h; sourceTree = "<group>"; };
 		D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSetMarkerViewController.m; sourceTree = "<group>"; };
+		DB18F81B1679DCE300855296 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DB18F81E1679DCE700855296 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DB18F82E167A083A00855296 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
 		DB56839B166E97FC005B2EE5 /* misc_position-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info.png"; sourceTree = "<group>"; };
 		DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info@2x.png"; sourceTree = "<group>"; };
 		DB5683A0166E9F35005B2EE5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
@@ -688,8 +691,10 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
+				DB18F81E1679DCE700855296 /* Default@2x.png */,
+				DB18F81B1679DCE300855296 /* Default.png */,
 				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
-				D544B6ED1679D3D00077F5B7 /* WMConfig.plist */,
+				DB18F82E167A083A00855296 /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -1253,8 +1258,6 @@
 				D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */,
 				D555D3841675E4A500C58813 /* WMCompassView.h */,
 				D555D3851675E4A500C58813 /* WMCompassView.m */,
-				D555D38B167640AF00C58813 /* WMPhotoViewController.h */,
-				D555D38C167640AF00C58813 /* WMPhotoViewController.m */,
 				D555D3D41677897D00C58813 /* WMInfinitePhotoViewController.h */,
 				D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */,
 				D555D3F81678956400C58813 /* WMCategoryTableViewController.h */,
@@ -1524,19 +1527,9 @@
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
-				D544B6EE1679D3D00077F5B7 /* WMConfig.plist in Resources */,
-				D51117E1167A9FAA005B2289 /* more-buttons_info-deactive@2x.png in Resources */,
-				D51117E2167A9FAA005B2289 /* more-buttons_info–deactive.png in Resources */,
-				D51117E3167A9FAA005B2289 /* more-buttons_info.png in Resources */,
-				D51117E4167A9FAA005B2289 /* more-buttons_info@2x.png in Resources */,
-				D51117E5167A9FAA005B2289 /* more-buttons_route-deactive.png in Resources */,
-				D51117E6167A9FAA005B2289 /* more-buttons_route-deactive@2x.png in Resources */,
-				D51117E7167A9FAA005B2289 /* more-buttons_route.png in Resources */,
-				D51117E8167A9FAA005B2289 /* more-buttons_route@2x.png in Resources */,
-				D51117E9167A9FAA005B2289 /* more-buttons_share-deactive.png in Resources */,
-				D51117EA167A9FAA005B2289 /* more-buttons_share-deactive@2x.png in Resources */,
-				D51117EB167A9FAA005B2289 /* more-buttons_share.png in Resources */,
-				D51117EC167A9FAA005B2289 /* more-buttons_share@2x.png in Resources */,
+				DB18F81C1679DCE400855296 /* Default.png in Resources */,
+				DB18F81F1679DCE700855296 /* Default@2x.png in Resources */,
+				DB18F82F167A083A00855296 /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1628,7 +1621,6 @@
 				03F30C551670B80600241466 /* WMLoginViewController.m in Sources */,
 				98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */,
 				D555D3861675E4A600C58813 /* WMCompassView.m in Sources */,
-				D555D38D167640AF00C58813 /* WMPhotoViewController.m in Sources */,
 				D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */,
 				D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */,
 				034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */,

@@ -158,6 +158,15 @@
     return [self.keychainWrapper legacyAccountData];
 }
 
+- (NSString*)currentUserName
+{
+    if (self.userIsAuthenticated) {
+        return self.keychainWrapper.userAccount;
+    } else {
+        return nil;
+    }
+}
+
 
 #pragma mark - Fetch Nodes
 
@@ -626,6 +635,42 @@ static BOOL assetDownloadInProgress;
             }
         }
     }
+}
+
+#pragma mark - Uplaod an image
+- (void) uploadImage:(UIImage*)image forNode:(Node*)node
+{
+    // get path where the image file should be saved
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *rootPath = [paths objectAtIndex:0];
+    NSString* destinationPath = [rootPath stringByAppendingPathComponent:@"temp_image.jpg"];
+    
+    [UIImageJPEGRepresentation(image, 1.0) writeToFile:destinationPath atomically:YES];
+    
+    NSLog(@"[WMDataManager] post an image for node %@", node);
+    NSString* resource = [NSString stringWithFormat:@"nodes/%@/photos", node.id];
+    
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:destinationPath, @"photo", nil];
+    [[WMWheelmapAPI sharedInstance] requestResource:resource
+                                             apiKey:[self apiKey]
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:@"POST"
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPostingImageWithError:)]) {
+                                                      [self.delegate dataManager:self failedPostingImageWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPostingImageWithMsg:)])
+                                                    [self.delegate dataManager:self didFinishPostingImageWithMsg:JSON[@"message"]];
+                                            }
+                                   startImmediately:YES
+     ];
+    
+    
+    
 }
 
 

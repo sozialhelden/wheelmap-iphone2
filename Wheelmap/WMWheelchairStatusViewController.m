@@ -30,6 +30,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
@@ -96,6 +98,10 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    
+    self.title = NSLocalizedString(@"WheelChair Status", nil);
+    self.navigationBarTitle = self.title;
+    
     self.wheelchairAccess = self.node.wheelchair;
     [self updateCheckMarks];
 }

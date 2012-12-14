@@ -44,6 +44,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    
     if (self.navigationController.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
@@ -51,6 +52,8 @@
     if (self.navigationController.toolbarHidden) {
         [self.navigationController setToolbarHidden:NO animated:YES];
     }
+     
+     
     
     [self loadNodes];
 }
@@ -127,7 +130,7 @@
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
         annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, -3, 20, 15)];
+        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 17, 13)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
         icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];

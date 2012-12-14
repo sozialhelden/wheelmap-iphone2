@@ -21,6 +21,7 @@
 - (void) removeUserAuthentication;
 - (BOOL) userIsAuthenticated;
 - (NSDictionary*) legacyUserCredentials;
+- (NSString*)currentUserName;
 
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
@@ -38,7 +39,7 @@
 - (void) putWheelChairStatusForNode:(Node*)node;    // the node should already have the changed status!
 - (void) postNode:(Node*)node;
 
-- (void) uploadImage:(id)image forNode:(Node*)node;
+- (void) uploadImage:(UIImage*)image forNode:(Node*)node;
 
 
 extern NSString *WMDataManagerErrorDomain;
