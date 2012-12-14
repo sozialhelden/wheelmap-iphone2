@@ -88,7 +88,7 @@
     [self.mainView addSubview:self.mapView];
     
     // ENLARGE MAP BUTTON
-    UIImage *enlargeMapImage = [UIImage imageNamed:@"details_share-location.png"];
+    UIImage *enlargeMapImage = [UIImage imageNamed:@"details-expand-map.png"];
     self.enlargeMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.enlargeMapButton.frame = CGRectMake(10, 10, enlargeMapImage.size.width, enlargeMapImage.size.height);
     [self.enlargeMapButton setImage: enlargeMapImage forState: UIControlStateNormal];
@@ -137,7 +137,6 @@
     [self.contentView addSubview:self.additionalButtonView];
 
     if ([self.node.wheelchair isEqualToString:@"unknown"]) {
-        NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX");
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
     } else {
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
