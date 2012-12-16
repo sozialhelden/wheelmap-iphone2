@@ -32,24 +32,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
    
-    self.infiniteGallery = [[InfiniteGallery alloc] initWithFrame:self.view.bounds];
+    self.infiniteGallery = [[InfiniteGallery alloc] initWithFrame:self.galleryView.bounds];
     self.infiniteGallery.backgroundColor = [UIColor colorWithRed:39/255.0f green:54/255.0f blue:69/255.0f alpha:1.0f];
     
 
     self.infiniteGallery.dataSource = self;
     self.infiniteGallery.delegate = self;
     
-    [self.view addSubview:self.infiniteGallery];
-
-    UIImage *buttonImage = [UIImage imageNamed:@"buttons_close.png"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(270, 10, buttonImage.size.width, buttonImage.size.height);
-    [button addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    
-
-    
+       [self.galleryView addSubview:self.infiniteGallery];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -80,8 +70,13 @@
     return imageView;
 }
 
-- (void) backButtonPressed:(id) sender {
-    [self dismissModalViewControllerAnimated:YES];
-}
 
+- (void)viewDidUnload {
+    [self setGalleryView:nil];
+    [super viewDidUnload];
+}
+- (IBAction)closeButtonPressed:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+
+}
 @end

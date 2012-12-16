@@ -143,9 +143,9 @@
 		D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
 		D5F229F7167B317C00EDFA5B /* details-expand-map.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F229F5167B317C00EDFA5B /* details-expand-map.png */; };
 		D5F229F8167B317C00EDFA5B /* details-expand-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F229F6167B317C00EDFA5B /* details-expand-map@2x.png */; };
+		D5F22A4B167B375400EDFA5B /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5F22A4A167B375400EDFA5B /* WMConfig.plist */; };
 		DB18F81C1679DCE400855296 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81B1679DCE300855296 /* Default.png */; };
 		DB18F81F1679DCE700855296 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F81E1679DCE700855296 /* Default@2x.png */; };
-		DB18F84C167B320C00855296 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84B167B320C00855296 /* WMConfig.plist */; };
 		DB18F85A167B33E400855296 /* more-buttons_info-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84E167B33E400855296 /* more-buttons_info-deactive@2x.png */; };
 		DB18F85B167B33E400855296 /* more-buttons_info–deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84F167B33E400855296 /* more-buttons_info–deactive.png */; };
 		DB18F85C167B33E400855296 /* more-buttons_info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F850167B33E400855296 /* more-buttons_info.png */; };
@@ -402,7 +402,6 @@
 		98E3B8381665266B00C23EBE /* WMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WMDataModel.xcdatamodel; sourceTree = "<group>"; };
 		98E94C911675F62E00994DBA /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
 		98E94C921675F62E00994DBA /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
-		D51117F1167AA423005B2289 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../WMConfig.plist; sourceTree = "<group>"; };
 		D53D23D61670F4290062B8D3 /* details_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_compass.png; sourceTree = "<group>"; };
 		D53D23D71670F4290062B8D3 /* details_compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_compass@2x.png"; sourceTree = "<group>"; };
 		D5406D52166A49650016E275 /* Social_btn-email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Social_btn-email.png"; sourceTree = "<group>"; };
@@ -468,9 +467,9 @@
 		D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSetMarkerViewController.m; sourceTree = "<group>"; };
 		D5F229F5167B317C00EDFA5B /* details-expand-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details-expand-map.png"; sourceTree = "<group>"; };
 		D5F229F6167B317C00EDFA5B /* details-expand-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details-expand-map@2x.png"; sourceTree = "<group>"; };
+		D5F22A4A167B375400EDFA5B /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../WMConfig.plist; sourceTree = "<group>"; };
 		DB18F81B1679DCE300855296 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DB18F81E1679DCE700855296 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		DB18F84B167B320C00855296 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../misc/WheelMap/WMConfig.plist; sourceTree = "<group>"; };
 		DB18F84E167B33E400855296 /* more-buttons_info-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info-deactive@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_info-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
 		DB18F84F167B33E400855296 /* more-buttons_info–deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info–deactive.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_info–deactive.png"; sourceTree = SOURCE_ROOT; };
 		DB18F850167B33E400855296 /* more-buttons_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_info.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_info.png"; sourceTree = SOURCE_ROOT; };
@@ -693,7 +692,7 @@
 				DB18F81E1679DCE700855296 /* Default@2x.png */,
 				DB18F81B1679DCE300855296 /* Default.png */,
 				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
-				DB18F84B167B320C00855296 /* WMConfig.plist */,
+				D5F22A4A167B375400EDFA5B /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -1526,7 +1525,6 @@
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
 				DB18F81C1679DCE400855296 /* Default.png in Resources */,
 				DB18F81F1679DCE700855296 /* Default@2x.png in Resources */,
-				DB18F84C167B320C00855296 /* WMConfig.plist in Resources */,
 				DB18F85A167B33E400855296 /* more-buttons_info-deactive@2x.png in Resources */,
 				DB18F85B167B33E400855296 /* more-buttons_info–deactive.png in Resources */,
 				DB18F85C167B33E400855296 /* more-buttons_info.png in Resources */,
@@ -1541,6 +1539,7 @@
 				DB18F865167B33E400855296 /* more-buttons_share@2x.png in Resources */,
 				D5F229F7167B317C00EDFA5B /* details-expand-map.png in Resources */,
 				D5F229F8167B317C00EDFA5B /* details-expand-map@2x.png in Resources */,
+				D5F22A4B167B375400EDFA5B /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,8 @@
     
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.mapView.delegate = self;
+   
+    /*
     WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
     [self.mapView addAnnotation:annotation];
     // location to zoom in
@@ -41,6 +43,7 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 100, 320);
     // display the region
     [self.mapView setRegion:viewRegion animated:YES];
+     */
 }
 
 - (void)viewWillAppear:(BOOL)animated

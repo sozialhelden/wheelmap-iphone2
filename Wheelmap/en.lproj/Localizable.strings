@@ -56,6 +56,7 @@
 "EditPOIViewWebsiteLabel" = "Website";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Set Marker";
+"EditPOIViewSetMarkerButtonDisabled" = "cannot be changed";
 
 "CommentViewLabel" = "Here you can find additional information about the wheelchair accessibility of the location";
 "ShareLocationLabel" = "I have found the following location on Wheelmap.org:";

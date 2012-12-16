@@ -11,10 +11,12 @@
 
 @interface WMInfinitePhotoViewController : WMViewController <InfiniteGalleryDataSource, InfiniteGalleryDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *galleryView;
 @property (nonatomic, strong) NSMutableArray *imageURLArray;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet InfiniteGallery *infiniteGallery;
 
 @property (assign) int tappedImage;
 
+- (IBAction)closeButtonPressed:(id)sender;
 @end
