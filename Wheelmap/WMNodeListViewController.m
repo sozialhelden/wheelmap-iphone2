@@ -37,25 +37,13 @@
     [super viewDidLoad];
         
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
-    
-    
-    
-    
+
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if (self.navigationController.navigationBarHidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
-    
-    if (self.navigationController.toolbarHidden) {
-        [self.navigationController setToolbarHidden:NO animated:YES];
-    }
-    
-    
+        
 }
 
 -(void) viewDidAppear:(BOOL)animated

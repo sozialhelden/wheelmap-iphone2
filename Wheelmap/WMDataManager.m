@@ -6,13 +6,14 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
 #import "WMDataManager.h"
 #import "WMWheelmapAPI.h"
 #import "WMKeychainWrapper.h"
 #import "Asset.h"
 #import "NodeType.h"
 #import "Node.h"
+#import "Photo.h"
+#import "Image.h"
 
 
 #define WMSearchRadius 0.004
@@ -685,6 +686,8 @@ static BOOL assetDownloadInProgress;
 
 }
 
+
+
 #pragma mark - Uplaod an image
 - (void) uploadImage:(UIImage*)image forNode:(Node*)node
 {
@@ -708,6 +711,41 @@ static BOOL assetDownloadInProgress;
   
 }
 
+#pragma mark - Updating/Creating Nodes
+- (Node*) updateNode:(Node*)node withPhotoArray:(NSArray*)photoArray;
+{
+    NSArray* keys = [[[node entity] attributesByName] allKeys];
+    NSMutableDictionary* nodeDict = [NSMutableDictionary dictionaryWithDictionary:[node dictionaryWithValuesForKeys:keys]];
+    [nodeDict setValue:[NSSet setWithArray:photoArray] forKey:@"photos"];
+    /*
+    for (NSDictionary* photoDict in photoArray) {
+        Photo* photo = (Photo*)[NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+        [photo setValue:photoDict[@"id"]forKey:@"id"];
+        [photo setValue:[NSDate dateWithTimeIntervalSince1970:[photoDict[@"taken_on"] doubleValue]] forKey:@"taken_on"];
+        [photo setValue:node forKey:@"node"];
+        for (NSDictionary* imageDict in [photoDict objectForKey:@"images"]) {
+            Image* image = (Image*)[NSEntityDescription insertNewObjectForEntityForName:@"Image" inManagedObjectContext:self.managedObjectContext];
+            
+            [image setValue:imageDict[@"type"] forKey:@"type"];
+            [image setValue:imageDict[@"height"] forKey:@"height"];
+            [image setValue:imageDict[@"width"] forKey:@"width"];
+            [image setValue:imageDict[@"url"] forKey:@"url"];
+            [image setValue:photo forKey:@"photo"];
+            [photo addImagesObject:image];
+        }
+        [node addPhotosObject:photo];
+    }
+     */
+    Node* output = (Node*)[self createOrUpdateManagedObjectWithEntityName:@"Node" objectData:nodeDict];
+
+    return output;
+    
+}
+
+- (Node*) createNode
+{
+    return nil;
+}
 
 #pragma mark - Expose Data
 
@@ -778,8 +816,10 @@ static BOOL assetDownloadInProgress;
  *  If an object with the same id already exists in the managed object context, this
  *  object will be updated with the dictionary and returned
  */
+
 - (NSManagedObject*) createOrUpdateManagedObjectWithEntityName:(NSString*)entityName objectData:(NSDictionary*)data
 {
+
     NSParameterAssert(data != nil);
     
     NSManagedObject *object = nil;
@@ -831,6 +871,7 @@ static BOOL assetDownloadInProgress;
             }
         }];
         
+        
         // check if converted object is valid
         NSError *error = nil;
         if (!conversionSuccess || ![object validateForUpdate:&error]) {
@@ -851,8 +892,10 @@ static BOOL assetDownloadInProgress;
                 [self logValidationError:error];
             }
             
-            return nil;
+            //return nil;
+            return object;
         }
+         
     }
     
     return object;

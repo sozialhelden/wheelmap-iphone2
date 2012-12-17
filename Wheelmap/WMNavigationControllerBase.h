@@ -26,7 +26,8 @@
 WMNodeListDelegate, CLLocationManagerDelegate,
 WMNavigationBarDelegate, WMToolBarDelegate,
 WMWheelChairStatusFilterPopoverViewDelegate,
-WMCategoryFilterPopoverViewDelegate>
+WMCategoryFilterPopoverViewDelegate,
+UINavigationControllerDelegate>
 
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
 @property (nonatomic, strong) WMToolBar* customToolBar;

@@ -39,6 +39,8 @@
 {
     [super viewDidLoad];
     
+    self.delegate = self;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -129,7 +131,6 @@
 - (void) dataManager:(WMDataManager *)dataManager didReceiveNodes:(NSArray *)nodesParam
 {
     [self hideLoadingWheel];
-    
     nodes = nodesParam;
     
     [self refreshNodeList];
@@ -511,6 +512,27 @@
     }
 }
 
+-(void)searchStringIsGiven:(NSString *)query
+{
+    [self showLoadingWheel];
+    [dataManager fetchNodesWithQuery:query];
+    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
+        WMNodeListViewController* vc = (WMNodeListViewController*)vc;
+        vc.useCase = kWMNodeListViewControllerUseCaseSearch;
+        vc.navigationBarTitle = query;
+        self.customNavigationBar.title = query;
+        [self changeScreenStatusFor:vc];
+    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+        WMMapViewController* vc = (WMMapViewController*)vc;
+        vc.useCase = kWMNodeListViewControllerUseCaseSearch;
+        vc.navigationBarTitle = query;
+        self.customNavigationBar.title = query;
+        [self changeScreenStatusFor:vc];
+    }
+    
+    
+}
+
 #pragma mark - WMToolBar Delegate
 -(void)pressedToggleButton:(WMButton *)sender
 {
@@ -539,6 +561,7 @@
 -(void)pressedSearchButton:(WMToolBar *)toolBar
 {
     NSLog(@"[ToolBar] global search button is pressed!");
+    [self.customNavigationBar showSearchBar];
 }
 
 -(void)pressedWheelChairStatusFilterButton:(WMToolBar *)toolBar
@@ -687,6 +710,28 @@
 {
     loadingWheelContainer.hidden = YES;
     [loadingWheel stopAnimating];
+}
+
+#pragma mark - UINavigationController delegate
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([viewController isKindOfClass:[WMNodeListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
+        if (navigationController.toolbarHidden == YES) 
+            [navigationController setToolbarHidden:NO animated:YES];
+    } else {
+        if (navigationController.toolbarHidden == NO)
+            [navigationController setToolbarHidden:YES animated:YES];
+    }
+    
+    if ([viewController isKindOfClass:[WMDashboardViewController class]]) {
+        if (navigationController.navigationBarHidden == NO) {
+            [navigationController setNavigationBarHidden:YES animated:YES];
+        }
+    } else {
+        if (navigationController.navigationBarHidden == YES) {
+            [navigationController setNavigationBarHidden:NO animated:YES];
+        }
+    }
 }
 @end
 

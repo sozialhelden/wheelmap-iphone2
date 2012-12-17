@@ -11,6 +11,8 @@
 #import "WMDetailViewController.h"
 #import "Node.h"
 #import "NodeType.h"
+#import "Image.h"
+#import "Photo.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCommentViewController.h"
@@ -21,6 +23,7 @@
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Category.h"
+#import "WMNavigationControllerBase.h"
 
 #define GABIFSTATUSUNKNOWN 62
 #define MAPOPENADDITION 266
@@ -35,28 +38,6 @@
 #define STARTLEFT 15
 
 @implementation WMDetailViewController
-
-/*
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        // Custom initialization
-        self.imageURLArray = [NSMutableArray new];
-        
-        [self.imageURLArray addObject:@"http://1.bp.blogspot.com/_zdaKzlmvgJc/SLjcZhKw16I/AAAAAAAAADQ/_PuqR3GJmko/s400/golden%2Bgirls%2Bmm.jpg"];
-        [self.imageURLArray addObject:@"http://images1.wikia.nocookie.net/__cb20120725020018/creepypasta/images/6/66/The-golden-girls.jpg"];
-        [self.imageURLArray addObject:@"http://upload.wikimedia.org/wikipedia/en/thumb/5/58/Golden_Girls_cast_miami_song.jpg/220px-Golden_Girls_cast_miami_song.jpg"];
-        [self.imageURLArray addObject:@"http://images4.fanpop.com/image/photos/23500000/Golden-Girls-the-golden-girls-23583048-750-458.jpg"];
-        [self.imageURLArray addObject:@"http://2ndfloorliving.com/wp-content/uploads/2009/10/Golden-Girls-tv-show-16.jpg"];
-        [self.imageURLArray addObject:@"http://images5.fanpop.com/image/photos/30700000/Dorothy-the-golden-girls-30775692-1741-2560.jpg"];
-        self.mapViewOpen = NO;
-
-    }
-    return self;
-}
-*/
-
 
 #pragma mark - Life Cycle
 
@@ -130,8 +111,10 @@
     self.imageScrollView = [self createImageScrollView];
     self.imageScrollView.frame = CGRectMake(0, self.startY, 320, 80);
     [self.contentView addSubview:self.imageScrollView];
-    [self createThumbnails];
+   // [self createThumbnails];    // this will creat thumbnails with old image array. will be updated after fetching photo urls
 
+    self.thumbnailURLArray = [[NSMutableArray alloc] init];
+    self.originalImageURLArray = [[NSMutableArray alloc] init];
     self.startY += self.imageScrollView.bounds.size.height+2;
   
     // ADDITIONALINFOVIEW
@@ -161,11 +144,7 @@
     
     self.title = NSLocalizedString(@"DetailViewHeadline", @"");
     self.navigationBarTitle = self.title;
-    
-    if (!self.navigationController.toolbarHidden) {
-        [self.navigationController setToolbarHidden:YES animated:YES];
-    }
-    
+
     // MAP
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
@@ -346,14 +325,18 @@
 
 - (void)createThumbnails {
     
+    for (UIView* imageView in self.imageViewsInScrollView) {
+        [imageView removeFromSuperview];
+    }
+    
     self.start = 22+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
     self.gab = 16;
     
-    for (int i = 0; i < self.imageURLArray.count; i++) {
+    for (int i = 0; i < self.thumbnailURLArray.count; i++) {
         [self addThumbnail:i];
     }
     
-    int scrollWidth = ((self.imageURLArray.count+1)*([UIImage imageNamed:@"details_btn-photoupload.png"].size.width + self.gab))+self.gab;
+    int scrollWidth = ((self.thumbnailURLArray.count+1)*([UIImage imageNamed:@"details_btn-photoupload.png"].size.width + self.gab))+self.gab;
     self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
 }
 
@@ -364,7 +347,7 @@
     imageView.layer.borderWidth = 2;
     imageView.tag = i;
     imageView.userInteractionEnabled = YES;
-    [imageView setImageWithURL: [NSURL URLWithString:[self.imageURLArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
+    [imageView setImageWithURL: [NSURL URLWithString:[self.thumbnailURLArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbnailTapped:)];
     [imageView addGestureRecognizer:tapRecognizer];
@@ -643,9 +626,9 @@
     if (self.mapViewOpen) {
         NSLog(@"XXXXXXXX map is closing");
         
-        [UIView animateWithDuration:0.8
+        [UIView animateWithDuration:0.3
                               delay:0.0
-                            options:UIViewAnimationCurveEaseIn
+                            options:UIViewAnimationCurveEaseOut
                          animations:^{
                              self.mapView.frame = MAPVIEWCLOSEDSTATE;
                              if ([self.node.wheelchair isEqualToString:@"unknown"]) {
@@ -667,7 +650,7 @@
     } else {
         NSLog(@"XXXXXXXX map is opening");
         
-        [UIView animateWithDuration:0.8
+        [UIView animateWithDuration:0.3
                         delay:0.0
                         options:UIViewAnimationCurveEaseIn
                         animations:^{
@@ -736,7 +719,7 @@
 - (void)thumbnailTapped:(UITapGestureRecognizer*)sender {
     
     WMInfinitePhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMInfinitePhotoViewController"];
-    vc.imageURLArray = self.imageURLArray;
+    vc.imageURLArray = self.originalImageURLArray;
     vc.tappedImage = sender.view.tag;
     [self presentModalViewController:vc animated:YES];
 }
@@ -772,15 +755,23 @@
     
     [self dismissModalViewControllerAnimated:YES];
     
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    [navCtrl showLoadingWheel];
+    
+    
+    
 }
 
 #pragma mark - WMDataManager Delegates
--(void)dataManager:(WMDataManager *)dataManager didFinishPostingImageWithMsg:(NSString *)msg
+-(void)dataManager:(WMDataManager *)aDataManager didFinishPostingImageWithMsg:(NSString *)msg
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PHOTO_UPLOAD_SUCCESS", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
     
     NSLog(@"[LOG] photo upload success! %@", msg);
+    
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    [navCtrl hideLoadingWheel];
 }
 
 -(void)dataManager:(WMDataManager *)dataManager failedPostingImageWithError:(NSError *)error
@@ -789,12 +780,27 @@
     [alert show];
     
     NSLog(@"[LOG] photo upload failed! %@", error);
+    
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    [navCtrl hideLoadingWheel];
 }
 
-- (void)dataManager:(WMDataManager *)dataManager didReceivePhotoURLs:(NSArray *)photoURLs
+- (void)dataManager:(WMDataManager *)aDataManager didReceivePhotoURLs:(NSArray *)photoURLs
 {
-    NSLog(@"[LOG] received photo urls: %@", photoURLs);
-    self.imageURLArray = photoURLs;
+    NSLog(@"updated photo urls: %@", photoURLs);
+    //self.node = [dataManager updateNode:self.node withPhotoArray:photoURLs];
+    for (NSDictionary* photo in photoURLs) {
+        for (NSDictionary* image in photo[@"images"]) {
+            if ([image[@"type"] caseInsensitiveCompare:@"thumb_iphone_retina"] == NSOrderedSame) {
+                [self.thumbnailURLArray addObject:image[@"url"]];
+            } else if ([image[@"type"] caseInsensitiveCompare:@"gallery_iphone_retina"] == NSOrderedSame) {
+                [self.originalImageURLArray addObject:image[@"url"]];
+            }
+        }
+    }
+    
+    [self createThumbnails];
+
 }
 
 - (void)dataManager:(WMDataManager *)dataManager failedFetchingPhotoURLs:(NSError *)error

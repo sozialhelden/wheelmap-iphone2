@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 #import "SSZipArchive.h"
+#import <CoreData/CoreData.h>
 
 @class Node;
 
@@ -36,13 +37,13 @@
 - (void) searchFor:(NSString*)query;
 
 - (Node*) createNode;
+- (Node*) updateNode:(Node*)node withPhotoArray:(NSArray*)photoArray;
 
 - (void) putNode:(Node*)node;
 - (void) putWheelChairStatusForNode:(Node*)node;    // the node should already have the changed status!
 - (void) postNode:(Node*)node;
 
 - (void) uploadImage:(UIImage*)image forNode:(Node*)node;
-
 
 extern NSString *WMDataManagerErrorDomain;
 

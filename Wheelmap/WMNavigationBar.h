@@ -24,7 +24,7 @@ typedef enum {
 
 
 
-@interface WMNavigationBar : UIView
+@interface WMNavigationBar : UIView <UITextFieldDelegate>
 {
     UIImageView* backgroundImg; // background image
     
@@ -41,9 +41,9 @@ typedef enum {
     UIView* currentLeftButton;  // both pointers hook the current button objects
     UIView* currentRightButton;
     
-    BOOL isVisible;
+    BOOL isSearchBarVisible;
     
-    UIView* searchBarContainer;
+    UIImageView* searchBarContainer;
     UIImageView* searchBarTextFieldBg;
     UITextField* searchBarTextField;
     WMButton* searchBarCancelButton;
@@ -56,6 +56,6 @@ typedef enum {
 @property (nonatomic, strong) id<WMNavigationBarDelegate> delegate;
 
 //-(id)initWithSize:(CGSize)size;
--(void)showNavigationBar;
--(void)hideNavigationBar;
+-(void)showSearchBar;
+-(void)hideSearchBar;
 @end

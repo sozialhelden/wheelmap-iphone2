@@ -343,8 +343,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) dataManager:(WMDataManager *)dataManager didFailPuttingNodeWithMsg:(NSString *)msg {
-    NSLog(@"XXXXXXXX FINISHED %@", msg);
+- (void) dataManager:(WMDataManager *)dataManager failedPuttingNodeWithError:(NSError *)error {
+    NSLog(@"XXXXXXXX Failed %@", error);
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     

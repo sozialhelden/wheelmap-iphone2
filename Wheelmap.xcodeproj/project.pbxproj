@@ -158,6 +158,10 @@
 		DB18F864167B33E400855296 /* more-buttons_share.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F858167B33E400855296 /* more-buttons_share.png */; };
 		DB18F865167B33E400855296 /* more-buttons_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F859167B33E400855296 /* more-buttons_share@2x.png */; };
 		DB4EB519167F29630096CEDE /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB518167F29630096CEDE /* WMConfig.plist */; };
+		DB4EB527167F4A810096CEDE /* search_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB523167F4A810096CEDE /* search_background.png */; };
+		DB4EB528167F4A810096CEDE /* search_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB524167F4A810096CEDE /* search_background@2x.png */; };
+		DB4EB529167F4A810096CEDE /* search_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB525167F4A810096CEDE /* search_searchbar.png */; };
+		DB4EB52A167F4A810096CEDE /* search_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */; };
 		DB56839D166E97FC005B2EE5 /* misc_position-info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839B166E97FC005B2EE5 /* misc_position-info.png */; };
 		DB56839E166E97FC005B2EE5 /* misc_position-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */; };
 		DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
@@ -482,6 +486,10 @@
 		DB18F858167B33E400855296 /* more-buttons_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_share.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_share.png"; sourceTree = SOURCE_ROOT; };
 		DB18F859167B33E400855296 /* more-buttons_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_share@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_share@2x.png"; sourceTree = SOURCE_ROOT; };
 		DB4EB518167F29630096CEDE /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		DB4EB523167F4A810096CEDE /* search_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_background.png; path = NavigationBar/search_background.png; sourceTree = "<group>"; };
+		DB4EB524167F4A810096CEDE /* search_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search_background@2x.png"; path = "NavigationBar/search_background@2x.png"; sourceTree = "<group>"; };
+		DB4EB525167F4A810096CEDE /* search_searchbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_searchbar.png; path = NavigationBar/search_searchbar.png; sourceTree = "<group>"; };
+		DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search_searchbar@2x.png"; path = "NavigationBar/search_searchbar@2x.png"; sourceTree = "<group>"; };
 		DB56839B166E97FC005B2EE5 /* misc_position-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info.png"; sourceTree = "<group>"; };
 		DB56839C166E97FC005B2EE5 /* misc_position-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "misc_position-info@2x.png"; sourceTree = "<group>"; };
 		DB5683A0166E9F35005B2EE5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
@@ -783,8 +791,6 @@
 		9899279E164973CF00D9003B /* WheelmapAPI */ = {
 			isa = PBXGroup;
 			children = (
-				D555D3D716778C2800C58813 /* InfiniteGallery.h */,
-				D555D3D816778C2800C58813 /* InfiniteGallery.m */,
 				DBA622761668F915009FA5DF /* DataManager */,
 				98CA22E8166676AA00DF0EA3 /* AFNetworking */,
 				98AC549E166AA09A00E87965 /* SSZipArchive */,
@@ -1029,6 +1035,10 @@
 		D5EFDE211668E45B00CEB2C0 /* Navigationbar */ = {
 			isa = PBXGroup;
 			children = (
+				DB4EB523167F4A810096CEDE /* search_background.png */,
+				DB4EB524167F4A810096CEDE /* search_background@2x.png */,
+				DB4EB525167F4A810096CEDE /* search_searchbar.png */,
+				DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */,
 				98ADC6EE164C15A700251943 /* navigationbar_logo.png */,
 				98ADC6EF164C15A700251943 /* navigationbar_logo@2x.png */,
 				DBA621CF1668F357009FA5DF /* buttons_back-btn.png */,
@@ -1153,6 +1163,8 @@
 		DBA6224E1668F422009FA5DF /* CustomWidgets */ = {
 			isa = PBXGroup;
 			children = (
+				D555D3D716778C2800C58813 /* InfiniteGallery.h */,
+				D555D3D816778C2800C58813 /* InfiniteGallery.m */,
 				DBA622591668F76D009FA5DF /* Categories */,
 				DBA6225B1668F789009FA5DF /* CustomUIElements.h */,
 				DBA6224F1668F442009FA5DF /* WMButton.h */,
@@ -1540,6 +1552,10 @@
 				D5F229F7167B317C00EDFA5B /* details-expand-map.png in Resources */,
 				D5F229F8167B317C00EDFA5B /* details-expand-map@2x.png in Resources */,
 				DB4EB519167F29630096CEDE /* WMConfig.plist in Resources */,
+				DB4EB527167F4A810096CEDE /* search_background.png in Resources */,
+				DB4EB528167F4A810096CEDE /* search_background@2x.png in Resources */,
+				DB4EB529167F4A810096CEDE /* search_searchbar.png in Resources */,
+				DB4EB52A167F4A810096CEDE /* search_searchbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

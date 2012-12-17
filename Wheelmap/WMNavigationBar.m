@@ -154,13 +154,12 @@
         self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         
         // search bar
-        searchBarContainer = [[UIView alloc] initWithFrame:self.bounds];
-        searchBarContainer.backgroundColor = UIColorFromRGB(0x304152);
-        searchBarContainer.hidden = YES;
+        searchBarContainer = [[UIImageView alloc] initWithFrame:self.bounds];
+        searchBarContainer.userInteractionEnabled = YES;
+        searchBarContainer.image = [UIImage imageNamed:@"search_background.png"];
+        searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
         [self addSubview:searchBarContainer];
-        
-        // search bar cancel button
-        
+    
         // search cancel button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
@@ -181,6 +180,20 @@
         [searchBarCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
         [searchBarCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
         [searchBarContainer addSubview:searchBarCancelButton];
+        
+        // search text field
+        searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, searchBarCancelButton.frame.origin.x - 5 - 5, 40)];
+        searchBarTextFieldBg.image = [[UIImage imageNamed:@"search_searchbar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+        [searchBarContainer addSubview:searchBarTextFieldBg];
+        searchBarTextFieldBg.userInteractionEnabled = YES;
+        
+        searchBarTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, searchBarTextFieldBg.frame.size.width-10, 30)];
+        searchBarTextField.placeholder = NSLocalizedString(@"Search keyword", nil);
+        searchBarTextField.delegate = self;
+        [searchBarTextFieldBg addSubview:searchBarTextField];
+        
+        
+        
 
         
         
@@ -231,6 +244,11 @@
         [self.delegate pressedContributeButton:self];
     }
     
+}
+
+-(void)pressedSearchCancelButton:(WMButton*)sender
+{
+    [self hideSearchBar];
 }
 
 #pragma mark - Bar Style Changes
@@ -363,53 +381,75 @@
     
 }
 
--(void)showNavigationBar
+-(void)showSearchBar
 {
-    if (isVisible)
+    if (isSearchBarVisible)
         return;
     
-    [self toggleNavigationBar];
+    [self toggleSearchBar];
 }
 
--(void)hideNavigationBar
+-(void)hideSearchBar
 {
-    if (!isVisible)
+    if (!isSearchBarVisible)
         return;
     
-    [self toggleNavigationBar];
+    [self toggleSearchBar];
     
 }
--(void)toggleNavigationBar
+-(void)toggleSearchBar
 {
-    if (isVisible) {
+    if (isSearchBarVisible) {
+        [searchBarTextField resignFirstResponder];
         [UIView animateWithDuration:0.3
                               delay:0.0
                             options:UIViewAnimationCurveEaseOut
                          animations:^(void)
          {
-             self.transform = CGAffineTransformMakeTranslation(0, -55);
+             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
+             titleLabel.alpha = 1.0;
          }
                          completion:^(BOOL finished)
          {
-             isVisible = NO;
+             isSearchBarVisible = NO;
+             
              
          }
          ];
     } else {
+        [searchBarTextField becomeFirstResponder];
         [UIView animateWithDuration:0.3
                               delay:0.0
                             options:UIViewAnimationCurveEaseIn
                          animations:^(void)
          {
-             self.transform = CGAffineTransformMakeTranslation(0, 0);
+             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, 0);
+             titleLabel.alpha = 0.2;
          }
                          completion:^(BOOL finished)
          {
-             isVisible = YES;
+             isSearchBarVisible = YES;
+             
              
          }
          ];
     }
+}
+
+#pragma mark - UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self hideSearchBar];
+    [searchBarTextField resignFirstResponder];
+    
+    if (textField.text && textField.text.length > 0) {
+        if ([self.delegate respondsToSelector:@selector(searchStringIsGiven:)]) {
+            [self.delegate searchStringIsGiven:textField.text];
+        }
+    }
+    
+    
+    return YES;
 }
 
 
