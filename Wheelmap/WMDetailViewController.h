@@ -56,7 +56,7 @@
 @property (nonatomic, strong) UIScrollView *imageScrollView;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) NSMutableArray *imageViewsInScrollView;
-@property (nonatomic, strong) NSMutableArray *imageURLArray;
+@property (nonatomic, strong) NSArray *imageURLArray;
 @property (nonatomic, assign) int start;
 @property (nonatomic, assign) int gab;
 // ADDITIONALINFOVIEW

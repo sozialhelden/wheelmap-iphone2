@@ -29,6 +29,8 @@
     WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
     WMCategoryFilterPopoverView* categoryFilterPopover;
     
+    UIView* loadingWheelContainer;  // this view will show loading whell on the center and cover child view controllers so that we avoid interactions interuptting data loading
+    UIActivityIndicatorView* loadingWheel;
 }
 
 #pragma mark - Lifecycle
@@ -65,6 +67,18 @@
     for (Category* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
+    
+    
+    loadingWheelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
+    loadingWheelContainer.backgroundColor = [UIColor clearColor];
+    loadingWheel = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    loadingWheel.backgroundColor = [UIColor blackColor];
+    loadingWheel.layer.cornerRadius = 5.0;
+    loadingWheel.layer.masksToBounds = YES;
+    loadingWheel.center = loadingWheelContainer.center;
+    loadingWheelContainer.hidden = YES;
+    [loadingWheelContainer addSubview:loadingWheel];
+    [self.view addSubview:loadingWheelContainer];
     
     // set custom nagivation and tool bars
     self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, 50);
@@ -114,6 +128,8 @@
 
 - (void) dataManager:(WMDataManager *)dataManager didReceiveNodes:(NSArray *)nodesParam
 {
+    [self hideLoadingWheel];
+    
     nodes = nodesParam;
     
     [self refreshNodeList];
@@ -128,6 +144,10 @@
 
 -(void)dataManager:(WMDataManager *)dataManager fetchNodesFailedWithError:(NSError *)error
 {
+    [self hideLoadingWheel];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alert show];
+    
     NSLog(@"error %@", error.localizedDescription);
     [self refreshNodeList];
 }
@@ -180,22 +200,28 @@
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord
 {
+    [self showLoadingWheel];
     [dataManager fetchNodesNear:coord];
     
 }
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
+    // we do not show here the loading wheel since this methods is always called by map view controller, and the vc has its own loading wheel,
+    // which allows user interaction while loading nodes.
+   // [self showLoadingWheel];
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
     southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
     northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
     
     [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast];
+    
 }
 
 -(void)updateNodesWithQuery:(NSString*)query
 {
+    [self showLoadingWheel];
     [dataManager fetchNodesWithQuery:query];
     
 }
@@ -339,6 +365,7 @@
 
 -(NSArray*)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    
     NSArray* lastViewControllers = [super popToViewController:viewController animated:animated];
     [self changeScreenStatusFor:[self.viewControllers lastObject]];
     
@@ -353,6 +380,9 @@
 
 -(void)changeScreenStatusFor:(UIViewController*)vc
 {
+    // screen transition. we 
+    [self hideLoadingWheel];
+    
     // if the current navigation stack size is 2,then we always show DashboardButton on the left
     WMNavigationBarLeftButtonStyle leftButtonStyle;
     WMNavigationBarRightButtonStyle rightButtonStyle;
@@ -641,6 +671,19 @@
     for (NSNumber* key in [self.categoryFilterStatus allKeys]) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
     }
+}
+
+#pragma mark - Loading Wheel Management
+- (void) showLoadingWheel
+{
+    loadingWheelContainer.hidden = NO;
+    [loadingWheel startAnimating];
+}
+
+- (void) hideLoadingWheel
+{
+    loadingWheelContainer.hidden = YES;
+    [loadingWheel stopAnimating];
 }
 @end
 

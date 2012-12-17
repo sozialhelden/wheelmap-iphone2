@@ -32,4 +32,11 @@
                        success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock
               startImmediately:(BOOL)startImmediately;
 
+- (NSOperation *) uploadImage:(UIImage *)image
+                       nodeID:(NSNumber *)nodeID
+                       apiKey:(NSString *)apiKey
+                        error:(void (^)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id))errorBlock
+                      success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, id))successBlock
+             startImmediately:(BOOL)startImmediately;
+
 @end

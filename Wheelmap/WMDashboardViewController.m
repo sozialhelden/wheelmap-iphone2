@@ -189,14 +189,13 @@
     if (textField.text == nil || textField.text.length == 0)
         return YES;
     
-    WMNavigationControllerBase* dataSource = (WMNavigationControllerBase*)self.navigationController;
-    [dataSource updateNodesWithQuery:textField.text];
-    
     WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     vc.useCase = kWMNodeListViewControllerUseCaseSearch;
     
     [self.navigationController pushViewController:vc animated:YES];
     
+    WMNavigationControllerBase* dataSource = (WMNavigationControllerBase*)self.navigationController;
+    [dataSource updateNodesWithQuery:textField.text];
     
     return YES;
 }

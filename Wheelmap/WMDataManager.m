@@ -661,41 +661,51 @@ static BOOL assetDownloadInProgress;
     }
 }
 
-#pragma mark - Uplaod an image
-- (void) uploadImage:(UIImage*)image forNode:(Node*)node
+#pragma mark - Fetching Photo URLs of a Node
+- (void) fetchPhotoURLsOfNode:(Node*)node
 {
-    // get path where the image file should be saved
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *rootPath = [paths objectAtIndex:0];
-    NSString* destinationPath = [rootPath stringByAppendingPathComponent:@"temp_image.jpg"];
-    
-    NSData* data = UIImageJPEGRepresentation(image, 1.0);
-    [data writeToFile:destinationPath atomically:YES];
-    
-    NSLog(@"[WMDataManager] post an image for node %@", node);
-    NSString* resource = [NSString stringWithFormat:@"nodes/%@/photos", node.id];
-    
-    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:destinationPath, @"photo", nil];
-    [[WMWheelmapAPI sharedInstance] requestResource:resource
+    [[WMWheelmapAPI sharedInstance] requestResource:[NSString stringWithFormat:@"nodes/%@/photos", node.id]
                                              apiKey:[self apiKey]
-                                         parameters:parameters
+                                         parameters:nil
                                                eTag:nil
-                                               data:data
-                                             method:@"POST"
+                                               data:nil
+                                             method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPostingImageWithError:)]) {
-                                                      [self.delegate dataManager:self failedPostingImageWithError:error];
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedFetchingPhotoURLs:)]) {
+                                                      [self.delegate dataManager:self failedFetchingPhotoURLs:error];
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPostingImageWithMsg:)])
-                                                    [self.delegate dataManager:self didFinishPostingImageWithMsg:JSON[@"message"]];
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotoURLs:)]) {
+                                                    [self.delegate dataManager:self didReceivePhotoURLs:JSON[@"photos"]];
+                                                }
                                             }
                                    startImmediately:YES
      ];
+
+}
+
+#pragma mark - Uplaod an image
+- (void) uploadImage:(UIImage*)image forNode:(Node*)node
+{
     
-    
-    
+    [[WMWheelmapAPI sharedInstance] uploadImage:image
+                                         nodeID:node.id
+                                         apiKey:[self apiKey]
+                                          error:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError *error, id JSON) {
+                                              if ([self.delegate respondsToSelector:@selector(dataManager:failedPostingImageWithError:)]) {
+                                                  [self.delegate dataManager:self failedPostingImageWithError:error];
+                                              }
+                                        }
+                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                            if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPostingImageWithMsg:)])
+                                                [self.delegate dataManager:self didFinishPostingImageWithMsg:JSON[@"message"]];
+
+        
+                                        }
+                               startImmediately:YES
+    ];
+  
 }
 
 

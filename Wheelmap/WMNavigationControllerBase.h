@@ -40,4 +40,7 @@ WMCategoryFilterPopoverViewDelegate>
 -(void)clearWheelChairFilterStatus;
 -(void)clearCategoryFilterStatus;
 
+-(void)showLoadingWheel;
+-(void)hideLoadingWheel;
+
 @end

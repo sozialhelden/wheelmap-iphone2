@@ -43,6 +43,11 @@ typedef enum {
     
     BOOL isVisible;
     
+    UIView* searchBarContainer;
+    UIImageView* searchBarTextFieldBg;
+    UITextField* searchBarTextField;
+    WMButton* searchBarCancelButton;
+    
 }
 
 @property (nonatomic) WMNavigationBarLeftButtonStyle leftButtonStyle;

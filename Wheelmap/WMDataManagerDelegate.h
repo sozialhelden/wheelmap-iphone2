@@ -36,4 +36,7 @@
 
 - (void) dataManager:(WMDataManager *)dataManager didFinishPostingImageWithMsg:(NSString*)msg;
 - (void) dataManager:(WMDataManager *)dataManager failedPostingImageWithError:(NSError *)error;
+
+- (void) dataManager:(WMDataManager *)dataManager didReceivePhotoURLs:(NSArray*)photoURLs;
+- (void) dataManager:(WMDataManager *)dataManager failedFetchingPhotoURLs:(NSError*)error;
 @end

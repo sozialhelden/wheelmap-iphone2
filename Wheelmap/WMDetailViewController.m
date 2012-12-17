@@ -36,8 +36,7 @@
 
 @implementation WMDetailViewController
 
-
-
+/*
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -56,6 +55,7 @@
     }
     return self;
 }
+*/
 
 
 #pragma mark - Life Cycle
@@ -67,6 +67,9 @@
     // data manager
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
+    
+    // request photo urls
+    [dataManager fetchPhotoURLsOfNode:self.node];
 
     self.gabIfStatusUnknown = 0;
 
@@ -786,6 +789,21 @@
     [alert show];
     
     NSLog(@"[LOG] photo upload failed! %@", error);
+}
+
+- (void)dataManager:(WMDataManager *)dataManager didReceivePhotoURLs:(NSArray *)photoURLs
+{
+    NSLog(@"[LOG] received photo urls: %@", photoURLs);
+    self.imageURLArray = photoURLs;
+}
+
+- (void)dataManager:(WMDataManager *)dataManager failedFetchingPhotoURLs:(NSError *)error
+{
+    NSLog(@"[LOG] fetching photo urls failed with error %@", error);
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchingPhotoURLFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+    
+    [alert show];
 }
 
 #pragma mark - Other Button Handlers

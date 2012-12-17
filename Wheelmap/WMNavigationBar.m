@@ -153,6 +153,37 @@
         self.leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
         self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         
+        // search bar
+        searchBarContainer = [[UIView alloc] initWithFrame:self.bounds];
+        searchBarContainer.backgroundColor = UIColorFromRGB(0x304152);
+        searchBarContainer.hidden = YES;
+        [self addSubview:searchBarContainer];
+        
+        // search bar cancel button
+        
+        // search cancel button
+        normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        normalBtnLabel.fontSize = 13.0;
+        normalBtnLabel.text = NSLocalizedString(@"NavBarCancelButton", nil);
+        normalBtnLabel.textAlignment = UITextAlignmentCenter;
+        normalBtnLabel.textColor = [UIColor whiteColor];
+        expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
+        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
+        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 40);
+        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
+        [normalBtnImg addSubview:normalBtnLabel];
+        searchBarCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        searchBarCancelButton.frame = CGRectMake(self.frame.size.width-5-normalBtnImg.frame.size.width, 5, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        searchBarCancelButton.backgroundColor = [UIColor clearColor];
+        [searchBarCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
+        [searchBarCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+        [searchBarContainer addSubview:searchBarCancelButton];
+
+        
+        
     }
     
     return self;
