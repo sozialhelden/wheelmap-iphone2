@@ -522,13 +522,13 @@
         vc.useCase = kWMNodeListViewControllerUseCaseSearch;
         vc.navigationBarTitle = query;
         self.customNavigationBar.title = query;
-        [self changeScreenStatusFor:vc];
+      
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* vc = (WMMapViewController*)vc;
         vc.useCase = kWMNodeListViewControllerUseCaseSearch;
         vc.navigationBarTitle = query;
         self.customNavigationBar.title = query;
-        [self changeScreenStatusFor:vc];
+       
     }
     
     
