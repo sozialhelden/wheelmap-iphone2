@@ -45,6 +45,8 @@
 
 - (void) uploadImage:(UIImage*)image forNode:(Node*)node;
 
+- (void) totalNodeCount;
+
 extern NSString *WMDataManagerErrorDomain;
 
 enum {

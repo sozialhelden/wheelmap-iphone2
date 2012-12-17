@@ -799,6 +799,8 @@
         }
     }
     
+    //[dataManager updateNode:self.node withPhotoArray:photoURLs];
+    
     [self createThumbnails];
 
 }

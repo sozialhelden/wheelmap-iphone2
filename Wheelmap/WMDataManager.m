@@ -717,34 +717,49 @@ static BOOL assetDownloadInProgress;
     NSArray* keys = [[[node entity] attributesByName] allKeys];
     NSMutableDictionary* nodeDict = [NSMutableDictionary dictionaryWithDictionary:[node dictionaryWithValuesForKeys:keys]];
     [nodeDict setValue:[NSSet setWithArray:photoArray] forKey:@"photos"];
-    /*
-    for (NSDictionary* photoDict in photoArray) {
-        Photo* photo = (Photo*)[NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-        [photo setValue:photoDict[@"id"]forKey:@"id"];
-        [photo setValue:[NSDate dateWithTimeIntervalSince1970:[photoDict[@"taken_on"] doubleValue]] forKey:@"taken_on"];
-        [photo setValue:node forKey:@"node"];
-        for (NSDictionary* imageDict in [photoDict objectForKey:@"images"]) {
-            Image* image = (Image*)[NSEntityDescription insertNewObjectForEntityForName:@"Image" inManagedObjectContext:self.managedObjectContext];
-            
-            [image setValue:imageDict[@"type"] forKey:@"type"];
-            [image setValue:imageDict[@"height"] forKey:@"height"];
-            [image setValue:imageDict[@"width"] forKey:@"width"];
-            [image setValue:imageDict[@"url"] forKey:@"url"];
-            [image setValue:photo forKey:@"photo"];
-            [photo addImagesObject:image];
-        }
-        [node addPhotosObject:photo];
-    }
-     */
-    Node* output = (Node*)[self createOrUpdateManagedObjectWithEntityName:@"Node" objectData:nodeDict];
+    
+    [self parseDataObject:nodeDict entityName:@"Node" error:nil];
 
-    return output;
+    NSInteger nodeID = [node.id integerValue];
+    Node* outputNode = (Node*)[self fetchObjectOfEntity:@"Node" withId:nodeID];
+    return outputNode;
     
 }
 
 - (Node*) createNode
 {
-    return nil;
+    NSDictionary* nodeDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-1], @"id", @"", @"name", @"unknown", @"wheelchair",[NSNumber numberWithDouble:0.00], @"lat", [NSNumber numberWithDouble:0.00], @"lon", nil];
+    NSError* error = nil;
+    
+    NSArray* parsedObjects = [self parseDataObject:[NSArray arrayWithObject:nodeDict] entityName:@"Node" error:&error];
+    
+    return (Node*)[parsedObjects lastObject];
+}
+
+- (void)totalNodeCount
+{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"per_page", nil];
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
+                                             apiKey:[self apiKey]
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:nil
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedGettingTotalNodeCountWithError:)]) {
+                                                      [self.delegate dataManager:self failedGettingTotalNodeCountWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                NSDictionary* meta  = JSON[@"meta"];
+                                                if ([self.delegate respondsToSelector:@selector(dataManagerDidFinishGettingTotalNodeCount:)]) {
+                                                    [self.delegate dataManagerDidFinishGettingTotalNodeCount:meta[@"item_count_total"]];
+                                                }
+                                            }
+                                   startImmediately:YES
+     ];
+
 }
 
 #pragma mark - Expose Data
@@ -892,8 +907,8 @@ static BOOL assetDownloadInProgress;
                 [self logValidationError:error];
             }
             
-            //return nil;
-            return object;
+            return nil;
+            //return object;
         }
          
     }

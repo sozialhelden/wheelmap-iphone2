@@ -39,4 +39,7 @@
 
 - (void) dataManager:(WMDataManager *)dataManager didReceivePhotoURLs:(NSArray*)photoURLs;
 - (void) dataManager:(WMDataManager *)dataManager failedFetchingPhotoURLs:(NSError*)error;
+
+- (void) dataManagerDidFinishGettingTotalNodeCount:(NSNumber*)count;
+- (void) dataManager:(WMDataManager *)dataManager failedGettingTotalNodeCountWithError:(NSError*)error;
 @end

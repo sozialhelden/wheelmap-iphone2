@@ -8,9 +8,12 @@
 
 #import "WMSetMarkerViewController.h"
 #import "WMMapAnnotation.h"
+#import "WMNavigationControllerBase.h"
 
 @interface WMSetMarkerViewController ()
-
+{
+    CLLocationManager* locationManager;
+}
 @end
 
 @implementation WMSetMarkerViewController
@@ -31,24 +34,21 @@
     
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.mapView.delegate = self;
+    self.mapView.showsUserLocation = YES;
+    
+    
    
-    /*
-    WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:self.node];
-    [self.mapView addAnnotation:annotation];
-    // location to zoom in
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = self.node.lat.doubleValue;  // increase to move upwards
-    zoomLocation.longitude = self.node.lon.doubleValue; // increase to move to the right
-    // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 100, 320);
-    // display the region
-    [self.mapView setRegion:viewRegion animated:YES];
-     */
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = 50.0f;
+	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    [locationManager startUpdatingLocation];
     
     self.title = NSLocalizedString(@"SetMarker", nil);
     self.navigationBarTitle = self.title;
@@ -65,26 +65,15 @@
     [super viewDidUnload];
 }
 
-#pragma mark - Map View Delegate
-
-- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+#pragma mark - CLLocationManager Delegates
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    
-    if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
-        Node *node = [(WMMapAnnotation*)annotation node];
-        NSString *reuseId = @"";
-        //[node.wheelchair stringByAppendingString:node.node_type.identifier];
-        MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
-        if (!annotationView) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-            annotationView.canShowCallout = YES;
-            annotationView.centerOffset = CGPointMake(6, -14);
-            annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        }
-        annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-        return annotationView;
-    }
-    return nil;
+    CLLocation* newLocation = [locations objectAtIndex:0];
+    // region to display
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
+    // display the region
+    [self.mapView setRegion:viewRegion animated:NO];
+
 }
 
 @end

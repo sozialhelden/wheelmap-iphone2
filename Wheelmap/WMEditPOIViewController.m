@@ -86,9 +86,8 @@
         [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButtonDisabled", @"") forState:UIControlStateNormal];
         self.setMarkerButton.enabled = NO;
     } else {
-        NSLog(@"XXXXXXXX neuen Node erstellen mit unknown status");
         self.node = [self.dataManager createNode];
-        self.node.wheelchair = @"unknown";
+        NSLog(@"XXXXXXXX neuen Node erstellen mit unknown status %@", self.node);
         [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
         [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -211,6 +210,9 @@
     } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
+    } else {
+        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
+        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
     }
     
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
@@ -322,9 +324,15 @@
     self.node.city = self.cityTextField.text;
     self.node.website = self.websiteTextField.text;
     self.node.phone = self.phoneTextField.text;
+    // lat, lon will be set on setMarker Screen
 }
 
 - (void) saveEditedData {
+    if (!self.node.lat || !self.node.lon) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PleaseSetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
     
     [self saveCurrentEntriesToCurrentNode];
     

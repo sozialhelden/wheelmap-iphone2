@@ -490,6 +490,7 @@
     NSLog(@"[NavigationControllerBase] pressed contribute button!");
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
+    vc.node = [dataManager createNode];
     [self pushViewController:vc animated:YES];
 }
 

@@ -11,7 +11,7 @@
 #import "WMDataManager.h"
 #import "WMDataManagerDelegate.h"
 
-@interface WMDashboardViewController : WMViewController <UITextFieldDelegate>
+@interface WMDashboardViewController : WMViewController <UITextFieldDelegate, WMDataManagerDelegate>
 {
     WMDataManager* dataManager;
     WMButton* searchCancelButton;

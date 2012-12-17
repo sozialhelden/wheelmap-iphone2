@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "Node.h"
 
-@interface WMSetMarkerViewController : WMViewController <MKMapViewDelegate>
+@interface WMSetMarkerViewController : WMViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) Node *node;

@@ -13,6 +13,7 @@
 #import "WMCategoryViewController.h"
 #import "WMLoginViewController.h"
 #import "WMLogoutViewController.h"
+#import "WMDataManager.h"
 
 
 @interface WMDashboardViewController ()
@@ -40,6 +41,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:39/255.0f green:54/255.0f blue:69/255.0f alpha:1.0f];
     
     dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
     
     self.nearbyButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeNearby];
     [self.nearbyButton addTarget:self action:@selector(pressedNodeListButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,7 +63,9 @@
     [self.view addSubview:self.helpButton];
 
     self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
-    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"300,000", NSLocalizedString(@"Places", nil)];
+    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"", NSLocalizedString(@"Places", nil)];
+    self.numberOfPlacesLabel.alpha = 0.0;
+    [dataManager totalNodeCount];
     
     // search cancel button
     UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
@@ -245,5 +249,33 @@
          
      }];
     
+}
+
+#pragma mark - WMDataManager Delegate
+-(void)dataManagerDidFinishGettingTotalNodeCount:(NSNumber *)count
+{
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSString *formattedCount = [formatter stringFromNumber:count];
+    
+    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", formattedCount, NSLocalizedString(@"Places", nil)];
+    [UIView animateWithDuration:0.5
+                          delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^(void)
+     {
+         self.numberOfPlacesLabel.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     }];
+    
+}
+
+-(void)dataManager:(WMDataManager *)dataManager failedGettingTotalNodeCountWithError:(NSError *)error
+{
+    NSLog(@"[Error] getting total count failed with error %@", error);
 }
 @end
