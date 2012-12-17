@@ -7,9 +7,11 @@
 //
 
 #import "WMShareSocialViewController.h"
-
+#import "WMSharingManager.h"
 @interface WMShareSocialViewController ()
-
+{
+    WMSharingManager* sharingManager;
+}
 @end
 
 @implementation WMShareSocialViewController
@@ -28,6 +30,8 @@
 {
     [super viewDidLoad];
     
+    // sharing manager
+    sharingManager = [[WMSharingManager alloc] initWithBaseViewController:self];
     
     
 	// Do any additional setup after loading the view.
@@ -56,19 +60,23 @@
 }
 
 - (IBAction)twitterButtonPressed:(id)sender {
-        NSLog(@"Twitter Button pressed");
+    NSLog(@"Twitter Button pressed");
+    [sharingManager tweet:self.shareLocationLabel.text];
 }
 
 - (IBAction)facebookButtonPressed:(id)sender {
-        NSLog(@"Facebook Button pressed");
+    NSLog(@"Facebook Button pressed");
+    [sharingManager facebookPosting:self.shareLocationLabel.text];
 }
 
 - (IBAction)smsButtonPressed:(id)sender {
-        NSLog(@"SMS Button pressed");
+    NSLog(@"SMS Button pressed");
+    [sharingManager sendSMSwithBody:self.shareLocationLabel.text];
 }
 
 - (IBAction)emailButtonPressed:(id)sender {
-        NSLog(@"EMail Button pressed");
+    NSLog(@"EMail Button pressed");
+    [sharingManager sendMailWithSubject:@"" andBody:self.shareLocationLabel.text];
 }
 
 - (IBAction)closeButtonPressed:(id)sender {
