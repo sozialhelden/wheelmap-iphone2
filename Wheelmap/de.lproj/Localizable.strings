@@ -53,6 +53,7 @@
 "EditPOIViewWebsiteLabel" = "Webseite";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Markierung setzen";
+"EditPOIViewSetMarkerButtonDisabled" = "unveränderbar";
 
 "CommentViewLabel" = "Hier findest du weitere Infos zur Rollstuhlgerechtigkeit des Ortes";
 "ShareLocationLabel" = "Ich habe folgenden Ort auf Wheelmap.org gefunden:";

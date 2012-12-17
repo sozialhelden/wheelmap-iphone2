@@ -29,6 +29,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.dataManager = [[WMDataManager alloc] init];
+        self.dataManager.delegate = self;
+
 
     }
     return self;
@@ -66,7 +69,6 @@
     
         
     // WHEEL ACCESS
-    [self setWheelAccessButton];
     self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -79,10 +81,20 @@
     self.addressLabel.text = NSLocalizedString(@"EditPOIViewAddressLabel", @"");
     self.websiteLabel.text = NSLocalizedString(@"EditPOIViewWebsiteLabel", @"");
     self.phoneLabel.text = NSLocalizedString(@"EditPOIViewPhoneLabel", @"");
-    [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
-    [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
     
-  
+    if (self.editView) {
+        [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButtonDisabled", @"") forState:UIControlStateNormal];
+        self.setMarkerButton.enabled = NO;
+    } else {
+        NSLog(@"XXXXXXXX neuen Node erstellen mit unknown status");
+        self.node = [self.dataManager createNode];
+        self.node.wheelchair = @"unknown";
+        [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
+        [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    [self setWheelAccessButton];
+    
     
     [self styleInputView:self.nameInputView];
     [self styleInputView:self.nodeTypeInputView];
@@ -187,7 +199,6 @@
 
 - (void)setWheelAccessButton {
     
-    
     if ([self.node.wheelchair isEqualToString:@"yes"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
@@ -223,8 +234,16 @@
 
 - (void)categoryChosen:(Category *)category {
     self.currentCategory = category;
-    [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
-
+    BOOL nodeTypeStillValid = NO;
+    for (NodeType *nt in self.currentCategory.nodeType) {
+        if ([nt isEqual:self.currentNodeType]) {
+            nodeTypeStillValid = YES;
+        }
+    }
+    if (!nodeTypeStillValid) {
+        self.currentNodeType = nil;
+        
+    }
 }
 
 - (void)nodeTypeChosen:(NodeType*)nodeType {
@@ -309,9 +328,7 @@
     
     [self saveCurrentEntriesToCurrentNode];
     
-    WMDataManager *dataManager = [[WMDataManager alloc] init];
-    dataManager.delegate = self;
-    [dataManager putNode:self.node];
+    [self.dataManager putNode:self.node];
     
     progressWheel.hidden = NO;
     [progressWheel startAnimating];
@@ -390,13 +407,10 @@
 
 - (void)keyboardWillHide:(NSNotification *)n {
     
-     self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height + 218);
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    // The kKeyboardAnimationDuration I am using is 0.3
     [UIView setAnimationDuration:0.2];
- //   [self.view setFrame:viewFrame];
-    [UIView commitAnimations];
+    self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height + 216);
     
     self.keyboardIsShown = NO;
 }
@@ -407,12 +421,10 @@
         return;
     }
     
-    self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height - 218);
-
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.2];
-    [UIView commitAnimations];
+    self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height - 216);
     
     self.keyboardIsShown = YES;
 }

@@ -118,7 +118,7 @@
     [data writeToFile:destinationPath atomically:YES];
     
     NSMutableURLRequest* request = [self multipartFormRequestWithMethod:@"POST" path:[NSString stringWithFormat:@"nodes/%@/photos", nodeID] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:data name:@"uploading_photo" fileName:@"upload_image.jpg" mimeType:@"image/jpg"];
+        [formData appendPartWithFileData:data name:@"photo" fileName:@"upload_image.jpg" mimeType:@"image/jpg"];
     }];
     
     if (apiKey) [request setValue:apiKey forHTTPHeaderField:@"X-API-KEY"];

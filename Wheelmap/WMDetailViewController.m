@@ -653,7 +653,7 @@
                              } else {
                                  self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
                              }
-                             self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height-MAPOPENADDITION);
+                             self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height);
                              self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height-MAPOPENADDITION);
                          }
                          completion:^(BOOL finished) {
@@ -810,18 +810,18 @@
 
 - (void) shareLocationButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
+    [self presentModalViewController:vc animated:YES];
     vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
     NSURL *url = [NSURL URLWithString: urlString];
     vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
- //   [self.navigationController pushViewController:vc animated:YES];
-    [self presentModalViewController:vc animated:YES];
+    
 }
 
 - (void) askFriendsForStatusButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentModalViewController:vc animated:YES];
     NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -847,6 +847,7 @@
 - (void) pushEditViewController {
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.node = self.node;
+    vc.editView = YES;
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }

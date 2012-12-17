@@ -15,7 +15,7 @@
     UIActivityIndicatorView* progressWheel;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@property (nonatomic, strong) WMDataManager *dataManager;
 
 //NAME
 @property (weak, nonatomic) IBOutlet UIView *nameInputView;
@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *positionInputView;
 @property (weak, nonatomic) IBOutlet UILabel *position;
 @property (weak, nonatomic) IBOutlet UIButton *setMarkerButton;
+@property (assign) BOOL editView;
 //WHEELACCESSBUTTON
 @property (weak, nonatomic) IBOutlet UIButton *wheelAccessButton;
 //INFO

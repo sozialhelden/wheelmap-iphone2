@@ -36,6 +36,7 @@
     [self.facebookButton setTitle:NSLocalizedString(@"facebook", @"") forState:UIControlStateNormal];
     [self.emailButton setTitle:NSLocalizedString(@"email", @"") forState:UIControlStateNormal];
     [self.smsButton setTitle:NSLocalizedString(@"sms", @"") forState:UIControlStateNormal];
+    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX %@", self.shareLocationLabel.text);
 
 
 }
@@ -69,6 +70,11 @@
 - (IBAction)emailButtonPressed:(id)sender {
         NSLog(@"EMail Button pressed");
 }
+
+- (IBAction)closeButtonPressed:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (void)viewDidUnload {
     [self setScrollView:nil];
     [self setShareLocationLabel:nil];

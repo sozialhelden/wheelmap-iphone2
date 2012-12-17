@@ -21,6 +21,7 @@
 - (IBAction)facebookButtonPressed:(id)sender;
 - (IBAction)smsButtonPressed:(id)sender;
 - (IBAction)emailButtonPressed:(id)sender;
+- (IBAction)closeButtonPressed:(id)sender;
 
 
 @end
