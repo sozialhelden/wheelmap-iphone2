@@ -40,8 +40,6 @@
     [self.facebookButton setTitle:NSLocalizedString(@"facebook", @"") forState:UIControlStateNormal];
     [self.emailButton setTitle:NSLocalizedString(@"email", @"") forState:UIControlStateNormal];
     [self.smsButton setTitle:NSLocalizedString(@"sms", @"") forState:UIControlStateNormal];
-    NSLog(@"XXXXXXXX Hier bin ich XXXXXXXX %@", self.shareLocationLabel.text);
-
 
 }
 

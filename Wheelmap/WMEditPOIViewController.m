@@ -29,8 +29,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.dataManager = [[WMDataManager alloc] init];
-        self.dataManager.delegate = self;
 
 
     }
@@ -42,7 +40,9 @@
     [super viewDidLoad];
     
     
-    
+    self.dataManager = [[WMDataManager alloc] init];
+    self.dataManager.delegate = self;
+
 	// Do any additional setup after loading the view.
     self.currentCategory = self.node.category;
     self.currentNodeType = self.node.node_type;
@@ -87,7 +87,6 @@
         self.setMarkerButton.enabled = NO;
     } else {
         self.node = [self.dataManager createNode];
-        NSLog(@"XXXXXXXX neuen Node erstellen mit unknown status %@", self.node);
         [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
         [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -253,6 +252,10 @@
     [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
 }
 
+- (void)markerSet:(CLLocationCoordinate2D)coord {
+    self.currentCoordinate = coord;
+}
+
 - (IBAction)showAccessOptions:(id)sender {
     [self buttonPressed];
     
@@ -307,6 +310,8 @@
     
     WMSetMarkerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMSetMarkerViewController"];
     vc.node = self.node;
+    vc.delegate = self;
+    vc.currentCoordinate = self.currentCoordinate;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -324,7 +329,10 @@
     self.node.city = self.cityTextField.text;
     self.node.website = self.websiteTextField.text;
     self.node.phone = self.phoneTextField.text;
-    // lat, lon will be set on setMarker Screen
+    if (!self.editView) {
+        self.node.lat = [NSNumber numberWithDouble:self.currentCoordinate.latitude];
+        self.node.lon = [NSNumber numberWithDouble:self.currentCoordinate.longitude];
+    }
 }
 
 - (void) saveEditedData {

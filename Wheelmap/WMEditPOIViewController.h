@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "Node.h"
 #import "WMDataManagerDelegate.h"
 
@@ -62,7 +63,7 @@
 @property (nonatomic, strong) NSString *wheelchairAccess;
 @property (nonatomic, strong) Category *currentCategory;
 @property (nonatomic, strong) NodeType *currentNodeType;
-
+@property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
 
 
 - (IBAction)setNodeType:(id)sender;
@@ -70,6 +71,7 @@
 - (IBAction)showAccessOptions:(id)sender;
 - (void)categoryChosen:(Category*)category;
 - (void)nodeTypeChosen:(NodeType*)nodeType;
+- (void)markerSet:(CLLocationCoordinate2D)coord;
 - (void) saveEditedData;
 
 @end

@@ -9,6 +9,7 @@
 #import "WMSetMarkerViewController.h"
 #import "WMMapAnnotation.h"
 #import "WMNavigationControllerBase.h"
+#import "WMEditPOIViewController.h"
 
 @interface WMSetMarkerViewController ()
 {
@@ -36,8 +37,13 @@
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
+    [self.mapView addGestureRecognizer:tapRecognizer];
     
-   
+    self.currentAnnotation = [WMMapAnnotation new];
+    [self. mapView addAnnotation:self.currentAnnotation];
+    self.currentAnnotation.coordinate = self.currentCoordinate;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,6 +58,7 @@
     
     self.title = NSLocalizedString(@"SetMarker", nil);
     self.navigationBarTitle = self.title;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,6 +71,7 @@
     [self setMapView:nil];
     [super viewDidUnload];
 }
+    
 
 #pragma mark - CLLocationManager Delegates
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -74,6 +82,32 @@
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
 
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [touches anyObject];
+    // Get the specific point that was touched
+    CGPoint touchLocation = [touch locationInView:self.view];
+    self.currentCoordinate = [self.mapView convertPoint:touchLocation toCoordinateFromView:self.mapView];
+    self.currentAnnotation.coordinate = self.currentCoordinate;
+    [self.delegate markerSet:self.currentCoordinate];
+}
+
+- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
+        NSString *reuseId = @"";
+        MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+        if (!annotationView) {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+            annotationView.centerOffset = CGPointMake(6, -14);
+        }
+        annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:self.node.wheelchair]];
+        return annotationView;
+   }
+   return nil;
 }
 
 @end

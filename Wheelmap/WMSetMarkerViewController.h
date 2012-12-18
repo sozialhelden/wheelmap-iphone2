@@ -12,7 +12,10 @@
 
 @interface WMSetMarkerViewController : WMViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
+@property (strong, nonatomic) id delegate;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) Node *node;
+@property (nonatomic, strong) MKPointAnnotation *currentAnnotation;
+@property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
 
 @end
