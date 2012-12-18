@@ -54,6 +54,10 @@
     self.cityTextField.delegate = self;
     self.websiteTextField.delegate = self;
     self.phoneTextField.delegate = self;
+    self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewStreet", @"");
+    self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewHousenumber", @"");
+    self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewPostcode", @"");
+    self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewCity", @"");
     
 
     // register for keyboard notifications

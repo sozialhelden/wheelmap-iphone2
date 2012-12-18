@@ -53,6 +53,10 @@
 "EditPOIViewPositionLabel" = "Position";
 "EditPOIViewPhoneLabel" = "Phone";
 "EditPOIViewAddressLabel" = "Address";
+"EditPOIViewStreet" = "street";
+"EditPOIViewHousenumber" = "housenumber";
+"EditPOIViewPostcode" = "postcode";
+"EditPOIViewCity" = "city";
 "EditPOIViewWebsiteLabel" = "Website";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Set Marker";
