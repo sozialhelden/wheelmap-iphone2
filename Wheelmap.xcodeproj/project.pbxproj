@@ -24,6 +24,7 @@
 		034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
 		034D38EC167738C10071EC05 /* Curl_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DC167738C10071EC05 /* Curl_screen.png */; };
 		034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DD167738C10071EC05 /* Curl_screen@2x.png */; };
+		037C07761680C8A700685378 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 037C07751680C8A700685378 /* WMConfig.plist */; };
 		03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
 		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		03F30C8C1670F36A00241466 /* buttons_btn-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8A1670F36A00241466 /* buttons_btn-signup.png */; };
@@ -136,7 +137,6 @@
 		D5A102C9166CE9E800558BF7 /* details_btn-additional-info.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A102C7166CE9E800558BF7 /* details_btn-additional-info.png */; };
 		D5A102CA166CE9E800558BF7 /* details_btn-additional-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A102C8166CE9E800558BF7 /* details_btn-additional-info@2x.png */; };
 		D5A102CD166CF27E00558BF7 /* WMCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A102CC166CF27E00558BF7 /* WMCommentViewController.m */; };
-		D5DFD9B816807A9100F29FD3 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5DFD9B716807A9100F29FD3 /* WMConfig.plist */; };
 		D5E0F0DE1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */; };
 		D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */; };
 		D5EE56AD166E4C52008E389D /* textfield_-share.png in Resources */ = {isa = PBXBuildFile; fileRef = D5EE56AB166E4C52008E389D /* textfield_-share.png */; };
@@ -302,6 +302,7 @@
 		034D38DB167738C10071EC05 /* Curl_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_button@2x.png"; sourceTree = "<group>"; };
 		034D38DC167738C10071EC05 /* Curl_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_screen.png; sourceTree = "<group>"; };
 		034D38DD167738C10071EC05 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
+		037C07751680C8A700685378 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
 		03F30BFA1670A1F700241466 /* WMDashboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardButton.m; sourceTree = "<group>"; };
 		03F30C531670B80600241466 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
@@ -465,7 +466,6 @@
 		D5A102C8166CE9E800558BF7 /* details_btn-additional-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_btn-additional-info@2x.png"; sourceTree = "<group>"; };
 		D5A102CB166CF27E00558BF7 /* WMCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCommentViewController.h; sourceTree = "<group>"; };
 		D5A102CC166CF27E00558BF7 /* WMCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCommentViewController.m; sourceTree = "<group>"; };
-		D5DFD9B716807A9100F29FD3 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = ../../WMConfig.plist; sourceTree = "<group>"; };
 		D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Berlin, Friedrichstr.gpx"; sourceTree = "<group>"; };
 		D5EE56A3166E1378008E389D /* WMEditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIViewController.h; sourceTree = "<group>"; };
 		D5EE56A4166E1378008E389D /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
@@ -706,7 +706,7 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				D5DFD9B716807A9100F29FD3 /* WMConfig.plist */,
+				037C07751680C8A700685378 /* WMConfig.plist */,
 				DB18F81E1679DCE700855296 /* Default@2x.png */,
 				DB18F81B1679DCE300855296 /* Default.png */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
@@ -1576,7 +1576,7 @@
 				DB4EB528167F4A810096CEDE /* search_background@2x.png in Resources */,
 				DB4EB529167F4A810096CEDE /* search_searchbar.png in Resources */,
 				DB4EB52A167F4A810096CEDE /* search_searchbar@2x.png in Resources */,
-				D5DFD9B816807A9100F29FD3 /* WMConfig.plist in Resources */,
+				037C07761680C8A700685378 /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
