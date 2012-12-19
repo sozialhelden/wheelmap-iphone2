@@ -99,7 +99,7 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     
-    self.title = NSLocalizedString(@"WheelChair Status", nil);
+    self.title = NSLocalizedString(@"NavBarTitleWheelChairStatus", nil);
     self.navigationBarTitle = self.title;
     
     self.wheelchairAccess = self.node.wheelchair;
@@ -216,7 +216,7 @@
 {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PUT_METHOD_FAILED", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"WhellChairStatusChangeFailed", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     
     NSLog(@"PUT THE NODE WHELLCHAIR STATUS FAILED! %@", error);

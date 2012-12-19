@@ -58,7 +58,7 @@
             {
                 NSLog(@"Posted....");
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                 message:NSLocalizedString(@"FACEBOOK_SUCCESS", nil)
+                                                                 message:NSLocalizedString(@"FacebookSuccess", nil)
                                                                 delegate:nil
                                                        cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                        otherButtonTitles: nil];
@@ -109,7 +109,7 @@
             {
                 NSLog(@"Posted....");
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                 message:NSLocalizedString(@"TWEET_SUCCESS", nil)
+                                                                 message:NSLocalizedString(@"TweetSuccess", nil)
                                                                 delegate:nil
                                                        cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                        otherButtonTitles: nil];
@@ -137,8 +137,8 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
         controller.mailComposeDelegate = self;
-        [controller setSubject:NSLocalizedString(@"MAIL_SUBJECT", nil)];
-        [controller setMessageBody:NSLocalizedString(@"MAIL_BODY", nil) isHTML:NO];
+        [controller setSubject:NSLocalizedString(@"MailSubject", nil)];
+        [controller setMessageBody:NSLocalizedString(@"MailBody", nil) isHTML:NO];
         
         [self.baseVC presentModalViewController:controller animated:YES];
     }
@@ -147,14 +147,14 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     
     if (result == MFMailComposeResultSent) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"MAIL_SEND_SUCCESS", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"MailSendSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
     } else if (result == MFMailComposeResultCancelled) {
         NSLog(@"email was canceled");
     }
     else {
         NSLog(@"email was not sent: %@", error.localizedDescription);
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"MAIL_SEND_FALIED", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"MailSendFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
 
         [alert show];
     }
@@ -180,14 +180,14 @@
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     if (result == MessageComposeResultSent) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SMS_SEND_SUCCESS", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SMSSendSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
     } else if (result == MessageComposeResultCancelled) {
         NSLog(@"SMS was canceled");
     }
     else {
         NSLog(@"SMS was not sent");
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SMS_SEND_FALIED", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SMSSendFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         
         [alert show];
     }

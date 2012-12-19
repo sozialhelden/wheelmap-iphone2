@@ -116,6 +116,7 @@
                         <color key="backgroundColor" red="0.15294118225574493" green="0.21176472306251526" blue="0.27058824896812439" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="jnK-eQ-C2G" id="r0z-Vx-Uiz"/>
                         <outlet property="galleryView" destination="3wu-8E-eSJ" id="6x7-V3-1W7"/>
                     </connections>
                 </viewController>
@@ -609,6 +610,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="Imc-Zs-Irf" id="Xey-lz-w7Z"/>
                         <outlet property="emailButton" destination="l8N-oi-wSA" id="cZd-CO-QiM"/>
                         <outlet property="facebookButton" destination="VhU-hr-EZw" id="Y4z-Xt-Gtr"/>
                         <outlet property="scrollView" destination="gdf-lE-K8G" id="Dcr-Ao-Xah"/>
@@ -740,6 +742,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMInfinitePhotoViewController.h"/>
             <relationships>
                 <relationship kind="action" name="closeButtonPressed:"/>
+                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="galleryView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infiniteGallery" candidateClass="InfiniteGallery"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
@@ -762,6 +765,7 @@
                 <relationship kind="action" name="facebookButtonPressed:"/>
                 <relationship kind="action" name="smsButtonPressed:"/>
                 <relationship kind="action" name="twitterButtonPressed:"/>
+                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="emailButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="facebookButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *imageURLArray;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet InfiniteGallery *infiniteGallery;
+@property (strong, nonatomic) IBOutlet UIButton *closeButton;
 
 @property (assign) int tappedImage;
 

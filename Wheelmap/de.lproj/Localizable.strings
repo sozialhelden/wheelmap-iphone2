@@ -29,7 +29,7 @@
 "WheelchairAccessContentNo" = "Eingang hat höhere oder mehrere Stufen, Räume nicht erreichbar.";
 
 "DetailsViewHeadline" = "Detailansicht";
-"DetailsView4ButtonViewCallLabel" = "Anrufen";
+"DetailsView4ButtonViewShareLabel" = "Teilen";
 "DetailsView4ButtonViewWebsiteLabel" = "Webseite";
 "DetailsView4ButtonViewInfoLabel" = "Hinweis";
 "DetailsView4ButtonViewRouteLabel" = "Route";
@@ -70,7 +70,7 @@
 
 "SearchForPlace" = "Nach Ort Suchen";
 "Places" = "Orte";
-
+"Signed In As" = "Angemeldet als";
 "Sign In" = "Anmelden";
 "TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
 "BottomLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.";
@@ -91,6 +91,31 @@
 "NoPhone" = "Keine Telefonnummer verfügbar";
 
 "BackButton" = "Zurück";
-"NavBarEditButton" = "Bearb.";
-"NavBarSaveButton" = "Speich.";
-"NavBarCancelButton" = "Abb.";
+"NavBarEditButton" = "Bearbeiten";
+"NavBarSaveButton" = "Speichern";
+"NavBarCancelButton" = "Abbrechen";
+
+"NavBarTitleCategory" = "Kategorien";
+"NavBarTitleWheelChairStatus" = "Wheelchair Status";
+"PhotoUuploadSuccess" = "Das Foto is erfolgreich hochgeladen.";
+"PhotoUuploadFailed" = "Das Foto konnte nicht hochgeladen werden. Bitte versuchen Sie es noch einmal.";
+"FetchingPhotoURLFailed" = "Die Fotos von diesem Ort konnte nicht heruntergeladen werden.";
+"WhellChairStatusChangeFailed" = "Rohlstuhlgerechtigkeit konnte nicht aktuallisiert werden. Bitte versuchen Sie es noch einmal.";
+"NavBarTitleSharing" = "Teilen";
+"NavBarTitleComment" = "Kommentar";
+"NavBarTitleEdit" = "Bearbeiten";
+"NavBarTitleSetMarker" = "Ort Bestimmen";
+"SearchResult" = "Suchergebnis";
+"NavBarTitleDetail" = "Detail";
+
+"FacebookSuccess" = "Erfolgreich geteilt";
+"TweetSuccess" = "Erfolgreich geteilt";
+"MailSubject" = "";
+"MailBody" = "";
+"MailSendSuccess" = "Die Mail wurde erfolgreich geschickt.";
+"MailSendFailed" = "Die Mail konnte nicht geschickt werden.";
+"SMSSendSuccess" = "SMS wurde erfolgreich geschickt.";
+"SMSSendFailed" = "SMS kontte nicht geschickt werden.";
+
+
+

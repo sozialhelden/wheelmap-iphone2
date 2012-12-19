@@ -38,9 +38,9 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
     
-    self.titleLabel.text = NSLocalizedString(@"Anmelden", nil);
-    self.topTextLabel.text = NSLocalizedString(@"TopLabelText", nil);
-    self.bottomTextLabel.text = NSLocalizedString(@"BottomLabelText", nil);
+    self.titleLabel.text = NSLocalizedString(@"Sign In", nil);
+    self.topTextLabel.text = NSLocalizedString(@"Sign In Prompt", nil);
+    self.bottomTextLabel.text = NSLocalizedString(@"Sign Up Prompt", nil);
     [self.doneButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"Sign In Button", nil) forState:UIControlStateNormal];
     [self.registerButton setTitle:NSLocalizedString(@"RegisterNew", nil) forState:UIControlStateNormal];
@@ -72,7 +72,7 @@
 {
     // TODO: handle error
     NSLog(@"Login failed! %@", error);
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"LoginFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"User Credentials Error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     
     [alert show];
 }

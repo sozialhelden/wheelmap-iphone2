@@ -63,7 +63,7 @@
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = NSLocalizedString(@"NavBarCancelButton", nil);
+        normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
@@ -165,7 +165,7 @@
         normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = NSLocalizedString(@"NavBarCancelButton", nil);
+        normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
         normalBtnLabel.textAlignment = UITextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
         expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];

@@ -30,8 +30,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @"Kategorien";
-    
+    self.title = NSLocalizedString(@"NavBarTitleCategory", nil);
+    self.navigationBarTitle = self.title;
     
     dataManager = [[WMDataManager alloc] init];
     categories = dataManager.categories;

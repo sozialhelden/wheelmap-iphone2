@@ -34,11 +34,11 @@
     
     dataManager = [[WMDataManager alloc] init];
     
-    self.titleLabel.text = NSLocalizedString(@"Abmelden", nil);
-    self.topTextLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Angemeldet", nil), dataManager.currentUserName];
+    self.titleLabel.text = NSLocalizedString(@"Sign Out", nil);
+    self.topTextLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Signed In As", nil), dataManager.currentUserName];
 
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
-    [self.logoutButton setTitle:NSLocalizedString(@"Logout", nil) forState:UIControlStateNormal];
+    [self.logoutButton setTitle:NSLocalizedString(@"Sign Out", nil) forState:UIControlStateNormal];
 
 }
 

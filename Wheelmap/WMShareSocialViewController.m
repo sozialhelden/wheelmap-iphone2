@@ -40,6 +40,8 @@
     [self.facebookButton setTitle:NSLocalizedString(@"facebook", @"") forState:UIControlStateNormal];
     [self.emailButton setTitle:NSLocalizedString(@"email", @"") forState:UIControlStateNormal];
     [self.smsButton setTitle:NSLocalizedString(@"sms", @"") forState:UIControlStateNormal];
+    
+    [self.closeButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
 
 }
 
@@ -47,7 +49,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"Sharing", nil);
+    self.title = NSLocalizedString(@"NavBarTitleSharing", nil);
     self.navigationBarTitle = self.title;
 }
 

@@ -124,7 +124,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.title = NSLocalizedString(@"Edit", nil);
+    self.title = NSLocalizedString(@"NavBarTitleEdit", nil);
     self.navigationBarTitle = self.title;
 
     [self updateFields];

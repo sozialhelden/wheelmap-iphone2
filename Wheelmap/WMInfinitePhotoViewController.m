@@ -31,6 +31,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self.closeButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
    
     self.infiniteGallery = [[InfiniteGallery alloc] initWithFrame:self.galleryView.bounds];
     self.infiniteGallery.backgroundColor = [UIColor colorWithRed:39/255.0f green:54/255.0f blue:69/255.0f alpha:1.0f];

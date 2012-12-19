@@ -142,7 +142,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    self.title = NSLocalizedString(@"DetailViewHeadline", @"");
+    self.title = NSLocalizedString(@"NavBarTitleDetail", nil);
     self.navigationBarTitle = self.title;
 
     // MAP
@@ -218,7 +218,7 @@
         self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
         [self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-        [self.askFriendsButton setTitle:NSLocalizedString(@"DetailViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
+        [self.askFriendsButton setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
         self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
         self.askFriendsButton.titleLabel.numberOfLines = 2;
         [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
@@ -374,7 +374,7 @@
     [self.shareLocationButton setImage: [UIImage imageNamed:@"more-buttons_share-deactive.png"] forState: UIControlStateDisabled];
     [self.shareLocationButton addTarget:self action:@selector(shareLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.shareLocationButton];
-    UILabel *shareLocationLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"")];
+    UILabel *shareLocationLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewShareLabel", @"")];
     shareLocationLabel.frame = CGRectMake(self.shareLocationButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
     [view addSubview:shareLocationLabel];
     
@@ -385,7 +385,7 @@
     [self.moreInfoButton setImage: [UIImage imageNamed:@"more-buttons_info-deactive.png"] forState: UIControlStateDisabled];
     [self.moreInfoButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.moreInfoButton];
-    UILabel *moreInfoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"")];
+    UILabel *moreInfoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"")];
     moreInfoLabel.frame = CGRectMake(self.moreInfoButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
     [view addSubview:moreInfoLabel];
 
@@ -396,7 +396,7 @@
     [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route-deactive.png"] forState: UIControlStateDisabled];
     [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.naviButton];
-    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailView4ButtonViewRouteLabel", @"")];
+    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewRouteLabel", @"")];
     routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
     [view addSubview:routeLabel];
     
@@ -765,7 +765,7 @@
 #pragma mark - WMDataManager Delegates
 -(void)dataManager:(WMDataManager *)aDataManager didFinishPostingImageWithMsg:(NSString *)msg
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PHOTO_UPLOAD_SUCCESS", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUuploadSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
     
     NSLog(@"[LOG] photo upload success! %@", msg);
@@ -776,7 +776,7 @@
 
 -(void)dataManager:(WMDataManager *)dataManager failedPostingImageWithError:(NSError *)error
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PHOTO_UPLOAD_FAILD", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUploadFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
     
     NSLog(@"[LOG] photo upload failed! %@", error);

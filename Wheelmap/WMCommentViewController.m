@@ -47,7 +47,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"Comments", nil);
+    self.title = NSLocalizedString(@"NavBarTitleComment", nil);
     self.navigationBarTitle = self.title;
 }
 

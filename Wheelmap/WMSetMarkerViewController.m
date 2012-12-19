@@ -56,7 +56,7 @@
 	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     [locationManager startUpdatingLocation];
     
-    self.title = NSLocalizedString(@"SetMarker", nil);
+    self.title = NSLocalizedString(@"NavBarTitleSetMarker", nil);
     self.navigationBarTitle = self.title;
     
 }

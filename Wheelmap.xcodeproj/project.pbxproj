@@ -528,6 +528,7 @@
 		DB6E478E166BF21D00D9CAD9 /* start_searchbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_searchbar@2x.png"; sourceTree = "<group>"; };
 		DB6E47A8166CA93900D9CAD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DB6E47AA166CA9D300D9CAD9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB8005441681F246009D4FA3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DBA621CF1668F357009FA5DF /* buttons_back-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttons_back-btn.png"; path = "NavigationBar/buttons_back-btn.png"; sourceTree = "<group>"; };
 		DBA621D01668F357009FA5DF /* buttons_back-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttons_back-btn@2x.png"; path = "NavigationBar/buttons_back-btn@2x.png"; sourceTree = "<group>"; };
 		DBA621D11668F357009FA5DF /* buttons_btn-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttons_btn-right@2x.png"; path = "NavigationBar/buttons_btn-right@2x.png"; sourceTree = "<group>"; };
@@ -1378,6 +1379,7 @@
 			knownRegions = (
 				en,
 				de,
+				ja,
 			);
 			mainGroup = 989927401649151300D9003B;
 			productRefGroup = 9899274C1649151300D9003B /* Products */;
@@ -1734,6 +1736,7 @@
 			children = (
 				DB6E47A8166CA93900D9CAD9 /* en */,
 				DB6E47AA166CA9D300D9CAD9 /* de */,
+				DB8005441681F246009D4FA3 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
