@@ -187,7 +187,7 @@
         [searchBarContainer addSubview:searchBarTextFieldBg];
         searchBarTextFieldBg.userInteractionEnabled = YES;
         
-        searchBarTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, searchBarTextFieldBg.frame.size.width-10, 30)];
+        searchBarTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 7, searchBarTextFieldBg.frame.size.width-10, 30)];
         searchBarTextField.placeholder = NSLocalizedString(@"Search keyword", nil);
         searchBarTextField.delegate = self;
         [searchBarTextFieldBg addSubview:searchBarTextField];

@@ -44,4 +44,6 @@ UINavigationControllerDelegate>
 -(void)showLoadingWheel;
 -(void)hideLoadingWheel;
 
+-(void)presentLoginScreen;
+
 @end

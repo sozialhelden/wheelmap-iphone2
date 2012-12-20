@@ -16,6 +16,7 @@
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
+#import "WMLoginViewController.h"
 #import "Node.h"
 #import "Category.h"
 
@@ -156,6 +157,12 @@
 - (void)dataManagerDidFinishSyncingResources:(WMDataManager *)aDataManager
 {
     NSLog(@"dataManagerDidFinishSyncingResources");
+    
+    if ([self.topViewController isKindOfClass:[WMDashboardViewController class]]) {
+        WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
+        [vc showUIObjectsAnimated:YES];
+    }
+    
     [categoryFilterPopover refreshViewWithCategories:aDataManager.categories];
     [self.categoryFilterStatus removeAllObjects];
     for (Category* c in dataManager.categories) {
@@ -167,6 +174,11 @@
 -(void)dataManager:(WMDataManager *)dataManager syncResourcesFailedWithError:(NSError *)error
 {
     NSLog(@"syncResourcesFailedWithError");
+    
+    if ([self.topViewController isKindOfClass:[WMDashboardViewController class]]) {
+        WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
+        [vc showUIObjectsAnimated:YES];
+    }
 }
 
 
@@ -733,6 +745,13 @@
             [navigationController setNavigationBarHidden:NO animated:YES];
         }
     }
+}
+
+#pragma mark - Show Login screen
+-(void)presentLoginScreen
+{
+    WMLoginViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    [self presentModalViewController:vc animated:YES];
 }
 @end
 

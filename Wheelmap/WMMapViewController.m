@@ -46,20 +46,39 @@
 {
     [super viewWillAppear: animated];
     self.loadingWheel.hidden = YES;
-    [self loadNodes];
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // we set the delegate in viewDidAppear to avoid node updates by map initialisation
+    // while init the map, mapView:regionDidChange:animated called multiple times
+    self.mapView.delegate = self;
+    
+    [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:self.mapView.region];
+    
 }
 
 - (void) loadNodes
 {
     nodes = [self.dataSource filteredNodeList];
-    
-    // TODO: optimization: don't remove annotations that will be added again
-    [self.mapView removeAnnotations:self.mapView.annotations];
+    NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
     
     [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
-        WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
-        [self.mapView addAnnotation:annotation];
+        WMMapAnnotation *annotationForNode = [self annotationForNode:node];
+        if (annotationForNode) {
+            // this node is already shown on the map
+            [oldAnnotations removeObject:annotationForNode];
+        } else {
+            // this node is new
+            WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
+            [self.mapView addAnnotation:annotation];
+        }
+        
     }];
+    
+    [self.mapView removeAnnotations:oldAnnotations];
 }
 
 - (void) showDetailPopoverForNode:(Node *)node
@@ -169,6 +188,7 @@
 #pragma mark - Map Interactions
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+       
     if (self.useCase != kWMNodeListViewControllerUseCaseSearch) {
         self.loadingWheel.hidden = NO;
         [self.loadingWheel startAnimating];
@@ -185,6 +205,7 @@
     [self.mapView setRegion:newRegion animated:YES];
     
 }
+
 
 @end
 

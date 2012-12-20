@@ -75,6 +75,7 @@
     // check if a user key is stored in the keychain
     NSString *userToken = [self.keychainWrapper tokenForAccount:nil];
     if ([userToken length] > 0) {
+        NSLog(@"Photo upload with user token.");
         return userToken;
     }
     
@@ -84,6 +85,8 @@
         NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WMConfig" ofType:@"plist"]];
         appApiKey = config[@"appAPIKey"];
     }
+    
+    NSLog(@"no user token found. Using appAPIKey");
     
     return appApiKey;
 }
@@ -408,7 +411,7 @@ static BOOL assetDownloadInProgress;
                                        }
                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                          NSUInteger code = response.statusCode;
-                                         NSLog(@"status %i", code);
+                                         NSLog(@"category sync response status %i", code);
                                          NSString *eTag = [response allHeaderFields][@"ETag"];
                                          dispatch_async(dispatch_get_main_queue(), ^{
                                              [self receivedCategories:JSON[@"categories"] withETag:eTag];
@@ -431,6 +434,8 @@ static BOOL assetDownloadInProgress;
                                           });
                                       }
                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                        NSUInteger code = response.statusCode;
+                                        NSLog(@"nodetype sync response status %i", code);
                                         NSString *eTag = [response allHeaderFields][@"ETag"];
                                         dispatch_async(dispatch_get_main_queue(), ^{
                                             [self receivedNodeTypes:JSON[@"node_types"] withETag:eTag];
@@ -454,6 +459,8 @@ static BOOL assetDownloadInProgress;
                                                          });
                                                      }
                                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                       NSUInteger code = response.statusCode;
+                                                       NSLog(@"asset sync response status %i", code);
                                                        NSString *eTag = [response allHeaderFields][@"ETag"];
                                                        dispatch_async(dispatch_get_main_queue(), ^{
                                                            [self receivedAssets:JSON[@"assets"] withETag:eTag];
@@ -469,7 +476,7 @@ static BOOL assetDownloadInProgress;
                               }
                             completionBlock:^(NSArray *operations) {
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    if (WMLogDataManager) NSLog(@"... sync assets finished");
+                                    /*if (WMLogDataManager)*/ NSLog(@"... sync assets finished");
                                     syncInProgress = NO;
                                     [self finishSync];
                                 });
@@ -518,7 +525,11 @@ static BOOL assetDownloadInProgress;
 {
     if (WMLogDataManager) NSLog(@"... received %i assets", [assets count]);
     
-    if (!assets) return;
+    if (!assets) {
+        assetDownloadInProgress = NO;
+        [self finishSync];
+        return;
+    }
         
     // if eTag has not changed
     if (![eTag isEqual:[self eTagForEntity:@"Asset"]]) {
@@ -555,7 +566,7 @@ static BOOL assetDownloadInProgress;
 
 - (void) downloadFilesForAsset:(Asset*)asset
 {
-    if (WMLogDataManager) NSLog(@"... download file for asset %@ from %@", asset.name, asset.url);
+    /*if (WMLogDataManager)*/ NSLog(@"... download file for asset %@ from %@", asset.name, asset.url);
 
     // use /tmp dir for archive download
     NSString *path = [NSTemporaryDirectory() stringByAppendingFormat:@"%@.zip", asset.name];
@@ -646,6 +657,7 @@ static BOOL assetDownloadInProgress;
 
 - (void) finishSync
 {
+    NSLog(@"%d %d", syncInProgress, assetDownloadInProgress);
     if (!syncInProgress && !assetDownloadInProgress) {
         
         if (syncErrors) {

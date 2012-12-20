@@ -169,7 +169,7 @@
     viewRegion.center = self.poiLocation;
     
     // display the region
-    [self.mapView setRegion:viewRegion animated:YES];
+    [self.mapView setRegion:viewRegion animated:NO];
     
 }
 
@@ -725,11 +725,18 @@
 }
 
 - (void) cameraButtonPressed {
+    
+    if (![dataManager userIsAuthenticated]) {
+        WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+        [navCtrl presentLoginScreen];
+        return;
+    }
+    
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailViewUploadOptionCamera", @""), NSLocalizedString(@"DetailViewUploadOptionPhotoAlbum", @""), nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailsViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailsViewUploadOptionCamera", @""), NSLocalizedString(@"DetailsViewUploadOptionPhotoAlbum", @""), nil];
         actionSheet.tag = 2;
         [actionSheet showInView:self.view];
     } else {
@@ -853,6 +860,13 @@
 
 
 - (void) pushEditViewController {
+    
+    if (![dataManager userIsAuthenticated]) {
+        WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+        [navCtrl presentLoginScreen];
+        return;
+    }
+    
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.node = self.node;
     vc.editView = YES;

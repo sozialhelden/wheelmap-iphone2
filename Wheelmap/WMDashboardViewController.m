@@ -88,6 +88,18 @@
     searchCancelButton.hidden = YES;
     [searchCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:searchCancelButton];
+    
+    self.nearbyButton.alpha = 0.0;
+    self.mapButton.alpha = 0.0;
+    self.categoriesButton.alpha = 0.0;
+    self.helpButton.alpha = 0.0;
+    self.searchTextFieldBg.alpha = 0.0;
+    self.searchTextField.alpha = 0.0;
+    self.numberOfPlacesLabel.alpha = 0.0;
+    self.creditsButton.alpha = 0.0;
+    self.loginButton.alpha = 0.0;
+    
+    isUIObjectsReadyToInteract = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -277,5 +289,41 @@
 -(void)dataManager:(WMDataManager *)dataManager failedGettingTotalNodeCountWithError:(NSError *)error
 {
     NSLog(@"[Error] getting total count failed with error %@", error);
+}
+
+-(void)showUIObjectsAnimated:(BOOL)animated
+{
+    if (isUIObjectsReadyToInteract)
+        return;
+    
+    CGFloat duration = 0.0;
+    if (animated)
+        duration = 0.5;
+    
+    [self.loadingWheel stopAnimating];
+    
+    [UIView animateWithDuration:duration
+                          delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^(void)
+     {
+         self.nearbyButton.alpha = 1.0;
+         self.mapButton.alpha = 1.0;
+         self.categoriesButton.alpha = 1.0;
+         self.helpButton.alpha = 1.0;
+         self.searchTextFieldBg.alpha = 1.0;
+         self.searchTextField.alpha = 1.0;
+         self.numberOfPlacesLabel.alpha = 1.0;
+         self.creditsButton.alpha = 1.0;
+         self.loginButton.alpha = 1.0;
+         
+         
+     }
+                     completion:^(BOOL finished)
+     {
+         isUIObjectsReadyToInteract = YES;
+         
+         
+     }];
+    
 }
 @end

@@ -111,6 +111,7 @@
 {
     nodes = [self.dataSource filteredNodeList];
     
+    
     [self sortNodesByDistance];
     
     [self.tableView reloadData];

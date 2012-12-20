@@ -86,6 +86,11 @@
     self.websiteLabel.text = NSLocalizedString(@"EditPOIViewWebsiteLabel", @"");
     self.phoneLabel.text = NSLocalizedString(@"EditPOIViewPhoneLabel", @"");
     
+    self.streetTextField.placeholder = NSLocalizedString(@"Street Placeholder", nil);
+    self.housenumberTextField.placeholder = NSLocalizedString(@"Housenumber Placeholder", nil);
+    self.postcodeTextField.placeholder = NSLocalizedString(@"Postcode Placeholder", nil);
+    self.cityTextField.placeholder = NSLocalizedString(@"City Placeholder", nil);
+    
     if (self.editView) {
         [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButtonDisabled", @"") forState:UIControlStateNormal];
         self.setMarkerButton.enabled = NO;

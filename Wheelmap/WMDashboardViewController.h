@@ -18,6 +18,10 @@
     
     CGFloat searchTextFieldOriginalWidth;
     CGFloat searchTextFieldBgOriginalWidth;
+    
+    
+    
+    BOOL isUIObjectsReadyToInteract;
 }
 
 @property (nonatomic, strong) IBOutlet UIImageView *searchTextFieldBg;
@@ -28,11 +32,16 @@
 @property (nonatomic, strong) WMDashboardButton *mapButton;
 @property (nonatomic, strong) WMDashboardButton *categoriesButton;
 @property (nonatomic, strong) WMDashboardButton *helpButton;
+@property (nonatomic, strong) IBOutlet UIButton* creditsButton;
+@property (nonatomic, strong) IBOutlet UIButton* loginButton;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView* loadingWheel;
 
 -(IBAction)pressedNodeListButton:(id)sender;
 -(IBAction)pressedMapButton:(id)sender;
 -(IBAction)pressedContributeButton:(id)sender;
 -(IBAction)pressedCategoriesButton:(id)sender;
 -(IBAction)pressedLoginButton:(id)sender;
+
+-(void)showUIObjectsAnimated:(BOOL)animated;
 
 @end

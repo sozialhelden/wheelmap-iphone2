@@ -6,9 +6,10 @@
   Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 */
 
-"No Loc Error Message" = "adskljfs";
+"No Loc Error Title" = "Location Services Deaktiviert";
+"No Loc Error Message" = "Ohne Location Services konnte die Orte in deiner Nähe nicht angezeigt werden. Bitter aktiviere es in der Einstellung.";
 
-"Cancel" = "Abbr.";
+"Cancel" = "Abbrechen";
 "Yes" = "Ja";
 "No" = "Nein";
 "LeaveApp" = "Wollen Sie die App wirklich verlassen?";
@@ -50,10 +51,10 @@
 "EditPOIViewPositionLabel" = "Position";
 "EditPOIViewPhoneLabel" = "Telefon";
 "EditPOIViewAddressLabel" = "Adresse";
-"EditPOIViewStreet" = "street";
-"EditPOIViewHousenumber" = "housenumber";
-"EditPOIViewPostcode" = "postcode";
-"EditPOIViewCity" = "city";
+"Street Placeholder" = "Straße";
+"Housenumber Placeholder" = "Hausnr.";
+"Postcode Placeholder" = "PLZ";
+"City Placeholder" = "Stadt";
 "EditPOIViewWebsiteLabel" = "Webseite";
 "EditPOIViewInfoLabel" = "Info";
 "EditPOIViewSetMarkerButton" = "Markierung setzen";
@@ -72,8 +73,8 @@
 "Places" = "Orte";
 "Signed In As" = "Angemeldet als";
 "Sign In" = "Anmelden";
-"TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
-"BottomLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.";
+"Sign In Prompt" = "In order to edit places you need to log into your Wheelmap account and link it to an Open Streetmap account (Übersetzung nötig).";
+"Sign Up Prompt" = "Don't have a Wheelmap account yet? Click the button below to sign up in the browser. Don't forget to link your account to an Open Streetmap account (Übersetzung nötig).";
 "Ready" = "Fertig";
 "Sign In Button" = "Login";
 "RegisterNew" = "Neu registrieren";
@@ -96,7 +97,7 @@
 "NavBarCancelButton" = "Abbrechen";
 
 "NavBarTitleCategory" = "Kategorien";
-"NavBarTitleWheelChairStatus" = "Wheelchair Status";
+"NavBarTitleWheelChairStatus" = "Rohlstuhlgerecht";
 "PhotoUuploadSuccess" = "Das Foto is erfolgreich hochgeladen.";
 "PhotoUuploadFailed" = "Das Foto konnte nicht hochgeladen werden. Bitte versuchen Sie es noch einmal.";
 "FetchingPhotoURLFailed" = "Die Fotos von diesem Ort konnte nicht heruntergeladen werden.";
