@@ -58,8 +58,7 @@
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewHousenumber", @"");
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewPostcode", @"");
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewCity", @"");
-    
-
+        
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -421,6 +420,11 @@
 - (BOOL)textView:(UITextView *)aTextView shouldChangeTextInRange:(NSRange)aRange replacementText:(NSString *)aText {
     
     NSString* newText = [self.infoTextView.text stringByReplacingCharactersInRange:aRange withString:aText];
+            
+    if([aText isEqualToString:@"\n"]) {
+        [aTextView resignFirstResponder];
+        return NO;
+    }
     
     if([newText length] > 255) {
         return NO; // can't enter more text
