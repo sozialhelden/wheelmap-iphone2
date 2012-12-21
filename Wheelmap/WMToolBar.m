@@ -90,6 +90,10 @@
     searchButton.selected = YES;
 }
 
+-(void)deselectSearchButton {
+    searchButton.selected = NO;
+}
+
 #pragma mark -
 #pragma mark Button Handler
 -(void)pressedToggleButton:(WMButton*)sender

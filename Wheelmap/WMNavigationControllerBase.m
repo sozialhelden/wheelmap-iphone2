@@ -530,6 +530,12 @@
     }
 }
 
+-(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar
+{
+    [self.customToolBar deselectSearchButton];
+    
+}
+
 -(void)searchStringIsGiven:(NSString *)query
 {
     [self showLoadingWheel];

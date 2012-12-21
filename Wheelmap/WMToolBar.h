@@ -53,5 +53,6 @@ typedef enum {
 -(void)showButton:(WMToolBarButtonType)type;
 -(void)hideButton:(WMToolBarButtonType)type;
 -(void)selectSearchButton;
+-(void)deselectSearchButton;
 
 @end
