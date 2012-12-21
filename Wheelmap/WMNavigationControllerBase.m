@@ -54,6 +54,7 @@
     locationManager.delegate = self;
     locationManager.distanceFilter = 50.0f;
 	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    [locationManager startUpdatingLocation];
     
     // configure initial vc from storyboard. this is necessary for iPad, since iPad's topVC is not the Dashboard!
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
@@ -118,7 +119,10 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return YES; // TODO: prevent upside down on iphone
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+        return YES;
+    else
+        return NO;
 }
 
 - (void) dealloc
@@ -295,7 +299,7 @@
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
         [currentVC relocateMapTo:newLocation.coordinate];
     } else {
-        [dataManager fetchNodesNear:newLocation.coordinate];
+        [self updateNodesNear:newLocation.coordinate];
     }
 }
 
