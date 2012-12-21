@@ -130,6 +130,9 @@
     self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height);
     self.scrollView.contentSize = self.mainView.frame.size;
     
+    UITapGestureRecognizer *enlargeMapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enlargeMapButtonPressed)];
+    [self.mapView addGestureRecognizer:enlargeMapRecognizer];
+    
     [self.scrollView addSubview:self.mainView];
     
 }
