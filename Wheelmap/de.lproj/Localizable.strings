@@ -97,9 +97,9 @@
 "WheelchairAccessLimited" = "Eingeschränkt rollstuhlgerecht";
 "WheelchairAccessNo" = "Nicht rollstuhlgerecht";
 "WheelchairAccessUnknown" = "Nicht bekannt";
-"WheelchairAccessContentYes" = "● Eingang: stufenlos erreichbar\\n● Räume: Alle stufenlos erreichbar\\n● Falls Toiletten vorhanden: Auch Roll-stuhltoilette vorhanden (deutlich breiter)";
-"WheelchairAccessContentLimited" = "● Eingang: maximal eine Stufe, nicht höher als 7 cm (etwa eine Handbreit)\\n● Wichtigste Räume stufenlos erreichbar\\n● Toiletten: egal";
-"WheelchairAccessContentNo" = "● Eingang: höher als 7 cm (etwa eine Handbreit)\\n● Wichtigste Räume nicht stufenlos erreichbar";
+"WheelchairAccessContentYes" = "● Eingang: stufenlos erreichbar\n● Räume: Alle stufenlos erreichbar\n● Falls Toiletten vorhanden: Auch Roll-stuhltoilette vorhanden (deutlich breiter)";
+"WheelchairAccessContentLimited" = "● Eingang: maximal eine Stufe, nicht höher als 7 cm (etwa eine Handbreit)\n● Wichtigste Räume stufenlos erreichbar\n● Toiletten: egal";
+"WheelchairAccessContentNo" = "● Eingang: höher als 7 cm (etwa eine Handbreit)\n● Wichtigste Räume nicht stufenlos erreichbar";
 "category_accommodation" = "Unterkunft";
 "category_government" = "Behörden & Botschaften";
 "category_money_post" = "Bank & Post";
@@ -220,7 +220,7 @@
 "email" = "E-Mail";
 "sms" = "SMS";
 "DetailsViewHeadline" = "Detailansicht";
-"DetailsView4ButtonViewCallLabel" = "Anrufen";
+"DetailsView4ButtonViewShareLabel" = "Teilen";
 "DetailsView4ButtonViewInfoLabel" = "Hinweis";
 "DetailsView4ButtonViewRouteLabel" = "Route";
 "DetailsViewAskFriendsButtonLabel" = "Hilf mit: Frag deine Freunde, ob dieser Ort rollstuhlgerecht ist";

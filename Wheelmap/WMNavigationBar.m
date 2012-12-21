@@ -188,7 +188,7 @@
         searchBarTextFieldBg.userInteractionEnabled = YES;
         
         searchBarTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, searchBarTextFieldBg.frame.size.width-10, 30)];
-        searchBarTextField.placeholder = NSLocalizedString(@"Search keyword", nil);
+        searchBarTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
         searchBarTextField.delegate = self;
         searchBarTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         searchBarTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
