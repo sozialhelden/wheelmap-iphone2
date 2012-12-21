@@ -86,6 +86,10 @@
     return self;
 }
 
+-(void)selectSearchButton {
+    searchButton.selected = YES;
+}
+
 #pragma mark -
 #pragma mark Button Handler
 -(void)pressedToggleButton:(WMButton*)sender
