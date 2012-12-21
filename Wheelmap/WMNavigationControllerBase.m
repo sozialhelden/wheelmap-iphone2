@@ -576,10 +576,14 @@
     [locationManager startUpdatingLocation];
     
 }
--(void)pressedSearchButton:(WMToolBar *)toolBar
+-(void)pressedSearchButton:(BOOL)selected
 {
     NSLog(@"[ToolBar] global search button is pressed!");
-    [self.customNavigationBar showSearchBar];
+    if (selected) {
+        [self.customNavigationBar showSearchBar];
+    } else {
+        [dataManager fetchNodesNear:locationManager.location.coordinate];
+    }
 }
 
 -(void)pressedWheelChairStatusFilterButton:(WMToolBar *)toolBar
