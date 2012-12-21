@@ -35,9 +35,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController setToolbarHidden:YES animated:NO];
     
+    self.navigationController.hidesBottomBarWhenPushed = YES;
     self.view.backgroundColor = [UIColor colorWithRed:39/255.0f green:54/255.0f blue:69/255.0f alpha:1.0f];
     
     dataManager = [[WMDataManager alloc] init];
@@ -105,8 +106,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self.navigationController setToolbarHidden:YES animated:YES];
+
     
 }
 

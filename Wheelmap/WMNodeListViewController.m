@@ -50,6 +50,8 @@
 {
     [super viewDidAppear:animated];
     
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    
     if (locationManager == nil) {
         locationManager = [[CLLocationManager alloc] init];
     }

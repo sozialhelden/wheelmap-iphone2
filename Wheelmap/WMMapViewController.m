@@ -47,6 +47,7 @@
     [super viewWillAppear: animated];
     self.loadingWheel.hidden = YES;
     
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -55,8 +56,11 @@
     // we set the delegate in viewDidAppear to avoid node updates by map initialisation
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
+    [self loadNodes];
     
-    [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:self.mapView.region];
+    if (self.useCase != kWMNodeListViewControllerUseCaseSearch) {
+        [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:self.mapView.region];
+    }
     
 }
 
@@ -188,7 +192,8 @@
 #pragma mark - Map Interactions
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-       
+    
+    NSLog(@"Current Use Case %d", self.useCase);
     if (self.useCase != kWMNodeListViewControllerUseCaseSearch) {
         self.loadingWheel.hidden = NO;
         [self.loadingWheel startAnimating];

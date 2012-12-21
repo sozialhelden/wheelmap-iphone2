@@ -530,16 +530,21 @@
     [self showLoadingWheel];
     [dataManager fetchNodesWithQuery:query];
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController* vc = (WMNodeListViewController*)vc;
+        WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
         vc.useCase = kWMNodeListViewControllerUseCaseSearch;
-        vc.navigationBarTitle = query;
-        self.customNavigationBar.title = query;
+        vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
+        self.customNavigationBar.title = vc.navigationBarTitle;
       
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
-        WMMapViewController* vc = (WMMapViewController*)vc;
+        WMMapViewController* vc = (WMMapViewController*)self.topViewController;
         vc.useCase = kWMNodeListViewControllerUseCaseSearch;
-        vc.navigationBarTitle = query;
-        self.customNavigationBar.title = query;
+        vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
+        self.customNavigationBar.title = vc.navigationBarTitle;
+        
+        WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+        nodeListVC.useCase = kWMNodeListViewControllerUseCaseSearch;
+        nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
+        self.customNavigationBar.title = nodeListVC.navigationBarTitle;
        
     }
     
@@ -736,6 +741,7 @@
             [navigationController setToolbarHidden:YES animated:YES];
     }
     
+    
     if ([viewController isKindOfClass:[WMDashboardViewController class]]) {
         if (navigationController.navigationBarHidden == NO) {
             [navigationController setNavigationBarHidden:YES animated:YES];
@@ -745,6 +751,8 @@
             [navigationController setNavigationBarHidden:NO animated:YES];
         }
     }
+     
+     
 }
 
 #pragma mark - Show Login screen
