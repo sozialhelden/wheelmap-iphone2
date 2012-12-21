@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreLocation/CoreLocation.h>
 @class CLLocation, Node;
 
 @protocol WMNodeListView;
@@ -27,7 +27,8 @@
 
 @optional
 - (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node*)node;
-
+- (void) updateUserLocation;
+- (CLLocationCoordinate2D) currentUserLocation;
 @end
 
 

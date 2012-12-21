@@ -27,6 +27,7 @@
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
 - (void) fetchNodesWithQuery:(NSString*)query;
+- (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast andQuery:(NSString*)query;
 - (void) fetchPhotoURLsOfNode:(Node*)node;
 
 - (void) syncResources;

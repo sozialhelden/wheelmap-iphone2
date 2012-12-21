@@ -34,7 +34,7 @@
 "Places near %@" = "Orte nahe %@";
 "Places in map segment" = "Orte im Kartenausschnitt";
 "OK" = "OK";
-"Cancel" = "Abbr.";
+"Cancel" = "Abbrechen";
 "BackButton" = "Zurück";
 "Unknown Place" = "Unbekannter Ort";
 "Loading Places" = "Suche Orte...";
@@ -256,8 +256,8 @@
 "NoWebsite" = "Keine Website verfügbar";
 "NoPhone" = "Keine Telefonnummer verfügbar";
 "WheelAccessStatusViewHeadline" = "Status";
-"NavBarEditButton" = "Bearb.";
-"NavBarSaveButton" = "Speich.";
+"NavBarEditButton" = "Bearbeiten";
+"NavBarSaveButton" = "Speichern";
 
 
 "NavBarTitleCategory" = "Kategorien";

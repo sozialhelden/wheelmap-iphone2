@@ -37,6 +37,7 @@ UINavigationControllerDelegate>
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithQuery:(NSString*)query;
+-(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
 
 -(void)clearWheelChairFilterStatus;
 -(void)clearCategoryFilterStatus;
@@ -45,5 +46,6 @@ UINavigationControllerDelegate>
 -(void)hideLoadingWheel;
 
 -(void)presentLoginScreen;
+
 
 @end

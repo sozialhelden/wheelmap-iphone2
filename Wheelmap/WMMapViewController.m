@@ -20,7 +20,6 @@
 {
     NSArray *nodes;
     UIPopoverController *popover;
-    
 }
 
 @synthesize dataSource, delegate;
@@ -38,8 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.mapView.showsUserLocation = YES;
     
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -56,12 +56,8 @@
     // we set the delegate in viewDidAppear to avoid node updates by map initialisation
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
-    [self loadNodes];
-    
-    if (self.useCase != kWMNodeListViewControllerUseCaseSearch) {
-        [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:self.mapView.region];
-    }
-    
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+       
 }
 
 - (void) loadNodes
@@ -81,8 +77,10 @@
         }
         
     }];
-    
-    [self.mapView removeAnnotations:oldAnnotations];
+    for (id<MKAnnotation> annotation in oldAnnotations) {
+        if (![annotation isKindOfClass:[MKUserLocation class]])
+            [self.mapView removeAnnotation:annotation];
+    }
 }
 
 - (void) showDetailPopoverForNode:(Node *)node

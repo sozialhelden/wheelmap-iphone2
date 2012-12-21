@@ -52,8 +52,8 @@
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
-    locationManager.distanceFilter = 50.0f;
-	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    locationManager.distanceFilter = 100.0f;
+	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
     
     // configure initial vc from storyboard. this is necessary for iPad, since iPad's topVC is not the Dashboard!
@@ -243,8 +243,15 @@
     
 }
 
--(void)updateNodesWithQuery:(NSString*) andRegion:(MKCoordinateRegion)region
+-(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region
 {
+    CLLocationCoordinate2D southWest;
+    CLLocationCoordinate2D northEast;
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+
+    [self showLoadingWheel];
+    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast andQuery:query];
     
 }
 
@@ -297,10 +304,23 @@
     NSLog(@"Location is updated!");
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-        [currentVC relocateMapTo:newLocation.coordinate];
-    } else {
+        [currentVC relocateMapTo:newLocation.coordinate];   // this will automatically update node list!
+    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         [self updateNodesNear:newLocation.coordinate];
+    } else {
+        
     }
+}
+
+-(void)updateUserLocation
+{
+    [self showLoadingWheel];
+    [locationManager startUpdatingLocation];
+}
+
+-(CLLocationCoordinate2D)currentUserLocation
+{
+    return locationManager.location.coordinate;
 }
 
 
@@ -532,13 +552,12 @@
 
 -(void)searchStringIsGiven:(NSString *)query
 {
-    [self showLoadingWheel];
-    [dataManager fetchNodesWithQuery:query];
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
         vc.useCase = kWMNodeListViewControllerUseCaseSearch;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
         self.customNavigationBar.title = vc.navigationBarTitle;
+        [self updateNodesWithQuery:query];
       
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* vc = (WMMapViewController*)self.topViewController;
@@ -550,6 +569,8 @@
         nodeListVC.useCase = kWMNodeListViewControllerUseCaseSearch;
         nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
         self.customNavigationBar.title = nodeListVC.navigationBarTitle;
+        
+        [self updateNodesWithQuery:query andRegion:vc.mapView.region];
        
     }
     

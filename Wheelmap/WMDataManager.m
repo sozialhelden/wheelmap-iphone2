@@ -183,6 +183,37 @@
     [self fetchNodesBetweenSouthwest:southwest northeast:northeast];
 }
 
+-(void)fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast andQuery:(NSString *)query
+{
+    NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
+                        southwest.longitude,
+                        southwest.latitude,
+                        northeast.longitude,
+                        northeast.latitude];
+    NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
+    parameters[@"bbox"] = coords;
+    parameters[@"q"] = query;
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes/search"
+                                             apiKey:[self apiKey]
+                                         parameters:parameters
+                                               eTag:nil
+                                               data:nil
+                                             method:nil
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
+                                                      [self.delegate dataManager:self fetchNodesFailedWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                [self didReceiveNodes:JSON[@"nodes"]];
+                                            }
+                                   startImmediately:YES
+     ];
+
+    
+}
+
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast
 {
     NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
