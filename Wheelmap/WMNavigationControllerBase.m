@@ -550,6 +550,12 @@
     }
 }
 
+-(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar
+{
+    [self.customToolBar deselectSearchButton];
+    
+}
+
 -(void)searchStringIsGiven:(NSString *)query
 {
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {

@@ -252,6 +252,9 @@
 -(void)pressedSearchCancelButton:(WMButton*)sender
 {
     [self hideSearchBar];
+    if ([self.delegate respondsToSelector:@selector(pressedSearchCancelButton:)]) {
+        [self.delegate pressedSearchCancelButton:self];
+    }
 }
 
 #pragma mark - Bar Style Changes

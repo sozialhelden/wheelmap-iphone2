@@ -102,7 +102,7 @@
         
     } else if (self.useCase == kWMNodeListViewControllerUseCaseSearch) {
         // do nothing!
-        
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
     } else {
     
         [locationManager startUpdatingLocation];
