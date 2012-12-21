@@ -30,6 +30,7 @@
         searchButton = [WMButton buttonWithType:UIButtonTypeCustom];
         searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 3, 58, 58);
         [searchButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        [searchButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button_selected.png"] forState:UIControlStateSelected];
         [searchButton setImage:[UIImage imageNamed:@"toolbar_icon-search.png"] forState:UIControlStateNormal];
 
         [searchButton addTarget:self action:@selector(pressedSearchButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -104,7 +105,9 @@
 -(void)pressedSearchButton:(WMButton*)sender
 {
     if ([self.delegate respondsToSelector:@selector(pressedSearchButton:)]) {
-        [self.delegate pressedSearchButton:self];
+        sender.selected = !sender.selected;
+        
+        [self.delegate pressedSearchButton:sender.selected];
     }
 }
 

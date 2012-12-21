@@ -54,6 +54,7 @@
     [self.helpButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
 
     self.searchTextField.delegate = self;
+    self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchTextFieldBg.image = [self.searchTextFieldBg.image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 50)];
     searchTextFieldOriginalWidth = self.searchTextField.frame.size.width;
     searchTextFieldBgOriginalWidth = self.searchTextFieldBg.frame.size.width;

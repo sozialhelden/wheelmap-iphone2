@@ -28,7 +28,7 @@ typedef enum {
 @required
 -(void)pressedToggleButton:(WMToolBar*)toolBar;
 -(void)pressedCurrentLocationButton:(WMToolBar*)toolBar;
--(void)pressedSearchButton:(WMToolBar*)toolBar;
+-(void)pressedSearchButton:(BOOL)selected;
 -(void)pressedWheelChairStatusFilterButton:(WMToolBar*)toolBar;
 -(void)pressedCategoryFilterButton:(WMToolBar*)toolBar;
 @end

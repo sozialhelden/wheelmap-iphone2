@@ -24,6 +24,7 @@
 		034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
 		034D38EC167738C10071EC05 /* Curl_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DC167738C10071EC05 /* Curl_screen.png */; };
 		034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DD167738C10071EC05 /* Curl_screen@2x.png */; };
+		0379A7D41684852B00C2DFF8 /* toolbar_button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */; };
 		037C07761680C8A700685378 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 037C07751680C8A700685378 /* WMConfig.plist */; };
 		03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
 		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
@@ -306,6 +307,7 @@
 		034D38DB167738C10071EC05 /* Curl_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_button@2x.png"; sourceTree = "<group>"; };
 		034D38DC167738C10071EC05 /* Curl_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_screen.png; sourceTree = "<group>"; };
 		034D38DD167738C10071EC05 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
+		0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button_selected@2x.png"; path = "ToolBar/toolbar_button_selected@2x.png"; sourceTree = "<group>"; };
 		037C07751680C8A700685378 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
 		03F30BFA1670A1F700241466 /* WMDashboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardButton.m; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 				DBA621E61668F380009FA5DF /* toolbar_background@2x.png */,
 				DBA621E71668F380009FA5DF /* toolbar_button.png */,
 				DBA621E81668F380009FA5DF /* toolbar_button@2x.png */,
+				0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */,
 				DBA621E91668F380009FA5DF /* toolbar_category-check.png */,
 				DBA621EA1668F380009FA5DF /* toolbar_category-check@2x.png */,
 				DBA621EB1668F380009FA5DF /* toolbar_category-popup.png */,
@@ -1595,6 +1598,7 @@
 				DB67C1E3168468F600E8206B /* icons_57-57.png in Resources */,
 				DB67C1E61684886B00E8206B /* toolbar_button-search-active.png in Resources */,
 				DB67C1E71684886B00E8206B /* toolbar_button-search-active@2x.png in Resources */,
+				0379A7D41684852B00C2DFF8 /* toolbar_button_selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
