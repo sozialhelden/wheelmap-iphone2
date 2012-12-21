@@ -440,6 +440,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.2];
     self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height + 216);
+    [UIView commitAnimations];
     
     self.keyboardIsShown = NO;
 }
@@ -454,6 +455,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.2];
     self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height - 216);
+    [UIView commitAnimations];
     
     self.keyboardIsShown = YES;
 }
