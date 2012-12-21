@@ -37,7 +37,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"SetNodeType", nil);
+    self.title = NSLocalizedString(@"NavBarTitleSetNodeType", nil);
     self.navigationBarTitle = self.title;
 }
 

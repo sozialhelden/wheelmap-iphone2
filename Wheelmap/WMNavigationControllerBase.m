@@ -290,6 +290,7 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    NSLog(@"Location is updated!");
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
         [currentVC relocateMapTo:newLocation.coordinate];

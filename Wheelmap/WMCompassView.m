@@ -40,8 +40,8 @@
         //Start the compass updates.
         [self.locationManager startUpdatingHeading];
                                                            
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdating) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating) name:UIApplicationDidBecomeActiveNotification object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdating) name:UIApplicationDidEnterBackgroundNotification object:nil];
+       // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating) name:UIApplicationDidBecomeActiveNotification object:nil];
 
         self.currentLocation = [CLLocation new];
                                                            
@@ -130,6 +130,7 @@
     
     return 0.0f;
 }
+
 
 
 

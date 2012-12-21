@@ -170,6 +170,8 @@
 		DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
 		DB67C1E1168468F300E8206B /* icons_114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E0168468F300E8206B /* icons_114-114.png */; };
 		DB67C1E3168468F600E8206B /* icons_57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E2168468F600E8206B /* icons_57-57.png */; };
+		DB67C1E61684886B00E8206B /* toolbar_button-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E41684886B00E8206B /* toolbar_button-search-active.png */; };
+		DB67C1E71684886B00E8206B /* toolbar_button-search-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E51684886B00E8206B /* toolbar_button-search-active@2x.png */; };
 		DB6E4770166B9B7A00D9CAD9 /* WMDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */; };
 		DB6E4777166BF0BB00D9CAD9 /* marker_limited.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */; };
 		DB6E4778166BF0BB00D9CAD9 /* marker_no.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4773166BF0BB00D9CAD9 /* marker_no.png */; };
@@ -505,6 +507,8 @@
 		DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryViewController.m; sourceTree = "<group>"; };
 		DB67C1E0168468F300E8206B /* icons_114-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_114-114.png"; sourceTree = "<group>"; };
 		DB67C1E2168468F600E8206B /* icons_57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_57-57.png"; sourceTree = "<group>"; };
+		DB67C1E41684886B00E8206B /* toolbar_button-search-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button-search-active.png"; path = "ToolBar/toolbar_button-search-active.png"; sourceTree = "<group>"; };
+		DB67C1E51684886B00E8206B /* toolbar_button-search-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button-search-active@2x.png"; path = "ToolBar/toolbar_button-search-active@2x.png"; sourceTree = "<group>"; };
 		DB6E476E166B9B7A00D9CAD9 /* WMDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardViewController.h; sourceTree = "<group>"; };
 		DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardViewController.m; sourceTree = "<group>"; };
 		DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_limited.png; sourceTree = "<group>"; };
@@ -983,6 +987,8 @@
 		D5EFDE1E1668E42B00CEB2C0 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
+				DB67C1E41684886B00E8206B /* toolbar_button-search-active.png */,
+				DB67C1E51684886B00E8206B /* toolbar_button-search-active@2x.png */,
 				DBA621E51668F380009FA5DF /* toolbar_background.png */,
 				DBA621E61668F380009FA5DF /* toolbar_background@2x.png */,
 				DBA621E71668F380009FA5DF /* toolbar_button.png */,
@@ -1587,6 +1593,8 @@
 				037C07761680C8A700685378 /* WMConfig.plist in Resources */,
 				DB67C1E1168468F300E8206B /* icons_114-114.png in Resources */,
 				DB67C1E3168468F600E8206B /* icons_57-57.png in Resources */,
+				DB67C1E61684886B00E8206B /* toolbar_button-search-active.png in Resources */,
+				DB67C1E71684886B00E8206B /* toolbar_button-search-active@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

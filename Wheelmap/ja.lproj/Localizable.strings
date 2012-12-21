@@ -273,3 +273,5 @@
 "MailSendFailed" = "メールの送信に失敗しました．";
 "SMSSendSuccess" = "SMSの送信に成功しました．";
 "SMSSendFailed" = "SMSの送信に失敗しました．";
+"EditPOIViewSetMarkerButtonDisabled" = "編集不可";
+"NavBarTitleSetNodeType" = "タイプの設定";

@@ -271,3 +271,6 @@
 "NavBarTitleSetMarker" = "Set Location";
 "SearchResult" = "Search Result";
 "NavBarTitleDetail" = "Detail";
+"EditPOIViewSetMarkerButtonDisabled" = "unavailable";
+"NavBarTitleSetNodeType" = "Set Location Type";
+"EditPOIViewNodeTypeLabel" = "Location Type";

@@ -75,7 +75,6 @@
     // check if a user key is stored in the keychain
     NSString *userToken = [self.keychainWrapper tokenForAccount:nil];
     if ([userToken length] > 0) {
-        NSLog(@"Photo upload with user token.");
         return userToken;
     }
     
