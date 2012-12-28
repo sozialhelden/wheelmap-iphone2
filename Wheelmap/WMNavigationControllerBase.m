@@ -56,6 +56,9 @@
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
     
+    self.lastVisibleMapCenter = nil;
+    self.lastVisibleMapSpan = nil;
+    
     // configure initial vc from storyboard. this is necessary for iPad, since iPad's topVC is not the Dashboard!
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
         id<WMNodeListView> initialNodeListView = (id<WMNodeListView>)self.topViewController;
@@ -307,6 +310,8 @@
         [currentVC relocateMapTo:newLocation.coordinate];   // this will automatically update node list!
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         [self updateNodesNear:newLocation.coordinate];
+        self.lastVisibleMapCenter = [NSValue valueWithMKCoordinate:newLocation.coordinate];
+        self.lastVisibleMapSpan = [NSValue valueWithMKCoordinateSpan:MKCoordinateSpanMake(0.005, 0.005)];
     } else {
         
     }
@@ -318,9 +323,9 @@
     [locationManager startUpdatingLocation];
 }
 
--(CLLocationCoordinate2D)currentUserLocation
+-(CLLocation*)currentUserLocation
 {
-    return locationManager.location.coordinate;
+    return locationManager.location;
 }
 
 
@@ -502,6 +507,7 @@
 #pragma mark - WMNavigationBar Delegate
 -(void)pressedDashboardButton:(WMNavigationBar *)navigationBar
 {
+    [self.customToolBar deselectSearchButton];
     // In the future, the dashboard would be the root VC.
     [self popToRootViewControllerAnimated:YES];
     [self hidePopover:wheelChairFilterPopover];

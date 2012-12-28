@@ -36,7 +36,6 @@
 {
     [super viewDidLoad];
     
-    [(WMNavigationControllerBase*)dataSource updateUserLocation];
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
 
 }
@@ -52,12 +51,6 @@
     [super viewDidAppear:animated];
     
     [self.navigationController setToolbarHidden:NO animated:YES];
-    
-    if (locationManager == nil) {
-        locationManager = [[CLLocationManager alloc] init];
-    }
-    locationManager.delegate = self;
-	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         isAccesoryHeaderVisible = YES;
@@ -97,7 +90,7 @@
          }
          ];
         
-        [locationManager startUpdatingLocation];
+        [(WMNavigationControllerBase*)dataSource updateUserLocation];
         [self loadNodes];
         
     } else if (self.useCase == kWMNodeListViewControllerUseCaseSearch) {
@@ -105,7 +98,11 @@
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
     } else {
     
-        [locationManager startUpdatingLocation];
+        NSValue* lastMapVisibleCenter = [((WMNavigationControllerBase *)self.navigationController) lastVisibleMapCenter];
+        if (!lastMapVisibleCenter) {
+            // there is no stored bbox. we update nodes from the user location.
+            [(WMNavigationControllerBase*)dataSource updateUserLocation];
+        }
         [self loadNodes];
     }
 }
@@ -125,7 +122,8 @@
     for (Node *node in nodes) {
         CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
         
-        CLLocationDistance distance = [locationManager.location distanceFromLocation:nodeLocation];
+        CLLocation* currentUserLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
+        CLLocationDistance distance = [currentUserLocation distanceFromLocation:nodeLocation];
         node.distance = [NSNumber numberWithFloat:distance];
     }
     
@@ -228,24 +226,6 @@
 {
     [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     [self.delegate nodeListView:self didSelectDetailsForNode:nodes[indexPath.row]];
-}
-
-#pragma mark - Location Manager Delegate
-
--(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
-                                                        message:NSLocalizedString(@"No Loc Error Message", @"")
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                              otherButtonTitles:nil];
-	[alertView show];
-}
-
--(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    [self loadNodes];
-    [self.tableView reloadData];
 }
 
 

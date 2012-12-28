@@ -426,11 +426,40 @@ static BOOL assetDownloadInProgress;
         }
     }];
     
+    // check if the locale setting is changed
+    // get the previous locale
+    NSString* prev_locale = [[NSUserDefaults standardUserDefaults] objectForKey:@"WheelMap2-PreviousLocaleString"];
+    NSString* current_locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    BOOL localeChanged = NO;
+    if (!prev_locale) {
+        // this is the first launch, so we assume that the locale is not changed (new)
+        localeChanged = NO;
+    } else {
+        // we have both of prev and current locales
+        if ([prev_locale isEqualToString:current_locale]) {
+            // the locale is not changed.
+            localeChanged = NO;
+        } else {
+            localeChanged = YES;
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:current_locale forKey:@"WheelMap2-PreviousLocaleString"];
+    
+    
     // create categories request operation
+    
+    // check if we should set eTag
+    NSString* eTag;
+    if (localeChanged) {
+        eTag = nil;
+    } else {
+        eTag = [self eTagForEntity:@"Category"];
+    }
+    
     NSOperation *categoriesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
                                       apiKey:[self apiKey]
-                                  parameters:nil
-                                        eTag:[self eTagForEntity:@"Category"]
+                                  parameters:@{@"locale" :[[NSLocale preferredLanguages] objectAtIndex:0]}
+                                        eTag:eTag
                                         data:nil
                                       method:nil
                                        error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -451,10 +480,15 @@ static BOOL assetDownloadInProgress;
          ];
 
     // create node types request operation
+    if (localeChanged) {
+        eTag = nil;
+    } else {
+        eTag = [self eTagForEntity:@"NodeType"];
+    }
     NSOperation *nodeTypesOperation = [[WMWheelmapAPI sharedInstance] requestResource:@"node_types"
                                      apiKey:[self apiKey]
-                                 parameters:nil
-                                       eTag:[self eTagForEntity:@"NodeType"]
+                                 parameters:@{@"locale" :[[NSLocale preferredLanguages] objectAtIndex:0]}
+                                       eTag:eTag
                                        data:nil
                                      method:nil
                                       error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
