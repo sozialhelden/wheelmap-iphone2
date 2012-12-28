@@ -137,9 +137,13 @@
 -(void)showAllButtons
 {
     currentLocationButton.hidden = NO;
+    currentLocationButton.userInteractionEnabled = YES;
     searchButton.hidden = NO;
+    searchButton.userInteractionEnabled = YES;
     self.wheelChairStatusFilterButton.hidden = NO;
+    self.wheelChairStatusFilterButton.userInteractionEnabled = YES;
     categoryFilterButton.hidden = NO;
+    categoryFilterButton.userInteractionEnabled = YES;
 
     [UIView animateWithDuration:0.3 animations:^(void)
      {
