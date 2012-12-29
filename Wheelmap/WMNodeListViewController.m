@@ -114,29 +114,25 @@
 {
     nodes = [self.dataSource filteredNodeList];
     
-    
     [self sortNodesByDistance];
     
     [self.tableView reloadData];
 }
 
-- (void)sortNodesByDistance {
-    
-    for (Node *node in nodes) {
-        CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+- (void)sortNodesByDistance
+{    
+    nodes = [nodes sortedArrayUsingComparator:^NSComparisonResult(Node* n1, Node* n2) {
         
-        CLLocationDistance distance = [locationManager.location distanceFromLocation:nodeLocation];
-        node.distance = [NSNumber numberWithFloat:distance];
-    }
-    
-    NSArray *sortedArray;
-    sortedArray = [nodes sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        NSNumber *first = [(Node*)a distance];
-        NSNumber *second = [(Node*)b distance];
-        return [first compare:second];
+        CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:[n1.lat doubleValue] longitude:[n1.lon doubleValue]];
+        CLLocationDistance d1 = [locationManager.location distanceFromLocation:loc1];
+        
+        CLLocation *loc2 = [[CLLocation alloc] initWithLatitude:[n2.lat doubleValue] longitude:[n2.lon doubleValue]];
+        CLLocationDistance d2 = [locationManager.location distanceFromLocation:loc2];
+        
+        if (d1 > d2) return NSOrderedDescending;
+        if (d1 < d2) return NSOrderedAscending;
+        return NSOrderedSame;
     }];
-    
-    nodes = sortedArray;
 }
 
 #pragma mark - Node View Protocol
@@ -193,16 +189,13 @@
     // show node type
     cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"?";
     
-    
     // show node distance
-    if (node.distance.floatValue > 999) {
-        cell.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", node.distance.floatValue/1000.0f];
-    } else {
-        cell.distanceLabel.text = [NSString stringWithFormat:@"%.0f m", node.distance.floatValue];
-    }
+    CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+    CLLocationDistance distance = [locationManager.location distanceFromLocation:nodeLocation];
+    cell.distanceLabel.text = [self localizedDistanceFromMeters:distance];
 
     return cell;
-}
+}       
 
 #pragma mark - Table view delegate
 
@@ -246,6 +239,44 @@
 {
     [self loadNodes];
     [self.tableView reloadData];
+}
+
+
+#pragma mark - Utility Methods
+
+- (NSString*) localizedDistanceFromMeters:(CGFloat)meters
+{
+    // for larger distances, use miles or kilometres
+    if (meters >= 1000.0) {
+        
+        BOOL useMetricSystem = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+        
+        // reuse formatter instance
+        static NSNumberFormatter *formatter;
+        if (!formatter) {
+            formatter = [[NSNumberFormatter alloc] init];
+            formatter.roundingMode = NSNumberFormatterRoundUp;
+            formatter.usesGroupingSeparator = YES;
+            formatter.groupingSize = 3;
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            
+            // use grouping and decimal separators according to locale
+            formatter.groupingSeparator = [[NSLocale currentLocale] objectForKey:NSLocaleGroupingSeparator];
+            formatter.decimalSeparator = [[NSLocale currentLocale] objectForKey:NSLocaleDecimalSeparator];
+        }
+        
+        CGFloat distance = useMetricSystem ? meters / 1000.0 : meters / 1609.344; // 1 Mile = 1609.344 Meters
+        
+        // don't use decimal digits for numbers greater than 10
+        formatter.maximumFractionDigits = distance > 10.0 ? 0 : 1;
+        
+        NSString *distanceUnit = useMetricSystem ? @"km" : @"mi";
+        NSString *distanceString = [formatter stringFromNumber:[NSNumber numberWithFloat:distance]];
+        return [NSString stringWithFormat: @"%@ %@", distanceString, distanceUnit];
+    }
+    
+    // for smaller distances, always use meters
+    return [NSString stringWithFormat: @"%@ m", [NSString stringWithFormat: @"%.0f", meters]];
 }
 
 

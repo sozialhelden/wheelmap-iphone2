@@ -232,8 +232,7 @@
     southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
     northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
     
-    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast];
-    
+    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:nil];
 }
 
 -(void)updateNodesWithQuery:(NSString*)query
@@ -251,7 +250,7 @@
     northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
 
     [self showLoadingWheel];
-    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast andQuery:query];
+    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:query];
     
 }
 
