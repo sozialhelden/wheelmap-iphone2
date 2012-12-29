@@ -19,6 +19,14 @@
 #define WMSearchRadius 0.004
 #define WMLogDataManager 0
 
+// Max number of nodes per page that should be returned for a bounding box request, based on experience.
+// The API limits this value currently to 500 (as of 12/29/2012)
+// Setting a high limit here is necessary to avoid a nasty problem where newly added nodes
+// won't show in results, because nodes are returned with ascending id from the server,
+// so the newest nodes come last (that"s why using pages doesn't make any sense here).
+// If you experience this problem, try to use smaller bounding boxes before raising this number.
+#define WMNodeLimit 700
+
 
 // TODO: fix etag check
 // TODO: use a regular queue to enqueue both http and zip operations when syncing
@@ -183,6 +191,7 @@
                         northeast.latitude];
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
+    parameters[@"per_page"] = @WMNodeLimit;
     if (query) parameters[@"q"] = query;
     
     [[WMWheelmapAPI sharedInstance] requestResource:query ? @"nodes/search" : @"nodes"
