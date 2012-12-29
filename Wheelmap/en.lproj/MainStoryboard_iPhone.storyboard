@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PAo-CL-fP5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PAo-CL-fP5">
     <dependencies>
         <deployment version="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Dashboard View Controller-->
@@ -171,7 +171,7 @@
         <!--Category View Controller-->
         <scene sceneID="Ayj-I3-xNd">
             <objects>
-                <viewController storyboardIdentifier="WMCategoryViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbL-Gz-iQ6" customClass="WMCategoryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMCategoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbL-Gz-iQ6" customClass="WMCategoryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dOl-d1-T1g">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

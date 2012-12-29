@@ -458,14 +458,15 @@
             case kWMNodeListViewControllerUseCaseContribute:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"DashboardHelp", nil);
                 [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
-                [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
+                //[self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
                 break;
             case kWMNodeListViewControllerUseCaseCategory:
                 [self.customToolBar showButton:kWMToolBarButtonWheelChairFilter];
                 [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 break;
-            case kWMNodeListViewControllerUseCaseSearch:
+            case kWMNodeListViewControllerUseCaseGlobalSearch:
+            case kWMNodeListViewControllerUseCaseSearchOnDemand:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
             default:
@@ -508,7 +509,6 @@
 -(void)pressedDashboardButton:(WMNavigationBar *)navigationBar
 {
     [self.customToolBar deselectSearchButton];
-    // In the future, the dashboard would be the root VC.
     [self popToRootViewControllerAnimated:YES];
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
@@ -516,7 +516,13 @@
 
 -(void)pressedBackButton:(WMNavigationBar *)navigationBar
 {
-    [self popViewControllerAnimated:YES];
+    if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+        // we should pop twice due to the node list view controller!
+        WMViewController* targetVC = [self.viewControllers objectAtIndex:self.viewControllers.count-3];
+        [self popToViewController:targetVC animated:YES];
+    } else {
+        [self popViewControllerAnimated:YES];
+    }
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
     
@@ -566,19 +572,19 @@
 {
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
-        vc.useCase = kWMNodeListViewControllerUseCaseSearch;
+        vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
         self.customNavigationBar.title = vc.navigationBarTitle;
         [self updateNodesWithQuery:query];
       
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* vc = (WMMapViewController*)self.topViewController;
-        vc.useCase = kWMNodeListViewControllerUseCaseSearch;
+        vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
         self.customNavigationBar.title = vc.navigationBarTitle;
         
         WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
-        nodeListVC.useCase = kWMNodeListViewControllerUseCaseSearch;
+        nodeListVC.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
         self.customNavigationBar.title = nodeListVC.navigationBarTitle;
         
@@ -613,14 +619,60 @@
     NSLog(@"[ToolBar] update current location button is pressed!");
     [locationManager startUpdatingLocation];
     
+    [self.customToolBar deselectSearchButton];
+    
+    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
+        WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
+        if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
+            return;
+        }
+        currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+        self.customNavigationBar.title = currentVC.navigationBarTitle;
+    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+        WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
+        if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
+            return;
+        }
+        WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+        currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        nodeListVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+        nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+        self.customNavigationBar.title = currentVC.navigationBarTitle;
+    }
+
+    
 }
 -(void)pressedSearchButton:(BOOL)selected
 {
     NSLog(@"[ToolBar] global search button is pressed!");
     if (selected) {
         [self.customNavigationBar showSearchBar];
+        
     } else {
-        [dataManager fetchNodesNear:locationManager.location.coordinate];
+        if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
+            WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
+            currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+            currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+            self.customNavigationBar.title = currentVC.navigationBarTitle;
+        } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+            WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
+            WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+            currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+            nodeListVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+            currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+            nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+            self.customNavigationBar.title = currentVC.navigationBarTitle;
+        }
+        
+        if (self.lastVisibleMapCenter) {
+            [self updateNodesWithRegion:MKCoordinateRegionMake([self.lastVisibleMapCenter MKCoordinateValue], [self.lastVisibleMapSpan MKCoordinateSpanValue])];
+        } else {
+            [self updateNodesWithRegion:MKCoordinateRegionMake(locationManager.location.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
+        }
+        
+        
     }
 }
 

@@ -123,6 +123,8 @@
     self.searchTextField.text = nil;
     [self hideCancelButton];
     [self.searchTextField resignFirstResponder];
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    [navCtrl.customToolBar hideButton:kWMToolBarButtonSearch];
 }
 
 -(IBAction)pressedNodeListButton:(id)sender
@@ -207,7 +209,7 @@
         return YES;
     
     WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    vc.useCase = kWMNodeListViewControllerUseCaseSearch;
+    vc.useCase = kWMNodeListViewControllerUseCaseGlobalSearch;
     
     [self.navigationController pushViewController:vc animated:YES];
     
