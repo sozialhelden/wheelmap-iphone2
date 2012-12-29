@@ -38,6 +38,7 @@
 		9839CAE11663850600B8E3B5 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
 		98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E94C921675F62E00994DBA /* WMKeychainWrapper.m */; };
+		9890C534168F337400AD7C07 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C533168F337400AD7C07 /* WMStringUtilities.m */; };
 		989927501649151300D9003B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		989927521649151300D9003B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		989927541649151300D9003B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
@@ -326,6 +327,8 @@
 		9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9890C532168F337400AD7C07 /* WMStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStringUtilities.h; sourceTree = "<group>"; };
+		9890C533168F337400AD7C07 /* WMStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStringUtilities.m; sourceTree = "<group>"; };
 		9899274B1649151300D9003B /* Wheelmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9899274F1649151300D9003B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		989927511649151300D9003B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -714,6 +717,15 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		9890C536168F337900AD7C07 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9890C532168F337400AD7C07 /* WMStringUtilities.h */,
+				9890C533168F337400AD7C07 /* WMStringUtilities.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +786,7 @@
 				98CA22DA16664C4D00DF0EA3 /* Entities */,
 				DBA622451668F390009FA5DF /* Screens */,
 				98ADC6D1164BEEDA00251943 /* Resources */,
+				9890C536168F337900AD7C07 /* Utilities */,
 			);
 			path = Wheelmap;
 			sourceTree = "<group>";
@@ -1697,6 +1710,7 @@
 				DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */,
 				D544B6D5167919380077F5B7 /* WMNodeTypeTableViewController.m in Sources */,
 				DB4EB52E167FC7EF0096CEDE /* WMSharingManager.m in Sources */,
+				9890C534168F337400AD7C07 /* WMStringUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
