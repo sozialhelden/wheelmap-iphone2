@@ -24,6 +24,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "Category.h"
 #import "WMNavigationControllerBase.h"
+#import "WMStringUtilities.h"
 
 #define GABIFSTATUSUNKNOWN 62
 #define MAPOPENADDITION 266
@@ -587,11 +588,7 @@
     
     CLLocationDistance distance = [pinLocation distanceFromLocation:userLocation];
     
-    if (distance > 999) {
-         [self.distanceLabel setText: [NSString stringWithFormat:@"%.1f km", distance/1000.0f]];
-    } else {
-        [self.distanceLabel setText: [NSString stringWithFormat:@"%.0f m", distance]];        
-    }
+    self.distanceLabel.text = [WMStringUtilities localizedDistanceFromMeters:distance];
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
@@ -876,6 +873,7 @@
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 @end
 

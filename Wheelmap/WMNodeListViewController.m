@@ -12,6 +12,7 @@
 #import "NodeType.h"    
 #import "WMNavigationControllerBase.h" 
 #import <CoreLocation/CoreLocation.h>
+#import "WMStringUtilities.h"
 
 
 @implementation WMNodeListViewController
@@ -122,30 +123,27 @@
 {
     nodes = [self.dataSource filteredNodeList];
     
-    
     [self sortNodesByDistance];
     
     [self.tableView reloadData];
 }
 
-- (void)sortNodesByDistance {
+- (void)sortNodesByDistance
+{
+    CLLocation* userLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
     
-    for (Node *node in nodes) {
-        CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+    nodes = [nodes sortedArrayUsingComparator:^NSComparisonResult(Node* n1, Node* n2) {
         
-        CLLocation* currentUserLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
-        CLLocationDistance distance = [currentUserLocation distanceFromLocation:nodeLocation];
-        node.distance = [NSNumber numberWithFloat:distance];
-    }
-    
-    NSArray *sortedArray;
-    sortedArray = [nodes sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        NSNumber *first = [(Node*)a distance];
-        NSNumber *second = [(Node*)b distance];
-        return [first compare:second];
+        CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:[n1.lat doubleValue] longitude:[n1.lon doubleValue]];
+        CLLocationDistance d1 = [userLocation distanceFromLocation:loc1];
+        
+        CLLocation *loc2 = [[CLLocation alloc] initWithLatitude:[n2.lat doubleValue] longitude:[n2.lon doubleValue]];
+        CLLocationDistance d2 = [userLocation distanceFromLocation:loc2];
+        
+        if (d1 > d2) return NSOrderedDescending;
+        if (d1 < d2) return NSOrderedAscending;
+        return NSOrderedSame;
     }];
-    
-    nodes = sortedArray;
 }
 
 #pragma mark - Node View Protocol
@@ -202,16 +200,14 @@
     // show node type
     cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"?";
     
-    
     // show node distance
-    if (node.distance.floatValue > 999) {
-        cell.distanceLabel.text = [NSString stringWithFormat:@"%.1f km", node.distance.floatValue/1000.0f];
-    } else {
-        cell.distanceLabel.text = [NSString stringWithFormat:@"%.0f m", node.distance.floatValue];
-    }
+    CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+    CLLocation* userLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
+    CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
+    cell.distanceLabel.text = [WMStringUtilities localizedDistanceFromMeters:distance];
 
     return cell;
-}
+}       
 
 #pragma mark - Table view delegate
 

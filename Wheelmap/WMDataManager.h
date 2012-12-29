@@ -25,17 +25,16 @@
 - (NSString*)currentUserName;
 
 - (void) fetchNodesNear:(CLLocationCoordinate2D)location;
-- (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast;
 - (void) fetchNodesWithQuery:(NSString*)query;
-- (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast andQuery:(NSString*)query;
+- (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest
+                          northeast:(CLLocationCoordinate2D)northeast
+                              query:(NSString*)query;
 - (void) fetchPhotoURLsOfNode:(Node*)node;
 
 - (void) syncResources;
 
 - (NSArray*) categories;
 - (NSArray*) nodeTypes;
-
-- (void) searchFor:(NSString*)query;
 
 - (Node*) createNode;
 - (Node*) updateNode:(Node*)node withPhotoArray:(NSArray*)photoArray;

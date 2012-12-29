@@ -85,8 +85,6 @@
         appApiKey = config[@"appAPIKey"];
     }
     
-    NSLog(@"no user token found. Using appAPIKey");
-    
     return appApiKey;
 }
 
@@ -95,17 +93,14 @@
 
 - (void)authenticateUserWithEmail:(NSString *)email password:(NSString *)password
 {
-    NSString* percentEscapedEmail = [email stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString* percentEscapedPassword = [password stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    if (WMLogDataManager) NSLog(@"authenticate user w email:%@ pw:%@", percentEscapedEmail, percentEscapedPassword);
+    if (WMLogDataManager) NSLog(@"authenticate user w email:%@ pw:%@", email, password);
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"users/authenticate"
                                              apiKey:[self apiKey]
-                                         parameters:@{@"email":percentEscapedEmail, @"password":percentEscapedPassword}
+                                         parameters:@{@"email":email, @"password":password}
                                                eTag:nil
                                                data:nil
-                                             method:@"POST"
+                                             method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:userAuthenticationFailedWithError:)]) {
                                                       [self.delegate dataManager:self userAuthenticationFailedWithError:error];
@@ -163,11 +158,7 @@
 
 - (NSString*)currentUserName
 {
-    if (self.userIsAuthenticated) {
-        return self.keychainWrapper.userAccount;
-    } else {
-        return nil;
-    }
+    return self.keychainWrapper.userAccount;
 }
 
 
@@ -180,69 +171,34 @@
     CLLocationCoordinate2D southwest = CLLocationCoordinate2DMake(location.latitude - WMSearchRadius, location.longitude - WMSearchRadius);
     CLLocationCoordinate2D northeast = CLLocationCoordinate2DMake(location.latitude + WMSearchRadius, location.longitude + WMSearchRadius);
     
-    [self fetchNodesBetweenSouthwest:southwest northeast:northeast];
+    [self fetchNodesBetweenSouthwest:southwest northeast:northeast query:nil];
 }
 
--(void)fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast andQuery:(NSString *)query
+-(void)fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
     NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
                         southwest.longitude,
                         southwest.latitude,
                         northeast.longitude,
                         northeast.latitude];
-    NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
-    parameters[@"q"] = query;
+    if (query) parameters[@"q"] = query;
     
-    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes/search"
+    [[WMWheelmapAPI sharedInstance] requestResource:query ? @"nodes/search" : @"nodes"
                                              apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
-                                                      [self.delegate dataManager:self fetchNodesFailedWithError:error];
-                                                  }
+                                                  [self fetchNodesFailedWithError:error];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 [self didReceiveNodes:JSON[@"nodes"]];
                                             }
                                    startImmediately:YES
-     ];
-
-    
-}
-
-- (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast
-{
-    NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
-                         southwest.longitude,
-                         southwest.latitude,
-                         northeast.longitude,
-                         northeast.latitude];
-    [self fetchNodesWithParameters:@{@"bbox":coords}];
-}
-
-
-- (void) fetchNodesWithParameters:(NSDictionary*)parameters;
-{
-    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
-                                             apiKey:[self apiKey]
-                                         parameters:parameters
-                                               eTag:nil
-                                               data:nil
-                                             method:nil
-                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                       if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
-                           [self.delegate dataManager:self fetchNodesFailedWithError:error];
-                       }
-                   }
-                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                       [self didReceiveNodes:JSON[@"nodes"]];
-                   }
-                                   startImmediately:YES
-     ];
+     ];   
 }
 
 - (void)fetchNodesWithQuery:(NSString*)query
@@ -256,9 +212,7 @@
                                                data:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
-                                                      [self.delegate dataManager:self fetchNodesFailedWithError:error];
-                                                  }
+                                                  [self fetchNodesFailedWithError:error];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 [self didReceiveNodes:JSON[@"nodes"]];
@@ -266,6 +220,13 @@
                                    startImmediately:YES
      ];
     
+}
+
+- (void) fetchNodesFailedWithError:(NSError*) error
+{
+    if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
+        [self.delegate dataManager:self fetchNodesFailedWithError:error];
+    }
 }
 
 - (void) didReceiveNodes:(NSArray *)nodes
@@ -283,7 +244,9 @@
     }
 }
 
+
 #pragma mark - Put/Post a node
+
 -(void)putWheelChairStatusForNode:(Node *)node
 {
     NSLog(@"[WMDataManager] put wheelchair status %@", node.wheelchair);
@@ -470,7 +433,7 @@ static BOOL assetDownloadInProgress;
                                        }
                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                          NSUInteger code = response.statusCode;
-                                         NSLog(@"category sync response status %i", code);
+                                         if (WMLogDataManager) NSLog(@"category sync response status %i", code);
                                          NSString *eTag = [response allHeaderFields][@"ETag"];
                                          dispatch_async(dispatch_get_main_queue(), ^{
                                              [self receivedCategories:JSON[@"categories"] withETag:eTag];
@@ -498,8 +461,6 @@ static BOOL assetDownloadInProgress;
                                           });
                                       }
                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                        NSUInteger code = response.statusCode;
-                                        NSLog(@"nodetype sync response status %i", code);
                                         NSString *eTag = [response allHeaderFields][@"ETag"];
                                         dispatch_async(dispatch_get_main_queue(), ^{
                                             [self receivedNodeTypes:JSON[@"node_types"] withETag:eTag];
@@ -523,8 +484,6 @@ static BOOL assetDownloadInProgress;
                                                          });
                                                      }
                                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                       NSUInteger code = response.statusCode;
-                                                       NSLog(@"asset sync response status %i", code);
                                                        NSString *eTag = [response allHeaderFields][@"ETag"];
                                                        dispatch_async(dispatch_get_main_queue(), ^{
                                                            [self receivedAssets:JSON[@"assets"] withETag:eTag];
@@ -540,7 +499,7 @@ static BOOL assetDownloadInProgress;
                               }
                             completionBlock:^(NSArray *operations) {
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    /*if (WMLogDataManager)*/ NSLog(@"... sync assets finished");
+                                    if (WMLogDataManager) NSLog(@"... sync assets finished");
                                     syncInProgress = NO;
                                     [self finishSync];
                                 });
@@ -588,15 +547,9 @@ static BOOL assetDownloadInProgress;
 - (void) receivedAssets:(NSArray*)assets withETag:(NSString*) eTag
 {
     if (WMLogDataManager) NSLog(@"... received %i assets", [assets count]);
-    
-    if (!assets) {
-        assetDownloadInProgress = NO;
-        [self finishSync];
-        return;
-    }
         
-    // if eTag has not changed
-    if (![eTag isEqual:[self eTagForEntity:@"Asset"]]) {
+    // if assets are available and eTag has not changed
+    if (assets && ![eTag isEqual:[self eTagForEntity:@"Asset"]]) {
        
         // store old icon modified date
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
@@ -630,7 +583,7 @@ static BOOL assetDownloadInProgress;
 
 - (void) downloadFilesForAsset:(Asset*)asset
 {
-    /*if (WMLogDataManager)*/ NSLog(@"... download file for asset %@ from %@", asset.name, asset.url);
+    if (WMLogDataManager) NSLog(@"... download file for asset %@ from %@", asset.name, asset.url);
 
     // use /tmp dir for archive download
     NSString *path = [NSTemporaryDirectory() stringByAppendingFormat:@"%@.zip", asset.name];
@@ -721,7 +674,6 @@ static BOOL assetDownloadInProgress;
 
 - (void) finishSync
 {
-    NSLog(@"%d %d", syncInProgress, assetDownloadInProgress);
     if (!syncInProgress && !assetDownloadInProgress) {
         
         if (syncErrors) {
@@ -910,7 +862,6 @@ static BOOL assetDownloadInProgress;
 
 - (NSManagedObject*) createOrUpdateManagedObjectWithEntityName:(NSString*)entityName objectData:(NSDictionary*)data
 {
-
     NSParameterAssert(data != nil);
     
     NSManagedObject *object = nil;
@@ -962,7 +913,6 @@ static BOOL assetDownloadInProgress;
             }
         }];
         
-        
         // check if converted object is valid
         NSError *error = nil;
         if (!conversionSuccess || ![object validateForUpdate:&error]) {
@@ -984,9 +934,7 @@ static BOOL assetDownloadInProgress;
             }
             
             return nil;
-            //return object;
         }
-         
     }
     
     return object;
