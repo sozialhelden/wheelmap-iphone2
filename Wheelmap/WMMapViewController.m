@@ -39,7 +39,7 @@
     [super viewDidLoad];
 
     self.mapView.showsUserLocation = YES;
-    
+    //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -56,7 +56,22 @@
     // we set the delegate in viewDidAppear to avoid node updates by map initialisation
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+    
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.dataSource;
+    MKCoordinateRegion initRegion;
+    if (!navCtrl.lastVisibleMapCenter || !navCtrl.lastVisibleMapSpan) {
+        navCtrl.lastVisibleMapCenter = [NSValue valueWithMKCoordinate:self.mapView.region.center];
+        navCtrl.lastVisibleMapSpan = [NSValue valueWithMKCoordinateSpan:self.mapView.region.span];
+        initRegion = MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005));
+        [self.mapView setRegion:initRegion animated:NO];
+        [self mapView:self.mapView regionDidChangeAnimated:NO];
+        
+    } else {
+        initRegion = MKCoordinateRegionMake([navCtrl.lastVisibleMapCenter MKCoordinateValue], [navCtrl.lastVisibleMapSpan MKCoordinateSpanValue]);
+        [self.mapView setRegion:initRegion animated:NO];
+    }
+    
+
        
 }
 
@@ -197,6 +212,10 @@
         [self.loadingWheel startAnimating];
         [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
     }
+
+    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenter:[NSValue valueWithMKCoordinate:self.mapView.region.center]];
+    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpan:[NSValue valueWithMKCoordinateSpan:self.mapView.region.span]];
+
 }
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord

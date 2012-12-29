@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "WMNodeListView.h"
-#import <CoreLocation/CoreLocation.h>
 
-@interface WMNodeListViewController : WMViewController <WMNodeListView, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate> {
-    
-    CLLocationManager *locationManager;
-}
+@interface WMNodeListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate>
+
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (nonatomic, strong) NSNumber* selectedCategoryID;
