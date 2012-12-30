@@ -25,7 +25,7 @@
 "Nearby Places" = "この付近の場所";
 "Places near %@" = "%@ の近くの場所";
 "Places in map segment" = "マップ·セグメント内の場所";
-"OK" = "OK";
+"OK" = "完了";
 "Cancel" = "キャンセル";
 "BackButton" = "戻る";
 "Unknown Place" = "不明な場所";
@@ -89,9 +89,9 @@
 "WheelchairAccessLimited" = "一部利用可";
 "WheelchairAccessNo" = "利用不可";
 "WheelchairAccessUnknown" = "利用可否不明";
-"WheelchairAccessContentYes" = "● 入口の段差なし\\n● 全ての位置に段差なしでアクセスできる\\n● トイレがあれば: 障害者用トイレも利用できる";
-"WheelchairAccessContentLimited" = "●入口の段差は7 cm未満\\n● 大半の重要な位置は段差なしでアクセスできる";
-"WheelchairAccessContentNo" = "● 入口の段差は7 cm以上\\n● 大半の重要な位置は段差なしではアクセスできない";
+"WheelchairAccessContentYes" = "● 入口の段差なし\n● 全ての位置に段差なしでアクセスできる\n● トイレがあれば: 障害者用トイレも利用できる";
+"WheelchairAccessContentLimited" = "●入口の段差は7 cm未満\n● 大半の重要な位置は段差なしでアクセスできる";
+"WheelchairAccessContentNo" = "● 入口の段差は7 cm以上\n● 大半の重要な位置は段差なしではアクセスできない";
 "category_accommodation" = "宿泊施設";
 "category_government" = "公共機関";
 "category_money_post" = "銀行＆郵便局";
@@ -215,7 +215,7 @@
 "DetailsView4ButtonViewShareLabel" = "共有";
 "DetailsView4ButtonViewInfoLabel" = "コメント";
 "DetailsView4ButtonViewRouteLabel" = "ルート";
-"DetailsViewAskFriendsButtonLabel" = "約束： 友達にこの場所が車椅子で行けるかどうか聞いてみましょう";
+"DetailsViewAskFriendsButtonLabel" = "助け合い： 友達にこの場所が車椅子で行けるかどうか聞いてみましょう";
 "DetailsViewChoosePhotoSource" = "ファイルを選択";
 "DetailsViewUploadOptionCamera" = "カメラ";
 "DetailsViewUploadOptionPhotoAlbum" = "写真";
@@ -231,7 +231,7 @@
 "DashboardNearby" = "近くの場所";
 "DashboardMap" = "マップ";
 "DashboardCategories" = "カテゴリ";
-"DashboardHelp" = "約束済";
+"DashboardHelp" = "助け合い";
 "SearchForPlace" = "場所を探す";
 "Places" = "場所";
 "TopLabelText" = "";
@@ -275,3 +275,4 @@
 "SMSSendFailed" = "SMSの送信に失敗しました．";
 "EditPOIViewSetMarkerButtonDisabled" = "編集不可";
 "NavBarTitleSetNodeType" = "タイプの設定";
+"SetMarkerInstruction" = "青いマーカーをこの場所の正確な位置まで動かしてください．";
