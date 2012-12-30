@@ -194,7 +194,7 @@
     // CATEGORY / NOTE TYPE
     self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 32, self.view.bounds.size.width-STARTLEFT*2, 16)];
     self.nodeTypeLabel.textColor = [UIColor darkGrayColor];
-    self.nodeTypeLabel.font = [UIFont systemFontOfSize:12];
+    self.nodeTypeLabel.font = [UIFont systemFontOfSize:14];
     self.nodeTypeLabel.backgroundColor = [UIColor clearColor];
     [view addSubview:self.nodeTypeLabel];
 
@@ -250,7 +250,7 @@
     // STREET
     self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.streetLabel.textColor = [UIColor darkGrayColor];
-    self.streetLabel.font = [UIFont boldSystemFontOfSize:12];
+    self.streetLabel.font = [UIFont boldSystemFontOfSize:14];
     self.streetLabel.backgroundColor = [UIColor clearColor];
     [view addSubview:self.streetLabel];
     
@@ -260,11 +260,11 @@
     // POSTCODE AND CITY
     self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
-    self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:12];
+    self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:14];
     self.postcodeAndCityLabel.backgroundColor = [UIColor clearColor];
     [view addSubview:self.postcodeAndCityLabel];
     
-    startY += 30;
+    startY += 20;
     
     // COMPASS
     UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
@@ -279,17 +279,17 @@
     self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
     self.websiteLabel.editable = NO;
     self.websiteLabel.scrollEnabled = NO;
-    self.websiteLabel.font = [UIFont systemFontOfSize:12];
+    self.websiteLabel.font = [UIFont systemFontOfSize:14];
     self.websiteLabel.backgroundColor = [UIColor clearColor];
     self.websiteLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
     [view addSubview:self.websiteLabel];
     
-     startY += 20;
+     startY += 25;
     
     // PHONE
     self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.phoneLabel.textColor = [UIColor darkGrayColor];
-    self.phoneLabel.font = [UIFont systemFontOfSize:12];
+    self.phoneLabel.font = [UIFont systemFontOfSize:14];
     self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
     self.phoneLabel.editable = NO;
     self.phoneLabel.scrollEnabled = NO;
