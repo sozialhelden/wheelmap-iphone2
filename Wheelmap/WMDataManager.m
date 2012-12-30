@@ -334,14 +334,15 @@
     NSMutableDictionary* outputDict = [[NSMutableDictionary alloc] init];
     if (node.name)
         [outputDict setObject:node.name forKey:@"name"];
+    
     /*
     NSMutableDictionary* parameters = @{@"name":node.name, @"type":node.node_type.id,
-    @"lat":node.lat, @"lon":node.lon};
+    @"lat":node.lat, @"lon":node.lon,
     @"wheelchair":node.wheelchair,
     @"wheelchair_description":node.wheelchair_description, @"street":node.street,
     @"housenumber":node.housenumber, @"city":node.city, @"postcode":node.postcode,
     @"website":node.website, @"phone":node.phone};
-    */
+     */
     
     return outputDict;
     

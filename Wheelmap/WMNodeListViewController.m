@@ -195,10 +195,10 @@
     [cell.iconImage addSubview:icon];
     
     // show name
-    cell.titleLabel.text = node.name ?: @"?";
+    cell.titleLabel.text = node.name ?: @"";
     
     // show node type
-    cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"?";
+    cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"";
     
     // show node distance
     CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];

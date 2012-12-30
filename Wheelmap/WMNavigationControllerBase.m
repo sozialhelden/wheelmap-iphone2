@@ -477,8 +477,15 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
     } else if ([vc isKindOfClass:[WMWheelchairStatusViewController class]]) {
-        rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
-        leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
+        WMWheelchairStatusViewController* wheelchairStatusVC = (WMWheelchairStatusViewController*)vc;
+        NSLog(@"WheelChairStatusViewController usecase: %d", wheelchairStatusVC.useCase);
+        if (wheelchairStatusVC.useCase == kWMWheelChairStatusViewControllerUseCasePutNode) {
+            rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
+            leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
+        } else {
+            rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
+            leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
+        }
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
     } else if ([vc isKindOfClass:[WMEditPOIViewController class]]) {

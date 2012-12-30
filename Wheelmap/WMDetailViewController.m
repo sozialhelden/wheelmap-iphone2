@@ -430,9 +430,9 @@
     
     // TEXTFIELDS
     
-    self.titleLabel.text = self.node.name ?: @"?";
-    NSString *nodeTypeString = self.node.node_type.localized_name ?: @"?";
-    NSString *catString = self.node.category.localized_name ?: @"?";
+    self.titleLabel.text = self.node.name ?: @"";
+    NSString *nodeTypeString = self.node.node_type.localized_name ?: @"";
+    NSString *catString = self.node.category.localized_name ?: @"";
     NSString *nodeTypeAndCatString = [NSString stringWithFormat:@"%@ / %@", nodeTypeString, catString];
     self.nodeTypeLabel.text = nodeTypeAndCatString;
     

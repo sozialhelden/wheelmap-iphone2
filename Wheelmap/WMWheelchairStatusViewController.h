@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Node.h"
 #import "WMDataManager.h"
+typedef enum {
+    kWMWheelChairStatusViewControllerUseCasePutWheelChairStatus,
+    kWMWheelChairStatusViewControllerUseCasePutNode
+} WMWheelChairStatusViewControllerUseCase;
+
 @interface WMWheelchairStatusViewController : WMViewController <WMDataManagerDelegate>
 {
     WMDataManager* dataManager;
@@ -18,7 +23,7 @@
 @property (nonatomic, strong) Node *node;
 
 @property (strong, nonatomic) UIScrollView *scrollView;
-
+@property WMWheelChairStatusViewControllerUseCase useCase;
 @property (weak, nonatomic) IBOutlet WMButton *yesButton;
 @property (weak, nonatomic) IBOutlet WMButton *limitedButton;
 @property (weak, nonatomic) IBOutlet WMButton *noButton;

@@ -46,6 +46,7 @@
 	// Do any additional setup after loading the view.
     self.currentCategory = self.node.category;
     self.currentNodeType = self.node.node_type;
+    self.currentWheelchairStatus = self.node.wheelchair;
     self.nameTextField.delegate = self;
     self.infoTextView.delegate = self;
     self.streetTextField.delegate = self;
@@ -205,16 +206,16 @@
 
 - (void)setWheelAccessButton {
     
-    if ([self.node.wheelchair isEqualToString:@"yes"]) {
+    if ([self.currentWheelchairStatus isEqualToString:@"yes"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.node.wheelchair isEqualToString:@"no"]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:@"no"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.node.wheelchair isEqualToString:@"limited"]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:@"limited"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.node.wheelchair isEqualToString:@"unknown"]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:@"unknown"]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
     } else {
@@ -237,20 +238,24 @@
 
 
 - (void)accessButtonPressed:(NSString*)wheelchairAccess {
-      self.node.wheelchair = wheelchairAccess;
+      self.currentWheelchairStatus = wheelchairAccess;
     [self setWheelAccessButton];
 }
 
 - (void)categoryChosen:(Category *)category {
     self.currentCategory = category;
     BOOL nodeTypeStillValid = NO;
+    NodeType* fallBackNodeType = nil;
     for (NodeType *nt in self.currentCategory.nodeType) {
+        if (!fallBackNodeType) {
+            fallBackNodeType = nt;
+        }
         if ([nt isEqual:self.currentNodeType]) {
             nodeTypeStillValid = YES;
         }
     }
     if (!nodeTypeStillValid) {
-        self.currentNodeType = nil;
+        self.currentNodeType = fallBackNodeType;
         
     }
 }
@@ -262,6 +267,7 @@
 
 - (void)markerSet:(CLLocationCoordinate2D)coord {
     self.currentCoordinate = coord;
+    [self.setMarkerButton setTitle:[NSString stringWithFormat:@"(%0.5f, %0.5f)", coord.latitude, coord.longitude] forState:UIControlStateNormal];
 }
 
 - (IBAction)showAccessOptions:(id)sender {
@@ -270,6 +276,7 @@
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
     vc.delegate = self;
     vc.node = self.node;
+    vc.useCase = kWMWheelChairStatusViewControllerUseCasePutNode;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -329,7 +336,7 @@
     self.node.name = self.nameTextField.text;
     self.node.category = self.currentCategory;
     self.node.node_type = self.currentNodeType;
-    self.node.wheelchair = self.node.wheelchair;
+    self.node.wheelchair = self.currentWheelchairStatus;
     self.node.wheelchair_description = self.infoTextView.text;
     self.node.street = self.streetTextField.text;
     self.node.housenumber = self.housenumberTextField.text;
@@ -352,8 +359,11 @@
     
     [self saveCurrentEntriesToCurrentNode];
     
-    [self.dataManager putNode:self.node];
-    
+    if (!self.editView) {
+        [self.dataManager postNode:self.node];
+    } else {
+        [self.dataManager putNode:self.node];
+    }
     progressWheel.hidden = NO;
     [progressWheel startAnimating];
 
@@ -376,7 +386,23 @@
     
     [alert show];
     
+}
+
+- (void) dataManager:(WMDataManager *)dataManager didFinishPostingNodeWithMsg:(NSString *)msg {
+    progressWheel.hidden = YES;
+    [progressWheel stopAnimating];
+    NSLog(@"XXXXXXXX FINISHED %@", msg);
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) dataManager:(WMDataManager *)dataManager failedPostingNodeWithError:(NSError *)error {
+    NSLog(@"XXXXXXXX Failed %@", error);
+    progressWheel.hidden = YES;
+    [progressWheel stopAnimating];
     
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SaveNodeFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    
+    [alert show];
     
 }
 
@@ -408,12 +434,15 @@
         [self.cityTextField becomeFirstResponder];
         
     }
+    
+    [self saveCurrentEntriesToCurrentNode];
     return YES;
 }
 
 - (BOOL)textViewShouldReturn:(UITextView *)textView{
     
     [textView resignFirstResponder];
+    [self saveCurrentEntriesToCurrentNode];
     return YES;
 }
 
