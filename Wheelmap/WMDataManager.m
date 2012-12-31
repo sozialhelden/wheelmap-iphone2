@@ -696,9 +696,22 @@ static BOOL assetDownloadInProgress;
 
 - (void) didReceivePhotos:(NSArray*)photos forNode:(Node*)node
 {
-    // TODO: parse and save photo objects
-    if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotosForNode:)]) {
-        [self.delegate dataManager:self didReceivePhotosForNode:node];
+    NSError *error = nil;
+    NSArray *parsedNodes = [self parseDataObject:photos entityName:@"Photo" error:&error];
+    node.photos = [NSSet setWithArray:parsedNodes];
+    
+    if (error) {
+        if ([self.delegate respondsToSelector:@selector(dataManager:fetchPhotosForNode:failedWithError:)]) {
+            [self.delegate dataManager:self fetchPhotosForNode:node failedWithError:error];
+        }
+        
+    } else {
+        
+        [self saveData];
+        
+        if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotosForNode:)]) {
+            [self.delegate dataManager:self didReceivePhotosForNode:node];
+        }
     }
 }
 
@@ -746,6 +759,11 @@ static BOOL assetDownloadInProgress;
 - (Node*) createNode
 {
     return [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:self.managedObjectContext];
+}
+
+- (void)deleteNode:(Node *)node
+{
+    [self.managedObjectContext deleteObject:node];
 }
 
 - (void)fetchTotalNodeCount

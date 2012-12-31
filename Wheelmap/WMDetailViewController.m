@@ -795,7 +795,7 @@
 - (void)dataManager:(WMDataManager *)dataManager didReceivePhotosForNode:(Node *)node
 {
     NSLog(@"updated photos: %@", node.photos);
-    //self.node = [dataManager updateNode:self.node withPhotoArray:photoURLs];
+
     for (Photo* photo in node.photos) {
         for (Image* image in photo.images) {
             if ([image.type caseInsensitiveCompare:@"thumb_iphone_retina"] == NSOrderedSame) {
@@ -805,8 +805,6 @@
             }
         }
     }
-    
-    //[dataManager updateNode:self.node withPhotoArray:photoURLs];
     
     [self createThumbnails];
 
