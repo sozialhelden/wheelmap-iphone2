@@ -54,6 +54,8 @@
     [self.navigationController setToolbarHidden:NO animated:YES];
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
+        
         isAccesoryHeaderVisible = YES;
         
         UIImageView* accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
@@ -94,10 +96,15 @@
         [(WMNavigationControllerBase*)dataSource updateUserLocation];
         [self loadNodes];
         
-    } else if (self.useCase == kWMNodeListViewControllerUseCaseSearch) {
-        // do nothing!
+    } else if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+        [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
-    } else {
+    } else if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
+        [self loadNodes];
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonCurrentLocation];
+    } 
+    else {
     
         NSValue* lastMapVisibleCenter = [((WMNavigationControllerBase *)self.navigationController) lastVisibleMapCenter];
         if (!lastMapVisibleCenter) {
@@ -105,6 +112,10 @@
             [(WMNavigationControllerBase*)dataSource updateUserLocation];
         }
         [self loadNodes];
+        
+        if (self.useCase == kWMNodeListViewControllerUseCaseCategory) {
+            [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
+        }
     }
 }
 
@@ -184,10 +195,10 @@
     [cell.iconImage addSubview:icon];
     
     // show name
-    cell.titleLabel.text = node.name ?: @"?";
+    cell.titleLabel.text = node.name ?: @"";
     
     // show node type
-    cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"?";
+    cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"";
     
     // show node distance
     CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];

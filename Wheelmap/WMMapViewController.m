@@ -62,7 +62,8 @@
     if (!navCtrl.lastVisibleMapCenter || !navCtrl.lastVisibleMapSpan) {
         navCtrl.lastVisibleMapCenter = [NSValue valueWithMKCoordinate:self.mapView.region.center];
         navCtrl.lastVisibleMapSpan = [NSValue valueWithMKCoordinateSpan:self.mapView.region.span];
-        initRegion = MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005));
+        CLLocation* userLocation = [navCtrl currentUserLocation];
+        initRegion = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005));
         [self.mapView setRegion:initRegion animated:NO];
         [self mapView:self.mapView regionDidChangeAnimated:NO];
         
@@ -71,6 +72,12 @@
         [self.mapView setRegion:initRegion animated:NO];
     }
     
+    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+        // show current location button, if it is hidden
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar showButton:kWMToolBarButtonCurrentLocation];
+        [self loadNodes];   // load nodes from the dataSource
+        
+    }
 
        
 }
@@ -207,7 +214,9 @@
 {
     
     NSLog(@"Current Use Case %d", self.useCase);
-    if (self.useCase != kWMNodeListViewControllerUseCaseSearch) {
+    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+        // do nothing
+    } else {
         self.loadingWheel.hidden = NO;
         [self.loadingWheel startAnimating];
         [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];

@@ -40,7 +40,8 @@ typedef enum {
 
 typedef enum {
     kWMNodeListViewControllerUseCaseNormal,
-    kWMNodeListViewControllerUseCaseSearch,
+    kWMNodeListViewControllerUseCaseGlobalSearch,
+    kWMNodeListViewControllerUseCaseSearchOnDemand,
     kWMNodeListViewControllerUseCaseContribute,
     kWMNodeListViewControllerUseCaseCategory
 } WMNodeListViewControllerUseCase;

@@ -274,3 +274,4 @@
 "EditPOIViewSetMarkerButtonDisabled" = "unavailable";
 "NavBarTitleSetNodeType" = "Set Location Type";
 "EditPOIViewNodeTypeLabel" = "Location Type";
+"SetMarkerInstruction" = "Drag the blue marker on the precise position of this location.";

@@ -193,15 +193,19 @@
         self.wheelchairAccess = @"no";
     }
     [self updateCheckMarks];
+    if (self.useCase == kWMWheelChairStatusViewControllerUseCasePutNode) {
+        [self.delegate accessButtonPressed:self.wheelchairAccess];
+    }
 }
 
-- (void) saveAccessStatus {
+- (void) saveAccessStatus
+{
     [self.delegate accessButtonPressed:self.wheelchairAccess];
     //[self.navigationController popViewControllerAnimated:YES];
     [dataManager updateWheelchairStatusOfNode:self.node];
+
     [progressWheel startAnimating];
     progressWheel.hidden = NO;
-    
 }
 
 #pragma mark WMDataManager Delegate
@@ -209,6 +213,7 @@
 {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
+    [self.delegate accessButtonPressed:self.wheelchairAccess];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -123,6 +123,8 @@
     self.searchTextField.text = nil;
     [self hideCancelButton];
     [self.searchTextField resignFirstResponder];
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    [navCtrl.customToolBar hideButton:kWMToolBarButtonSearch];
 }
 
 -(IBAction)pressedNodeListButton:(id)sender
@@ -133,7 +135,9 @@
     [navCtrl clearCategoryFilterStatus];
     WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     vc.useCase = kWMNodeListViewControllerUseCaseNormal;
+    [self pressedSearchCancelButton:searchCancelButton];
     [self.navigationController pushViewController:vc animated:YES];
+    
     
     
 }
@@ -148,6 +152,7 @@
     WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     WMMapViewController* mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
     mapVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+    [self pressedSearchCancelButton:searchCancelButton];
     [self.navigationController pushViewController:nodeListVC animated:NO];
     [self.navigationController pushViewController:mapVC animated:YES];
     
@@ -171,6 +176,7 @@
     WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     nodeListVC.useCase = kWMNodeListViewControllerUseCaseContribute;
     [self.navigationController pushViewController:nodeListVC animated:YES];
+    [self pressedSearchCancelButton:searchCancelButton];
 }
 
 -(IBAction)pressedCategoriesButton:(id)sender
@@ -178,6 +184,7 @@
     WMCategoryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryViewController"];
     
     [self.navigationController pushViewController:vc animated:YES];
+    [self pressedSearchCancelButton:searchCancelButton];
 }
 
 -(IBAction)pressedLoginButton:(id)sender
@@ -207,7 +214,7 @@
         return YES;
     
     WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    vc.useCase = kWMNodeListViewControllerUseCaseSearch;
+    vc.useCase = kWMNodeListViewControllerUseCaseGlobalSearch;
     
     [self.navigationController pushViewController:vc animated:YES];
     
