@@ -284,9 +284,22 @@
 -(void)updateNode:(Node *)node
 {
     if (WMLogDataManager) NSLog(@"update node %@", node.name);
-    
-    NSDictionary* parameters = [self getParamDictFromNode:node];
-    
+
+    NSDictionary* parameters = @{
+        @"city" : node.city ?: [NSNull null],
+        @"housenumber" : node.housenumber ?: [NSNull null],
+        @"lat" : node.lat ?: [NSNull null],
+        @"lon" : node.lon ?: [NSNull null],
+        @"name" : node.name ?: [NSNull null],
+        @"phone" : node.phone ?: [NSNull null],
+        @"postcode" : node.postcode ?: [NSNull null],
+        @"street" : node.street ?: [NSNull null],
+        @"website" : node.website ?: [NSNull null],
+        @"wheelchair" : node.wheelchair ?: [NSNull null],
+        @"wheelchair_description" : node.wheelchair_description ?: [NSNull null],
+        @"type" : node.node_type.identifier ?: [NSNull null]
+    };
+
     [[WMWheelmapAPI sharedInstance] requestResource:node.id ? [NSString stringWithFormat:@"nodes/%@/", node.id] : @"nodes"
                                              apiKey:[self apiKey]
                                          parameters:parameters
@@ -302,29 +315,9 @@
                                                 if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateNode:)]) {
                                                     [self.delegate dataManager:self didUpdateNode:node];
                                                 }
-                                                // TODO: delete node instance from moc?
                                             }
                                    startImmediately:YES
      ];    
-}
-
--(NSDictionary*)getParamDictFromNode:(Node*)node
-{
-    NSMutableDictionary* outputDict = [[NSMutableDictionary alloc] init];
-    if (node.name)
-        [outputDict setObject:node.name forKey:@"name"];
-    
-    // TODO: serialize node
-    /*
-    NSMutableDictionary* parameters = @{@"name":node.name, @"type":node.node_type.id,
-    @"lat":node.lat, @"lon":node.lon};
-    @"wheelchair":node.wheelchair,
-    @"wheelchair_description":node.wheelchair_description, @"street":node.street,
-    @"housenumber":node.housenumber, @"city":node.city, @"postcode":node.postcode,
-    @"website":node.website, @"phone":node.phone};
-    */
-    
-    return outputDict;
 }
 
 
