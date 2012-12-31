@@ -264,7 +264,7 @@
 "PhotoUuploadSuccess" = "The photo is uploaded successfully";
 "PhotoUuploadFailed" = "The photo could not be uploaded. Please try it again";
 "FetchingPhotoURLFailed" = "The photos of this location could not be downloaded.";
-"WhellChairStatusChangeFailed" = "Wheelchair accessibility of this place could not be updated. Please try it again.";
+"WheelchairStatusChangeFailed" = "Wheelchair accessibility of this place could not be updated. Please try it again.";
 "NavBarTitleSharing" = "Sharing";
 "NavBarTitleComment" = "Comment";
 "NavBarTitleEdit" = "Edit";

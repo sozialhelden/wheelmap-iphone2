@@ -257,7 +257,7 @@
 "PhotoUuploadSuccess" = "写真の送信に成功しました．";
 "PhotoUuploadFailed" = "写真の送信に失敗しました．再送信してください．";
 "FetchingPhotoURLFailed" = "写真の受信に失敗しました．";
-"WhellChairStatusChangeFailed" = "接近可能性の編集に失敗しました．もう一回試してみてください．";
+"WheelchairStatusChangeFailed" = "接近可能性の編集に失敗しました．もう一回試してみてください．";
 "NavBarTitleSharing" = "共有";
 "NavBarTitleComment" = "コメント";
 "NavBarTitleEdit" = "編集";

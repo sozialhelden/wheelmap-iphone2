@@ -33,7 +33,6 @@
         return nil;
     }
     // use JSON requests per default
-    // TODO: test that other requests will be routed to different operation classes
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     
     // make sure status code 304 is treated as success
@@ -63,7 +62,7 @@
     if (eTag) [request setValue:eTag forHTTPHeaderField:@"If-None-Match"];
     
     // add body
-    [request setHTTPBody:data];
+    if (data) [request setHTTPBody:data];
     
     // create request operation
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
