@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import "WMDataManager.h"
 #import "WMWheelmapAPI.h"
 #import "WMKeychainWrapper.h"
@@ -228,7 +229,6 @@
                                             }
                                    startImmediately:YES
      ];
-    
 }
 
 - (void) fetchNodesFailedWithError:(NSError*) error
@@ -256,86 +256,56 @@
 
 #pragma mark - Put/Post a node
 
--(void)putWheelChairStatusForNode:(Node *)node
+-(void)updateWheelchairStatusOfNode:(Node *)node
 {
-    NSLog(@"[WMDataManager] put wheelchair status %@", node.wheelchair);
-    NSString* resource = [NSString stringWithFormat:@"nodes/%@/update_wheelchair", node.id];
+    if (WMLogDataManager) NSLog(@"update wheelchair status to %@", node.wheelchair);
     
     NSDictionary* parameters = @{@"wheelchair":node.wheelchair};
-    [[WMWheelmapAPI sharedInstance] requestResource:resource
+    [[WMWheelmapAPI sharedInstance] requestResource:[NSString stringWithFormat:@"nodes/%@/update_wheelchair", node.id]
                                              apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
                                              method:@"PUT"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingWheelChairStatusWithError:)]) {
-                                                      [self.delegate dataManager:self failedPuttingWheelChairStatusWithError:error];
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:updateWheelchairStatusOfNode:failedWithError:)]) {
+                                                      [self.delegate dataManager:self updateWheelchairStatusOfNode:node failedWithError:error];
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingWheelChairStatusWithMsg:)])
-                                                    [self.delegate dataManager:self didFinishPuttingWheelChairStatusWithMsg:JSON[@"message"]];
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateWheelchairStatusOfNode:)]) {
+                                                    [self.delegate dataManager:self didUpdateWheelchairStatusOfNode:node];
+                                                }
                                             }
                                    startImmediately:YES
-     ];
-
-    
+     ];   
 }
 
--(void)putNode:(Node *)node
+-(void)updateNode:(Node *)node
 {
-    NSLog(@"[WMDataManager] put a node %@", node);
-    NSString* resource = [NSString stringWithFormat:@"nodes/%@/", node.id];
+    if (WMLogDataManager) NSLog(@"update node %@", node.name);
     
     NSDictionary* parameters = [self getParamDictFromNode:node];
     
-    [[WMWheelmapAPI sharedInstance] requestResource:resource
+    [[WMWheelmapAPI sharedInstance] requestResource:node.id ? [NSString stringWithFormat:@"nodes/%@/", node.id] : @"nodes"
                                              apiKey:[self apiKey]
                                          parameters:parameters
                                                eTag:nil
                                                data:nil
-                                             method:@"PUT"
+                                             method:node.id ? @"PUT" : @"POST"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPuttingNodeWithError:)]) {
-                                                      [self.delegate dataManager:self failedPuttingNodeWithError:error];
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:updateNode:failedWithError:)]) {
+                                                      [self.delegate dataManager:self updateNode:node failedWithError:error];
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPuttingNodeWithMsg:)])
-                                                    [self.delegate dataManager:self didFinishPuttingNodeWithMsg:JSON[@"message"]];
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateNode:)]) {
+                                                    [self.delegate dataManager:self didUpdateNode:node];
+                                                }
+                                                // TODO: delete node instance from moc?
                                             }
                                    startImmediately:YES
-     ];
-
-    
-}
-
--(void)postNode:(Node *)node
-{
-    NSLog(@"[WMDataManager] post a node %@", node);
-    NSString* resource = [NSString stringWithFormat:@"nodes"];
-    
-    NSDictionary* parameters = [self getParamDictFromNode:node];
-    
-    [[WMWheelmapAPI sharedInstance] requestResource:resource
-                                             apiKey:[self apiKey]
-                                         parameters:parameters
-                                               eTag:nil
-                                               data:nil
-                                             method:@"POST"
-                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedPostingNodeWithError:)]) {
-                                                      [self.delegate dataManager:self failedPostingNodeWithError:error];
-                                                  }
-                                              }
-                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPostingNodeWithMsg:)])
-                                                    [self.delegate dataManager:self didFinishPostingNodeWithMsg:JSON[@"message"]];
-                                            }
-                                   startImmediately:YES
-     ];
-    
+     ];    
 }
 
 -(NSDictionary*)getParamDictFromNode:(Node*)node
@@ -343,6 +313,8 @@
     NSMutableDictionary* outputDict = [[NSMutableDictionary alloc] init];
     if (node.name)
         [outputDict setObject:node.name forKey:@"name"];
+    
+    // TODO: serialize node
     /*
     NSMutableDictionary* parameters = @{@"name":node.name, @"type":node.node_type.id,
     @"lat":node.lat, @"lon":node.lon};
@@ -353,8 +325,8 @@
     */
     
     return outputDict;
-    
 }
+
 
 #pragma mark - Sync Resources
 
@@ -699,8 +671,10 @@ static BOOL assetDownloadInProgress;
     }
 }
 
-#pragma mark - Fetching Photo URLs of a Node
-- (void) fetchPhotoURLsOfNode:(Node*)node
+
+#pragma mark - Fetch Photos
+
+- (void) fetchPhotosForNode:(Node*)node
 {
     [[WMWheelmapAPI sharedInstance] requestResource:[NSString stringWithFormat:@"nodes/%@/photos", node.id]
                                              apiKey:[self apiKey]
@@ -709,23 +683,28 @@ static BOOL assetDownloadInProgress;
                                                data:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedFetchingPhotoURLs:)]) {
-                                                      [self.delegate dataManager:self failedFetchingPhotoURLs:error];
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchPhotosForNode:failedWithError:)]) {
+                                                      [self.delegate dataManager:self fetchPhotosForNode:node failedWithError:error];
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotoURLs:)]) {
-                                                    [self.delegate dataManager:self didReceivePhotoURLs:JSON[@"photos"]];
-                                                }
+                                                [self didReceivePhotos:JSON[@"photos"] forNode:node];
                                             }
                                    startImmediately:YES
      ];
+}
 
+- (void) didReceivePhotos:(NSArray*)photos forNode:(Node*)node
+{
+    // TODO: parse and save photo objects
+    if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotosForNode:)]) {
+        [self.delegate dataManager:self didReceivePhotosForNode:node];
+    }
 }
 
 
+#pragma mark - Upload Image
 
-#pragma mark - Uplaod an image
 - (void) uploadImage:(UIImage*)image forNode:(Node*)node
 {
     
@@ -733,22 +712,23 @@ static BOOL assetDownloadInProgress;
                                          nodeID:node.id
                                          apiKey:[self apiKey]
                                           error:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError *error, id JSON) {
-                                              if ([self.delegate respondsToSelector:@selector(dataManager:failedPostingImageWithError:)]) {
-                                                  [self.delegate dataManager:self failedPostingImageWithError:error];
+                                              if ([self.delegate respondsToSelector:@selector(dataManager:uploadImageForNode:failedWithError:)]) {
+                                                  [self.delegate dataManager:self uploadImageForNode:node failedWithError:error];
                                               }
                                         }
                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                            if ([self.delegate respondsToSelector:@selector(dataManager:didFinishPostingImageWithMsg:)])
-                                                [self.delegate dataManager:self didFinishPostingImageWithMsg:JSON[@"message"]];
-
+                                            if ([self.delegate respondsToSelector:@selector(dataManager:didUploadImageForNode:)]) {
+                                                [self.delegate dataManager:self didUploadImageForNode:node];
+                                            }
         
                                         }
                                startImmediately:YES
     ];
-  
 }
 
+
 #pragma mark - Updating/Creating Nodes
+
 - (Node*) updateNode:(Node*)node withPhotoArray:(NSArray*)photoArray;
 {
     NSArray* keys = [[[node entity] attributesByName] allKeys];
@@ -765,39 +745,36 @@ static BOOL assetDownloadInProgress;
 
 - (Node*) createNode
 {
-    NSDictionary* nodeDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:-1], @"id", @"", @"name", @"unknown", @"wheelchair",[NSNumber numberWithDouble:0.00], @"lat", [NSNumber numberWithDouble:0.00], @"lon", nil];
-    NSError* error = nil;
-    
-    NSArray* parsedObjects = [self parseDataObject:[NSArray arrayWithObject:nodeDict] entityName:@"Node" error:&error];
-    
-    return (Node*)[parsedObjects lastObject];
+    return [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:self.managedObjectContext];
 }
 
-- (void)totalNodeCount
+- (void)fetchTotalNodeCount
 {
-    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"per_page", nil];
-    
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
                                              apiKey:[self apiKey]
-                                         parameters:parameters
+                                         parameters:@{@"per_page":@1}
                                                eTag:nil
                                                data:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:failedGettingTotalNodeCountWithError:)]) {
-                                                      [self.delegate dataManager:self failedGettingTotalNodeCountWithError:error];
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {
+                                                      [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:error];
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 NSDictionary* meta  = JSON[@"meta"];
-                                                if ([self.delegate respondsToSelector:@selector(dataManagerDidFinishGettingTotalNodeCount:)]) {
-                                                    [self.delegate dataManagerDidFinishGettingTotalNodeCount:meta[@"item_count_total"]];
+                                                NSNumber *nodeCount;
+                                                if ([meta isKindOfClass:[NSDictionary class]]) nodeCount = meta[@"item_count_total"];
+                                                if (nodeCount && [self.delegate respondsToSelector:@selector(dataManager:didReceiveNodeCount:)]) {
+                                                    [self.delegate dataManager:self didReceiveTotalNodeCount:nodeCount];
+                                                } else if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {
+                                                    [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:[NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerInvalidRemoteDataError userInfo:nil]];
                                                 }
                                             }
                                    startImmediately:YES
      ];
-
 }
+
 
 #pragma mark - Expose Data
 

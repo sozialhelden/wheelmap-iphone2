@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class WMDataManager;
+@class WMDataManager, Node;
 
 @protocol WMDataManagerDelegate <NSObject>
 
@@ -22,24 +22,19 @@
 - (void) dataManagerDidFinishSyncingResources:(WMDataManager*)dataManager;
 - (void) dataManager:(WMDataManager*)dataManager didFinishSyncingResourcesWithErrors:(NSArray*)errors;
 
-- (void) dataManager:(WMDataManager*)dataManager didReceiveSearchResults:(NSArray*)results;
-- (void) dataManager:(WMDataManager*)dataManager searchFailedWithError:(NSError*)error;
+- (void) dataManager:(WMDataManager *)dataManager didUpdateWheelchairStatusOfNode:(Node *)node;
+- (void) dataManager:(WMDataManager *)dataManager updateWheelchairStatusOfNode:(Node *)node failedWithError:(NSError *)error;
 
-- (void) dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString*)msg;
-- (void) dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error;
+- (void) dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node;
+- (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error;
 
-- (void) dataManager:(WMDataManager *)dataManager didFinishPuttingNodeWithMsg:(NSString*)msg;
-- (void) dataManager:(WMDataManager *)dataManager failedPuttingNodeWithError:(NSError *)error;
+- (void) dataManager:(WMDataManager *)dataManager didReceivePhotosForNode:(Node *)node;
+- (void) dataManager:(WMDataManager *)dataManager fetchPhotosForNode:(Node *)node failedWithError:(NSError*)error;
 
-- (void) dataManager:(WMDataManager *)dataManager didFinishPostingNodeWithMsg:(NSString*)msg;
-- (void) dataManager:(WMDataManager *)dataManager failedPostingNodeWithError:(NSError *)error;
+- (void) dataManager:(WMDataManager *)dataManager didUploadImageForNode:(Node *)node;
+- (void) dataManager:(WMDataManager *)dataManager uploadImageForNode:(Node *)node failedWithError:(NSError *)error;
 
-- (void) dataManager:(WMDataManager *)dataManager didFinishPostingImageWithMsg:(NSString*)msg;
-- (void) dataManager:(WMDataManager *)dataManager failedPostingImageWithError:(NSError *)error;
+- (void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber*)count;
+- (void) dataManager:(WMDataManager *)dataManager fetchTotalNodeCountFailedWithError:(NSError*)error;
 
-- (void) dataManager:(WMDataManager *)dataManager didReceivePhotoURLs:(NSArray*)photoURLs;
-- (void) dataManager:(WMDataManager *)dataManager failedFetchingPhotoURLs:(NSError*)error;
-
-- (void) dataManagerDidFinishGettingTotalNodeCount:(NSNumber*)count;
-- (void) dataManager:(WMDataManager *)dataManager failedGettingTotalNodeCountWithError:(NSError*)error;
 @end

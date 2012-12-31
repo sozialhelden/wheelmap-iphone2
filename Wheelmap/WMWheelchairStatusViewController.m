@@ -198,21 +198,21 @@
 - (void) saveAccessStatus {
     [self.delegate accessButtonPressed:self.wheelchairAccess];
     //[self.navigationController popViewControllerAnimated:YES];
-    [dataManager putWheelChairStatusForNode:self.node];
+    [dataManager updateWheelchairStatusOfNode:self.node];
     [progressWheel startAnimating];
     progressWheel.hidden = NO;
     
 }
 
 #pragma mark WMDataManager Delegate
--(void)dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString *)msg
+-(void)dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node
 {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error
+-(void)dataManager:(WMDataManager *)dataManager putWheelchairStatusFailedWithError:(NSError *)error
 {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];

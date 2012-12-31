@@ -10,7 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 #import "SSZipArchive.h"
-#import <CoreData/CoreData.h>
 
 @class Node;
 
@@ -29,29 +28,30 @@
 - (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest
                           northeast:(CLLocationCoordinate2D)northeast
                               query:(NSString*)query;
-- (void) fetchPhotoURLsOfNode:(Node*)node;
 
 - (void) syncResources;
+
+- (void) updateWheelchairStatusOfNode:(Node*)node;
+- (void) updateNode:(Node*)node;
+
+- (void) fetchPhotosForNode:(Node*)node;
+- (void) uploadImage:(UIImage*)image forNode:(Node*)node;
+
+- (void) fetchTotalNodeCount;
 
 - (NSArray*) categories;
 - (NSArray*) nodeTypes;
 
 - (Node*) createNode;
-- (Node*) updateNode:(Node*)node withPhotoArray:(NSArray*)photoArray;
+- (void) deleteNode:(Node*)node;
 
-- (void) putNode:(Node*)node;
-- (void) putWheelChairStatusForNode:(Node*)node;    // the node should already have the changed status!
-- (void) postNode:(Node*)node;
-
-- (void) uploadImage:(UIImage*)image forNode:(Node*)node;
-
-- (void) totalNodeCount;
 
 extern NSString *WMDataManagerErrorDomain;
 
 enum {
     WMDataManagerManagedObjectCreationError,
-    WMDataManagerInvalidUserKeyError
+    WMDataManagerInvalidUserKeyError,
+    WMDataManagerInvalidRemoteDataError
 };
 
 @end

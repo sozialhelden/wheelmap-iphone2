@@ -18,6 +18,10 @@
     // categories
     #import "Categories.h"
 
+    // required libs for AFNetworking
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+
 #endif
 
 // custom defines and macro functions
