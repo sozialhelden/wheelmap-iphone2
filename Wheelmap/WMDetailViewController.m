@@ -841,7 +841,6 @@
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
     NSURL *url = [NSURL URLWithString: urlString];
     vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
-    vc.smsButton.hidden = YES;
     
 }
 
