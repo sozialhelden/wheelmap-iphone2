@@ -32,6 +32,7 @@
 		03F30C8D1670F36B00241466 /* buttons_btn-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
 		9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9817AF50164D617A00703A92 /* WMDetailViewController.m */; };
+		9819925A1695D94200F69BA8 /* WMDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 981992591695D94200F69BA8 /* WMDataParser.m */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		9839CAE11663850600B8E3B5 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
@@ -319,6 +320,8 @@
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
 		9817AF4F164D617A00703A92 /* WMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailViewController.h; sourceTree = "<group>"; };
 		9817AF50164D617A00703A92 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
+		981992581695D94200F69BA8 /* WMDataParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDataParser.h; sourceTree = "<group>"; };
+		981992591695D94200F69BA8 /* WMDataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDataParser.m; sourceTree = "<group>"; };
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
@@ -1349,6 +1352,8 @@
 				989927DC164AA0D100D9003B /* WMDataManager.h */,
 				989927DD164AA0D100D9003B /* WMDataManager.m */,
 				989927E4164AA31400D9003B /* WMDataManagerDelegate.h */,
+				981992581695D94200F69BA8 /* WMDataParser.h */,
+				981992591695D94200F69BA8 /* WMDataParser.m */,
 			);
 			name = DataManager;
 			sourceTree = "<group>";
@@ -1713,6 +1718,7 @@
 				9890C56F168F417900AD7C07 /* Image.m in Sources */,
 				9890C572168F417900AD7C07 /* NodeType.m in Sources */,
 				9890C575168F417900AD7C07 /* Node.m in Sources */,
+				9819925A1695D94200F69BA8 /* WMDataParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -300,7 +300,7 @@
     
     clampingDisabled = YES;
     
-    BOOL pagingDirection;
+    BOOL pagingDirection = NO;
     CGRect pageRect;
     
     // first determine which direction we want to go.  depending on the pageNum is higher than the current page index

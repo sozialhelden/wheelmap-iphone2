@@ -49,7 +49,6 @@
                           apiKey:(NSString *)apiKey
                       parameters:(NSDictionary *)parameters
                             eTag:(NSString *)eTag
-                            data:(id)data
                           method:(NSString *)method
                            error:(void (^)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id))errorBlock
                          success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, id))successBlock
@@ -61,14 +60,11 @@
     
     if (eTag) [request setValue:eTag forHTTPHeaderField:@"If-None-Match"];
     
-    // add body
-    if (data) [request setHTTPBody:data];
-    
     // create request operation
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
     
     // start if necessary
-    if (startImmediately) [operation start];
+    if (startImmediately) [self enqueueHTTPRequestOperation:operation];
     
     return operation;
 }
@@ -96,7 +92,7 @@
     ];
     
     // start if necessary
-    if (startImmediately) [operation start];
+    if (startImmediately) [self enqueueHTTPRequestOperation:operation];
     
     return operation;
 }
@@ -126,7 +122,7 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
     
     // start if necessary
-    if (startImmediately) [operation start];
+    if (startImmediately) [self enqueueHTTPRequestOperation:operation];
     
     return operation;
 

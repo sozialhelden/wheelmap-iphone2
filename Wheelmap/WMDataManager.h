@@ -17,6 +17,8 @@
 
 @property (nonatomic, weak) id<WMDataManagerDelegate> delegate;
 
+@property (nonatomic, readonly) BOOL syncInProgress;
+
 - (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
 - (void) removeUserAuthentication;
 - (BOOL) userIsAuthenticated;
