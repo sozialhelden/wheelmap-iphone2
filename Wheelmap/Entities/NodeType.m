@@ -2,7 +2,7 @@
 //  NodeType.m
 //  Wheelmap
 //
-//  Created by Dorian Roy on 02.12.12.
+//  Created by Dorian Roy on 29.12.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
@@ -14,10 +14,10 @@
 @implementation NodeType
 
 @dynamic icon;
+@dynamic iconPath;
 @dynamic id;
 @dynamic identifier;
 @dynamic localized_name;
-@dynamic iconPath;
 @dynamic category;
 @dynamic node;
 

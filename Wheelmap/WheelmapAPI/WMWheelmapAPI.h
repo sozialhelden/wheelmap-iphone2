@@ -20,7 +20,6 @@
                           apiKey:(NSString*)apiKey
                       parameters:(NSDictionary *)parameters
                             eTag:(NSString *)eTag
-                            data:(id)data
                           method:(NSString *)method
                            error:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON))errorBlock
                          success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))successBlock

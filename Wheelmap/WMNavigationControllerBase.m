@@ -108,8 +108,6 @@
     categoryFilterPopover.delegate = self;
     categoryFilterPopover.hidden = YES;
     [self.view addSubview:categoryFilterPopover];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -335,6 +333,13 @@
     if (locationManager) {
         [locationManager startMonitoringSignificantLocationChanges];
     }
+    
+    // start sync if last sync happened over an hour ago
+    static NSDate *lastSyncDate;
+    if (!lastSyncDate || [lastSyncDate timeIntervalSinceNow] < -3600) {
+        [dataManager syncResources];
+    }
+    lastSyncDate = [NSDate date];
 }
 
 - (void)applicationWillResignActive:(NSNotification*)notification
@@ -426,15 +431,14 @@
     [self hideLoadingWheel];
     
     // if the current navigation stack size is 2,then we always show DashboardButton on the left
-    WMNavigationBarLeftButtonStyle leftButtonStyle;
-    WMNavigationBarRightButtonStyle rightButtonStyle;
+    WMNavigationBarLeftButtonStyle leftButtonStyle = 0;
+    WMNavigationBarRightButtonStyle rightButtonStyle = 0;
     
     if (self.viewControllers.count == 2) {
         leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
     } else {
         // otherwise, default left button is BackButton. This will be changed according to the current screen later
         leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
-        
     }
     
     // special left buttons and right button should be set according to the current screen

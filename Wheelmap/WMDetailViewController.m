@@ -51,7 +51,7 @@
     dataManager.delegate = self;
     
     // request photo urls
-    [dataManager fetchPhotoURLsOfNode:self.node];
+    [dataManager fetchPhotosForNode:self.node];
 
     self.gabIfStatusUnknown = 0;
 
@@ -770,18 +770,18 @@
 }
 
 #pragma mark - WMDataManager Delegates
--(void)dataManager:(WMDataManager *)aDataManager didFinishPostingImageWithMsg:(NSString *)msg
+-(void)dataManager:(WMDataManager *)aDataManager didUploadImageForNode:(Node *)node
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUuploadSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
     
-    NSLog(@"[LOG] photo upload success! %@", msg);
+    NSLog(@"[LOG] photo upload success!");
     
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
     [navCtrl hideLoadingWheel];
 }
 
--(void)dataManager:(WMDataManager *)dataManager failedPostingImageWithError:(NSError *)error
+-(void)dataManager:(WMDataManager *)dataManager uploadImageForNode:(Node *)node failedWithError:(NSError *)error
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUploadFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
@@ -792,27 +792,25 @@
     [navCtrl hideLoadingWheel];
 }
 
-- (void)dataManager:(WMDataManager *)aDataManager didReceivePhotoURLs:(NSArray *)photoURLs
+- (void)dataManager:(WMDataManager *)dataManager didReceivePhotosForNode:(Node *)node
 {
-    NSLog(@"updated photo urls: %@", photoURLs);
-    //self.node = [dataManager updateNode:self.node withPhotoArray:photoURLs];
-    for (NSDictionary* photo in photoURLs) {
-        for (NSDictionary* image in photo[@"images"]) {
-            if ([image[@"type"] caseInsensitiveCompare:@"thumb_iphone_retina"] == NSOrderedSame) {
-                [self.thumbnailURLArray addObject:image[@"url"]];
-            } else if ([image[@"type"] caseInsensitiveCompare:@"gallery_iphone_retina"] == NSOrderedSame) {
-                [self.originalImageURLArray addObject:image[@"url"]];
+    NSLog(@"updated photos: %@", node.photos);
+
+    for (Photo* photo in node.photos) {
+        for (Image* image in photo.images) {
+            if ([image.type caseInsensitiveCompare:@"thumb_iphone_retina"] == NSOrderedSame) {
+                [self.thumbnailURLArray addObject:image.url];
+            } else if ([image.type caseInsensitiveCompare:@"gallery_iphone_retina"] == NSOrderedSame) {
+                [self.originalImageURLArray addObject:image.url];
             }
         }
     }
-    
-    //[dataManager updateNode:self.node withPhotoArray:photoURLs];
     
     [self createThumbnails];
 
 }
 
-- (void)dataManager:(WMDataManager *)dataManager failedFetchingPhotoURLs:(NSError *)error
+- (void)dataManager:(WMDataManager *)dataManager fetchPhotosFailedWithError:(NSError *)error
 {
     NSLog(@"[LOG] fetching photo urls failed with error %@", error);
     

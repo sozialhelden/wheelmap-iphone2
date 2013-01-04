@@ -2,7 +2,7 @@
 //  Asset.m
 //  Wheelmap
 //
-//  Created by Dorian Roy on 29.11.12.
+//  Created by Dorian Roy on 29.12.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 @implementation Asset
 
 @dynamic id;
+@dynamic modified_at;
 @dynamic name;
 @dynamic url;
-@dynamic modified_at;
 
 @end

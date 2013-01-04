@@ -33,7 +33,6 @@
         return nil;
     }
     // use JSON requests per default
-    // TODO: test that other requests will be routed to different operation classes
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     
     // make sure status code 304 is treated as success
@@ -50,7 +49,6 @@
                           apiKey:(NSString *)apiKey
                       parameters:(NSDictionary *)parameters
                             eTag:(NSString *)eTag
-                            data:(id)data
                           method:(NSString *)method
                            error:(void (^)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id))errorBlock
                          success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, id))successBlock
@@ -62,14 +60,11 @@
     
     if (eTag) [request setValue:eTag forHTTPHeaderField:@"If-None-Match"];
     
-    // add body
-    [request setHTTPBody:data];
-    
     // create request operation
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
     
     // start if necessary
-    if (startImmediately) [operation start];
+    if (startImmediately) [self enqueueHTTPRequestOperation:operation];
     
     return operation;
 }
@@ -97,7 +92,7 @@
     ];
     
     // start if necessary
-    if (startImmediately) [operation start];
+    if (startImmediately) [self enqueueHTTPRequestOperation:operation];
     
     return operation;
 }
@@ -127,7 +122,7 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
     
     // start if necessary
-    if (startImmediately) [operation start];
+    if (startImmediately) [self enqueueHTTPRequestOperation:operation];
     
     return operation;
 

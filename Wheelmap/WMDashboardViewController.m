@@ -67,7 +67,7 @@
     self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
     self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"", NSLocalizedString(@"Places", nil)];
     self.numberOfPlacesLabel.alpha = 0.0;
-    [dataManager totalNodeCount];
+    [dataManager fetchTotalNodeCount];
     
     // search cancel button
     UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
@@ -272,7 +272,7 @@
 }
 
 #pragma mark - WMDataManager Delegate
--(void)dataManagerDidFinishGettingTotalNodeCount:(NSNumber *)count
+-(void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count
 {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -294,7 +294,7 @@
     
 }
 
--(void)dataManager:(WMDataManager *)dataManager failedGettingTotalNodeCountWithError:(NSError *)error
+-(void)dataManager:(WMDataManager *)dataManager fetchTotalNodeCountFailedWithError:(NSError *)error
 {
     NSLog(@"[Error] getting total count failed with error %@", error);
 }

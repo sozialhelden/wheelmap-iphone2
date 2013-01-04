@@ -265,7 +265,7 @@
 "PhotoUuploadSuccess" = "Das Foto ist erfolgreich hochgeladen.";
 "PhotoUuploadFailed" = "Das Foto konnte nicht hochgeladen werden. Bitte versuchen Sie es noch einmal.";
 "FetchingPhotoURLFailed" = "Die Fotos von diesem Ort konnte nicht heruntergeladen werden.";
-"WhellChairStatusChangeFailed" = "Rohlstuhlgerechtigkeit konnte nicht aktuallisiert werden. Bitte versuchen Sie es noch einmal.";
+"WheelchairStatusChangeFailed" = "Rohlstuhlgerechtigkeit konnte nicht aktualisiert werden. Bitte versuchen Sie es noch einmal.";
 "NavBarTitleSharing" = "Teilen";
 "NavBarTitleComment" = "Kommentar";
 "NavBarTitleEdit" = "Bearbeiten";

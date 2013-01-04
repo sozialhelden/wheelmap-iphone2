@@ -198,16 +198,20 @@
     }
 }
 
-- (void) saveAccessStatus {
-    
-    [dataManager putWheelChairStatusForNode:self.node];
+- (void) saveAccessStatus
+{
+    [self.delegate accessButtonPressed:self.wheelchairAccess];
+    //[self.navigationController popViewControllerAnimated:YES];
+    [dataManager updateWheelchairStatusOfNode:self.node];
+
     [progressWheel startAnimating];
     progressWheel.hidden = NO;
-    
 }
 
-#pragma mark WMDataManager Delegate
--(void)dataManager:(WMDataManager *)dataManager didFinishPuttingWheelChairStatusWithMsg:(NSString *)msg
+
+#pragma mark - Data Manager Delegate
+
+-(void)dataManager:(WMDataManager *)dataManager didUpdateWheelchairStatusOfNode:(Node *)node
 {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
@@ -215,14 +219,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)dataManager:(WMDataManager *)dataManager failedPuttingWheelChairStatusWithError:(NSError *)error
+-(void)dataManager:(WMDataManager *)dataManager updateWheelchairStatusOfNode:(Node *)node failedWithError:(NSError *)error
 {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"WhellChairStatusChangeFailed", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"WheelchairStatusChangeFailed", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     
-    NSLog(@"PUT THE NODE WHELLCHAIR STATUS FAILED! %@", error);
+    NSLog(@"PUT THE NODE WHEELCHAIR STATUS FAILED! %@", error);
 }
 
 @end

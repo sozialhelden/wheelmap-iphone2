@@ -264,7 +264,7 @@
 "PhotoUuploadSuccess" = "사진 전송에 성공하였습니다.";
 "PhotoUuploadFailed" = "사진 전송에 실패하였습니다. 다시 한번 시도해 주세요.";
 "FetchingPhotoURLFailed" = "이 장소의 사진 수신에 실패하였습니다.";
-"WhellChairStatusChangeFailed" = "휠체어 접근성 정보 업데이트에 실패하였습니다. 다시 한번 시도해 주세요.";
+"WheelchairStatusChangeFailed" = "휠체어 접근성 정보 업데이트에 실패하였습니다. 다시 한번 시도해 주세요.";
 "NavBarTitleSharing" = "공유";
 "NavBarTitleComment" = "댓글";
 "NavBarTitleEdit" = "편집";

@@ -359,25 +359,20 @@
     
     [self saveCurrentEntriesToCurrentNode];
     
-    if (!self.editView) {
-        [self.dataManager postNode:self.node];
-    } else {
-        [self.dataManager putNode:self.node];
-    }
+    [self.dataManager updateNode:self.node];
+    
     progressWheel.hidden = NO;
     [progressWheel startAnimating];
-
 }
 
-
-- (void) dataManager:(WMDataManager *)dataManager didFinishPuttingNodeWithMsg:(NSString *)msg {
+- (void) dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
-    NSLog(@"XXXXXXXX FINISHED %@", msg);
+    NSLog(@"XXXXXXXX FINISHED");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) dataManager:(WMDataManager *)dataManager failedPuttingNodeWithError:(NSError *)error {
+- (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
     NSLog(@"XXXXXXXX Failed %@", error);
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
