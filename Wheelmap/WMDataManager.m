@@ -35,6 +35,7 @@
 
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) NSManagedObjectContext *childManagedObjectContext;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @property (nonatomic, readonly) WMKeychainWrapper *keychainWrapper;
 @end
@@ -42,7 +43,8 @@
 
 @implementation WMDataManager
 {
-    NSMutableArray* syncErrors;
+    NSMutableArray *syncErrors;
+    NSMutableDictionary *iconPaths;
     NSString *appApiKey;
 }
 
@@ -230,7 +232,7 @@
                     }
                   success:^(id parsedNodes) {
                       if (WMLogDataManager) {
-                          NSArray *allNodes = [self fetchObjectsOfEntity:@"Node" withPredicate:nil];
+                          NSArray *allNodes = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Node" withPredicate:nil];
                           NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], [allNodes count]);
                       }
                         if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
@@ -249,14 +251,15 @@
     dispatch_queue_t currentQueue = dispatch_get_current_queue();
     
     // perform parsing on private queue and perform result blocks on current queue
-    [[self childManagedObjectContext] performBlock:^{
+    [self.childManagedObjectContext performBlock:^{
         
         // create parser with temporary context
-        WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:[self childManagedObjectContext]];
+        WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:self.childManagedObjectContext];
         
         // parse data
         NSError *parseError = nil;
         id parsedObject = [parser parseDataObject:object entityName:entityName error:&parseError];
+        
         if (!parsedObject) {
             dispatch_async(currentQueue, ^{
                 errorBlock(parseError);
@@ -266,7 +269,7 @@
             
             // merge changes to parent moc
             NSError *saveTempMocError = nil;
-            if (![[self childManagedObjectContext] save:&saveTempMocError]) {
+            if (![self.childManagedObjectContext save:&saveTempMocError]) {
                 dispatch_async(currentQueue, ^{
                     errorBlock(saveTempMocError);
                 });
@@ -379,9 +382,9 @@ static BOOL assetSyncInProgress = NO;
 {
     if (WMLogDataManager) NSLog(@"syncResources");
     if (WMLogDataManager>1) {
-        NSLog(@"... num categories: %i", [[self fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
-        NSLog(@"... num node types: %i", [[self fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
-        NSLog(@"... num assets: %i", [[self fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
+        NSLog(@"... num categories: %i", [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
+        NSLog(@"... num node types: %i", [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
+        NSLog(@"... num assets: %i", [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
     }
     
     // make sure there's only one sync running at a time
@@ -405,7 +408,7 @@ static BOOL assetSyncInProgress = NO;
             [self setETag:nil forEntity:@"Asset"];
             
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
-            Asset *icon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+            Asset *icon = [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
             icon.modified_at = [NSDate dateWithTimeIntervalSince1970:0];
             
             *stop = YES;
@@ -539,7 +542,7 @@ static BOOL assetSyncInProgress = NO;
                                                     
                                                     // store old icon modified date
                                                     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
-                                                    Asset *oldIcon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+                                                    Asset *oldIcon = [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
                                                     NSDate *oldIconModifiedAt = oldIcon.modified_at;
                                                     
                                                     // parse data
@@ -556,7 +559,7 @@ static BOOL assetSyncInProgress = NO;
                                                                                   [self setETag:eTag forEntity:@"Asset"];
                                                                                   
                                                                                   // get new icon
-                                                                                  Asset *newIcon = [[self fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+                                                                                  Asset *newIcon = [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
                                                                                   
                                                                                   // check if modified date has changed
                                                                                   if (![newIcon.modified_at isEqual:oldIconModifiedAt]) {
@@ -597,7 +600,10 @@ static BOOL assetSyncInProgress = NO;
                                              // get path where file should be unzipped
                                              NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
                                              NSString *destinationPath = [paths objectAtIndex:0];
-     
+                                             
+                                             // init dictionary to save the local paths of unzipped files
+                                             iconPaths = [NSMutableDictionary dictionary];
+                                             
                                              // unzip file
                                              NSError *error = nil;
                                              if (![SSZipArchive unzipFileAtPath:path toDestination:destinationPath overwrite:YES password:nil error:&error delegate:self]) {
@@ -626,6 +632,56 @@ static BOOL assetSyncInProgress = NO;
 {
     if (!self.syncInProgress) {
         
+        // set iconPath on NodeType objects if new icons have been downloaded during sync process
+        NSLog(@"finish sync on %@", dispatch_get_current_queue()==dispatch_get_main_queue()?@"main queue":@"background queue");
+
+        if (iconPaths) {
+            
+            // update in child context to keep it current
+            [self.childManagedObjectContext performBlockAndWait:^{
+                
+                NSArray *nodeTypes = [self managedObjectContext:self.childManagedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+                [nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
+                
+                    NSString *iconPath = nil;
+                    if (nodeType.icon) {
+                        iconPath = iconPaths[nodeType.icon];
+                        
+                    } else if (WMLogDataManager>1) {
+                        NSLog(@"... no icon set for nodeType %@", nodeType.identifier);
+                    }
+                    
+                    nodeType.iconPath = iconPath;
+                        
+                    if (WMLogDataManager>1 && !iconPath) {
+                        NSLog(@"... icon %@ not found for nodeType %@", nodeType.icon, nodeType.identifier);
+                    }
+                }];
+                
+                // merge changes to parent moc
+                NSError *saveTempMocError = nil;
+                if (![self.childManagedObjectContext save:&saveTempMocError]) {
+                    [self syncOperationFailedWithError:saveTempMocError];
+                    
+                } else {
+                    
+                    // save parent moc to disk
+                    [self.managedObjectContext performBlock:^{
+                        
+                        NSLog(@"saving main moc on %@", dispatch_get_current_queue() == dispatch_get_main_queue() ? @"main queue" : @"background queue");
+                        
+                        NSError *saveParentMocError = nil;
+                        if (![self.managedObjectContext save:&saveParentMocError]) {
+                            [self syncOperationFailedWithError:saveParentMocError];
+                            
+                        }
+                    }];
+                }
+            }];
+                        
+            iconPaths = nil;
+        }
+        
         if (syncErrors) {
             if (WMLogDataManager>1) NSLog(@"... finished sync with %i errors", [syncErrors count]);
             if ([self.delegate respondsToSelector:@selector(didFinishSyncingResourcesWithErrors:)]) {
@@ -635,8 +691,8 @@ static BOOL assetSyncInProgress = NO;
             if (WMLogDataManager>1) NSLog(@"... finished sync with no errors");
             
             if (WMLogDataManager) {
-                NSArray *categories = [self fetchObjectsOfEntity:@"Category" withPredicate:nil];
-                NSArray *nodeTypes = [self fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+                NSArray *categories = [self managedObjectContext:self.managedObjectContext  fetchObjectsOfEntity:@"Category" withPredicate:nil];
+                NSArray *nodeTypes = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
                 NSLog(@"counting %i NodeType, %i Category", [categories count], [nodeTypes count]);
             }
             
@@ -653,14 +709,8 @@ static BOOL assetSyncInProgress = NO;
 - (void)zipArchiveDidUnzipFile:(NSString *)destinationPath
 {
     NSString *filename = [destinationPath lastPathComponent];
+    [iconPaths setObject:destinationPath forKey:filename];
     if (WMLogDataManager>2) NSLog(@"...... unzipped %@", filename);
-    [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
-        if ([nodeType.icon isEqual:filename]) {
-            if (WMLogDataManager>2) NSLog(@"...... set iconPath for type %@", nodeType.identifier);
-            nodeType.iconPath = destinationPath;
-            // multiple node types might use the same icon, so we don't break this loop here
-        }
-    }];
 }
 
 - (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath
@@ -672,15 +722,6 @@ static BOOL assetSyncInProgress = NO;
     if (![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
         if (WMLogDataManager>1) NSLog(@"... can't delete temp file %@", path);
         [self syncOperationFailedWithError:error];
-    }
-    
-    // log icons missing from the archive
-    if (WMLogDataManager>1) {
-        [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
-            if (!nodeType.iconPath) {
-                NSLog(@"... icon %@ not found for type %@", nodeType.icon, nodeType.identifier);
-            }
-        }];
     }
     
     assetSyncInProgress = NO;
@@ -814,12 +855,12 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSArray *)categories
 {
-    return [self fetchObjectsOfEntity:@"Category" withPredicate:nil];
+    return [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Category" withPredicate:nil];
 }
 
 - (NSArray *)nodeTypes
 {
-    return [self fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+    return [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
 }
 
 
@@ -912,7 +953,7 @@ static BOOL assetSyncInProgress = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _childManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_childManagedObjectContext performBlock:^{
+        [_childManagedObjectContext performBlockAndWait:^{
             _childManagedObjectContext.parentContext = self.managedObjectContext;
         }];
     });
@@ -927,26 +968,17 @@ static BOOL assetSyncInProgress = NO;
 
 #pragma mark - Core Data Utility Methods
 
-- (NSArray*) fetchObjectsOfEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate
+- (NSArray*) managedObjectContext:(NSManagedObjectContext*)moc fetchObjectsOfEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate
 {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
-    if (predicate) [fetchRequest setPredicate:predicate];
     __block NSArray *results = nil;
-    [self.managedObjectContext performBlockAndWait:^{
+    [moc performBlockAndWait:^{
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
+        if (predicate) [fetchRequest setPredicate:predicate];
         NSError *error = nil;
-        results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        results = [moc executeFetchRequest:fetchRequest error:&error];
         NSAssert(results, error.localizedDescription);
     }];
     return results;
-}
-
-- (NSManagedObject*) fetchObjectOfEntity:(NSString*)entityName withId:(NSUInteger)object_id
-{
-    NSEntityDescription *entityDescr = self.managedObjectContext.persistentStoreCoordinator.managedObjectModel.entitiesByName[entityName];
-    NSAssert(entityDescr, @"can't get description of unknown entity");
-    NSArray *result = [self fetchObjectsOfEntity:entityName withPredicate:[NSPredicate predicateWithFormat:@"id==%i", object_id]];
-    NSAssert([result count] < 2, @"id should be unique");
-    return [result lastObject];
 }
 
 - (NSString*) eTagForEntity:(NSString*)entityName
