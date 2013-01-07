@@ -8,6 +8,7 @@
 
 #import "WMShareSocialViewController.h"
 #import "WMSharingManager.h"
+
 @interface WMShareSocialViewController ()
 {
     WMSharingManager* sharingManager;

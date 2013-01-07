@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>
 #import <Social/Social.h>
+#import "Facebook+Singleton.h"
+#import <Twitter/Twitter.h>
+
 @interface WMSharingManager : NSObject
-<MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+<MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, FBDialogDelegate>
 
 @property (nonatomic, strong) UIViewController* baseVC;
 -(id)initWithBaseViewController:(UIViewController*)vc;
