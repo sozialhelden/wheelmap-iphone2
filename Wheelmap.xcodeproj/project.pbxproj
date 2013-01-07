@@ -22,14 +22,16 @@
 		034D38E9167738C10071EC05 /* Curl_btn-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */; };
 		034D38EA167738C10071EC05 /* Curl_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DA167738C10071EC05 /* Curl_button.png */; };
 		034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
-		034D38EC167738C10071EC05 /* Curl_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DC167738C10071EC05 /* Curl_screen.png */; };
-		034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DD167738C10071EC05 /* Curl_screen@2x.png */; };
 		0379A7D41684852B00C2DFF8 /* toolbar_button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */; };
 		037C07761680C8A700685378 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 037C07751680C8A700685378 /* WMConfig.plist */; };
 		03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
 		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		03F30C8C1670F36A00241466 /* buttons_btn-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8A1670F36A00241466 /* buttons_btn-signup.png */; };
 		03F30C8D1670F36B00241466 /* buttons_btn-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */; };
+		156A7120169B026200C22988 /* Curl_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A711E169B026200C22988 /* Curl_screen.png */; };
+		156A7121169B026200C22988 /* Curl_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A711F169B026200C22988 /* Curl_screen@2x.png */; };
+		156A7124169B02FF00C22988 /* Curl_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A7122169B02FF00C22988 /* Curl_logo.png */; };
+		156A7125169B02FF00C22988 /* Curl_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A7123169B02FF00C22988 /* Curl_logo@2x.png */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
 		9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9817AF50164D617A00703A92 /* WMDetailViewController.m */; };
 		9819925A1695D94200F69BA8 /* WMDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 981992591695D94200F69BA8 /* WMDataParser.m */; };
@@ -307,8 +309,6 @@
 		034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-right@2x.png"; sourceTree = "<group>"; };
 		034D38DA167738C10071EC05 /* Curl_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_button.png; sourceTree = "<group>"; };
 		034D38DB167738C10071EC05 /* Curl_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_button@2x.png"; sourceTree = "<group>"; };
-		034D38DC167738C10071EC05 /* Curl_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_screen.png; sourceTree = "<group>"; };
-		034D38DD167738C10071EC05 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
 		0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button_selected@2x.png"; path = "ToolBar/toolbar_button_selected@2x.png"; sourceTree = "<group>"; };
 		037C07751680C8A700685378 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
@@ -317,6 +317,10 @@
 		03F30C541670B80600241466 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
 		03F30C8A1670F36A00241466 /* buttons_btn-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup.png"; sourceTree = "<group>"; };
 		03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup@2x.png"; sourceTree = "<group>"; };
+		156A711E169B026200C22988 /* Curl_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_screen.png; sourceTree = "<group>"; };
+		156A711F169B026200C22988 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
+		156A7122169B02FF00C22988 /* Curl_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_logo.png; sourceTree = "<group>"; };
+		156A7123169B02FF00C22988 /* Curl_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_logo@2x.png"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
 		9817AF4F164D617A00703A92 /* WMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailViewController.h; sourceTree = "<group>"; };
 		9817AF50164D617A00703A92 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
@@ -696,8 +700,10 @@
 				034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */,
 				034D38DA167738C10071EC05 /* Curl_button.png */,
 				034D38DB167738C10071EC05 /* Curl_button@2x.png */,
-				034D38DC167738C10071EC05 /* Curl_screen.png */,
-				034D38DD167738C10071EC05 /* Curl_screen@2x.png */,
+				156A711E169B026200C22988 /* Curl_screen.png */,
+				156A711F169B026200C22988 /* Curl_screen@2x.png */,
+				156A7122169B02FF00C22988 /* Curl_logo.png */,
+				156A7123169B02FF00C22988 /* Curl_logo@2x.png */,
 			);
 			path = Curl;
 			sourceTree = "<group>";
@@ -1591,8 +1597,6 @@
 				034D38E9167738C10071EC05 /* Curl_btn-right@2x.png in Resources */,
 				034D38EA167738C10071EC05 /* Curl_button.png in Resources */,
 				034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */,
-				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
-				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
 				DB18F85A167B33E400855296 /* more-buttons_info-deactive@2x.png in Resources */,
 				DB18F85B167B33E400855296 /* more-buttons_info–deactive.png in Resources */,
@@ -1619,6 +1623,10 @@
 				DB67C1E71684886B00E8206B /* toolbar_button-search-active@2x.png in Resources */,
 				0379A7D41684852B00C2DFF8 /* toolbar_button_selected@2x.png in Resources */,
 				DB59D5DD1690E7B200E9B3D9 /* marker_position@2x.png in Resources */,
+				156A7120169B026200C22988 /* Curl_screen.png in Resources */,
+				156A7121169B026200C22988 /* Curl_screen@2x.png in Resources */,
+				156A7124169B02FF00C22988 /* Curl_logo.png in Resources */,
+				156A7125169B02FF00C22988 /* Curl_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

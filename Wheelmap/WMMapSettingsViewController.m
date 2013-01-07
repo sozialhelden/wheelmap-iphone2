@@ -59,7 +59,7 @@
 {
     [super viewWillAppear:animated];
     
-     self.view.backgroundColor = UIColorFromRGB(0x304152);
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Curl_screen.png"]];
 }
 
 - (void)didReceiveMemoryWarning
