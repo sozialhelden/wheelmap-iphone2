@@ -40,6 +40,10 @@
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.logoutButton setTitle:NSLocalizedString(@"Sign Out", nil) forState:UIControlStateNormal];
 
+    [self.logoutButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
+    self.logoutButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
+    [self.logoutButton sizeToFit];
+    self.logoutButton.frame = CGRectMake(self.view.frame.size.width - self.logoutButton.frame.size.width - 10.0f, self.logoutButton.frame.origin.y, self.logoutButton.frame.size.width, self.logoutButton.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning
