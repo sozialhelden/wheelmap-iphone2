@@ -15,6 +15,7 @@
 #import "WMMapViewController.h"
 #import "WMNodeListViewController.h"
 #import "WMDetailViewController.h"
+#import "WMCommentViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMWheelChairStatusFilterPopoverView.h"
 #import "WMCategoryFilterPopoverView.h"

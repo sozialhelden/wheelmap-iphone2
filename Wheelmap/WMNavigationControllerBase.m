@@ -530,6 +530,8 @@
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     } else if ([vc isKindOfClass:[WMSetMarkerViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
+    } else if ([vc isKindOfClass:[WMCommentViewController class]]) {
+        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     
     self.customNavigationBar.leftButtonStyle = leftButtonStyle;

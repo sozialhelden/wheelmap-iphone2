@@ -133,17 +133,17 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     imageView.image = [image stretchableImageWithLeftCapWidth:0 topCapHeight:50];
 
-    WMLabel *headlineLabel = [[WMLabel alloc] initWithFrame:CGRectMake(40, 10, 220, 22)];
+    WMLabel *headlineLabel = [[WMLabel alloc] initWithFrame:CGRectMake(40, 10, 230, 22)];
     [headlineLabel setText:headline];
     //headlineLabel.backgroundColor = [UIColor orangeColor];
-    headlineLabel.font = [UIFont boldSystemFontOfSize:16];
+    headlineLabel.font = [UIFont boldSystemFontOfSize:15];
     headlineLabel.textColor = [UIColor whiteColor];
     headlineLabel.textAlignment = UITextAlignmentLeft;
     [imageView addSubview:headlineLabel];
     
    WMLabel *contentTextField = [[WMLabel alloc] initWithFrame:CGRectMake(10, headlineLabel.frame.origin.y + headlineLabel.frame.size.height + 5, 280, 80)];
   //  contentTextField.backgroundColor = [UIColor blueColor];
-    contentTextField.font = [UIFont systemFontOfSize:15];
+    contentTextField.font = [UIFont systemFontOfSize:14];
     contentTextField.textColor = [UIColor whiteColor];
     contentTextField.numberOfLines = 0;
     contentTextField.textAlignment = NSTextAlignmentLeft;

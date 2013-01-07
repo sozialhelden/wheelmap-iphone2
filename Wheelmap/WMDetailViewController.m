@@ -208,8 +208,10 @@
     [self setWheelAccessButton];
     self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.wheelAccessButton.frame = CGRectMake(10, 10, self.accessImage.size.width, self.accessImage.size.height);
-    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
+    [self.wheelAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
+    self.wheelAccessButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
