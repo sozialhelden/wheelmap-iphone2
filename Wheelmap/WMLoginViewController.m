@@ -47,6 +47,10 @@
     self.usernameTextField.placeholder = NSLocalizedString(@"UsernamePlaceholder", nil);
     self.passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
 
+    [self.loginButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
+    self.loginButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
+    [self.loginButton sizeToFit];
+    self.loginButton.frame = CGRectMake(self.view.frame.size.width - self.loginButton.frame.size.width - 10.0f, self.loginButton.frame.origin.y, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
 }
 
 -(void)viewWillAppear:(BOOL)animated
