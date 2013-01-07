@@ -45,7 +45,6 @@
 - (NSArray*) nodeTypes;
 
 - (Node*) createNode;
-- (void) deleteNode:(Node*)node;
 
 
 extern NSString *WMDataManagerErrorDomain;

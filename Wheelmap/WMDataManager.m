@@ -269,9 +269,6 @@
         } else {
             
             NSArray *result = (NSArray*)parsedObject;
-            [result enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
-                NSLog(@"before: obj id is temp:%i", obj.objectID.isTemporaryID);
-            }];
             
             // get permanent IDs
             NSError *permanentIDsError = nil;
@@ -292,8 +289,6 @@
                     
                     [self.managedObjectContext performBlock:^{
                         
-                        NSLog(@"saving main moc on %@", dispatch_get_current_queue() == dispatch_get_main_queue() ? @"main queue" : @"background queue");
-                        
                         // save parent moc to disk
                         NSError *saveParentMocError = nil;
                         if (![self.managedObjectContext save:&saveParentMocError]) {
@@ -306,7 +301,6 @@
                             // fetch result objects from main moc
                             NSMutableArray *resultObjectsInMainMoc = [NSMutableArray arrayWithCapacity:[result count]];
                             [result enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
-                                NSLog(@"obj id is temp:%i", obj.objectID.isTemporaryID);
                                 [resultObjectsInMainMoc addObject:[self.managedObjectContext objectWithID:obj.objectID]];
                             }];
                             
@@ -829,16 +823,21 @@ static BOOL assetSyncInProgress = NO;
 
 #pragma mark - Updating/Creating Nodes
 
+/* Returns a temporary node in a separate context. It serves only to pass node data to
+ * updateNode: The context should not be saved.
+ */
 - (Node*) createNode
 {
-    // TODO: create a context just for the new node
-    return [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:self.managedObjectContext];
-}
-
-// TODO: remove when new context is created
-- (void)deleteNode:(Node *)node
-{
-    [self.managedObjectContext deleteObject:node];
+    __block Node* newNode = nil;
+    
+    // create temporary context just for the new node
+    NSManagedObjectContext *tempManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [tempManagedObjectContext performBlockAndWait:^{
+        [tempManagedObjectContext setParentContext:self.managedObjectContext];
+        newNode = [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:tempManagedObjectContext];
+    }];
+    
+    return newNode;
 }
 
 - (void)fetchTotalNodeCount
