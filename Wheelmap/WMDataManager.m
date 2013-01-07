@@ -268,32 +268,54 @@
             
         } else {
             
-            // merge changes to parent moc
-            NSError *saveTempMocError = nil;
-            if (![self.childManagedObjectContext save:&saveTempMocError]) {
+            NSArray *result = (NSArray*)parsedObject;
+            [result enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
+                NSLog(@"before: obj id is temp:%i", obj.objectID.isTemporaryID);
+            }];
+            
+            // get permanent IDs
+            NSError *permanentIDsError = nil;
+            if(![self.childManagedObjectContext obtainPermanentIDsForObjects:result error:&permanentIDsError]) {
                 dispatch_async(currentQueue, ^{
-                    errorBlock(saveTempMocError);
+                    errorBlock(permanentIDsError);
                 });
-                
             } else {
                 
-                // save parent moc to disk
-                [self.managedObjectContext performBlock:^{
+                // merge changes to parent moc
+                NSError *saveTempMocError = nil;
+                if (![self.childManagedObjectContext save:&saveTempMocError]) {
+                    dispatch_async(currentQueue, ^{
+                        errorBlock(saveTempMocError);
+                    });
                     
-                    NSLog(@"saving main moc on %@", dispatch_get_current_queue() == dispatch_get_main_queue() ? @"main queue" : @"background queue");
+                } else {
                     
-                    NSError *saveParentMocError = nil;
-                    if (![self.managedObjectContext save:&saveParentMocError]) {
-                        dispatch_async(currentQueue, ^{
-                            errorBlock(saveParentMocError);
-                        });
+                    [self.managedObjectContext performBlock:^{
                         
-                    } else {
-                        dispatch_async(currentQueue, ^{
-                            successBlock(parsedObject);
-                        });
-                    }
-                }];
+                        NSLog(@"saving main moc on %@", dispatch_get_current_queue() == dispatch_get_main_queue() ? @"main queue" : @"background queue");
+                        
+                        // save parent moc to disk
+                        NSError *saveParentMocError = nil;
+                        if (![self.managedObjectContext save:&saveParentMocError]) {
+                            dispatch_async(currentQueue, ^{
+                                errorBlock(saveParentMocError);
+                            });
+                            
+                        } else {
+                            
+                            // fetch result objects from main moc
+                            NSMutableArray *resultObjectsInMainMoc = [NSMutableArray arrayWithCapacity:[result count]];
+                            [result enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
+                                NSLog(@"obj id is temp:%i", obj.objectID.isTemporaryID);
+                                [resultObjectsInMainMoc addObject:[self.managedObjectContext objectWithID:obj.objectID]];
+                            }];
+                            
+                            dispatch_async(currentQueue, ^{
+                                successBlock(resultObjectsInMainMoc);
+                            });
+                        }
+                    }];
+                }                
             }
         }
     }];
@@ -752,25 +774,7 @@ static BOOL assetSyncInProgress = NO;
 }
 
 - (void) didReceivePhotos:(NSArray*)photos forNode:(Node*)node
-{
-//    NSError *error = nil;
-//    NSArray *parsedNodes = [self parseDataObject:photos entityName:@"Photo" error:&error];
-//    node.photos = [NSSet setWithArray:parsedNodes];
-//    
-//    if (error) {
-//        if ([self.delegate respondsToSelector:@selector(dataManager:fetchPhotosForNode:failedWithError:)]) {
-//            [self.delegate dataManager:self fetchPhotosForNode:node failedWithError:error];
-//        }
-//        
-//    } else {
-//        
-//        [self saveData];
-//        
-//        if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotosForNode:)]) {
-//            [self.delegate dataManager:self didReceivePhotosForNode:node];
-//        }
-//    }
-    
+{    
     [self parseDataObjectInBackground:photos
                entityName:@"Photo"
                     error:^(NSError *error) {
@@ -779,9 +783,21 @@ static BOOL assetSyncInProgress = NO;
                         }
                     }
                   success:^(id parsedData) {
-                      if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotosForNode:)]) {
-                          [self.delegate dataManager:self didReceivePhotosForNode:node];
-                      }
+                      if (![parsedData isKindOfClass:[NSArray class]]) {
+                          if ([self.delegate respondsToSelector:@selector(dataManager:fetchPhotosForNode:failedWithError:)]) {
+                              NSError *parseError = [NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerManagedObjectCreationError userInfo:nil];
+                              [self.delegate dataManager:self fetchPhotosForNode:node failedWithError:parseError];
+                          }
+                          
+                      } else {
+                          
+                          // assign photos to node
+                          node.photos = [NSSet setWithArray:(NSArray*)parsedData];
+                          
+                          if ([self.delegate respondsToSelector:@selector(dataManager:didReceivePhotosForNode:)]) {
+                              [self.delegate dataManager:self didReceivePhotosForNode:node];
+                          }
+                      }                      
                   }
      ];
 }
