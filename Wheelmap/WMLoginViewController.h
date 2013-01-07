@@ -18,6 +18,8 @@
 @property (nonatomic, weak) IBOutlet UITextField *usernameTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 
+@property (nonatomic, weak) IBOutlet UIScrollView *contentScrollView;
+
 @property (nonatomic, weak) IBOutlet UIButton *doneButton;
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;

@@ -47,10 +47,35 @@
     self.usernameTextField.placeholder = NSLocalizedString(@"UsernamePlaceholder", nil);
     self.passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
 
+    // adjust labels and buttons according to content
+    [self adjustLabelHeightToText:self.topTextLabel];
+    self.usernameTextField.frame = CGRectMake(self.usernameTextField.frame.origin.x, self.topTextLabel.frame.origin.y + self.topTextLabel.frame.size.height + 20.0f,
+                                              self.usernameTextField.frame.size.width, self.usernameTextField.frame.size.height);
+    self.passwordTextField.frame = CGRectMake(self.passwordTextField.frame.origin.x, self.usernameTextField.frame.origin.y + self.usernameTextField.frame.size.height + 20.0f,
+                                              self.passwordTextField.frame.size.width, self.passwordTextField.frame.size.height);
+    
     [self.loginButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
     self.loginButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [self.loginButton sizeToFit];
-    self.loginButton.frame = CGRectMake(self.view.frame.size.width - self.loginButton.frame.size.width - 10.0f, self.loginButton.frame.origin.y, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
+    self.loginButton.frame = CGRectMake(self.view.frame.size.width - self.loginButton.frame.size.width - 10.0f, self.passwordTextField.frame.origin.y + self.passwordTextField.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
+    
+    self.bottomTextLabel.frame = CGRectMake(self.bottomTextLabel.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 10.0f, self.bottomTextLabel.frame.size.width, self.bottomTextLabel.frame.size.height);
+    [self adjustLabelHeightToText:self.bottomTextLabel];
+    
+    self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, self.bottomTextLabel.frame.origin.y + self.bottomTextLabel.frame.size.height + 20.0f, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
+    
+    self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.registerButton.frame.origin.y + self.registerButton.frame.size.height + 20.0f);
+}
+
+- (void)adjustLabelHeightToText:(UILabel *)label {
+    CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
+    
+    CGSize expectedLabelSize = [label.text sizeWithFont:label.font constrainedToSize:maximumLabelSize lineBreakMode:label.lineBreakMode];
+    
+    //adjust the label the the new height.
+    CGRect newFrame = label.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    label.frame = newFrame;
 }
 
 -(void)viewWillAppear:(BOOL)animated
