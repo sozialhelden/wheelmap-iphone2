@@ -162,7 +162,7 @@
     
         // search cancel button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 10, 15, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);

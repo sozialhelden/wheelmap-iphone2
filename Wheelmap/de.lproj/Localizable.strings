@@ -286,4 +286,4 @@
 "EditPOIViewNodeTypeLabel" = "Ortstyp";
 "SetMarkerInstruction" = "Setze den blauen Marker an die genaue Position des Ortes";
 "ConfirmImageUpload" = "Wollen Sie das Foto hochladen?";
-
+"PleaseSetMarker" = "Keine Position dieses Ortes ist gegeben!";

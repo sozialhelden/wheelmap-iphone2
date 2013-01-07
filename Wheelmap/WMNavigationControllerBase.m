@@ -18,6 +18,7 @@
 #import "WMCategoryViewController.h"
 #import "WMLoginViewController.h"
 #import "WMSetMarkerViewController.h"
+#import "WMNodeTypeTableViewController.h"
 #import "Node.h"
 #import "Category.h"
 
@@ -526,11 +527,10 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
         
-    } else if ([vc isKindOfClass:[WMCategoryViewController class]]) {
-        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
-    } else if ([vc isKindOfClass:[WMSetMarkerViewController class]]) {
-        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
-    } else if ([vc isKindOfClass:[WMCommentViewController class]]) {
+    } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
+               [vc isKindOfClass:[WMSetMarkerViewController class]] ||
+               [vc isKindOfClass:[WMCommentViewController class]] ||
+               [vc isKindOfClass:[WMNodeTypeTableViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     

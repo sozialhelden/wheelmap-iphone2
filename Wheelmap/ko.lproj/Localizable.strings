@@ -276,3 +276,4 @@
 "EditPOIViewNodeTypeLabel" = "장소 타입";
 "SetMarkerInstruction" = "이 장소의 정확한 위치로 파란 마커를 드래그 해 주세요";
 "ConfirmImageUpload" = "선택하신 사진을 업로드합니다. 괜찮습니까?";
+"PleaseSetMarker" = "위치를 지정해 주세요.";

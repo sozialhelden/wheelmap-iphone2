@@ -277,3 +277,4 @@
 "NavBarTitleSetNodeType" = "タイプの設定";
 "SetMarkerInstruction" = "青いマーカーをこの場所の正確な位置まで動かしてください．";
 "ConfirmImageUpload" = "この写真をアップロードしてもいいですか？";
+"PleaseSetMarker" = "この場所の位置がわかりません．";
