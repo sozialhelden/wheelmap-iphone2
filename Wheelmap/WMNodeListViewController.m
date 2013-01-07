@@ -106,8 +106,8 @@
     } 
     else {
     
-        NSValue* lastMapVisibleCenter = [((WMNavigationControllerBase *)self.navigationController) lastVisibleMapCenter];
-        if (!lastMapVisibleCenter) {
+        NSNumber* lastMapVisibleCenterLat = [((WMNavigationControllerBase *)self.navigationController) lastVisibleMapCenterLat];
+        if (!lastMapVisibleCenterLat) {
             // there is no stored bbox. we update nodes from the user location.
             [(WMNavigationControllerBase*)dataSource updateUserLocation];
         }
