@@ -857,7 +857,7 @@ static BOOL assetSyncInProgress = NO;
                                                 NSDictionary* meta  = JSON[@"meta"];
                                                 NSNumber *nodeCount;
                                                 if ([meta isKindOfClass:[NSDictionary class]]) nodeCount = meta[@"item_count_total"];
-                                                if (nodeCount && [self.delegate respondsToSelector:@selector(dataManager:didReceiveNodeCount:)]) {
+                                                if (nodeCount && [self.delegate respondsToSelector:@selector(dataManager:didReceiveTotalNodeCount:)]) {
                                                     [self.delegate dataManager:self didReceiveTotalNodeCount:nodeCount];
                                                 } else if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {
                                                     [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:[NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerInvalidRemoteDataError userInfo:nil]];

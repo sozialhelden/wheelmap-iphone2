@@ -41,7 +41,7 @@
         
         // back button
         UIImageView* backBtnBgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        backBtnBgImg.image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20, 0, 10)];
+        backBtnBgImg.image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)];
         WMLabel* backBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(15, 0, 100, 35)];
         backBtnLabel.fontSize = 13.0;
         backBtnLabel.text = NSLocalizedString(@"BackButton", nil);
@@ -60,7 +60,7 @@
         
         // cancel button
         UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
@@ -94,7 +94,7 @@
         
         // edit button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"NavBarEditButton", nil);
@@ -116,7 +116,7 @@
         
         // save button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"NavBarSaveButton", nil);
@@ -162,7 +162,7 @@
     
         // search cancel button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
@@ -194,11 +194,6 @@
         searchBarTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         searchBarTextField.returnKeyType = UIReturnKeySearch;
         [searchBarTextFieldBg addSubview:searchBarTextField];
-        
-        
-        
-
-        
         
     }
     
