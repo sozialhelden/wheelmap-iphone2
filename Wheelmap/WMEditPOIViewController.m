@@ -383,24 +383,6 @@
     
 }
 
-- (void) dataManager:(WMDataManager *)dataManager didFinishPostingNodeWithMsg:(NSString *)msg {
-    progressWheel.hidden = YES;
-    [progressWheel stopAnimating];
-    NSLog(@"XXXXXXXX FINISHED %@", msg);
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void) dataManager:(WMDataManager *)dataManager failedPostingNodeWithError:(NSError *)error {
-    NSLog(@"XXXXXXXX Failed %@", error);
-    progressWheel.hidden = YES;
-    [progressWheel stopAnimating];
-    
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SaveNodeFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    
-    [alert show];
-    
-}
-
 - (void)dealloc {
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

@@ -17,6 +17,7 @@
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
 #import "WMLoginViewController.h"
+#import "WMSetMarkerViewController.h"
 #import "Node.h"
 #import "Category.h"
 
@@ -56,8 +57,10 @@
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
     
-    self.lastVisibleMapCenter = nil;
-    self.lastVisibleMapSpan = nil;
+    self.lastVisibleMapCenterLat = nil;
+    self.lastVisibleMapCenterLng = nil;
+    self.lastVisibleMapSpanLat = nil;
+    self.lastVisibleMapSpanLng = nil;
     
     // configure initial vc from storyboard. this is necessary for iPad, since iPad's topVC is not the Dashboard!
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
@@ -307,8 +310,10 @@
         [currentVC relocateMapTo:newLocation.coordinate];   // this will automatically update node list!
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         [self updateNodesNear:newLocation.coordinate];
-        self.lastVisibleMapCenter = [NSValue valueWithMKCoordinate:newLocation.coordinate];
-        self.lastVisibleMapSpan = [NSValue valueWithMKCoordinateSpan:MKCoordinateSpanMake(0.005, 0.005)];
+        self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
+        self.lastVisibleMapCenterLng = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
+        self.lastVisibleMapSpanLat = [NSNumber numberWithDouble:0.005];
+        self.lastVisibleMapSpanLng = [NSNumber numberWithDouble:0.005];
     } else {
         
     }
@@ -506,6 +511,8 @@
         
     } else if ([vc isKindOfClass:[WMCategoryViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
+    } else if ([vc isKindOfClass:[WMSetMarkerViewController class]]) {
+        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     
     self.customNavigationBar.leftButtonStyle = leftButtonStyle;
@@ -547,6 +554,11 @@
 -(void)pressedContributeButton:(WMNavigationBar *)navigationBar
 {
     NSLog(@"[NavigationControllerBase] pressed contribute button!");
+    
+    if (![dataManager userIsAuthenticated]) {
+        [self presentLoginScreen];
+        return;
+    }
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     vc.node = [dataManager createNode];
@@ -676,8 +688,13 @@
             self.customNavigationBar.title = currentVC.navigationBarTitle;
         }
         
-        if (self.lastVisibleMapCenter) {
-            [self updateNodesWithRegion:MKCoordinateRegionMake([self.lastVisibleMapCenter MKCoordinateValue], [self.lastVisibleMapSpan MKCoordinateSpanValue])];
+        if (self.lastVisibleMapCenterLat) {
+            [self updateNodesWithRegion:MKCoordinateRegionMake(
+                                                               CLLocationCoordinate2DMake([self.lastVisibleMapCenterLat doubleValue],
+                                                                                          [self.lastVisibleMapCenterLng doubleValue]),
+                                                               MKCoordinateSpanMake([self.lastVisibleMapSpanLat doubleValue],
+                                                                                    [self.lastVisibleMapSpanLng doubleValue])
+                                                               )];
         } else {
             [self updateNodesWithRegion:MKCoordinateRegionMake(locationManager.location.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
         }

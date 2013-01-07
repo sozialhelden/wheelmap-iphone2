@@ -123,8 +123,7 @@
     self.searchTextField.text = nil;
     [self hideCancelButton];
     [self.searchTextField resignFirstResponder];
-    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    [navCtrl.customToolBar hideButton:kWMToolBarButtonSearch];
+    
 }
 
 -(IBAction)pressedNodeListButton:(id)sender

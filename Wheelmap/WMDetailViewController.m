@@ -755,18 +755,30 @@
 
 - (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
    
-    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    imageReadyToUpload = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     NSLog(@"[LOG] UPLOAD THE PICKED IMAGE!");
-    [dataManager uploadImage:chosenImage forNode:self.node];
     
-    [self dismissModalViewControllerAnimated:YES];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"ConfirmImageUpload", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
     
-    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    [navCtrl showLoadingWheel];
+    [alert show];
     
-    
-    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            // cancel
+            break;
+        case 1:
+            // confirmed
+            [dataManager uploadImage:imageReadyToUpload forNode:self.node];
+            [self dismissModalViewControllerAnimated:YES];
+            WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+            [navCtrl showLoadingWheel];
+            break;
+    }
 }
 
 #pragma mark - WMDataManager Delegates

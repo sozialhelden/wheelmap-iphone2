@@ -15,6 +15,7 @@
 #import "Node.h"
 #import "Photo.h"
 #import "Image.h"
+#import "Category.h"
 #import "WMDataParser.h"
 
 
@@ -855,12 +856,24 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSArray *)categories
 {
-    return [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Category" withPredicate:nil];
+    
+    NSArray* categories = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Category" withPredicate:nil];
+    
+    return [categories sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        Category *c1 = (Category*)a;
+        Category *c2 = (Category*)b;
+        return [c1.localized_name localizedCaseInsensitiveCompare:c2.localized_name];
+    }];
 }
 
 - (NSArray *)nodeTypes
 {
-    return [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+    NSArray* nodeTypes = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+    
+    return [nodeTypes sortedArrayUsingComparator:^NSComparisonResult(NodeType *obj1, NodeType *obj2) {
+        return [obj1.localized_name localizedCaseInsensitiveCompare:obj2.localized_name];
+    }];
+    
 }
 
 

@@ -33,8 +33,11 @@ UINavigationControllerDelegate>
 @property (nonatomic, strong) WMToolBar* customToolBar;
 @property (nonatomic, strong) NSMutableDictionary* wheelChairFilterStatus;
 @property (nonatomic, strong) NSMutableDictionary* categoryFilterStatus;
-@property (nonatomic, strong) NSValue* lastVisibleMapCenter;  // this will store last visible map region, so that we can restore last nodes.
-@property (nonatomic, strong) NSValue* lastVisibleMapSpan;
+@property (nonatomic, strong) NSNumber* lastVisibleMapCenterLat;  // this will store last visible map region, so that we can restore last nodes.
+@property (nonatomic, strong) NSNumber* lastVisibleMapCenterLng;
+@property (nonatomic, strong) NSNumber* lastVisibleMapSpanLat;
+@property (nonatomic, strong) NSNumber* lastVisibleMapSpanLng;
+
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithQuery:(NSString*)query;

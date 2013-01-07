@@ -59,16 +59,24 @@
     
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.dataSource;
     MKCoordinateRegion initRegion;
-    if (!navCtrl.lastVisibleMapCenter || !navCtrl.lastVisibleMapSpan) {
-        navCtrl.lastVisibleMapCenter = [NSValue valueWithMKCoordinate:self.mapView.region.center];
-        navCtrl.lastVisibleMapSpan = [NSValue valueWithMKCoordinateSpan:self.mapView.region.span];
+    if (!navCtrl.lastVisibleMapCenterLat || !navCtrl.lastVisibleMapSpanLat) {
+        navCtrl.lastVisibleMapCenterLat = [NSNumber numberWithDouble:self.mapView.region.center.latitude];
+        navCtrl.lastVisibleMapCenterLng = [NSNumber numberWithDouble:self.mapView.region.center.longitude];
+        navCtrl.lastVisibleMapSpanLat = [NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta];
+        navCtrl.lastVisibleMapSpanLng = [NSNumber numberWithDouble:self.mapView.region.span.longitudeDelta];
+        
         CLLocation* userLocation = [navCtrl currentUserLocation];
         initRegion = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005));
         [self.mapView setRegion:initRegion animated:NO];
         [self mapView:self.mapView regionDidChangeAnimated:NO];
         
     } else {
-        initRegion = MKCoordinateRegionMake([navCtrl.lastVisibleMapCenter MKCoordinateValue], [navCtrl.lastVisibleMapSpan MKCoordinateSpanValue]);
+        initRegion = MKCoordinateRegionMake(
+                                            CLLocationCoordinate2DMake([navCtrl.lastVisibleMapCenterLat doubleValue],
+                                                                       [navCtrl.lastVisibleMapCenterLng doubleValue]),
+                                            MKCoordinateSpanMake([navCtrl.lastVisibleMapSpanLat doubleValue],
+                                                                 [navCtrl.lastVisibleMapSpanLng doubleValue])
+                                            );
         [self.mapView setRegion:initRegion animated:NO];
     }
     
@@ -222,9 +230,10 @@
         [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
     }
 
-    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenter:[NSValue valueWithMKCoordinate:self.mapView.region.center]];
-    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpan:[NSValue valueWithMKCoordinateSpan:self.mapView.region.span]];
-
+    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLat:[NSNumber numberWithDouble:self.mapView.region.center.latitude]];
+    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLng:[NSNumber numberWithDouble:self.mapView.region.center.longitude]];
+    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLat:[NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta]];
+    [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLng:[NSNumber numberWithDouble:self.mapView.region.span.longitudeDelta]];
 }
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord
