@@ -93,7 +93,7 @@
          }
          ];
         
-        [(WMNavigationControllerBase*)dataSource updateUserLocation];
+        [(WMNavigationControllerBase*)dataSource updateNodesWithCurrentUserLocation];
         [self loadNodes];
         
     } else if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
@@ -109,7 +109,7 @@
         NSNumber* lastMapVisibleCenterLat = [((WMNavigationControllerBase *)self.navigationController) lastVisibleMapCenterLat];
         if (!lastMapVisibleCenterLat) {
             // there is no stored bbox. we update nodes from the user location.
-            [(WMNavigationControllerBase*)dataSource updateUserLocation];
+            [(WMNavigationControllerBase*)dataSource updateNodesWithCurrentUserLocation];
         }
         [self loadNodes];
         
