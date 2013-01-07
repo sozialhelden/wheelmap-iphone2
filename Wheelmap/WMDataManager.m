@@ -39,6 +39,9 @@
 @property (nonatomic, readonly) NSManagedObjectContext *childManagedObjectContext;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @property (nonatomic, readonly) WMKeychainWrapper *keychainWrapper;
+@property (nonatomic, strong) NSNumber* totalNodeCount;
+@property (nonatomic, strong) NSNumber* unknownNodeCount;
+
 @end
 
 
@@ -842,6 +845,10 @@ static BOOL assetSyncInProgress = NO;
 
 - (void)fetchTotalNodeCount
 {
+    //
+    // request total node counts
+    //
+    
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
                                              apiKey:[self apiKey]
                                          parameters:@{@"per_page":@1}
@@ -853,19 +860,49 @@ static BOOL assetSyncInProgress = NO;
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                NSDictionary* meta  = JSON[@"meta"];
-                                                NSNumber *nodeCount;
-                                                if ([meta isKindOfClass:[NSDictionary class]]) nodeCount = meta[@"item_count_total"];
-                                                if (nodeCount && [self.delegate respondsToSelector:@selector(dataManager:didReceiveTotalNodeCount:)]) {
-                                                    [self.delegate dataManager:self didReceiveTotalNodeCount:nodeCount];
-                                                } else if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {
-                                                    [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:[NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerInvalidRemoteDataError userInfo:nil]];
-                                                }
+                                                NSDictionary *meta  = JSON[@"meta"];
+                                                if ([meta isKindOfClass:[NSDictionary class]]) self.totalNodeCount = meta[@"item_count_total"];
+                                                
+                                                [self notifyDelegateMarkedNodeCount];
                                             }
                                    startImmediately:YES
      ];
+    
+    //
+    // request unknown node count
+    //
+    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
+                                             apiKey:[self apiKey]
+                                         parameters:@{@"per_page":@1, @"wheelchair":@"unknown"}
+                                               eTag:nil
+                                             method:nil
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {
+                                                      [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:error];
+                                                  }
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                NSDictionary *meta  = JSON[@"meta"];
+                                                if ([meta isKindOfClass:[NSDictionary class]]) self.unknownNodeCount = meta[@"item_count_total"];
+                                                
+                                                [self notifyDelegateMarkedNodeCount];
+                                            }
+                                   startImmediately:YES
+     ];
+
 }
 
+-(void)notifyDelegateMarkedNodeCount
+{
+    if (self.totalNodeCount && self.unknownNodeCount) {
+        NSNumber *nodeCount = [NSNumber numberWithDouble:[self.totalNodeCount doubleValue] - [self.unknownNodeCount doubleValue]];
+        if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveTotalNodeCount:)]) {
+            [self.delegate dataManager:self didReceiveTotalNodeCount:nodeCount];
+        } else if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {
+            [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:[NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerInvalidRemoteDataError userInfo:nil]];
+        }
+    }
+}
 
 #pragma mark - Expose Data
 

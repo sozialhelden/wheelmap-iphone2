@@ -241,7 +241,7 @@
 "DashboardCategories" = "KATEGORIEN";
 "DashboardHelp" = "MITHELFEN";
 "SearchForPlace" = "Nach Ort Suchen";
-"Places" = "Orte";
+"Places" = "markierte Orte";
 "TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
 "BottomLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.";
 "Ready" = "Fertig";
