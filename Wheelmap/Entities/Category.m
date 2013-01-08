@@ -2,12 +2,11 @@
 //  Category.m
 //  Wheelmap
 //
-//  Created by Dorian Roy on 29.12.12.
-//  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
+//  Created by Dorian Roy on 08.01.13.
+//  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
 
 #import "Category.h"
-#import "Node.h"
 #import "NodeType.h"
 
 
@@ -16,7 +15,6 @@
 @dynamic id;
 @dynamic identifier;
 @dynamic localized_name;
-@dynamic node;
 @dynamic nodeType;
 
 @end

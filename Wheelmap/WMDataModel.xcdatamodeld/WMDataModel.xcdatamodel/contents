@@ -10,7 +10,6 @@
         <attribute name="id" attributeType="Integer 32" syncable="YES"/>
         <attribute name="identifier" attributeType="String" syncable="YES"/>
         <attribute name="localized_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="node" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Node" inverseName="category" inverseEntity="Node" syncable="YES"/>
         <relationship name="nodeType" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NodeType" inverseName="category" inverseEntity="NodeType" syncable="YES"/>
     </entity>
     <entity name="Image" representedClassName="Image" syncable="YES">
@@ -33,7 +32,6 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wheelchair" optional="YES" attributeType="String" defaultValueString="unknown" regularExpressionString="^yes$|^no$|^limited$|^unknown$" syncable="YES"/>
         <attribute name="wheelchair_description" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="node" inverseEntity="Category" syncable="YES"/>
         <relationship name="node_type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NodeType" inverseName="node" inverseEntity="NodeType" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="node" inverseEntity="Photo" syncable="YES"/>
     </entity>
@@ -54,9 +52,9 @@
     </entity>
     <elements>
         <element name="Asset" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Category" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Category" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Node" positionX="160" positionY="192" width="128" height="270"/>
+        <element name="Node" positionX="160" positionY="192" width="128" height="255"/>
         <element name="NodeType" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
     </elements>

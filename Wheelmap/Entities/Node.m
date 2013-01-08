@@ -2,12 +2,11 @@
 //  Node.m
 //  Wheelmap
 //
-//  Created by Dorian Roy on 29.12.12.
-//  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
+//  Created by Dorian Roy on 08.01.13.
+//  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
 
 #import "Node.h"
-#import "Category.h"
 #import "NodeType.h"
 #import "Photo.h"
 
@@ -26,7 +25,6 @@
 @dynamic website;
 @dynamic wheelchair;
 @dynamic wheelchair_description;
-@dynamic category;
 @dynamic node_type;
 @dynamic photos;
 

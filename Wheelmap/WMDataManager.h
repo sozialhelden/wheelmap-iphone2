@@ -17,6 +17,16 @@
 
 @property (nonatomic, weak) id<WMDataManagerDelegate> delegate;
 
+/*
+ * useForTemporaryObjects must be turned on when the data manager is used in 
+ * VCs which create and submit a new node. The new node will have a temporary
+ * context. CreateNode will throw an exception if this is not set to YES. 
+ * If set, categories and nodeTypes will return objects fetched from  
+ * the temporary context to be able to assign them to the new node.
+ * All other operations will still use the main context.
+ */
+@property (nonatomic) BOOL useForTemporaryObjects;
+
 @property (nonatomic, readonly) BOOL syncInProgress;
 
 - (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
@@ -44,6 +54,10 @@
 - (NSArray*) categories;
 - (NSArray*) nodeTypes;
 
+/* Returns a node in the temporary context. It serves only to pass node data to
+ * updateNode: The context should not be saved. Throws an exception if 
+ * useForTemporaryObjects is not set
+ */
 - (Node*) createNode;
 
 

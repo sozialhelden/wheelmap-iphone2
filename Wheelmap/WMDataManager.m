@@ -37,11 +37,11 @@
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, readonly) NSManagedObjectContext *childManagedObjectContext;
+@property (nonatomic) NSManagedObjectContext *temporaryObjectContext;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @property (nonatomic, readonly) WMKeychainWrapper *keychainWrapper;
-@property (nonatomic, strong) NSNumber* totalNodeCount;
-@property (nonatomic, strong) NSNumber* unknownNodeCount;
-
+@property (nonatomic) NSNumber* totalNodeCount;
+@property (nonatomic) NSNumber* unknownNodeCount;
 @end
 
 
@@ -50,6 +50,7 @@
     NSMutableArray *syncErrors;
     NSMutableDictionary *iconPaths;
     NSString *appApiKey;
+    NSManagedObjectContext *_temporaryObjectContext;
 }
 
 
@@ -321,7 +322,7 @@
 
 #pragma mark - Put/Post a node
 
--(void)updateWheelchairStatusOfNode:(Node *)node
+-(void) updateWheelchairStatusOfNode:(Node *)node
 {
     if (WMLogDataManager) NSLog(@"update wheelchair status to %@", node.wheelchair);
     
@@ -345,9 +346,23 @@
      ];   
 }
 
--(void)updateNode:(Node *)node
+-(void) updateNode:(Node *)node
 {
     if (WMLogDataManager) NSLog(@"update node %@", node.name);
+    
+    // if this is a put
+    if (node.id) {
+        
+        // validate node
+        NSError *validationError = nil;
+        if (![node validateForUpdate:&validationError]) {
+            if (WMLogDataManager) [self logValidationError:validationError];
+            if ([self.delegate respondsToSelector:@selector(dataManager:updateNode:failedWithError:)]) {
+                [self.delegate dataManager:self updateNode:node failedWithError:validationError];
+            }
+            return;
+        }
+    }
 
     NSDictionary* parameters = @{
         @"city" : node.city ?: [NSNull null],
@@ -375,7 +390,18 @@
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                // TODO: save context
+                                                
+                                                // save changes to disk if this was a put
+                                                if (node.id) {
+                                                    [self.managedObjectContext performBlock:^{
+                                                        NSError *saveParentMocError = nil;
+                                                        if (![self.managedObjectContext save:&saveParentMocError]) {
+                                                            if (WMLogDataManager) [self logValidationError:saveParentMocError];
+                                                            NSAssert(YES, @"error saving moc after node PUT");
+                                                        }
+                                                    }];
+                                                }
+                                                
                                                 if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateNode:)]) {
                                                     [self.delegate dataManager:self didUpdateNode:node];
                                                 }
@@ -653,8 +679,6 @@ static BOOL assetSyncInProgress = NO;
     if (!self.syncInProgress) {
         
         // set iconPath on NodeType objects if new icons have been downloaded during sync process
-        NSLog(@"finish sync on %@", dispatch_get_current_queue()==dispatch_get_main_queue()?@"main queue":@"background queue");
-
         if (iconPaths) {
             
             // update in child context to keep it current
@@ -687,13 +711,9 @@ static BOOL assetSyncInProgress = NO;
                     
                     // save parent moc to disk
                     [self.managedObjectContext performBlock:^{
-                        
-                        NSLog(@"saving main moc on %@", dispatch_get_current_queue() == dispatch_get_main_queue() ? @"main queue" : @"background queue");
-                        
                         NSError *saveParentMocError = nil;
                         if (![self.managedObjectContext save:&saveParentMocError]) {
-                            [self syncOperationFailedWithError:saveParentMocError];
-                            
+                            [self syncOperationFailedWithError:saveParentMocError];                            
                         }
                     }];
                 }
@@ -826,18 +846,15 @@ static BOOL assetSyncInProgress = NO;
 
 #pragma mark - Updating/Creating Nodes
 
-/* Returns a temporary node in a separate context. It serves only to pass node data to
- * updateNode: The context should not be saved.
- */
 - (Node*) createNode
 {
+    NSAssert(self.useForTemporaryObjects, @"useForTemporaryObjects must be switched on if createNode is used");
+    
     __block Node* newNode = nil;
     
     // create temporary context just for the new node
-    NSManagedObjectContext *tempManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    [tempManagedObjectContext performBlockAndWait:^{
-        [tempManagedObjectContext setParentContext:self.managedObjectContext];
-        newNode = [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:tempManagedObjectContext];
+    [self.temporaryObjectContext performBlockAndWait:^{
+        newNode = [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:self.temporaryObjectContext];
     }];
     
     return newNode;
@@ -904,12 +921,13 @@ static BOOL assetSyncInProgress = NO;
     }
 }
 
+
 #pragma mark - Expose Data
 
 - (NSArray *)categories
 {
-    
-    NSArray* categories = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Category" withPredicate:nil];
+    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryObjectContext : self.managedObjectContext;
+    NSArray* categories = [self managedObjectContext:context fetchObjectsOfEntity:@"Category" withPredicate:nil];
     
     return [categories sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         Category *c1 = (Category*)a;
@@ -920,12 +938,12 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSArray *)nodeTypes
 {
-    NSArray* nodeTypes = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryObjectContext : self.managedObjectContext;
+    NSArray* nodeTypes = [self managedObjectContext:context fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
     
     return [nodeTypes sortedArrayUsingComparator:^NSComparisonResult(NodeType *obj1, NodeType *obj2) {
         return [obj1.localized_name localizedCaseInsensitiveCompare:obj2.localized_name];
     }];
-    
 }
 
 
@@ -1023,6 +1041,17 @@ static BOOL assetSyncInProgress = NO;
         }];
     });
     return _childManagedObjectContext;
+}
+
+- (NSManagedObjectContext *) temporaryObjectContext
+{
+    if (!_temporaryObjectContext) {
+        _temporaryObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_temporaryObjectContext performBlock:^{
+            _temporaryObjectContext.parentContext = self.managedObjectContext;
+        }];
+    }
+    return _temporaryObjectContext;
 }
                   
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

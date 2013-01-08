@@ -17,6 +17,8 @@
 #import "WMNodeTypeTableViewController.h"
 #import "WMDataManagerDelegate.h"
 #import "Category.h"
+#import "Node.h"
+#import "NodeType.h"
 
 @interface WMEditPOIViewController ()
 
@@ -39,12 +41,12 @@
 {
     [super viewDidLoad];
     
-    
     self.dataManager = [[WMDataManager alloc] init];
+    self.dataManager.useForTemporaryObjects = !self.editView;
     self.dataManager.delegate = self;
 
 	// Do any additional setup after loading the view.
-    self.currentCategory = self.node.category;
+    self.currentCategory = self.node.node_type.category;
     self.currentNodeType = self.node.node_type;
     self.currentWheelchairStatus = self.node.wheelchair;
     self.nameTextField.delegate = self;
@@ -297,9 +299,8 @@
     
     WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
     vc.delegate = self;
+    vc.categoryArray = self.dataManager.categories;
     vc.currentCategory = self.currentCategory;
-    WMDataManager *dataManager = [[WMDataManager alloc] init];
-    vc.categoryArray = [[NSArray alloc] initWithArray:dataManager.categories];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -336,7 +337,6 @@
 - (void)saveCurrentEntriesToCurrentNode {
     
     self.node.name = self.nameTextField.text;
-    self.node.category = self.currentCategory;
     self.node.node_type = self.currentNodeType;
     self.node.wheelchair = self.currentWheelchairStatus;
     self.node.wheelchair_description = self.infoTextView.text;
@@ -415,6 +415,7 @@
     }
     
     [self saveCurrentEntriesToCurrentNode];
+    
     return YES;
 }
 

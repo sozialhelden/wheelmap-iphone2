@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "Node.h"
 #import "WMDataManagerDelegate.h"
+
+@class Node, Category, NodeType;
 
 @interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate>
 {
