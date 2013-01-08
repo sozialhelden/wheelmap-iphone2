@@ -516,7 +516,8 @@
         }
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
-    } else if ([vc isKindOfClass:[WMEditPOIViewController class]]) {
+    } else if ([vc isKindOfClass:[WMEditPOIViewController class]] ||
+               [vc isKindOfClass:[WMCommentViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
         [self hidePopover:wheelChairFilterPopover];
@@ -530,7 +531,6 @@
         
     } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
                [vc isKindOfClass:[WMSetMarkerViewController class]] ||
-               [vc isKindOfClass:[WMCommentViewController class]] ||
                [vc isKindOfClass:[WMNodeTypeTableViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
