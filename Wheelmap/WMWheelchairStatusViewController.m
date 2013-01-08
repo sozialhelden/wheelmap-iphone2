@@ -125,6 +125,10 @@
         self.yesCheckMarkImageView.hidden = YES;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = YES;
+    } else {
+        self.yesCheckMarkImageView.hidden = YES;
+        self.noCheckMarkImageView.hidden = YES;
+        self.limitedCheckMarkImageView.hidden = YES;
     }
 }
 
