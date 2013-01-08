@@ -19,6 +19,7 @@
 #import "WMLoginViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "Node.h"
+#import "NodeType.h"
 #import "Category.h"
 
 
@@ -208,7 +209,7 @@
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
     for (Node* node in nodes) {
-        NSNumber* categoryID = node.category.id;
+        NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
         if ([[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES &&
             [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
@@ -561,7 +562,6 @@
     }
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-    vc.node = [dataManager createNode];
     [self pushViewController:vc animated:YES];
 }
 

@@ -20,7 +20,7 @@
 
 
 #define WMSearchRadius 0.004
-#define WMLogDataManager 0
+#define WMLogDataManager 3
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -348,6 +348,20 @@
 -(void)updateNode:(Node *)node
 {
     if (WMLogDataManager) NSLog(@"update node %@", node.name);
+    
+    // if this is a put
+    if (node.id) {
+        
+        // validate node
+        NSError *validationError = nil;
+        if (![node validateForUpdate:&validationError]) {
+            if (WMLogDataManager) [self logValidationError:validationError];
+            if ([self.delegate respondsToSelector:@selector(dataManager:updateNode:failedWithError:)]) {
+                [self.delegate dataManager:self updateNode:node failedWithError:validationError];
+            }
+            return;
+        }
+    }
 
     NSDictionary* parameters = @{
         @"city" : node.city ?: [NSNull null],
@@ -375,7 +389,18 @@
                                                   }
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                // TODO: save context
+                                                
+                                                // save changes to disk if this was a put
+                                                if (node.id) {
+                                                    [self.managedObjectContext performBlock:^{
+                                                        NSError *saveParentMocError = nil;
+                                                        if (![self.managedObjectContext save:&saveParentMocError]) {
+                                                            if (WMLogDataManager) [self logValidationError:saveParentMocError];
+                                                            NSAssert(YES, @"error saving moc after node PUT");
+                                                        }
+                                                    }];
+                                                }
+                                                
                                                 if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateNode:)]) {
                                                     [self.delegate dataManager:self didUpdateNode:node];
                                                 }
@@ -653,8 +678,6 @@ static BOOL assetSyncInProgress = NO;
     if (!self.syncInProgress) {
         
         // set iconPath on NodeType objects if new icons have been downloaded during sync process
-        NSLog(@"finish sync on %@", dispatch_get_current_queue()==dispatch_get_main_queue()?@"main queue":@"background queue");
-
         if (iconPaths) {
             
             // update in child context to keep it current
@@ -687,13 +710,9 @@ static BOOL assetSyncInProgress = NO;
                     
                     // save parent moc to disk
                     [self.managedObjectContext performBlock:^{
-                        
-                        NSLog(@"saving main moc on %@", dispatch_get_current_queue() == dispatch_get_main_queue() ? @"main queue" : @"background queue");
-                        
                         NSError *saveParentMocError = nil;
                         if (![self.managedObjectContext save:&saveParentMocError]) {
-                            [self syncOperationFailedWithError:saveParentMocError];
-                            
+                            [self syncOperationFailedWithError:saveParentMocError];                            
                         }
                     }];
                 }

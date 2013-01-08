@@ -37,15 +37,15 @@
 		9819925A1695D94200F69BA8 /* WMDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 981992591695D94200F69BA8 /* WMDataParser.m */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		9839CAE11663850600B8E3B5 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */; };
+		983BDBB6169C1128003B99A8 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 983BDBB5169C1128003B99A8 /* Category.m */; };
+		983BDBBA169C1129003B99A8 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 983BDBB9169C1129003B99A8 /* Node.m */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
 		98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E94C921675F62E00994DBA /* WMKeychainWrapper.m */; };
 		9890C534168F337400AD7C07 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C533168F337400AD7C07 /* WMStringUtilities.m */; };
 		9890C566168F417700AD7C07 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C565168F417700AD7C07 /* Asset.m */; };
 		9890C569168F417800AD7C07 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C568168F417800AD7C07 /* Photo.m */; };
-		9890C56C168F417800AD7C07 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C56B168F417800AD7C07 /* Category.m */; };
 		9890C56F168F417900AD7C07 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C56E168F417900AD7C07 /* Image.m */; };
 		9890C572168F417900AD7C07 /* NodeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C571168F417900AD7C07 /* NodeType.m */; };
-		9890C575168F417900AD7C07 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C574168F417900AD7C07 /* Node.m */; };
 		9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */; };
 		989927501649151300D9003B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		989927521649151300D9003B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
@@ -329,6 +329,10 @@
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9839CADF1663850600B8E3B5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		9839CAE01663850600B8E3B5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
+		983BDBB4169C1128003B99A8 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		983BDBB5169C1128003B99A8 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		983BDBB8169C1129003B99A8 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		983BDBB9169C1129003B99A8 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C532168F337400AD7C07 /* WMStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStringUtilities.h; sourceTree = "<group>"; };
 		9890C533168F337400AD7C07 /* WMStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStringUtilities.m; sourceTree = "<group>"; };
@@ -336,14 +340,10 @@
 		9890C565168F417700AD7C07 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		9890C567168F417800AD7C07 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		9890C568168F417800AD7C07 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		9890C56A168F417800AD7C07 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
-		9890C56B168F417800AD7C07 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		9890C56D168F417900AD7C07 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		9890C56E168F417900AD7C07 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		9890C570168F417900AD7C07 /* NodeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeType.h; sourceTree = "<group>"; };
 		9890C571168F417900AD7C07 /* NodeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeType.m; sourceTree = "<group>"; };
-		9890C573168F417900AD7C07 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
-		9890C574168F417900AD7C07 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9899274B1649151300D9003B /* Wheelmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9899274F1649151300D9003B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -893,14 +893,14 @@
 		98CA22DA16664C4D00DF0EA3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				9890C573168F417900AD7C07 /* Node.h */,
-				9890C574168F417900AD7C07 /* Node.m */,
+				983BDBB8169C1129003B99A8 /* Node.h */,
+				983BDBB9169C1129003B99A8 /* Node.m */,
+				983BDBB4169C1128003B99A8 /* Category.h */,
+				983BDBB5169C1128003B99A8 /* Category.m */,
 				9890C570168F417900AD7C07 /* NodeType.h */,
 				9890C571168F417900AD7C07 /* NodeType.m */,
 				9890C56D168F417900AD7C07 /* Image.h */,
 				9890C56E168F417900AD7C07 /* Image.m */,
-				9890C56A168F417800AD7C07 /* Category.h */,
-				9890C56B168F417800AD7C07 /* Category.m */,
 				9890C567168F417800AD7C07 /* Photo.h */,
 				9890C568168F417800AD7C07 /* Photo.m */,
 				9890C564168F417700AD7C07 /* Asset.h */,
@@ -1722,11 +1722,11 @@
 				9890C534168F337400AD7C07 /* WMStringUtilities.m in Sources */,
 				9890C566168F417700AD7C07 /* Asset.m in Sources */,
 				9890C569168F417800AD7C07 /* Photo.m in Sources */,
-				9890C56C168F417800AD7C07 /* Category.m in Sources */,
 				9890C56F168F417900AD7C07 /* Image.m in Sources */,
 				9890C572168F417900AD7C07 /* NodeType.m in Sources */,
-				9890C575168F417900AD7C07 /* Node.m in Sources */,
 				9819925A1695D94200F69BA8 /* WMDataParser.m in Sources */,
+				983BDBB6169C1128003B99A8 /* Category.m in Sources */,
+				983BDBBA169C1129003B99A8 /* Node.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
