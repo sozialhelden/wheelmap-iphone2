@@ -483,7 +483,7 @@
                 [self.customToolBar showAllButtons];
                 break;
             case kWMNodeListViewControllerUseCaseContribute:
-                nodeListVC.navigationBarTitle = NSLocalizedString(@"DashboardHelp", nil);
+                nodeListVC.navigationBarTitle = NSLocalizedString(@"TitleHelp", nil);
                 [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
                 //[self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
