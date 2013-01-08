@@ -41,8 +41,8 @@
 {
     [super viewDidLoad];
     
-    
     self.dataManager = [[WMDataManager alloc] init];
+    self.dataManager.useForTemporaryObjects = !self.editView;
     self.dataManager.delegate = self;
 
 	// Do any additional setup after loading the view.

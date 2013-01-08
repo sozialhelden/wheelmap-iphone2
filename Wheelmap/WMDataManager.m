@@ -20,7 +20,7 @@
 
 
 #define WMSearchRadius 0.004
-#define WMLogDataManager 3
+#define WMLogDataManager 0
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -37,11 +37,11 @@
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, readonly) NSManagedObjectContext *childManagedObjectContext;
+@property (nonatomic) NSManagedObjectContext *temporaryObjectContext;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @property (nonatomic, readonly) WMKeychainWrapper *keychainWrapper;
-@property (nonatomic, strong) NSNumber* totalNodeCount;
-@property (nonatomic, strong) NSNumber* unknownNodeCount;
-
+@property (nonatomic) NSNumber* totalNodeCount;
+@property (nonatomic) NSNumber* unknownNodeCount;
 @end
 
 
@@ -50,6 +50,7 @@
     NSMutableArray *syncErrors;
     NSMutableDictionary *iconPaths;
     NSString *appApiKey;
+    NSManagedObjectContext *_temporaryObjectContext;
 }
 
 
@@ -321,7 +322,7 @@
 
 #pragma mark - Put/Post a node
 
--(void)updateWheelchairStatusOfNode:(Node *)node
+-(void) updateWheelchairStatusOfNode:(Node *)node
 {
     if (WMLogDataManager) NSLog(@"update wheelchair status to %@", node.wheelchair);
     
@@ -345,7 +346,7 @@
      ];   
 }
 
--(void)updateNode:(Node *)node
+-(void) updateNode:(Node *)node
 {
     if (WMLogDataManager) NSLog(@"update node %@", node.name);
     
@@ -845,18 +846,15 @@ static BOOL assetSyncInProgress = NO;
 
 #pragma mark - Updating/Creating Nodes
 
-/* Returns a temporary node in a separate context. It serves only to pass node data to
- * updateNode: The context should not be saved.
- */
 - (Node*) createNode
 {
+    NSAssert(self.useForTemporaryObjects, @"useForTemporaryObjects must be switched on if createNode is used");
+    
     __block Node* newNode = nil;
     
     // create temporary context just for the new node
-    NSManagedObjectContext *tempManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    [tempManagedObjectContext performBlockAndWait:^{
-        [tempManagedObjectContext setParentContext:self.managedObjectContext];
-        newNode = [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:tempManagedObjectContext];
+    [self.temporaryObjectContext performBlockAndWait:^{
+        newNode = [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:self.temporaryObjectContext];
     }];
     
     return newNode;
@@ -923,12 +921,13 @@ static BOOL assetSyncInProgress = NO;
     }
 }
 
+
 #pragma mark - Expose Data
 
 - (NSArray *)categories
 {
-    
-    NSArray* categories = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Category" withPredicate:nil];
+    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryObjectContext : self.managedObjectContext;
+    NSArray* categories = [self managedObjectContext:context fetchObjectsOfEntity:@"Category" withPredicate:nil];
     
     return [categories sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         Category *c1 = (Category*)a;
@@ -939,12 +938,12 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSArray *)nodeTypes
 {
-    NSArray* nodeTypes = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryObjectContext : self.managedObjectContext;
+    NSArray* nodeTypes = [self managedObjectContext:context fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
     
     return [nodeTypes sortedArrayUsingComparator:^NSComparisonResult(NodeType *obj1, NodeType *obj2) {
         return [obj1.localized_name localizedCaseInsensitiveCompare:obj2.localized_name];
     }];
-    
 }
 
 
@@ -1042,6 +1041,17 @@ static BOOL assetSyncInProgress = NO;
         }];
     });
     return _childManagedObjectContext;
+}
+
+- (NSManagedObjectContext *) temporaryObjectContext
+{
+    if (!_temporaryObjectContext) {
+        _temporaryObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_temporaryObjectContext performBlock:^{
+            _temporaryObjectContext.parentContext = self.managedObjectContext;
+        }];
+    }
+    return _temporaryObjectContext;
 }
                   
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
