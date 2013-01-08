@@ -662,6 +662,9 @@
 #pragma mark - WMToolBar Delegate
 -(void)pressedToggleButton:(WMButton *)sender
 {
+    [self hidePopover:wheelChairFilterPopover];
+    [self hidePopover:categoryFilterPopover];
+    
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         //  the node list view is on the screen. push the map view controller
         WMMapViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
@@ -680,6 +683,9 @@
 
 -(void)pressedCurrentLocationButton:(WMToolBar *)toolBar
 {
+    [self hidePopover:wheelChairFilterPopover];
+    [self hidePopover:categoryFilterPopover];
+    
     NSLog(@"[ToolBar] update current location button is pressed!");
     
     if (![CLLocationManager locationServicesEnabled]) {
@@ -715,6 +721,10 @@
 }
 -(void)pressedSearchButton:(BOOL)selected
 {
+    
+    [self hidePopover:wheelChairFilterPopover];
+    [self hidePopover:categoryFilterPopover];
+    
     NSLog(@"[ToolBar] global search button is pressed!");
     if (selected) {
         [self.customNavigationBar showSearchBar];

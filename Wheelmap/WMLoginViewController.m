@@ -132,6 +132,7 @@
         [self.passwordTextField becomeFirstResponder];
     } else {
         [textField resignFirstResponder];
+        [self loginPressed:self.loginButton];
     }
     return YES;
 }

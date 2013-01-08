@@ -20,6 +20,8 @@
     NSArray *nodes;
     
     BOOL isAccesoryHeaderVisible;
+    
+    BOOL shouldShowNoResultIndicator;
 
 }
 
@@ -151,6 +153,7 @@
 
 - (void) nodeListDidChange
 {
+    shouldShowNoResultIndicator = YES;
     [self loadNodes];
 }
 
@@ -179,7 +182,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (nodes && nodes.count == 0) {
+    if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
         // no search result!
         return 1;   // to infrom user about this
     }
@@ -189,7 +192,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (nodes && nodes.count == 0) {
+    if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"WMNodeListCellNoResult"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WMNodeListCellNoResult"];
