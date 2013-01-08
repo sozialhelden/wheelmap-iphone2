@@ -579,7 +579,7 @@
         <image name="buttons_btn-signup.png" width="290" height="50"/>
         <image name="buttons_btn.png" width="72" height="37"/>
         <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_logo.png" width="155" height="31"/>
+        <image name="navigationbar_logo.png" width="150" height="30"/>
         <image name="start_icon-credits.png" width="30" height="30"/>
         <image name="start_icon-login.png" width="30" height="30"/>
         <image name="start_logo.png" width="180" height="45"/>

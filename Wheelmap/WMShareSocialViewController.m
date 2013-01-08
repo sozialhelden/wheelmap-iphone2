@@ -79,7 +79,7 @@
 
 - (IBAction)emailButtonPressed:(id)sender {
     NSLog(@"EMail Button pressed");
-    [sharingManager sendMailWithSubject:@"" andBody:self.shareLocationLabel.text];
+    [sharingManager sendMailWithSubject:NSLocalizedString(@"ShareLocationLabel", nil) andBody:self.shareLocationLabel.text];
 }
 
 - (IBAction)closeButtonPressed:(id)sender {

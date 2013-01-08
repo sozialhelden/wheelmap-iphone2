@@ -157,8 +157,8 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
         controller.mailComposeDelegate = self;
-        [controller setSubject:NSLocalizedString(@"MailSubject", nil)];
-        [controller setMessageBody:NSLocalizedString(@"MailBody", nil) isHTML:NO];
+        [controller setSubject:subject];
+        [controller setMessageBody:body isHTML:NO];
         
         [self.baseVC presentModalViewController:controller animated:YES];
     }

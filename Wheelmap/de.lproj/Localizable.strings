@@ -240,6 +240,7 @@
 "DashboardMap" = "KARTE";
 "DashboardCategories" = "KATEGORIEN";
 "DashboardHelp" = "MITHELFEN";
+"TitleHelp" = "Mithelfen";
 "SearchForPlace" = "Nach Ort Suchen";
 "Places" = "markierte Orte";
 "TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
@@ -288,3 +289,4 @@
 "ConfirmImageUpload" = "Wollen Sie das Foto hochladen?";
 "PleaseSetMarker" = "Keine Position dieses Ortes ist gegeben!";
 "NoPOIsFound" = "Keine Orte gefunden";
+"LoadingWheelText" = "Die Daten werden aktualisiert";
