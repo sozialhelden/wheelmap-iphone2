@@ -35,9 +35,9 @@
 
 
 @interface WMDataManager()
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, readonly) NSManagedObjectContext *childManagedObjectContext;
-@property (nonatomic) NSManagedObjectContext *temporaryObjectContext;
+@property (nonatomic, readonly) NSManagedObjectContext *mainMOC;
+@property (nonatomic, readonly) NSManagedObjectContext *backgroundMOC;
+@property (nonatomic) NSManagedObjectContext *temporaryMOC;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @property (nonatomic, readonly) WMKeychainWrapper *keychainWrapper;
 @property (nonatomic) NSNumber* totalNodeCount;
@@ -50,7 +50,7 @@
     NSMutableArray *syncErrors;
     NSMutableDictionary *iconPaths;
     NSString *appApiKey;
-    NSManagedObjectContext *_temporaryObjectContext;
+    NSManagedObjectContext *_temporaryMOC;
 }
 
 
@@ -237,7 +237,7 @@
                     }
                   success:^(id parsedNodes) {
                       if (WMLogDataManager) {
-                          NSArray *allNodes = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Node" withPredicate:nil];
+                          NSArray *allNodes = [self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Node" withPredicate:nil];
                           NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], [allNodes count]);
                       }
                         if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
@@ -252,21 +252,18 @@
                  error:(void (^)(NSError *error))errorBlock
                success:(void (^)(id parsedObject))successBlock
 {
-    // keep the current queue
-    dispatch_queue_t currentQueue = dispatch_get_current_queue();
-    
     // perform parsing on private queue and perform result blocks on current queue
-    [self.childManagedObjectContext performBlock:^{
+    [self.backgroundMOC performBlock:^{
         
         // create parser with temporary context
-        WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:self.childManagedObjectContext];
+        WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:self.backgroundMOC];
         
         // parse data
         NSError *parseError = nil;
         id parsedObject = [parser parseDataObject:object entityName:entityName error:&parseError];
         
         if (!parsedObject) {
-            dispatch_async(currentQueue, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 errorBlock(parseError);
             });
             
@@ -276,27 +273,33 @@
             
             // get permanent IDs
             NSError *permanentIDsError = nil;
-            if(![self.childManagedObjectContext obtainPermanentIDsForObjects:result error:&permanentIDsError]) {
-                dispatch_async(currentQueue, ^{
+            
+            // WORKAROUND: get permanent ids of all pending objects, not just the result objects,
+            // to work around a bug in iOS 5 (http://openradar.appspot.com/11478919)
+            NSSet *pendingObjects = [[self.backgroundMOC updatedObjects] setByAddingObjectsFromSet:[self.backgroundMOC insertedObjects]];
+            pendingObjects = [pendingObjects setByAddingObjectsFromSet:[self.backgroundMOC deletedObjects]];
+            if(![self.backgroundMOC obtainPermanentIDsForObjects:[pendingObjects allObjects] error:&permanentIDsError]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     errorBlock(permanentIDsError);
                 });
+                
             } else {
                 
                 // merge changes to parent moc
                 NSError *saveTempMocError = nil;
-                if (![self.childManagedObjectContext save:&saveTempMocError]) {
-                    dispatch_async(currentQueue, ^{
+                if (![self.backgroundMOC save:&saveTempMocError]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         errorBlock(saveTempMocError);
                     });
                     
                 } else {
                     
-                    [self.managedObjectContext performBlock:^{
+                    [self.mainMOC performBlock:^{
                         
                         // save parent moc to disk
                         NSError *saveParentMocError = nil;
-                        if (![self.managedObjectContext save:&saveParentMocError]) {
-                            dispatch_async(currentQueue, ^{
+                        if (![self.mainMOC save:&saveParentMocError]) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
                                 errorBlock(saveParentMocError);
                             });
                             
@@ -305,10 +308,10 @@
                             // fetch result objects from main moc
                             NSMutableArray *resultObjectsInMainMoc = [NSMutableArray arrayWithCapacity:[result count]];
                             [result enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
-                                [resultObjectsInMainMoc addObject:[self.managedObjectContext objectWithID:obj.objectID]];
+                                [resultObjectsInMainMoc addObject:[self.mainMOC objectWithID:obj.objectID]];
                             }];
                             
-                            dispatch_async(currentQueue, ^{
+                            dispatch_async(dispatch_get_main_queue(), ^{
                                 successBlock(resultObjectsInMainMoc);
                             });
                         }
@@ -393,9 +396,9 @@
                                                 
                                                 // save changes to disk if this was a put
                                                 if (node.id) {
-                                                    [self.managedObjectContext performBlock:^{
+                                                    [self.mainMOC performBlock:^{
                                                         NSError *saveParentMocError = nil;
-                                                        if (![self.managedObjectContext save:&saveParentMocError]) {
+                                                        if (![self.mainMOC save:&saveParentMocError]) {
                                                             if (WMLogDataManager) [self logValidationError:saveParentMocError];
                                                             NSAssert(YES, @"error saving moc after node PUT");
                                                         }
@@ -428,9 +431,9 @@ static BOOL assetSyncInProgress = NO;
 {
     if (WMLogDataManager) NSLog(@"syncResources");
     if (WMLogDataManager>1) {
-        NSLog(@"... num categories: %i", [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
-        NSLog(@"... num node types: %i", [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
-        NSLog(@"... num assets: %i", [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
+        NSLog(@"... num categories: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
+        NSLog(@"... num node types: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
+        NSLog(@"... num assets: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
     }
     
     // make sure there's only one sync running at a time
@@ -454,7 +457,7 @@ static BOOL assetSyncInProgress = NO;
             [self setETag:nil forEntity:@"Asset"];
             
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
-            Asset *icon = [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+            Asset *icon = [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
             icon.modified_at = [NSDate dateWithTimeIntervalSince1970:0];
             
             *stop = YES;
@@ -588,7 +591,7 @@ static BOOL assetSyncInProgress = NO;
                                                     
                                                     // store old icon modified date
                                                     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
-                                                    Asset *oldIcon = [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+                                                    Asset *oldIcon = [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
                                                     NSDate *oldIconModifiedAt = oldIcon.modified_at;
                                                     
                                                     // parse data
@@ -605,7 +608,7 @@ static BOOL assetSyncInProgress = NO;
                                                                                   [self setETag:eTag forEntity:@"Asset"];
                                                                                   
                                                                                   // get new icon
-                                                                                  Asset *newIcon = [[self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
+                                                                                  Asset *newIcon = [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
                                                                                   
                                                                                   // check if modified date has changed
                                                                                   if (![newIcon.modified_at isEqual:oldIconModifiedAt]) {
@@ -682,9 +685,9 @@ static BOOL assetSyncInProgress = NO;
         if (iconPaths) {
             
             // update in child context to keep it current
-            [self.childManagedObjectContext performBlockAndWait:^{
+            [self.backgroundMOC performBlockAndWait:^{
                 
-                NSArray *nodeTypes = [self managedObjectContext:self.childManagedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+                NSArray *nodeTypes = [self managedObjectContext:self.backgroundMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
                 [nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
                 
                     NSString *iconPath = nil;
@@ -704,15 +707,15 @@ static BOOL assetSyncInProgress = NO;
                 
                 // merge changes to parent moc
                 NSError *saveTempMocError = nil;
-                if (![self.childManagedObjectContext save:&saveTempMocError]) {
+                if (![self.backgroundMOC save:&saveTempMocError]) {
                     [self syncOperationFailedWithError:saveTempMocError];
                     
                 } else {
                     
                     // save parent moc to disk
-                    [self.managedObjectContext performBlock:^{
+                    [self.mainMOC performBlock:^{
                         NSError *saveParentMocError = nil;
-                        if (![self.managedObjectContext save:&saveParentMocError]) {
+                        if (![self.mainMOC save:&saveParentMocError]) {
                             [self syncOperationFailedWithError:saveParentMocError];                            
                         }
                     }];
@@ -731,8 +734,8 @@ static BOOL assetSyncInProgress = NO;
             if (WMLogDataManager>1) NSLog(@"... finished sync with no errors");
             
             if (WMLogDataManager) {
-                NSArray *categories = [self managedObjectContext:self.managedObjectContext  fetchObjectsOfEntity:@"Category" withPredicate:nil];
-                NSArray *nodeTypes = [self managedObjectContext:self.managedObjectContext fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
+                NSArray *categories = [self managedObjectContext:self.mainMOC  fetchObjectsOfEntity:@"Category" withPredicate:nil];
+                NSArray *nodeTypes = [self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
                 NSLog(@"counting %i NodeType, %i Category", [categories count], [nodeTypes count]);
             }
             
@@ -853,8 +856,8 @@ static BOOL assetSyncInProgress = NO;
     __block Node* newNode = nil;
     
     // create temporary context just for the new node
-    [self.temporaryObjectContext performBlockAndWait:^{
-        newNode = [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:self.temporaryObjectContext];
+    [self.temporaryMOC performBlockAndWait:^{
+        newNode = [NSEntityDescription insertNewObjectForEntityForName:@"Node" inManagedObjectContext:self.temporaryMOC];
     }];
     
     return newNode;
@@ -926,7 +929,7 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSArray *)categories
 {
-    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryObjectContext : self.managedObjectContext;
+    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryMOC : self.mainMOC;
     NSArray* categories = [self managedObjectContext:context fetchObjectsOfEntity:@"Category" withPredicate:nil];
     
     return [categories sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
@@ -938,7 +941,7 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSArray *)nodeTypes
 {
-    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryObjectContext : self.managedObjectContext;
+    NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryMOC : self.mainMOC;
     NSArray* nodeTypes = [self managedObjectContext:context fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
     
     return [nodeTypes sortedArrayUsingComparator:^NSComparisonResult(NodeType *obj1, NodeType *obj2) {
@@ -949,14 +952,14 @@ static BOOL assetSyncInProgress = NO;
 
 #pragma mark - Core Data Stack
 
-/**
+/*
  Returns a single instance of a managed object context.
  If the context doesn't already exist, it is created with the preset
  database name and bound to a SQLite persistent store.
  */
-- (NSManagedObjectContext*) managedObjectContext
+- (NSManagedObjectContext*) mainMOC
 {
-    static NSManagedObjectContext *_managedObjectContext = nil;
+    static NSManagedObjectContext *_mainMOC = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
@@ -1023,35 +1026,35 @@ static BOOL assetSyncInProgress = NO;
                 [moc setPersistentStoreCoordinator:persistentStoreCoordinator];
             }];
             
-            _managedObjectContext = moc;
+            _mainMOC = moc;
         }
     });
     
-    return _managedObjectContext;
+    return _mainMOC;
 }
 
-- (NSManagedObjectContext*) childManagedObjectContext
+- (NSManagedObjectContext*) backgroundMOC
 {
-    static NSManagedObjectContext *_childManagedObjectContext = nil;
+    static NSManagedObjectContext *backgroundMOC = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _childManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_childManagedObjectContext performBlockAndWait:^{
-            _childManagedObjectContext.parentContext = self.managedObjectContext;
+        backgroundMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [backgroundMOC performBlockAndWait:^{
+            backgroundMOC.parentContext = self.mainMOC;
         }];
     });
-    return _childManagedObjectContext;
+    return backgroundMOC;
 }
 
-- (NSManagedObjectContext *) temporaryObjectContext
+- (NSManagedObjectContext *) temporaryMOC
 {
-    if (!_temporaryObjectContext) {
-        _temporaryObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_temporaryObjectContext performBlock:^{
-            _temporaryObjectContext.parentContext = self.managedObjectContext;
+    if (!_temporaryMOC) {
+        _temporaryMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_temporaryMOC performBlock:^{
+            _temporaryMOC.parentContext = self.mainMOC;
         }];
     }
-    return _temporaryObjectContext;
+    return _temporaryMOC;
 }
                   
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -1077,7 +1080,7 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSString*) eTagForEntity:(NSString*)entityName
 {
-    NSDictionary *metaData = [self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
+    NSDictionary *metaData = [self.mainMOC.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
     NSDictionary *eTags = metaData[@"eTags"];
     return eTags[entityName];
 }
@@ -1086,10 +1089,10 @@ static BOOL assetSyncInProgress = NO;
 {
     NSParameterAssert(entityName);
     
-    [self.managedObjectContext performBlock:^{
+    [self.mainMOC performBlock:^{
         
         // get meta data from persistent store
-        NSMutableDictionary *metaData = [[self.managedObjectContext.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
+        NSMutableDictionary *metaData = [[self.mainMOC.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
         
         // create eTags dictionary if necessary
         NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
@@ -1107,10 +1110,10 @@ static BOOL assetSyncInProgress = NO;
         [metaData setObject:eTags forKey:@"eTags"];
         
         // save altered meta data to persistent store
-        [self.managedObjectContext.persistentStoreCoordinator setMetadata:metaData forPersistentStore:self.persistentStore];
+        [self.mainMOC.persistentStoreCoordinator setMetadata:metaData forPersistentStore:self.persistentStore];
         
         NSError *error = nil;
-        if (![self.managedObjectContext save:&error]) {
+        if (![self.mainMOC save:&error]) {
             [self logValidationError:error];
         } else {
             if (WMLogDataManager) NSLog(@"Context saved");
