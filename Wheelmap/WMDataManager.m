@@ -122,6 +122,10 @@
         if (saveSuccess) {
             // now that we have saved a token, we can delete legacy keychain data
             [self.keychainWrapper deleteLegacyAccountData];
+            // save last login email into the userdefault (this should be improved..)
+            
+            NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+            [userDefault setObject:[self currentUserName] forKey:@"WheelmapLastUserName"];
         }
         
         if ([self.delegate respondsToSelector:@selector(dataManagerDidAuthenticateUser:)]) {

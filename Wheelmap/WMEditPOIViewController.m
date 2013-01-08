@@ -419,6 +419,7 @@
     return YES;
 }
 
+
 - (BOOL)textViewShouldReturn:(UITextView *)textView{
     
     [textView resignFirstResponder];
@@ -452,6 +453,8 @@
     [UIView commitAnimations];
     
     self.keyboardIsShown = NO;
+    
+    [self saveCurrentEntriesToCurrentNode];
 }
 
 - (void)keyboardWillShow:(NSNotification *)n {

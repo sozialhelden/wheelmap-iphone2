@@ -23,6 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
 	
     self.usernameTextField.delegate = self;
     self.passwordTextField.delegate = self;
@@ -65,6 +68,10 @@
     self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, self.bottomTextLabel.frame.origin.y + self.bottomTextLabel.frame.size.height + 20.0f, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
     
     self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.registerButton.frame.origin.y + self.registerButton.frame.size.height + 20.0f);
+    
+    // TODO: show last logged in user name
+    
+    self.usernameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"WheelmapLastUserName"];
 }
 
 - (void)adjustLabelHeightToText:(UILabel *)label {
@@ -92,8 +99,7 @@
 
 - (IBAction)loginPressed:(id)sender
 {
-    WMDataManager *dataManager = [[WMDataManager alloc] init];
-    dataManager.delegate = self;
+    
     [dataManager authenticateUserWithEmail:self.usernameTextField.text password:self.passwordTextField.text];
 }
 

@@ -277,3 +277,4 @@
 "SetMarkerInstruction" = "Drag the blue marker on the precise position of this location.";
 "ConfirmImageUpload" = "Do you really want to upload this picture?";
 "PleaseSetMarker" = "Please set the location of this place!";
+"NoPOIsFound" = "No places were found";

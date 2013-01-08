@@ -20,6 +20,7 @@
     NSArray *nodes;
     
     BOOL isAccesoryHeaderVisible;
+
 }
 
 @synthesize dataSource, delegate;
@@ -178,11 +179,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (nodes && nodes.count == 0) {
+        // no search result!
+        return 1;   // to infrom user about this
+    }
+    
     return [nodes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (nodes && nodes.count == 0) {
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"WMNodeListCellNoResult"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WMNodeListCellNoResult"];
+            cell.textLabel.text = NSLocalizedString(@"NoPOIsFound", nil);
+            cell.textLabel.font = [UIFont fontWithName:@"HeleticaNeue-Bold" size:15.0];
+        }
+        return cell;
+    }
+    
     WMNodeListCell *cell = (WMNodeListCell*)[tableView dequeueReusableCellWithIdentifier:@"WMNodeListCell"];
     Node *node = nodes[indexPath.row];
     

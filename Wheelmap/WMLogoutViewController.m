@@ -44,6 +44,9 @@
     self.logoutButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [self.logoutButton sizeToFit];
     self.logoutButton.frame = CGRectMake(self.view.frame.size.width - self.logoutButton.frame.size.width - 10.0f, self.logoutButton.frame.origin.y, self.logoutButton.frame.size.width, self.logoutButton.frame.size.height);
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressedCancelButton:)];
+    [self.view addGestureRecognizer:tapGR];
 }
 
 - (void)didReceiveMemoryWarning

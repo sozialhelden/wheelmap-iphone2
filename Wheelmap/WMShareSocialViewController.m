@@ -43,6 +43,8 @@
     [self.smsButton setTitle:NSLocalizedString(@"sms", @"") forState:UIControlStateNormal];
     
     [self.closeButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
+    
+    self.titleLabel.text = NSLocalizedString(@"NavBarTitleSharing", nil);
 
 }
 

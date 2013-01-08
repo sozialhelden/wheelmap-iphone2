@@ -12,6 +12,7 @@
 
 @interface WMLoginViewController : WMViewController <UITextFieldDelegate, WMDataManagerDelegate> {
     
+    WMDataManager *dataManager;
     BOOL keyboardIsShown;
 }
 

@@ -110,8 +110,8 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="OrT-nw-xew" id="4MJ-TH-33V"/>
-                                    <outlet property="delegate" destination="OrT-nw-xew" id="apn-0v-jxG"/>
+                                    <outlet property="dataSource" destination="OrT-nw-xew" id="5zw-BZ-dhl"/>
+                                    <outlet property="delegate" destination="OrT-nw-xew" id="A0c-SF-GLK"/>
                                 </connections>
                             </tableView>
                         </subviews>

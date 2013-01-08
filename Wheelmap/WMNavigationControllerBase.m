@@ -658,6 +658,11 @@
 -(void)pressedCurrentLocationButton:(WMToolBar *)toolBar
 {
     NSLog(@"[ToolBar] update current location button is pressed!");
+    
+    if (![CLLocationManager locationServicesEnabled]) {
+        [self locationManager:self.locationManager didFailWithError:nil];
+    }
+    
     [self updateNodesWithCurrentUserLocation];
     
     [self.customToolBar deselectSearchButton];

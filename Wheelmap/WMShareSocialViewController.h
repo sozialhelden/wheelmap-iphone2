@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *smsButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (IBAction)twitterButtonPressed:(id)sender;
 - (IBAction)facebookButtonPressed:(id)sender;

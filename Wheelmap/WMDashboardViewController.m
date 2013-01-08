@@ -110,8 +110,15 @@
 {
     [super viewWillAppear:animated];
 
-    
+
+    // update login icon image here
+    if ([dataManager userIsAuthenticated]) {
+        [self.loginButton setImage:[UIImage imageNamed:@"start_icon-logged-in.png"] forState:UIControlStateNormal];
+    } else {
+        [self.loginButton setImage:[UIImage imageNamed:@"start_icon-login.png"] forState:UIControlStateNormal];
+    }
 }
+
 
 - (void)didReceiveMemoryWarning
 {

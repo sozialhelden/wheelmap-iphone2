@@ -22,7 +22,7 @@
 "Copyright" = "  © 2010 Sozialhelden e.V. All rights reserved.";
 "Close" = "닫기";
 "Search Results" = "결과 검색";
-"Nearby Places" = "가까운 장소";
+"Nearby Places" = "주변의 접근성 정보";
 "Places near %@" = "%@에 가까운 장소";
 "Places in map segment" = "지도 세그먼트의 장소";
 "OK" = "OK";
@@ -240,7 +240,7 @@
 "DashboardMap" = "지도";
 "DashboardCategories" = "카테고리";
 "DashboardHelp" = "도움을 주세요";
-"SearchForPlace" = "장소 검색";
+"SearchForPlace" = "접근성 정보 검색";
 "Places" = "휠체어 접근 정보";
 "TopLabelText" = "";
 "BottomLabelText" = "";
@@ -250,7 +250,7 @@
 "MapHybrid" = "하이브리드";
 "MapStandard" = "표준";
 "MapSatellite" = "위성사진";
-"PlacesNearby" = "주변의 장소들";
+"PlacesNearby" = "주변의 접근 정보";
 "HelpByMarking" = "아래 장소들의 휠체어 접근성에 대해 알려주세요!";
 "NoAddress" = "주소가 없습니다.";
 "NoWebsite" = "웹페이지가 없습니다.";
@@ -274,6 +274,7 @@
 "EditPOIViewSetMarkerButtonDisabled" = "편집 불가";
 "NavBarTitleSetNodeType" = "장소 타입 설정";
 "EditPOIViewNodeTypeLabel" = "장소 타입";
-"SetMarkerInstruction" = "이 장소의 정확한 위치로 파란 마커를 드래그 해 주세요";
+"SetMarkerInstruction" = "이 장소의 정확한 위치로 마커를 드래그 해 주세요";
 "ConfirmImageUpload" = "선택하신 사진을 업로드합니다. 괜찮습니까?";
 "PleaseSetMarker" = "위치를 지정해 주세요.";
+"NoPOIsFound" = "어떠한 접근성 정보도 찾지 못했습니다.";
