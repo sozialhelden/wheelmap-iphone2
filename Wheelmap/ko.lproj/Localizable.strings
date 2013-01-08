@@ -240,6 +240,7 @@
 "DashboardMap" = "지도";
 "DashboardCategories" = "카테고리";
 "DashboardHelp" = "도움을 주세요";
+"TitleHelp" = "도움을 주세요";
 "SearchForPlace" = "장소 검색";
 "Places" = "휠체어 접근 정보";
 "TopLabelText" = "";

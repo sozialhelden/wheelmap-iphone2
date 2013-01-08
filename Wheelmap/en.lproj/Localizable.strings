@@ -240,6 +240,7 @@
 "DashboardMap" = "MAP";
 "DashboardCategories" = "CATEGORIES";
 "DashboardHelp" = "GET ENGAGED";
+"TitleHelp" = "Get Engaged";
 "SearchForPlace" = "Search for place";
 "Places" = "Marked Places";
 "TopLabelText" = "";

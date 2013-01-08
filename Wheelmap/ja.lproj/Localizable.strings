@@ -232,6 +232,7 @@
 "DashboardMap" = "マップ";
 "DashboardCategories" = "カテゴリ";
 "DashboardHelp" = "助け合い";
+"TitleHelp" = "助け合い";
 "SearchForPlace" = "場所を探す";
 "Places" = "バリアフリー情報";
 "TopLabelText" = "";
