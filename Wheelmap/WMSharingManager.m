@@ -8,13 +8,6 @@
 
 #import "WMSharingManager.h"
 
-#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
-
-
 @implementation WMSharingManager
 
 -(id)initWithBaseViewController:(UIViewController *)vc
@@ -75,7 +68,24 @@
 }
 
 -(void)facebookPostingForVersionFive:(NSString *)body {
+    if ([[Facebook shared]isSessionValid]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Wheelmap", @"name", body, @"description", @"http://www.wheelmap.org", @"link", nil];
+        
+        if (dict != nil) {
+            [[Facebook shared] dialog:@"feed" andParams:dict andDelegate:self];
+        }
+    }
     
+}
+
+-(void)dialog:(FBDialog *)dialog didFailWithError:(NSError *)error
+{
+    NSLog(@"FB ERROR %@", error);
+}
+
+-(void)dialogDidNotComplete:(FBDialog *)dialog
+{
+    NSLog(@"FB NOT COMPLETE %@", dialog);
 }
 
 #pragma mark - Tweeter
@@ -128,6 +138,16 @@
 
 -(void)tweetForVersionFive:(NSString *)body
 {
+    TWTweetComposeViewController* tweetVc = [[TWTweetComposeViewController alloc] init];
+    TWTweetComposeViewControllerCompletionHandler completionHandler = ^(TWTweetComposeViewControllerResult result){
+        [self.baseVC dismissModalViewControllerAnimated:YES];
+    };
+    [tweetVc setCompletionHandler:completionHandler];
+    
+    
+    [tweetVc setInitialText:body];
+    
+    [self.baseVC presentModalViewController:tweetVc animated:YES];
     
 }
 

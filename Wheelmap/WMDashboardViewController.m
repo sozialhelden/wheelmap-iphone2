@@ -14,6 +14,7 @@
 #import "WMLoginViewController.h"
 #import "WMLogoutViewController.h"
 #import "WMDataManager.h"
+#import "WMCreditsViewController.h"
 
 
 @interface WMDashboardViewController ()

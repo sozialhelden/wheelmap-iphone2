@@ -208,8 +208,10 @@
     [self setWheelAccessButton];
     self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.wheelAccessButton.frame = CGRectMake(10, 10, self.accessImage.size.width, self.accessImage.size.height);
-    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
+    [self.wheelAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
+    self.wheelAccessButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
@@ -250,7 +252,7 @@
     // STREET
     self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.streetLabel.textColor = [UIColor darkGrayColor];
-    self.streetLabel.font = [UIFont boldSystemFontOfSize:14];
+    self.streetLabel.font = [UIFont boldSystemFontOfSize:13];
     self.streetLabel.backgroundColor = [UIColor clearColor];
     [view addSubview:self.streetLabel];
     
@@ -260,7 +262,7 @@
     // POSTCODE AND CITY
     self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
-    self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:14];
+    self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:13];
     self.postcodeAndCityLabel.backgroundColor = [UIColor clearColor];
     [view addSubview:self.postcodeAndCityLabel];
     
@@ -279,7 +281,7 @@
     self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
     self.websiteLabel.editable = NO;
     self.websiteLabel.scrollEnabled = NO;
-    self.websiteLabel.font = [UIFont systemFontOfSize:14];
+    self.websiteLabel.font = [UIFont systemFontOfSize:13];
     self.websiteLabel.backgroundColor = [UIColor clearColor];
     self.websiteLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
     [view addSubview:self.websiteLabel];
@@ -289,7 +291,7 @@
     // PHONE
     self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.phoneLabel.textColor = [UIColor darkGrayColor];
-    self.phoneLabel.font = [UIFont systemFontOfSize:14];
+    self.phoneLabel.font = [UIFont systemFontOfSize:13];
     self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
     self.phoneLabel.editable = NO;
     self.phoneLabel.scrollEnabled = NO;
@@ -685,15 +687,28 @@
         }
     } else if (actionSheet.tag == 1) { // MAP
         if (buttonIndex == 0) {
-           
             CLLocationCoordinate2D start = { self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude };
             CLLocationCoordinate2D destination = { self.poiLocation.latitude, self.poiLocation.longitude };
             
-            NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
-                                             start.latitude, start.longitude, destination.latitude, destination.longitude];
-            NSURL *url = [NSURL URLWithString:googleMapsURLString];
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+                // Create an MKMapItem to pass to the Maps app
+                MKPlacemark *placemarkStart = [[MKPlacemark alloc] initWithCoordinate:start addressDictionary:nil];
+                MKPlacemark *placemarkDest = [[MKPlacemark alloc] initWithCoordinate:destination addressDictionary:nil];
+                MKMapItem *mapItemStart = [[MKMapItem alloc] initWithPlacemark:placemarkStart];
+                MKMapItem *mapItemDest = [[MKMapItem alloc] initWithPlacemark:placemarkDest];
+                
+                [MKMapItem openMapsWithItems:@[mapItemStart, mapItemDest] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking}];
+                
+            } else {
+           
+                
             
-            [[UIApplication sharedApplication] openURL:url];
+                NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
+                                             start.latitude, start.longitude, destination.latitude, destination.longitude];
+                NSURL *url = [NSURL URLWithString:googleMapsURLString];
+            
+                [[UIApplication sharedApplication] openURL:url];
+            }
  
         }
     } else if (actionSheet.tag == 2) { // PHOTOUPLOAD
@@ -770,6 +785,10 @@
     switch (buttonIndex) {
         case 0:
             // cancel
+            // if the source type was camere, we should dismiss camera view.
+            // otherwise we do not need to dismiss view controller (photo gallery) programatically
+            if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
+                [self dismissModalViewControllerAnimated:YES];
             break;
         case 1:
             // confirmed

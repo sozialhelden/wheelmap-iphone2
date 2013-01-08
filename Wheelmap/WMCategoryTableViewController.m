@@ -17,7 +17,7 @@
 
 @implementation WMCategoryTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithStyle:(UITableViewStyle)style andCategory:(Category*)c
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -42,8 +42,18 @@
 {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"SetCategory", nil);
+    self.title = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
     self.navigationBarTitle = self.title;
+    
+    int highlightedCellRow = -1;
+    for (Category* c in self.categoryArray) {
+        NSNumber* ID = c.id;
+        if ([ID intValue] == [[self.currentCategory id] intValue]) {
+            highlightedCellRow = [self.categoryArray indexOfObject:c];
+        }
+    }
+    
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:highlightedCellRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)didReceiveMemoryWarning

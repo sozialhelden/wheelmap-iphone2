@@ -18,6 +18,7 @@
 #import "WMCategoryViewController.h"
 #import "WMLoginViewController.h"
 #import "WMSetMarkerViewController.h"
+#import "WMNodeTypeTableViewController.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "Category.h"
@@ -27,7 +28,6 @@
 {
     NSArray *nodes;
     WMDataManager *dataManager;
-    CLLocationManager *locationManager;
     
     WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
     WMCategoryFilterPopoverView* categoryFilterPopover;
@@ -52,11 +52,11 @@
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.distanceFilter = 100.0f;
-	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 50.0f;
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
     
     self.lastVisibleMapCenterLat = nil;
     self.lastVisibleMapCenterLng = nil;
@@ -303,9 +303,38 @@
 	[alertView show];
 }
 
+-(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation* newLocation = [locations objectAtIndex:0];
+    [self locationManager:manager didUpdateToLocation:newLocation fromLocation:nil];
+}
+
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"Location is updated!");
+    [self updateNodesWithCurrentUserLocation];
+}
+
+-(void)updateUserLocation
+{
+    NSLog(@"CLLOCATIONMANAGER:%@ and delegate: %@", self.locationManager, self.locationManager.delegate);
+    if ([CLLocationManager locationServicesEnabled]) {
+        [self showLoadingWheel];
+        [self.locationManager startUpdatingLocation];
+    } else {
+        NSLog(@"[CLLocataionManager] location service is disabled!");
+        [self locationManager:self.locationManager didFailWithError:nil];
+    }
+}
+
+-(CLLocation*)currentUserLocation
+{
+    return self.locationManager.location;
+}
+
+-(void)updateNodesWithCurrentUserLocation
+{
+    CLLocation* newLocation = self.locationManager.location;
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
         [currentVC relocateMapTo:newLocation.coordinate];   // this will automatically update node list!
@@ -320,24 +349,13 @@
     }
 }
 
--(void)updateUserLocation
-{
-    [self showLoadingWheel];
-    [locationManager startUpdatingLocation];
-}
-
--(CLLocation*)currentUserLocation
-{
-    return locationManager.location;
-}
-
 
 #pragma mark - Application Notifications
 
 - (void) applicationDidBecomeActive:(NSNotification*)notification
 {
-    if (locationManager) {
-        [locationManager startMonitoringSignificantLocationChanges];
+    if (self.locationManager) {
+        [self.locationManager startMonitoringSignificantLocationChanges];
     }
     
     // start sync if last sync happened over an hour ago
@@ -350,7 +368,7 @@
 
 - (void)applicationWillResignActive:(NSNotification*)notification
 {
-	[locationManager stopUpdatingLocation];
+	[self.locationManager stopUpdatingLocation];
 }
 
 #pragma mark - Push/Pop ViewControllers
@@ -412,7 +430,7 @@
 -(NSArray*)popToRootViewControllerAnimated:(BOOL)animated
 {
     NSArray* lastViewControllers = [super popToRootViewControllerAnimated:animated];
-    
+    [self changeScreenStatusFor:[self.viewControllers lastObject]];
     return lastViewControllers;
 }
 
@@ -510,9 +528,10 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
         
-    } else if ([vc isKindOfClass:[WMCategoryViewController class]]) {
-        rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
-    } else if ([vc isKindOfClass:[WMSetMarkerViewController class]]) {
+    } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
+               [vc isKindOfClass:[WMSetMarkerViewController class]] ||
+               [vc isKindOfClass:[WMCommentViewController class]] ||
+               [vc isKindOfClass:[WMNodeTypeTableViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     
@@ -639,7 +658,7 @@
 -(void)pressedCurrentLocationButton:(WMToolBar *)toolBar
 {
     NSLog(@"[ToolBar] update current location button is pressed!");
-    [locationManager startUpdatingLocation];
+    [self updateNodesWithCurrentUserLocation];
     
     [self.customToolBar deselectSearchButton];
     
@@ -696,7 +715,7 @@
                                                                                     [self.lastVisibleMapSpanLng doubleValue])
                                                                )];
         } else {
-            [self updateNodesWithRegion:MKCoordinateRegionMake(locationManager.location.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
+            [self updateNodesWithRegion:MKCoordinateRegionMake(self.locationManager.location.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
         }
         
         

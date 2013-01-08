@@ -15,6 +15,7 @@
 #import "WMMapViewController.h"
 #import "WMNodeListViewController.h"
 #import "WMDetailViewController.h"
+#import "WMCommentViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMWheelChairStatusFilterPopoverView.h"
 #import "WMCategoryFilterPopoverView.h"
@@ -29,6 +30,7 @@ WMWheelChairStatusFilterPopoverViewDelegate,
 WMCategoryFilterPopoverViewDelegate,
 UINavigationControllerDelegate>
 
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
 @property (nonatomic, strong) WMToolBar* customToolBar;
 @property (nonatomic, strong) NSMutableDictionary* wheelChairFilterStatus;
@@ -42,6 +44,7 @@ UINavigationControllerDelegate>
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithQuery:(NSString*)query;
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
+-(void)updateNodesWithCurrentUserLocation;
 
 -(void)clearWheelChairFilterStatus;
 -(void)clearCategoryFilterStatus;

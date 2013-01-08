@@ -15,7 +15,7 @@
 "Not Logged In" = "You're not signed in";
 "Sign Out" = "Sign Out";
 "About Wheelmap" = "About";
-"Credits:" = "Credits:";
+"Credits" = "Credits";
 "Map Credits" = "Map Data: OpenStreetMap";
 "Icons Credits" = "Icons: Yusuke Kamiyamane";
 "Dev Credits" = "iPhone Development: Dorian Roy";
@@ -275,3 +275,5 @@
 "NavBarTitleSetNodeType" = "Set Location Type";
 "EditPOIViewNodeTypeLabel" = "Location Type";
 "SetMarkerInstruction" = "Drag the blue marker on the precise position of this location.";
+"ConfirmImageUpload" = "Do you really want to upload this picture?";
+"PleaseSetMarker" = "Please set the location of this place!";

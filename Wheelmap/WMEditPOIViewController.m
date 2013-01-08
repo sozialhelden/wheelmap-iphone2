@@ -288,8 +288,7 @@
     WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
     vc.delegate = self;
     vc.nodeArray = [[NSSet alloc] initWithSet:self.currentCategory.nodeType];
-    vc.title = self.title = NSLocalizedString(@"SetNodeType", @"");
-
+    vc.currentNodeType = self.currentNodeType;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -299,6 +298,7 @@
     WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
     vc.delegate = self;
     vc.categoryArray = self.dataManager.categories;
+    vc.currentCategory = self.currentCategory;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

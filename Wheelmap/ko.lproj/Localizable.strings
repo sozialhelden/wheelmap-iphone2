@@ -15,7 +15,7 @@
 "Not Logged In" = "로그인하지 않았습니다.";
 "Sign Out" = "로그아웃";
 "About Wheelmap" = "정보";
-"Credits:" = "신용 :";
+"Credits" = "기획 및 개발";
 "Map Credits" = "지도 데이터 : OpenStreetMap";
 "Icons Credits" = "아이콘 출처 : 유스케 카미야마네";
 "Dev Credits" = "아이폰 개발 : 도리안 로이";
@@ -275,3 +275,5 @@
 "NavBarTitleSetNodeType" = "장소 타입 설정";
 "EditPOIViewNodeTypeLabel" = "장소 타입";
 "SetMarkerInstruction" = "이 장소의 정확한 위치로 파란 마커를 드래그 해 주세요";
+"ConfirmImageUpload" = "선택하신 사진을 업로드합니다. 괜찮습니까?";
+"PleaseSetMarker" = "위치를 지정해 주세요.";

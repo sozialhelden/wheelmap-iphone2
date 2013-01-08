@@ -39,6 +39,16 @@
     
     self.title = NSLocalizedString(@"NavBarTitleSetNodeType", nil);
     self.navigationBarTitle = self.title;
+    
+    int highlightedCellRow = -1;
+    for (NodeType* c in self.nodeArray) {
+        NSNumber* ID = c.id;
+        if ([ID intValue] == [[self.currentNodeType id] intValue]) {
+            highlightedCellRow = [[self.nodeArray allObjects] indexOfObject:c];
+        }
+    }
+    
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:highlightedCellRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 - (void)didReceiveMemoryWarning
