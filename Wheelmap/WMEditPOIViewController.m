@@ -73,7 +73,7 @@
     
         
     // WHEEL ACCESS
-    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
@@ -225,6 +225,8 @@
     
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
+    [self.wheelAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
+    
     
 }
 
