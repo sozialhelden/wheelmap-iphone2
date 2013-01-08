@@ -88,6 +88,29 @@
     loadingWheel.layer.masksToBounds = YES;
     loadingWheel.center = loadingWheelContainer.center;
     loadingWheelContainer.hidden = YES;
+    
+    WMLabel *loadingLabel = [[WMLabel alloc] initWithFrame:CGRectMake(100, 100, 220, 150)];
+    loadingLabel.numberOfLines = 0;
+    loadingLabel.textColor = [UIColor whiteColor];
+    loadingLabel.center = loadingWheelContainer.center;
+    loadingLabel.backgroundColor = [UIColor blackColor];
+    loadingLabel.layer.cornerRadius = 10.0f;
+    loadingLabel.layer.masksToBounds = YES;
+    [loadingLabel setText:NSLocalizedString(@"LoadingWheelText", nil)];
+
+    CGSize maximumLabelSize = CGSizeMake(loadingLabel.frame.size.width, FLT_MAX);
+    
+    CGSize expectedLabelSize = [loadingLabel.text sizeWithFont:loadingLabel.font constrainedToSize:maximumLabelSize lineBreakMode:loadingLabel.lineBreakMode];
+    
+    //adjust the label the the new height.
+    CGRect newFrame = loadingLabel.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    loadingLabel.frame = newFrame;
+    
+    loadingLabel.frame = CGRectMake(loadingLabel.frame.origin.x, loadingWheel.frame.origin.y + loadingWheel.frame.size.height + 10.0f, loadingLabel.frame.size.width, loadingLabel.frame.size.height);
+    
+    [loadingWheelContainer addSubview:loadingLabel];
+    
     [loadingWheelContainer addSubview:loadingWheel];
     [self.view addSubview:loadingWheelContainer];
     
