@@ -55,7 +55,7 @@
 
 #pragma mark - BITUpdateManagerDelegate
 - (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
-#ifndef CONFIGURATION_AppStore
+#ifndef CONFIGURATION_Release
     if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
         return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
 #endif
