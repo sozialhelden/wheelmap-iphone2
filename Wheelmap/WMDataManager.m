@@ -879,7 +879,7 @@ static BOOL assetSyncInProgress = NO;
                                                eTag:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {
+                                                  if ([self.delegate respondsToSelector:@selector(dataManager:fetchTotalNodeCountFailedWithError:)]) {
                                                       [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:error];
                                                   }
                                               }

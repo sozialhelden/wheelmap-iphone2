@@ -353,6 +353,8 @@
     imageView.layer.borderWidth = 2;
     imageView.tag = i;
     imageView.userInteractionEnabled = YES;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
     [imageView setImageWithURL: [NSURL URLWithString:[self.thumbnailURLArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbnailTapped:)];

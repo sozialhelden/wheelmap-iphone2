@@ -71,7 +71,7 @@
 -(UITableViewCell*)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Category* c = [self.categoryList objectAtIndex:indexPath.row];
-    NSString* cellID = [NSString stringWithFormat:@"CategoryListCell-%@", c.id];
+    NSString* cellID = [NSString stringWithFormat:@"CategoryListCell-%@", c.localized_name];
     WMCategoryFilterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];    // TODO: is this ID OK?
     if (!cell) {
         cell = [[WMCategoryFilterTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];

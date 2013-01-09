@@ -305,6 +305,19 @@
 -(void)dataManager:(WMDataManager *)dataManager fetchTotalNodeCountFailedWithError:(NSError *)error
 {
     NSLog(@"[Error] getting total count failed with error %@", error);
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^(void)
+     {
+         self.numberOfPlacesLabel.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     }];
+
 }
 
 -(void)showUIObjectsAnimated:(BOOL)animated

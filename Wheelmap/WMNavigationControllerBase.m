@@ -203,7 +203,7 @@
     
 }
 
--(void)dataManager:(WMDataManager *)dataManager syncResourcesFailedWithError:(NSError *)error
+-(void)dataManager:(WMDataManager *)dataManager didFinishSyncingResourcesWithErrors:(NSArray *)errors
 {
     NSLog(@"syncResourcesFailedWithError");
     
