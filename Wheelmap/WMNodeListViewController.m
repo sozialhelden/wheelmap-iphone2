@@ -214,7 +214,7 @@
     }
     
     cell.iconImage.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-    UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 20, 16)];
+    UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(2, 3, 20, 16)];
     icon.contentMode = UIViewContentModeScaleAspectFit;
     icon.backgroundColor = [UIColor clearColor];
     icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];
