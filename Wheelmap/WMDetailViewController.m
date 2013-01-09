@@ -532,6 +532,13 @@
 }
 
 - (void)showCommentView {
+    
+    if (![dataManager userIsAuthenticated]) {
+        WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+        [navCtrl presentLoginScreen];
+        return;
+    }
+    
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
     vc.title = NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"");
