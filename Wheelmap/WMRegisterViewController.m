@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    self.titleLabel.text = NSLocalizedString(@"RegisterNew", nil);
+
     [self.cancelButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
     
     NSURL *url = [NSURL URLWithString:WMRegistrationURL];

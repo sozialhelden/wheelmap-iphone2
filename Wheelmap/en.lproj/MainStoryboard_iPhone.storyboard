@@ -521,6 +521,13 @@
                                             <action selector="pressedCancelButton:" destination="9yT-MT-7xh" eventType="touchUpInside" id="tyP-zK-hqo"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7EW-3H-bmW">
+                                        <rect key="frame" x="89" y="14" width="143" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -529,6 +536,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="mud-rB-Qar" id="WKs-Uc-Jf7"/>
+                        <outlet property="titleLabel" destination="7EW-3H-bmW" id="MVo-xf-mo3"/>
                         <outlet property="view" destination="fQN-po-bCY" id="mYZ-tp-pF0"/>
                         <outlet property="webView" destination="Aqj-pU-hAU" id="DeN-rY-TrO"/>
                     </connections>
