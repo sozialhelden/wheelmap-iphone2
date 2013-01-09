@@ -467,11 +467,11 @@
 
 - (void) checkForStatusOfButtons {
 
-    if(self.node.wheelchair_description == nil || [self.node.wheelchair_description isEqualToString:@""]) {
-        self.moreInfoButton.enabled = NO;
-    } else {
-        self.moreInfoButton.enabled = YES;
-    }
+//    if(self.node.wheelchair_description == nil || [self.node.wheelchair_description isEqualToString:@""]) {
+//        self.moreInfoButton.enabled = NO;
+//    } else {
+//        self.moreInfoButton.enabled = YES;
+//    }
     if(self.currentLocation == nil) {
         self.naviButton.enabled = NO;
     } else {

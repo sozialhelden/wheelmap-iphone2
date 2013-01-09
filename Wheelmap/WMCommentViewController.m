@@ -31,8 +31,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
-
     self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", @"");
     self.commentText.layer.borderWidth = 1.0f;
     self.commentText.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -40,7 +38,9 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    self.commentText.text = self.currentNode.wheelchair_description;
+    if ((self.currentNode.wheelchair_description != nil) && (![self.currentNode.wheelchair_description isEqualToString:@""])) {
+        self.commentText.text = self.currentNode.wheelchair_description;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
