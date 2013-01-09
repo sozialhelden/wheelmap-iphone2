@@ -731,7 +731,7 @@ static BOOL assetSyncInProgress = NO;
         
         if (syncErrors) {
             if (WMLogDataManager>1) NSLog(@"... finished sync with %i errors", [syncErrors count]);
-            if ([self.delegate respondsToSelector:@selector(didFinishSyncingResourcesWithErrors:)]) {
+            if ([self.delegate respondsToSelector:@selector(dataManager:didFinishSyncingResourcesWithErrors:)]) {
                 [self.delegate dataManager:self didFinishSyncingResourcesWithErrors:syncErrors];
             }
         } else {

@@ -291,3 +291,4 @@
 "NoPOIsFound" = "Keine Orte gefunden";
 "LoadingWheelText" = "Die Daten werden aktualisiert";
 "SaveNodeFailed" = "Das Speichern der Daten ist leider fehlgeschlagen.";
+"FetchNodesFails" = "Die Daten konnten nicht aktualisiert werden.";

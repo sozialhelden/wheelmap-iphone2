@@ -281,3 +281,4 @@
 "NoPOIsFound" = "No places were found";
 "LoadingWheelText" = "Reloading data";
 "SaveNodeFailed" = "Data could not be saved.";
+"FetchNodesFails" = "The data could not be updated.";
