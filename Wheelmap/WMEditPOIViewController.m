@@ -83,7 +83,7 @@
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
     self.nodeTypeLabel.text = NSLocalizedString(@"EditPOIViewNodeTypeLabel", @"");
     self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
-    self.infoLabel.text = NSLocalizedString(@"EditPOIViewInfoLabel", @"");
+    self.infoLabel.text = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
     self.addressLabel.text = NSLocalizedString(@"EditPOIViewAddressLabel", @"");
     self.websiteLabel.text = NSLocalizedString(@"EditPOIViewWebsiteLabel", @"");
     self.phoneLabel.text = NSLocalizedString(@"EditPOIViewPhoneLabel", @"");
