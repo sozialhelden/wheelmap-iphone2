@@ -290,3 +290,4 @@
 "PleaseSetMarker" = "Keine Position dieses Ortes ist gegeben!";
 "NoPOIsFound" = "Keine Orte gefunden";
 "LoadingWheelText" = "Die Daten werden aktualisiert";
+"SaveNodeFailed" = "Das Speichern der Daten ist leider fehlgeschlagen.";

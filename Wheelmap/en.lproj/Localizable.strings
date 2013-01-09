@@ -280,3 +280,4 @@
 "PleaseSetMarker" = "Please set the location of this place!";
 "NoPOIsFound" = "No places were found";
 "LoadingWheelText" = "Reloading data";
+"SaveNodeFailed" = "Data could not be saved.";
