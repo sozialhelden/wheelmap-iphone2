@@ -65,6 +65,7 @@
 @property (nonatomic, strong) Category *currentCategory;
 @property (nonatomic, strong) NodeType *currentNodeType;
 @property (nonatomic, strong) NSString *currentWheelchairStatus;
+@property (nonatomic, strong) NSString *currentInfoFieldText;
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
 
 

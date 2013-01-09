@@ -428,7 +428,7 @@
         
     }
     
-    [self saveCurrentEntriesToCurrentNode];
+    //[self saveCurrentEntriesToCurrentNode];
     
     return YES;
 }
@@ -437,7 +437,7 @@
 - (BOOL)textViewShouldReturn:(UITextView *)textView{
     
     [textView resignFirstResponder];
-    [self saveCurrentEntriesToCurrentNode];
+    //[self saveCurrentEntriesToCurrentNode];
     return YES;
 }
 
@@ -485,7 +485,7 @@
     
     self.keyboardIsShown = NO;
     
-    [self saveCurrentEntriesToCurrentNode];
+   // [self saveCurrentEntriesToCurrentNode];
 }
 
 - (void)keyboardWillShow:(NSNotification *)n {
