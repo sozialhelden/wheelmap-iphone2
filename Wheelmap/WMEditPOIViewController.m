@@ -83,7 +83,7 @@
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
     self.nodeTypeLabel.text = NSLocalizedString(@"EditPOIViewNodeTypeLabel", @"");
     self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
-    self.infoLabel.text = NSLocalizedString(@"EditPOIViewInfoLabel", @"");
+    self.infoLabel.text = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
     self.addressLabel.text = NSLocalizedString(@"EditPOIViewAddressLabel", @"");
     self.websiteLabel.text = NSLocalizedString(@"EditPOIViewWebsiteLabel", @"");
     self.phoneLabel.text = NSLocalizedString(@"EditPOIViewPhoneLabel", @"");
@@ -151,6 +151,20 @@
     self.cityTextField.text = self.node.city;
     self.websiteTextField.text = self.node.website;
     self.phoneTextField.text = self.node.phone;
+    
+    CGRect frame = self.infoTextView.frame;
+    frame.size.height = self.infoTextView.contentSize.height;
+    self.infoTextView.frame = frame;
+    
+    self.infoInputView.frame = CGRectMake(self.infoInputView.frame.origin.x, self.infoInputView.frame.origin.y, self.infoInputView.frame.size.width, frame.size.height);
+    
+    self.addressInputView.frame = CGRectMake(self.addressInputView.frame.origin.x, self.infoInputView.frame.origin.y + self.infoInputView.frame.size.height + 10.0f, self.addressInputView.frame.size.width, self.addressInputView.frame.size.height);
+    
+    self.websiteInputView.frame = CGRectMake(self.websiteInputView.frame.origin.x, self.addressInputView.frame.origin.y + self.addressInputView.frame.size.height + 10.0f, self.websiteInputView.frame.size.width, self.websiteInputView.frame.size.height);
+    
+    self.phoneInputView.frame = CGRectMake(self.phoneInputView.frame.origin.x, self.websiteInputView.frame.origin.y + self.websiteInputView.frame.size.height + 10.0f, self.phoneInputView.frame.size.width, self.phoneInputView.frame.size.height);
+    
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -430,7 +444,24 @@
 - (BOOL)textView:(UITextView *)aTextView shouldChangeTextInRange:(NSRange)aRange replacementText:(NSString *)aText {
     
     NSString* newText = [self.infoTextView.text stringByReplacingCharactersInRange:aRange withString:aText];
-            
+    
+    if (aTextView == self.infoTextView) {
+        CGRect frame = self.infoTextView.frame;
+        frame.size.height = self.infoTextView.contentSize.height;
+        self.infoTextView.frame = frame;
+        
+        self.infoInputView.frame = CGRectMake(self.infoInputView.frame.origin.x, self.infoInputView.frame.origin.y, self.infoInputView.frame.size.width, frame.size.height);
+        
+        self.addressInputView.frame = CGRectMake(self.addressInputView.frame.origin.x, self.infoInputView.frame.origin.y + self.infoInputView.frame.size.height + 10.0f, self.addressInputView.frame.size.width, self.addressInputView.frame.size.height);
+        
+        self.websiteInputView.frame = CGRectMake(self.websiteInputView.frame.origin.x, self.addressInputView.frame.origin.y + self.addressInputView.frame.size.height + 10.0f, self.websiteInputView.frame.size.width, self.websiteInputView.frame.size.height);
+        
+        self.phoneInputView.frame = CGRectMake(self.phoneInputView.frame.origin.x, self.websiteInputView.frame.origin.y + self.websiteInputView.frame.size.height + 10.0f, self.phoneInputView.frame.size.width, self.phoneInputView.frame.size.height);
+        
+        [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
+
+    }
+    
     if([aText isEqualToString:@"\n"]) {
         [aTextView resignFirstResponder];
         return NO;
