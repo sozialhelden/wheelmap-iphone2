@@ -207,6 +207,9 @@
 {
     NSLog(@"syncResourcesFailedWithError");
     
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alert show];
+    
     if ([self.topViewController isKindOfClass:[WMDashboardViewController class]]) {
         WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
         [vc showUIObjectsAnimated:YES];
