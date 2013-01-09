@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PAo-CL-fP5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="PAo-CL-fP5">
     <dependencies>
         <deployment version="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
@@ -368,6 +368,7 @@
                                         </state>
                                         <connections>
                                             <action selector="registerPressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="l2k-c8-Erl"/>
+                                            <segue destination="9yT-MT-7xh" kind="modal" id="jKD-7K-8W9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -472,6 +473,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bu-VN-yXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="465" y="966"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="9ul-zl-S08">
+            <objects>
+                <viewController id="9yT-MT-7xh" customClass="WMRegisterViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fQN-po-bCY">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="Aqj-pU-hAU">
+                                <rect key="frame" x="0.0" y="48" width="320" height="412"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9yT-MT-7xh" id="YX3-UY-osL"/>
+                                </connections>
+                            </webView>
+                            <view contentMode="scaleToFill" id="fvk-ec-fur">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_background.png" id="xWU-ae-nwf">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r9n-eA-ZvP">
+                                        <rect key="frame" x="89" y="14" width="143" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mud-rB-Qar">
+                                        <rect key="frame" x="240" y="6" width="72" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                        <state key="normal" backgroundImage="buttons_btn.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressedCancelButton:" destination="PR3-Pi-pWs" eventType="touchUpInside" id="EQF-8e-THe"/>
+                                            <action selector="pressedCancelButton:" destination="9yT-MT-7xh" eventType="touchUpInside" id="tyP-zK-hqo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="mud-rB-Qar" id="WKs-Uc-Jf7"/>
+                        <outlet property="view" destination="fQN-po-bCY" id="mYZ-tp-pF0"/>
+                        <outlet property="webView" destination="Aqj-pU-hAU" id="DeN-rY-TrO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8o-00-2gD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="966"/>
         </scene>
         <!--Map Settings View Controller-->
         <scene sceneID="DGK-B1-Hf2">
