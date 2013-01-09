@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Node.h"
+#import "WMDataManager.h"
 
-@interface WMCommentViewController : WMViewController
+@interface WMCommentViewController : WMViewController <WMDataManagerDelegate> {
+    UIActivityIndicatorView* progressWheel;
+}
 
 @property (weak, nonatomic) IBOutlet UITextView *commentText;
 
+@property (nonatomic, strong) WMDataManager *dataManager;
+
 @property (strong, nonatomic) Node *currentNode;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+
+- (void) saveEditedData;
 
 @end

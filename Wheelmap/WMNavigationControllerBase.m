@@ -624,6 +624,9 @@
     if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
         [(WMEditPOIViewController*)currentViewController saveEditedData];
     }
+    if ([currentViewController isKindOfClass:[WMCommentViewController class]]) {
+        [(WMCommentViewController*)currentViewController saveEditedData];
+    }
 }
 
 -(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar
