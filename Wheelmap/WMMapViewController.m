@@ -163,7 +163,7 @@
 {
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         Node *node = [(WMMapAnnotation*)annotation node];
-        NSString *reuseId = [node.wheelchair stringByAppendingString:node.node_type.identifier];
+        NSString *reuseId = [node.wheelchair stringByAppendingString:[node.id stringValue]];
         MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
         if (!annotationView) {
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];

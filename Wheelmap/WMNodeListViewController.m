@@ -206,6 +206,13 @@
     Node *node = nodes[indexPath.row];
     
     // show wheelchair status
+    
+    for (UIView *subview in cell.iconImage.subviews) {
+        if ([subview isKindOfClass:UIImageView.class]) {
+            [subview removeFromSuperview];
+        }
+    }
+    
     cell.iconImage.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
     UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 20, 16)];
     icon.contentMode = UIViewContentModeScaleAspectFit;
