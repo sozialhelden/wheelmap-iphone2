@@ -7,6 +7,8 @@
 //
 
 #import "WMAppDelegate.h"
+#import "UAirship.h"
+#import "UAPush.h"
 #import <HockeySDK/HockeySDK.h>
 
 @interface WMAppDelegate (HockeySDK) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
@@ -22,6 +24,21 @@
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"e9092b2c04cebaec2c0b074407fc60ef"
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
+    
+    // uncomment this when Urban Airship keys are available
+//    //Init Airship launch options
+//    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
+//    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+//    
+//    // Create Airship singleton that's used to talk to Urban Airship servers.
+//    // Please populate AirshipConfig.plist with your info from http://go.urbanairship.com
+//    [UAirship takeOff:takeOffOptions];
+//    
+//    // Register for notifications
+//    [[UAPush shared]
+//     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+//                                         UIRemoteNotificationTypeSound |
+//                                         UIRemoteNotificationTypeAlert)];
     
     return YES;
 }
@@ -50,7 +67,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [UAirship land];
 }
 
 #pragma mark - BITUpdateManagerDelegate
@@ -60,6 +77,11 @@
         return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
 #endif
     return nil;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Updates the device token and registers the token with UA
+    [[UAPush shared] registerDeviceToken:deviceToken];
 }
 
 @end
