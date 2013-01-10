@@ -532,6 +532,13 @@
 }
 
 - (void)showCommentView {
+    
+    if (![dataManager userIsAuthenticated]) {
+        WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+        [navCtrl presentLoginScreen];
+        return;
+    }
+    
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
     vc.title = NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"");
@@ -561,7 +568,7 @@
             self.annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
         self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(4, 7, 20, 15)];
+        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 19, 14)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
         icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];
