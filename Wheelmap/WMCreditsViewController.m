@@ -43,8 +43,8 @@
     authors.image = [UIImage imageNamed:@"credits_authors.png"];
     [self.scroller addSubview:authors];
     
-    UIImageView *license = [[UIImageView alloc] initWithFrame:CGRectMake(10, authors.leftBottomY+10, 300, 18)];
-    license.image = [UIImage imageNamed:@"credits_license.png"];
+    UIImageView *license = [[UIImageView alloc] initWithFrame:CGRectMake(10, authors.leftBottomY+10, 300, 140)];
+    license.image = [UIImage imageNamed:@"credits_credits.png"];
     license.contentMode = UIViewContentModeBottomRight;
     [self.scroller addSubview:license];
     
