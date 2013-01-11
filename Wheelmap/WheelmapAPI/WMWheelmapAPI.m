@@ -9,9 +9,6 @@
 #import "WMWheelmapAPI.h"
 #import "AFJSONRequestOperation.h"
 
-#define WMBaseURL @"http://staging.wheelmap.org/api"
-
-
 @implementation WMWheelmapAPI
 
 

@@ -9,8 +9,6 @@
 #import "WMRegisterViewController.h"
 #import "WMWheelmapAPI.h"
 
-#define WMRegistrationURL @"http://staging.wheelmap.org/en/oauth/register_osm"
-
 @implementation WMRegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
