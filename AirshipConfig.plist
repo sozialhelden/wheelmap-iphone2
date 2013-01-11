@@ -7,9 +7,9 @@
 	<key>DEVELOPMENT_APP_SECRET</key>
 	<string>YBd319moTRuatEHw2sSiGA</string>
 	<key>PRODUCTION_APP_KEY</key>
-	<string></string>
+	<string>UTvOKuMXTfmYPVK128h4sQ</string>
 	<key>PRODUCTION_APP_SECRET</key>
-	<string></string>
+	<string>OQoWTAYERtG_D89xj31EaA</string>
 	<key>APP_STORE_OR_AD_HOC_BUILD</key>
 	<false/>
 </dict>
