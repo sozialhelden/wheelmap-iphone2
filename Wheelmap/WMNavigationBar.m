@@ -29,7 +29,7 @@
         self.rightButtonStyle = -1;
         
         // init all buttons here
-        CGRect leftButtonRect = CGRectMake(5, 5, 40, 40);
+        CGRect leftButtonRect = CGRectMake(5, 3, 40, 40);
         dashboardButton = [WMButton buttonWithType:UIButtonTypeCustom];
         dashboardButton.frame = leftButtonRect;
         dashboardButton.backgroundColor = [UIColor clearColor];
