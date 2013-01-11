@@ -50,7 +50,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        [self initWithAppId:@"299780320089682" andDelegate:self];
+        [self initWithAppId:@"289221174426029" andDelegate:self];
         [self authorize];
     }
     return self;
@@ -74,7 +74,7 @@
         
         // This will authorize from within your app.
         // It will not leave your app nor take advantage of the user logged in elsewhere.
-        [self authorizeInApp:nil localAppId:@"299780320089682"];
+        [self authorizeInApp:nil localAppId:@"289221174426029"];
         
         // This will only leave your app if the user has the Facebook app.
         // Otherwise it will stay within your app.
