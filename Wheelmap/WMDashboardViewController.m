@@ -117,6 +117,10 @@
     } else {
         [self.loginButton setImage:[UIImage imageNamed:@"start_icon-login.png"] forState:UIControlStateNormal];
     }
+    
+    // revert search
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    [navCtrl pressedCurrentLocationButton:nil];
 }
 
 

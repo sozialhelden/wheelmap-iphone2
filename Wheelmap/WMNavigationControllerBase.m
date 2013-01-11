@@ -371,7 +371,7 @@
         self.lastVisibleMapSpanLat = [NSNumber numberWithDouble:0.005];
         self.lastVisibleMapSpanLng = [NSNumber numberWithDouble:0.005];
     } else {
-        
+        [self updateNodesNear:newLocation.coordinate];
     }
 }
 
