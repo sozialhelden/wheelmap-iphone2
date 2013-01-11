@@ -52,7 +52,7 @@
         backBtnBgImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+20, 37);
         [backBtnBgImg addSubview:backBtnLabel];
         backButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        backButton.frame = CGRectMake(5, 6, backBtnBgImg.frame.size.width, backBtnBgImg.frame.size.height);
+        backButton.frame = CGRectMake(8, 6, backBtnBgImg.frame.size.width, backBtnBgImg.frame.size.height);
         [backButton setView:backBtnBgImg forControlState:UIControlStateNormal];
         backButton.hidden = YES;
         [backButton addTarget:self action:@selector(pressedBackButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -106,8 +106,9 @@
         normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 37);
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
+        
         editButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        editButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        editButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-9, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
         editButton.backgroundColor = [UIColor clearColor];
         [editButton setView:normalBtnImg forControlState:UIControlStateNormal];
         editButton.hidden = YES;
