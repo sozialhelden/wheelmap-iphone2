@@ -153,7 +153,7 @@
     self.phoneTextField.text = self.node.phone;
     
     CGRect frame = self.infoTextView.frame;
-    frame.size.height = self.infoTextView.contentSize.height;
+    frame.size.height = self.infoTextView.contentSize.height + 10.0f;
     self.infoTextView.frame = frame;
     
     self.infoInputView.frame = CGRectMake(self.infoInputView.frame.origin.x, self.infoInputView.frame.origin.y, self.infoInputView.frame.size.width, frame.size.height);
@@ -447,7 +447,7 @@
     
     if (aTextView == self.infoTextView) {
         CGRect frame = self.infoTextView.frame;
-        frame.size.height = self.infoTextView.contentSize.height;
+        frame.size.height = self.infoTextView.contentSize.height + 10.0f;
         self.infoTextView.frame = frame;
         
         self.infoInputView.frame = CGRectMake(self.infoInputView.frame.origin.x, self.infoInputView.frame.origin.y, self.infoInputView.frame.size.width, frame.size.height);
