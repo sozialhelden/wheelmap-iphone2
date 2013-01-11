@@ -253,6 +253,12 @@
     
 }
 
+-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
+{
+    [dataManager fetchNodesNear:coord];
+    
+}
+
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
     // we do not show here the loading wheel since this methods is always called by map view controller, and the vc has its own loading wheel,
@@ -371,7 +377,7 @@
         self.lastVisibleMapSpanLat = [NSNumber numberWithDouble:0.005];
         self.lastVisibleMapSpanLng = [NSNumber numberWithDouble:0.005];
     } else {
-        [self updateNodesNear:newLocation.coordinate];
+        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
     }
 }
 

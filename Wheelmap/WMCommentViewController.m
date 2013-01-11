@@ -44,7 +44,6 @@
     progressWheel.layer.masksToBounds = YES;
     [self.view addSubview:progressWheel];
     
-    self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", @"");
     self.commentText.layer.borderWidth = 1.0f;
     self.commentText.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.commentText.layer setCornerRadius:5.0f];
