@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>DEVELOPMENT_APP_KEY</key>
-	<string></string>
+	<string>CHYQMU9iTXiCE0aK9f_r2w</string>
 	<key>DEVELOPMENT_APP_SECRET</key>
-	<string></string>
+	<string>YBd319moTRuatEHw2sSiGA</string>
 	<key>PRODUCTION_APP_KEY</key>
 	<string></string>
 	<key>PRODUCTION_APP_SECRET</key>
 	<string></string>
 	<key>APP_STORE_OR_AD_HOC_BUILD</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

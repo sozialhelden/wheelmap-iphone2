@@ -25,20 +25,19 @@
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
     
-    // uncomment this when Urban Airship keys are available
-//    //Init Airship launch options
-//    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
-//    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-//    
-//    // Create Airship singleton that's used to talk to Urban Airship servers.
-//    // Please populate AirshipConfig.plist with your info from http://go.urbanairship.com
-//    [UAirship takeOff:takeOffOptions];
-//    
-//    // Register for notifications
-//    [[UAPush shared]
-//     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                         UIRemoteNotificationTypeSound |
-//                                         UIRemoteNotificationTypeAlert)];
+    //Init Airship launch options
+    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
+    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+    
+    // Create Airship singleton that's used to talk to Urban Airship servers.
+    // Please populate AirshipConfig.plist with your info from http://go.urbanairship.com
+    [UAirship takeOff:takeOffOptions];
+    
+    // Register for notifications
+    [[UAPush shared]
+     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                         UIRemoteNotificationTypeSound |
+                                         UIRemoteNotificationTypeAlert)];
     
     return YES;
 }
