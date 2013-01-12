@@ -10,6 +10,7 @@
 #import "UAirship.h"
 #import "UAPush.h"
 #import <HockeySDK/HockeySDK.h>
+#import "AFNetworkActivityIndicatorManager.h"
 
 @interface WMAppDelegate (HockeySDK) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
 
@@ -38,6 +39,9 @@
      registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                          UIRemoteNotificationTypeSound |
                                          UIRemoteNotificationTypeAlert)];
+    
+    // start listening to AFNetworking operations and show/hide activity indicator
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
     return YES;
 }

@@ -2,14 +2,14 @@
 //  Node.h
 //  Wheelmap
 //
-//  Created by Dorian Roy on 08.01.13.
+//  Created by Dorian Roy on 11.01.13.
 //  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NodeType, Photo;
+@class NodeType, Photo, Tile;
 
 @interface Node : NSManagedObject
 
@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSString * wheelchair_description;
 @property (nonatomic, retain) NodeType *node_type;
 @property (nonatomic, retain) NSSet *photos;
+@property (nonatomic, retain) Tile *tile;
 @end
 
 @interface Node (CoreDataGeneratedAccessors)

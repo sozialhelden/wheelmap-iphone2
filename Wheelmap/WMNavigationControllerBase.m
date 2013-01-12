@@ -163,8 +163,7 @@
 
 - (void) dataManager:(WMDataManager *)dataManager didReceiveNodes:(NSArray *)nodesParam
 {
-    [self hideLoadingWheel];
-    nodes = nodesParam;
+    nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
     [self refreshNodeList];
 }
@@ -178,7 +177,6 @@
 
 -(void)dataManager:(WMDataManager *)dataManager fetchNodesFailedWithError:(NSError *)error
 {
-    [self hideLoadingWheel];
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     [alert show];
     
@@ -200,7 +198,6 @@
     for (Category* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
-    
 }
 
 -(void)dataManager:(WMDataManager *)dataManager didFinishSyncingResourcesWithErrors:(NSArray *)errors
@@ -213,6 +210,25 @@
     if ([self.topViewController isKindOfClass:[WMDashboardViewController class]]) {
         WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
         [vc showUIObjectsAnimated:YES];
+    }
+}
+
+-(void)dataManagerDidStartOperation:(WMDataManager *)dataManager
+{
+    [self showLoadingWheel];
+    
+    if ([self.topViewController respondsToSelector:@selector(showActivityIndicator)]) {
+        [(id<WMNodeListView>)self.topViewController showActivityIndicator];
+    }
+    
+}
+
+-(void)dataManagerDidStopAllOperations:(WMDataManager *)dataManager
+{
+    [self hideLoadingWheel];
+    
+    if ([self.topViewController respondsToSelector:@selector(hideActivityIndicator)]) {
+        [(id<WMNodeListView>)self.topViewController hideActivityIndicator];
     }
 }
 
@@ -248,15 +264,14 @@
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord
 {
-    [self showLoadingWheel];
-    [dataManager fetchNodesNear:coord];
-    
+    nodes = [dataManager fetchNodesNear:coord];
+    [self refreshNodeList];
 }
 
 -(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
 {
-    [dataManager fetchNodesNear:coord];
-    
+    nodes = [dataManager fetchNodesNear:coord];
+    [self refreshNodeList];
 }
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
@@ -266,29 +281,29 @@
    // [self showLoadingWheel];
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
-    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
-    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
     
-    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:nil];
+    nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:nil];
+    [self refreshNodeList];
 }
 
 -(void)updateNodesWithQuery:(NSString*)query
 {
-    [self showLoadingWheel];
+    nodes = @[];
     [dataManager fetchNodesWithQuery:query];
-    
+    [self refreshNodeList];
 }
 
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region
 {
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
-    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
-    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
 
-    [self showLoadingWheel];
-    [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:query];
-    
+    nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:query];
+    [self refreshNodeList];
 }
 
 #pragma mark - Node List Delegate
@@ -351,7 +366,6 @@
 {
     NSLog(@"CLLOCATIONMANAGER:%@ and delegate: %@", self.locationManager, self.locationManager.delegate);
     if ([CLLocationManager locationServicesEnabled]) {
-        [self showLoadingWheel];
         [self.locationManager startUpdatingLocation];
     } else {
         NSLog(@"[CLLocataionManager] location service is disabled!");

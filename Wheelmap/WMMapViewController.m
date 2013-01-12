@@ -145,8 +145,6 @@
 
 - (void) nodeListDidChange
 {
-    [self.loadingWheel stopAnimating];
-    self.loadingWheel.hidden = YES;
     [self loadNodes];
 }
 
@@ -154,6 +152,18 @@
 {
     WMMapAnnotation *annotation = [self annotationForNode:node];
     [self.mapView selectAnnotation:annotation animated:YES];
+}
+
+- (void)showActivityIndicator
+{
+    self.loadingWheel.hidden = NO;
+    [self.loadingWheel startAnimating];
+}
+
+-(void)hideActivityIndicator
+{
+    [self.loadingWheel stopAnimating];
+    self.loadingWheel.hidden = YES;
 }
 
 
@@ -225,8 +235,6 @@
     if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
         // do nothing
     } else {
-        self.loadingWheel.hidden = NO;
-        [self.loadingWheel startAnimating];
         [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
     }
 

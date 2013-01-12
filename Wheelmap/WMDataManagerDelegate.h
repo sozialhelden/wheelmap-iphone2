@@ -13,6 +13,10 @@
 @protocol WMDataManagerDelegate <NSObject>
 
 @optional
+
+- (void) dataManagerDidStartOperation:(WMDataManager*)dataManager;
+- (void) dataManagerDidStopAllOperations:(WMDataManager*)dataManager;
+
 - (void) dataManagerDidAuthenticateUser:(WMDataManager*)dataManager;
 - (void) dataManager:(WMDataManager*)dataManager userAuthenticationFailedWithError:(NSError*)error;
 

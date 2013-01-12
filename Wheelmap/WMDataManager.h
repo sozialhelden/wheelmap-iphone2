@@ -35,9 +35,9 @@
 - (NSDictionary*) legacyUserCredentials;
 - (NSString*)currentUserName;
 
-- (void) fetchNodesNear:(CLLocationCoordinate2D)location;
+- (NSArray*) fetchNodesNear:(CLLocationCoordinate2D)location;
 - (void) fetchNodesWithQuery:(NSString*)query;
-- (void) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest
+- (NSArray*) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest
                           northeast:(CLLocationCoordinate2D)northeast
                               query:(NSString*)query;
 

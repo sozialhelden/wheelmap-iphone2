@@ -41,7 +41,6 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
-
 }
 
 - (void) viewWillAppear:(BOOL)animated

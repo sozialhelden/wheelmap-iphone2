@@ -40,4 +40,8 @@
 - (void) nodeListDidChange;
 - (void) selectNode:(Node*)node;
 
+@optional
+- (void) showActivityIndicator;
+- (void) hideActivityIndicator;
+
 @end

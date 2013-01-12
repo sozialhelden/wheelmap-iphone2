@@ -16,6 +16,7 @@
 #import "Photo.h"
 #import "Image.h"
 #import "Category.h"
+#import "Tile.h"
 #import "WMDataParser.h"
 
 
@@ -51,6 +52,32 @@
     NSMutableDictionary *iconPaths;
     NSString *appApiKey;
     NSManagedObjectContext *_temporaryMOC;
+    NSUInteger numRunningOperations;
+}
+
+
+#pragma mark - Operations Count
+
+- (void) incrementRunningOperations
+{
+    numRunningOperations++;
+    
+    if (WMLogDataManager>1) NSLog(@"number of operations: %i", numRunningOperations);
+    
+    if (numRunningOperations==1 && [self.delegate respondsToSelector:@selector(dataManagerDidStartOperation:)]) {
+        [self.delegate dataManagerDidStartOperation:self];
+    }
+}
+
+- (void) decrementRunningOperations
+{
+    numRunningOperations = MAX(0, --numRunningOperations);
+    
+    if (WMLogDataManager>1) NSLog(@"number of operations: %i", numRunningOperations);
+    
+    if (numRunningOperations==0 && [self.delegate respondsToSelector:@selector(dataManagerDidStopAllOperations:)]) {
+        [self.delegate dataManagerDidStopAllOperations:self];
+    }
 }
 
 
@@ -100,12 +127,16 @@
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:userAuthenticationFailedWithError:)]) {
                                                       [self.delegate dataManager:self userAuthenticationFailedWithError:error];
                                                   }
+                                                  [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 [self didReceiveAuthenticationData:JSON[@"user"] forAccount:email];
+                                                [self decrementRunningOperations];
                                             }
                                    startImmediately:YES
      ];
+    
+    [self incrementRunningOperations];
 }
 
 - (void) didReceiveAuthenticationData:(NSDictionary*)user forAccount:(NSString*)account
@@ -144,7 +175,7 @@
     return ([userToken length] > 0);
 }
 
-- (void)removeUserAuthentication
+- (void) removeUserAuthentication
 {
     BOOL deleteSuccess = [self.keychainWrapper deleteTokenForAccount:nil];
     if (WMLogDataManager) NSLog(@"removed user token from keychain with %@", deleteSuccess ? @"success" : @"error");
@@ -155,7 +186,7 @@
     return [self.keychainWrapper legacyAccountData];
 }
 
-- (NSString*)currentUserName
+- (NSString*) currentUserName
 {
     return self.keychainWrapper.userAccount;
 }
@@ -163,17 +194,117 @@
 
 #pragma mark - Fetch Nodes
 
-- (void) fetchNodesNear:(CLLocationCoordinate2D)location
+- (NSArray*) fetchNodesNear:(CLLocationCoordinate2D)location
 {
     // get rect of area within search radius around current location
     // this rect won"t have the same proportions as the map area on screen
     CLLocationCoordinate2D southwest = CLLocationCoordinate2DMake(location.latitude - WMSearchRadius, location.longitude - WMSearchRadius);
     CLLocationCoordinate2D northeast = CLLocationCoordinate2DMake(location.latitude + WMSearchRadius, location.longitude + WMSearchRadius);
     
-    [self fetchNodesBetweenSouthwest:southwest northeast:northeast query:nil];
+    return [self fetchNodesBetweenSouthwest:southwest northeast:northeast query:nil];
 }
 
--(void)fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
+-(NSArray*) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
+{
+    NSMutableArray *cachedNodes = [NSMutableArray array];
+    
+    NSInteger swLatId = southwest.latitude * 100.0;
+    NSInteger swLonId = southwest.longitude * 100.0;
+    NSInteger neLatId = northeast.latitude * 100.0; neLatId++;
+    NSInteger neLonId = northeast.longitude * 100.0; neLonId++;
+    
+    if (WMLogDataManager) {
+        NSLog(@"fetch nodes between:%.4f/%.4f - %.4f/%.4f", southwest.latitude, southwest.longitude, northeast.latitude, northeast.longitude);
+    }
+    
+    NSAssert(swLatId < neLatId && swLonId < neLonId, @"Invalid parameters passed to fetchNodesBetweenSouthwest:northeast:");
+    
+    // step through grid along latitude
+    for (int lat = swLatId; lat < neLatId; lat++) {
+        
+        // step through grid along longitude
+        for (int lon = swLonId; lon < neLonId; lon++) {
+ 
+            if (WMLogDataManager>1) NSLog(@"...looking for nodes in tile %i/%i", lat, lon);
+            
+            // check if tile is already in cache
+            Tile *cachedTile = nil;
+            
+            // we don"t do a local search yet, so we only try to get local results if there is no query string
+            if (!query) cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
+            
+            if (cachedTile) {
+                [cachedNodes addObjectsFromArray:[cachedTile.nodes allObjects]];
+                
+            } else {
+                
+                // else request nodes for that tile
+                CLLocationDegrees swLat = (CLLocationDegrees)lat / 100.0;
+                CLLocationDegrees swLon = (CLLocationDegrees)lon / 100.0;
+                CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / 100.0;
+                CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / 100.0;
+                
+                CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
+                CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
+                
+                [self fetchRemoteNodesBetweenSouthwest:sw northeast:ne query:query];
+            }
+        }
+    }
+    
+    return cachedNodes;
+}
+
+- (Tile*) managedObjectContext:(NSManagedObjectContext*)moc tileForLocation:(CLLocationCoordinate2D)coordinates
+{
+    // round coordinates to tile bounds
+    NSInteger swLat = coordinates.latitude * 100.0;
+    NSInteger swLon = coordinates.longitude * 100.0;
+    
+    Tile *tile = [self managedObjectContext:moc cachedTileForSwLat:swLat swLon:swLon];
+    
+    if  (!tile) tile = [self managedObjectContext:moc createTileForSwLat:swLat swLon:swLon];
+
+    return tile;
+}
+
+- (Tile*) managedObjectContext:(NSManagedObjectContext*)moc cachedTileForLocation:(CLLocationCoordinate2D)coordinates
+{
+    // round coordinates to tile bounds
+    NSInteger swLat = coordinates.latitude * 100.0;
+    NSInteger swLon = coordinates.longitude * 100.0;
+    
+    return [self managedObjectContext:moc cachedTileForSwLat:swLat swLon:swLon];
+}
+
+- (Tile*) managedObjectContext:(NSManagedObjectContext*)moc cachedTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"swLat==%i && swLon==%i", swLat, swLon];
+    NSArray *results = [self managedObjectContext:moc fetchObjectsOfEntity:@"Tile" withPredicate:predicate];
+    
+    if (WMLogDataManager>2) {
+        Tile* tile = [results lastObject];
+        NSLog(@"......fetched existing tile: %@", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil);
+    }
+    
+    return [results lastObject];
+}
+
+- (Tile*) managedObjectContext:(NSManagedObjectContext*)moc createTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon
+{
+    __block Tile *newTile = nil;
+    [moc performBlockAndWait:^{
+        newTile = [NSEntityDescription insertNewObjectForEntityForName:@"Tile" inManagedObjectContext:moc];
+        newTile.swLat = @(swLat);
+        newTile.swLon = @(swLon);
+    }];
+    
+    if (WMLogDataManager>2) NSLog(@"......created new tile: %@/%@", newTile.swLat, newTile.swLon);
+    
+    return newTile;
+}
+
+- (void)fetchRemoteNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
     NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
                         southwest.longitude,
@@ -184,7 +315,7 @@
     parameters[@"bbox"] = coords;
     parameters[@"per_page"] = @WMNodeLimit;
     if (query) parameters[@"q"] = query;
-
+    
     if (WMLogDataManager) NSLog(@"fetching nodes in bbox %@", coords);
     
     [[WMWheelmapAPI sharedInstance] requestResource:query ? @"nodes/search" : @"nodes"
@@ -194,31 +325,37 @@
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   [self fetchNodesFailedWithError:error];
+                                                  [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                [self didReceiveNodes:JSON[@"nodes"]];
+                                                [self didReceiveNodes:JSON[@"nodes"] fromQuery:query];
                                             }
                                    startImmediately:YES
-     ];   
+     ];
+    
+    [self incrementRunningOperations];
 }
 
 - (void)fetchNodesWithQuery:(NSString*)query
 {
-    NSDictionary* parameters = @{@"q":query};
+    if (WMLogDataManager) NSLog(@"fetchNodesWithQuery:%@", query);
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes/search"
                                              apiKey:[self apiKey]
-                                         parameters:parameters
+                                         parameters: @{@"q":query}
                                                eTag:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   [self fetchNodesFailedWithError:error];
+                                                  [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                [self didReceiveNodes:JSON[@"nodes"]];
+                                                [self didReceiveNodes:JSON[@"nodes"] fromQuery:query];
                                             }
                                    startImmediately:YES
      ];
+    
+    [self incrementRunningOperations];
 }
 
 - (void) fetchNodesFailedWithError:(NSError*) error
@@ -228,33 +365,47 @@
     }
 }
 
-- (void) didReceiveNodes:(NSArray *)nodes
+- (void) didReceiveNodes:(NSArray *)nodes fromQuery:(NSString*)query
 {
     if (WMLogDataManager) NSLog(@"received %i nodes", [nodes count]);
     
     [self parseDataObjectInBackground:nodes
                entityName:@"Node"
+              postProcess:^(id parsedNodes) {
+                  
+                  // assign tile to each parsed node if this is not a search result
+                  if (!query) {                      
+                      [(NSArray*)parsedNodes enumerateObjectsUsingBlock:^(Node* node, NSUInteger idx, BOOL *stop) {
+                          CLLocationCoordinate2D location = CLLocationCoordinate2DMake([node.lat doubleValue], [node.lon doubleValue]);
+                          node.tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
+                      }];
+                  }
+              }
                     error:^(NSError *error) {
                         if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodesFailedWithError:)]) {
                             [self.delegate dataManager:self fetchNodesFailedWithError:error];
                         }
+                        [self decrementRunningOperations];
                     }
                   success:^(id parsedNodes) {
                       if (WMLogDataManager) {
-                          NSArray *allNodes = [self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Node" withPredicate:nil];
-                          NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], [allNodes count]);
+                          NSError *error = nil;
+                          NSUInteger totalNodes = [self.mainMOC countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Node"] error:&error];
+                          NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], totalNodes);
                       }
-                        if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
-                            [self.delegate dataManager:self didReceiveNodes:parsedNodes];
-                        }
+                      if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
+                          [self.delegate dataManager:self didReceiveNodes:parsedNodes];
+                      }
+                      [self decrementRunningOperations];
                   }
      ];
 }
 
 - (void) parseDataObjectInBackground:(id)object
-            entityName:(NSString*)entityName
-                 error:(void (^)(NSError *error))errorBlock
-               success:(void (^)(id parsedObject))successBlock
+                          entityName:(NSString*)entityName
+                         postProcess:(void (^)(id parsedObject))postProcessBlock
+                               error:(void (^)(NSError *error))errorBlock
+                             success:(void (^)(id parsedObject))successBlock
 {
     // perform parsing on private queue and perform result blocks on current queue
     [self.backgroundMOC performBlock:^{
@@ -274,6 +425,9 @@
         } else {
             
             NSArray *result = (NSArray*)parsedObject;
+            
+            // execute post process block in background context
+            if (postProcessBlock) postProcessBlock(parsedObject);
             
             // get permanent IDs
             NSError *permanentIDsError = nil;
@@ -343,14 +497,17 @@
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:updateWheelchairStatusOfNode:failedWithError:)]) {
                                                       [self.delegate dataManager:self updateWheelchairStatusOfNode:node failedWithError:error];
                                                   }
+                                                  [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateWheelchairStatusOfNode:)]) {
                                                     [self.delegate dataManager:self didUpdateWheelchairStatusOfNode:node];
                                                 }
+                                                [self decrementRunningOperations];
                                             }
                                    startImmediately:YES
-     ];   
+     ];
+    [self incrementRunningOperations];
 }
 
 -(void) updateNode:(Node *)node
@@ -395,6 +552,7 @@
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:updateNode:failedWithError:)]) {
                                                       [self.delegate dataManager:self updateNode:node failedWithError:error];
                                                   }
+                                                  [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 
@@ -412,9 +570,11 @@
                                                 if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateNode:)]) {
                                                     [self.delegate dataManager:self didUpdateNode:node];
                                                 }
+                                                [self decrementRunningOperations];
                                             }
                                    startImmediately:YES
-     ];    
+     ];
+    [self incrementRunningOperations];
 }
 
 
@@ -511,6 +671,7 @@ static BOOL assetSyncInProgress = NO;
                                                     
                                                     [self parseDataObjectInBackground:categories
                                                                            entityName:@"Category"
+                                                                          postProcess:nil
                                                                                 error:^(NSError *error) {
                                                                                     categorySyncInProgress = NO;
                                                                                     [self syncOperationFailedWithError:error];
@@ -553,6 +714,7 @@ static BOOL assetSyncInProgress = NO;
                                                     
                                                     [self parseDataObjectInBackground:nodeTypes
                                                                            entityName:@"NodeType"
+                                                                          postProcess:nil
                                                                                 error:^(NSError *error) {
                                                                                     nodeTypeSyncInProgress = NO;
                                                                                     [self syncOperationFailedWithError:error];
@@ -601,6 +763,7 @@ static BOOL assetSyncInProgress = NO;
                                                     // parse data
                                                     [self parseDataObjectInBackground:assets
                                                                            entityName:@"Asset"
+                                                                          postProcess:nil
                                                                                 error:^(NSError *error) {
                                                                                     assetSyncInProgress = NO;
                                                                                     [self syncOperationFailedWithError:error];
@@ -631,6 +794,8 @@ static BOOL assetSyncInProgress = NO;
                                             }
                                    startImmediately:YES
     ];
+    
+    [self incrementRunningOperations];
 }
 
 - (void) downloadFilesForAsset:(Asset*)asset
@@ -747,6 +912,8 @@ static BOOL assetSyncInProgress = NO;
                 [self.delegate dataManagerDidFinishSyncingResources:self];
             }
         }
+        
+        [self decrementRunningOperations];
     }
 }
 
@@ -789,18 +956,23 @@ static BOOL assetSyncInProgress = NO;
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:fetchPhotosForNode:failedWithError:)]) {
                                                       [self.delegate dataManager:self fetchPhotosForNode:node failedWithError:error];
                                                   }
+                                                  [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 [self didReceivePhotos:JSON[@"photos"] forNode:node];
+                                                [self decrementRunningOperations];
                                             }
                                    startImmediately:YES
      ];
+    
+    [self incrementRunningOperations];
 }
 
 - (void) didReceivePhotos:(NSArray*)photos forNode:(Node*)node
 {    
     [self parseDataObjectInBackground:photos
                entityName:@"Photo"
+              postProcess:nil
                     error:^(NSError *error) {
                         if ([self.delegate respondsToSelector:@selector(dataManager:fetchPhotosForNode:failedWithError:)]) {
                             [self.delegate dataManager:self fetchPhotosForNode:node failedWithError:error];
@@ -831,7 +1003,6 @@ static BOOL assetSyncInProgress = NO;
 
 - (void) uploadImage:(UIImage*)image forNode:(Node*)node
 {
-    
     [[WMWheelmapAPI sharedInstance] uploadImage:image
                                          nodeID:node.id
                                          apiKey:[self apiKey]
@@ -839,15 +1010,18 @@ static BOOL assetSyncInProgress = NO;
                                               if ([self.delegate respondsToSelector:@selector(dataManager:uploadImageForNode:failedWithError:)]) {
                                                   [self.delegate dataManager:self uploadImageForNode:node failedWithError:error];
                                               }
+                                              [self decrementRunningOperations];
                                         }
                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                             if ([self.delegate respondsToSelector:@selector(dataManager:didUploadImageForNode:)]) {
                                                 [self.delegate dataManager:self didUploadImageForNode:node];
                                             }
-        
+                                            [self decrementRunningOperations];
                                         }
                                startImmediately:YES
     ];
+    
+    [self incrementRunningOperations];
 }
 
 

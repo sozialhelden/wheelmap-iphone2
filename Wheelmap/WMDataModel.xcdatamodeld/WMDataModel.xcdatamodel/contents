@@ -34,6 +34,7 @@
         <attribute name="wheelchair_description" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="node_type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NodeType" inverseName="node" inverseEntity="NodeType" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="node" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="tile" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Tile" inverseName="nodes" inverseEntity="Tile" syncable="YES"/>
     </entity>
     <entity name="NodeType" representedClassName="NodeType" syncable="YES">
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
@@ -50,12 +51,18 @@
         <relationship name="images" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="photo" inverseEntity="Image" syncable="YES"/>
         <relationship name="node" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Node" inverseName="photos" inverseEntity="Node" syncable="YES"/>
     </entity>
+    <entity name="Tile" representedClassName="Tile" syncable="YES">
+        <attribute name="swLat" attributeType="Integer 32" minValueString="-9000" maxValueString="9000" syncable="YES"/>
+        <attribute name="swLon" attributeType="Integer 32" minValueString="-18000" maxValueString="18000" syncable="YES"/>
+        <relationship name="nodes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Node" inverseName="tile" inverseEntity="Node" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Asset" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Category" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Node" positionX="160" positionY="192" width="128" height="255"/>
+        <element name="Node" positionX="160" positionY="192" width="128" height="270"/>
         <element name="NodeType" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Tile" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>
