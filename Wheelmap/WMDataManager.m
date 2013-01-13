@@ -21,6 +21,7 @@
 
 
 #define WMSearchRadius 0.004
+#define WMCacheSize 10000
 #define WMLogDataManager 0
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
@@ -75,9 +76,88 @@
     
     if (WMLogDataManager>1) NSLog(@"number of operations: %i", numRunningOperations);
     
-    if (numRunningOperations==0 && [self.delegate respondsToSelector:@selector(dataManagerDidStopAllOperations:)]) {
-        [self.delegate dataManagerDidStopAllOperations:self];
+    if (numRunningOperations==0) {
+        if ([self.delegate respondsToSelector:@selector(dataManagerDidStopAllOperations:)]) {
+            [self.delegate dataManagerDidStopAllOperations:self];
+        }
+        
+        // now that no operations are running, it might be a good time for some housekeeping
+        [self cleanUpCache];
     }
+}
+
+
+#pragma mark - Clean Up Cache
+
+- (void) cleanUpCache
+{
+    // count all nodes that have a tile i.e. that are cached
+    NSError *error = nil;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Node"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"tile!=nil"];
+    NSUInteger totalNodes = [self.mainMOC countForFetchRequest:fetchRequest error:&error];
+    
+    if (WMLogDataManager>2) NSLog(@"total nodes: %i", totalNodes);
+    
+    if (totalNodes > WMCacheSize) {
+        
+        if (WMLogDataManager) NSLog(@"cleaning cache, total nodes: %i", totalNodes);
+        
+        // delete oldest tiles in background
+        [self.backgroundMOC performBlock:^{
+            
+            NSUInteger currentNumberOfNodes = totalNodes;
+            
+            // get all tiles sorted by creation date
+            NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Tile"];
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastModified" ascending:YES];
+            fetchRequest.sortDescriptors = @[sortDescriptor];
+            NSError *error = nil;
+            NSMutableArray *tiles = [[self.backgroundMOC executeFetchRequest:fetchRequest error:&error] mutableCopy];
+            
+            if ([tiles count]) {
+                
+                // delete tiles as long as number of tiles is higher than than max
+                while (currentNumberOfNodes > WMCacheSize) {
+                    
+                    Tile *oldestTile = tiles[0];
+                    [tiles removeObjectAtIndex:0];
+                    NSUInteger numNodesInTile = [oldestTile.nodes count];
+                    
+                    // deleting the tile will delete its nodes through cascading rule 
+                    [self.backgroundMOC deleteObject:oldestTile];
+                    
+                    currentNumberOfNodes -= numNodesInTile;
+                    
+                    if (WMLogDataManager>1) NSLog(@"... deleted tile with %i nodes", numNodesInTile);
+                }
+                
+                // save background moc
+                NSError *saveTempMocError = nil;
+                if (![self.backgroundMOC save:&saveTempMocError]) {
+                    // TODO: handle error
+                    
+                } else {
+                    
+                    [self.mainMOC performBlock:^{
+                        
+                        // save parent moc to disk
+                        NSError *saveParentMocError = nil;
+                        if (![self.mainMOC save:&saveParentMocError]) {
+                            // TODO: handle error
+                        } else {
+                            if (WMLogDataManager>1) NSLog(@"... new node count=%i, saved to main moc", currentNumberOfNodes);
+                        }
+                    }];
+                }
+                
+            } else {
+                // TODO: handle error
+            }
+        }];
+    }
+    
+    // TODO: delete nodes with no tile, which may result from requests with search query or filter parameters
 }
 
 
@@ -282,9 +362,9 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"swLat==%i && swLon==%i", swLat, swLon];
     NSArray *results = [self managedObjectContext:moc fetchObjectsOfEntity:@"Tile" withPredicate:predicate];
     
-    if (WMLogDataManager>2) {
+    if (WMLogDataManager>3) {
         Tile* tile = [results lastObject];
-        NSLog(@"......fetched existing tile: %@", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil);
+        NSLog(@".........fetched existing tile: %@", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil);
     }
     
     return [results lastObject];
@@ -377,7 +457,10 @@
                   if (!query) {                      
                       [(NSArray*)parsedNodes enumerateObjectsUsingBlock:^(Node* node, NSUInteger idx, BOOL *stop) {
                           CLLocationCoordinate2D location = CLLocationCoordinate2DMake([node.lat doubleValue], [node.lon doubleValue]);
-                          node.tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
+                          Tile
+                          *tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
+                          tile.lastModified = [NSDate date];
+                          node.tile = tile;
                       }];
                   }
               }
@@ -388,14 +471,18 @@
                         [self decrementRunningOperations];
                     }
                   success:^(id parsedNodes) {
-                      if (WMLogDataManager) {
+                      if (WMLogDataManager>3) {
                           NSError *error = nil;
                           NSUInteger totalNodes = [self.mainMOC countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Node"] error:&error];
-                          NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], totalNodes);
+                           NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], totalNodes);
+                      } else if (WMLogDataManager) {
+                         NSLog(@"parsed %i nodes", [(NSArray*)parsedNodes count]);
                       }
+     
                       if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
                           [self.delegate dataManager:self didReceiveNodes:parsedNodes];
                       }
+                      
                       [self decrementRunningOperations];
                   }
      ];
@@ -410,12 +497,16 @@
     // perform parsing on private queue and perform result blocks on current queue
     [self.backgroundMOC performBlock:^{
         
+        NSDate *startTime = [NSDate date];
+        
         // create parser with temporary context
         WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:self.backgroundMOC];
         
         // parse data
         NSError *parseError = nil;
         id parsedObject = [parser parseDataObject:object entityName:entityName error:&parseError];
+        
+        if (WMLogDataManager>2) NSLog(@"......parsed after %.2f sec", -[startTime timeIntervalSinceNow]);
         
         if (!parsedObject) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -452,6 +543,8 @@
                     
                 } else {
                     
+                    if (WMLogDataManager>2) NSLog(@"......saved to child moc after %.2f sec", -[startTime timeIntervalSinceNow]);
+                    
                     [self.mainMOC performBlock:^{
                         
                         // save parent moc to disk
@@ -463,6 +556,8 @@
                             
                         } else {
                             
+                            if (WMLogDataManager>2) NSLog(@"......saved to main moc after %.2f sec", -[startTime timeIntervalSinceNow]);
+                            
                             // fetch result objects from main moc
                             NSMutableArray *resultObjectsInMainMoc = [NSMutableArray arrayWithCapacity:[result count]];
                             [result enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
@@ -471,6 +566,7 @@
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 successBlock(resultObjectsInMainMoc);
+                                if (WMLogDataManager>2) NSLog(@"......finished after %.2f sec", -[startTime timeIntervalSinceNow]);
                             });
                         }
                     }];

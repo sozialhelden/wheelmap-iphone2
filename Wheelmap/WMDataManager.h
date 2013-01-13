@@ -60,6 +60,8 @@
  */
 - (Node*) createNode;
 
+- (void) cleanUpCache;
+
 
 extern NSString *WMDataManagerErrorDomain;
 

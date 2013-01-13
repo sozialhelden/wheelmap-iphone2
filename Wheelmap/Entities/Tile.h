@@ -2,7 +2,7 @@
 //  Tile.h
 //  Wheelmap
 //
-//  Created by Dorian Roy on 11.01.13.
+//  Created by Dorian Roy on 13.01.13.
 //  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSNumber * swLat;
 @property (nonatomic, retain) NSNumber * swLon;
+@property (nonatomic, retain) NSDate * lastModified;
 @property (nonatomic, retain) NSSet *nodes;
 @end
 

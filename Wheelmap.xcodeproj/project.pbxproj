@@ -402,7 +402,6 @@
 		9890C56F168F417900AD7C07 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C56E168F417900AD7C07 /* Image.m */; };
 		9890C572168F417900AD7C07 /* NodeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9890C571168F417900AD7C07 /* NodeType.m */; };
 		9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */; };
-		9896046D16A08225009418A2 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9896046C16A08225009418A2 /* Tile.m */; };
 		9896047016A08225009418A2 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 9896046F16A08225009418A2 /* Node.m */; };
 		989927501649151300D9003B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		989927521649151300D9003B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
@@ -426,6 +425,7 @@
 		989927DE164AA0D100D9003B /* WMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927DD164AA0D100D9003B /* WMDataManager.m */; };
 		989927E7164ABDC700D9003B /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927E6164ABDC700D9003B /* WMRootViewController_iPad.m */; };
 		989927E9164ACABD00D9003B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927E8164ACABC00D9003B /* CoreLocation.framework */; };
+		98AA096416A32A77006AC882 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AA096316A32A77006AC882 /* Tile.m */; };
 		98AC54AB166AA09A00E87965 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54A1166AA09A00E87965 /* ioapi.c */; };
 		98AC54AC166AA09A00E87965 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54A3166AA09A00E87965 /* mztools.c */; };
 		98AC54AD166AA09A00E87965 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 98AC54A5166AA09A00E87965 /* unzip.c */; };
@@ -847,8 +847,6 @@
 		9890C570168F417900AD7C07 /* NodeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeType.h; sourceTree = "<group>"; };
 		9890C571168F417900AD7C07 /* NodeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeType.m; sourceTree = "<group>"; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		9896046B16A08225009418A2 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
-		9896046C16A08225009418A2 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
 		9896046E16A08225009418A2 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		9896046F16A08225009418A2 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		9899274B1649151300D9003B /* Wheelmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -887,6 +885,8 @@
 		989927E5164ABDC700D9003B /* WMRootViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRootViewController_iPad.h; sourceTree = "<group>"; };
 		989927E6164ABDC700D9003B /* WMRootViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRootViewController_iPad.m; sourceTree = "<group>"; };
 		989927E8164ACABC00D9003B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		98AA096216A32A77006AC882 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
+		98AA096316A32A77006AC882 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
 		98AC54A0166AA09A00E87965 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		98AC54A1166AA09A00E87965 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		98AC54A2166AA09A00E87965 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -1717,10 +1717,10 @@
 		98CA22DA16664C4D00DF0EA3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				98AA096216A32A77006AC882 /* Tile.h */,
+				98AA096316A32A77006AC882 /* Tile.m */,
 				9896046E16A08225009418A2 /* Node.h */,
 				9896046F16A08225009418A2 /* Node.m */,
-				9896046B16A08225009418A2 /* Tile.h */,
-				9896046C16A08225009418A2 /* Tile.m */,
 				983BDBB4169C1128003B99A8 /* Category.h */,
 				983BDBB5169C1128003B99A8 /* Category.m */,
 				9890C570168F417900AD7C07 /* NodeType.h */,
@@ -2916,8 +2916,8 @@
 				15DBF5AF169B7B8000EBAC2A /* FBRequest.m in Sources */,
 				15DBF5B3169B7C0400EBAC2A /* WMCreditsViewController.m in Sources */,
 				0360B842169DACDC00E04026 /* WMRegisterViewController.m in Sources */,
-				9896046D16A08225009418A2 /* Tile.m in Sources */,
 				9896047016A08225009418A2 /* Node.m in Sources */,
+				98AA096416A32A77006AC882 /* Tile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
