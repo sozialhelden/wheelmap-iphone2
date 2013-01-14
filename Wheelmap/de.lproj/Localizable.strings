@@ -292,3 +292,7 @@
 "LoadingWheelText" = "Die Daten werden aktualisiert";
 "SaveNodeFailed" = "Das Speichern der Daten ist leider fehlgeschlagen.";
 "FetchNodesFails" = "Die Daten konnten nicht aktualisiert werden.";
+"TermsText" = "Hoppla, Wheelmap.org hat neue Nutzungsbestimmungen. Damit Du als eingeloggter Benutzer neue Orte hinzufügen, Bilder zu Orten hochladen und Hinweise schreiben kannst, musst Du die Nutzungsbestimmungen akzeptieren.";
+"TermsAcceptButton" = "Akzeptieren";
+"TermsDeniedButton" = "Ablehnen";
+"TermsDeniedText" = "Schade! Du hast die Nutzungsbestimmungen nicht akzeptiert und kannst die Wheelmap-App deshalb nur eingeschränkt nutzen. Falls Du es Dir anders überlegst, kannst Du die Nutzungsbestimmungen beim nächsten Login akzeptieren.";

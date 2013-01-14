@@ -8,3 +8,5 @@
 
 NSString * const LastRunVersion = @"LastRunVersion";
 NSString * const InstallId = @"installId";
+
+NSString * const WheelMapTermsURL = @"http://blog.wheelmap.org/was-ist-wheelmap/terms/";
