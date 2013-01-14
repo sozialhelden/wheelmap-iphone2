@@ -11,6 +11,7 @@
 #import "UAPush.h"
 #import <HockeySDK/HockeySDK.h>
 #import "AFNetworkActivityIndicatorManager.h"
+#import "Constants.h"
 
 @interface WMAppDelegate (HockeySDK) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
 
@@ -42,6 +43,34 @@
     
     // start listening to AFNetworking operations and show/hide activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
+    // check for the existence of last run version in defaults
+	// and create it if necessary
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	
+	NSString *lastRunVersion = [defaults objectForKey:LastRunVersion];
+	
+	BOOL firstRun = ![lastRunVersion isEqualToString: appVersion];
+	if (firstRun) {
+		// save current version
+		[defaults setObject: appVersion forKey:LastRunVersion];
+	}
+    
+    // check for existence of installation Id in defaults
+    // and create it if necessary.
+    // note: this id is unique for the curent installation of this app on the current device.
+    // it can not be used to track the user across installs, devices, or apps and
+    // is not the same as the deprecated UDID
+    NSString *installId = [defaults objectForKey:InstallId];
+    if (!installId || [installId isEqualToString:@""]) {
+        CFUUIDRef installIdRef = CFUUIDCreate(NULL);
+        CFStringRef installIdStringRef = CFUUIDCreateString(NULL, installIdRef);
+        CFRelease(installIdRef);
+        installId = (NSString *)CFBridgingRelease(installIdStringRef);
+        [defaults setObject:installId forKey:InstallId];
+    }
     
     return YES;
 }

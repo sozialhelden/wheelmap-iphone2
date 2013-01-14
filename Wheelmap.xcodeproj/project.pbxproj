@@ -758,6 +758,7 @@
 		0360BB3B169DC26800E04026 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button_selected@2x.png"; path = "ToolBar/toolbar_button_selected@2x.png"; sourceTree = "<group>"; };
 		037C07751680C8A700685378 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		039A2F0716A42999000E9D41 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		03BD04A616A052750045D53D /* Wheelmap LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F23ECE16A013B600F6B379 /* credits_credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits_credits.png; sourceTree = "<group>"; };
 		03F23ECF16A013B600F6B379 /* credits_credits@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits_credits@2x.png"; sourceTree = "<group>"; };
@@ -1616,6 +1617,7 @@
 				DB4EB52B167FC7CD0096CEDE /* SharingManager */,
 				9899275E1649151300D9003B /* WMAppDelegate.h */,
 				9899275F1649151300D9003B /* WMAppDelegate.m */,
+				039A2F0716A42999000E9D41 /* Constants.h */,
 				98E3B8371665266B00C23EBE /* WMDataModel.xcdatamodeld */,
 				DBA6224E1668F422009FA5DF /* CustomWidgets */,
 				9899279E164973CF00D9003B /* WheelmapAPI */,
