@@ -41,6 +41,7 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
+    self.tableView.scrollsToTop = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
