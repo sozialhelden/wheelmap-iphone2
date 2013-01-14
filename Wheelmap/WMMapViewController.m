@@ -14,6 +14,10 @@
 #import "WMNavigationControllerBase.h"
 #import "WMMapSettingsViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+#define MIN_SPAN_DELTA 0.02
+
 // TODO: re-position popover after orientation change
 
 @implementation WMMapViewController
@@ -40,6 +44,15 @@
 
     self.mapView.showsUserLocation = YES;
     //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
+    
+    // configure mapInteractionInfoLabel
+    self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*2);
+    self.mapInteractionInfoLabel.tag = 1;   // tag 0 means that the indicator is not visible
+    self.mapInteractionInfoLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.mapInteractionInfoLabel.layer.borderWidth = 2.0;
+    self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
+    self.mapInteractionInfoLabel.layer.masksToBounds = YES;
+    self.mapInteractionInfoLabel.numberOfLines = 2;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -86,6 +99,8 @@
         [self loadNodes];   // load nodes from the dataSource
         
     }
+    
+    
 
        
 }
@@ -186,7 +201,17 @@
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
         icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];
+        annotationView.alpha = 0.0;
         [annotationView addSubview:icon];
+        
+        [UIView animateWithDuration:0.2f animations:^(void){
+            annotationView.alpha = 1.0;
+        }
+                         completion:^(BOOL finished) {
+            annotationView.alpha = 1.0;
+                         
+        }];
+        
         
         return annotationView;
     }
@@ -231,6 +256,28 @@
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     
+    if (mapView.region.span.latitudeDelta > MIN_SPAN_DELTA || mapView.region.span.longitudeDelta > MIN_SPAN_DELTA) {
+        NSLog(@"Map is not enough zoomed in to show POIs.");
+        
+        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
+        for (id<MKAnnotation> annotation in oldAnnotations) {
+            if (![annotation isKindOfClass:[MKUserLocation class]]) {
+                MKAnnotationView *pinView = [self.mapView viewForAnnotation:annotation];
+                [UIView animateWithDuration:0.2f animations:^{
+                    pinView.alpha = 0.0f;
+                } completion:^(BOOL finished) {
+                    [self.mapView removeAnnotation:annotation];
+                }];
+            }
+        }
+        
+        [self slideInMapInteractionAdvisorWithText:NSLocalizedString(@"Zoom Closer", nil)];
+
+        return;
+    }
+    
+    [self slideOutMapInteractionAdvisor];
+    
     NSLog(@"Current Use Case %d", self.useCase);
     if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
         // do nothing
@@ -252,6 +299,45 @@
     
     [self.mapView setRegion:newRegion animated:YES];
     
+}
+
+- (void) relocateMapTo:(CLLocationCoordinate2D)coord andSpan:(MKCoordinateSpan)span
+{
+    MKCoordinateRegion newRegion;
+    newRegion.center = coord;
+    newRegion.span = span;
+    
+    [self.mapView setRegion:newRegion animated:YES];
+    
+}
+
+#pragma mark - Map Interaction Advisor
+-(void)slideInMapInteractionAdvisorWithText:(NSString*)text
+{
+    if (self.mapInteractionInfoLabel.tag == 1)  // indicator is already visible
+        return;
+    
+    self.mapInteractionInfoLabel.text = text;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, 0);
+    } completion:^(BOOL finished) {
+        self.mapInteractionInfoLabel.tag = 1;
+    }];
+    
+    
+    
+}
+
+-(void)slideOutMapInteractionAdvisor
+{
+    if (self.mapInteractionInfoLabel.tag == 0)  // indicator is already invisible
+        return;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*2);
+    } completion:^(BOOL finished) {
+        self.mapInteractionInfoLabel.tag = 0;
+    }];
 }
 
 

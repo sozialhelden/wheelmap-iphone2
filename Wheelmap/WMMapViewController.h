@@ -16,6 +16,7 @@
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
+@property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
 @property WMNodeListViewControllerUseCase useCase;
 
 - (void) showDetailPopoverForNode:(Node*)node;
@@ -23,6 +24,7 @@
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord;
+- (void) relocateMapTo:(CLLocationCoordinate2D)coord andSpan:(MKCoordinateSpan)span;
 
 //- (IBAction) returnToListViewTouched:(id)sender;
 
