@@ -175,6 +175,16 @@
     }
 }
 
+- (void) refreshNodeListWithArray:(NSArray*)array
+{
+    nodes = array;
+    for (UIViewController* vc in self.viewControllers) {
+        if ([vc conformsToProtocol:@protocol(WMNodeListView)]) {
+            [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+        }
+    }
+}
+
 -(void)dataManager:(WMDataManager *)dataManager fetchNodesFailedWithError:(NSError *)error
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
@@ -215,7 +225,8 @@
 
 -(void)dataManagerDidStartOperation:(WMDataManager *)dataManager
 {
-    [self showLoadingWheel];
+    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+        [self showLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(showActivityIndicator)]) {
         [(id<WMNodeListView>)self.topViewController showActivityIndicator];
@@ -225,7 +236,8 @@
 
 -(void)dataManagerDidStopAllOperations:(WMDataManager *)dataManager
 {
-    [self hideLoadingWheel];
+    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+        [self hideLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(hideActivityIndicator)]) {
         [(id<WMNodeListView>)self.topViewController hideActivityIndicator];

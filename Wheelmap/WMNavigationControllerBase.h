@@ -47,6 +47,8 @@ UINavigationControllerDelegate>
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithCurrentUserLocation;
 
+- (void) refreshNodeListWithArray:(NSArray*)array;  // use this method if you want to refresh list and maps with custom node array
+
 -(void)clearWheelChairFilterStatus;
 -(void)clearCategoryFilterStatus;
 
