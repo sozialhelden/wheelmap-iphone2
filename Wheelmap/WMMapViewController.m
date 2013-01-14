@@ -24,6 +24,8 @@
 {
     NSArray *nodes;
     UIPopoverController *popover;
+    
+    CLLocationCoordinate2D lastDisplayedMapCenter;
 }
 
 @synthesize dataSource, delegate;
@@ -266,7 +268,6 @@
         return;
     }
     
-    
     if (mapView.region.span.latitudeDelta > MIN_SPAN_DELTA || mapView.region.span.longitudeDelta > MIN_SPAN_DELTA) {
         NSLog(@"Map is not enough zoomed in to show POIs.");
         
@@ -286,16 +287,56 @@
         [(WMNavigationControllerBase*)self.dataSource refreshNodeListWithArray:[NSArray array]];
 
     } else {
-    
         [self slideOutMapInteractionAdvisor];
-    
-        [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+        
+        BOOL shouldUpdateMap = YES;
+        
+        //
+        // if map region change is smaller then threshold, then we do not update the map!
+        //
+        
+        // check how much the region has changed
+        
+        CLLocation *newCenter = [[CLLocation alloc] initWithLatitude:self.mapView.region.center.latitude longitude:self.mapView.region.center.longitude];
+        CLLocation *oldCenter = [[CLLocation alloc] initWithLatitude:lastDisplayedMapCenter.latitude longitude:lastDisplayedMapCenter.longitude];
+        CLLocationDistance centerDistance = [newCenter distanceFromLocation:oldCenter] /1000.0; // km
+
+        MKCoordinateRegion coordinateRegion = self.mapView.region;
+        CLLocationCoordinate2D ne =
+        CLLocationCoordinate2DMake(coordinateRegion.center.latitude
+                                   + (coordinateRegion.span.latitudeDelta/2.0),
+                                   coordinateRegion.center.longitude
+                                   - (coordinateRegion.span.longitudeDelta/2.0));
+        CLLocationCoordinate2D sw =
+        CLLocationCoordinate2DMake(coordinateRegion.center.latitude
+                                   - (coordinateRegion.span.latitudeDelta/2.0),
+                                   coordinateRegion.center.longitude
+                                   + (coordinateRegion.span.longitudeDelta/2.0));
+        
+        CLLocation *neLocation = [[CLLocation alloc] initWithLatitude:ne.latitude longitude:ne.longitude];
+        CLLocation *swLocation = [[CLLocation alloc] initWithLatitude:sw.latitude longitude:sw.longitude];
+        CLLocationDistance mapRectDiagonalSize = [neLocation distanceFromLocation:swLocation] / 1000.0; // km
+        if (mapRectDiagonalSize > 0.0) {
+            CGFloat portionOfChangedCenter = centerDistance / mapRectDiagonalSize;
+            
+            // if delta is small, do nothing
+            if (portionOfChangedCenter  < 0.24) {
+                NSLog(@"MINIMAL CHANGE. DO NOT UPDATE MAP! %f", portionOfChangedCenter);
+                shouldUpdateMap = NO;
+            }
+        }
+        
+        if (shouldUpdateMap) {
+            [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+            lastDisplayedMapCenter = self.mapView.region.center;
+        }
     }
 
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLat:[NSNumber numberWithDouble:self.mapView.region.center.latitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLng:[NSNumber numberWithDouble:self.mapView.region.center.longitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLat:[NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLng:[NSNumber numberWithDouble:self.mapView.region.span.longitudeDelta]];
+    
 }
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord

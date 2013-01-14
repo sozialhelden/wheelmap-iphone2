@@ -51,6 +51,7 @@
                          success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, id))successBlock
                 startImmediately:(BOOL)startImmediately
 {
+    
     NSMutableURLRequest *request = [self requestWithMethod:method?:@"GET" path:resource parameters:parameters];
     
     if (apiKey) [request setValue:apiKey forHTTPHeaderField:@"X-API-KEY"];
@@ -72,6 +73,8 @@
                        success:(void(^)(NSURLRequest *request, NSHTTPURLResponse *response))successBlock
               startImmediately:(BOOL)startImmediately
 {
+
+    
     // create basic http operation
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -101,6 +104,8 @@
                         success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, id))successBlock
                  startImmediately:(BOOL)startImmediately
 {
+    
+
     // get path where the image file should be saved
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *rootPath = [paths objectAtIndex:0];
