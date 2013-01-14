@@ -8,6 +8,7 @@
 
 #import "WMWheelmapAPI.h"
 #import "AFJSONRequestOperation.h"
+#import "UIDevice+Hardware.h"
 
 @implementation WMWheelmapAPI
 
@@ -37,7 +38,18 @@
     // indicates that the local data is current and no data transfer necessary
     [AFHTTPRequestOperation addAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:304]];
     
+    // set default headers
+    NSString *uaString = [NSString stringWithFormat:@"Wheelmap iOS/%@", [[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    [self setDefaultHeader:@"User-Agent" value:uaString];
 	[self setDefaultHeader:@"Accept" value:@"application/json"];
+    
+    // set tracking headers
+    [self setDefaultHeader:@"Device-Model" value:[[UIDevice currentDevice] platform]];
+    [self setDefaultHeader:@"OS-Version" value:[[UIDevice currentDevice] systemVersion]];
+    NSString *installId = [[NSUserDefaults standardUserDefaults] objectForKey: @"installId"];
+    if (installId) {
+        [self setDefaultHeader:@"Install-ID" value:installId];
+    };
     
     return self;
 }

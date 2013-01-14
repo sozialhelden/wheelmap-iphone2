@@ -383,7 +383,7 @@
     CLLocation* newLocation = self.locationManager.location;
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-        [currentVC relocateMapTo:newLocation.coordinate];   // this will automatically update node list!
+        [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];   // this will automatically update node list!
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         [self updateNodesNear:newLocation.coordinate];
         self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];

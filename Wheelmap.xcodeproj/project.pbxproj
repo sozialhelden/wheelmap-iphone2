@@ -388,6 +388,8 @@
 		15DBF5DC169C664500EBAC2A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DB169C664500EBAC2A /* Default-568h@2x.png */; };
 		15DBF5DF169C694000EBAC2A /* start_icon-logged-in.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DD169C694000EBAC2A /* start_icon-logged-in.png */; };
 		15DBF5E0169C694000EBAC2A /* start_icon-logged-in@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DE169C694000EBAC2A /* start_icon-logged-in@2x.png */; };
+		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
+		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
 		9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9817AF50164D617A00703A92 /* WMDetailViewController.m */; };
 		9819925A1695D94200F69BA8 /* WMDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 981992591695D94200F69BA8 /* WMDataParser.m */; };
@@ -826,6 +828,8 @@
 		15DBF5DB169C664500EBAC2A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		15DBF5DD169C694000EBAC2A /* start_icon-logged-in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon-logged-in.png"; sourceTree = "<group>"; };
 		15DBF5DE169C694000EBAC2A /* start_icon-logged-in@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon-logged-in@2x.png"; sourceTree = "<group>"; };
+		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
 		9817AF4F164D617A00703A92 /* WMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailViewController.h; sourceTree = "<group>"; };
 		9817AF50164D617A00703A92 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
@@ -1547,6 +1551,8 @@
 		9890C536168F337900AD7C07 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				980C39F116A419360032D720 /* UIDevice+Hardware.h */,
+				980C39F216A419360032D720 /* UIDevice+Hardware.m */,
 				9890C532168F337400AD7C07 /* WMStringUtilities.h */,
 				9890C533168F337400AD7C07 /* WMStringUtilities.m */,
 			);
@@ -2827,6 +2833,7 @@
 				03BD03BB16A052750045D53D /* FBRequest.m in Sources */,
 				03BD03BC16A052750045D53D /* WMCreditsViewController.m in Sources */,
 				03BD03BD16A052750045D53D /* WMRegisterViewController.m in Sources */,
+				980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2920,6 +2927,7 @@
 				0360B842169DACDC00E04026 /* WMRegisterViewController.m in Sources */,
 				9896047016A08225009418A2 /* Node.m in Sources */,
 				98AA096416A32A77006AC882 /* Tile.m in Sources */,
+				980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
