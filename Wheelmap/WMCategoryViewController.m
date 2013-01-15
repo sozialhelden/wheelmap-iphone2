@@ -36,6 +36,8 @@
     dataManager = [[WMDataManager alloc] init];
     categories = dataManager.categories;
     
+    self.tableView.scrollsToTop = YES;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated

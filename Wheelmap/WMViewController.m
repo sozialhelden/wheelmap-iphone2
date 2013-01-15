@@ -33,6 +33,8 @@
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
     }
+
+
 }
 
 -(void)viewWillAppear:(BOOL)animated

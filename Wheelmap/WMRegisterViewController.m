@@ -31,6 +31,8 @@
     NSURL *url = [NSURL URLWithString:WMRegistrationURL];
     
 	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    self.webView.scrollView.scrollsToTop = YES;
    
 }
 

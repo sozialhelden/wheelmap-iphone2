@@ -27,6 +27,7 @@
         tableView.showsVerticalScrollIndicator = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
+        tableView.scrollsToTop = NO;
         [self addSubview:tableView];
         
         [self refreshViewWithCategories:categories];

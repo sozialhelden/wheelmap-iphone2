@@ -37,6 +37,7 @@
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.scrollView.scrollsToTop = YES;
     
     UIImage  *statusYesImage = [UIImage imageNamed:@"details_label-yes.png"];
 

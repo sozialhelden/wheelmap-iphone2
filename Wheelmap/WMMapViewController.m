@@ -285,6 +285,7 @@
         
         [self slideInMapInteractionAdvisorWithText:NSLocalizedString(@"Zoom Closer", nil)];
         [(WMNavigationControllerBase*)self.dataSource refreshNodeListWithArray:[NSArray array]];
+        lastDisplayedMapCenter = CLLocationCoordinate2DMake(0, 0);
 
     } else {
         [self slideOutMapInteractionAdvisor];

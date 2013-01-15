@@ -45,6 +45,8 @@
     self.title = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
     self.navigationBarTitle = self.title;
     
+    self.tableView.scrollsToTop = YES;
+    
     int highlightedCellRow = -1;
     for (Category* c in self.categoryArray) {
         NSNumber* ID = c.id;

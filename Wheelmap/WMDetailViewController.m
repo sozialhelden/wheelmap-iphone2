@@ -58,6 +58,7 @@
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
     
     self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.scrollsToTop = YES;
     self.mainView = [UIView new];
     self.mainView.backgroundColor = [UIColor clearColor];
     

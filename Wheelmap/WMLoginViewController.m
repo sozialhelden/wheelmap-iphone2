@@ -24,6 +24,8 @@
 {
     [super viewDidLoad];
     
+    self.contentScrollView.scrollsToTop = YES;
+    
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
 	

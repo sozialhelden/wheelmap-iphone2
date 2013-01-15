@@ -41,6 +41,8 @@
 {
     [super viewDidLoad];
     
+    self.scrollView.scrollsToTop = YES;
+    
     self.dataManager = [[WMDataManager alloc] init];
     self.dataManager.useForTemporaryObjects = !self.editView;
     self.dataManager.delegate = self;
