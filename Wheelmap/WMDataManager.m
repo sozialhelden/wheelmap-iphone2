@@ -32,6 +32,7 @@
 // If you experience this problem, try to use smaller bounding boxes before raising this number.
 #define WMNodeLimit 700
 
+#define UserTermsPrefix @"terms"
 
 // TODO: fix etag check
 
@@ -276,6 +277,25 @@
     return self.keychainWrapper.userAccount;
 }
 
+- (NSString *)currentUserTermsKey {
+    return [NSString stringWithFormat:@"%@%@",UserTermsPrefix, [self currentUserName]];
+}
+
+- (void)userDidAcceptTerms {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:@"YES" forKey:[self currentUserTermsKey]];
+    [defaults synchronize];
+}
+
+- (BOOL)areUserTermsAccepted {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"Terms accepted key returned %@", [defaults valueForKey:[self currentUserTermsKey]]);
+    if ([defaults valueForKey:[self currentUserTermsKey]] != nil) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 #pragma mark - Fetch Nodes
 

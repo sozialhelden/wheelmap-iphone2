@@ -22,7 +22,7 @@
 #import "Node.h"
 #import "NodeType.h"
 #import "Category.h"
-
+#import "WMAcceptTermsViewController.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -604,6 +604,15 @@
     if ([vc respondsToSelector:@selector(navigationBarTitle)]) {
         self.customNavigationBar.title = [vc performSelector:@selector(navigationBarTitle)];
     }
+}
+
+- (void)showAcceptTermsViewController {
+    [self dismissModalViewControllerAnimated:NO];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+    WMAcceptTermsViewController *termsVC = [storyboard instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
+    
+    [self presentModalViewController:termsVC animated:YES];
 }
 
 #pragma mark - WMNavigationBar Delegate

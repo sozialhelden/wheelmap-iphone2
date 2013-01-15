@@ -16,7 +16,6 @@
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
 
-
 @interface WMDashboardViewController ()
 
 @end

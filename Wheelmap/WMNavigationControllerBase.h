@@ -55,6 +55,8 @@ UINavigationControllerDelegate>
 -(void)showLoadingWheel;
 -(void)hideLoadingWheel;
 
+- (void)showAcceptTermsViewController;
+
 -(void)presentLoginScreen;
 
 -(CLLocation*)currentUserLocation;

@@ -282,3 +282,4 @@
 "LoadingWheelText" = "Reloading data";
 "SaveNodeFailed" = "Data could not be saved.";
 "FetchNodesFails" = "The data could not be updated.";
+"TermsTitle" = "Terms";

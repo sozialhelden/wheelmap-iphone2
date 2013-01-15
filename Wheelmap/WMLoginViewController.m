@@ -8,6 +8,8 @@
 
 #import "WMLoginViewController.h"
 #import "WMDataManager.h"
+#import "WMTermsViewController.h"
+#import "WMNavigationControllerBase.h"
 
 @implementation WMLoginViewController
 
@@ -116,7 +118,12 @@
 {
     // TODO: handle success, dismiss view controller
     NSLog(@"Login success!");
-    [self dismissModalViewControllerAnimated:YES];
+    
+    if ([dataManager areUserTermsAccepted]) {
+        [self dismissModalViewControllerAnimated:YES];
+    } else {
+        [(WMNavigationControllerBase *)self.presentingViewController showAcceptTermsViewController];
+    }
 }
 
 - (IBAction)donePressed:(id)sender {
