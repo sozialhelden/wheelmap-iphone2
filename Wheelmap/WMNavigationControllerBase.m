@@ -144,6 +144,11 @@
     self.view.backgroundColor = UIColorFromRGB(0x304152);
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -172,6 +177,16 @@
 {
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
         [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    }
+}
+
+- (void) refreshNodeListWithArray:(NSArray*)array
+{
+    nodes = array;
+    for (UIViewController* vc in self.viewControllers) {
+        if ([vc conformsToProtocol:@protocol(WMNodeListView)]) {
+            [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+        }
     }
 }
 
@@ -215,7 +230,8 @@
 
 -(void)dataManagerDidStartOperation:(WMDataManager *)dataManager
 {
-    [self showLoadingWheel];
+    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+        [self showLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(showActivityIndicator)]) {
         [(id<WMNodeListView>)self.topViewController showActivityIndicator];
@@ -225,7 +241,8 @@
 
 -(void)dataManagerDidStopAllOperations:(WMDataManager *)dataManager
 {
-    [self hideLoadingWheel];
+    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+        [self hideLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(hideActivityIndicator)]) {
         [(id<WMNodeListView>)self.topViewController hideActivityIndicator];
@@ -386,13 +403,14 @@
         [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];   // this will automatically update node list!
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         [self updateNodesNear:newLocation.coordinate];
-        self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
-        self.lastVisibleMapCenterLng = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
-        self.lastVisibleMapSpanLat = [NSNumber numberWithDouble:0.005];
-        self.lastVisibleMapSpanLng = [NSNumber numberWithDouble:0.005];
     } else {
         [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
     }
+    
+    self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
+    self.lastVisibleMapCenterLng = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
+    self.lastVisibleMapSpanLat = [NSNumber numberWithDouble:0.005];
+    self.lastVisibleMapSpanLng = [NSNumber numberWithDouble:0.005];
 }
 
 
@@ -660,6 +678,15 @@
 
 -(void)searchStringIsGiven:(NSString *)query
 {
+    if (![dataManager isInternetConnectionAvailable]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        
+        [alert show];
+        [self.customToolBar deselectSearchButton];
+        return;
+    }
+    
+    
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
         vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;

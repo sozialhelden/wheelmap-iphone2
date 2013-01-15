@@ -26,7 +26,6 @@
  * All other operations will still use the main context.
  */
 @property (nonatomic) BOOL useForTemporaryObjects;
-
 @property (nonatomic, readonly) BOOL syncInProgress;
 
 - (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
@@ -53,6 +52,8 @@
 
 - (NSArray*) categories;
 - (NSArray*) nodeTypes;
+
+- (BOOL)isInternetConnectionAvailable;
 
 /* Returns a node in the temporary context. It serves only to pass node data to
  * updateNode: The context should not be saved. Throws an exception if 

@@ -24,6 +24,8 @@
 {
     NSArray *nodes;
     UIPopoverController *popover;
+    
+    CLLocationCoordinate2D lastDisplayedMapCenter;
 }
 
 @synthesize dataSource, delegate;
@@ -47,7 +49,7 @@
     
     // configure mapInteractionInfoLabel
     self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*2);
-    self.mapInteractionInfoLabel.tag = 1;   // tag 0 means that the indicator is not visible
+    self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
     self.mapInteractionInfoLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     self.mapInteractionInfoLabel.layer.borderWidth = 2.0;
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
@@ -59,7 +61,6 @@
 {
     [super viewWillAppear: animated];
     self.loadingWheel.hidden = YES;
-    
     
 }
 
@@ -103,6 +104,12 @@
     
 
        
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self slideOutMapInteractionAdvisor];
 }
 
 - (void) loadNodes
@@ -255,6 +262,11 @@
 #pragma mark - Map Interactions
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+    NSLog(@"Current Use Case %d", self.useCase);
+    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+        // do nothing
+        return;
+    }
     
     if (mapView.region.span.latitudeDelta > MIN_SPAN_DELTA || mapView.region.span.longitudeDelta > MIN_SPAN_DELTA) {
         NSLog(@"Map is not enough zoomed in to show POIs.");
@@ -272,23 +284,59 @@
         }
         
         [self slideInMapInteractionAdvisorWithText:NSLocalizedString(@"Zoom Closer", nil)];
+        [(WMNavigationControllerBase*)self.dataSource refreshNodeListWithArray:[NSArray array]];
 
-        return;
-    }
-    
-    [self slideOutMapInteractionAdvisor];
-    
-    NSLog(@"Current Use Case %d", self.useCase);
-    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
-        // do nothing
     } else {
-        [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+        [self slideOutMapInteractionAdvisor];
+        
+        BOOL shouldUpdateMap = YES;
+        
+        //
+        // if map region change is smaller then threshold, then we do not update the map!
+        //
+        
+        // check how much the region has changed
+        
+        CLLocation *newCenter = [[CLLocation alloc] initWithLatitude:self.mapView.region.center.latitude longitude:self.mapView.region.center.longitude];
+        CLLocation *oldCenter = [[CLLocation alloc] initWithLatitude:lastDisplayedMapCenter.latitude longitude:lastDisplayedMapCenter.longitude];
+        CLLocationDistance centerDistance = [newCenter distanceFromLocation:oldCenter] /1000.0; // km
+
+        MKCoordinateRegion coordinateRegion = self.mapView.region;
+        CLLocationCoordinate2D ne =
+        CLLocationCoordinate2DMake(coordinateRegion.center.latitude
+                                   + (coordinateRegion.span.latitudeDelta/2.0),
+                                   coordinateRegion.center.longitude
+                                   - (coordinateRegion.span.longitudeDelta/2.0));
+        CLLocationCoordinate2D sw =
+        CLLocationCoordinate2DMake(coordinateRegion.center.latitude
+                                   - (coordinateRegion.span.latitudeDelta/2.0),
+                                   coordinateRegion.center.longitude
+                                   + (coordinateRegion.span.longitudeDelta/2.0));
+        
+        CLLocation *neLocation = [[CLLocation alloc] initWithLatitude:ne.latitude longitude:ne.longitude];
+        CLLocation *swLocation = [[CLLocation alloc] initWithLatitude:sw.latitude longitude:sw.longitude];
+        CLLocationDistance mapRectDiagonalSize = [neLocation distanceFromLocation:swLocation] / 1000.0; // km
+        if (mapRectDiagonalSize > 0.0) {
+            CGFloat portionOfChangedCenter = centerDistance / mapRectDiagonalSize;
+            
+            // if delta is small, do nothing
+            if (portionOfChangedCenter  < 0.24) {
+                NSLog(@"MINIMAL CHANGE. DO NOT UPDATE MAP! %f", portionOfChangedCenter);
+                shouldUpdateMap = NO;
+            }
+        }
+        
+        if (shouldUpdateMap) {
+            [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+            lastDisplayedMapCenter = self.mapView.region.center;
+        }
     }
 
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLat:[NSNumber numberWithDouble:self.mapView.region.center.latitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLng:[NSNumber numberWithDouble:self.mapView.region.center.longitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLat:[NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLng:[NSNumber numberWithDouble:self.mapView.region.span.longitudeDelta]];
+    
 }
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord
@@ -315,7 +363,10 @@
 -(void)slideInMapInteractionAdvisorWithText:(NSString*)text
 {
     if (self.mapInteractionInfoLabel.tag == 1)  // indicator is already visible
-        return;
+    {
+        NSLog(@"Map UI Advisor is already visibile");
+         return;
+    }
     
     self.mapInteractionInfoLabel.text = text;
     [UIView animateWithDuration:0.3f animations:^{

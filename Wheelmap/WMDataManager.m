@@ -56,6 +56,11 @@
     NSUInteger numRunningOperations;
 }
 
+- (BOOL)isInternetConnectionAvailable
+{
+    return [[WMWheelmapAPI sharedInstance] networkReachabilityStatus] != AFNetworkReachabilityStatusNotReachable;
+}
+
 
 #pragma mark - Operations Count
 
@@ -386,6 +391,10 @@
 
 - (void)fetchRemoteNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
+    if (![self isInternetConnectionAvailable]) {
+        return;
+    }
+    
     NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
                         southwest.longitude,
                         southwest.latitude,
@@ -418,6 +427,13 @@
 
 - (void)fetchNodesWithQuery:(NSString*)query
 {
+    if (![self isInternetConnectionAvailable]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        
+        [alert show];
+        return;
+    }
+    
     if (WMLogDataManager) NSLog(@"fetchNodesWithQuery:%@", query);
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes/search"
@@ -689,6 +705,13 @@ static BOOL assetSyncInProgress = NO;
 
 - (void) syncResources
 {
+    if (![self isInternetConnectionAvailable]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        
+        [alert show];
+        return;
+    }
+    
     if (WMLogDataManager) NSLog(@"syncResources");
     if (WMLogDataManager>1) {
         NSLog(@"... num categories: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
@@ -724,7 +747,7 @@ static BOOL assetSyncInProgress = NO;
         }
     }];
     
-    // TODO: make string consistent with v1.0
+    // make string consistent with v1.0 --> syncing resources over backend is a new feature in the version 2.0
     // check if the locale setting is changed
     // get the previous locale
     NSString* prev_locale = [[NSUserDefaults standardUserDefaults] objectForKey:@"WheelMap2-PreviousLocaleString"];
