@@ -539,6 +539,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pressedCancelButton:" destination="ZgS-zF-SUJ" eventType="touchUpInside" id="yNI-EG-sml"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -552,6 +555,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="e03-Fq-ny1" id="Ggh-at-f62"/>
                         <outlet property="titleLabel" destination="pLQ-UQ-S5c" id="2xU-ER-cr2"/>
                         <outlet property="view" destination="jtb-S4-iBD" id="qHl-K1-yV0"/>
                         <outlet property="webView" destination="peR-yq-Zd6" id="JPT-YI-oqX"/>
