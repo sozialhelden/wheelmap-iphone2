@@ -28,12 +28,12 @@
 
     [self.cancelButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
     
-    NSURL *url = [NSURL URLWithString:WMRegistrationURL];
-    
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    NSURL *url = [NSURL URLWithString:@"/en/oauth/register_osm" relativeToURL:[NSURL URLWithString:baseURL]];
 	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
     self.webView.scrollView.scrollsToTop = YES;
-   
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,3 +56,4 @@
 }
 
 @end
+

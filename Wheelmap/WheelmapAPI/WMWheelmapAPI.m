@@ -18,7 +18,10 @@
     static WMWheelmapAPI *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedInstance = [[WMWheelmapAPI alloc] initWithBaseURL:[NSURL URLWithString:WMBaseURL]];
+        NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+        NSString *baseURL = config[@"apiBaseURL"];
+        NSURL *apiURL = [NSURL URLWithString:@"api" relativeToURL:[NSURL URLWithString:baseURL]];
+        _sharedInstance = [[WMWheelmapAPI alloc] initWithBaseURL:apiURL];
     });
     
     return _sharedInstance;
