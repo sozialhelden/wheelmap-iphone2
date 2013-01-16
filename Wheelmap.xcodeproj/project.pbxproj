@@ -390,6 +390,8 @@
 		15DBF5DC169C664500EBAC2A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DB169C664500EBAC2A /* Default-568h@2x.png */; };
 		15DBF5DF169C694000EBAC2A /* start_icon-logged-in.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DD169C694000EBAC2A /* start_icon-logged-in.png */; };
 		15DBF5E0169C694000EBAC2A /* start_icon-logged-in@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DE169C694000EBAC2A /* start_icon-logged-in@2x.png */; };
+		15F31E6516A6BCD2006EDBC8 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */; };
+		15F31E6716A6BCD6006EDBC8 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB516A59A4100F9F663 /* WMTermsViewController.m */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -2844,6 +2846,8 @@
 				03BD03BC16A052750045D53D /* WMCreditsViewController.m in Sources */,
 				03BD03BD16A052750045D53D /* WMRegisterViewController.m in Sources */,
 				980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */,
+				15F31E6516A6BCD2006EDBC8 /* WMAcceptTermsViewController.m in Sources */,
+				15F31E6716A6BCD6006EDBC8 /* WMTermsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
