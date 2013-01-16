@@ -258,7 +258,7 @@
 - (BOOL) userIsAuthenticated
 {
     NSString *userToken = [self.keychainWrapper tokenForAccount:nil];
-    return ([userToken length] > 0);
+    return ([userToken length] > 0 && [self areUserTermsAccepted]);
 }
 
 - (void) removeUserAuthentication

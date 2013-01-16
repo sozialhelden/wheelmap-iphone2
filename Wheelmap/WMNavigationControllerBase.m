@@ -609,8 +609,7 @@
 - (void)showAcceptTermsViewController {
     [self dismissModalViewControllerAnimated:NO];
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    WMAcceptTermsViewController *termsVC = [storyboard instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
+    WMAcceptTermsViewController *termsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
     
     [self presentModalViewController:termsVC animated:YES];
 }
