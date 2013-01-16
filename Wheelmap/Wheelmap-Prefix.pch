@@ -31,15 +31,10 @@
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 // Webservice Configuration
-// Staging
-#define WMBaseURL @"http://staging.wheelmap.org/api"
-#define WMRegistrationURL @"http://staging.wheelmap.org/en/oauth/register_osm"
-#define WMTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/terms/"
+#define WMConfigFilename @"WMConfig"
 
-// Live
-//#define WMBaseURL @"http://wheelmap.org/api"
-//#define WMRegistrationURL @"http://wheelmap.org/en/oauth/register_osm"
-//#define WMTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/terms/"
+// Terms URL
+#define WMTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/terms/"
 
 // enums
 typedef enum {
