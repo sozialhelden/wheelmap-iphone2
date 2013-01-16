@@ -35,7 +35,6 @@
 		0360BB35169DC20B00E04026 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB34169DC20B00E04026 /* StoreKit.framework */; };
 		0360BB3C169DC26800E04026 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		0379A7D41684852B00C2DFF8 /* toolbar_button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */; };
-		037C07761680C8A700685378 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 037C07751680C8A700685378 /* WMConfig.plist */; };
 		03BD036916A052750045D53D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899275B1649151300D9003B /* main.m */; };
 		03BD036A16A052750045D53D /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899275F1649151300D9003B /* WMAppDelegate.m */; };
 		03BD036B16A052750045D53D /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927941649481300D9003B /* WMNodeListViewController.m */; };
@@ -314,7 +313,6 @@
 		03BD047F16A052750045D53D /* search_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB524167F4A810096CEDE /* search_background@2x.png */; };
 		03BD048016A052750045D53D /* search_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB525167F4A810096CEDE /* search_searchbar.png */; };
 		03BD048116A052750045D53D /* search_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */; };
-		03BD048216A052750045D53D /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 037C07751680C8A700685378 /* WMConfig.plist */; };
 		03BD048316A052750045D53D /* icons_114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E0168468F300E8206B /* icons_114-114.png */; };
 		03BD048416A052750045D53D /* icons_57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E2168468F600E8206B /* icons_57-57.png */; };
 		03BD048516A052750045D53D /* toolbar_button-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E41684886B00E8206B /* toolbar_button-search-active.png */; };
@@ -352,6 +350,8 @@
 		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		03F30C8C1670F36A00241466 /* buttons_btn-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8A1670F36A00241466 /* buttons_btn-signup.png */; };
 		03F30C8D1670F36B00241466 /* buttons_btn-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */; };
+		150731BD16A6F961000E10B6 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 150731BB16A6F961000E10B6 /* WMConfig.plist */; };
+		150731BE16A6F96C000E10B6 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 150731B916A6F961000E10B6 /* WMConfig.plist */; };
 		156A7120169B026200C22988 /* Curl_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A711E169B026200C22988 /* Curl_screen.png */; };
 		156A7121169B026200C22988 /* Curl_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A711F169B026200C22988 /* Curl_screen@2x.png */; };
 		156A7124169B02FF00C22988 /* Curl_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A7122169B02FF00C22988 /* Curl_logo.png */; };
@@ -769,7 +769,6 @@
 		0360BB34169DC20B00E04026 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0360BB3B169DC26800E04026 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button_selected@2x.png"; path = "ToolBar/toolbar_button_selected@2x.png"; sourceTree = "<group>"; };
-		037C07751680C8A700685378 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		039A2F0716A42999000E9D41 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		03BD04A616A052750045D53D /* Wheelmap LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F23ECE16A013B600F6B379 /* credits_credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits_credits.png; sourceTree = "<group>"; };
@@ -780,6 +779,8 @@
 		03F30C541670B80600241466 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
 		03F30C8A1670F36A00241466 /* buttons_btn-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup.png"; sourceTree = "<group>"; };
 		03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup@2x.png"; sourceTree = "<group>"; };
+		150731B916A6F961000E10B6 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		150731BB16A6F961000E10B6 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		156A711E169B026200C22988 /* Curl_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_screen.png; sourceTree = "<group>"; };
 		156A711F169B026200C22988 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
 		156A7122169B02FF00C22988 /* Curl_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_logo.png; sourceTree = "<group>"; };
@@ -1484,6 +1485,31 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		150731B716A6F961000E10B6 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				150731B816A6F961000E10B6 /* live */,
+				150731BA16A6F961000E10B6 /* staging */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		150731B816A6F961000E10B6 /* live */ = {
+			isa = PBXGroup;
+			children = (
+				150731B916A6F961000E10B6 /* WMConfig.plist */,
+			);
+			path = live;
+			sourceTree = "<group>";
+		};
+		150731BA16A6F961000E10B6 /* staging */ = {
+			isa = PBXGroup;
+			children = (
+				150731BB16A6F961000E10B6 /* WMConfig.plist */,
+			);
+			path = staging;
+			sourceTree = "<group>";
+		};
 		15DBF575169B7B5500EBAC2A /* SBJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -1592,9 +1618,9 @@
 				15DBF5D7169C663C00EBAC2A /* Default.png */,
 				DB67C1E2168468F600E8206B /* icons_57-57.png */,
 				DB67C1E0168468F300E8206B /* icons_114-114.png */,
-				037C07751680C8A700685378 /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				0360BB3B169DC26800E04026 /* AirshipConfig.plist */,
+				150731B716A6F961000E10B6 /* config */,
 				15F31E6816A6D389006EDBC8 /* Reachability */,
 				0360B9BA169DC16A00E04026 /* Airship */,
 				989927561649151300D9003B /* Supporting Files */,
@@ -2496,7 +2522,6 @@
 				03BD047F16A052750045D53D /* search_background@2x.png in Resources */,
 				03BD048016A052750045D53D /* search_searchbar.png in Resources */,
 				03BD048116A052750045D53D /* search_searchbar@2x.png in Resources */,
-				03BD048216A052750045D53D /* WMConfig.plist in Resources */,
 				03BD048316A052750045D53D /* icons_114-114.png in Resources */,
 				03BD048416A052750045D53D /* icons_57-57.png in Resources */,
 				03BD048516A052750045D53D /* toolbar_button-search-active.png in Resources */,
@@ -2528,6 +2553,7 @@
 				03BD049F16A052750045D53D /* AirshipConfig.plist in Resources */,
 				03BD04A016A052750045D53D /* credits_credits.png in Resources */,
 				03BD04A116A052750045D53D /* credits_credits@2x.png in Resources */,
+				150731BE16A6F96C000E10B6 /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2709,7 +2735,6 @@
 				DB4EB528167F4A810096CEDE /* search_background@2x.png in Resources */,
 				DB4EB529167F4A810096CEDE /* search_searchbar.png in Resources */,
 				DB4EB52A167F4A810096CEDE /* search_searchbar@2x.png in Resources */,
-				037C07761680C8A700685378 /* WMConfig.plist in Resources */,
 				DB67C1E1168468F300E8206B /* icons_114-114.png in Resources */,
 				DB67C1E3168468F600E8206B /* icons_57-57.png in Resources */,
 				DB67C1E61684886B00E8206B /* toolbar_button-search-active.png in Resources */,
@@ -2741,6 +2766,7 @@
 				0360BB3C169DC26800E04026 /* AirshipConfig.plist in Resources */,
 				03F23ED016A013B600F6B379 /* credits_credits.png in Resources */,
 				03F23ED116A013B600F6B379 /* credits_credits@2x.png in Resources */,
+				150731BD16A6F961000E10B6 /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
