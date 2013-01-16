@@ -75,7 +75,12 @@
     
     // TODO: show last logged in user name
     
-    self.usernameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"WheelmapLastUserName"];
+    if ([[dataManager legacyUserCredentials] objectForKey:@"email"]) {
+        // the value is not nil -> user has logged in on the version 1.0 and the app is freshly updated to v. 2.0. -> we show the old user name, but do not login due to the new terms.
+        self.usernameTextField.text = [[dataManager legacyUserCredentials] objectForKey:@"email"];
+    } else {
+        self.usernameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"WheelmapLastUserName"];
+    }
 }
 
 - (void)adjustLabelHeightToText:(UILabel *)label {

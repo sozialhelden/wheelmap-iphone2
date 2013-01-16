@@ -392,6 +392,8 @@
 		15DBF5E0169C694000EBAC2A /* start_icon-logged-in@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DE169C694000EBAC2A /* start_icon-logged-in@2x.png */; };
 		15F31E6516A6BCD2006EDBC8 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */; };
 		15F31E6716A6BCD6006EDBC8 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB516A59A4100F9F663 /* WMTermsViewController.m */; };
+		15F31E6B16A6D389006EDBC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F31E6A16A6D389006EDBC8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15F31E6C16A6D6FD006EDBC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F31E6A16A6D389006EDBC8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -836,6 +838,8 @@
 		15DBF5DB169C664500EBAC2A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		15DBF5DD169C694000EBAC2A /* start_icon-logged-in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon-logged-in.png"; sourceTree = "<group>"; };
 		15DBF5DE169C694000EBAC2A /* start_icon-logged-in@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon-logged-in@2x.png"; sourceTree = "<group>"; };
+		15F31E6916A6D389006EDBC8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		15F31E6A16A6D389006EDBC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -1560,6 +1564,15 @@
 			path = Credits;
 			sourceTree = "<group>";
 		};
+		15F31E6816A6D389006EDBC8 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				15F31E6916A6D389006EDBC8 /* Reachability.h */,
+				15F31E6A16A6D389006EDBC8 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		9890C536168F337900AD7C07 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1582,6 +1595,7 @@
 				037C07751680C8A700685378 /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				0360BB3B169DC26800E04026 /* AirshipConfig.plist */,
+				15F31E6816A6D389006EDBC8 /* Reachability */,
 				0360B9BA169DC16A00E04026 /* Airship */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -2848,6 +2862,7 @@
 				980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */,
 				15F31E6516A6BCD2006EDBC8 /* WMAcceptTermsViewController.m in Sources */,
 				15F31E6716A6BCD6006EDBC8 /* WMTermsViewController.m in Sources */,
+				15F31E6C16A6D6FD006EDBC8 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2944,6 +2959,7 @@
 				980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */,
 				034FACB616A59A4100F9F663 /* WMTermsViewController.m in Sources */,
 				034FACBA16A59BEF00F9F663 /* WMAcceptTermsViewController.m in Sources */,
+				15F31E6B16A6D389006EDBC8 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3221,8 +3237,8 @@
 		989927881649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -3239,8 +3255,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "51F6B035-54C7-46C0-B382-84917CE5AA3A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "51F6B035-54C7-46C0-B382-84917CE5AA3A";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

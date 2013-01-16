@@ -488,6 +488,17 @@
                                     <action selector="pressedInterceptButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="b7p-tu-h7G"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" id="bIm-mU-uxi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="XJy-o9-GcQ">
+                                        <rect key="frame" x="142" y="211" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -496,6 +507,7 @@
                         <outlet property="declineButton" destination="4Mj-cx-3Nl" id="Oi1-s2-t9I"/>
                         <outlet property="interceptButton" destination="z0T-Bh-jBK" id="1Xv-5S-g2x"/>
                         <outlet property="linkTextView" destination="zHV-jg-kre" id="Swr-9z-yd7"/>
+                        <outlet property="loadingWheel" destination="bIm-mU-uxi" id="Ai0-pA-eR3"/>
                         <outlet property="textLabel" destination="igZ-Pi-1XX" id="ALu-UG-A3p"/>
                         <outlet property="titleLabel" destination="rQL-7d-pve" id="GXp-ca-i3f"/>
                         <outlet property="view" destination="jhH-cy-CNA" id="gg7-gO-ZOS"/>

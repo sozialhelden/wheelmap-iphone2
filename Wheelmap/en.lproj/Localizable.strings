@@ -282,4 +282,11 @@
 "LoadingWheelText" = "Reloading data";
 "SaveNodeFailed" = "Data could not be saved.";
 "FetchNodesFails" = "The data could not be updated.";
+"TermsText" = "Hoppla, Wheelmap.org hat neue Nutzungsbestimmungen. Damit Du als eingeloggter Benutzer neue Orte hinzufügen, Bilder zu Orten hochladen und Hinweise schreiben kannst, musst Du die Nutzungsbestimmungen akzeptieren (Translation needed).";
+"TermsAcceptButton" = "Accept";
+"TermsDeniedButton" = "Deny";
+"TermsDeniedText" = "Schade! Du hast die Nutzungsbestimmungen nicht akzeptiert und kannst die Wheelmap-App deshalb nur eingeschränkt nutzen. Falls Du es Dir anders überlegst, kannst Du die Nutzungsbestimmungen beim nächsten Login akzeptieren (Translation needed).";
 "TermsTitle" = "Terms";
+"NoResources" = "No resources found. Please check the internet connection and please re-start the app!";
+"TermsCouldNotUpdate" = "User information could not be updated. Please try it again!";
+

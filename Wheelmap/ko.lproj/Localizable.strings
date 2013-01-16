@@ -279,3 +279,11 @@
 "ConfirmImageUpload" = "선택하신 사진을 업로드합니다. 괜찮습니까?";
 "PleaseSetMarker" = "위치를 지정해 주세요.";
 "NoPOIsFound" = "어떠한 접근성 정보도 찾지 못했습니다.";
+"FetchNodesFails" = "접근성 정보를 업데이트 하지 못했습니다.";
+"TermsText" = "Wheelmap.org 사용에 관한 규약이 갱신 되었습니다. 새로운 접근성 정보를 갱신하거나 사진을 업로드하기 위해서 새로운 규약에 동의해 주세요!";
+"TermsAcceptButton" = "동의";
+"TermsDeniedButton" = "거부";
+"TermsDeniedText" = "새로운 이용규약에 동의하지 않으시면 앱의 이용이 일정 부분 제한 됩니다. 다음 로그인시에 다시 한번 이용 규약을 확인 할 수 있습니다.";
+"TermsTitle" = "이용규약";
+"NoResources" = "리소스를 찾을 수 없습니다. 인터넷 연결을 확인 해 주세요!";
+"TermsCouldNotUpdate" = "사용자 정보를 갱신 할 수 없습니다. 다시 한번 시도 해 주세요!";

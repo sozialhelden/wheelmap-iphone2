@@ -18,6 +18,7 @@
 #import "Category.h"
 #import "Tile.h"
 #import "WMDataParser.h"
+#import "Reachability.h"
 
 
 #define WMSearchRadius 0.004
@@ -55,11 +56,14 @@
     NSString *appApiKey;
     NSManagedObjectContext *_temporaryMOC;
     NSUInteger numRunningOperations;
+    
+    BOOL assetAvaialbleOnLocalDevice;
 }
 
 - (BOOL)isInternetConnectionAvailable
 {
-    return [[WMWheelmapAPI sharedInstance] networkReachabilityStatus] != AFNetworkReachabilityStatusNotReachable;
+    
+    return [[Reachability reachabilityForInternetConnection] isReachable];
 }
 
 
@@ -228,6 +232,7 @@
 - (void) didReceiveAuthenticationData:(NSDictionary*)user forAccount:(NSString*)account
 {
     NSString *userToken = user[@"api_key"];
+    
     if (WMLogDataManager) NSLog(@"received user token %@", userToken);
     
     if (userToken) {
@@ -240,9 +245,18 @@
             // now that we have saved a token, we can delete legacy keychain data
             [self.keychainWrapper deleteLegacyAccountData];
             // save last login email into the userdefault (this should be improved..)
-            
             NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
             [userDefault setObject:[self currentUserName] forKey:@"WheelmapLastUserName"];
+            
+            BOOL termsAccepted = [user[@"terms_accepted"] boolValue];
+            if (termsAccepted) {
+                [self userDidAcceptTerms];  // save to local device
+            } else {
+                // remove terms key if necessary
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:[self currentUserTermsKey]])
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self currentUserTermsKey]];
+            }
+            
         }
         
         if ([self.delegate respondsToSelector:@selector(dataManagerDidAuthenticateUser:)]) {
@@ -253,6 +267,34 @@
         NSError *error = [NSError errorWithDomain:WMDataManagerErrorDomain code:WMDataManagerInvalidUserKeyError userInfo:nil];
         [self.delegate dataManager:self userAuthenticationFailedWithError:error];
     }
+}
+
+- (void)updateTermsAccepted:(BOOL)accepted
+{
+    NSString *value = accepted ? @"true" : @"false";
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:@"user/accept_terms"
+                                             apiKey:[self apiKey]
+                                         parameters:@{@"accepted": value}
+                                               eTag:nil
+                                             method:@"POST"
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                if ([self.delegate respondsToSelector:@selector(dataManager:updateTermsAcceptedFailedWithError:)]) {
+                                                    [self.delegate dataManager:self updateTermsAcceptedFailedWithError:error];
+                                                }
+                                                [self decrementRunningOperations];
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                if ([self.delegate respondsToSelector:@selector(dataManagerDidUpdateTermsAccepted:)]) {
+                                                    [self.delegate dataManagerDidUpdateTermsAccepted:self];
+                                                }
+                                                [self decrementRunningOperations];
+                                            }
+                                   startImmediately:YES
+     ];
+    
+    [self incrementRunningOperations];
+
 }
 
 - (BOOL) userIsAuthenticated
@@ -725,13 +767,7 @@ static BOOL assetSyncInProgress = NO;
 
 - (void) syncResources
 {
-    if (![self isInternetConnectionAvailable]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
-        
-        [alert show];
-        return;
-    }
-    
+   
     if (WMLogDataManager) NSLog(@"syncResources");
     if (WMLogDataManager>1) {
         NSLog(@"... num categories: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
@@ -751,6 +787,13 @@ static BOOL assetSyncInProgress = NO;
     
     syncErrors = nil;
     
+    assetAvaialbleOnLocalDevice = YES;
+    
+    // check cached categories.
+    if (!self.categories || self.categories.count == 0) {
+        assetAvaialbleOnLocalDevice = NO;
+    }
+    
     // check if cached assets are available on disk (could have been purged by the system)
     [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
         if (nodeType.iconPath && ![[NSFileManager defaultManager] fileExistsAtPath:nodeType.iconPath]) {
@@ -758,6 +801,7 @@ static BOOL assetSyncInProgress = NO;
             
             // if any file is missing, reset eTag and modified date to force reload of assets
             [self setETag:nil forEntity:@"Asset"];
+            assetAvaialbleOnLocalDevice = NO;
             
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like 'icons'"];
             Asset *icon = [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:predicate] lastObject];
@@ -766,6 +810,16 @@ static BOOL assetSyncInProgress = NO;
             *stop = YES;
         }
     }];
+    
+    //
+    // no asset on local device available and no internet connection -> we can not sync resources.
+    if (!assetAvaialbleOnLocalDevice && ![self isInternetConnectionAvailable]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"NoResources", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        
+        [alert show];
+        return;
+    }
+    
     
     // make string consistent with v1.0 --> syncing resources over backend is a new feature in the version 2.0
     // check if the locale setting is changed
@@ -1182,6 +1236,10 @@ static BOOL assetSyncInProgress = NO;
 
 - (void)fetchTotalNodeCount
 {
+    
+    if (![self isInternetConnectionAvailable])
+        return;
+    
     //
     // request total node counts
     //

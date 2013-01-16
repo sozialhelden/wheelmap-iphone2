@@ -280,3 +280,11 @@
 "ConfirmImageUpload" = "この写真をアップロードしてもいいですか？";
 "PleaseSetMarker" = "この場所の位置がわかりません．";
 "NoPOIsFound" = "バリアフリー情報が見つかりませんでした．";
+"FetchNodesFails" = "情報の更新に失敗しました．";
+"TermsText" = "Hoppla, Wheelmap.org hat neue Nutzungsbestimmungen. Damit Du als eingeloggter Benutzer neue Orte hinzufügen, Bilder zu Orten hochladen und Hinweise schreiben kannst, musst Du die Nutzungsbestimmungen akzeptieren (Translation needed).";
+"TermsAcceptButton" = "同意";
+"TermsDeniedButton" = "拒否";
+"TermsDeniedText" = "Schade! Du hast die Nutzungsbestimmungen nicht akzeptiert und kannst die Wheelmap-App deshalb nur eingeschränkt nutzen. Falls Du es Dir anders überlegst, kannst Du die Nutzungsbestimmungen beim nächsten Login akzeptieren (Translation needed).";
+"TermsTitle" = "利用規約";
+"NoResources" = "リソースが見つかりませんでした．インターネットの状態を確認してください．";
+"TermsCouldNotUpdate" = "ユーザに関する情報の更新に失敗しました．もう一度試してください．";

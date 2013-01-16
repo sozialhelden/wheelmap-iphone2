@@ -7,8 +7,6 @@
 //
 
 #import "WMAcceptTermsViewController.h"
-
-#import "WMDataManager.h"
 #import "WMTermsViewController.h"
 
 @interface WMAcceptTermsViewController ()
@@ -33,6 +31,7 @@
     [super viewDidLoad];
     
     dataManager = [[WMDataManager alloc] init];
+    dataManager.delegate = self;
     
     self.titleLabel.text = NSLocalizedString(@"TermsTitle", nil);
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -68,9 +67,25 @@
 
 -(IBAction)pressedAcceptButton:(id)sender {
     
+    [dataManager updateTermsAccepted:YES];
+    self.loadingWheel.hidden = NO;
+}
+
+-(void)dataManagerDidUpdateTermsAccepted:(WMDataManager *)aDataManager
+{
+    self.loadingWheel.hidden = YES;
     [dataManager userDidAcceptTerms];
-    
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)dataManager:(WMDataManager *)dataManager updateTermsAcceptedFailedWithError:(NSError *)error
+{
+    self.loadingWheel.hidden = YES;
+    NSLog(@"TermsAccepted Could Not Updated: %@", error);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"TermsCouldNotUpdate", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    
+    [alert show];
+    
 }
 
 -(IBAction)pressedDeclineButton:(id)sender {

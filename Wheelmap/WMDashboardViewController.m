@@ -118,8 +118,11 @@
     }
     
     // revert search
-    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    [navCtrl pressedCurrentLocationButton:nil];
+    if ([dataManager isInternetConnectionAvailable]) {
+        NSLog(@"InternetConnection is available");
+        WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+        [navCtrl pressedCurrentLocationButton:nil];
+    }
 }
 
 
