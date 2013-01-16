@@ -11,7 +11,7 @@
 
 @interface WMAcceptTermsViewController ()
 {
-    WMDataManager* dataManager;
+    WMDataManager* _dataManager;
 }
 @end
 
@@ -30,8 +30,8 @@
 {
     [super viewDidLoad];
     
-    dataManager = [[WMDataManager alloc] init];
-    dataManager.delegate = self;
+    _dataManager = [[WMDataManager alloc] init];
+    _dataManager.delegate = self;
     
     self.titleLabel.text = NSLocalizedString(@"TermsTitle", nil);
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -67,15 +67,23 @@
 
 -(IBAction)pressedAcceptButton:(id)sender {
     
-    [dataManager updateTermsAccepted:YES];
+    [_dataManager updateTermsAccepted:YES];
     self.loadingWheel.hidden = NO;
 }
 
--(void)dataManagerDidUpdateTermsAccepted:(WMDataManager *)aDataManager
+- (void) dataManagerDidUpdateTermsAccepted:(WMDataManager*)dataManager withValue:(BOOL)accepted
 {
     self.loadingWheel.hidden = YES;
-    [dataManager userDidAcceptTerms];
-    [self dismissModalViewControllerAnimated:YES];
+    if (accepted) {
+        [_dataManager userDidAcceptTerms];
+        [self dismissModalViewControllerAnimated:YES];
+    } else {
+        [_dataManager userDidNotAcceptTerms];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"TermsDeniedText", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        
+        [alert show];
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 -(void)dataManager:(WMDataManager *)dataManager updateTermsAcceptedFailedWithError:(NSError *)error
@@ -83,20 +91,18 @@
     self.loadingWheel.hidden = YES;
     NSLog(@"TermsAccepted Could Not Updated: %@", error);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"TermsCouldNotUpdate", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    
+
     [alert show];
     
+    [_dataManager removeUserAuthentication];
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(IBAction)pressedDeclineButton:(id)sender {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"TermsDeniedText", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    
-    [alert show];
-    
-    [dataManager removeUserAuthentication];
-    
-    [self dismissModalViewControllerAnimated:YES];
+    [_dataManager updateTermsAccepted:NO];
+    self.loadingWheel.hidden = NO;
 }
 
 -(IBAction)pressedInterceptButton:(id)sender {

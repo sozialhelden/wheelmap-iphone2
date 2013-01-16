@@ -197,7 +197,7 @@
         NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
         appApiKey = config[@"appAPIKey"];
     }
-    
+
     return appApiKey;
 }
 
@@ -273,9 +273,11 @@
 {
     NSString *value = accepted ? @"true" : @"false";
     
+    NSLog(@"ACCEPTED VALUE = %@", value);
+    
     [[WMWheelmapAPI sharedInstance] requestResource:@"user/accept_terms"
                                              apiKey:[self apiKey]
-                                         parameters:@{@"accepted": value}
+                                         parameters:@{@"terms_accepted": value}
                                                eTag:nil
                                              method:@"POST"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -285,8 +287,16 @@
                                                 [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                if ([self.delegate respondsToSelector:@selector(dataManagerDidUpdateTermsAccepted:)]) {
-                                                    [self.delegate dataManagerDidUpdateTermsAccepted:self];
+                                                NSLog(@"JSON: %@", JSON);
+
+                                                id user = JSON[@"user"];
+                                                id termsAccepted = user[@"terms_accepted"];
+                                                BOOL termsAcc = [termsAccepted boolValue];
+                                                NSLog(@"Request: %@", request.URL.absoluteString);
+                                                NSLog(@"JSON ACCEPTED: %@ %c",termsAccepted, termsAcc);
+
+                                                if ([self.delegate respondsToSelector:@selector(dataManagerDidUpdateTermsAccepted:withValue:)]) {
+                                                    [self.delegate dataManagerDidUpdateTermsAccepted:self withValue:termsAcc];
                                                 }
                                                 [self decrementRunningOperations];
                                             }
@@ -326,6 +336,12 @@
 - (void)userDidAcceptTerms {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:@"YES" forKey:[self currentUserTermsKey]];
+    [defaults synchronize];
+}
+
+- (void)userDidNotAcceptTerms {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:[self currentUserTermsKey]];
     [defaults synchronize];
 }
 

@@ -20,7 +20,7 @@
 - (void) dataManagerDidAuthenticateUser:(WMDataManager*)dataManager;
 - (void) dataManager:(WMDataManager*)dataManager userAuthenticationFailedWithError:(NSError*)error;
 
-- (void) dataManagerDidUpdateTermsAccepted:(WMDataManager*)dataManager;
+- (void) dataManagerDidUpdateTermsAccepted:(WMDataManager*)dataManager withValue:(BOOL)accepted;
 - (void) dataManager:(WMDataManager *)dataManager updateTermsAcceptedFailedWithError:(NSError *)error;
 
 - (void) dataManager:(WMDataManager*)dataManager didReceiveNodes:(NSArray*)nodes;

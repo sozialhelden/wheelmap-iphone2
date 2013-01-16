@@ -68,11 +68,11 @@
 {
     
     NSMutableURLRequest *request = [self requestWithMethod:method?:@"GET" path:resource parameters:parameters];
-    
+        
     if (apiKey) [request setValue:apiKey forHTTPHeaderField:@"X-API-KEY"];
-    
+        
     if (eTag) [request setValue:eTag forHTTPHeaderField:@"If-None-Match"];
-    
+        
     // create request operation
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
     

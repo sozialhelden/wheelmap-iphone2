@@ -34,6 +34,7 @@
 - (BOOL) userIsAuthenticated;
 - (BOOL)areUserTermsAccepted;
 - (void)userDidAcceptTerms;
+- (void)userDidNotAcceptTerms;
 
 - (NSDictionary*) legacyUserCredentials;
 - (NSString*)currentUserName;
