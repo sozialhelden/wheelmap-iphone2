@@ -296,3 +296,4 @@
 "TermsAcceptButton" = "Akzeptieren";
 "TermsDeniedButton" = "Ablehnen";
 "TermsDeniedText" = "Schade! Du hast die Nutzungsbestimmungen nicht akzeptiert und kannst die Wheelmap-App deshalb nur eingeschränkt nutzen. Falls Du es Dir anders überlegst, kannst Du die Nutzungsbestimmungen beim nächsten Login akzeptieren.";
+"TermsTitle" = "Nutzungsbestimmungen";

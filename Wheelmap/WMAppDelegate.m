@@ -116,4 +116,9 @@
     [[UAPush shared] registerDeviceToken:deviceToken];
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSLog(@"URL = %@", url.absoluteString);
+    return YES;
+}
+
 @end

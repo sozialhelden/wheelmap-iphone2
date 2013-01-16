@@ -31,6 +31,9 @@
 - (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
 - (void) removeUserAuthentication;
 - (BOOL) userIsAuthenticated;
+- (BOOL)areUserTermsAccepted;
+- (void)userDidAcceptTerms;
+
 - (NSDictionary*) legacyUserCredentials;
 - (NSString*)currentUserName;
 

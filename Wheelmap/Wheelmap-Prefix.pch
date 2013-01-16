@@ -34,9 +34,12 @@
 // Staging
 #define WMBaseURL @"http://staging.wheelmap.org/api"
 #define WMRegistrationURL @"http://staging.wheelmap.org/en/oauth/register_osm"
+#define WMTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/terms/"
+
 // Live
 //#define WMBaseURL @"http://wheelmap.org/api"
 //#define WMRegistrationURL @"http://wheelmap.org/en/oauth/register_osm"
+//#define WMTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/terms/"
 
 // enums
 typedef enum {
