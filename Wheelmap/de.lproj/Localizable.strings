@@ -1,11 +1,3 @@
-/* 
-  Localizable.strings
-  Wheelmap
-
-  Created by npng on 12/3/12.
-  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
-*/
-
 "Loading..." = "Lädt...";
 "Connection Error" = "Verbindungsfehler";
 "Search Temporarily Unavailable" = "Die Suche ist leider vorübergehend nicht verfügbar";
@@ -19,11 +11,11 @@
 "Wheelchair Settings" = "Nach Rollstuhlgerechtigkeit filtern";
 "Category Settings" = "Nach Kategorie filtern";
 "EditPOIViewInfoLabel" = "Info";
-"Signed In As" = "Eingeloggt als";
+"Signed In As %@" = "Eingeloggt als %@";
 "Not Logged In" = "Nicht eingeloggt";
 "Sign Out" = "Ausloggen";
 "About Wheelmap" = "Über Wheelmap";
-"Credits" = "Credits";
+"Credits:" = "Credits:";
 "Map Credits" = "Kartendaten: OpenStreetMap";
 "Icons Credits" = "Icons: Yusuke Kamiyamane";
 "Dev Credits" = "iPhone Development: Dorian Roy";
@@ -34,7 +26,7 @@
 "Places near %@" = "Orte nahe %@";
 "Places in map segment" = "Orte im Kartenausschnitt";
 "OK" = "OK";
-"Cancel" = "Abbrechen";
+"Cancel" = "Abbr.";
 "BackButton" = "Zurück";
 "Unknown Place" = "Unbekannter Ort";
 "Loading Places" = "Suche Orte...";
@@ -97,9 +89,9 @@
 "WheelchairAccessLimited" = "Eingeschränkt rollstuhlgerecht";
 "WheelchairAccessNo" = "Nicht rollstuhlgerecht";
 "WheelchairAccessUnknown" = "Nicht bekannt";
-"WheelchairAccessContentYes" = "● Eingang: stufenlos erreichbar\n● Räume: Alle stufenlos erreichbar\n● Falls Toiletten vorhanden: Auch Roll-stuhltoilette vorhanden (deutlich breiter)";
-"WheelchairAccessContentLimited" = "● Eingang: maximal eine Stufe, nicht höher als 7 cm (etwa eine Handbreit)\n● Wichtigste Räume stufenlos erreichbar\n● Toiletten: egal";
-"WheelchairAccessContentNo" = "● Eingang: höher als 7 cm (etwa eine Handbreit)\n● Wichtigste Räume nicht stufenlos erreichbar";
+"WheelchairAccessContentYes" = "● Eingang: stufenlos erreichbar\\n● Räume: Alle stufenlos erreichbar\\n● Falls Toiletten vorhanden: Auch Roll-stuhltoilette vorhanden (deutlich breiter)";
+"WheelchairAccessContentLimited" = "● Eingang: maximal eine Stufe, nicht höher als 7 cm (etwa eine Handbreit)\\n● Wichtigste Räume stufenlos erreichbar\\n● Toiletten: egal";
+"WheelchairAccessContentNo" = "● Eingang: höher als 7 cm (etwa eine Handbreit)\\n● Wichtigste Räume nicht stufenlos erreichbar";
 "category_accommodation" = "Unterkunft";
 "category_government" = "Behörden & Botschaften";
 "category_money_post" = "Bank & Post";
@@ -220,7 +212,7 @@
 "email" = "E-Mail";
 "sms" = "SMS";
 "DetailsViewHeadline" = "Detailansicht";
-"DetailsView4ButtonViewShareLabel" = "Teilen";
+"DetailsView4ButtonViewCallLabel" = "Anrufen";
 "DetailsView4ButtonViewInfoLabel" = "Hinweis";
 "DetailsView4ButtonViewRouteLabel" = "Route";
 "DetailsViewAskFriendsButtonLabel" = "Hilf mit: Frag deine Freunde, ob dieser Ort rollstuhlgerecht ist";
@@ -240,14 +232,13 @@
 "DashboardMap" = "KARTE";
 "DashboardCategories" = "KATEGORIEN";
 "DashboardHelp" = "MITHELFEN";
-"TitleHelp" = "Mithelfen";
 "SearchForPlace" = "Nach Ort Suchen";
-"Places" = "markierte Orte";
+"Places" = "Orte";
 "TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
 "BottomLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.";
 "Ready" = "Fertig";
 "RegisterNew" = "Neu registrieren";
-"UsernamePlaceholder" = "Benutzername";
+"UsernamePlaceholder" = "Email";
 "MapHybrid" = "Hybrid";
 "MapStandard" = "Standard";
 "MapSatellite" = "Satellite";
@@ -257,45 +248,17 @@
 "NoWebsite" = "Keine Website verfügbar";
 "NoPhone" = "Keine Telefonnummer verfügbar";
 "WheelAccessStatusViewHeadline" = "Status";
-"NavBarEditButton" = "Bearbeiten";
-"NavBarSaveButton" = "Speichern";
-
-
-"NavBarTitleCategory" = "Kategorien";
-"NavBarTitleWheelChairStatus" = "Rohlstuhlgerecht";
-"PhotoUuploadSuccess" = "Das Foto ist erfolgreich hochgeladen.";
-"PhotoUuploadFailed" = "Das Foto konnte nicht hochgeladen werden. Bitte versuchen Sie es noch einmal.";
-"FetchingPhotoURLFailed" = "Die Fotos von diesem Ort konnte nicht heruntergeladen werden.";
-"WheelchairStatusChangeFailed" = "Rohlstuhlgerechtigkeit konnte nicht aktualisiert werden. Bitte versuchen Sie es noch einmal.";
-"NavBarTitleSharing" = "Teilen";
-"NavBarTitleComment" = "Kommentar";
-"NavBarTitleEdit" = "Bearbeiten";
-"NavBarTitleSetMarker" = "Markierung setzen";
-"SearchResult" = "Suchergebnis";
-"NavBarTitleDetail" = "Detailansicht";
-
-"FacebookSuccess" = "Erfolgreich geteilt";
-"TweetSuccess" = "Erfolgreich geteilt";
-"MailSubject" = "";
-"MailBody" = "";
-"MailSendSuccess" = "Die Mail wurde erfolgreich geschickt.";
-"MailSendFailed" = "Die Mail konnte nicht geschickt werden.";
-"SMSSendSuccess" = "SMS wurde erfolgreich geschickt.";
-"SMSSendFailed" = "SMS kontte nicht geschickt werden.";
-"EditPOIViewSetMarkerButtonDisabled" = "unverfügbar";
-"NavBarTitleSetNodeType" = "Ortstyp";
-"EditPOIViewNodeTypeLabel" = "Ortstyp";
-"SetMarkerInstruction" = "Setze den blauen Marker an die genaue Position des Ortes";
-"ConfirmImageUpload" = "Wollen Sie das Foto hochladen?";
-"PleaseSetMarker" = "Keine Position dieses Ortes ist gegeben!";
-"NoPOIsFound" = "Keine Orte gefunden";
+"NavBarEditButton" = "Bearb.";
+"NavBarSaveButton" = "Speich.";
+"TitleHelp" = "Mithelfen";
 "LoadingWheelText" = "Die Daten werden aktualisiert";
 "SaveNodeFailed" = "Das Speichern der Daten ist leider fehlgeschlagen.";
 "FetchNodesFails" = "Die Daten konnten nicht aktualisiert werden.";
-"TermsText" = "Hoppla, Wheelmap.org hat neue Nutzungsbestimmungen. Damit Du als eingeloggter Benutzer neue Orte hinzufügen, Bilder zu Orten hochladen und Hinweise schreiben kannst, musst Du die Nutzungsbestimmungen akzeptieren.";
+"NoPOIsFound" = "Keine Orte gefunden";
+"TermsText" = "Hoppla, Wheelmap.org hat neue Nutzungsbestimmungen. Bitte akzeptiere sie damit Du als eingeloggter Benutzer neue Orte hinzufügen, Bilder zu Orten hochladen und Hinweise schreiben kannst. ";
 "TermsAcceptButton" = "Akzeptieren";
 "TermsDeniedButton" = "Ablehnen";
-"TermsDeniedText" = "Schade! Du hast die Nutzungsbestimmungen nicht akzeptiert und kannst die Wheelmap-App deshalb nur eingeschränkt nutzen. Falls Du es Dir anders überlegst, kannst Du die Nutzungsbestimmungen beim nächsten Login akzeptieren.";
+"TermsDeniedText" = "Du hast die Nutzungsbestimmungen nicht akzeptiert und kannst deshalb einige Funktionalitäten der App nicht nutzen. Schade! Falls Du es Dir anders überlegst kannst Du den Login neu starten und die Nutzungsbestimmungen akzeptieren.";
 "TermsTitle" = "Nutzungsbestimmungen";
-"NoResources" = "Keine Resources vorhanden. Überprüfen Sie bitte die Internetverbinding und starten Sie die App neu.";
 "TermsCouldNotUpdate" = "Benutzerinformation konnte nicht aktualisiert werden. Bitte versuchen Sie es später noch einmal.";
+"NoResources" = "Keine Resources vorhanden. Überprüfen Sie bitte die Internetverbinding und starten Sie die App neu.";
