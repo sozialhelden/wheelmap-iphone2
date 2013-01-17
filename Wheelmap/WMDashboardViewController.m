@@ -144,9 +144,9 @@
 -(IBAction)pressedNodeListButton:(id)sender
 {
     // set the filters here
-    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    [navCtrl clearWheelChairFilterStatus];
-    [navCtrl clearCategoryFilterStatus];
+    //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    //[navCtrl clearWheelChairFilterStatus];
+    //[navCtrl clearCategoryFilterStatus];
     WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     vc.useCase = kWMNodeListViewControllerUseCaseNormal;
     [self pressedSearchCancelButton:searchCancelButton];
@@ -159,9 +159,9 @@
 -(IBAction)pressedMapButton:(id)sender
 {
     // set the filters here
-    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    [navCtrl clearWheelChairFilterStatus];
-    [navCtrl clearCategoryFilterStatus];
+    //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    //[navCtrl clearWheelChairFilterStatus];
+    //[navCtrl clearCategoryFilterStatus];
     
     WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     WMMapViewController* mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
@@ -175,17 +175,19 @@
 -(IBAction)pressedContributeButton:(id)sender
 {
     // set the filters here
-    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    [navCtrl clearWheelChairFilterStatus];
-    [navCtrl clearCategoryFilterStatus];
-    for (NSString* key in [navCtrl.wheelChairFilterStatus allKeys]) {
-        if ([key isEqualToString:@"unknown"]) {
-            [navCtrl.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
-        } else {
-            [navCtrl.wheelChairFilterStatus setObject:[NSNumber numberWithBool:NO] forKey:key];
-        }
-    }
+    //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
+    //[navCtrl clearWheelChairFilterStatus];
+    //[navCtrl clearCategoryFilterStatus];
+    //for (NSString* key in [navCtrl.wheelChairFilterStatus allKeys]) {
+    //    if ([key isEqualToString:@"unknown"]) {
+    //        [navCtrl.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
+    //    } else {
+    //        [navCtrl.wheelChairFilterStatus setObject:[NSNumber numberWithBool:NO] forKey:key];
+    //    }
+    //}
     
+    //
+    // we filter unknown nodes not using global filter setting!
     
     WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     nodeListVC.useCase = kWMNodeListViewControllerUseCaseContribute;

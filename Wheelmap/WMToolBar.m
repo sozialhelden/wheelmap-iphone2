@@ -230,4 +230,13 @@
 
 }
 
+- (void)clearWheelChairStatusFilterButton
+{
+    self.wheelChairStatusFilterButton.selectedGreenDot = YES;
+    self.wheelChairStatusFilterButton.selectedYellowDot = YES;
+    self.wheelChairStatusFilterButton.selectedRedDot = YES;
+    self.wheelChairStatusFilterButton.selectedNoneDot = YES;
+
+}
+
 @end
