@@ -28,7 +28,7 @@ WMNodeListDelegate, CLLocationManagerDelegate,
 WMNavigationBarDelegate, WMToolBarDelegate,
 WMWheelChairStatusFilterPopoverViewDelegate,
 WMCategoryFilterPopoverViewDelegate,
-UINavigationControllerDelegate>
+UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;

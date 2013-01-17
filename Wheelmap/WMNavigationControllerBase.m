@@ -34,6 +34,8 @@
     
     UIView* loadingWheelContainer;  // this view will show loading whell on the center and cover child view controllers so that we avoid interactions interuptting data loading
     UIActivityIndicatorView* loadingWheel;
+    
+    BOOL fetchNodesAlertShowing;
 }
 
 #pragma mark - Lifecycle
@@ -192,8 +194,11 @@
 
 -(void)dataManager:(WMDataManager *)dataManager fetchNodesFailedWithError:(NSError *)error
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alert show];
+    if (!fetchNodesAlertShowing) {
+        fetchNodesAlertShowing = YES;
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+    }
     
     NSLog(@"error %@", error.localizedDescription);
     [self refreshNodeList];
@@ -219,8 +224,11 @@
 {
     NSLog(@"syncResourcesFailedWithError");
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alert show];
+    if (!fetchNodesAlertShowing) {
+        fetchNodesAlertShowing = YES;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+    }
     
     if ([self.topViewController isKindOfClass:[WMDashboardViewController class]]) {
         WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
@@ -689,9 +697,12 @@
 -(void)searchStringIsGiven:(NSString *)query
 {
     if (![dataManager isInternetConnectionAvailable]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
-        
-        [alert show];
+        if (!fetchNodesAlertShowing) {
+            fetchNodesAlertShowing = YES;
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+            
+            [alert show];
+        }
         [self.customToolBar deselectSearchButton];
         return;
     }
@@ -1007,8 +1018,11 @@
     WMLoginViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
     [self presentModalViewController:vc animated:YES];
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    fetchNodesAlertShowing = NO;
+}
+
+
 @end
-
-
-
 
