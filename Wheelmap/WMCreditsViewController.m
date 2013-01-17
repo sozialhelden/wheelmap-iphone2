@@ -49,6 +49,9 @@
     [self.scroller addSubview:license];
     
     self.scroller.contentSize = CGSizeMake(self.scroller.frame.size.width, license.leftBottomY+20);
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(donePressed:)];
+    [self.view addGestureRecognizer:tapGR];
 }
 
 - (void)didReceiveMemoryWarning

@@ -267,6 +267,8 @@
 {
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
+    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
+    
     for (Node* node in nodes) {
         NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
@@ -932,9 +934,12 @@
 
 -(void)clearWheelChairFilterStatus
 {
+    
     for (NSNumber* key in [self.wheelChairFilterStatus allKeys]) {
         [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
     }
+    
+    
 }
 
 #pragma mark -WMCategoryFilterPopoverView Delegate
@@ -954,6 +959,8 @@
     for (NSNumber* key in [self.categoryFilterStatus allKeys]) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
     }
+    
+    [self.customToolBar clearWheelChairStatusFilterButton];
 }
 
 #pragma mark - Loading Wheel Management

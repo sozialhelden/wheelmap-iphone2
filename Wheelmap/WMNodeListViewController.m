@@ -125,8 +125,19 @@
 
 - (void) loadNodes
 {
-    nodes = [self.dataSource filteredNodeList];
-    
+    if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        NSArray* unfilteredNodes = [self.dataSource nodeList];
+        NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
+       
+        for (Node* node in unfilteredNodes) {
+            if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
+                [newNodeList addObject:node];
+            }
+        }
+        nodes = newNodeList;
+    } else {
+        nodes = [self.dataSource filteredNodeList];
+    }
     [self sortNodesByDistance];
     
     [self.tableView reloadData];

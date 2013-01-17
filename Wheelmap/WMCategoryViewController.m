@@ -93,8 +93,8 @@
     
     // set the filters here
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    [navCtrl clearWheelChairFilterStatus];
-    [navCtrl clearCategoryFilterStatus];
+    //[navCtrl clearWheelChairFilterStatus];
+    //[navCtrl clearCategoryFilterStatus];
     for (NSNumber* key in [navCtrl.categoryFilterStatus allKeys]) {
         if ([key intValue] == [categoryID intValue]) {
             [navCtrl.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
