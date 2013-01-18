@@ -60,6 +60,12 @@
 
 - (BOOL)isInternetConnectionAvailable;
 
+- (void)saveNewFilterSettingsWithGreen:(BOOL)greenSelected yellow:(BOOL)yellowSelected red:(BOOL)redSelected none:(BOOL)noneSelected;
+- (BOOL)getGreenFilterStatus;
+- (BOOL)getYellowFilterStatus;
+- (BOOL)getRedFilterStatus;
+- (BOOL)getNoneFilterStatus;
+
 /* Returns a node in the temporary context. It serves only to pass node data to
  * updateNode: The context should not be saved. Throws an exception if 
  * useForTemporaryObjects is not set

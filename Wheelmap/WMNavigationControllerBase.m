@@ -131,6 +131,7 @@
     wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
     wheelChairFilterPopover.hidden = YES;
     wheelChairFilterPopover.delegate = self;
+    [wheelChairFilterPopover updateFilterButtons];
     [self.view addSubview:wheelChairFilterPopover];
     
     categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
