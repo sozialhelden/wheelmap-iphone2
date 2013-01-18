@@ -282,10 +282,11 @@
 "MailSendFailed" = "Die Mail konnte nicht versendet werden.";
 "SMSSendSuccess" = "SMS wurde erfolgreich versendet.";
 "SMSSendFailed" = "SMS konnte nicht versendet werden.";
-"EditPOIViewSetMarkerButtonDisabled" = "unverfügbar";
+"EditPOIViewSetMarkerButtonDisabled" = "nicht verfügbar";
 "NavBarTitleSetNodeType" = "Ortstyp";
 "EditPOIViewNodeTypeLabel" = "Ortstyp";
 "SetMarkerInstruction" = "Setze den blauen Marker an die genaue Position des Ortes";
 "ConfirmImageUpload" = "Wollen Sie das Foto hochladen?";
 "PleaseSetMarker" = "Keine Position dieses Ortes ist gegeben!";
-"NoSearchService" = "Suchfunktion unverfügbar";
+"NoSearchService" = "Suchfunktion nicht verfügbar";
+"DetailsView4ButtonViewShareLabel" = "Teilen";

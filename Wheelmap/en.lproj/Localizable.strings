@@ -289,4 +289,5 @@
 "ConfirmImageUpload" = "Do you really want to upload this picture?";
 "PleaseSetMarker" = "Please set the location of this place!";
 "NoSearchService" = "Search unavailable";
+"DetailsView4ButtonViewShareLabel" = "Share";
 "" = "";
