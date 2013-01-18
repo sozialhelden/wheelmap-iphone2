@@ -381,7 +381,7 @@
     {
         case NotReachable:
             
-            self.searchTextField.text = NSLocalizedString(@"NoSearchService", nil);
+            self.searchTextField.placeholder = NSLocalizedString(@"NoSearchService", nil);
             self.searchTextField.textColor = [UIColor grayColor];
             self.searchTextField.userInteractionEnabled = NO;
             self.searchTextFieldBg.alpha = 0.3;
@@ -393,7 +393,7 @@
             
         default:
 
-            self.searchTextField.text = NSLocalizedString(@"SearchForPlace", nil);
+            self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
             self.searchTextField.textColor = [UIColor lightGrayColor];
             self.searchTextField.userInteractionEnabled = YES;
             self.searchTextFieldBg.alpha = 1.0;
