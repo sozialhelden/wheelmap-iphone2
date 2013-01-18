@@ -121,7 +121,7 @@
     [alert show];
 }
 
-- (void)dataManagerDidAuthenticateUser:(WMDataManager *)dataManager
+- (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager
 {
     // TODO: handle success, dismiss view controller
     NSLog(@"Login success!");
