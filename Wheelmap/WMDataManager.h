@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 #import "SSZipArchive.h"
+#import "Reachability.h"
 
 @class Node;
 
@@ -59,6 +60,7 @@
 - (NSArray*) nodeTypes;
 
 - (BOOL)isInternetConnectionAvailable;
+- (Reachability*) internetReachble;
 
 /* Returns a node in the temporary context. It serves only to pass node data to
  * updateNode: The context should not be saved. Throws an exception if 

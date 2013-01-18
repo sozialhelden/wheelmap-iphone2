@@ -58,4 +58,8 @@ typedef enum {
 //-(id)initWithSize:(CGSize)size;
 -(void)showSearchBar;
 -(void)hideSearchBar;
+
+-(void)showRightButton:(WMNavigationBarRightButtonStyle)type;
+-(void)hideRightButton:(WMNavigationBarRightButtonStyle)type;
+
 @end

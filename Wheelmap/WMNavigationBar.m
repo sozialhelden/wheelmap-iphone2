@@ -7,6 +7,8 @@
 //
 
 #import "WMNavigationBar.h"
+#import "Reachability.h"
+#import "WMWheelmapAPI.h"
 
 @implementation WMNavigationBar
 @synthesize leftButtonStyle = _leftButtonStyle;
@@ -196,9 +198,16 @@
         searchBarTextField.returnKeyType = UIReturnKeySearch;
         [searchBarTextFieldBg addSubview:searchBarTextField];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+        
+        
     }
     
     return self;
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Button Handlers
@@ -333,6 +342,7 @@
                      completion:^(BOOL finished)
      {
          prevButton.hidden = YES;
+         [self networkStatusChanged:nil];
 
      }
      ];
@@ -438,6 +448,74 @@
     }
 }
 
+-(void)showRightButton:(WMNavigationBarRightButtonStyle)type
+{
+    UIView* targetButton;
+    
+    switch (type) {
+        case kWMNavigationBarRightButtonStyleContributeButton:
+            targetButton = contributeButton;
+            break;
+        case kWMNavigationBarRightButtonStyleEditButton:
+            targetButton = editButton;
+            break;
+        case kWMNavigationBarRightButtonStyleSaveButton:
+            targetButton = saveButton;
+            break;
+        default:
+            targetButton = noneButton;
+            break;
+    }
+    
+    targetButton.userInteractionEnabled = YES;
+    [UIView animateWithDuration:0.5 animations:^(void)
+     {
+         targetButton.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+
+         
+     }
+     ];
+
+    
+}
+-(void)hideRightButton:(WMNavigationBarRightButtonStyle)type
+{
+    UIView* targetButton;
+    
+    switch (type) {
+        case kWMNavigationBarRightButtonStyleContributeButton:
+            targetButton = contributeButton;
+            break;
+        case kWMNavigationBarRightButtonStyleEditButton:
+            targetButton = editButton;
+            break;
+        case kWMNavigationBarRightButtonStyleSaveButton:
+            targetButton = saveButton;
+            break;
+        default:
+            targetButton = noneButton;
+            break;
+    }
+    
+    
+    
+    [UIView animateWithDuration:0.5 animations:^(void)
+     {
+         targetButton.alpha = 0.3;
+     }
+                     completion:^(BOOL finished)
+     {
+         targetButton.userInteractionEnabled = NO;
+         
+         
+     }
+     ];
+
+}
+
 #pragma mark - UITextField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -453,6 +531,30 @@
     
     return YES;
 }
+
+#pragma mark - Network Status Changes
+-(void)networkStatusChanged:(NSNotification*)notice
+{
+    NetworkStatus networkStatus = [[[WMWheelmapAPI sharedInstance] internetReachable] currentReachabilityStatus];
+    
+    switch (networkStatus)
+    {
+        case NotReachable:
+            NSLog(@"INTERNET IS NOT AVAILABLE!");
+            [self hideRightButton:kWMNavigationBarRightButtonStyleContributeButton];
+            [self hideRightButton:kWMNavigationBarRightButtonStyleEditButton];
+            [self hideRightButton:kWMNavigationBarRightButtonStyleSaveButton];
+            break;
+            
+        default:
+            [self showRightButton:kWMNavigationBarRightButtonStyleContributeButton];
+            [self showRightButton:kWMNavigationBarRightButtonStyleEditButton];
+            [self showRightButton:kWMNavigationBarRightButtonStyleSaveButton];
+            
+            break;
+    }
+}
+
 
 
 @end

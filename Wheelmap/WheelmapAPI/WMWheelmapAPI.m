@@ -54,6 +54,11 @@
         [self setDefaultHeader:@"Install-ID" value:installId];
     };
     
+    // Reachability
+    
+    self.internetReachable =[Reachability reachabilityForInternetConnection];   // we start notifier only once
+    [self.internetReachable startNotifier];
+    
     return self;
 }
 

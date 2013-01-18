@@ -18,7 +18,6 @@
 #import "Category.h"
 #import "Tile.h"
 #import "WMDataParser.h"
-#import "Reachability.h"
 
 
 #define WMSearchRadius 0.004
@@ -62,10 +61,13 @@
 
 - (BOOL)isInternetConnectionAvailable
 {
-    
-    return [[Reachability reachabilityForInternetConnection] isReachable];
+    return [[[WMWheelmapAPI sharedInstance] internetReachable] isReachable];
 }
 
+- (Reachability*)internetReachble
+{
+    return [[WMWheelmapAPI sharedInstance] internetReachable];
+}
 
 #pragma mark - Operations Count
 
