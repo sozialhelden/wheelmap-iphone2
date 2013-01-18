@@ -109,7 +109,7 @@
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
     } else if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
         [self loadNodes];
-        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonCurrentLocation];
     } 
     else {

@@ -39,12 +39,12 @@
 
 - (NSString*) title
 {
-    return self.node.name ?: @"?";
+    return self.node.name ?: @" ";
 }
 
 - (NSString*) subtitle
 {
-    return self.node.node_type.localized_name ?: @"?";
+    return self.node.node_type.localized_name ?: @" ";
 }
 
 
