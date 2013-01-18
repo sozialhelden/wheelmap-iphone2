@@ -481,24 +481,24 @@
                                         <rect key="frame" x="142" y="211" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qqY-eS-Ycy">
-                                        <rect key="frame" x="222" y="276" width="78" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressedAcceptButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="hHQ-4e-0NJ"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qqY-eS-Ycy">
+                                <rect key="frame" x="227" y="270" width="78" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                <state key="normal" backgroundImage="buttons_btn.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedAcceptButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="hHQ-4e-0NJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -841,136 +841,6 @@
         <image name="start_logo.png" width="180" height="45"/>
         <image name="start_searchbar.png" width="280" height="40"/>
     </resources>
-    <classes>
-        <class className="WMAcceptTermsViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMAcceptTermsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pressedAcceptButton:"/>
-                <relationship kind="action" name="pressedDeclineButton:"/>
-                <relationship kind="action" name="pressedInterceptButton:"/>
-                <relationship kind="outlet" name="acceptButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="declineButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="interceptButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="linkTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="loadingWheel" candidateClass="UIView"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="WMButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMButton.h"/>
-        </class>
-        <class className="WMCategoryViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMCategoryViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WMCreditsViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMCreditsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="donePressed:"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="WMButton"/>
-                <relationship kind="outlet" name="scroller" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="WMLabel"/>
-            </relationships>
-        </class>
-        <class className="WMDashboardViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDashboardViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pressedCategoriesButton:"/>
-                <relationship kind="action" name="pressedContributeButton:"/>
-                <relationship kind="action" name="pressedLoginButton:"/>
-                <relationship kind="action" name="pressedMapButton:"/>
-                <relationship kind="action" name="pressedNodeListButton:"/>
-                <relationship kind="outlet" name="creditsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loadingWheel" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="numberOfPlacesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="searchTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="searchTextFieldBg" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="WMLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMLabel.h"/>
-        </class>
-        <class className="WMLoginViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMLoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="donePressed:"/>
-                <relationship kind="action" name="loginPressed:"/>
-                <relationship kind="action" name="registerPressed:"/>
-                <relationship kind="outlet" name="bottomTextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="contentScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="registerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topTextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="WMLogoutViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMLogoutViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pressedCancelButton:"/>
-                <relationship kind="action" name="pressedLogoutButton:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topTextLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="WMMapSettingsViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="segmentedControlButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hybridButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="satelliteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="standardButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="WMMapViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="toggleMapTypeChanged:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loadingWheel" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="mapInteractionInfoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="WMNavigationControllerBase" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNavigationControllerBase.h"/>
-        </class>
-        <class className="WMNodeListViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMNodeListViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="WMRegisterViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMRegisterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pressedCancelButton:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="WMTermsViewController" superclassName="WMViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMTermsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pressedCancelButton:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="WMViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
