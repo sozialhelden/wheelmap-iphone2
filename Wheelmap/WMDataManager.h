@@ -28,6 +28,7 @@
  */
 @property (nonatomic) BOOL useForTemporaryObjects;
 @property (nonatomic, readonly) BOOL syncInProgress;
+@property (nonatomic, strong) NSString *iconImageRootPath;
 
 - (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
 - (void) updateTermsAccepted:(BOOL)accepted;
@@ -47,7 +48,6 @@
                               query:(NSString*)query;
 
 - (void) syncResources;
-
 - (void) updateWheelchairStatusOfNode:(Node*)node;
 - (void) updateNode:(Node*)node;
 

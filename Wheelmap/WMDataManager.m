@@ -63,6 +63,20 @@
     BOOL assetAvaialbleOnLocalDevice;
 }
 
+-(id)init
+{
+    self = [super init];
+    
+    if (self) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *rootPath = [paths objectAtIndex:0];
+        self.iconImageRootPath = [NSString stringWithFormat:@"%@/icons/", rootPath];
+    }
+    
+    return self;
+}
+
+
 - (BOOL)isInternetConnectionAvailable
 {
     return [[[WMWheelmapAPI sharedInstance] internetReachable] isReachable];
@@ -832,6 +846,8 @@ static BOOL assetSyncInProgress = NO;
             *stop = YES;
         }
     }];
+    
+    NSLog(@"RE-SYNC RESOUCES!");
     
     //
     // no asset on local device available and no internet connection -> we can not sync resources.

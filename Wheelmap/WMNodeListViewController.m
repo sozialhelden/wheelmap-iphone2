@@ -13,6 +13,7 @@
 #import "WMNavigationControllerBase.h" 
 #import <CoreLocation/CoreLocation.h>
 #import "WMStringUtilities.h"
+#import "WMDataManager.h"
 
 
 @implementation WMNodeListViewController
@@ -23,6 +24,7 @@
     
     BOOL shouldShowNoResultIndicator;
 
+    WMDataManager *dataManager;
 }
 
 @synthesize dataSource, delegate;
@@ -42,6 +44,8 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
     self.tableView.scrollsToTop = YES;
+    
+    dataManager = [[WMDataManager alloc] init];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -229,7 +233,7 @@
     UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(2, 3, 20, 16)];
     icon.contentMode = UIViewContentModeScaleAspectFit;
     icon.backgroundColor = [UIColor clearColor];
-    icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];
+    icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",dataManager.iconImageRootPath, node.node_type.icon]];  // node.node_type.iconPath is sometimes null. this is a hot fix.
     [cell.iconImage addSubview:icon];
     
     // show name
