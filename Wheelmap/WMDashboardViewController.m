@@ -103,6 +103,8 @@
     self.loginButton.alpha = 0.0;
     
     isUIObjectsReadyToInteract = NO;
+    
+    [self showUIObjectsAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
