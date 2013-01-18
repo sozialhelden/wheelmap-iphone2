@@ -289,3 +289,4 @@
 "ConfirmImageUpload" = "この写真をアップロードしてもいいですか？";
 "PleaseSetMarker" = "この場所の位置がわかりません．";
 "" = "";
+"NoSearchService" = "検索できません";
