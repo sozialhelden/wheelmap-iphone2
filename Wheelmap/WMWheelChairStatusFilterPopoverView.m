@@ -7,13 +7,20 @@
 //
 
 #import "WMWheelChairStatusFilterPopoverView.h"
+#import "WMDataManager.h"
 
-@implementation WMWheelChairStatusFilterPopoverView
+@implementation WMWheelChairStatusFilterPopoverView {
+    
+    WMDataManager *dataManager;
+}
 
 - (id)initWithOrigin:(CGPoint)origin
 {
     self = [super initWithFrame:CGRectMake(origin.x, origin.y, 201, 55)];
     if (self) {
+        
+        dataManager = [[WMDataManager alloc] init];
+        
         // Initialization code
         buttonGreen = [WMButton buttonWithType:UIButtonTypeCustom];
         buttonGreen.frame = CGRectMake(0, 0, 53, 60);
@@ -54,9 +61,35 @@
         [buttonNone addTarget:self action:@selector(pressedNoneButton:) forControlEvents:UIControlEventTouchUpInside];
         buttonNone.selected = YES;
         [self addSubview:buttonNone];
+        
+        
     }
     return self;
 }
+
+- (void)updateFilterButtons {
+    if (![dataManager getGreenFilterStatus]) {
+        buttonGreen.selected = !buttonGreen.selected;
+        if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
+            [self.delegate pressedButtonOfDotType:kDotTypeGreen selected:buttonGreen.selected];
+    }
+    if (![dataManager getYellowFilterStatus]) {
+        buttonYellow.selected = !buttonYellow.selected;
+        if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
+            [self.delegate pressedButtonOfDotType:kDotTypeYellow selected:buttonYellow.selected];
+    }
+    if (![dataManager getRedFilterStatus]) {
+        buttonRed.selected = !buttonRed.selected;
+        if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
+            [self.delegate pressedButtonOfDotType:kDotTypeRed selected:buttonRed.selected];
+    }
+    if (![dataManager getNoneFilterStatus]) {
+        buttonNone.selected = !buttonNone.selected;
+        if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
+            [self.delegate pressedButtonOfDotType:kDotTypeNone selected:buttonNone.selected];
+    }
+}
+
 #pragma mark - Button Handlers
 
 -(void)pressedGreenButton:(WMButton*)sender
@@ -65,6 +98,7 @@
     if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
         [self.delegate pressedButtonOfDotType:kDotTypeGreen selected:sender.selected];
     
+    [dataManager saveNewFilterSettingsWithGreen:buttonGreen.selected yellow:buttonYellow.selected red:buttonRed.selected none:buttonNone.selected];
 }
 
 -(void)pressedYellowButton:(WMButton*)sender
@@ -73,6 +107,8 @@
     if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
         [self.delegate pressedButtonOfDotType:kDotTypeYellow selected:sender.selected];
     
+    [dataManager saveNewFilterSettingsWithGreen:buttonGreen.selected yellow:buttonYellow.selected red:buttonRed.selected none:buttonNone.selected];
+
 }
 
 -(void)pressedRedButton:(WMButton*)sender
@@ -81,6 +117,7 @@
     if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
         [self.delegate pressedButtonOfDotType:kDotTypeRed selected:sender.selected];
     
+    [dataManager saveNewFilterSettingsWithGreen:buttonGreen.selected yellow:buttonYellow.selected red:buttonRed.selected none:buttonNone.selected];
 }
 
 -(void)pressedNoneButton:(WMButton*)sender
@@ -89,6 +126,7 @@
     if ([self.delegate respondsToSelector:@selector(pressedButtonOfDotType:selected:)])
         [self.delegate pressedButtonOfDotType:kDotTypeNone selected:sender.selected];
     
+    [dataManager saveNewFilterSettingsWithGreen:buttonGreen.selected yellow:buttonYellow.selected red:buttonRed.selected none:buttonNone.selected];
 }
 
 @end

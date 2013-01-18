@@ -36,6 +36,10 @@
 
 // TODO: fix etag check
 
+#define WMFilterStatusKeyGreen @"FilterStatusGreen"
+#define WMFilterStatusKeyYellow @"FilterStatusYellow"
+#define WMFilterStatusKeyRed @"FilterStatusRed"
+#define WMFilterStatusKeyNone @"FilterStatusNone"
 
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *mainMOC;
@@ -1546,7 +1550,46 @@ static BOOL assetSyncInProgress = NO;
     if (WMLogDataManager) NSLog(@"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
 }
 
+#pragma mark - Filter settings
+- (void)saveNewFilterSettingsWithGreen:(BOOL)greenSelected yellow:(BOOL)yellowSelected red:(BOOL)redSelected none:(BOOL)noneSelected {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:greenSelected forKey:WMFilterStatusKeyGreen];
+    [defaults setBool:yellowSelected forKey:WMFilterStatusKeyYellow];
+    [defaults setBool:redSelected forKey:WMFilterStatusKeyRed];
+    [defaults setBool:noneSelected forKey:WMFilterStatusKeyNone];
 
+    [defaults synchronize];
+    
+    [self getGreenFilterStatus];
+    [self getYellowFilterStatus];
+    [self getRedFilterStatus];
+    [self getNoneFilterStatus];
+
+}
+
+- (BOOL)getGreenFilterStatus {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"Green status is %d", [defaults boolForKey:WMFilterStatusKeyGreen]);
+    return [defaults boolForKey:WMFilterStatusKeyGreen];
+}
+
+- (BOOL)getYellowFilterStatus {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"Yellow status is %d", [defaults boolForKey:WMFilterStatusKeyYellow]);
+    return [defaults boolForKey:WMFilterStatusKeyYellow];
+}
+
+- (BOOL)getRedFilterStatus {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"Red status is %d", [defaults boolForKey:WMFilterStatusKeyRed]);
+    return [defaults boolForKey:WMFilterStatusKeyRed];
+}
+
+- (BOOL)getNoneFilterStatus {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"None status is %d", [defaults boolForKey:WMFilterStatusKeyNone]);
+    return [defaults boolForKey:WMFilterStatusKeyNone];
+}
 @end
 
 NSString *WMDataManagerErrorDomain = @"WMDataManagerErrorDomain";
