@@ -13,7 +13,6 @@
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
 #import "WMMapSettingsViewController.h"
-
 #import <QuartzCore/QuartzCore.h>
 
 #define MIN_SPAN_DELTA 0.02
@@ -55,6 +54,8 @@
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
+    
+    dataManager = [[WMDataManager alloc] init];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -221,7 +222,7 @@
         UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 19, 14)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
-        icon.image = [UIImage imageWithContentsOfFile:node.node_type.iconPath];
+        icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",dataManager.iconImageRootPath, node.node_type.icon]];
         annotationView.alpha = 0.0;
         [annotationView addSubview:icon];
         

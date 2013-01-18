@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "WMNodeListView.h"
-
+#import "WMDataManager.h"
 @class MKMapView, Node;
 
 @interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate>
-
+{
+    WMDataManager *dataManager;
+}
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
