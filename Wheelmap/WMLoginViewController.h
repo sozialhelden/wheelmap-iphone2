@@ -30,6 +30,5 @@
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)donePressed:(id)sender;
-- (IBAction)registerPressed:(id)sender;
 
 @end

@@ -121,7 +121,7 @@
     [alert show];
 }
 
-- (void)dataManagerDidAuthenticateUser:(WMDataManager *)dataManager
+- (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager
 {
     // TODO: handle success, dismiss view controller
     NSLog(@"Login success!");
@@ -135,10 +135,6 @@
 
 - (IBAction)donePressed:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
-}
-
-- (IBAction)registerPressed:(id)sender {
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
