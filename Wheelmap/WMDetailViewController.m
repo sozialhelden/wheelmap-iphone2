@@ -46,6 +46,8 @@
     
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+    
     // data manager
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
@@ -140,6 +142,9 @@
 }
 
 - (void)viewDidUnload {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [self setStreetLabel:nil];
     [self setPostcodeAndCityLabel:nil];
     [super viewDidUnload];
@@ -175,6 +180,9 @@
     
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
+    
+    // change view configuration according to the network status
+    [self networkStatusChanged:nil];
     
 }
 
@@ -321,12 +329,12 @@
     [scrollView setShowsHorizontalScrollIndicator:NO];
     
     UIImage *cameraButtonImage = [UIImage imageNamed:@"details_btn-photoupload.png"];
-    UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cameraButton.frame = CGRectMake(10, 9, cameraButtonImage.size.width, cameraButtonImage.size.height);
-    [cameraButton setImage: cameraButtonImage forState: UIControlStateNormal];
-    [cameraButton addTarget:self action:@selector(cameraButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    self.cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.cameraButton.frame = CGRectMake(10, 9, cameraButtonImage.size.width, cameraButtonImage.size.height);
+    [self.cameraButton setImage: cameraButtonImage forState: UIControlStateNormal];
+    [self.cameraButton addTarget:self action:@selector(cameraButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    [scrollView addSubview:cameraButton];
+    [scrollView addSubview:self.cameraButton];
     return scrollView;
 }
 
@@ -910,6 +918,23 @@
     vc.editView = YES;
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - Network Status Changes
+-(void)networkStatusChanged:(NSNotification*)notice
+{
+    NetworkStatus networkStatus = [[dataManager internetReachble] currentReachabilityStatus];
+    
+    switch (networkStatus)
+    {
+        case NotReachable:
+            self.cameraButton.enabled = NO;
+            break;
+            
+        default:
+            self.cameraButton.enabled = YES;
+            break;
+    }
 }
 
 
