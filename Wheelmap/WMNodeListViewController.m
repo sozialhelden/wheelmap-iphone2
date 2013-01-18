@@ -214,6 +214,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WMNodeListCellNoResult"];
             cell.textLabel.text = NSLocalizedString(@"NoPOIsFound", nil);
             cell.textLabel.font = [UIFont fontWithName:@"HeleticaNeue-Bold" size:15.0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         return cell;
     }

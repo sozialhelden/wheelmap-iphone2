@@ -59,6 +59,7 @@
 @property (nonatomic, strong) NSMutableArray *imageViewsInScrollView;
 @property (nonatomic, strong) NSMutableArray* thumbnailURLArray;
 @property (nonatomic, strong) NSMutableArray* originalImageURLArray;
+@property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, assign) int start;
 @property (nonatomic, assign) int gab;
 // ADDITIONALINFOVIEW
