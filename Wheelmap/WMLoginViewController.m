@@ -137,10 +137,6 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)registerPressed:(id)sender {
-    
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if(textField == self.usernameTextField){
         [self.passwordTextField becomeFirstResponder];

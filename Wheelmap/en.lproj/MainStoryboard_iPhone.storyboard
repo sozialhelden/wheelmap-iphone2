@@ -376,7 +376,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="registerPressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="l2k-c8-Erl"/>
                                             <segue destination="9yT-MT-7xh" kind="modal" id="jKD-7K-8W9"/>
                                         </connections>
                                     </button>
