@@ -1537,10 +1537,10 @@ static BOOL assetSyncInProgress = NO;
 #pragma mark - Filter settings
 - (void)saveNewFilterSettingsWithGreen:(BOOL)greenSelected yellow:(BOOL)yellowSelected red:(BOOL)redSelected none:(BOOL)noneSelected {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:greenSelected forKey:WMFilterStatusKeyGreen];
-    [defaults setBool:yellowSelected forKey:WMFilterStatusKeyYellow];
-    [defaults setBool:redSelected forKey:WMFilterStatusKeyRed];
-    [defaults setBool:noneSelected forKey:WMFilterStatusKeyNone];
+    [defaults setValue:[NSNumber numberWithBool:greenSelected] forKey:WMFilterStatusKeyGreen];
+    [defaults setValue:[NSNumber numberWithBool:yellowSelected] forKey:WMFilterStatusKeyYellow];
+    [defaults setValue:[NSNumber numberWithBool:redSelected] forKey:WMFilterStatusKeyRed];
+    [defaults setValue:[NSNumber numberWithBool:noneSelected] forKey:WMFilterStatusKeyNone];
 
     [defaults synchronize];
     
@@ -1553,26 +1553,42 @@ static BOOL assetSyncInProgress = NO;
 
 - (BOOL)getGreenFilterStatus {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"Green status is %d", [defaults boolForKey:WMFilterStatusKeyGreen]);
-    return [defaults boolForKey:WMFilterStatusKeyGreen];
+    
+    if ([defaults valueForKey:WMFilterStatusKeyGreen] == nil) {
+        return YES;
+    }
+    NSLog(@"Green status is %d", [[defaults valueForKey:WMFilterStatusKeyGreen] boolValue]);
+    return [[defaults valueForKey:WMFilterStatusKeyGreen] boolValue];
 }
 
 - (BOOL)getYellowFilterStatus {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"Yellow status is %d", [defaults boolForKey:WMFilterStatusKeyYellow]);
-    return [defaults boolForKey:WMFilterStatusKeyYellow];
+    
+    if ([defaults valueForKey:WMFilterStatusKeyYellow] == nil) {
+        return YES;
+    }
+    NSLog(@"Yellow status is %d", [[defaults valueForKey:WMFilterStatusKeyYellow] boolValue]);
+    return [[defaults valueForKey:WMFilterStatusKeyYellow] boolValue];
 }
 
 - (BOOL)getRedFilterStatus {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"Red status is %d", [defaults boolForKey:WMFilterStatusKeyRed]);
-    return [defaults boolForKey:WMFilterStatusKeyRed];
+    
+    if ([defaults valueForKey:WMFilterStatusKeyRed] == nil) {
+        return YES;
+    }
+    NSLog(@"Red status is %d", [[defaults valueForKey:WMFilterStatusKeyRed] boolValue]);
+    return [[defaults valueForKey:WMFilterStatusKeyRed] boolValue];
 }
 
 - (BOOL)getNoneFilterStatus {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"None status is %d", [defaults boolForKey:WMFilterStatusKeyNone]);
-    return [defaults boolForKey:WMFilterStatusKeyNone];
+    
+    if ([defaults valueForKey:WMFilterStatusKeyNone] == nil) {
+        return YES;
+    }
+    NSLog(@"None status is %d", [[defaults valueForKey:WMFilterStatusKeyNone] boolValue]);
+    return [[defaults valueForKey:WMFilterStatusKeyNone] boolValue];
 }
 @end
 
