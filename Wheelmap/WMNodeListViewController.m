@@ -260,7 +260,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.delegate respondsToSelector:@selector(nodeListView:didSelectNode:)]) {
-        [self.delegate nodeListView:self didSelectNode:nodes[indexPath.row]];
+        if (nodes.count > indexPath.row) {
+            [self.delegate nodeListView:self didSelectNode:nodes[indexPath.row]];
+        }
     }
 }
 
