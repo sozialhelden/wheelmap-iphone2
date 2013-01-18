@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPClient.h"
+#import "Reachability.h"
 
 @interface WMWheelmapAPI : AFHTTPClient
 
-
+@property (nonatomic, strong) Reachability* internetReachable;
 + (WMWheelmapAPI *)sharedInstance;
 
 - (id) initWithBaseURL:(NSURL *)url;

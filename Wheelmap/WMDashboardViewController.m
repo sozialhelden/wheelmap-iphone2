@@ -15,6 +15,7 @@
 #import "WMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
+#import "Reachability.h"
 
 @interface WMDashboardViewController ()
 
@@ -34,6 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+    
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController setToolbarHidden:YES animated:NO];
@@ -107,18 +111,20 @@
     [self showUIObjectsAnimated:YES];
 }
 
+-(void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
+    // this will update screen
+    [self networkStatusChanged:nil];
 
-    // update login icon image here
-    if ([dataManager userIsAuthenticated]) {
-        [self.loginButton setImage:[UIImage imageNamed:@"start_icon-logged-in.png"] forState:UIControlStateNormal];
-    } else {
-        [self.loginButton setImage:[UIImage imageNamed:@"start_icon-login.png"] forState:UIControlStateNormal];
-    }
-    
     // revert search
     if ([dataManager isInternetConnectionAvailable]) {
         NSLog(@"InternetConnection is available");
@@ -365,4 +371,44 @@
      }];
     
 }
+
+#pragma mark - Network Status Changes
+-(void)networkStatusChanged:(NSNotification*)notice
+{
+    NetworkStatus networkStatus = [[dataManager internetReachble] currentReachabilityStatus];
+    
+    switch (networkStatus)
+    {
+        case NotReachable:
+            
+            self.searchTextField.text = NSLocalizedString(@"NoSearchService", nil);
+            self.searchTextField.textColor = [UIColor grayColor];
+            self.searchTextField.userInteractionEnabled = NO;
+            self.searchTextFieldBg.alpha = 0.3;
+            
+            [self.loginButton setImage:[UIImage imageNamed:@"start_icon-login.png"] forState:UIControlStateNormal];
+            self.loginButton.enabled = NO;
+          
+            break;
+            
+        default:
+
+            self.searchTextField.text = NSLocalizedString(@"SearchForPlace", nil);
+            self.searchTextField.textColor = [UIColor lightGrayColor];
+            self.searchTextField.userInteractionEnabled = YES;
+            self.searchTextFieldBg.alpha = 1.0;
+            
+            self.loginButton.enabled = YES;
+            // update login icon image here
+            if ([dataManager userIsAuthenticated]) {
+                [self.loginButton setImage:[UIImage imageNamed:@"start_icon-logged-in.png"] forState:UIControlStateNormal];
+            } else {
+                [self.loginButton setImage:[UIImage imageNamed:@"start_icon-login.png"] forState:UIControlStateNormal];
+            }
+
+           
+            break;
+    }
+}
+
 @end

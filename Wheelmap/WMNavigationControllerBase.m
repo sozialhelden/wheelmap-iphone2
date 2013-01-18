@@ -23,6 +23,7 @@
 #import "NodeType.h"
 #import "Category.h"
 #import "WMAcceptTermsViewController.h"
+#import "Reachability.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -50,6 +51,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
@@ -138,6 +140,7 @@
     categoryFilterPopover.delegate = self;
     categoryFilterPopover.hidden = YES;
     [self.view addSubview:categoryFilterPopover];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -150,6 +153,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // this will update screen
+    [self networkStatusChanged:nil];
 }
 
 
@@ -258,6 +264,26 @@
     }
 }
 
+#pragma mark - Network Status Changes
+-(void)networkStatusChanged:(NSNotification*)notice
+{
+    NetworkStatus networkStatus = [[dataManager internetReachble] currentReachabilityStatus];
+    
+    switch (networkStatus)
+    {
+        case NotReachable:
+            NSLog(@"INTERNET IS NOT AVAILABLE!");
+            [self.customToolBar hideButton:kWMToolBarButtonSearch];
+           
+            break;
+            
+        default:
+            NSLog(@"INTERNET IS RE-ACTIVATED!");
+            [self.customToolBar showButton:kWMToolBarButtonSearch];
+                        
+            break;
+    }
+}
 
 #pragma mark - category data source
 -(NSArray*) categories
@@ -390,6 +416,7 @@
     [self updateNodesWithCurrentUserLocation];
 }
 
+
 -(void)updateUserLocation
 {
     NSLog(@"CLLOCATIONMANAGER:%@ and delegate: %@", self.locationManager, self.locationManager.delegate);
@@ -439,6 +466,7 @@
         [dataManager syncResources];
     }
     lastSyncDate = [NSDate date];
+    
 }
 
 - (void)applicationWillResignActive:(NSNotification*)notification
@@ -615,6 +643,9 @@
     if ([vc respondsToSelector:@selector(navigationBarTitle)]) {
         self.customNavigationBar.title = [vc performSelector:@selector(navigationBarTitle)];
     }
+    
+    // change ui status for the network status
+    [self networkStatusChanged:nil];
 }
 
 - (void)showAcceptTermsViewController {
@@ -765,6 +796,7 @@
     
     if (![CLLocationManager locationServicesEnabled]) {
         [self locationManager:self.locationManager didFailWithError:nil];
+        return;
     }
     
     [self updateNodesWithCurrentUserLocation];

@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 #import "SSZipArchive.h"
+#import "Reachability.h"
 
 @class Node;
 
@@ -59,6 +60,7 @@
 - (NSArray*) nodeTypes;
 
 - (BOOL)isInternetConnectionAvailable;
+- (Reachability*) internetReachble;
 
 - (void)saveNewFilterSettingsWithGreen:(BOOL)greenSelected yellow:(BOOL)yellowSelected red:(BOOL)redSelected none:(BOOL)noneSelected;
 - (BOOL)getGreenFilterStatus;
