@@ -133,64 +133,66 @@
 - (void) loadNodes
 {
     
-    if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {        
-        isAccesoryHeaderVisible = YES;
-        
-        accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
-        accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-        accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
-        
-        WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
-        headerTextLabel.fontSize = 13.0;
-        headerTextLabel.textAlignment = UITextAlignmentLeft;
-        headerTextLabel.numberOfLines = 3;
-        headerTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
-        headerTextLabel.textColor = [UIColor whiteColor];
-        headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
-        [accesoryHeader addSubview:headerTextLabel];
-        
-        accesoryHeader.alpha = 0.0;
-        [self.view addSubview:accesoryHeader];
-        
-        [UIView animateWithDuration:0.3 animations:^(void)
-         {
-             self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.view.frame.size.height-80);
-         }
-                         completion:^(BOOL finished)
-         {
-             [UIView animateWithDuration:0.5 animations:^(void)
-              {
-                  accesoryHeader.alpha = 1.0;
-              }
-                              completion:^(BOOL finished)
-              {
-                  
-              }
-              ];
-             
-         }
-         ];
-    } else {
-        isAccesoryHeaderVisible = NO;
-        
-        [UIView animateWithDuration:0.3 animations:^(void)
-         {
-             self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.view.frame.size.height);
-         }
-                         completion:^(BOOL finished)
-         {
-             [UIView animateWithDuration:0.5 animations:^(void)
-              {
-                  accesoryHeader.alpha = 0.0;
-              }
-                              completion:^(BOOL finished)
-              {
-                  
-              }
-              ];
-             
-         }
-         ];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
+            isAccesoryHeaderVisible = YES;
+            
+            accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
+            accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+            accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
+            
+            WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
+            headerTextLabel.fontSize = 13.0;
+            headerTextLabel.textAlignment = UITextAlignmentLeft;
+            headerTextLabel.numberOfLines = 3;
+            headerTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
+            headerTextLabel.textColor = [UIColor whiteColor];
+            headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
+            [accesoryHeader addSubview:headerTextLabel];
+            
+            accesoryHeader.alpha = 0.0;
+            [self.view addSubview:accesoryHeader];
+            
+            [UIView animateWithDuration:0.3 animations:^(void)
+             {
+                 self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.view.frame.size.height-80);
+             }
+                             completion:^(BOOL finished)
+             {
+                 [UIView animateWithDuration:0.5 animations:^(void)
+                  {
+                      accesoryHeader.alpha = 1.0;
+                  }
+                                  completion:^(BOOL finished)
+                  {
+                      [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1)  animated:YES];
+                  }
+                  ];
+                 
+             }
+             ];
+        } else {
+            isAccesoryHeaderVisible = NO;
+            
+            [UIView animateWithDuration:0.3 animations:^(void)
+             {
+                 self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.view.frame.size.height);
+             }
+                             completion:^(BOOL finished)
+             {
+                 [UIView animateWithDuration:0.5 animations:^(void)
+                  {
+                      accesoryHeader.alpha = 0.0;
+                  }
+                                  completion:^(BOOL finished)
+                  {
+                      [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1)  animated:YES];
+                  }
+                  ];
+                 
+             }
+             ];
+        }
     }
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
