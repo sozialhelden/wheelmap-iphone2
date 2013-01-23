@@ -954,6 +954,22 @@
     }
 }
 
+-(void)pressedLoginButton:(WMToolBar*)toolBar {
+    WMViewController* vc;
+    if (!dataManager.userIsAuthenticated) {
+        vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    } else {
+        vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
+    }
+    if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
+        
+        CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).loginButton.frame;
+        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, self.view.frame.size.height - buttonFrame.size.height, buttonFrame.size.width, buttonFrame.size.height);
+    }
+    
+    [self presentModalViewController:vc animated:YES];
+}
+
 #pragma mark - Popover Management
 -(void)showPopover:(UIView*)popover
 {

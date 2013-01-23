@@ -7,14 +7,19 @@
 //
 
 #import "WMToolBar_iPad.h"
+#import "WMDataManager.h"
 
-
-@implementation WMToolBar_iPad
+@implementation WMToolBar_iPad {
+    
+    WMDataManager *dataManager;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        dataManager = [[WMDataManager alloc] init];
         
         // adjust iphone superclasses properties to ipad
         [self.toggleButton removeFromSuperview];
@@ -36,12 +41,12 @@
         [infoButton addTarget:self action:@selector(pressedInfoButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:infoButton];
         
-        loginButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        loginButton.frame = CGRectMake(infoButton.frame.origin.x + infoButton.frame.size.width + 5.0f, 3, 58, 58);
-        [loginButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
-        [loginButton setImage:[UIImage imageNamed:@"ipad_buttons_login.png"] forState:UIControlStateNormal];
-        [loginButton addTarget:self action:@selector(pressedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:loginButton];
+        self.loginButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        self.loginButton.frame = CGRectMake(infoButton.frame.origin.x + infoButton.frame.size.width + 5.0f, 3, 58, 58);
+        [self.loginButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_login.png"] forState:UIControlStateNormal];
+        [self.loginButton addTarget:self action:@selector(pressedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.loginButton];
         
         helpButton = [WMButton buttonWithType:UIButtonTypeCustom];
         helpButton.frame = CGRectMake(320.0f - 58.0f, 3, 58, 58);
@@ -59,7 +64,9 @@
 }
 
 - (void)pressedLoginButton:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(pressedLoginButton:)]) {
+        [self.delegate pressedLoginButton:self];
+    }
 }
 
 - (void)pressedHelpButton:(id)sender {
