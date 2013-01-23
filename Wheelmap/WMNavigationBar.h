@@ -63,4 +63,5 @@ typedef enum {
 -(void)showRightButton:(WMNavigationBarRightButtonStyle)type;
 -(void)hideRightButton:(WMNavigationBarRightButtonStyle)type;
 
+- (void)adjustButtonsToPopoverPresentation;
 @end

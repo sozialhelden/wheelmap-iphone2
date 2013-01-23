@@ -32,6 +32,9 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
+    } else {
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.titleView = [[UIView alloc] init];
     }
 
 
@@ -42,6 +45,9 @@
     [super viewWillAppear:animated];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.titleView = [[UIView alloc] init];
+    } else {
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
     }

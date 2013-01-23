@@ -26,9 +26,10 @@
         dataManager = [[WMDataManager alloc] init];
         
         // set custom nagivation and tool bars
-        self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, 60);
+        self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, 50);
         
         self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
+        [self.customNavigationBar adjustButtonsToPopoverPresentation];
         self.customNavigationBar.delegate = self;
         [self.navigationBar addSubview:self.customNavigationBar];
     }
