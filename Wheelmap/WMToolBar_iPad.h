@@ -12,12 +12,10 @@
 
 @class WMToolBar_iPad;
 
-@interface WMToolBar_iPad : WMToolBar {
-    
-    WMButton *helpButton;
-}
+@interface WMToolBar_iPad : WMToolBar
 
 @property (nonatomic, strong) WMButton *infoButton;
 @property (nonatomic, strong) WMButton *loginButton;
+@property (nonatomic, strong) WMButton *helpButton;
 
 @end

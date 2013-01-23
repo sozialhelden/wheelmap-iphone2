@@ -982,6 +982,23 @@
     [self presentModalViewController:vc animated:YES];
 }
 
+-(void)pressedHelpButton:(WMToolBar*)toolBar {
+    
+    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
+            if (( (WMToolBar_iPad *)toolBar).helpButton.selected == NO) {
+                ((WMRootViewController_iPad *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+                ((WMRootViewController_iPad *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+                [self pressedCurrentLocationButton:self.customToolBar];
+            } else {
+                ((WMRootViewController_iPad *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+                ((WMRootViewController_iPad *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+                [self pressedCurrentLocationButton:self.customToolBar];
+            }
+        }
+    }
+}
+
 #pragma mark - Popover Management
 -(void)showPopover:(UIView*)popover
 {

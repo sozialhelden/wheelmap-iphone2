@@ -48,12 +48,13 @@
         [self.loginButton addTarget:self action:@selector(pressedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.loginButton];
         
-        helpButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        helpButton.frame = CGRectMake(320.0f - 58.0f, 3, 58, 58);
-        [helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
-        [helpButton setImage:[UIImage imageNamed:@"ipad_buttons_mithelfen.png"] forState:UIControlStateNormal];
-        [helpButton addTarget:self action:@selector(pressedHelpButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:helpButton];
+        self.helpButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        self.helpButton.frame = CGRectMake(320.0f - 58.0f, 3, 58, 58);
+        [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button-search-active.png"] forState:UIControlStateSelected];
+        [self.helpButton setImage:[UIImage imageNamed:@"ipad_buttons_mithelfen.png"] forState:UIControlStateNormal];
+        [self.helpButton addTarget:self action:@selector(pressedHelpButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.helpButton];
     }
     
     return self;
@@ -71,8 +72,13 @@
     }
 }
 
-- (void)pressedHelpButton:(id)sender {
+- (void)pressedHelpButton:(UIButton *)sender {
     
+    sender.selected = !sender.selected;
+    
+    if ([self.delegate respondsToSelector:@selector(pressedHelpButton:)]) {
+        [self.delegate pressedHelpButton:self];
+    }
 }
 
 @end
