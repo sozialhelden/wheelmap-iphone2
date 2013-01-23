@@ -9,6 +9,9 @@
 #import "WMDetailNavigationController.h"
 #import "WMDetailViewController.h"
 #import "WMEditPOIViewController.h"
+#import "WMLoginViewController.h"
+#import "WMWheelchairStatusViewController.h"
+#import "WMCommentViewController.h"
 
 @interface WMDetailNavigationController ()
 
@@ -56,7 +59,8 @@
 
 -(void)pressedEditButton:(WMNavigationBar*)navigationBar {
     if (![dataManager userIsAuthenticated]) {
-        
+        [self presentLoginScreenWithButtonFrame:CGRectZero];
+        return;
     }
     
     if ([self.topViewController isKindOfClass:[WMDetailViewController class]]) {
@@ -71,23 +75,49 @@
     }
 }
 
--(void)pressedCancelButton:(WMNavigationBar*)navigationBar {}
--(void)pressedSaveButton:(WMNavigationBar*)navigationBar {}
+-(void)pressedCancelButton:(WMNavigationBar*)navigationBar {
+    [self popViewControllerAnimated:YES];
+}
+
+-(void)pressedSaveButton:(WMNavigationBar*)navigationBar {
+    WMViewController* currentViewController = [self.viewControllers lastObject];
+    if ([currentViewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
+        [(WMWheelchairStatusViewController*)currentViewController saveAccessStatus];
+    }
+    if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
+        [(WMEditPOIViewController*)currentViewController saveEditedData];
+    }
+    if ([currentViewController isKindOfClass:[WMCommentViewController class]]) {
+        [(WMCommentViewController*)currentViewController saveEditedData];
+    }
+}
+
 -(void)pressedContributeButton:(WMNavigationBar*)navigationBar {}
 -(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar {}
 -(void)pressedSearchButton:(BOOL)selected {}
 
 -(void)searchStringIsGiven:(NSString*)query {}
 
+-(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
+{
+    WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    vc.popoverButtonFrame = frame;
+    [self pushViewController:vc animated:YES];
+}
+
 #pragma mark - NavigationController stack
 
 - (void)changeScreenStatusFor:(UIViewController *)viewController {
+        
     if ([viewController isKindOfClass:[WMDetailViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
     } else if ([viewController isKindOfClass:[WMEditPOIViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
+    } else if ([viewController isKindOfClass:[WMLoginViewController class]]) {
+        self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
+        self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleCancelButton;
     } else{
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
@@ -129,6 +159,20 @@
 {
     [super setViewControllers:viewControllers animated:animated];
     [self changeScreenStatusFor:[viewControllers lastObject]];
+}
+
+- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self dismissModalViewControllerAnimated:NO];
+        if ([modalViewController isKindOfClass:[WMLoginViewController class]]) {
+            ((WMLoginViewController *)modalViewController).popover = [[UIPopoverController alloc]
+                                                                 initWithContentViewController:modalViewController];
+            ((WMLoginViewController *)modalViewController).baseController = self;
+            [((WMLoginViewController *)modalViewController).popover presentPopoverFromRect:((WMLoginViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+        }
+    } else {
+        [super presentModalViewController:modalViewController animated:animated];
+    }
 }
 
 @end

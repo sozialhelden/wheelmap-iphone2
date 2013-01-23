@@ -380,6 +380,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.92941182851791382" green="0.92549026012420654" blue="0.91764712333679199" alpha="1" colorSpace="deviceRGB"/>
@@ -388,7 +389,9 @@
                         <outlet property="bottomTextLabel" destination="viA-74-l5N" id="2hB-SM-jnS"/>
                         <outlet property="contentScrollView" destination="ak3-pt-8a4" id="Ulb-qv-8Fj"/>
                         <outlet property="doneButton" destination="P1u-e5-3lQ" id="XAo-LM-gul"/>
+                        <outlet property="headerView" destination="FEn-2i-HbD" id="bLv-nn-z20"/>
                         <outlet property="loginButton" destination="7L1-bg-SOP" id="quU-fP-j0G"/>
+                        <outlet property="logoImageView" destination="M3P-qa-2L9" id="aQ4-Uy-m3q"/>
                         <outlet property="passwordTextField" destination="pkX-PT-U9F" id="T8B-Rv-5yj"/>
                         <outlet property="registerButton" destination="8iQ-N6-wam" id="cHx-nD-F4D"/>
                         <outlet property="titleLabel" destination="RUF-Rd-CnZ" id="gbY-hV-1ME"/>

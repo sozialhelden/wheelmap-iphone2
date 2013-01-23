@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
 
+-(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
+
 @end

@@ -17,7 +17,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-    
+        
     }
     return self;
 }
@@ -25,6 +25,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (self.navigationController != nil) {
+        self.headerView.hidden = YES;
+        self.contentScrollView.frame = CGRectMake(self.contentScrollView.frame.origin.x, 0.0f, self.contentScrollView.frame.size.width, self.view.frame.size.height);
+    }
     
     self.contentScrollView.scrollsToTop = YES;
     
@@ -132,14 +137,24 @@
     NSLog(@"Login success!");
     
     if ([dataManager areUserTermsAccepted]) {
-        [self dismissModalViewControllerAnimated:YES];
+        
+        if (self.navigationController != nil) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [self dismissModalViewControllerAnimated:YES];
+        }
     } else {
         [(WMNavigationControllerBase *)self.presentingViewController showAcceptTermsViewController];
     }
 }
 
 - (IBAction)donePressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    
+    if (self.navigationController != nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

@@ -19,6 +19,7 @@
 #import "Category.h"
 #import "Node.h"
 #import "NodeType.h"
+#import "WMRootViewController_iPad.h"
 
 @interface WMEditPOIViewController ()
 
@@ -63,18 +64,19 @@
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewHousenumber", @"");
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewPostcode", @"");
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewCity", @"");
-        
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:self.view.window];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:self.view.window];
     
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        // register for keyboard notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:self.view.window];
+        // register for keyboard notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillHide:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:self.view.window];
+    }
         
     // WHEEL ACCESS
     self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -211,14 +213,17 @@
     [self setSetMarkerButton:nil];
     [self setInfoTextView:nil];
     
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        
+        // unregister for keyboard notifications while not visible.
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillShowNotification
+                                                      object:nil];
+        // unregister for keyboard notifications while not visible.
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillHideNotification
+                                                      object:nil];
+    }
 }
 
 
@@ -387,7 +392,13 @@
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     NSLog(@"XXXXXXXX FINISHED");
+    
+    if (self.navigationController.presentingViewController != nil) {
+        
+    }
+
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
@@ -405,15 +416,16 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        // unregister for keyboard notifications while not visible.
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillShowNotification
+                                                      object:nil];
+        // unregister for keyboard notifications while not visible.
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillHideNotification
+                                                      object:nil];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

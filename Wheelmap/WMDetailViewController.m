@@ -25,6 +25,7 @@
 #import "Category.h"
 #import "WMNavigationControllerBase.h"
 #import "WMStringUtilities.h"
+#import "WMNodeListViewController.h"
 
 #define GABIFSTATUSUNKNOWN 62
 #define MAPOPENADDITION 266

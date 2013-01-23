@@ -86,6 +86,16 @@
         [self addSubview:cancelButton];
         
         CGRect rightButtonRect = CGRectMake(self.frame.size.width-5-40, 5, 40, 40);
+
+        cancelButtonRight = [WMButton buttonWithType:UIButtonTypeCustom];
+        cancelButtonRight.frame = rightButtonRect;
+        cancelButtonRight.backgroundColor = [UIColor clearColor];
+        [cancelButtonRight setView:normalBtnImg forControlState:UIControlStateNormal];
+        cancelButtonRight.hidden = YES;
+        cancelButtonRight.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [cancelButtonRight addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:cancelButtonRight];
+        
         // mithilfe button
         self.contributeButton = [WMButton buttonWithType:UIButtonTypeCustom];
         self.contributeButton.frame = rightButtonRect;
@@ -343,6 +353,9 @@
         case kWMNavigationBarRightButtonStyleNone:
             currentRightButton = noneButton;
             break;
+        case kWMNavigationBarRightButtonStyleCancelButton:
+            currentRightButton = cancelButtonRight;
+            break;
         default:
             currentRightButton = self.contributeButton;
             break;
@@ -584,6 +597,19 @@
     cancelButton.hidden = hidden;
     [cancelButton addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:cancelButton];
+    
+    hidden = cancelButtonRight.hidden;
+    
+    [cancelButtonRight removeFromSuperview];
+    
+    cancelButtonRight = [WMButton buttonWithType:UIButtonTypeCustom];
+    cancelButtonRight.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-9, 12, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+    cancelButtonRight.backgroundColor = [UIColor clearColor];
+    [cancelButtonRight setView:normalBtnImg forControlState:UIControlStateNormal];
+    cancelButtonRight.hidden = hidden;
+    cancelButtonRight.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    [cancelButtonRight addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:cancelButtonRight];
     
     // edit button
     hidden = self.editButton.hidden;

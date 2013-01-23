@@ -20,6 +20,7 @@ typedef enum {
     kWMNavigationBarRightButtonStyleContributeButton,
     kWMNavigationBarRightButtonStyleEditButton,
     kWMNavigationBarRightButtonStyleSaveButton,
+    kWMNavigationBarRightButtonStyleCancelButton,
     kWMNavigationBarRightButtonStyleNone
 } WMNavigationBarRightButtonStyle;
 
@@ -33,6 +34,7 @@ typedef enum {
 
     WMButton* dashboardButton;
     WMButton* cancelButton;
+    WMButton* cancelButtonRight;
     WMButton* backButton;
     WMButton* saveButton;
     WMButton* noneButton;
