@@ -64,4 +64,8 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (CGSize)contentSizeForViewInPopover {
+    return CGSizeMake(320.0f, 600.0f);
+}
+
 @end

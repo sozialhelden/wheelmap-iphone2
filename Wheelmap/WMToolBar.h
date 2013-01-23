@@ -33,6 +33,7 @@ typedef enum {
 -(void)pressedCategoryFilterButton:(WMToolBar*)toolBar;
 @optional
 -(void)pressedLoginButton:(WMToolBar*)toolBar;
+-(void)pressedInfoButton:(WMToolBar*)toolBar;
 @end
 
 @interface WMToolBar : UIView

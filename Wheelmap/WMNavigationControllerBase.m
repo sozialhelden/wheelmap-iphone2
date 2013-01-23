@@ -970,6 +970,18 @@
     [self presentModalViewController:vc animated:YES];
 }
 
+-(void)pressedInfoButton:(WMToolBar*)toolBar {
+    WMViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
+    
+    if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
+        
+        CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).infoButton.frame;
+        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, self.view.frame.size.height - buttonFrame.size.height, buttonFrame.size.width, buttonFrame.size.height);
+    }
+    
+    [self presentModalViewController:vc animated:YES];
+}
+
 #pragma mark - Popover Management
 -(void)showPopover:(UIView*)popover
 {
@@ -1138,8 +1150,8 @@
 }
 
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
-    [self dismissModalViewControllerAnimated:NO];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self dismissModalViewControllerAnimated:NO];
         if ([modalViewController isKindOfClass:[WMViewController class]]) {
             ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc]
                                             initWithContentViewController:modalViewController];

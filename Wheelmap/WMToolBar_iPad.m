@@ -34,15 +34,15 @@
         
         currentLocationButton.frame = CGRectMake(self.wheelChairStatusFilterButton.frame.origin.x - currentLocationButton.frame.size.width - 5.0f , currentLocationButton.frame.origin.y, currentLocationButton.frame.size.width, currentLocationButton.frame.size.height);
         
-        infoButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        infoButton.frame = CGRectMake(2, 3, 58, 58);
-        [infoButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
-        [infoButton setImage:[UIImage imageNamed:@"ipad_buttons_credits.png"] forState:UIControlStateNormal];
-        [infoButton addTarget:self action:@selector(pressedInfoButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:infoButton];
+        self.infoButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        self.infoButton.frame = CGRectMake(2, 3, 58, 58);
+        [self.infoButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        [self.infoButton setImage:[UIImage imageNamed:@"ipad_buttons_credits.png"] forState:UIControlStateNormal];
+        [self.infoButton addTarget:self action:@selector(pressedInfoButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.infoButton];
         
         self.loginButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.loginButton.frame = CGRectMake(infoButton.frame.origin.x + infoButton.frame.size.width + 5.0f, 3, 58, 58);
+        self.loginButton.frame = CGRectMake(self.infoButton.frame.origin.x + self.infoButton.frame.size.width + 5.0f, 3, 58, 58);
         [self.loginButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_login.png"] forState:UIControlStateNormal];
         [self.loginButton addTarget:self action:@selector(pressedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -60,7 +60,9 @@
 }
 
 - (void)pressedInfoButton:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(pressedInfoButton:)]) {
+        [self.delegate pressedInfoButton:self];
+    }
 }
 
 - (void)pressedLoginButton:(id)sender {
