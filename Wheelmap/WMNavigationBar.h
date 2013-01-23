@@ -32,8 +32,6 @@ typedef enum {
 
     WMButton* dashboardButton;
     WMButton* cancelButton;
-    WMButton* editButton;
-    WMButton* contributeButton; // Mithilfe Button
     WMButton* backButton;
     WMButton* saveButton;
     WMButton* noneButton;
@@ -50,6 +48,8 @@ typedef enum {
     
 }
 
+@property (nonatomic, strong) WMButton* editButton;
+@property (nonatomic, strong) WMButton* contributeButton; // Mithilfe Button
 @property (nonatomic) WMNavigationBarLeftButtonStyle leftButtonStyle;
 @property (nonatomic) WMNavigationBarRightButtonStyle rightButtonStyle;
 @property (nonatomic, strong) NSString* title;

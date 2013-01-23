@@ -19,6 +19,7 @@
 -(void)pressedSaveButton:(WMNavigationBar*)navigationBar;
 -(void)pressedContributeButton:(WMNavigationBar*)navigationBar;
 -(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar;
+-(void)pressedSearchButton:(BOOL)selected;
 
 -(void)searchStringIsGiven:(NSString*)query;
 

@@ -55,6 +55,10 @@
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    }
+    
     dataManager = [[WMDataManager alloc] init];
 }
 
@@ -150,22 +154,6 @@
     }
 }
 
-- (void) showDetailPopoverForNode:(Node *)node
-{
-    WMMapAnnotation *annotation = [self annotationForNode:node];
-    MKAnnotationView *annotationView = [self.mapView viewForAnnotation:annotation];
-
-    WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
-    detailViewController.node = node;
-    
-    UINavigationController *detailNavController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-    
-    popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
-    
-    CGRect annotationViewRect = [self.view convertRect:annotationView.bounds fromView:annotationView];
-    [popover presentPopoverFromRect:annotationViewRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
 - (WMMapAnnotation*) annotationForNode:(Node*)node
 {
     for (WMMapAnnotation* annotation in  self.mapView.annotations) {
@@ -208,6 +196,7 @@
 
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         Node *node = [(WMMapAnnotation*)annotation node];
         NSString *reuseId = [node.wheelchair stringByAppendingString:[node.id stringValue]];
@@ -243,6 +232,10 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
+        return;
+    }
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return;
     }
     
@@ -401,7 +394,7 @@
         return;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*2);
+        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3);
     } completion:^(BOOL finished) {
         self.mapInteractionInfoLabel.tag = 0;
     }];

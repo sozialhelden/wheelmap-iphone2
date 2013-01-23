@@ -24,4 +24,5 @@
 @property (nonatomic, strong) id<WMCategoryFilterPopoverViewDelegate> delegate;
 - (id)initWithRefPoint:(CGPoint)refPoint andCategories:(NSArray*)categories;
 - (void)refreshViewWithCategories:(NSArray*)categories;
+- (void)refreshViewWithRefPoint:(CGPoint)refPoint andCategories:(NSArray *)categories;
 @end

@@ -11,7 +11,9 @@
 #import "WMDataManagerDelegate.h"
 #import "WMNodeListView.h"
 #import "WMNavigationBar.h"
+#import "WMNavigationBar_iPad.h"
 #import "WMToolBar.h"
+#import "WMToolBar_iPad.h"
 #import "WMMapViewController.h"
 #import "WMNodeListViewController.h"
 #import "WMDetailViewController.h"
@@ -40,6 +42,8 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSNumber* lastVisibleMapSpanLat;
 @property (nonatomic, strong) NSNumber* lastVisibleMapSpanLng;
 
+@property (nonatomic, strong)  UIPopoverController *popover;
+
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
@@ -57,7 +61,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 - (void)showAcceptTermsViewController;
 
--(void)presentLoginScreen;
+-(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 
 -(CLLocation*)currentUserLocation;
 @end

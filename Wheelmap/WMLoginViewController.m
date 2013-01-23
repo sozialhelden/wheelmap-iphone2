@@ -35,16 +35,19 @@
     self.passwordTextField.delegate = self;
     
     // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:self.view.window];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:self.view.window];
-    
+    // not necessary on ipad, as theres enough space
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad){
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:self.view.window];
+        // register for keyboard notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillHide:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:self.view.window];
+    }
+        
     self.titleLabel.text = NSLocalizedString(@"Sign In", nil);
     self.topTextLabel.text = NSLocalizedString(@"Sign In Prompt", nil);
     self.bottomTextLabel.text = NSLocalizedString(@"Sign Up Prompt", nil);
@@ -64,7 +67,9 @@
     [self.loginButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
     self.loginButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [self.loginButton sizeToFit];
-    self.loginButton.frame = CGRectMake(self.view.frame.size.width - self.loginButton.frame.size.width - 10.0f, self.passwordTextField.frame.origin.y + self.passwordTextField.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
+    self.loginButton.frame = CGRectMake(320.0f - self.loginButton.frame.size.width - 10.0f, self.passwordTextField.frame.origin.y + self.passwordTextField.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
+    
+    NSLog(@"LOGIN BUTTON FRAME: %f %f %f %f", self.loginButton.frame.origin.x, self.loginButton.frame.origin.y, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
     
     self.bottomTextLabel.frame = CGRectMake(self.bottomTextLabel.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 10.0f, self.bottomTextLabel.frame.size.width, self.bottomTextLabel.frame.size.height);
     [self adjustLabelHeightToText:self.bottomTextLabel];
@@ -152,14 +157,15 @@
     // e.g. self.myOutlet = nil;
     
     // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad){
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillShowNotification
+                                                      object:nil];
+        // unregister for keyboard notifications while not visible.
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillHideNotification
+                                                      object:nil];
+    }
 }
 
 - (void)dealloc {
@@ -215,6 +221,10 @@
     [UIView commitAnimations];
     
     keyboardIsShown = YES;
+}
+
+- (CGSize)contentSizeForViewInPopover {
+    return CGSizeMake(320.0f, 550.0f);
 }
 
 @end

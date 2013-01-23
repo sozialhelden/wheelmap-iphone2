@@ -67,6 +67,10 @@
     return self;
 }
 
+- (void)refreshPositionWithOrigin:(CGPoint)origin {
+    self.frame = CGRectMake(origin.x, origin.y, 201, 55);
+}
+
 - (void)updateFilterButtons {
     if (![dataManager getGreenFilterStatus]) {
         buttonGreen.selected = !buttonGreen.selected;

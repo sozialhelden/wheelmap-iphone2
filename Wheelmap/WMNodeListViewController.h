@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "WMNodeListView.h"
 
-@interface WMNodeListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate>
+@interface WMNodeListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (nonatomic, strong) NSNumber* selectedCategoryID;
 @property (nonatomic) WMNodeListViewControllerUseCase useCase;
+
+- (void) showDetailPopoverForNode:(Node *)node;
+
 @end

@@ -15,9 +15,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        
         // Initialization code
         backgroundImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 60)];
         backgroundImg.image = [UIImage imageNamed:@"toolbar_background.png"];
+        backgroundImg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:backgroundImg];
         
         currentLocationButton = [WMButton buttonWithType:UIButtonTypeCustom];
@@ -77,6 +81,7 @@
         self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
         
         self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 3, 58, 58)];
+        self.wheelChairStatusFilterButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [self.wheelChairStatusFilterButton addTarget:self action:@selector(pressedWheelChairStatusFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.wheelChairStatusFilterButton];
         self.middlePointOfWheelchairFilterButton = self.wheelChairStatusFilterButton.frame.origin.x+(self.wheelChairStatusFilterButton.frame.size.width/2.0);
@@ -84,6 +89,14 @@
     }
     
     return self;
+}
+
+- (CGFloat)middlePointOfCategoryFilterButton {
+    return categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
+}
+
+- (CGFloat)middlePointOfWheelchairFilterButton {
+    return self.wheelChairStatusFilterButton.frame.origin.x+(self.wheelChairStatusFilterButton.frame.size.width/2.0);
 }
 
 -(void)selectSearchButton {

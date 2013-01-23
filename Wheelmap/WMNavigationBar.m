@@ -19,10 +19,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
         // Initialization code
         backgroundImg = [[UIImageView alloc] initWithFrame:self.bounds];
         backgroundImg.image = [UIImage imageNamed:@"navigationbar_background.png"];
         backgroundImg.contentMode = UIViewContentModeScaleToFill;
+        backgroundImg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:backgroundImg];
         
         currentLeftButton = nil;
@@ -84,14 +87,15 @@
         
         CGRect rightButtonRect = CGRectMake(self.frame.size.width-5-40, 5, 40, 40);
         // mithilfe button
-        contributeButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        contributeButton.frame = rightButtonRect;
-        contributeButton.backgroundColor = [UIColor clearColor];
-        [contributeButton setImage:[UIImage imageNamed:@"navigationbar_addbutton.png"] forState:UIControlStateNormal];
-        contributeButton.contentMode = UIViewContentModeCenter;
-        contributeButton.hidden = YES;
-        [contributeButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:contributeButton];
+        self.contributeButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        self.contributeButton.frame = rightButtonRect;
+        self.contributeButton.backgroundColor = [UIColor clearColor];
+        [self.contributeButton setImage:[UIImage imageNamed:@"navigationbar_addbutton.png"] forState:UIControlStateNormal];
+        self.contributeButton.contentMode = UIViewContentModeCenter;
+        self.contributeButton.hidden = YES;
+        [self.contributeButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
+        self.contributeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [self addSubview:self.contributeButton];
         
         
         // edit button
@@ -109,13 +113,13 @@
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
         
-        editButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        editButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-9, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-        editButton.backgroundColor = [UIColor clearColor];
-        [editButton setView:normalBtnImg forControlState:UIControlStateNormal];
-        editButton.hidden = YES;
-        [editButton addTarget:self action:@selector(pressedEditButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:editButton];
+        self.editButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        self.editButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-9, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        self.editButton.backgroundColor = [UIColor clearColor];
+        [self.editButton setView:normalBtnImg forControlState:UIControlStateNormal];
+        self.editButton.hidden = YES;
+        [self.editButton addTarget:self action:@selector(pressedEditButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.editButton];
         
         // save button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
@@ -157,7 +161,12 @@
         self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         
         // search bar
-        searchBarContainer = [[UIImageView alloc] initWithFrame:self.bounds];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 60.0f, self.bounds.origin.y, self.bounds.size.width - 60.0f, self.bounds.size.height)];
+        } else {
+            searchBarContainer = [[UIImageView alloc] initWithFrame:self.bounds];
+        }
+        searchBarContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         searchBarContainer.userInteractionEnabled = YES;
         searchBarContainer.image = [UIImage imageNamed:@"search_background.png"];
         searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
@@ -178,7 +187,8 @@
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
         searchBarCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        searchBarCancelButton.frame = CGRectMake(self.frame.size.width-5-normalBtnImg.frame.size.width, 5, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        searchBarCancelButton.frame = CGRectMake(searchBarContainer.frame.size.width-5-normalBtnImg.frame.size.width, 5, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+        searchBarCancelButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         searchBarCancelButton.backgroundColor = [UIColor clearColor];
         [searchBarCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
         [searchBarCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -187,12 +197,14 @@
         // search text field
         searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, searchBarCancelButton.frame.origin.x - 5 - 5, 40)];
         searchBarTextFieldBg.image = [[UIImage imageNamed:@"search_searchbar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+        searchBarTextFieldBg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [searchBarContainer addSubview:searchBarTextFieldBg];
         searchBarTextFieldBg.userInteractionEnabled = YES;
         
         searchBarTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, searchBarTextFieldBg.frame.size.width-10, 30)];
         searchBarTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
         searchBarTextField.delegate = self;
+        searchBarTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         searchBarTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         searchBarTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         searchBarTextField.returnKeyType = UIReturnKeySearch;
@@ -314,10 +326,10 @@
     UIView* prevButton = currentRightButton;
     switch (rightButtonStyle) {
         case kWMNavigationBarRightButtonStyleContributeButton:
-            currentRightButton = contributeButton;
+            currentRightButton = self.contributeButton;
             break;
         case kWMNavigationBarRightButtonStyleEditButton:
-            currentRightButton = editButton;
+            currentRightButton = self.editButton;
             break;
         case kWMNavigationBarRightButtonStyleSaveButton:
             currentRightButton = saveButton;
@@ -326,7 +338,7 @@
             currentRightButton = noneButton;
             break;
         default:
-            currentRightButton = contributeButton;
+            currentRightButton = self.contributeButton;
             break;
     }
     // effect here!
@@ -454,10 +466,10 @@
     
     switch (type) {
         case kWMNavigationBarRightButtonStyleContributeButton:
-            targetButton = contributeButton;
+            targetButton = self.contributeButton;
             break;
         case kWMNavigationBarRightButtonStyleEditButton:
-            targetButton = editButton;
+            targetButton = self.editButton;
             break;
         case kWMNavigationBarRightButtonStyleSaveButton:
             targetButton = saveButton;
@@ -487,10 +499,10 @@
     
     switch (type) {
         case kWMNavigationBarRightButtonStyleContributeButton:
-            targetButton = contributeButton;
+            targetButton = self.contributeButton;
             break;
         case kWMNavigationBarRightButtonStyleEditButton:
-            targetButton = editButton;
+            targetButton = self.editButton;
             break;
         case kWMNavigationBarRightButtonStyleSaveButton:
             targetButton = saveButton;

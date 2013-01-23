@@ -444,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wPz-2U-Zpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1276" y="-725"/>
+            <point key="canvasLocation" x="944" y="-724"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="fSQ-bx-BtH">
@@ -699,6 +699,7 @@
         <class className="WMDetailViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="accessButtonPressed:" candidateClass="NSString"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>

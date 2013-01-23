@@ -21,8 +21,6 @@
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
 @property WMNodeListViewControllerUseCase useCase;
 
-- (void) showDetailPopoverForNode:(Node*)node;
-
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord;

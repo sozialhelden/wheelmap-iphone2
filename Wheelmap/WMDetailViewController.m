@@ -239,7 +239,7 @@
         [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
         [self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
-        self.askFriendsButton.frame = CGRectMake(20, self.gabIfStatusUnknown, self.view.bounds.size.width-40, buttonImage.size.height);
+        self.askFriendsButton.frame = CGRectMake(20, self.gabIfStatusUnknown, 320.0f-40.0f, buttonImage.size.height);
         [self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 
         [view addSubview:self.askFriendsButton];
@@ -435,7 +435,7 @@
 
 - (CGSize)contentSizeForViewInPopover
 {
-    return CGSizeMake(320, 480);
+    return CGSizeMake(320.0f, 590.0f);
 }
 
 - (void)updateFields {
@@ -544,7 +544,7 @@
     
     if (![dataManager userIsAuthenticated]) {
         WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-        [navCtrl presentLoginScreen];
+        [navCtrl presentLoginScreenWithButtonFrame:self.moreInfoButton.frame];
         return;
     }
     
@@ -761,7 +761,7 @@
     
     if (![dataManager userIsAuthenticated]) {
         WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-        [navCtrl presentLoginScreen];
+        [navCtrl presentLoginScreenWithButtonFrame:self.cameraButton.frame];
         return;
     }
     
@@ -909,7 +909,7 @@
     
     if (![dataManager userIsAuthenticated]) {
         WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-        [navCtrl presentLoginScreen];
+        [navCtrl presentLoginScreenWithButtonFrame:navCtrl.customNavigationBar.editButton.frame];
         return;
     }
     
@@ -936,7 +936,6 @@
             break;
     }
 }
-
 
 @end
 

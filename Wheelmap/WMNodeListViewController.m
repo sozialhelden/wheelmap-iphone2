@@ -25,6 +25,8 @@
     BOOL shouldShowNoResultIndicator;
 
     WMDataManager *dataManager;
+    
+    UIPopoverController *popover;
 }
 
 @synthesize dataSource, delegate;
@@ -144,6 +146,8 @@
     }
     [self sortNodesByDistance];
     
+    NSLog(@"NUMBER OF NODES = %d", nodes.count);
+    
     [self.tableView reloadData];
 }
 
@@ -179,7 +183,7 @@
         NSUInteger row = [nodes indexOfObject:node];
         if (row != NSNotFound) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
         }
         
     } else {
@@ -251,6 +255,26 @@
 
     return cell;
 }       
+
+- (void) showDetailPopoverForNode:(Node *)node
+{
+    
+    if (node == nil) {
+        NSLog(@"NODE IS NIL");
+        return;
+    }
+    
+    WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
+    detailViewController.node = node;
+    
+    UINavigationController *detailNavController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    
+    popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
+    
+    CGRect myRect = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
+    
+    [popover presentPopoverFromRect:myRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+}
 
 #pragma mark - Table view delegate
 

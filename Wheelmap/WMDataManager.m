@@ -22,7 +22,7 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 0
+#define WMLogDataManager 1
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -227,6 +227,13 @@
 - (void)authenticateUserWithEmail:(NSString *)email password:(NSString *)password
 {
     if (WMLogDataManager) NSLog(@"authenticate user w email:%@ pw:%@", email, password);
+    
+    if (email == nil) {
+        email = @"";
+    }
+    if (password == nil) {
+        password = @"";
+    }
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"users/authenticate"
                                              apiKey:[self apiKey]

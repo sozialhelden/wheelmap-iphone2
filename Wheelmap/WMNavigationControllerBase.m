@@ -24,6 +24,7 @@
 #import "Category.h"
 #import "WMAcceptTermsViewController.h"
 #import "Reachability.h"
+#import "WMRootViewController_iPad.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -120,12 +121,22 @@
     
     // set custom nagivation and tool bars
     self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, 50);
-    self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.customNavigationBar = [[WMNavigationBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
+    } else {
+        self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
+    }
     self.customNavigationBar.delegate = self;
     [self.navigationBar addSubview:self.customNavigationBar];
     self.toolbar.frame = CGRectMake(0, self.toolbar.frame.origin.y, self.view.frame.size.width, 60);
     self.toolbar.backgroundColor = [UIColor whiteColor];
-    self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, 60)];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.customToolBar = [[WMToolBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, 60)];
+    } else {
+        self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, 60)];
+    }
     self.customToolBar.delegate = self;
     [self.toolbar addSubview:self.customToolBar];
     
@@ -158,13 +169,25 @@
     [self networkStatusChanged:nil];
 }
 
+- (void)refreshPopoverPositions {
+    [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
+    
+}
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
         return YES;
     else
         return NO;
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self refreshPopoverPositions];
 }
 
 - (void) dealloc
@@ -302,7 +325,7 @@
 {
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
-    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
+//    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
     
     for (Node* node in nodes) {
         NSNumber* categoryID = node.node_type.category.id;
@@ -367,6 +390,14 @@
  */
 - (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
 {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+            [(WMRootViewController_iPad *)self.topViewController nodeListView:nodeListView didSelectNode:node];
+        }
+        return;
+    }
+    
     // we don"t want to push a detail view when selecting a node on the map view, so
     // we check if this message comes from a table view
     if (node && [nodeListView isKindOfClass:[WMNodeListViewController class]]) {
@@ -379,6 +410,14 @@
  */
 - (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
 {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+            [(WMRootViewController_iPad *)self.topViewController nodeListView:nodeListView didSelectDetailsForNode:node];
+        }
+        return;
+    }
+    
     if (node) {
         [self pushDetailsViewControllerForNode:node];
     }
@@ -435,7 +474,15 @@
 
 -(void)updateNodesWithCurrentUserLocation
 {
+ 
     CLLocation* newLocation = self.locationManager.location;
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if ([self.topViewController isKindOfClass:WMRootViewController_iPad.class]) {
+            [(WMRootViewController_iPad *)self.topViewController gotNewUserLocation:newLocation];
+        }
+    }
+    
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
         [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];   // this will automatically update node list!
@@ -690,7 +737,7 @@
     NSLog(@"[NavigationControllerBase] pressed contribute button!");
     
     if (![dataManager userIsAuthenticated]) {
-        [self presentLoginScreen];
+        [self presentLoginScreenWithButtonFrame:CGRectMake(navigationBar.contributeButton.frame.origin.x, navigationBar.contributeButton.frame.origin.y + 23.0f, navigationBar.contributeButton.frame.size.width, navigationBar.contributeButton.frame.size.width)];
         return;
     }
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
@@ -740,7 +787,13 @@
     }
     
     
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
+    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        WMRootViewController_iPad* vc = (WMRootViewController_iPad*)self.topViewController;
+        vc.listViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+        vc.mapViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+        [self updateNodesWithQuery:query];
+        
+    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
         vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
@@ -837,6 +890,11 @@
         [self.customNavigationBar showSearchBar];
         
     } else {
+        
+        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+            WMRootViewController_iPad* currentVC = (WMRootViewController_iPad*)self.topViewController;
+            [currentVC pressedSearchButton:selected];
+        }
         if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
             WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
             currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
@@ -1046,9 +1104,10 @@
 }
 
 #pragma mark - Show Login screen
--(void)presentLoginScreen
+-(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
-    WMLoginViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    vc.popoverButtonFrame = frame;
     [self presentModalViewController:vc animated:YES];
 }
 
@@ -1056,6 +1115,25 @@
     fetchNodesAlertShowing = NO;
 }
 
+
+-(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+    [self dismissModalViewControllerAnimated:NO];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if ([modalViewController isKindOfClass:[WMViewController class]]) {
+            ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc]
+                                            initWithContentViewController:modalViewController];
+            ((WMViewController *)modalViewController).baseController = self;
+            [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+        }
+    } else {
+        [super presentModalViewController:modalViewController animated:animated];
+    }
+}
 
 @end
 

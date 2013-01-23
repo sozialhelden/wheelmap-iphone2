@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="vhY-3j-05V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="vhY-3j-05V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" id="XtM-f8-K8q" userLabel="Map Container View">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="916"/>
+                                <rect key="frame" x="320" y="0.0" width="448" height="916"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </containerView>
                             <containerView contentMode="scaleToFill" id="k1w-q9-Qa6" userLabel="List Container View">
@@ -81,6 +81,10 @@
                             <outlet property="delegate" destination="3h6-pc-dRU" id="fTJ-e4-TAx"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="Qgf-5B-D5F" id="JuS-P0-7fC"/>
+                        <outlet property="view" destination="Qgf-5B-D5F" id="d2h-2a-Sqn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5XN-U0-q8y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,31 +105,51 @@
                                     <outlet property="delegate" destination="Tu7-oK-zmc" id="Dtl-tp-y1e"/>
                                 </connections>
                             </mapView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="hX6-ez-jkQ">
-                                <rect key="frame" x="508" y="941" width="240" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <segments>
-                                    <segment title="Standard"/>
-                                    <segment title="Hybrid"/>
-                                    <segment title="Satellite"/>
-                                </segments>
-                                <connections>
-                                    <action selector="toggleMapTypeChanged:" destination="Tu7-oK-zmc" eventType="valueChanged" id="oBw-4u-Knt"/>
-                                </connections>
-                            </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="LZi-qv-cjf">
+                                <rect key="frame" x="266" y="13" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AbI-sa-foh">
+                                <rect key="frame" x="244" y="82" width="280" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kz6-ZJ-dTc">
+                                <rect key="frame" x="728" y="954" width="40" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="Curl_button.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="loadingWheel" destination="LZi-qv-cjf" id="J1e-Nn-UXO"/>
+                        <outlet property="mapInteractionInfoLabel" destination="AbI-sa-foh" id="2db-P1-9Sh"/>
                         <outlet property="mapView" destination="Y5Z-RI-xSe" id="9aG-cs-yYS"/>
+                        <outlet property="view" destination="YYb-pd-Kx6" id="koR-uE-8Fb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i13-Jf-5qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-636" y="323"/>
+            <point key="canvasLocation" x="-641" y="323"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Curl_button.png" width="40" height="50"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

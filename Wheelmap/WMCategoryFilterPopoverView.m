@@ -36,6 +36,11 @@
     return self;
 }
 
+- (void)refreshViewWithRefPoint:(CGPoint)refPoint andCategories:(NSArray *)categories {
+    refOrigin = refPoint;
+    [self refreshViewWithCategories:categories];
+}
+
 - (void)refreshViewWithCategories:(NSArray*)categories
 {
     self.categoryList = categories;

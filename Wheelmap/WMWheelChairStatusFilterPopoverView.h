@@ -26,5 +26,6 @@
 
 @property (nonatomic, strong) id<WMWheelChairStatusFilterPopoverViewDelegate> delegate;
 - (id)initWithOrigin:(CGPoint)origin;
+- (void)refreshPositionWithOrigin:(CGPoint)origin;
 - (void)updateFilterButtons;
 @end

@@ -29,20 +29,22 @@
     [super viewDidLoad];
 	
     self.listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"listViewController"];
-    self.listViewController.dataSource = self;
-    self.listViewController.delegate = self;
+    self.listViewController.dataSource = (WMNavigationControllerBase*)self.dataSource;
+    self.listViewController.delegate = (WMNavigationControllerBase*)self.dataSource;
     [self addChildViewController:self.listViewController];
     [self.listViewController didMoveToParentViewController:self];
     self.listViewController.view.frame = self.listContainerView.bounds;
     [self.listContainerView addSubview:self.listViewController.view];
     
     self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
-    self.mapViewController.dataSource = self;
-    self.mapViewController.delegate = self;
+    self.mapViewController.dataSource = (WMNavigationControllerBase*)self.dataSource;
+    self.mapViewController.delegate = (WMNavigationControllerBase*)self.dataSource;
     [self addChildViewController:self.mapViewController];
     [self.mapViewController didMoveToParentViewController:self];
     self.mapViewController.view.frame = self.mapContainerView.bounds;
     [self.mapContainerView addSubview:self.mapViewController.view];
+    
+    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
 }
 
 - (void)nodeListDidChange
@@ -60,6 +62,15 @@
     } completion:^(BOOL finished) {
         
     }];
+}
+
+- (void)gotNewUserLocation:(CLLocation *)location {
+    [self.mapViewController relocateMapTo:location.coordinate andSpan:MKCoordinateSpanMake(0.007, 0.007)];
+}
+
+- (void)pressedSearchButton:(BOOL)selected {
+    self.listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
 }
 
 #pragma mark - Node List Data Source
@@ -91,14 +102,17 @@
 
 - (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
 {
-    [self.mapViewController showDetailPopoverForNode:node];
+//    [self.mapViewController showDetailPopoverForNode:node];
+    [self.listViewController selectNode:node];
+    [self.listViewController showDetailPopoverForNode:node];
 }
 
 - (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
 {
     // highlight node in both views
     [self.listViewController selectNode:node];
-    [self.mapViewController selectNode:node];
+    [self.listViewController showDetailPopoverForNode:node];
+//    [self.mapViewController selectNode:node];
     
 }
 
@@ -107,6 +121,11 @@
 
 - (void)selectNode:(Node *)node
 {    
+}
+
+-(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
 }
 
 @end

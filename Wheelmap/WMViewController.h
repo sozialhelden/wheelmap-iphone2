@@ -10,6 +10,11 @@
 
 @interface WMViewController : UIViewController
 
+@property (nonatomic, strong) UIPopoverController* popover;
+@property (nonatomic) CGRect popoverButtonFrame;
+@property (nonatomic, strong) UIViewController* baseController;
+
 @property (nonatomic, strong) UIView* contentView;
 @property (nonatomic, strong) NSString* navigationBarTitle;
+
 @end

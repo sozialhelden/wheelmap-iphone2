@@ -65,4 +65,34 @@
     return [super title];
 }
 
+-(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+- (CGSize)contentSizeForViewInPopover {
+    return CGSizeMake(320.0f, 550.0f);
+}
+
+- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self dismissModalViewControllerAnimated:NO];
+        if ((self.baseController != nil) && (self.baseController.view != nil)) {
+            ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
+            ((WMViewController *)modalViewController).baseController = self.baseController;
+            [((WMViewController *)modalViewController).popover presentPopoverFromRect:self.popoverButtonFrame inView:self.baseController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+        }
+    } else {
+        [super presentModalViewController:modalViewController animated:animated];
+    }
+}
+
+- (void)dismissModalViewControllerAnimated:(BOOL)animated {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.popover dismissPopoverAnimated:animated];
+    } else {
+        [super dismissModalViewControllerAnimated:animated];
+    }
+}
+
 @end
