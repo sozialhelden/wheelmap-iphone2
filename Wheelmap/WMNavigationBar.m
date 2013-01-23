@@ -118,6 +118,7 @@
         self.editButton.backgroundColor = [UIColor clearColor];
         [self.editButton setView:normalBtnImg forControlState:UIControlStateNormal];
         self.editButton.hidden = YES;
+        self.editButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [self.editButton addTarget:self action:@selector(pressedEditButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.editButton];
         
@@ -139,6 +140,7 @@
         saveButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
         saveButton.backgroundColor = [UIColor clearColor];
         saveButton.hidden = YES;
+        saveButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [saveButton setView:normalBtnImg forControlState:UIControlStateNormal];
         [saveButton addTarget:self action:@selector(pressedSaveButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:saveButton];
@@ -294,6 +296,10 @@
         case kWMNavigationBarLeftButtonStyleCancelButton:
             currentLeftButton = cancelButton;
             break;
+        case kWMNavigationBarLeftButtonStyleNone:
+            currentLeftButton = noneButton;
+            break;
+
         default:
             currentLeftButton = dashboardButton;
             break;

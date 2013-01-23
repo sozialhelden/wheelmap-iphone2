@@ -12,7 +12,8 @@
 typedef enum {
     kWMNavigationBarLeftButtonStyleDashboardButton,
     kWMNavigationBarLeftButtonStyleBackButton,
-    kWMNavigationBarLeftButtonStyleCancelButton
+    kWMNavigationBarLeftButtonStyleCancelButton,
+    kWMNavigationBarLeftButtonStyleNone
 } WMNavigationBarLeftButtonStyle;
 
 typedef enum {

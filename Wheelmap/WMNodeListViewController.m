@@ -14,7 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMStringUtilities.h"
 #import "WMDataManager.h"
-
+#import "WMDetailNavigationController.h"
 
 @implementation WMNodeListViewController
 {
@@ -331,7 +331,7 @@
     WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
     detailViewController.node = node;
     
-    UINavigationController *detailNavController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:detailViewController];
     
     popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
     
