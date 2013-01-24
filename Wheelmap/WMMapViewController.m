@@ -47,7 +47,7 @@
     //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
     
     // configure mapInteractionInfoLabel
-    self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*2);
+    self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3);
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
     self.mapInteractionInfoLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     self.mapInteractionInfoLabel.layer.borderWidth = 2.0;
@@ -75,6 +75,7 @@
     // we set the delegate in viewDidAppear to avoid node updates by map initialisation
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
+    
     
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.dataSource;
     MKCoordinateRegion initRegion;
@@ -106,9 +107,6 @@
         
     }
     
-    
-
-       
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -119,6 +117,7 @@
 
 - (void) loadNodes
 {
+        
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
         NSArray* unfilteredNodes = [self.dataSource nodeList];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
@@ -135,6 +134,14 @@
 
     
     NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
+    
+    // fix for map sometimes showing old annotations on ipad
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        for (id<MKAnnotation> annotation in oldAnnotations) {
+            if (![annotation isKindOfClass:[MKUserLocation class]])
+                [self.mapView removeAnnotation:annotation];
+        }
+    }
     
     [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
         WMMapAnnotation *annotationForNode = [self annotationForNode:node];
@@ -223,9 +230,9 @@
                          
         }];
         
-        
         return annotationView;
     }
+
     return nil;
 }
 

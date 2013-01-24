@@ -44,7 +44,7 @@
     self.mapViewController.view.frame = self.mapContainerView.bounds;
     [self.mapContainerView addSubview:self.mapViewController.view];
     
-    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
+//    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
 }
 
 - (void)nodeListDidChange
@@ -65,6 +65,7 @@
 }
 
 - (void)gotNewUserLocation:(CLLocation *)location {
+    NSLog(@"...NEW USER LOCATION...");
     [self.mapViewController relocateMapTo:location.coordinate andSpan:MKCoordinateSpanMake(0.007, 0.007)];
 }
 

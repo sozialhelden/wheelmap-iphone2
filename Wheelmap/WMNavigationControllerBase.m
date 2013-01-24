@@ -207,6 +207,8 @@
 
 - (void) refreshNodeList
 {
+    NSLog(@"--- REFRESH NODE LIST ---");
+    
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
         [(id<WMNodeListView>)self.topViewController nodeListDidChange];
     }
@@ -214,6 +216,9 @@
 
 - (void) refreshNodeListWithArray:(NSArray*)array
 {
+    
+    NSLog(@"--- REFRESH NODE LIST WITH ARRAY ---");
+
     nodes = array;
     for (UIViewController* vc in self.viewControllers) {
         if ([vc conformsToProtocol:@protocol(WMNodeListView)]) {
@@ -353,6 +358,8 @@
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
+    
+    NSLog(@"UPDATE WITH REGION");
     // we do not show here the loading wheel since this methods is always called by map view controller, and the vc has its own loading wheel,
     // which allows user interaction while loading nodes.
    // [self showLoadingWheel];
