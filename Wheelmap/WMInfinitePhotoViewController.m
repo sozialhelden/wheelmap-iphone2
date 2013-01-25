@@ -32,6 +32,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
+    
     [self.closeButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
    
     self.infiniteGallery = [[InfiniteGallery alloc] initWithFrame:self.galleryView.bounds];

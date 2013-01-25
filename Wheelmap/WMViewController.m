@@ -7,6 +7,7 @@
 //
 
 #import "WMViewController.h"
+#import "WMInfinitePhotoViewController.h"
 
 @interface WMViewController ()
 
@@ -80,8 +81,12 @@
     return CGSizeMake(320.0f, 550.0f);
 }
 
+- (void)presentForcedModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+    [super presentModalViewController:modalViewController animated:animated];
+}
+
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
         [self dismissModalViewControllerAnimated:NO];
         if ((self.baseController != nil) && (self.baseController.view != nil)) {
             ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
@@ -94,7 +99,7 @@
 }
 
 - (void)dismissModalViewControllerAnimated:(BOOL)animated {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
         [self.popover dismissPopoverAnimated:animated];
     } else {
         [super dismissModalViewControllerAnimated:animated];

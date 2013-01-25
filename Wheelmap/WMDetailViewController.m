@@ -755,7 +755,7 @@
     WMInfinitePhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMInfinitePhotoViewController"];
     vc.imageURLArray = self.originalImageURLArray;
     vc.tappedImage = sender.view.tag;
-    [self presentModalViewController:vc animated:YES];
+    [self presentForcedModalViewController:vc animated:YES];
 }
 
 - (void) cameraButtonPressed {

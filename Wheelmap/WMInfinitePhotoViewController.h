@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet InfiniteGallery *infiniteGallery;
 @property (strong, nonatomic) IBOutlet UIButton *closeButton;
+@property (strong, nonatomic) IBOutlet UIView *headerView;
 
 @property (assign) int tappedImage;
 
