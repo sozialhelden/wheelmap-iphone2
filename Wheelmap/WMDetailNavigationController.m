@@ -118,6 +118,9 @@
     } else if ([viewController isKindOfClass:[WMLoginViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleCancelButton;
+    } else if ([viewController isKindOfClass:[WMCommentViewController class]]) {
+        self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
+        self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
     } else{
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
