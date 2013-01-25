@@ -25,6 +25,8 @@
 #import "WMAcceptTermsViewController.h"
 #import "Reachability.h"
 #import "WMRootViewController_iPad.h"
+#import "WMNodeListViewController.h"
+
 
 @implementation WMNavigationControllerBase
 {
@@ -56,6 +58,11 @@
     
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
+    
+    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        WMRootViewController_iPad* vc = (WMRootViewController_iPad*)self.topViewController;
+        vc.listViewController.baseController = self;
+    }
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;

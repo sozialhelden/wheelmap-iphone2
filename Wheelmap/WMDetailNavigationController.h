@@ -10,10 +10,14 @@
 #import "WMNavigationBar.h"
 #import "WMToolBar.h"
 
+@class WMNodeListViewController;
+
 @interface WMDetailNavigationController : UINavigationController <WMNavigationBarDelegate>
 
+@property (nonatomic, strong) WMNodeListViewController* listViewController;
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
+- (void) showLoadingWheel;
 
 @end

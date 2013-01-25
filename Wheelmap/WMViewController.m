@@ -86,7 +86,7 @@
 }
 
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self dismissModalViewControllerAnimated:NO];
         if ((self.baseController != nil) && (self.baseController.view != nil)) {
             ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];

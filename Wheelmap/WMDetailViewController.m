@@ -26,6 +26,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMStringUtilities.h"
 #import "WMNodeListViewController.h"
+#import "WMDetailNavigationController.h"
 
 #define GABIFSTATUSUNKNOWN 62
 #define MAPOPENADDITION 266
@@ -720,8 +721,6 @@
                 
             } else {
            
-                
-            
                 NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
                                              start.latitude, start.longitude, destination.latitude, destination.longitude];
                 NSURL *url = [NSURL URLWithString:googleMapsURLString];
@@ -733,10 +732,25 @@
     } else if (actionSheet.tag == 2) { // PHOTOUPLOAD
         if (buttonIndex == 0) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentModalViewController:self.imagePicker animated:YES];
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                
+                self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+                
+                [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            } else {
+                [self presentForcedModalViewController:self.imagePicker animated:YES];
+            }
         } else if (buttonIndex == 1) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            [self presentModalViewController:self.imagePicker animated:YES];
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                
+                self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+                
+                [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            } else {
+                [self presentModalViewController:self.imagePicker animated:YES];
+            }
         }
     } else if (actionSheet.tag == 3) {
         NSString *phoneLinkString = [NSString stringWithFormat:@"tel:%@", self.node.phone];
@@ -772,10 +786,19 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailsViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailsViewUploadOptionCamera", @""), NSLocalizedString(@"DetailsViewUploadOptionPhotoAlbum", @""), nil];
         actionSheet.tag = 2;
+       
         [actionSheet showInView:self.view];
     } else {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentModalViewController:self.imagePicker animated:YES];
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                        
+            self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+            
+            [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        } else {
+            [self presentForcedModalViewController:self.imagePicker animated:YES];
+        }
     }
     
     
@@ -783,12 +806,20 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.popOverController dismissPopoverAnimated:YES];
+    }
+    
     [self dismissModalViewControllerAnimated:YES];
     
 }
 
 - (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.popOverController dismissPopoverAnimated:YES];
+    }
+    
     imageReadyToUpload = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     NSLog(@"[LOG] UPLOAD THE PICKED IMAGE!");
@@ -835,7 +866,7 @@
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUploadFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
-    
+
     NSLog(@"[LOG] photo upload failed! %@", error);
     
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;

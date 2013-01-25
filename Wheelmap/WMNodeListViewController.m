@@ -15,6 +15,7 @@
 #import "WMStringUtilities.h"
 #import "WMDataManager.h"
 #import "WMDetailNavigationController.h"
+#import "WMNodeListView.h"
 
 @implementation WMNodeListViewController
 {
@@ -27,7 +28,6 @@
 
     WMDataManager *dataManager;
     
-    UIPopoverController *popover;
 }
 
 @synthesize dataSource, delegate;
@@ -332,12 +332,13 @@
     detailViewController.node = node;
     
     WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:detailViewController];
+    detailNavController.listViewController = self;
     
-    popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
+    self.popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
     
     CGRect myRect = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
     
-    [popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 #pragma mark - Table view delegate

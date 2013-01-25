@@ -15,7 +15,7 @@
 
 @class Node;
 
-@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate>
+@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate>
 {
     WMDataManager* dataManager;
     UIImage* imageReadyToUpload;
@@ -23,6 +23,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) Node *node;
+@property (nonatomic, strong) UIPopoverController *popOverController;
 
 //// 2 MAIN COMPONENTS OF THE MAIN VIEW
 

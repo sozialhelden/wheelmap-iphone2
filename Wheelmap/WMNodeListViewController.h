@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WMNodeListView.h"
+#import "WMNavigationControllerBase.h"
 
 @interface WMNodeListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
@@ -15,6 +16,8 @@
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (nonatomic, strong) NSNumber* selectedCategoryID;
 @property (nonatomic) WMNodeListViewControllerUseCase useCase;
+@property (nonatomic, strong) UIPopoverController *popover;
+@property (nonatomic, strong) WMNavigationControllerBase *controllerBase;
 
 - (void) showDetailPopoverForNode:(Node *)node;
 

@@ -12,6 +12,8 @@
 #import "WMLoginViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMCommentViewController.h"
+#import "WMRootViewController_iPad.h"
+#import "WMNodeListViewController.h"
 
 @interface WMDetailNavigationController ()
 
@@ -121,7 +123,10 @@
     } else if ([viewController isKindOfClass:[WMCommentViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
-    } else{
+    } else if ([viewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
+        self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
+        self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
+    } else {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
@@ -176,6 +181,14 @@
     } else {
         [super presentModalViewController:modalViewController animated:animated];
     }
+}
+
+- (void) showLoadingWheel {
+    [self.listViewController.controllerBase showLoadingWheel];
+}
+
+- (void)hideLoadingWheel {
+    [self.listViewController.controllerBase hideLoadingWheel];
 }
 
 @end
