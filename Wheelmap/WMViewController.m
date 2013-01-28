@@ -8,6 +8,8 @@
 
 #import "WMViewController.h"
 #import "WMInfinitePhotoViewController.h"
+#import "WMTermsViewController.h"
+#import "WMAcceptTermsViewController.h"
 
 @interface WMViewController ()
 
@@ -72,6 +74,16 @@
     return [super title];
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSLog(@"Popover %f", self.popoverButtonFrame.origin.y);
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    NSLog(@"Popover %f", self.popoverButtonFrame.origin.y);
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+}
+
 -(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
@@ -87,11 +99,30 @@
 
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self dismissModalViewControllerAnimated:NO];
-        if ((self.baseController != nil) && (self.baseController.view != nil)) {
-            ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
-            ((WMViewController *)modalViewController).baseController = self.baseController;
-            [((WMViewController *)modalViewController).popover presentPopoverFromRect:self.popoverButtonFrame inView:self.baseController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+        
+        if (![modalViewController isKindOfClass:[WMTermsViewController class]]) {
+            [self dismissModalViewControllerAnimated:NO];
+            if ((self.baseController != nil) && (self.baseController.view != nil)) {
+                ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
+                ((WMViewController *)modalViewController).baseController = self.baseController;
+                
+                if ((self.popoverButtonFrame.size.width == 0) || (self.popoverButtonFrame.size.height == 0)) {
+                    self.popoverButtonFrame = CGRectMake(self.popoverButtonFrame.origin.x, self.popoverButtonFrame.origin.y, 10.0f, 10.0f);
+                }
+                
+                [((WMViewController *)modalViewController).popover presentPopoverFromRect:self.popoverButtonFrame inView:self.baseController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+            }
+        } else {
+            if ((self.baseController != nil) && (self.baseController.view != nil)) {
+                ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
+                ((WMViewController *)modalViewController).baseController = self.baseController;
+                
+                if ((self.popoverButtonFrame.size.width == 0) || (self.popoverButtonFrame.size.height == 0)) {
+                    self.popoverButtonFrame = CGRectMake(self.popoverButtonFrame.origin.x, self.popoverButtonFrame.origin.y, 10.0f, 10.0f);
+                }
+                
+                [((WMViewController *)modalViewController).popover presentPopoverFromRect:self.popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
+            }
         }
     } else {
         [super presentModalViewController:modalViewController animated:animated];

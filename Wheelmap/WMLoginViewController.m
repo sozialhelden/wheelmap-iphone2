@@ -10,6 +10,8 @@
 #import "WMDataManager.h"
 #import "WMTermsViewController.h"
 #import "WMNavigationControllerBase.h"
+#import "WMDetailNavigationController.h"
+#import "WMNodeListViewController.h"
 
 @implementation WMLoginViewController
 
@@ -144,7 +146,17 @@
             [self dismissModalViewControllerAnimated:YES];
         }
     } else {
-        [(WMNavigationControllerBase *)self.presentingViewController showAcceptTermsViewController];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if (self.navigationController != nil) {
+                [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase showAcceptTermsViewController];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                [(WMNavigationControllerBase *)self.baseController showAcceptTermsViewController];
+                [self dismissModalViewControllerAnimated:YES];
+            }
+        } else {
+            [(WMNavigationControllerBase *)self.presentingViewController showAcceptTermsViewController];
+        }
     }
 }
 

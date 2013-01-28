@@ -27,6 +27,7 @@
 #import "WMRootViewController_iPad.h"
 #import "WMNodeListViewController.h"
 #import "WMDetailNavigationController.h"
+#import "WMAcceptTermsViewController.h"
 
 
 @implementation WMNavigationControllerBase
@@ -41,6 +42,8 @@
     UIActivityIndicatorView* loadingWheel;
     
     BOOL fetchNodesAlertShowing;
+    
+    BOOL contributePressed;
 }
 
 #pragma mark - Lifecycle
@@ -713,7 +716,8 @@
 - (void)showAcceptTermsViewController {
     [self dismissModalViewControllerAnimated:NO];
     
-    WMAcceptTermsViewController *termsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
+    WMAcceptTermsViewController *termsVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
+    termsVC.popoverButtonFrame = CGRectMake(self.view.frame.size.width/2, 400.0f, 5.0f, 5.0f);
     
     [self presentModalViewController:termsVC animated:YES];
 }
@@ -751,10 +755,15 @@
 {
     NSLog(@"[NavigationControllerBase] pressed contribute button!");
     
+    contributePressed = YES;
+    
     if (![dataManager userIsAuthenticated]) {
         [self presentLoginScreenWithButtonFrame:CGRectMake(navigationBar.contributeButton.frame.origin.x, navigationBar.contributeButton.frame.origin.y + 23.0f, navigationBar.contributeButton.frame.size.width, navigationBar.contributeButton.frame.size.width)];
         return;
     }
+    
+    contributePressed = NO;
+    
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -1196,7 +1205,19 @@
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self dismissModalViewControllerAnimated:NO];
-        if ([modalViewController isKindOfClass:[WMViewController class]]) {
+        
+        if ([modalViewController isKindOfClass:[WMAcceptTermsViewController class]]) {
+            ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc]
+                                                                 initWithContentViewController:modalViewController];
+            ((WMViewController *)modalViewController).baseController = self;
+            
+            if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
+                ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
+            }
+            
+            [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
+            
+        } else if ([modalViewController isKindOfClass:[WMViewController class]]) {
             ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc]
                                             initWithContentViewController:modalViewController];
             ((WMViewController *)modalViewController).baseController = self;

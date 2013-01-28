@@ -19,5 +19,4 @@
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 - (void) showLoadingWheel;
-
 @end

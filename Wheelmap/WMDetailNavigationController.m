@@ -14,6 +14,7 @@
 #import "WMCommentViewController.h"
 #import "WMRootViewController_iPad.h"
 #import "WMNodeListViewController.h"
+#import "WMAcceptTermsViewController.h"
 
 @interface WMDetailNavigationController ()
 
@@ -180,6 +181,11 @@
             ((WMLoginViewController *)modalViewController).popover = [[UIPopoverController alloc]
                                                                  initWithContentViewController:modalViewController];
             ((WMLoginViewController *)modalViewController).baseController = self;
+            
+            if ((((WMLoginViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMLoginViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
+                ((WMLoginViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMLoginViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMLoginViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
+            }
+            
             [((WMLoginViewController *)modalViewController).popover presentPopoverFromRect:((WMLoginViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
         }
     } else {
