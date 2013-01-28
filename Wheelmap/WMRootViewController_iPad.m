@@ -35,6 +35,7 @@
     [self.listViewController didMoveToParentViewController:self];
     self.listViewController.view.frame = self.listContainerView.bounds;
     [self.listContainerView addSubview:self.listViewController.view];
+    self.listViewController.controllerBase = self.controllerBase;
     
     self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
     self.mapViewController.dataSource = (WMNavigationControllerBase*)self.dataSource;

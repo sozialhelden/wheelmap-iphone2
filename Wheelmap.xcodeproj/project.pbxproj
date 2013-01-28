@@ -31,6 +31,7 @@
 		031B9CC416AFF90C00AA0317 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 031B9CC316AFF90B00AA0317 /* Default-Portrait@2x~ipad.png */; };
 		031B9CC516AFF91400AA0317 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 031B9CC116AFF90300AA0317 /* Default-Landscape~ipad.png */; };
 		031B9CC716AFF91900AA0317 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 031B9CC616AFF91700AA0317 /* Default-Landscape@2x~ipad.png */; };
+		0344B42416B68297009DEE53 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED316A6FDFA00F9F663 /* WMConfig.plist */; };
 		034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */; };
 		034D38DE167738C10071EC05 /* Curl_btn-left-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CE167738C10071EC05 /* Curl_btn-left-active.png */; };
 		034D38DF167738C10071EC05 /* Curl_btn-left-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CF167738C10071EC05 /* Curl_btn-left-active@2x.png */; };
@@ -48,7 +49,6 @@
 		034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
 		034FACB616A59A4100F9F663 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB516A59A4100F9F663 /* WMTermsViewController.m */; };
 		034FACBA16A59BEF00F9F663 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */; };
-		034FAED716A6FDFA00F9F663 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED516A6FDFA00F9F663 /* WMConfig.plist */; };
 		034FAED816A6FE0000F9F663 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED316A6FDFA00F9F663 /* WMConfig.plist */; };
 		0360B842169DACDC00E04026 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360B841169DACDC00E04026 /* WMRegisterViewController.m */; };
 		0360BAC4169DC16A00E04026 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 0360B9BB169DC16A00E04026 /* CHANGELOG */; };
@@ -2836,7 +2836,6 @@
 				0360BB3C169DC26800E04026 /* AirshipConfig.plist in Resources */,
 				03F23ED016A013B600F6B379 /* credits_credits.png in Resources */,
 				03F23ED116A013B600F6B379 /* credits_credits@2x.png in Resources */,
-				034FAED716A6FDFA00F9F663 /* WMConfig.plist in Resources */,
 				031B9C9016AEC22200AA0317 /* icons_72-72.png in Resources */,
 				031B9C9216AEC22200AA0317 /* icons_144-144.png in Resources */,
 				031B9CB316AEDEA900AA0317 /* ipad_buttons_credits.png in Resources */,
@@ -2849,6 +2848,7 @@
 				031B9CC416AFF90C00AA0317 /* Default-Portrait@2x~ipad.png in Resources */,
 				031B9CC516AFF91400AA0317 /* Default-Landscape~ipad.png in Resources */,
 				031B9CC716AFF91900AA0317 /* Default-Landscape@2x~ipad.png in Resources */,
+				0344B42416B68297009DEE53 /* WMConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3351,8 +3351,8 @@
 		989927881649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -3369,8 +3369,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "985499FE-117E-4B50-8F14-43B64AC874D5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "985499FE-117E-4B50-8F14-43B64AC874D5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

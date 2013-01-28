@@ -10,6 +10,7 @@
 #import "WMNodeListView.h"
 #import "WMNodeListViewController.h"
 #import "WMMapViewController.h"
+#import "WMNavigationControllerBase.h"
 
 @class WMNodeListViewController, WMMapViewController;
 
@@ -20,6 +21,7 @@
 
 @property (nonatomic) WMNodeListViewController *listViewController;
 @property (nonatomic) WMMapViewController *mapViewController;
+@property (nonatomic) WMNavigationControllerBase *controllerBase;
 
 - (IBAction)toggleListButtonTouched:(id)sender;
 

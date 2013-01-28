@@ -26,6 +26,7 @@
 #import "Reachability.h"
 #import "WMRootViewController_iPad.h"
 #import "WMNodeListViewController.h"
+#import "WMDetailNavigationController.h"
 
 
 @implementation WMNavigationControllerBase
@@ -61,7 +62,7 @@
     
     if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
         WMRootViewController_iPad* vc = (WMRootViewController_iPad*)self.topViewController;
-        vc.listViewController.baseController = self;
+        vc.controllerBase = self;
     }
     
     self.locationManager = [[CLLocationManager alloc] init];
@@ -214,7 +215,7 @@
 
 - (void) refreshNodeList
 {
-    NSLog(@"--- REFRESH NODE LIST ---");
+//    NSLog(@"--- REFRESH NODE LIST ---");
     
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
         [(id<WMNodeListView>)self.topViewController nodeListDidChange];
@@ -224,7 +225,7 @@
 - (void) refreshNodeListWithArray:(NSArray*)array
 {
     
-    NSLog(@"--- REFRESH NODE LIST WITH ARRAY ---");
+//    NSLog(@"--- REFRESH NODE LIST WITH ARRAY ---");
 
     nodes = array;
     for (UIViewController* vc in self.viewControllers) {
@@ -756,7 +757,19 @@
     }
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
     vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-    [self pushViewController:vc animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:vc];
+                
+        vc.popoverButtonFrame = CGRectMake(self.customNavigationBar.contributeButton.frame.origin.x + 20.0f, self.customNavigationBar.contributeButton.frame.origin.y + 20.0f, self.customNavigationBar.contributeButton.frame.size.width, self.customNavigationBar.contributeButton.frame.size.height);
+        
+        vc.popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
+        vc.baseController = self;
+        
+        [vc.popover presentPopoverFromRect:vc.popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    } else {
+        [self pushViewController:vc animated:YES];
+    }
 }
 
 -(void)pressedEditButton:(WMNavigationBar *)navigationBar
@@ -1187,6 +1200,7 @@
             ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc]
                                             initWithContentViewController:modalViewController];
             ((WMViewController *)modalViewController).baseController = self;
+            
             [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
         }
     } else {
