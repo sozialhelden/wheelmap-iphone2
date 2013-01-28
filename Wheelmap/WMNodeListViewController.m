@@ -330,6 +330,7 @@
     
     WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
     detailViewController.node = node;
+    detailViewController.baseController = self.controllerBase;
     
     WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:detailViewController];
     detailNavController.listViewController = self;

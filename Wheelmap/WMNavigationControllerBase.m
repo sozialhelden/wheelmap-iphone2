@@ -444,6 +444,7 @@
 - (void) pushDetailsViewControllerForNode:(Node*)node
 {
     WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
+    detailViewController.baseController = self;
     detailViewController.node = node;
     [self pushViewController:detailViewController animated:YES];
 }

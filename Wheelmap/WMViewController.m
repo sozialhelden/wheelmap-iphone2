@@ -106,22 +106,22 @@
                 ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
                 ((WMViewController *)modalViewController).baseController = self.baseController;
                 
-                if ((self.popoverButtonFrame.size.width == 0) || (self.popoverButtonFrame.size.height == 0)) {
-                    self.popoverButtonFrame = CGRectMake(self.popoverButtonFrame.origin.x, self.popoverButtonFrame.origin.y, 10.0f, 10.0f);
+                if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
+                    ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
                 }
                 
-                [((WMViewController *)modalViewController).popover presentPopoverFromRect:self.popoverButtonFrame inView:self.baseController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+                [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
             }
         } else {
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
                 ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
                 ((WMViewController *)modalViewController).baseController = self.baseController;
                 
-                if ((self.popoverButtonFrame.size.width == 0) || (self.popoverButtonFrame.size.height == 0)) {
-                    self.popoverButtonFrame = CGRectMake(self.popoverButtonFrame.origin.x, self.popoverButtonFrame.origin.y, 10.0f, 10.0f);
+                if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
+                    ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
                 }
                 
-                [((WMViewController *)modalViewController).popover presentPopoverFromRect:self.popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
+                [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
             }
         }
     } else {

@@ -904,6 +904,9 @@
 
 - (void) shareLocationButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
+    vc.baseController = self.baseController;
+    vc.popoverButtonFrame = CGRectMake(self.shareLocationButton.frame.origin.x, self.shareLocationButton.frame.origin.y, self.shareLocationButton.frame.size.width, self.shareLocationButton.frame.size.height);
+    
     [self presentModalViewController:vc animated:YES];
     vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
