@@ -115,7 +115,11 @@
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
     } else if ([viewController isKindOfClass:[WMEditPOIViewController class]]) {
-        self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
+        if ([self.viewControllers count] < 1) {
+            self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
+        } else {
+            self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
+        }
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
     } else if ([viewController isKindOfClass:[WMLoginViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
