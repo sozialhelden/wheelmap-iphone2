@@ -48,7 +48,9 @@
         }
     }
     
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:highlightedCellRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    if (highlightedCellRow >= 0) {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:highlightedCellRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    }
 }
 
 - (void)didReceiveMemoryWarning

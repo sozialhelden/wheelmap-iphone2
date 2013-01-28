@@ -293,6 +293,9 @@
 
 - (void)markerSet:(CLLocationCoordinate2D)coord {
     self.currentCoordinate = coord;
+    self.node.lat = [NSNumber numberWithDouble:coord.latitude];
+    self.node.lon = [NSNumber numberWithDouble:coord.longitude];
+    
     [self.setMarkerButton setTitle:[NSString stringWithFormat:@"(%0.5f, %0.5f)", coord.latitude, coord.longitude] forState:UIControlStateNormal];
 }
 
@@ -375,6 +378,9 @@
 }
 
 - (void) saveEditedData {
+    
+    NSLog(@"Node: %@ %@", self.node.lat, self.node.lon);
+    
     if (!self.node.lat || !self.node.lon) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PleaseSetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
@@ -400,6 +406,7 @@
                 [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase updateNodesWithCurrentUserLocation];
             }
         }
+        [self dismissModalViewControllerAnimated:YES];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
