@@ -49,6 +49,7 @@ typedef enum {
     UITextField* searchBarTextField;
     WMButton* searchBarCancelButton;
     
+    
 }
 
 @property (nonatomic, strong) WMButton* editButton;
@@ -57,10 +58,13 @@ typedef enum {
 @property (nonatomic) WMNavigationBarRightButtonStyle rightButtonStyle;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) id<WMNavigationBarDelegate> delegate;
+@property (nonatomic) BOOL searchBarEnabled;
+
 
 //-(id)initWithSize:(CGSize)size;
 -(void)showSearchBar;
 -(void)hideSearchBar;
+- (NSString *)getSearchString;
 
 -(void)showRightButton:(WMNavigationBarRightButtonStyle)type;
 -(void)hideRightButton:(WMNavigationBarRightButtonStyle)type;

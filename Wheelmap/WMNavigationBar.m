@@ -174,11 +174,10 @@
         
         // search bar
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 60.0f, self.bounds.origin.y, self.bounds.size.width - 60.0f, self.bounds.size.height)];
+            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50.0f, self.bounds.origin.y, 320.0f - 50.0f, self.bounds.size.height)];
         } else {
             searchBarContainer = [[UIImageView alloc] initWithFrame:self.bounds];
         }
-        searchBarContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         searchBarContainer.userInteractionEnabled = YES;
         searchBarContainer.image = [UIImage imageNamed:@"search_background.png"];
         searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
@@ -198,16 +197,25 @@
         normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 40);
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
-        searchBarCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        searchBarCancelButton.frame = CGRectMake(searchBarContainer.frame.size.width-5-normalBtnImg.frame.size.width, 5, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-        searchBarCancelButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        searchBarCancelButton.backgroundColor = [UIColor clearColor];
-        [searchBarCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
-        [searchBarCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-        [searchBarContainer addSubview:searchBarCancelButton];
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            
+        } else {
+            searchBarCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
+            searchBarCancelButton.frame = CGRectMake(searchBarContainer.frame.size.width-5-normalBtnImg.frame.size.width, 5, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
+            searchBarCancelButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+            searchBarCancelButton.backgroundColor = [UIColor clearColor];
+            [searchBarCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
+            [searchBarCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+            [searchBarContainer addSubview:searchBarCancelButton];
+        }
         
         // search text field
-        searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, searchBarCancelButton.frame.origin.x - 5 - 5, 40)];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, searchBarContainer.frame.size.width - 10.0f, 40)];
+        } else {
+            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, searchBarCancelButton.frame.origin.x - 5 - 5, 40)];
+        }
         searchBarTextFieldBg.image = [[UIImage imageNamed:@"search_searchbar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
         searchBarTextFieldBg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [searchBarContainer addSubview:searchBarTextFieldBg];
@@ -229,6 +237,15 @@
     
     return self;
 }
+
+
+- (void)setSearchBarEnabled:(BOOL)searchBarEnabled {
+    _searchBarEnabled = searchBarEnabled;
+    if (searchBarEnabled) {
+        searchBarContainer.transform = CGAffineTransformMakeTranslation(0, 0);
+    }
+}
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -422,6 +439,10 @@
     
     titleLabel.frame = CGRectMake(originX+5, titleLabel.frame.origin.y, width-10, titleLabel.frame.size.height);
     
+}
+
+- (NSString *)getSearchString {
+    return searchBarTextField.text;
 }
 
 -(void)showSearchBar

@@ -135,6 +135,7 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.customNavigationBar = [[WMNavigationBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
+        self.customNavigationBar.searchBarEnabled = YES;
     } else {
         self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
     }
@@ -167,6 +168,8 @@
         if ([self.customToolBar isKindOfClass:[WMToolBar_iPad class]]) {
             [(WMToolBar_iPad *)self.customToolBar updateLoginButton];
         }
+        
+        self.customNavigationBar.title = NSLocalizedString(@"PlacesNearby", nil);
     }
 }
 
@@ -932,11 +935,16 @@
     if (selected) {
         [self.customNavigationBar showSearchBar];
         
+        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+            [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
+        }
     } else {
         
         if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
             WMRootViewController_iPad* currentVC = (WMRootViewController_iPad*)self.topViewController;
             [currentVC pressedSearchButton:selected];
+            
+            [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
         }
         if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
             WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;

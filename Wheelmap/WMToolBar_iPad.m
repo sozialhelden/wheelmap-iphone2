@@ -50,7 +50,8 @@
         [self addSubview:self.loginButton];
         
         self.helpButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.helpButton.frame = CGRectMake(320.0f - 58.0f, 3, 58, 58);
+        self.helpButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        self.helpButton.frame = CGRectMake(currentLocationButton.frame.origin.x - 58.0f - 5.0f, 3, 58, 58);
         [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button-search-active.png"] forState:UIControlStateSelected];
         [self.helpButton setImage:[UIImage imageNamed:@"ipad_buttons_mithelfen.png"] forState:UIControlStateNormal];

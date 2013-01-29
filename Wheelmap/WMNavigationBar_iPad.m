@@ -19,13 +19,16 @@
         [dashboardButton removeFromSuperview];
         
         searchButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        searchButton.frame = CGRectMake(9, 5, 42, 40);
+        searchButton.frame = CGRectMake(4, 5, 42, 40);
         searchButton.backgroundColor = [UIColor clearColor];
         [searchButton setImage:[UIImage imageNamed:@"ipad_buttons_icon-search.png"] forState:UIControlStateNormal];
         [searchButton setImage:[UIImage imageNamed:@"ipad_buttons_icon-search-active.png"] forState:UIControlStateSelected];
         searchButton.contentMode = UIViewContentModeCenter;
         [searchButton addTarget:self action:@selector(pressedSearchButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:searchButton];
+        
+        titleLabel.frame = CGRectMake(self.bounds.size.width/2, titleLabel.frame.origin.y, self.bounds.size.width/2 - 100.0f, titleLabel.frame.size.height);
+        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     }
     
     return self;
@@ -54,12 +57,16 @@
 
 -(void)showSearchBar
 {
-    [super showSearchBar];
 }
 
 -(void)hideSearchBar
 {
-    [super hideSearchBar];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    searchButton.selected = YES;
+    return [super textFieldShouldReturn:textField];
 }
 
 @end
