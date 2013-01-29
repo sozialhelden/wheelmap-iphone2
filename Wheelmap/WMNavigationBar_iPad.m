@@ -28,7 +28,7 @@
         [self addSubview:searchButton];
         
         titleLabel.frame = CGRectMake(self.bounds.size.width/2, titleLabel.frame.origin.y, self.bounds.size.width/2 - 100.0f, titleLabel.frame.size.height);
-        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     }
     
     return self;
