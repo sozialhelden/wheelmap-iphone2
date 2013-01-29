@@ -329,17 +329,20 @@
     }
     
     WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
+    detailViewController.title = detailViewController.navigationBarTitle = NSLocalizedString(@"NavBarTitleDetail", nil);
     detailViewController.node = node;
     detailViewController.baseController = self.controllerBase;
     
     WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:detailViewController];
-    detailNavController.listViewController = self;
     
-    self.popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
+    detailNavController.listViewController = self;
+    detailNavController.customNavigationBar.title = detailViewController.navigationBarTitle;
+    
+    detailViewController.popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
     
     CGRect myRect = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
     
-    [self.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [detailViewController.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 #pragma mark - Table view delegate

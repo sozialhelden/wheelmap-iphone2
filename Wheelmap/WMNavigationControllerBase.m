@@ -774,10 +774,11 @@
     contributePressed = NO;
     
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
-    vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
+    vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:vc];
+        detailNavController.customNavigationBar.title = vc.navigationBarTitle;
         
         vc.isRootViewController = YES;
         vc.popoverButtonFrame = CGRectMake(self.customNavigationBar.contributeButton.frame.origin.x + 20.0f, self.customNavigationBar.contributeButton.frame.origin.y + 20.0f, self.customNavigationBar.contributeButton.frame.size.width, self.customNavigationBar.contributeButton.frame.size.height);
@@ -936,6 +937,7 @@
         [self.customNavigationBar showSearchBar];
         
         if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+            [self.customNavigationBar dismissSearchKeyboard];
             [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
         }
     } else {

@@ -318,6 +318,7 @@
     [self buttonPressed];
     
     WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
+    vc.title = vc.navigationBarTitle = NSLocalizedString(@"NavBarTitleSetNodeType", nil);
     vc.delegate = self;
     vc.nodeArray = [[NSSet alloc] initWithSet:self.currentCategory.nodeType];
     vc.currentNodeType = self.currentNodeType;

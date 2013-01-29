@@ -552,7 +552,7 @@
     
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
-    vc.title = NSLocalizedString(@"DetailView4ButtonViewInfoLabel", @"");
+    vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 

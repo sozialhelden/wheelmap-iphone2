@@ -38,7 +38,8 @@ typedef enum {
     WMButton* backButton;
     WMButton* saveButton;
     WMButton* noneButton;
-    
+    WMButton* noneButtonLeft;
+   
     UIView* currentLeftButton;  // both pointers hook the current button objects
     UIView* currentRightButton;
     
@@ -70,4 +71,5 @@ typedef enum {
 -(void)hideRightButton:(WMNavigationBarRightButtonStyle)type;
 
 - (void)adjustButtonsToPopoverPresentation;
+- (void)dismissSearchKeyboard;
 @end

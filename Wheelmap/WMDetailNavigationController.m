@@ -49,7 +49,6 @@
 {
     [super viewDidLoad];
 	
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,7 +73,7 @@
         WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
         vc.node = ((WMDetailViewController *)self.topViewController).node;
         vc.editView = YES;
-        vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
+        vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
         [self pushViewController:vc animated:YES];
     } else {
         NSLog(@"ERROR! Pushing Edit screen from sth different than Detail screen");
@@ -108,6 +107,8 @@
 {
     WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
     vc.popoverButtonFrame = frame;
+    vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"Sign In", @"");
+    self.customNavigationBar.title = vc.navigationBarTitle;
     [self pushViewController:vc animated:YES];
 }
 
@@ -139,6 +140,9 @@
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
 
+    if ([viewController respondsToSelector:@selector(navigationBarTitle)]) {
+        self.customNavigationBar.title = [viewController performSelector:@selector(navigationBarTitle)];
+    }
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {

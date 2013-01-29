@@ -160,9 +160,14 @@
         noneButton.hidden = YES;
         [self addSubview:noneButton];
         
-                
-        // titleLabel
-        titleLabel = [[WMLabel alloc] initWithFrame:self.bounds];
+        noneButtonLeft = [WMButton buttonWithType:UIButtonTypeCustom];
+        noneButtonLeft.frame = leftButtonRect;
+        noneButtonLeft.hidden = YES;
+        [self addSubview:noneButtonLeft];
+        
+        // titleLabel)
+        titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, self.bounds.size.height)];
+        [titleLabel setBackgroundColor:[UIColor clearColor]];
         titleLabel.fontSize = 20.0;
         titleLabel.fontType = kWMLabelFontTypeBold;
         titleLabel.textColor = [UIColor whiteColor];
@@ -237,7 +242,6 @@
     
     return self;
 }
-
 
 - (void)setSearchBarEnabled:(BOOL)searchBarEnabled {
     _searchBarEnabled = searchBarEnabled;
@@ -324,7 +328,7 @@
             currentLeftButton = cancelButton;
             break;
         case kWMNavigationBarLeftButtonStyleNone:
-            currentLeftButton = noneButton;
+            currentLeftButton = noneButtonLeft;
             break;
 
         default:
@@ -702,6 +706,10 @@
     
     
     return YES;
+}
+
+- (void)dismissSearchKeyboard {
+    [searchBarTextField resignFirstResponder];
 }
 
 #pragma mark - Network Status Changes
