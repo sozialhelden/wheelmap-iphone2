@@ -163,6 +163,11 @@
     categoryFilterPopover.hidden = YES;
     [self.view addSubview:categoryFilterPopover];
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if ([self.customToolBar isKindOfClass:[WMToolBar_iPad class]]) {
+            [(WMToolBar_iPad *)self.customToolBar updateLoginButton];
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -999,6 +1004,7 @@
     } else {
         vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
     }
+    vc.baseController = self;
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).loginButton.frame;

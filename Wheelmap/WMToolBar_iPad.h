@@ -18,4 +18,6 @@
 @property (nonatomic, strong) WMButton *loginButton;
 @property (nonatomic, strong) WMButton *helpButton;
 
+- (void)updateLoginButton;
+
 @end

@@ -131,6 +131,10 @@
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"User Credentials Error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     
     [alert show];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
+    }
 }
 
 - (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager
@@ -157,6 +161,10 @@
         } else {
             [(WMNavigationControllerBase *)self.presentingViewController showAcceptTermsViewController];
         }
+    }
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
 }
 

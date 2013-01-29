@@ -370,6 +370,18 @@
 		03BD049F16A052750045D53D /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		03BD04A016A052750045D53D /* credits_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECE16A013B600F6B379 /* credits_credits.png */; };
 		03BD04A116A052750045D53D /* credits_credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECF16A013B600F6B379 /* credits_credits@2x.png */; };
+		03CE604616B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604416B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png */; };
+		03CE604716B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604416B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png */; };
+		03CE604816B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604516B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png */; };
+		03CE604916B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604516B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png */; };
+		03CE604C16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604A16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png */; };
+		03CE604D16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604A16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png */; };
+		03CE604E16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604B16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png */; };
+		03CE604F16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604B16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png */; };
+		03CE605216B7DFEB00DDCB00 /* ipad_buttons_loggedin.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE605016B7DFEB00DDCB00 /* ipad_buttons_loggedin.png */; };
+		03CE605316B7DFEB00DDCB00 /* ipad_buttons_loggedin.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE605016B7DFEB00DDCB00 /* ipad_buttons_loggedin.png */; };
+		03CE605416B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE605116B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png */; };
+		03CE605516B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE605116B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png */; };
 		03F23ED016A013B600F6B379 /* credits_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECE16A013B600F6B379 /* credits_credits.png */; };
 		03F23ED116A013B600F6B379 /* credits_credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECF16A013B600F6B379 /* credits_credits@2x.png */; };
 		03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
@@ -813,6 +825,12 @@
 		039A6FF816B0231E002ECE12 /* WMDetailNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailNavigationController.h; sourceTree = "<group>"; };
 		039A6FF916B0231E002ECE12 /* WMDetailNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailNavigationController.m; sourceTree = "<group>"; };
 		03BD04A616A052750045D53D /* Wheelmap LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03CE604416B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_icon-search-active.png"; sourceTree = "<group>"; };
+		03CE604516B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_icon-search-active@2x.png"; sourceTree = "<group>"; };
+		03CE604A16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_icon-search.png"; sourceTree = "<group>"; };
+		03CE604B16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_icon-search@2x.png"; sourceTree = "<group>"; };
+		03CE605016B7DFEB00DDCB00 /* ipad_buttons_loggedin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_buttons_loggedin.png; sourceTree = "<group>"; };
+		03CE605116B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_loggedin@2x.png"; sourceTree = "<group>"; };
 		03F23ECE16A013B600F6B379 /* credits_credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits_credits.png; sourceTree = "<group>"; };
 		03F23ECF16A013B600F6B379 /* credits_credits@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits_credits@2x.png"; sourceTree = "<group>"; };
 		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
@@ -1280,6 +1298,8 @@
 		031B9CAC16AEDEA000AA0317 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				03CE605016B7DFEB00DDCB00 /* ipad_buttons_loggedin.png */,
+				03CE605116B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png */,
 				031B9CAD16AEDEA900AA0317 /* ipad_buttons_credits.png */,
 				031B9CAE16AEDEA900AA0317 /* ipad_buttons_credits@2x.png */,
 				031B9CAF16AEDEA900AA0317 /* ipad_buttons_login.png */,
@@ -1535,6 +1555,17 @@
 				0360BA19169DC16A00E04026 /* UASubscriptionProduct.h */,
 			);
 			path = SubscriptionLib;
+			sourceTree = "<group>";
+		};
+		03CE604316B7DF9D00DDCB00 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				03CE604416B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png */,
+				03CE604516B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png */,
+				03CE604A16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png */,
+				03CE604B16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png */,
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 		03F30C521670B7E200241466 /* LoginScreen */ = {
@@ -2033,6 +2064,7 @@
 		D5EFDE211668E45B00CEB2C0 /* Navigationbar */ = {
 			isa = PBXGroup;
 			children = (
+				03CE604316B7DF9D00DDCB00 /* iPad */,
 				DB4EB523167F4A810096CEDE /* search_background.png */,
 				DB4EB524167F4A810096CEDE /* search_background@2x.png */,
 				DB4EB525167F4A810096CEDE /* search_searchbar.png */,
@@ -2626,6 +2658,12 @@
 				031B9CBA16AEDEA900AA0317 /* ipad_buttons_login@2x.png in Resources */,
 				031B9CBC16AEDEA900AA0317 /* ipad_buttons_mithelfen.png in Resources */,
 				031B9CBE16AEDEA900AA0317 /* ipad_buttons_mithelfen@2x.png in Resources */,
+				03CE604716B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png in Resources */,
+				03CE604916B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png in Resources */,
+				03CE604D16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png in Resources */,
+				03CE604F16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png in Resources */,
+				03CE605316B7DFEB00DDCB00 /* ipad_buttons_loggedin.png in Resources */,
+				03CE605516B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2849,6 +2887,12 @@
 				031B9CC516AFF91400AA0317 /* Default-Landscape~ipad.png in Resources */,
 				031B9CC716AFF91900AA0317 /* Default-Landscape@2x~ipad.png in Resources */,
 				0344B43016B69B39009DEE53 /* WMConfig.plist in Resources */,
+				03CE604616B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png in Resources */,
+				03CE604816B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png in Resources */,
+				03CE604C16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png in Resources */,
+				03CE604E16B7DFBD00DDCB00 /* ipad_buttons_icon-search@2x.png in Resources */,
+				03CE605216B7DFEB00DDCB00 /* ipad_buttons_loggedin.png in Resources */,
+				03CE605416B7DFEB00DDCB00 /* ipad_buttons_loggedin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

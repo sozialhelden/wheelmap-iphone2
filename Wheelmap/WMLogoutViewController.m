@@ -8,6 +8,7 @@
 
 #import "WMLogoutViewController.h"
 #import "WMDataManager.h"
+#import "WMNavigationControllerBase.h"
 
 @interface WMLogoutViewController ()
 {
@@ -59,6 +60,10 @@
 {
     
     [dataManager removeUserAuthentication];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
+    }
     
     [self dismissModalViewControllerAnimated: YES];
     

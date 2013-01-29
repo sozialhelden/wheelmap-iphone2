@@ -45,6 +45,7 @@
         self.loginButton.frame = CGRectMake(self.infoButton.frame.origin.x + self.infoButton.frame.size.width + 5.0f, 3, 58, 58);
         [self.loginButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_login.png"] forState:UIControlStateNormal];
+        [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_loggedin.png"] forState:UIControlStateSelected];
         [self.loginButton addTarget:self action:@selector(pressedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.loginButton];
         
@@ -78,6 +79,14 @@
     
     if ([self.delegate respondsToSelector:@selector(pressedHelpButton:)]) {
         [self.delegate pressedHelpButton:self];
+    }
+}
+
+- (void)updateLoginButton {
+    if ([dataManager userIsAuthenticated]) {
+        self.loginButton.selected = YES;
+    } else {
+        self.loginButton.selected = NO;
     }
 }
 
