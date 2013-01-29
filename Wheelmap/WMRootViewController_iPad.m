@@ -75,6 +75,10 @@
     self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
 }
 
+- (void)toggleMapTypeChanged:(UIButton *)sender {
+    [self.mapViewController toggleMapTypeChanged:sender];
+}
+
 #pragma mark - Node List Data Source
 
 - (NSArray*)nodeList

@@ -9,6 +9,7 @@
 #import "WMMapSettingsViewController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMMapViewController.h"
+#import "WMRootViewController_iPad.h"
 
 @interface WMMapSettingsViewController ()
 
@@ -28,6 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.buttonsView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        self.wheelmapLogo.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    }
     
     [self.standardButton setTitle:NSLocalizedString(@"MapStandard", nil) forState:UIControlStateNormal];
     [self.hybridButton setTitle:NSLocalizedString(@"MapHybrid", nil) forState:UIControlStateNormal];
@@ -96,6 +102,8 @@
         UIViewController *topController = [(WMNavigationControllerBase *)self.presentingViewController topViewController];
         if ([topController isKindOfClass:WMMapViewController.class]) {
             [(WMMapViewController *)topController toggleMapTypeChanged:sender];
+        } else if ([topController isKindOfClass:WMRootViewController_iPad.class]) {
+            [(WMRootViewController_iPad *)topController toggleMapTypeChanged:sender];
         }
     }
     

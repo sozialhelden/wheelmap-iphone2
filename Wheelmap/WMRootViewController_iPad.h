@@ -29,4 +29,7 @@
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 - (void)pressedSearchButton:(BOOL)selected;
+
+- (void)toggleMapTypeChanged:(UIButton *)sender;
+
 @end

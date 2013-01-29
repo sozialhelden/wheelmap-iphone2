@@ -10,6 +10,7 @@
 #import "WMInfinitePhotoViewController.h"
 #import "WMTermsViewController.h"
 #import "WMAcceptTermsViewController.h"
+#import "WMMapSettingsViewController.h"
 
 @interface WMViewController ()
 
@@ -100,7 +101,12 @@
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
-        if (![modalViewController isKindOfClass:[WMTermsViewController class]]) {
+        if ([modalViewController isKindOfClass:[WMMapSettingsViewController class]]) {
+            
+            [super presentModalViewController:modalViewController animated:animated];
+            
+        } else if (![modalViewController isKindOfClass:[WMTermsViewController class]]) {
+            
             [self dismissModalViewControllerAnimated:NO];
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
                 ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];

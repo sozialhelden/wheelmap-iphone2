@@ -16,6 +16,8 @@ static int selectedMapType;
 @property (nonatomic, weak) IBOutlet UIButton *standardButton;
 @property (nonatomic, weak) IBOutlet UIButton *hybridButton;
 @property (nonatomic, weak) IBOutlet UIButton *satelliteButton;
+@property (nonatomic, weak) IBOutlet UIView *buttonsView;
+@property (nonatomic, weak) IBOutlet UIImageView *wheelmapLogo;
 
 - (IBAction)segmentedControlButtonPressed:(UIButton *)sender;
 
