@@ -96,6 +96,7 @@
     if ([self.delegate respondsToSelector:@selector(categoryFilterStatusDidChangeForCategoryID:selected:)]) {
         [self.delegate categoryFilterStatusDidChangeForCategoryID:c.id selected:cell.isSelected];
     }
+    [self refreshViewWithCategories:self.categoryList];
 }
 
 @end
