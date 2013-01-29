@@ -770,7 +770,8 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:vc];
-                
+        
+        vc.isRootViewController = YES;
         vc.popoverButtonFrame = CGRectMake(self.customNavigationBar.contributeButton.frame.origin.x + 20.0f, self.customNavigationBar.contributeButton.frame.origin.y + 20.0f, self.customNavigationBar.contributeButton.frame.size.width, self.customNavigationBar.contributeButton.frame.size.height);
         
         vc.popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];

@@ -142,7 +142,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.title = NSLocalizedString(@"NavBarTitleEdit", nil);
     self.navigationBarTitle = self.title;
-
+    
+    [(WMDetailNavigationController *)self.navigationController changeScreenStatusFor:self];
+    
     [self updateFields];
     
 }

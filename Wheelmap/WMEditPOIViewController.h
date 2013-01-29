@@ -68,6 +68,8 @@
 @property (nonatomic, strong) NSString *currentInfoFieldText;
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
 
+@property (nonatomic, assign) BOOL isRootViewController;
+
 
 - (IBAction)setNodeType:(id)sender;
 - (IBAction)setCategory:(id)sender;

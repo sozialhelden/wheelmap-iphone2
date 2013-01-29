@@ -19,4 +19,6 @@
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 - (void) showLoadingWheel;
+- (void)changeScreenStatusFor:(UIViewController *)viewController;
+
 @end

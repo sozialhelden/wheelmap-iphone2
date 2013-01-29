@@ -116,7 +116,7 @@
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
     } else if ([viewController isKindOfClass:[WMEditPOIViewController class]]) {
-        if ([self.viewControllers count] < 1) {
+        if (((WMEditPOIViewController *)viewController).isRootViewController) {
             self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
         } else {
             self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
