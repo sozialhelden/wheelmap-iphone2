@@ -89,9 +89,9 @@
 "WheelchairAccessLimited" = "Limited accessibility";
 "WheelchairAccessNo" = "Not Accessible";
 "WheelchairAccessUnknown" = "Accessibility Unknown";
-"WheelchairAccessContentYes" = "● No entrance step\\n● All localities accessible without steps\\n● If toilets available: Disabled toilet is also available";
-"WheelchairAccessContentLimited" = "● Entrance step not higher than 7 cm\\n● Most important localitites accessible without steps";
-"WheelchairAccessContentNo" = "● Entrance step higher than 7 cm\\n● Most important localities not accessible without steps";
+"WheelchairAccessContentYes" = "● No entrance step\n● All localities accessible without steps\n● If toilets available: Disabled toilet is also available";
+"WheelchairAccessContentLimited" = "● Entrance step not higher than 7 cm\n● Most important localitites accessible without steps";
+"WheelchairAccessContentNo" = "● Entrance step higher than 7 cm\n● Most important localities not accessible without steps";
 "category_accommodation" = "Accommodation";
 "category_government" = "Public Authorities";
 "category_money_post" = "Bank & Post";
