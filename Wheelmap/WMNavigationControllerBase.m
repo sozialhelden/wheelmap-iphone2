@@ -903,7 +903,14 @@
     
     [self.customToolBar deselectSearchButton];
     
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
+    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        WMRootViewController_iPad* currentVC = (WMRootViewController_iPad*)self.topViewController;
+        if (currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseContribute) {
+            return;
+        }
+        currentVC.listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+        currentVC.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
         if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
             return;

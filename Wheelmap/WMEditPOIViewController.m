@@ -308,6 +308,8 @@
     [self buttonPressed];
     
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+    vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
+    vc.navigationBarTitle = vc.title;
     vc.delegate = self;
     vc.node = self.node;
     vc.useCase = kWMWheelChairStatusViewControllerUseCasePutNode;
@@ -318,7 +320,8 @@
     [self buttonPressed];
     
     WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
-    vc.title = vc.navigationBarTitle = NSLocalizedString(@"NavBarTitleSetNodeType", nil);
+    vc.title =  NSLocalizedString(@"NavBarTitleSetNodeType", nil);
+    vc.navigationBarTitle = vc.title;
     vc.delegate = self;
     vc.nodeArray = [[NSSet alloc] initWithSet:self.currentCategory.nodeType];
     vc.currentNodeType = self.currentNodeType;
@@ -329,6 +332,8 @@
     [self buttonPressed];
     
     WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
+    vc.title = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
+    vc.navigationBarTitle = vc.title;
     vc.delegate = self;
     vc.categoryArray = self.dataManager.categories;
     vc.currentCategory = self.currentCategory;

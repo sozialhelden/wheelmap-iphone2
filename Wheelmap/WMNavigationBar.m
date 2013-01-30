@@ -20,6 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.autoresizesSubviews = YES;
 
         // Initialization code
         backgroundImg = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -156,6 +157,7 @@
         [self addSubview:saveButton];
         
         noneButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        noneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         noneButton.frame = rightButtonRect;
         noneButton.hidden = YES;
         [self addSubview:noneButton];
@@ -167,6 +169,7 @@
         
         // titleLabel)
         titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, self.bounds.size.height)];
+        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [titleLabel setBackgroundColor:[UIColor clearColor]];
         titleLabel.fontSize = 20.0;
         titleLabel.fontType = kWMLabelFontTypeBold;
@@ -440,6 +443,8 @@
 {
     CGFloat originX = currentLeftButton.frame.origin.x+currentLeftButton.frame.size.width;
     CGFloat width = currentRightButton.frame.origin.x - originX;
+    
+    NSLog(@"X = %f", currentRightButton.frame.origin.x);
     
     titleLabel.frame = CGRectMake(originX+5, titleLabel.frame.origin.y, width-10, titleLabel.frame.size.height);
     

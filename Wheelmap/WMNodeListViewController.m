@@ -172,26 +172,29 @@
              }
              ];
         } else {
-            isAccesoryHeaderVisible = NO;
-            
-            [UIView animateWithDuration:0.3 animations:^(void)
-             {
-                 self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.view.frame.size.height);
-             }
-                             completion:^(BOOL finished)
-             {
-                 [UIView animateWithDuration:0.5 animations:^(void)
-                  {
-                      accesoryHeader.alpha = 0.0;
-                  }
-                                  completion:^(BOOL finished)
-                  {
-                      [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1)  animated:YES];
-                  }
-                  ];
-                 
-             }
-             ];
+            if (self.useCase != kWMNodeListViewControllerUseCaseContribute) {
+                
+                isAccesoryHeaderVisible = NO;
+                
+                [UIView animateWithDuration:0.3 animations:^(void)
+                 {
+                     self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.view.frame.size.height);
+                 }
+                                 completion:^(BOOL finished)
+                 {
+                     [UIView animateWithDuration:0.5 animations:^(void)
+                      {
+                          accesoryHeader.alpha = 0.0;
+                      }
+                                      completion:^(BOOL finished)
+                      {
+                          [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1)  animated:YES];
+                      }
+                      ];
+                     
+                 }
+                 ];
+            }
         }
     }
     

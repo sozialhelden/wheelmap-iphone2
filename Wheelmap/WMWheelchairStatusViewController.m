@@ -103,7 +103,9 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     
-    self.title = NSLocalizedString(@"NavBarTitleWheelChairStatus", nil);
+    [super viewWillAppear:animated];
+    
+    self.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
     self.navigationBarTitle = self.title;
     
     self.wheelchairAccess = self.node.wheelchair;
