@@ -172,6 +172,7 @@
         
         self.customNavigationBar.title = NSLocalizedString(@"PlacesNearby", nil);
     }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -187,6 +188,11 @@
     
     // this will update screen
     [self networkStatusChanged:nil];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self refreshPopoverPositions:[[UIApplication sharedApplication] statusBarOrientation]];
+    }
+
 }
 
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
