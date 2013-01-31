@@ -909,7 +909,7 @@
     if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
         xPosition = (1024.0f / 2.0f) - 160.0f;
     }
-    vc.popoverButtonFrame = CGRectMake( xPosition, 100.0f, 320.0f, 500.0f);
+    vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
     
     [self presentModalViewController:vc animated:YES];
     vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
