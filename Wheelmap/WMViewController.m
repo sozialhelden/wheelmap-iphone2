@@ -149,7 +149,7 @@
 }
 
 - (void)dismissModalViewControllerAnimated:(BOOL)animated {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]] && ![self isKindOfClass:[WMMapSettingsViewController class]]) {
         [self.popover dismissPopoverAnimated:animated];
     } else {
         [super dismissModalViewControllerAnimated:animated];
