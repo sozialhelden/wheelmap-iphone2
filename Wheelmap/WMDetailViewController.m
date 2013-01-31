@@ -905,7 +905,11 @@
 - (void) shareLocationButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
     vc.baseController = self.baseController;
-    vc.popoverButtonFrame = CGRectMake(self.shareLocationButton.frame.origin.x, self.shareLocationButton.frame.origin.y, self.shareLocationButton.frame.size.width, self.shareLocationButton.frame.size.height);
+    CGFloat xPosition = (768.0f / 2.0f) - 160.0f;
+    if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+        xPosition = (1024.0f / 2.0f) - 160.0f;
+    }
+    vc.popoverButtonFrame = CGRectMake( xPosition, 100.0f, 320.0f, 500.0f);
     
     [self presentModalViewController:vc animated:YES];
     vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");

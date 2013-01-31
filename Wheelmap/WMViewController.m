@@ -11,6 +11,7 @@
 #import "WMTermsViewController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMMapSettingsViewController.h"
+#import "WMShareSocialViewController.h"
 
 @interface WMViewController ()
 
@@ -104,11 +105,24 @@
             
             [super presentModalViewController:modalViewController animated:animated];
             
+        } else if ([modalViewController isKindOfClass:[WMShareSocialViewController class]]) {
+            
+            if ((self.baseController != nil) && (self.baseController.view != nil)) {
+                ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
+                ((WMViewController *)modalViewController).baseController = self.baseController;
+                
+                if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
+                    ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
+                }
+                
+                [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
+            }
+            
         } else if (![modalViewController isKindOfClass:[WMTermsViewController class]]) {
             
             [self dismissModalViewControllerAnimated:NO];
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
-                ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
+                ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
                 ((WMViewController *)modalViewController).baseController = self.baseController;
                 
                 if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
@@ -119,7 +133,7 @@
             }
         } else {
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
-                ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc] initWithContentViewController:modalViewController];
+                ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
                 ((WMViewController *)modalViewController).baseController = self.baseController;
                 
                 if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {

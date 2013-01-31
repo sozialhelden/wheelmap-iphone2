@@ -341,7 +341,7 @@
     detailNavController.listViewController = self;
     detailNavController.customNavigationBar.title = detailViewController.navigationBarTitle;
     
-    detailViewController.popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
+    detailViewController.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
     
     CGRect myRect = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
     

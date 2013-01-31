@@ -189,21 +189,24 @@
     [self networkStatusChanged:nil];
 }
 
-- (void)refreshPopoverPositions {
+- (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
     
     [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
     [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
     
-//    [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-//    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
-//    
-//    [self.popoverVC.popover dismissPopoverAnimated:NO];
-//    if ([self.popoverVC isKindOfClass:[WMCreditsViewController class]]) {
-//        CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).infoButton.frame;
-//        self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, self.view.frame.size.height - buttonFrame.size.height, buttonFrame.size.width, buttonFrame.size.height);
-//        self.popoverVC.popoverButtonFrame = buttonFrame;
-//    }
-//    [self presentPopover:self.popoverVC animated:NO];
+    if (self.popoverVC.popover.isShowing == YES) {
+        
+        [self.popoverVC.popover dismissPopoverAnimated:NO];
+        if ([self.popoverVC isKindOfClass:[WMCreditsViewController class]]) {
+            CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).infoButton.frame;
+            CGFloat yPosition = 1024.0f - 60.0f;
+            if (UIInterfaceOrientationIsLandscape(orientation)) {
+                yPosition = 768.0f - 60.0f;
+            }
+            self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+        }
+        [self presentPopover:self.popoverVC animated:NO];
+    }
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -218,7 +221,7 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self refreshPopoverPositions];
+    [self refreshPopoverPositions:toInterfaceOrientation];
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
@@ -809,7 +812,7 @@
         vc.isRootViewController = YES;
         vc.popoverButtonFrame = CGRectMake(self.customNavigationBar.contributeButton.frame.origin.x + 20.0f, self.customNavigationBar.contributeButton.frame.origin.y + 20.0f, self.customNavigationBar.contributeButton.frame.size.width, self.customNavigationBar.contributeButton.frame.size.height);
         
-        vc.popover = [[UIPopoverController alloc] initWithContentViewController:detailNavController];
+        vc.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
         vc.baseController = self;
         
         [vc.popover presentPopoverFromRect:vc.popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
@@ -1063,7 +1066,11 @@
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).infoButton.frame;
-        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, self.view.frame.size.height - buttonFrame.size.height, buttonFrame.size.width, buttonFrame.size.height);
+        CGFloat yPosition = 1024.0f - 60.0f;
+        if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+            yPosition = 768.0f - 60.0f;
+        }
+        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
     [self presentModalViewController:vc animated:YES];
@@ -1265,7 +1272,7 @@
 
 - (void)presentPopover:(UIViewController *)viewController animated:(BOOL)animated {
     if ([viewController isKindOfClass:[WMAcceptTermsViewController class]]) {
-        ((WMViewController *)viewController).popover = [[UIPopoverController alloc]
+        ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
                                                              initWithContentViewController:viewController];
         self.popoverVC = (WMViewController *)viewController;
         ((WMViewController *)viewController).baseController = self;
@@ -1277,7 +1284,7 @@
         [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
         
     } else if ([viewController isKindOfClass:[WMViewController class]]) {
-        ((WMViewController *)viewController).popover = [[UIPopoverController alloc]
+        ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
                                                              initWithContentViewController:viewController];
         self.popoverVC = (WMViewController *)viewController;
         ((WMViewController *)viewController).baseController = self;

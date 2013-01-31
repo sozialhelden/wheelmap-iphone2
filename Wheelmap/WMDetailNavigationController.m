@@ -185,7 +185,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self dismissModalViewControllerAnimated:NO];
         if ([modalViewController isKindOfClass:[WMLoginViewController class]]) {
-            ((WMLoginViewController *)modalViewController).popover = [[UIPopoverController alloc]
+            ((WMLoginViewController *)modalViewController).popover = [[WMPopoverController alloc]
                                                                  initWithContentViewController:modalViewController];
             ((WMLoginViewController *)modalViewController).baseController = self;
             

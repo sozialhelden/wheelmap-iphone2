@@ -16,7 +16,7 @@
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (nonatomic, strong) NSNumber* selectedCategoryID;
 @property (nonatomic) WMNodeListViewControllerUseCase useCase;
-@property (nonatomic, strong) UIPopoverController *popover;
+@property (nonatomic, strong) WMPopoverController *popover;
 @property (nonatomic, strong) WMNavigationControllerBase *controllerBase;
 
 - (void) showDetailPopoverForNode:(Node *)node;

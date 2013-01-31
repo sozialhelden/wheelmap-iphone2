@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WMPopoverController.h"
 
 @interface WMViewController : UIViewController
 
-@property (nonatomic, strong) UIPopoverController* popover;
+@property (nonatomic, strong) WMPopoverController* popover;
 @property (nonatomic) CGRect popoverButtonFrame;
 @property (nonatomic, strong) UIViewController* baseController;
 
