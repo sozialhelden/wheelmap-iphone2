@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "WMToolBar.h"
 #import "WMWheelchairStatusButton.h"
+#import "WMDataManager.h"
 
 @class WMToolBar_iPad;
 
-@interface WMToolBar_iPad : WMToolBar
+@interface WMToolBar_iPad : WMToolBar <WMDataManagerDelegate>
 
+@property (nonatomic, strong) UILabel *numberOfPlacesLabel;
 @property (nonatomic, strong) WMButton *infoButton;
 @property (nonatomic, strong) WMButton *loginButton;
 @property (nonatomic, strong) WMButton *helpButton;

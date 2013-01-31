@@ -7,7 +7,6 @@
 //
 
 #import "WMToolBar_iPad.h"
-#import "WMDataManager.h"
 
 @implementation WMToolBar_iPad {
     
@@ -20,7 +19,8 @@
     if (self) {
         
         dataManager = [[WMDataManager alloc] init];
-        
+        dataManager.delegate = self;
+
         // adjust iphone superclasses properties to ipad
         [self.toggleButton removeFromSuperview];
         [searchButton removeFromSuperview];
@@ -57,6 +57,18 @@
         [self.helpButton setImage:[UIImage imageNamed:@"ipad_buttons_mithelfen.png"] forState:UIControlStateNormal];
         [self.helpButton addTarget:self action:@selector(pressedHelpButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.helpButton];
+        
+        self.numberOfPlacesLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f, 3, 320.0f - (self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f), 54.0f)];
+        self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"", NSLocalizedString(@"Places", nil)];
+        self.numberOfPlacesLabel.alpha = 0.0;
+        self.numberOfPlacesLabel.textColor = [UIColor colorWithRed:106.0f/255.0f green:120.0f/255.0f blue:134.0f/255.0f alpha:1.0f];
+        self.numberOfPlacesLabel.adjustsFontSizeToFitWidth = YES;
+        self.numberOfPlacesLabel.font = [UIFont systemFontOfSize:22.0f];
+        self.numberOfPlacesLabel.textAlignment = UITextAlignmentCenter;
+        self.numberOfPlacesLabel.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.numberOfPlacesLabel];
+        
+        [dataManager fetchTotalNodeCount];
     }
     
     return self;
@@ -89,6 +101,29 @@
     } else {
         self.loginButton.selected = NO;
     }
+}
+
+#pragma mark - WMDataManager Delegate
+-(void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count
+{
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSString *formattedCount = [formatter stringFromNumber:count];
+    
+    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", formattedCount, NSLocalizedString(@"Places", nil)];
+    [UIView animateWithDuration:0.5
+                          delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^(void)
+     {
+         self.numberOfPlacesLabel.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     }];
+    
 }
 
 @end
