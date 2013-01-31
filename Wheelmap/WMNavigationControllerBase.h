@@ -41,7 +41,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSNumber* lastVisibleMapSpanLat;
 @property (nonatomic, strong) NSNumber* lastVisibleMapSpanLng;
 
-@property (nonatomic, strong)  UIPopoverController *popover;
+@property (nonatomic, strong)  WMViewController *popoverVC;
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;

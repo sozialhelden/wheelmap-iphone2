@@ -76,6 +76,13 @@
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
+        for (id<MKAnnotation> annotation in oldAnnotations) {
+            if (![annotation isKindOfClass:[MKUserLocation class]])
+                [self.mapView removeAnnotation:annotation];
+        }
+    }
     
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.dataSource;
     MKCoordinateRegion initRegion;
@@ -136,12 +143,12 @@
     NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
     
     // fix for map sometimes showing old annotations on ipad
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        for (id<MKAnnotation> annotation in oldAnnotations) {
-            if (![annotation isKindOfClass:[MKUserLocation class]])
-                [self.mapView removeAnnotation:annotation];
-        }
-    }
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        for (id<MKAnnotation> annotation in oldAnnotations) {
+//            if (![annotation isKindOfClass:[MKUserLocation class]])
+//                [self.mapView removeAnnotation:annotation];
+//        }
+//    }
     
     [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
         WMMapAnnotation *annotationForNode = [self annotationForNode:node];

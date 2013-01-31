@@ -28,6 +28,7 @@
 #import "WMNodeListViewController.h"
 #import "WMDetailNavigationController.h"
 #import "WMAcceptTermsViewController.h"
+#import "WMCreditsViewController.h"
 
 
 @implementation WMNavigationControllerBase
@@ -189,9 +190,20 @@
 }
 
 - (void)refreshPopoverPositions {
-    [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
     
+    [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y)];
+    
+//    [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+//    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
+//    
+//    [self.popoverVC.popover dismissPopoverAnimated:NO];
+//    if ([self.popoverVC isKindOfClass:[WMCreditsViewController class]]) {
+//        CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).infoButton.frame;
+//        self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, self.view.frame.size.height - buttonFrame.size.height, buttonFrame.size.width, buttonFrame.size.height);
+//        self.popoverVC.popoverButtonFrame = buttonFrame;
+//    }
+//    [self presentPopover:self.popoverVC animated:NO];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -207,6 +219,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [self refreshPopoverPositions];
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void) dealloc
@@ -219,6 +232,9 @@
 
 - (void) dataManager:(WMDataManager *)dataManager didReceiveNodes:(NSArray *)nodesParam
 {
+    
+    NSLog(@"DATA MANAGER RECEIVED NODES");
+
     nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
     [self refreshNodeList];
@@ -226,7 +242,7 @@
 
 - (void) refreshNodeList
 {
-//    NSLog(@"--- REFRESH NODE LIST ---");
+    NSLog(@"--- REFRESH NODE LIST ---");
     
     if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
         [(id<WMNodeListView>)self.topViewController nodeListDidChange];
@@ -236,7 +252,7 @@
 - (void) refreshNodeListWithArray:(NSArray*)array
 {
     
-//    NSLog(@"--- REFRESH NODE LIST WITH ARRAY ---");
+    NSLog(@"--- REFRESH NODE LIST WITH ARRAY ---");
 
     nodes = array;
     for (UIViewController* vc in self.viewControllers) {
@@ -360,17 +376,23 @@
         }
     }
     
+    NSLog(@"NEW NODE LIST = %d", newNodeList.count);
+
     return newNodeList;
 }
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord
 {
+    NSLog(@"UPDATE NODES NEAR");
+
     nodes = [dataManager fetchNodesNear:coord];
     [self refreshNodeList];
 }
 
 -(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
 {
+    NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
+
     nodes = [dataManager fetchNodesNear:coord];
     [self refreshNodeList];
 }
@@ -393,6 +415,8 @@
 
 -(void)updateNodesWithQuery:(NSString*)query
 {
+    NSLog(@"UPDATE WITH QUERY");
+
     nodes = @[];
     [dataManager fetchNodesWithQuery:query];
     [self refreshNodeList];
@@ -400,6 +424,8 @@
 
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region
 {
+    NSLog(@"UPDATE WITH QUERY AND REGION");
+
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
     southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
@@ -1231,26 +1257,32 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self dismissModalViewControllerAnimated:NO];
         
-        if ([modalViewController isKindOfClass:[WMAcceptTermsViewController class]]) {
-            ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc]
-                                                                 initWithContentViewController:modalViewController];
-            ((WMViewController *)modalViewController).baseController = self;
-            
-            if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
-                ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
-            }
-            
-            [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
-            
-        } else if ([modalViewController isKindOfClass:[WMViewController class]]) {
-            ((WMViewController *)modalViewController).popover = [[UIPopoverController alloc]
-                                            initWithContentViewController:modalViewController];
-            ((WMViewController *)modalViewController).baseController = self;
-            
-            [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
-        }
+        [self presentPopover:modalViewController animated:animated];
     } else {
         [super presentModalViewController:modalViewController animated:animated];
+    }
+}
+
+- (void)presentPopover:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([viewController isKindOfClass:[WMAcceptTermsViewController class]]) {
+        ((WMViewController *)viewController).popover = [[UIPopoverController alloc]
+                                                             initWithContentViewController:viewController];
+        self.popoverVC = (WMViewController *)viewController;
+        ((WMViewController *)viewController).baseController = self;
+        
+        if ((((WMViewController *)viewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)viewController).popoverButtonFrame.size.height == 0)) {
+            ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(((WMViewController *)viewController).popoverButtonFrame.origin.x, ((WMViewController *)viewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
+        }
+        
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
+        
+    } else if ([viewController isKindOfClass:[WMViewController class]]) {
+        ((WMViewController *)viewController).popover = [[UIPopoverController alloc]
+                                                             initWithContentViewController:viewController];
+        self.popoverVC = (WMViewController *)viewController;
+        ((WMViewController *)viewController).baseController = self;
+        
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
     }
 }
 

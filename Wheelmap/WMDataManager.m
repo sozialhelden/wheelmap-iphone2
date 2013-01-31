@@ -532,6 +532,11 @@
 
 - (void)fetchNodesWithQuery:(NSString*)query
 {
+    
+    if (query == nil) {
+        return;
+    }
+    
     if (![self isInternetConnectionAvailable]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         

@@ -76,12 +76,11 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    NSLog(@"Popover %f", self.popoverButtonFrame.origin.y);
+    NSLog(@"Popover %@", self.popover);
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    NSLog(@"Popover %f", self.popoverButtonFrame.origin.y);
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 

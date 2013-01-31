@@ -132,7 +132,7 @@
 
 - (void) loadNodes
 {
-        
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
             isAccesoryHeaderVisible = YES;
@@ -201,7 +201,7 @@
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
         NSArray* unfilteredNodes = [self.dataSource nodeList];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
-       
+        
         for (Node* node in unfilteredNodes) {
             if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
                 [newNodeList addObject:node];
