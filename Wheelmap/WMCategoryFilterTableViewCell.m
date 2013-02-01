@@ -17,12 +17,20 @@
     if (self) {
         // Initialization code
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 100, CELL_HEIGHT)];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 130, CELL_HEIGHT)];
+        } else {
+            titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 100, CELL_HEIGHT)];
+        }
         titleLabel.fontSize = 15.0;
         titleLabel.textAlignment = UITextAlignmentLeft;
         [self addSubview:titleLabel];
         
-        checkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(105, 0, 25, CELL_HEIGHT)];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            checkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(135, 0, 25, CELL_HEIGHT)];
+        } else {
+            checkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(105, 0, 25, CELL_HEIGHT)];
+        }
         checkIcon.image = [UIImage imageNamed:@"toolbar_category-check.png"];
         checkIcon.contentMode = UIViewContentModeCenter;
         checkIcon.hidden = YES;
