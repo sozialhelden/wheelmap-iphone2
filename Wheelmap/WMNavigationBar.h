@@ -66,6 +66,7 @@ typedef enum {
 -(void)showSearchBar;
 -(void)hideSearchBar;
 - (NSString *)getSearchString;
+- (void)clearSearchText;
 
 -(void)showRightButton:(WMNavigationBarRightButtonStyle)type;
 -(void)hideRightButton:(WMNavigationBarRightButtonStyle)type;

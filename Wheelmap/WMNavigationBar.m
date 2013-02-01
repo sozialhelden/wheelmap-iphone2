@@ -454,6 +454,10 @@
     return searchBarTextField.text;
 }
 
+- (void)clearSearchText {
+    searchBarTextField.text = @"";
+}
+
 -(void)showSearchBar
 {
     if (isSearchBarVisible)

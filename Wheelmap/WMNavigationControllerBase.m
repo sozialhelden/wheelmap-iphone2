@@ -974,11 +974,24 @@
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
     
+    if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        if (!selected) {
+            if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
+                [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
+            }
+        }
+    }
+    
     NSLog(@"[ToolBar] global search button is pressed!");
     if (selected) {
         [self.customNavigationBar showSearchBar];
         
         if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+            if (!selected) {
+                if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
+                    [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
+                 }
+            }
             [self.customNavigationBar dismissSearchKeyboard];
             [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
         }
