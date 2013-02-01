@@ -75,6 +75,7 @@
         categoryFilterButton = [WMButton buttonWithType:UIButtonTypeCustom];
         categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 3, 58, 58);
         [categoryFilterButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        [categoryFilterButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button-search-active.png"] forState:UIControlStateSelected];
         [categoryFilterButton setImage:[UIImage imageNamed:@"toolbar_icon-category.png"] forState:UIControlStateNormal];
         [categoryFilterButton addTarget:self action:@selector(pressedCategoryFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:categoryFilterButton];
@@ -105,6 +106,14 @@
 
 -(void)deselectSearchButton {
     searchButton.selected = NO;
+}
+
+-(void)selectCategoryButton {
+    categoryFilterButton.selected = YES;
+}
+
+-(void)deselectCategoryButton {
+    categoryFilterButton.selected = NO;
 }
 
 #pragma mark -

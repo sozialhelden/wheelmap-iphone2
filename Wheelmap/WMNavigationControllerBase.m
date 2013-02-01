@@ -1192,11 +1192,28 @@
 #pragma mark -WMCategoryFilterPopoverView Delegate
 -(void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected
 {
+    
     if (selected) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:categoryID];
     } else {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:NO] forKey:categoryID];
     }
+    
+    int numberOfSelectedCategories = 0;
+    for (id key in self.categoryFilterStatus) {
+        NSNumber *value = [self.categoryFilterStatus objectForKey:key];
+        if ([value boolValue] == YES) {
+            numberOfSelectedCategories++;
+        }
+    }
+    
+    if (numberOfSelectedCategories == self.categoryFilterStatus.count) {
+        [self.customToolBar deselectCategoryButton];
+    } else {
+        [self.customToolBar selectCategoryButton];
+    }
+    
+    
     
     [self refreshNodeList];
 }

@@ -58,6 +58,8 @@ typedef enum {
 -(void)hideButton:(WMToolBarButtonType)type;
 -(void)selectSearchButton;
 -(void)deselectSearchButton;
+-(void)selectCategoryButton;
+-(void)deselectCategoryButton;
 
 -(void)clearWheelChairStatusFilterButton;   // this will enable all filter buttons on
 
