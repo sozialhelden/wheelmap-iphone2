@@ -910,9 +910,14 @@
         xPosition = (1024.0f / 2.0f) - 160.0f;
     }
     vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
-    
-    [self presentModalViewController:vc animated:YES];
-    vc.title = NSLocalizedString(@"ShareLocationViewHeadline", @"");
+    vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.navigationController pushViewController:vc animated:YES];
+        vc.titleView.hidden = YES;
+    } else {
+        [self presentModalViewController:vc animated:YES];
+    }
     NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
     NSURL *url = [NSURL URLWithString: urlString];
@@ -922,7 +927,15 @@
 
 - (void) askFriendsForStatusButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-    [self presentModalViewController:vc animated:YES];
+    vc.baseController = self.baseController;
+    vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.navigationController pushViewController:vc animated:YES];
+        vc.titleView.hidden = YES;
+    } else {
+        [self presentModalViewController:vc animated:YES];
+    }
     NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
     NSURL *url = [NSURL URLWithString: urlString];
