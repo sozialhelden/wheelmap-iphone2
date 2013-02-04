@@ -25,6 +25,8 @@
     UIPopoverController *popover;
     
     CLLocationCoordinate2D lastDisplayedMapCenter;
+    
+    BOOL dontUpdateNodeList;
 }
 
 @synthesize dataSource, delegate;
