@@ -208,6 +208,7 @@
 }
 
 - (void)zoomInForNode:(Node *)node {
+    dontUpdateNodeList = YES;
     [self relocateMapTo:CLLocationCoordinate2DMake(node.lat.doubleValue, node.lon.doubleValue  - 0.0005) andSpan:MKCoordinateSpanMake(0.001, 0.001)];
 }
 
@@ -354,7 +355,7 @@
             }
         }
         
-        if (shouldUpdateMap) {
+        if (shouldUpdateMap && !dontUpdateNodeList) {
             [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
             lastDisplayedMapCenter = self.mapView.region.center;
         }
@@ -365,6 +366,7 @@
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLat:[NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLng:[NSNumber numberWithDouble:self.mapView.region.span.longitudeDelta]];
     
+    dontUpdateNodeList = NO;
 }
 
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord
