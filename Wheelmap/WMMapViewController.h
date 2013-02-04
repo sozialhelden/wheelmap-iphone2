@@ -22,7 +22,7 @@
 @property WMNodeListViewControllerUseCase useCase;
 
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;
-
+- (void)zoomInForNode:(Node *)node;
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord;
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord andSpan:(MKCoordinateSpan)span;
 

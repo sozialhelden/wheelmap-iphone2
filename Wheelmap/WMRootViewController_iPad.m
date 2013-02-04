@@ -108,6 +108,9 @@
 
 - (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
 {
+    if (node == nil) {
+        return;
+    }
 //    [self.mapViewController showDetailPopoverForNode:node];
     [self.listViewController selectNode:node];
     [self.listViewController showDetailPopoverForNode:node];
@@ -115,11 +118,15 @@
 
 - (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
 {
+    if (node == nil) {
+        return;
+    }
     // highlight node in both views
     [self.listViewController selectNode:node];
     [self.listViewController showDetailPopoverForNode:node];
 //    [self.mapViewController selectNode:node];
-    
+    [self.mapViewController zoomInForNode:node];
+
 }
 
 

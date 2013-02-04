@@ -205,6 +205,9 @@
     self.loadingWheel.hidden = YES;
 }
 
+- (void)zoomInForNode:(Node *)node {
+    [self relocateMapTo:CLLocationCoordinate2DMake(node.lat.doubleValue, node.lon.doubleValue  - 0.0005) andSpan:MKCoordinateSpanMake(0.001, 0.001)];
+}
 
 #pragma mark - Map View Delegate
 
