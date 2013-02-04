@@ -29,6 +29,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
+#import "WMLogoutViewController.h"
 
 
 @implementation WMNavigationControllerBase
@@ -205,6 +206,13 @@
         [self.popoverVC.popover dismissPopoverAnimated:NO];
         if ([self.popoverVC isKindOfClass:[WMCreditsViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).infoButton.frame;
+            CGFloat yPosition = 1024.0f - 60.0f;
+            if (UIInterfaceOrientationIsLandscape(orientation)) {
+                yPosition = 768.0f - 60.0f;
+            }
+            self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+        } else if ([self.popoverVC isKindOfClass:[WMLoginViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
+            CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             CGFloat yPosition = 1024.0f - 60.0f;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
                 yPosition = 768.0f - 60.0f;
@@ -1073,7 +1081,13 @@
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).loginButton.frame;
-        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, self.view.frame.size.height - buttonFrame.size.height, buttonFrame.size.width, buttonFrame.size.height);
+        
+        CGFloat yPosition = 1024.0f - 60.0f;
+        if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+            yPosition = 768.0f - 60.0f;
+        }
+        
+        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
     [self presentModalViewController:vc animated:YES];
