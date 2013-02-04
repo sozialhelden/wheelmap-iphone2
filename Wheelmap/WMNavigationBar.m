@@ -88,10 +88,23 @@
         
         CGRect rightButtonRect = CGRectMake(self.frame.size.width-5-40, 5, 40, 40);
 
+        UIImageView* normalBtnImg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
+        normalBtnImg1.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
+        WMLabel* normalBtnLabel1 = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
+        normalBtnLabel1.fontSize = 13.0;
+        normalBtnLabel1.text = NSLocalizedString(@"Cancel", nil);
+        normalBtnLabel1.textAlignment = UITextAlignmentCenter;
+        normalBtnLabel1.textColor = [UIColor whiteColor];
+        expSize = [normalBtnLabel1.text sizeWithFont:normalBtnLabel1.font constrainedToSize:CGSizeMake(100, 17)];
+        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
+        normalBtnLabel1.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel1.frame.origin.y, expSize.width, normalBtnLabel1.frame.size.height);
+        normalBtnImg1.frame  = CGRectMake(0, 0, normalBtnLabel1.frame.size.width+10, 37);
+        normalBtnLabel1.center = CGPointMake(normalBtnImg1.center.x, normalBtnLabel1.center.y);
+        [normalBtnImg1 addSubview:normalBtnLabel1];
         cancelButtonRight = [WMButton buttonWithType:UIButtonTypeCustom];
         cancelButtonRight.frame = rightButtonRect;
         cancelButtonRight.backgroundColor = [UIColor clearColor];
-        [cancelButtonRight setView:normalBtnImg forControlState:UIControlStateNormal];
+        [cancelButtonRight setView:normalBtnImg1 forControlState:UIControlStateNormal];
         cancelButtonRight.hidden = YES;
         cancelButtonRight.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [cancelButtonRight addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
