@@ -351,6 +351,8 @@
 		037F536716BFD7FA00FAE87E /* credits_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECE16A013B600F6B379 /* credits_credits.png */; };
 		037F536816BFD7FA00FAE87E /* credits_credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECF16A013B600F6B379 /* credits_credits@2x.png */; };
 		037F536916BFD7FA00FAE87E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED316A6FDFA00F9F663 /* WMConfig.plist */; };
+		037F537116BFE5C000FAE87E /* WMLIVEIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 037F537016BFE5C000FAE87E /* WMLIVEIcon@2x.png */; };
+		037F537316BFE5C600FAE87E /* WMLIVEIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 037F537216BFE5C600FAE87E /* WMLIVEIcon.png */; };
 		03BD036916A052750045D53D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899275B1649151300D9003B /* main.m */; };
 		03BD036A16A052750045D53D /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899275F1649151300D9003B /* WMAppDelegate.m */; };
 		03BD036B16A052750045D53D /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927941649481300D9003B /* WMNodeListViewController.m */; };
@@ -1087,6 +1089,8 @@
 		0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button_selected@2x.png"; path = "ToolBar/toolbar_button_selected@2x.png"; sourceTree = "<group>"; };
 		037F536E16BFD7FA00FAE87E /* Wheelmap LIVE copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		037F536F16BFD7FB00FAE87E /* Wheelmap LIVE copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Wheelmap LIVE copy-Info.plist"; path = "/Users/michaelthomas/SourceCode/iOS/wheelmap-iphone2/Wheelmap LIVE copy-Info.plist"; sourceTree = "<absolute>"; };
+		037F537016BFE5C000FAE87E /* WMLIVEIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WMLIVEIcon@2x.png"; sourceTree = "<group>"; };
+		037F537216BFE5C600FAE87E /* WMLIVEIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WMLIVEIcon.png; sourceTree = "<group>"; };
 		039A2F0716A42999000E9D41 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		03BD04A616A052750045D53D /* Wheelmap LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F23ECE16A013B600F6B379 /* credits_credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits_credits.png; sourceTree = "<group>"; };
@@ -1956,6 +1960,8 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
+				037F537216BFE5C600FAE87E /* WMLIVEIcon.png */,
+				037F537016BFE5C000FAE87E /* WMLIVEIcon@2x.png */,
 				15DBF5DB169C664500EBAC2A /* Default-568h@2x.png */,
 				15DBF5D9169C664000EBAC2A /* Default@2x.png */,
 				15DBF5D7169C663C00EBAC2A /* Default.png */,
@@ -2917,6 +2923,8 @@
 				037F536716BFD7FA00FAE87E /* credits_credits.png in Resources */,
 				037F536816BFD7FA00FAE87E /* credits_credits@2x.png in Resources */,
 				037F536916BFD7FA00FAE87E /* WMConfig.plist in Resources */,
+				037F537116BFE5C000FAE87E /* WMLIVEIcon@2x.png in Resources */,
+				037F537316BFE5C600FAE87E /* WMLIVEIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
