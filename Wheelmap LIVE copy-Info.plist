@@ -14,8 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>WMLIVEIcon@2x.png</string>
-				<string>WMLIVEIcon.png</string>
+				<string>LIVE_icons_114-144.png</string>
+				<string>LIVE_icons_57-57.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

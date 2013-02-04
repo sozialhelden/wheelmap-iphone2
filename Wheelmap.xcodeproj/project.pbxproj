@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0327F91016BFF91E00BA7DE7 /* LIVE_icons_57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 0327F90F16BFF91E00BA7DE7 /* LIVE_icons_57-57.png */; };
+		0327F91216BFF92300BA7DE7 /* LIVE_icons_114-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 0327F91116BFF92300BA7DE7 /* LIVE_icons_114-144.png */; };
 		034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */; };
 		034D38DE167738C10071EC05 /* Curl_btn-left-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CE167738C10071EC05 /* Curl_btn-left-active.png */; };
 		034D38DF167738C10071EC05 /* Curl_btn-left-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CF167738C10071EC05 /* Curl_btn-left-active@2x.png */; };
@@ -971,6 +973,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0327F90F16BFF91E00BA7DE7 /* LIVE_icons_57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LIVE_icons_57-57.png"; sourceTree = "<group>"; };
+		0327F91116BFF92300BA7DE7 /* LIVE_icons_114-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LIVE_icons_114-144.png"; sourceTree = "<group>"; };
 		034D38C8167735BF0071EC05 /* WMMapSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapSettingsViewController.h; sourceTree = "<group>"; };
 		034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapSettingsViewController.m; sourceTree = "<group>"; };
 		034D38CE167738C10071EC05 /* Curl_btn-left-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-left-active.png"; sourceTree = "<group>"; };
@@ -1960,6 +1964,8 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
+				0327F91116BFF92300BA7DE7 /* LIVE_icons_114-144.png */,
+				0327F90F16BFF91E00BA7DE7 /* LIVE_icons_57-57.png */,
 				037F537216BFE5C600FAE87E /* WMLIVEIcon.png */,
 				037F537016BFE5C000FAE87E /* WMLIVEIcon@2x.png */,
 				15DBF5DB169C664500EBAC2A /* Default-568h@2x.png */,
@@ -2925,6 +2931,8 @@
 				037F536916BFD7FA00FAE87E /* WMConfig.plist in Resources */,
 				037F537116BFE5C000FAE87E /* WMLIVEIcon@2x.png in Resources */,
 				037F537316BFE5C600FAE87E /* WMLIVEIcon.png in Resources */,
+				0327F91016BFF91E00BA7DE7 /* LIVE_icons_57-57.png in Resources */,
+				0327F91216BFF92300BA7DE7 /* LIVE_icons_114-144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
