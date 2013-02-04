@@ -23,7 +23,7 @@
 {
     // Override point for customization after application launch.
     
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"e9092b2c04cebaec2c0b074407fc60ef"
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@""
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
     
