@@ -11,7 +11,7 @@
 "Wheelchair Settings" = "Filter places by accessibility";
 "Category Settings" = "Filter places by category";
 "EditPOIViewInfoLabel" = "Info";
-"Signed In As %@" = "Signed in as %@";
+"Signed In As" = "Signed in as";
 "Not Logged In" = "You're not signed in";
 "Sign Out" = "Sign Out";
 "About Wheelmap" = "About";

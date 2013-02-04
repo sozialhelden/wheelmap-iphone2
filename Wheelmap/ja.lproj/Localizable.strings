@@ -11,7 +11,7 @@
 "Wheelchair Settings" = "アクセシビリティで場所をフィルター";
 "Category Settings" = "カテゴリで場所をフィルター";
 "EditPOIViewInfoLabel" = "情報";
-"Signed In As %@" = "%@ でサインイン中";
+"Signed In As" = "%@ でサインイン中";
 "Not Logged In" = "サイインしていません";
 "Sign Out" = "サインアウト";
 "About Wheelmap" = "Wheelmapとは？";

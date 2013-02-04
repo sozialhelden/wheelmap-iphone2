@@ -707,6 +707,12 @@
 
 -(void) updateWheelchairStatusOfNode:(Node *)node
 {
+    
+    if (node.wheelchair == nil) {
+        NSLog(@"Cannot update wheelchair status to null!");
+        return;
+    }
+    
     if (WMLogDataManager) NSLog(@"update wheelchair status to %@", node.wheelchair);
     
     NSDictionary* parameters = @{@"wheelchair":node.wheelchair};

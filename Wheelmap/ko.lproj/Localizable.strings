@@ -11,7 +11,7 @@
 "Wheelchair Settings" = "접근가능성별 장소선별";
 "Category Settings" = "카테고리별 장소선별";
 "EditPOIViewInfoLabel" = "안내";
-"Signed In As %@" = "%@로 로그인 되었음";
+"Signed In As" = "%@로 로그인 되었음";
 "Not Logged In" = "로그인하지 않았습니다.";
 "Sign Out" = "로그아웃";
 "About Wheelmap" = "정보";
