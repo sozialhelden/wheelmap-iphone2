@@ -1297,10 +1297,14 @@
 }
 
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self dismissModalViewControllerAnimated:NO];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {        
         
-        [self presentPopover:modalViewController animated:animated];
+        if ([modalViewController isKindOfClass:[WMViewController class]]) {
+            [self dismissModalViewControllerAnimated:NO];
+            [self presentPopover:modalViewController animated:animated];
+        } else {
+            [super presentModalViewController:modalViewController animated:animated];
+        }
     } else {
         [super presentModalViewController:modalViewController animated:animated];
     }
