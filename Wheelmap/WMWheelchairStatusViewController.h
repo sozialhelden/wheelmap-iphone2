@@ -37,6 +37,7 @@ typedef enum {
 //@property (weak, nonatomic) IBOutlet UIButton *noButton;
 @property (strong, nonatomic) id delegate;
 @property (nonatomic, strong) NSString *wheelchairAccess;
+@property (nonatomic) BOOL hideSaveButton;
 
 
 - (IBAction)accessButtonPressed:(id)sender;

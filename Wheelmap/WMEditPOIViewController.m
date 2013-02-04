@@ -308,6 +308,7 @@
     [self buttonPressed];
     
     WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+    vc.hideSaveButton = YES;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
     vc.navigationBarTitle = vc.title;
     vc.delegate = self;

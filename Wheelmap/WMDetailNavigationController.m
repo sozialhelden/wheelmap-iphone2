@@ -134,7 +134,11 @@
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
     } else if ([viewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
-        self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
+        if ( ((WMWheelchairStatusViewController *)viewController).hideSaveButton ) {
+            self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
+        } else {
+            self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
+        }
     } else {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
