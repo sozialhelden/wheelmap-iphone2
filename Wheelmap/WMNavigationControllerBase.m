@@ -218,6 +218,13 @@
                 yPosition = 768.0f - 60.0f;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+        } else if ([self.popoverVC isKindOfClass:[WMEditPOIViewController class]]) {
+            CGRect buttonFrame = ((WMNavigationBar_iPad *)self.customNavigationBar).contributeButton.frame;
+            CGFloat yPosition = 1024.0f - 60.0f;
+            if (UIInterfaceOrientationIsLandscape(orientation)) {
+                yPosition = 768.0f - 60.0f;
+            }
+            self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
         }
         [self presentPopover:self.popoverVC animated:NO];
     }
@@ -810,8 +817,17 @@
     contributePressed = YES;
     
     if (![dataManager userIsAuthenticated]) {
-        [self presentLoginScreenWithButtonFrame:CGRectMake(navigationBar.contributeButton.frame.origin.x, navigationBar.contributeButton.frame.origin.y + 23.0f, navigationBar.contributeButton.frame.size.width, navigationBar.contributeButton.frame.size.width)];
-        return;
+        if ([self.customToolBar isKindOfClass:[WMToolBar_iPad class]]) {
+            
+            CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
+            
+            CGFloat yPosition = 1024.0f - 60.0f;
+            if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                yPosition = 768.0f - 60.0f;
+            }
+            [self presentLoginScreenWithButtonFrame:CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height)];
+            return;
+        }
     }
     
     contributePressed = NO;

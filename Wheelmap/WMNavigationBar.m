@@ -200,7 +200,11 @@
             searchBarContainer = [[UIImageView alloc] initWithFrame:self.bounds];
         }
         searchBarContainer.userInteractionEnabled = YES;
-        searchBarContainer.image = [UIImage imageNamed:@"search_background.png"];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            searchBarContainer.image = [UIImage imageNamed:@"navigationbar_background.png"];
+        } else {
+            searchBarContainer.image = [UIImage imageNamed:@"search_background.png"];
+        }
         searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
         [self addSubview:searchBarContainer];
     
