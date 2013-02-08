@@ -290,3 +290,6 @@
 "PleaseSetMarker" = "Keine Position dieses Ortes ist gegeben!";
 "NoSearchService" = "Suchfunktion nicht verfügbar";
 "DetailsView4ButtonViewShareLabel" = "Teilen";
+"NodeNoCategorySet" = "Bitte wähle eine Kategorie aus!";
+"NodeNoNameSet" = "Bitte gib einen Namen ein!";
+

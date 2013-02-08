@@ -290,4 +290,5 @@
 "PleaseSetMarker" = "Please set the location of this place!";
 "NoSearchService" = "Search unavailable";
 "DetailsView4ButtonViewShareLabel" = "Share";
+"NodeNoCategorySet" = "Bitte wählen Sie eine Kategorie aus!";
 "" = "";

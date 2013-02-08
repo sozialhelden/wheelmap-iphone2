@@ -287,10 +287,15 @@
         self.currentNodeType = fallBackNodeType;
         
     }
+    
+    NSLog(@"NODE TYPE = %@", self.currentNodeType);
 }
 
 - (void)nodeTypeChosen:(NodeType*)nodeType {
     self.currentNodeType= nodeType;
+    
+    NSLog(@"NODE TYPE = %@", self.currentNodeType);
+
     [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
 }
 
@@ -400,6 +405,18 @@
     }
     
     [self saveCurrentEntriesToCurrentNode];
+    
+    if (self.node.name == nil || self.node.name.length < 1) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"NodeNoNameSet", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    if (self.currentCategory == nil) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"NodeNoCategorySet", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
     
     [self.dataManager updateNode:self.node];
     

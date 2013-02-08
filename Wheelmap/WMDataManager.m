@@ -741,7 +741,7 @@
 -(void) updateNode:(Node *)node
 {
     if (WMLogDataManager) NSLog(@"update node %@", node.name);
-    
+        
     // if this is a put
     if (node.id) {
         
