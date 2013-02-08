@@ -730,6 +730,9 @@
 		03C74DB116C4F1EE00C77FEF /* list_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DAD16C4F1EE00C77FEF /* list_shadow@2x.png */; };
 		03C74DB216C4F1EE00C77FEF /* list_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DAD16C4F1EE00C77FEF /* list_shadow@2x.png */; };
 		03C74DB316C4F1EE00C77FEF /* list_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DAD16C4F1EE00C77FEF /* list_shadow@2x.png */; };
+		03C74DBD16C5009400C77FEF /* WMOpenConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */; };
+		03C74DBE16C5009400C77FEF /* WMOpenConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */; };
+		03C74DC016C500A000C77FEF /* WMOpenConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DBF16C500A000C77FEF /* WMOpenConfig.plist */; };
 		03CE604616B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604416B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png */; };
 		03CE604716B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604416B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png */; };
 		03CE604816B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03CE604516B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png */; };
@@ -1199,6 +1202,8 @@
 		03BD04A616A052750045D53D /* Wheelmap LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C74DAC16C4F1EE00C77FEF /* list_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_shadow.png; sourceTree = "<group>"; };
 		03C74DAD16C4F1EE00C77FEF /* list_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_shadow@2x.png"; sourceTree = "<group>"; };
+		03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMOpenConfig.plist; sourceTree = "<group>"; };
+		03C74DBF16C500A000C77FEF /* WMOpenConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMOpenConfig.plist; sourceTree = "<group>"; };
 		03CE604416B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_icon-search-active.png"; sourceTree = "<group>"; };
 		03CE604516B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_icon-search-active@2x.png"; sourceTree = "<group>"; };
 		03CE604A16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_icon-search.png"; sourceTree = "<group>"; };
@@ -1749,6 +1754,7 @@
 			isa = PBXGroup;
 			children = (
 				034FAED316A6FDFA00F9F663 /* WMConfig.plist */,
+				03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */,
 			);
 			path = live;
 			sourceTree = "<group>";
@@ -1757,6 +1763,7 @@
 			isa = PBXGroup;
 			children = (
 				034FAED516A6FDFA00F9F663 /* WMConfig.plist */,
+				03C74DBF16C500A000C77FEF /* WMOpenConfig.plist */,
 			);
 			path = staging;
 			sourceTree = "<group>";
@@ -3109,6 +3116,7 @@
 				0327FA7416BFFC3900BA7DE7 /* LIVE_icons_114-144.png in Resources */,
 				03C74DB016C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB316C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
+				03C74DBE16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3342,6 +3350,7 @@
 				0327F90616BFF3B900BA7DE7 /* Default-Portrait~ipad.png in Resources */,
 				03C74DAF16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB216C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
+				03C74DBD16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3579,6 +3588,7 @@
 				0327F90E16BFF8AC00BA7DE7 /* DEV_icons_72-72.png in Resources */,
 				03C74DAE16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB116C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
+				03C74DC016C500A000C77FEF /* WMOpenConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

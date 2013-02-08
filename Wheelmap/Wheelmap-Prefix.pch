@@ -32,6 +32,7 @@
 
 // Webservice Configuration
 #define WMConfigFilename @"WMConfig"
+#define WMOpenConfigFilename @"WMOpenConfig"
 
 // Terms URL
 #define WMTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/terms/"

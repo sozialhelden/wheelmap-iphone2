@@ -23,7 +23,10 @@
 {
     // Override point for customization after application launch.
     
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"e9092b2c04cebaec2c0b074407fc60ef"
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMOpenConfigFilename ofType:@"plist"]];
+    NSString *hockeyID = config[@"hockey_id"];
+    
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:hockeyID
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
     
