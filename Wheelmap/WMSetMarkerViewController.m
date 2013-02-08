@@ -129,19 +129,24 @@
         if ([self.delegate respondsToSelector:@selector(markerSet:)]) {
             [self.delegate markerSet:self.currentCoordinate];
         }
+        if ([view isKindOfClass:[MKPinAnnotationView class]]) {
+            [(MKPinAnnotationView*)view setSelected:YES animated:NO];
+        }
     }
 }
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         NSString *reuseId = @"";
-        MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
         if (!annotationView) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-            annotationView.centerOffset = CGPointMake(10, -14);
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+//            annotationView.centerOffset = CGPointMake(10, -27);
         }
-        annotationView.image = [UIImage imageNamed:@"marker_position.png"];
+//        annotationView.image = [UIImage imageNamed:@"set-marker_icon.png"];
+        annotationView.animatesDrop=YES;
         annotationView.draggable = YES;
+        [annotationView setSelected:YES animated:NO];
         return annotationView;
    }
    return nil;
