@@ -30,7 +30,7 @@
 // won't show in results, because nodes are returned with ascending id from the server,
 // so the newest nodes come last (that"s why using pages doesn't make any sense here).
 // If you experience this problem, try to use smaller bounding boxes before raising this number.
-#define WMNodeLimit 700
+#define WMNodeLimit 300
 
 #define UserTermsPrefix @"terms"
 
