@@ -192,6 +192,7 @@
     
     WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     nodeListVC.useCase = kWMNodeListViewControllerUseCaseContribute;
+    [(WMNavigationControllerBase *)self.navigationController setMapControllerToContribute];
     [self.navigationController pushViewController:nodeListVC animated:YES];
     [self pressedSearchCancelButton:searchCancelButton];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "WMTermsViewController.h"
+#import "Constants.h"
 
 @implementation WMTermsViewController
 
@@ -28,7 +29,7 @@
 
     [self.cancelButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
     
-    NSURL *url = [NSURL URLWithString:WMTermsURL];
+    NSURL *url = [NSURL URLWithString:WheelMapTermsURL];
     
 	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
    

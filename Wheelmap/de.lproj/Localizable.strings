@@ -292,4 +292,5 @@
 "DetailsView4ButtonViewShareLabel" = "Teilen";
 "NodeNoCategorySet" = "Bitte wähle eine Kategorie aus!";
 "NodeNoNameSet" = "Bitte gib einen Namen ein!";
-
+"AcceptDataTerms" = "Ich stimme Ziffer 1 und 2 der Datenschutzbestimmungen zu.";
+"AcceptUserTerms" = "Ich stimme den Nutzungsbedingungen zu.";

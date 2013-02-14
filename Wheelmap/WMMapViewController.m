@@ -27,6 +27,8 @@
     CLLocationCoordinate2D lastDisplayedMapCenter;
     
     BOOL dontUpdateNodeList;
+    
+    dispatch_queue_t backgroundQueue;
 }
 
 @synthesize dataSource, delegate;
@@ -44,7 +46,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
+    
     self.mapView.showsUserLocation = YES;
     //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
     
@@ -114,6 +118,8 @@
         [((WMNavigationControllerBase *)self.navigationController).customToolBar showButton:kWMToolBarButtonCurrentLocation];
         [self loadNodes];   // load nodes from the dataSource
         
+    } else {
+        [self loadNodes];
     }
     
 }
@@ -125,49 +131,48 @@
 }
 
 - (void) loadNodes
-{
-        
-    if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
-        NSArray* unfilteredNodes = [self.dataSource nodeList];
-        NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
-        
-        for (Node* node in unfilteredNodes) {
-            if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
-                [newNodeList addObject:node];
+{        
+        if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
+            NSArray* unfilteredNodes = [self.dataSource nodeList];
+            NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
+            
+            for (Node* node in unfilteredNodes) {
+                if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
+                    [newNodeList addObject:node];
+                }
             }
-        }
-        nodes = newNodeList;
-    } else {
-        nodes = [self.dataSource filteredNodeList];
-    }
-
-    
-    NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
-    
-    // fix for map sometimes showing old annotations on ipad
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        for (id<MKAnnotation> annotation in oldAnnotations) {
-//            if (![annotation isKindOfClass:[MKUserLocation class]])
-//                [self.mapView removeAnnotation:annotation];
-//        }
-//    }
-    
-    [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
-        WMMapAnnotation *annotationForNode = [self annotationForNode:node];
-        if (annotationForNode) {
-            // this node is already shown on the map
-            [oldAnnotations removeObject:annotationForNode];
+            nodes = newNodeList;
         } else {
-            // this node is new
-            WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
-            [self.mapView addAnnotation:annotation];
+            nodes = [self.dataSource filteredNodeList];
         }
         
-    }];
-    for (id<MKAnnotation> annotation in oldAnnotations) {
-        if (![annotation isKindOfClass:[MKUserLocation class]])
-            [self.mapView removeAnnotation:annotation];
-    }
+        
+        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
+        
+        // fix for map sometimes showing old annotations on ipad
+        //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        //        for (id<MKAnnotation> annotation in oldAnnotations) {
+        //            if (![annotation isKindOfClass:[MKUserLocation class]])
+        //                [self.mapView removeAnnotation:annotation];
+        //        }
+        //    }
+        
+        [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
+            WMMapAnnotation *annotationForNode = [self annotationForNode:node];
+            if (annotationForNode) {
+                // this node is already shown on the map
+                [oldAnnotations removeObject:annotationForNode];
+            } else {
+                // this node is new
+                WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
+                [self.mapView addAnnotation:annotation];
+            }
+            
+        }];
+        for (id<MKAnnotation> annotation in oldAnnotations) {
+            if (![annotation isKindOfClass:[MKUserLocation class]])
+                [self.mapView removeAnnotation:annotation];
+        }
 }
 
 - (WMMapAnnotation*) annotationForNode:(Node*)node
@@ -239,13 +244,13 @@
             annotationView.alpha = 1.0;
         }
                          completion:^(BOOL finished) {
-            annotationView.alpha = 1.0;
-                         
-        }];
+                             annotationView.alpha = 1.0;
+                             
+                         }];
         
         return annotationView;
     }
-
+    
     return nil;
 }
 
@@ -314,7 +319,7 @@
         [self slideInMapInteractionAdvisorWithText:NSLocalizedString(@"Zoom Closer", nil)];
         [(WMNavigationControllerBase*)self.dataSource refreshNodeListWithArray:[NSArray array]];
         lastDisplayedMapCenter = CLLocationCoordinate2DMake(0, 0);
-
+        
     } else {
         [self slideOutMapInteractionAdvisor];
         
@@ -329,7 +334,7 @@
         CLLocation *newCenter = [[CLLocation alloc] initWithLatitude:self.mapView.region.center.latitude longitude:self.mapView.region.center.longitude];
         CLLocation *oldCenter = [[CLLocation alloc] initWithLatitude:lastDisplayedMapCenter.latitude longitude:lastDisplayedMapCenter.longitude];
         CLLocationDistance centerDistance = [newCenter distanceFromLocation:oldCenter] /1000.0; // km
-
+        
         MKCoordinateRegion coordinateRegion = self.mapView.region;
         CLLocationCoordinate2D ne =
         CLLocationCoordinate2DMake(coordinateRegion.center.latitude
@@ -360,7 +365,7 @@
             lastDisplayedMapCenter = self.mapView.region.center;
         }
     }
-
+    
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLat:[NSNumber numberWithDouble:self.mapView.region.center.latitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLng:[NSNumber numberWithDouble:self.mapView.region.center.longitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLat:[NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta]];
@@ -395,7 +400,7 @@
     if (self.mapInteractionInfoLabel.tag == 1)  // indicator is already visible
     {
         NSLog(@"Map UI Advisor is already visibile");
-         return;
+        return;
     }
     
     self.mapInteractionInfoLabel.text = text;
@@ -421,6 +426,9 @@
     }];
 }
 
+- (void)dealloc {
+    dispatch_release(backgroundQueue);
+}
 
 @end
 

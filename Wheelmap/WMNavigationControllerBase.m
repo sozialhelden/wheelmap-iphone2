@@ -226,6 +226,11 @@
     [self pushViewController:mapViewController animated:YES];
 }
 
+- (void)setMapControllerToContribute {
+    mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+
+}
+
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
     
     [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];

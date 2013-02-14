@@ -8,6 +8,7 @@
 
 #import "WMAcceptTermsViewController.h"
 #import "WMTermsViewController.h"
+#import "Constants.h"
 
 @interface WMAcceptTermsViewController ()
 {
@@ -38,7 +39,7 @@
 
     self.textLabel.text = NSLocalizedString(@"TermsText", nil);
     
-    self.linkTextView.text = WMTermsURL;
+    self.linkTextView.text = WheelMapTermsURL;
     
     CGSize maximumLabelSize = CGSizeMake(self.textLabel.frame.size.width, FLT_MAX);
     

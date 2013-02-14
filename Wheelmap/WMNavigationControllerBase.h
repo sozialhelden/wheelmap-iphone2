@@ -45,6 +45,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 - (void)pushList;
 - (void)pushMap;
+- (void)setMapControllerToContribute;
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;
