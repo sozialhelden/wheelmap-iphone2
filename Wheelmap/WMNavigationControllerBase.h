@@ -43,6 +43,9 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong)  WMViewController *popoverVC;
 
+- (void)pushList;
+- (void)pushMap;
+
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;

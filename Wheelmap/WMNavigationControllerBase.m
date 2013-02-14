@@ -40,6 +40,9 @@
     WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
     WMCategoryFilterPopoverView* categoryFilterPopover;
     
+    WMMapViewController* mapViewController;
+    WMNodeListViewController* listViewController;
+    
     UIView* loadingWheelContainer;  // this view will show loading whell on the center and cover child view controllers so that we avoid interactions interuptting data loading
     UIActivityIndicatorView* loadingWheel;
     
@@ -61,6 +64,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    // preload map to avoid long loading times on toggle
+    mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+    CLLocation* newLocation = self.locationManager.location;
+    [mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
     
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
@@ -194,6 +202,26 @@
         [self refreshPopoverPositions:[[UIApplication sharedApplication] statusBarOrientation]];
     }
 
+}
+
+- (void)pushList {
+    if (listViewController == nil) {
+        listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
+    }
+    listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    [self pushViewController:listViewController animated:YES];
+}
+
+- (void)pushMap {
+    if (listViewController == nil) {
+        listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
+    }
+    if (mapViewController == nil) {
+        mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+    }
+    mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+    [self pushViewController:listViewController animated:NO];
+    [self pushViewController:mapViewController animated:YES];
 }
 
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
@@ -932,12 +960,12 @@
     
     if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         //  the node list view is on the screen. push the map view controller
-        WMMapViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+        
         WMViewController* currentVC = (WMViewController*)self.topViewController;
-        vc.navigationBarTitle = currentVC.navigationBarTitle;
+        mapViewController.navigationBarTitle = currentVC.navigationBarTitle;
         if ([currentVC respondsToSelector:@selector(useCase)])
-            vc.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
-        [self pushFadeViewController:vc];
+            mapViewController.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
+        [self pushFadeViewController:mapViewController];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         //  the map view is on the screen. pop the map view controller

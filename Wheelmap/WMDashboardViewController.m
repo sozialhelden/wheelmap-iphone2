@@ -155,13 +155,9 @@
     //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
     //[navCtrl clearWheelChairFilterStatus];
     //[navCtrl clearCategoryFilterStatus];
-    WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    vc.useCase = kWMNodeListViewControllerUseCaseNormal;
     [self pressedSearchCancelButton:searchCancelButton];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    
-    
+    [(WMNavigationControllerBase *)self.navigationController pushList];
+
 }
 
 -(IBAction)pressedMapButton:(id)sender
@@ -170,13 +166,10 @@
     //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
     //[navCtrl clearWheelChairFilterStatus];
     //[navCtrl clearCategoryFilterStatus];
-    
-    WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    WMMapViewController* mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
-    mapVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+
     [self pressedSearchCancelButton:searchCancelButton];
-    [self.navigationController pushViewController:nodeListVC animated:NO];
-    [self.navigationController pushViewController:mapVC animated:YES];
+    
+    [(WMNavigationControllerBase *)self.navigationController pushMap];
     
 }
 
