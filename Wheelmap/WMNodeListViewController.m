@@ -28,6 +28,9 @@
 
     WMDataManager *dataManager;
     
+    BOOL searching;
+    BOOL receivedClearList;
+    
 }
 
 @synthesize dataSource, delegate;
@@ -49,6 +52,12 @@
     self.tableView.scrollsToTop = YES;
     
     dataManager = [[WMDataManager alloc] init];
+    
+    searching = NO;
+
+    if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
+        searching = YES;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -108,9 +117,11 @@
         [self loadNodes];
         
     } else if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+        [self.tableView reloadData];
         [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
     } else if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
+        [self.tableView reloadData];
         [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonCurrentLocation];
@@ -214,7 +225,7 @@
     [self sortNodesByDistance];
     
     NSLog(@"NUMBER OF NODES = %d", nodes.count);
-    
+        
     [self.tableView reloadData];
 }
 
@@ -240,6 +251,14 @@
 
 - (void) nodeListDidChange
 {
+    if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
+        if (receivedClearList) {
+            searching = NO;
+            receivedClearList = NO;
+        } else {
+            searching = YES;
+            receivedClearList = YES;
+        }}
     shouldShowNoResultIndicator = YES;
     [self loadNodes];
 }
@@ -283,9 +302,13 @@
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"WMNodeListCellNoResult"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WMNodeListCellNoResult"];
-            cell.textLabel.text = NSLocalizedString(@"NoPOIsFound", nil);
             cell.textLabel.font = [UIFont fontWithName:@"HeleticaNeue-Bold" size:15.0];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        if (searching) {
+            cell.textLabel.text = NSLocalizedString(@"Loading Places", nil);
+        } else {
+            cell.textLabel.text = NSLocalizedString(@"NoPOIsFound", nil);
         }
         return cell;
     }
