@@ -66,9 +66,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
     // preload map to avoid long loading times on toggle
-    mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
-    CLLocation* newLocation = self.locationManager.location;
-    [mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
+    if (!UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+        CLLocation* newLocation = self.locationManager.location;
+        [mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
+    }
     
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
@@ -123,7 +125,7 @@
     loadingLabel.layer.cornerRadius = 10.0f;
     loadingLabel.layer.masksToBounds = YES;
     [loadingLabel setText:NSLocalizedString(@"LoadingWheelText", nil)];
-
+    
     CGSize maximumLabelSize = CGSizeMake(loadingLabel.frame.size.width, FLT_MAX);
     
     CGSize expectedLabelSize = [loadingLabel.text sizeWithFont:loadingLabel.font constrainedToSize:maximumLabelSize lineBreakMode:loadingLabel.lineBreakMode];
@@ -201,7 +203,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self refreshPopoverPositions:[[UIApplication sharedApplication] statusBarOrientation]];
     }
-
+    
 }
 
 - (void)pushList {
@@ -286,7 +288,7 @@
 {
     
     NSLog(@"DATA MANAGER RECEIVED NODES");
-
+    
     nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
     [self refreshNodeList];
@@ -305,7 +307,7 @@
 {
     
     NSLog(@"--- REFRESH NODE LIST WITH ARRAY ---");
-
+    
     nodes = array;
     for (UIViewController* vc in self.viewControllers) {
         if ([vc conformsToProtocol:@protocol(WMNodeListView)]) {
@@ -389,13 +391,13 @@
         case NotReachable:
             NSLog(@"INTERNET IS NOT AVAILABLE!");
             [self.customToolBar hideButton:kWMToolBarButtonSearch];
-           
+            
             break;
             
         default:
             NSLog(@"INTERNET IS RE-ACTIVATED!");
             [self.customToolBar showButton:kWMToolBarButtonSearch];
-                        
+            
             break;
     }
 }
@@ -417,7 +419,7 @@
 {
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
-//    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
+    //    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
     
     for (Node* node in nodes) {
         NSNumber* categoryID = node.node_type.category.id;
@@ -429,14 +431,14 @@
     }
     
     NSLog(@"NEW NODE LIST = %d", newNodeList.count);
-
+    
     return newNodeList;
 }
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord
 {
     NSLog(@"UPDATE NODES NEAR");
-
+    
     nodes = [dataManager fetchNodesNear:coord];
     [self refreshNodeList];
 }
@@ -444,7 +446,7 @@
 -(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
 {
     NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
-
+    
     nodes = [dataManager fetchNodesNear:coord];
     [self refreshNodeList];
 }
@@ -455,7 +457,7 @@
     NSLog(@"UPDATE WITH REGION");
     // we do not show here the loading wheel since this methods is always called by map view controller, and the vc has its own loading wheel,
     // which allows user interaction while loading nodes.
-   // [self showLoadingWheel];
+    // [self showLoadingWheel];
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
     southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
@@ -468,7 +470,7 @@
 -(void)updateNodesWithQuery:(NSString*)query
 {
     NSLog(@"UPDATE WITH QUERY");
-
+    
     nodes = @[];
     [dataManager fetchNodesWithQuery:query];
     [self refreshNodeList];
@@ -477,12 +479,12 @@
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region
 {
     NSLog(@"UPDATE WITH QUERY AND REGION");
-
+    
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
     southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
     northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
-
+    
     nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:query];
     [self refreshNodeList];
 }
@@ -579,9 +581,9 @@
 
 -(void)updateNodesWithCurrentUserLocation
 {
- 
+    
     CLLocation* newLocation = self.locationManager.location;
-
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if ([self.topViewController isKindOfClass:WMRootViewController_iPad.class]) {
             [(WMRootViewController_iPad *)self.topViewController gotNewUserLocation:newLocation];
@@ -639,14 +641,14 @@
                     completion:nil];
     
     [self pushViewController:vc animated:NO];
- 
+    
     
 }
 
 -(void)popFadeViewController
 {
     
-  
+    
     
     WMViewController* fromVC = [self.viewControllers lastObject];
     WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
@@ -658,8 +660,8 @@
                     completion:nil];
     
     [self popViewControllerAnimated:NO];
-   
-
+    
+    
 }
 
 - (void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -706,7 +708,7 @@
 
 -(void)changeScreenStatusFor:(UIViewController*)vc
 {
-    // screen transition. we 
+    // screen transition. we
     [self hideLoadingWheel];
     
     // if the current navigation stack size is 2,then we always show DashboardButton on the left
@@ -933,7 +935,7 @@
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
         self.customNavigationBar.title = vc.navigationBarTitle;
         [self updateNodesWithQuery:query];
-      
+        
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* vc = (WMMapViewController*)self.topViewController;
         vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
@@ -946,7 +948,7 @@
         self.customNavigationBar.title = nodeListVC.navigationBarTitle;
         
         [self updateNodesWithQuery:query andRegion:vc.mapView.region];
-       
+        
     }
     
     
@@ -1017,7 +1019,7 @@
         nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
     }
-
+    
     
 }
 -(void)pressedSearchButton:(BOOL)selected
@@ -1042,7 +1044,7 @@
             if (!selected) {
                 if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
                     [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
-                 }
+                }
             }
             [self.customNavigationBar dismissSearchKeyboard];
             [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
@@ -1315,7 +1317,7 @@
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([viewController isKindOfClass:[WMNodeListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
-        if (navigationController.toolbarHidden == YES) 
+        if (navigationController.toolbarHidden == YES)
             [navigationController setToolbarHidden:NO animated:YES];
     } else {
         if (navigationController.toolbarHidden == NO)
@@ -1332,8 +1334,8 @@
             [navigationController setNavigationBarHidden:NO animated:YES];
         }
     }
-     
-     
+    
+    
 }
 
 #pragma mark - Show Login screen
@@ -1355,7 +1357,7 @@
 }
 
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {        
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         if ([modalViewController isKindOfClass:[WMViewController class]]) {
             [self dismissModalViewControllerAnimated:NO];
@@ -1371,7 +1373,7 @@
 - (void)presentPopover:(UIViewController *)viewController animated:(BOOL)animated {
     if ([viewController isKindOfClass:[WMAcceptTermsViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
-                                                             initWithContentViewController:viewController];
+                                                        initWithContentViewController:viewController];
         self.popoverVC = (WMViewController *)viewController;
         ((WMViewController *)viewController).baseController = self;
         
@@ -1383,7 +1385,7 @@
         
     } else if ([viewController isKindOfClass:[WMViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
-                                                             initWithContentViewController:viewController];
+                                                        initWithContentViewController:viewController];
         self.popoverVC = (WMViewController *)viewController;
         ((WMViewController *)viewController).baseController = self;
         
