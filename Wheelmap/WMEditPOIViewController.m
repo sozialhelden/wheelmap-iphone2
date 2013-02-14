@@ -406,7 +406,7 @@
     
     [self saveCurrentEntriesToCurrentNode];
     
-    if (self.node.name == nil || self.node.name.length < 1) {
+    if (!self.editView && (self.node.name == nil || self.node.name.length < 1)) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"NodeNoNameSet", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
         return;
