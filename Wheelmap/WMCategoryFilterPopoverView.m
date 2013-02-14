@@ -26,7 +26,7 @@
         }
         [self addSubview:bgImg];
         
-        tableView = [[UITableView alloc] initWithFrame:CGRectMake(2, 5, 128, 100)];
+        tableView = [[UITableView alloc] initWithFrame:CGRectMake(2, 5, 128, 95)];
         tableView.backgroundColor = [UIColor clearColor];
         tableView.showsVerticalScrollIndicator = NO;
         tableView.dataSource = self;
@@ -54,15 +54,15 @@
     CGFloat tableViewHeight;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (self.categoryList.count > 15) {
-            tableViewHeight = CELL_HEIGHT*15;
+            tableViewHeight = CELL_HEIGHT*15 - 5;
         } else {
-            tableViewHeight = CELL_HEIGHT*self.categoryList.count;
+            tableViewHeight = CELL_HEIGHT*self.categoryList.count - 5;
         }
     } else {
         if (self.categoryList.count > 10) {
-            tableViewHeight = CELL_HEIGHT*10;
+            tableViewHeight = CELL_HEIGHT*10 - 5;
         } else {
-            tableViewHeight = CELL_HEIGHT*self.categoryList.count;
+            tableViewHeight = CELL_HEIGHT*self.categoryList.count - 5;
         }
     }
     
