@@ -29,6 +29,8 @@
     BOOL dontUpdateNodeList;
     
     dispatch_queue_t backgroundQueue;
+    
+    BOOL loadingNodes;
 }
 
 @synthesize dataSource, delegate;
@@ -131,21 +133,30 @@
 }
 
 - (void) loadNodes
-{        
-        if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
-            NSArray* unfilteredNodes = [self.dataSource nodeList];
-            NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
-            
-            for (Node* node in unfilteredNodes) {
-                if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
-                    [newNodeList addObject:node];
-                }
-            }
-            nodes = newNodeList;
-        } else {
-            nodes = [self.dataSource filteredNodeList];
-        }
+{
+    
+    if (loadingNodes) {
+        return;
+    }
+    loadingNodes = YES;
+    
+    if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        NSArray* unfilteredNodes = [self.dataSource nodeList];
+        NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
         
+        for (Node* node in unfilteredNodes) {
+            if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
+                [newNodeList addObject:node];
+            }
+        }
+        nodes = newNodeList;
+    } else {
+        nodes = [self.dataSource filteredNodeList];
+    }
+    
+    dispatch_async(backgroundQueue, ^(void) {
+        
+        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:self.mapView.annotations];
         
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         
@@ -165,14 +176,24 @@
             } else {
                 // this node is new
                 WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
-                [self.mapView addAnnotation:annotation];
+                [newAnnotations addObject:annotation];
             }
             
         }];
-        for (id<MKAnnotation> annotation in oldAnnotations) {
-            if (![annotation isKindOfClass:[MKUserLocation class]])
-                [self.mapView removeAnnotation:annotation];
-        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [newAnnotations enumerateObjectsUsingBlock:^(WMMapAnnotation *annotation, NSUInteger idx, BOOL *stop) {
+                [self.mapView addAnnotation:annotation];
+            }];
+            
+            for (id<MKAnnotation> annotation in oldAnnotations) {
+                if (![annotation isKindOfClass:[MKUserLocation class]])
+                    [self.mapView removeAnnotation:annotation];
+            }
+            
+            loadingNodes = NO;
+        });
+    });
 }
 
 - (WMMapAnnotation*) annotationForNode:(Node*)node
