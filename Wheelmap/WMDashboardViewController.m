@@ -168,7 +168,7 @@
     //[navCtrl clearCategoryFilterStatus];
 
     [self pressedSearchCancelButton:searchCancelButton];
-    
+    [(WMNavigationControllerBase *)self.navigationController setMapControllerToNormal];
     [(WMNavigationControllerBase *)self.navigationController pushMap];
     
 }
