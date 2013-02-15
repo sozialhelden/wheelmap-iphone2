@@ -10,4 +10,4 @@
 #define InstallId @"installId"
 
 #define WheelMapTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/terms/"
-#define WheelMapDataTermsURL @"http://blog.wheelmap.org/was-ist-wheelmap/privacy/"
+#define WheelMapDataTermsURL @"http://http://blog.wheelmap.org/was-ist-wheelmap/datenschutzbestimmungen/"

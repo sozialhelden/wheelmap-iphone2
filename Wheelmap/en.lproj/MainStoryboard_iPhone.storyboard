@@ -438,7 +438,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="zHV-jg-kre">
-                                <rect key="frame" x="10" y="193" width="300" height="57"/>
+                                <rect key="frame" x="55" y="193" width="255" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="SbZ-wK-Vph">
+                                <rect key="frame" x="55" y="202" width="255" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -446,7 +454,7 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="z0T-Bh-jBK">
-                                <rect key="frame" x="5" y="188" width="310" height="81"/>
+                                <rect key="frame" x="55" y="188" width="260" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -458,6 +466,21 @@
                                 </state>
                                 <connections>
                                     <action selector="pressedInterceptButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="b7p-tu-h7G"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bmR-be-CYq">
+                                <rect key="frame" x="55" y="190" width="260" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedInterceptButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="STn-TI-1qM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Mj-cx-3Nl">
@@ -473,6 +496,38 @@
                                 </state>
                                 <connections>
                                     <action selector="pressedDeclineButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="XP9-sd-BwC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dxs-oS-Dwe">
+                                <rect key="frame" x="10" y="208" width="44" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="O">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="X"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedCheckboxButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="Sg1-5X-9yc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Sfd-xy-voC">
+                                <rect key="frame" x="10" y="208" width="44" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="O">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="X"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedCheckboxButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="bLV-YD-6Zo"/>
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" id="bIm-mU-uxi">
@@ -506,8 +561,12 @@
                     </view>
                     <connections>
                         <outlet property="acceptButton" destination="qqY-eS-Ycy" id="OhP-p2-4rn"/>
+                        <outlet property="checkBoxDataButton" destination="Sfd-xy-voC" id="vbF-Mm-kq4"/>
+                        <outlet property="checkBoxTermsButton" destination="dxs-oS-Dwe" id="OjT-QR-9pl"/>
                         <outlet property="declineButton" destination="4Mj-cx-3Nl" id="Oi1-s2-t9I"/>
+                        <outlet property="intercept2Button" destination="bmR-be-CYq" id="U93-mW-sIt"/>
                         <outlet property="interceptButton" destination="z0T-Bh-jBK" id="1Xv-5S-g2x"/>
+                        <outlet property="link2TextView" destination="SbZ-wK-Vph" id="1cp-fo-DIz"/>
                         <outlet property="linkTextView" destination="zHV-jg-kre" id="Swr-9z-yd7"/>
                         <outlet property="loadingWheel" destination="bIm-mU-uxi" id="Ai0-pA-eR3"/>
                         <outlet property="textLabel" destination="igZ-Pi-1XX" id="ALu-UG-A3p"/>

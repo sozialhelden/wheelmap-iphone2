@@ -15,7 +15,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        terms = WheelMapTermsURL;
     }
     return self;
 }
@@ -29,7 +29,7 @@
 
     [self.cancelButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
     
-    NSURL *url = [NSURL URLWithString:WheelMapTermsURL];
+    NSURL *url = [NSURL URLWithString:terms];
     
 	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
    
@@ -52,6 +52,14 @@
 -(IBAction)pressedCancelButton:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)showDataTerms:(BOOL)showDataTerms {
+    if (showDataTerms) {
+        terms = WheelMapDataTermsURL;
+    } else {
+        terms = WheelMapTermsURL;
+    }
 }
 
 @end
