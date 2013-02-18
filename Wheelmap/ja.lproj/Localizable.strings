@@ -238,7 +238,7 @@
 "BottomLabelText" = "";
 "Ready" = "完了";
 "RegisterNew" = "登録";
-"UsernamePlaceholder" = "ユーザ名";
+"UsernamePlaceholder" = "メール";
 "MapHybrid" = "ハイブリッド";
 "MapStandard" = "標準";
 "MapSatellite" = "衛星画像";
@@ -290,4 +290,9 @@
 "PleaseSetMarker" = "この場所の位置がわかりません．";
 "NoSearchService" = "検索できません．";
 "DetailsView4ButtonViewShareLabel" = "共有";
+"NodeNoCategorySet" = "";
+"NodeNoNameSet" = "";
+"AcceptDataTerms" = "";
+"AcceptUserTerms" = "";
+"PleaseAcceptAllTerms" = "";
 "" = "";

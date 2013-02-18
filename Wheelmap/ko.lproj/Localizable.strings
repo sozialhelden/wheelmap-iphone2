@@ -290,4 +290,9 @@
 "PleaseSetMarker" = "위치를 지정해 주세요.";
 "NoSearchService" = "검색 기능 이용 불가";
 "DetailsView4ButtonViewShareLabel" = "공유";
+"NodeNoCategorySet" = "";
+"NodeNoNameSet" = "";
+"AcceptDataTerms" = "";
+"AcceptUserTerms" = "";
+"PleaseAcceptAllTerms" = "";
 "" = "";
