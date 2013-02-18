@@ -122,6 +122,16 @@
     }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    // region to display
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
+    // display the region
+    [self.mapView setRegion:viewRegion animated:NO];
+    if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
+        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude+0.001, newLocation.coordinate.longitude+0.001);
+    }
+}
+
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
 {
     if (newState == MKAnnotationViewDragStateEnding) {
