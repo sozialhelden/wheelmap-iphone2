@@ -13,6 +13,7 @@
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
 #import "WMMapSettingsViewController.h"
+#import "WMDetailNavigationController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MIN_SPAN_DELTA 0.02
@@ -316,6 +317,13 @@
 #pragma mark - Map Interactions
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+    
+    if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]]) {
+        [(WMNavigationControllerBase *)self.navigationController mapWasMoved];
+    } else if ([self.navigationController isKindOfClass:[WMDetailViewController class]]) {
+        [(WMDetailNavigationController *)self.navigationController mapWasMoved:mapView.region.center];
+    }
+    
     NSLog(@"Current Use Case %d", self.useCase);
     if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
         // do nothing

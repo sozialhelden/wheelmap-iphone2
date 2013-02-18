@@ -67,6 +67,7 @@
 @property (nonatomic, strong) NSString *currentWheelchairStatus;
 @property (nonatomic, strong) NSString *currentInfoFieldText;
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D initialCoordinate;
 
 @property (nonatomic, assign) BOOL isRootViewController;
 

@@ -49,6 +49,8 @@
     BOOL fetchNodesAlertShowing;
     
     BOOL contributePressed;
+    
+    BOOL mapViewWasMoved;
 }
 
 #pragma mark - Lifecycle
@@ -615,6 +617,9 @@
     self.lastVisibleMapSpanLng = [NSNumber numberWithDouble:0.003];
 }
 
+- (void)mapWasMoved {
+    mapViewWasMoved = YES;
+}
 
 #pragma mark - Application Notifications
 
@@ -873,6 +878,18 @@
     contributePressed = NO;
     
     WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
+    if (mapViewWasMoved) {
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+                vc.initialCoordinate = ((WMRootViewController_iPad *)self.topViewController).mapViewController.mapView.region.center;
+            }
+        } else {
+            vc.initialCoordinate = mapViewController.mapView.region.center;
+        }
+    } else {
+        vc.initialCoordinate = self.currentUserLocation.coordinate;
+    }
     vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         

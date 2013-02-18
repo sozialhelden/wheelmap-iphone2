@@ -372,6 +372,7 @@
     vc.node = self.node;
     vc.delegate = self;
     vc.currentCoordinate = self.currentCoordinate;
+    vc.initialCoordinate = self.initialCoordinate;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

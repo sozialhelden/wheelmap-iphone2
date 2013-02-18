@@ -44,7 +44,7 @@
     [self. mapView addAnnotation:self.currentAnnotation];
     self.currentAnnotation.coordinate = self.currentCoordinate;
     
-    
+    [self setMapToCoordinate:self.initialCoordinate];
     
 }
 
@@ -52,11 +52,11 @@
 {
     [super viewWillAppear:animated];
     
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.distanceFilter = 50.0f;
-	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    [locationManager startUpdatingLocation];
+//    locationManager = [[CLLocationManager alloc] init];
+//    locationManager.delegate = self;
+//    locationManager.distanceFilter = 50.0f;
+//	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+//    [locationManager startUpdatingLocation];
     
     self.title = NSLocalizedString(@"NavBarTitleSetMarker", nil);
     self.navigationBarTitle = self.title;
@@ -107,7 +107,15 @@
     [self setMapView:nil];
     [super viewDidUnload];
 }
-    
+
+- (void)setMapToCoordinate:(CLLocationCoordinate2D)coordinate {
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 100, 320);
+    // display the region
+    [self.mapView setRegion:viewRegion animated:NO];
+    if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
+        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+    }
+}
 
 #pragma mark - CLLocationManager Delegates
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -118,7 +126,7 @@
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
-        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude+0.001, newLocation.coordinate.longitude+0.001);
+        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     }
 }
 
@@ -128,7 +136,7 @@
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
-        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude+0.001, newLocation.coordinate.longitude+0.001);
+        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     }
 }
 

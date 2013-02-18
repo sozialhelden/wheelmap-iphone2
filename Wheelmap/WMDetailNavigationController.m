@@ -22,6 +22,8 @@
 
 @implementation WMDetailNavigationController {
     WMDataManager *dataManager;
+    
+    CLLocationCoordinate2D initialCoordinate;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -57,6 +59,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)mapWasMoved:(CLLocationCoordinate2D)coordinate {
+    initialCoordinate = coordinate;
+}
+
 -(void)pressedBackButton:(WMNavigationBar*)navigationBar {
     [self popViewControllerAnimated:YES];
 }
@@ -72,6 +78,8 @@
         
         WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
         vc.node = ((WMDetailViewController *)self.topViewController).node;
+        vc.initialCoordinate = initialCoordinate;
+        vc.initialCoordinate = self.initialCoordinate;
         vc.editView = YES;
         vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
         [self pushViewController:vc animated:YES];
@@ -79,6 +87,7 @@
         NSLog(@"ERROR! Pushing Edit screen from sth different than Detail screen");
     }
 }
+
 
 -(void)pressedCancelButton:(WMNavigationBar*)navigationBar {
     [self popViewControllerAnimated:YES];

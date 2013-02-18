@@ -362,7 +362,6 @@
     detailViewController.baseController = self.controllerBase;
     
     WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:detailViewController];
-    
     detailNavController.listViewController = self;
     detailNavController.customNavigationBar.title = detailViewController.navigationBarTitle;
     
