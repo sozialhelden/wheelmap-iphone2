@@ -51,6 +51,8 @@
     BOOL contributePressed;
     
     BOOL mapViewWasMoved;
+    
+    NSString *lastQuery;
 }
 
 #pragma mark - Lifecycle
@@ -481,6 +483,9 @@
 
 -(void)updateNodesWithQuery:(NSString*)query
 {
+    
+    lastQuery = query;
+    
     NSLog(@"UPDATE WITH QUERY");
     
     nodes = @[];
@@ -490,6 +495,9 @@
 
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region
 {
+    
+    lastQuery = query;
+
     NSLog(@"UPDATE WITH QUERY AND REGION");
     
     CLLocationCoordinate2D southWest;
@@ -604,9 +612,14 @@
     
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-        [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];   // this will automatically update node list!
+            [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];   // this will automatically update node list!
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        [self updateNodesNear:newLocation.coordinate];
+        WMNodeListViewController *currentVC = (WMNodeListViewController*)self.topViewController;
+        if (currentVC.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMNodeListViewControllerUseCaseGlobalSearch)) {
+            [self updateNodesWithQuery:lastQuery];
+        } else {
+            [self updateNodesNear:newLocation.coordinate];
+        }
     } else {
         [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
     }
