@@ -404,6 +404,18 @@
 		034FACB616A59A4100F9F663 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB516A59A4100F9F663 /* WMTermsViewController.m */; };
 		034FACBA16A59BEF00F9F663 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */; };
 		034FAED816A6FE0000F9F663 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED316A6FDFA00F9F663 /* WMConfig.plist */; };
+		0351F10816D37C9B00031522 /* checkbox_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10416D37C9B00031522 /* checkbox_active.png */; };
+		0351F10916D37C9B00031522 /* checkbox_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10416D37C9B00031522 /* checkbox_active.png */; };
+		0351F10A16D37C9B00031522 /* checkbox_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10416D37C9B00031522 /* checkbox_active.png */; };
+		0351F10B16D37C9B00031522 /* checkbox_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10516D37C9B00031522 /* checkbox_active@2x.png */; };
+		0351F10C16D37C9B00031522 /* checkbox_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10516D37C9B00031522 /* checkbox_active@2x.png */; };
+		0351F10D16D37C9B00031522 /* checkbox_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10516D37C9B00031522 /* checkbox_active@2x.png */; };
+		0351F10E16D37C9B00031522 /* checkbox_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10616D37C9B00031522 /* checkbox_inactive.png */; };
+		0351F10F16D37C9B00031522 /* checkbox_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10616D37C9B00031522 /* checkbox_inactive.png */; };
+		0351F11016D37C9B00031522 /* checkbox_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10616D37C9B00031522 /* checkbox_inactive.png */; };
+		0351F11116D37C9B00031522 /* checkbox_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10716D37C9B00031522 /* checkbox_inactive@2x.png */; };
+		0351F11216D37C9B00031522 /* checkbox_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10716D37C9B00031522 /* checkbox_inactive@2x.png */; };
+		0351F11316D37C9B00031522 /* checkbox_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10716D37C9B00031522 /* checkbox_inactive@2x.png */; };
 		0360B842169DACDC00E04026 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360B841169DACDC00E04026 /* WMRegisterViewController.m */; };
 		0360BAC4169DC16A00E04026 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 0360B9BB169DC16A00E04026 /* CHANGELOG */; };
 		0360BAC5169DC16A00E04026 /* libUAirship-1.3.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BA1A169DC16A00E04026 /* libUAirship-1.3.7.a */; };
@@ -1102,6 +1114,10 @@
 		034FACBB16A59BF700F9F663 /* WMAcceptTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAcceptTermsViewController.h; sourceTree = "<group>"; };
 		034FAED316A6FDFA00F9F663 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		034FAED516A6FDFA00F9F663 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		0351F10416D37C9B00031522 /* checkbox_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_active.png; sourceTree = "<group>"; };
+		0351F10516D37C9B00031522 /* checkbox_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_active@2x.png"; sourceTree = "<group>"; };
+		0351F10616D37C9B00031522 /* checkbox_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_inactive.png; sourceTree = "<group>"; };
+		0351F10716D37C9B00031522 /* checkbox_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_inactive@2x.png"; sourceTree = "<group>"; };
 		0360B840169DACD100E04026 /* WMRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRegisterViewController.h; sourceTree = "<group>"; };
 		0360B841169DACDC00E04026 /* WMRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRegisterViewController.m; sourceTree = "<group>"; };
 		0360B9BB169DC16A00E04026 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
@@ -2277,6 +2293,10 @@
 		98ADC6D1164BEEDA00251943 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0351F10416D37C9B00031522 /* checkbox_active.png */,
+				0351F10516D37C9B00031522 /* checkbox_active@2x.png */,
+				0351F10616D37C9B00031522 /* checkbox_inactive.png */,
+				0351F10716D37C9B00031522 /* checkbox_inactive@2x.png */,
 				03C74DAC16C4F1EE00C77FEF /* list_shadow.png */,
 				03C74DAD16C4F1EE00C77FEF /* list_shadow@2x.png */,
 				15DBF5B4169B7E0400EBAC2A /* Credits */,
@@ -3133,6 +3153,10 @@
 				03C74DB016C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB316C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DBE16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
+				0351F10A16D37C9B00031522 /* checkbox_active.png in Resources */,
+				0351F10D16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
+				0351F11016D37C9B00031522 /* checkbox_inactive.png in Resources */,
+				0351F11316D37C9B00031522 /* checkbox_inactive@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3367,6 +3391,10 @@
 				03C74DAF16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB216C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DBD16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
+				0351F10916D37C9B00031522 /* checkbox_active.png in Resources */,
+				0351F10C16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
+				0351F10F16D37C9B00031522 /* checkbox_inactive.png in Resources */,
+				0351F11216D37C9B00031522 /* checkbox_inactive@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3605,6 +3633,10 @@
 				03C74DAE16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB116C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DC016C500A000C77FEF /* WMOpenConfig.plist in Resources */,
+				0351F10816D37C9B00031522 /* checkbox_active.png in Resources */,
+				0351F10B16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
+				0351F10E16D37C9B00031522 /* checkbox_inactive.png in Resources */,
+				0351F11116D37C9B00031522 /* checkbox_inactive@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
