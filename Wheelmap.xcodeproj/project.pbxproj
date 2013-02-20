@@ -4070,8 +4070,8 @@
 		0327FA6916BFFB1900BA7DE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4088,8 +4088,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "Wheelmap LIVE copy";
-				PROVISIONING_PROFILE = "A43C54AA-EB3E-4FED-9C0E-9BC73D3C518A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A43C54AA-EB3E-4FED-9C0E-9BC73D3C518A";
+				PROVISIONING_PROFILE = "507935C4-F1D5-4470-9E01-0E67E138961B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "507935C4-F1D5-4470-9E01-0E67E138961B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4098,8 +4098,8 @@
 		0327FA6A16BFFB1900BA7DE7 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4116,8 +4116,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "Wheelmap LIVE copy";
-				PROVISIONING_PROFILE = "22609916-92F5-4602-982A-C24019DA3D65";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "22609916-92F5-4602-982A-C24019DA3D65";
+				PROVISIONING_PROFILE = "736ADA85-21D9-40E6-92E4-60609D08006A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "736ADA85-21D9-40E6-92E4-60609D08006A";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
