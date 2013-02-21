@@ -72,6 +72,7 @@
     
     [self.declineButton setTitle:NSLocalizedString(@"TermsDeniedButton", nil) forState:UIControlStateNormal];
     
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.acceptButton.frame.origin.y + self.acceptButton.frame.size.height + 20.0f);
 }
 
 - (void)didReceiveMemoryWarning

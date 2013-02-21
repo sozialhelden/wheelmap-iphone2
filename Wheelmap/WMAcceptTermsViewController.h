@@ -11,6 +11,7 @@
 
 @interface WMAcceptTermsViewController : WMViewController <WMDataManagerDelegate>
 
+@property (nonatomic, weak) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, weak) IBOutlet UILabel* textLabel;
 @property (nonatomic, weak) IBOutlet UIButton* interceptButton;
 @property (nonatomic, weak) IBOutlet UIButton* intercept2Button;

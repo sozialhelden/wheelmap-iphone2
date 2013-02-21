@@ -295,4 +295,5 @@
 "AcceptDataTerms" = "I accept paragraphs 1 and 2 of the data privacy agreement.";
 "AcceptUserTerms" = "I accept the terms of use.";
 "PleaseAcceptAllTerms" = "Please accept the terms of use and the data privacy agreement.";
+"SaveSucess" = "Data successfully saved";
 "" = "";

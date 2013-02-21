@@ -295,3 +295,4 @@
 "AcceptDataTerms" = "Ich stimme Ziffer 1 und 2 der Datenschutzbestimmungen zu.";
 "AcceptUserTerms" = "Ich stimme den Nutzungsbedingungen zu.";
 "PleaseAcceptAllTerms" = "Bitte akzeptiere die Nutzungsbedingungen und Datenschutzbestimmungen!";
+"SaveSucess" = "Die Daten wurden erfolgreich gespeichert";

@@ -439,6 +439,10 @@
         [self dismissModalViewControllerAnimated:YES];
     }
     
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SaveSucess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    
+    [alert show];
+    
     [self.navigationController popViewControllerAnimated:YES];
     
 }

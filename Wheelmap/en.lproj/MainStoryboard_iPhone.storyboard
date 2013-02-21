@@ -408,7 +408,7 @@
         <scene sceneID="r1m-mh-7XF">
             <objects>
                 <viewController storyboardIdentifier="AcceptTermsVC" id="ZTH-tY-TDX" customClass="WMAcceptTermsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jhH-cy-CNA">
+                    <view key="view" contentMode="scaleToFill" id="jhH-cy-CNA" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -569,6 +569,7 @@
                         <outlet property="link2TextView" destination="SbZ-wK-Vph" id="1cp-fo-DIz"/>
                         <outlet property="linkTextView" destination="zHV-jg-kre" id="Swr-9z-yd7"/>
                         <outlet property="loadingWheel" destination="bIm-mU-uxi" id="Ai0-pA-eR3"/>
+                        <outlet property="scrollView" destination="jhH-cy-CNA" id="4lh-Xm-nVY"/>
                         <outlet property="textLabel" destination="igZ-Pi-1XX" id="ALu-UG-A3p"/>
                         <outlet property="titleLabel" destination="rQL-7d-pve" id="GXp-ca-i3f"/>
                         <outlet property="view" destination="jhH-cy-CNA" id="gg7-gO-ZOS"/>
