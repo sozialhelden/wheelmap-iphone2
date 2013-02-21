@@ -275,7 +275,7 @@
             NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
             [userDefault setObject:[self currentUserName] forKey:@"WheelmapLastUserName"];
             
-            BOOL termsAccepted = [user[@"terms_accepted"] boolValue];
+            BOOL termsAccepted = [user[@"terms_accepted"] boolValue] & [user[@"privacy_accepted"] boolValue];
             if (termsAccepted) {
                 [self userDidAcceptTerms];  // save to local device
             } else {
@@ -304,7 +304,7 @@
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"user/accept_terms"
                                              apiKey:[self apiKey]
-                                         parameters:@{@"terms_accepted": value}
+                                         parameters:@{@"terms_accepted": value, @"privacy_accepted": value}
                                                eTag:nil
                                              method:@"POST"
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -318,7 +318,8 @@
 
                                                 id user = JSON[@"user"];
                                                 id termsAccepted = user[@"terms_accepted"];
-                                                BOOL termsAcc = [termsAccepted boolValue];
+                                                id privacyAccepted = user[@"privacy_accepted"];
+                                                BOOL termsAcc = [termsAccepted boolValue] && [privacyAccepted boolValue];
                                                 NSLog(@"Request: %@", request.URL.absoluteString);
                                                 NSLog(@"JSON ACCEPTED: %@ %c",termsAccepted, termsAcc);
 
