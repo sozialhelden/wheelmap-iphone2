@@ -444,9 +444,18 @@
         }
     }
     
+    // this prevents array containing multiple entries of the same node
+    NSMutableArray *unique = [NSMutableArray array];
+    
+    for (id obj in nodes) {
+        if (![unique containsObject:obj]) {
+            [unique addObject:obj];
+        }
+    }
+    
     NSLog(@"NEW NODE LIST = %d", newNodeList.count);
     
-    return newNodeList;
+    return unique;
 }
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord
