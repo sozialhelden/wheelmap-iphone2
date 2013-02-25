@@ -143,10 +143,6 @@
 
 - (void) loadNodes
 {
-
-    if (nodes.count > 1) {
-        NSLog(@"First elements of old list: %@ %@", [nodes objectAtIndex:0], [nodes objectAtIndex:1]);
-    }
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
@@ -229,10 +225,6 @@
     [self sortNodesByDistance];
     
     NSLog(@"NUMBER OF NODES = %d", nodes.count);
-    
-    if (nodes.count > 1) {
-        NSLog(@"First elements of new list: %@ %@", [nodes objectAtIndex:0], [nodes objectAtIndex:1]);
-    }
     
     [self.tableView reloadData];
 }
