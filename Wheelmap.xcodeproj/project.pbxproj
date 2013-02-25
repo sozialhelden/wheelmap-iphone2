@@ -4042,8 +4042,8 @@
 		0327FA6816BFFB1900BA7DE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4060,8 +4060,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "Wheelmap LIVE copy";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "736ADA85-21D9-40E6-92E4-60609D08006A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "736ADA85-21D9-40E6-92E4-60609D08006A";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

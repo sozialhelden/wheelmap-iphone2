@@ -69,7 +69,7 @@
     [self.view addSubview:self.helpButton];
 
     self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
-    self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"", NSLocalizedString(@"Places", nil)];
+    self.numberOfPlacesLabel.text = @"";
     self.numberOfPlacesLabel.alpha = 0.0;
     self.numberOfPlacesLabel.adjustsFontSizeToFitWidth = YES;
     [dataManager fetchTotalNodeCount];

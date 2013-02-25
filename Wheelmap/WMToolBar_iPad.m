@@ -59,7 +59,7 @@
         [self addSubview:self.helpButton];
         
         self.numberOfPlacesLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f, 3, 320.0f - (self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f), 54.0f)];
-        self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", @"", NSLocalizedString(@"Places", nil)];
+        self.numberOfPlacesLabel.text = @"";
         self.numberOfPlacesLabel.alpha = 0.0;
         self.numberOfPlacesLabel.textColor = [UIColor colorWithRed:106.0f/255.0f green:120.0f/255.0f blue:134.0f/255.0f alpha:1.0f];
         self.numberOfPlacesLabel.adjustsFontSizeToFitWidth = YES;
