@@ -30,6 +30,7 @@
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
 #import "WMLogoutViewController.h"
+#import "WMToolBar_iPad.h"
 
 
 @implementation WMNavigationControllerBase
@@ -994,6 +995,10 @@
         }
         [self.customToolBar deselectSearchButton];
         return;
+    }
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [self.customToolBar isKindOfClass:WMToolBar_iPad.class]) {
+        ((WMToolBar_iPad *)self.customToolBar).helpButton.selected = NO;
     }
     
     if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
