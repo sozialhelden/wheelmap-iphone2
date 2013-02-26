@@ -21,7 +21,9 @@
 @property (nonatomic) IBOutlet WMLabel* loadingLabel;
 @property (nonatomic) IBOutlet UIView* loadingContainer;
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
+@property (nonatomic) MKCoordinateRegion region;
 @property WMNodeListViewControllerUseCase useCase;
+@property BOOL refreshingForFilter;
 
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;
 - (void)zoomInForNode:(Node *)node;

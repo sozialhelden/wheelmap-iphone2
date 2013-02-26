@@ -40,6 +40,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSNumber* lastVisibleMapCenterLng;
 @property (nonatomic, strong) NSNumber* lastVisibleMapSpanLat;
 @property (nonatomic, strong) NSNumber* lastVisibleMapSpanLng;
+@property (nonatomic, strong) WMMapViewController* mapViewController;
 
 @property (nonatomic, strong)  WMViewController *popoverVC;
 
@@ -55,6 +56,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 -(void)updateNodesWithQuery:(NSString*)query;
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithCurrentUserLocation;
+-(void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region;
 
 - (void) refreshNodeListWithArray:(NSArray*)array;  // use this method if you want to refresh list and maps with custom node array
 

@@ -40,11 +40,13 @@
     self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
     self.mapViewController.dataSource = (WMNavigationControllerBase*)self.dataSource;
     self.mapViewController.delegate = (WMNavigationControllerBase*)self.dataSource;
+    self.mapViewController.baseController = (WMNavigationControllerBase*)self.dataSource;
     [self addChildViewController:self.mapViewController];
     [self.mapViewController didMoveToParentViewController:self];
     self.mapViewController.view.frame = self.mapContainerView.bounds;
     [self.mapContainerView addSubview:self.mapViewController.view];
     
+    self.controllerBase.mapViewController = self.mapViewController;
 //    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
 }
 

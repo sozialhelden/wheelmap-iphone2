@@ -237,7 +237,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     
     WMNavigationControllerBase* dataSource = (WMNavigationControllerBase*)self.navigationController;
-    [dataSource updateNodesWithQuery:textField.text];
+    [dataSource updateNodesWithQuery:textField.text andRegion:dataSource.mapViewController.region];
     
     return YES;
 }

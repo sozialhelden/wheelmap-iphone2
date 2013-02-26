@@ -40,7 +40,6 @@
     WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
     WMCategoryFilterPopoverView* categoryFilterPopover;
     
-    WMMapViewController* mapViewController;
     WMNodeListViewController* listViewController;
     
     UIView* loadingWheelContainer;  // this view will show loading whell on the center and cover child view controllers so that we avoid interactions interuptting data loading
@@ -53,6 +52,8 @@
     BOOL mapViewWasMoved;
     
     NSString *lastQuery;
+    
+    BOOL refreshing;
 }
 
 #pragma mark - Lifecycle
@@ -71,9 +72,10 @@
     
     // preload map to avoid long loading times on toggle
     if (!UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+        self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+        self.mapViewController.baseController = self;
         CLLocation* newLocation = self.locationManager.location;
-        [mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
+        [self.mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
     }
     
     dataManager = [[WMDataManager alloc] init];
@@ -222,21 +224,22 @@
     if (listViewController == nil) {
         listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     }
-    if (mapViewController == nil) {
-        mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+    if (self.mapViewController == nil) {
+        self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
+        self.mapViewController.baseController = self;
     }
-    mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+    self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
     [self pushViewController:listViewController animated:NO];
-    [self pushViewController:mapViewController animated:YES];
+    [self pushViewController:self.mapViewController animated:YES];
 }
 
 - (void)setMapControllerToContribute {
-    mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
 
 }
 
 - (void)setMapControllerToNormal {
-    mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
     
 }
 
@@ -526,6 +529,20 @@
     [self refreshNodeList];
 }
 
+-(void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region
+{
+        
+    NSLog(@"UPDATE WITH LAST QUERY AND REGION");
+    
+    CLLocationCoordinate2D southWest;
+    CLLocationCoordinate2D northEast;
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
+    
+    nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:lastQuery];
+    [self refreshNodeList];
+}
+
 #pragma mark - Node List Delegate
 
 /**
@@ -633,7 +650,7 @@
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController *currentVC = (WMNodeListViewController*)self.topViewController;
         if (currentVC.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMNodeListViewControllerUseCaseGlobalSearch)) {
-            [self updateNodesWithQuery:lastQuery];
+            [self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
         } else {
             [self updateNodesNear:newLocation.coordinate];
         }
@@ -912,10 +929,10 @@
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-                vc.initialCoordinate = ((WMRootViewController_iPad *)self.topViewController).mapViewController.mapView.region.center;
+                vc.initialCoordinate = ((WMRootViewController_iPad *)self.topViewController).mapViewController.region.center;
             }
         } else {
-            vc.initialCoordinate = mapViewController.mapView.region.center;
+            vc.initialCoordinate = self.mapViewController.region.center;
         }
     } else {
         vc.initialCoordinate = self.currentUserLocation.coordinate;
@@ -979,19 +996,18 @@
         return;
     }
     
-    
     if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
         WMRootViewController_iPad* vc = (WMRootViewController_iPad*)self.topViewController;
         vc.listViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         vc.mapViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
-        [self updateNodesWithQuery:query];
+        [self updateNodesWithQuery:query andRegion:vc.mapViewController.region];
         
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
         vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
         self.customNavigationBar.title = vc.navigationBarTitle;
-        [self updateNodesWithQuery:query];
+        [self updateNodesWithQuery:query andRegion:self.mapViewController.region];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* vc = (WMMapViewController*)self.topViewController;
@@ -1004,7 +1020,7 @@
         nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
         self.customNavigationBar.title = nodeListVC.navigationBarTitle;
         
-        [self updateNodesWithQuery:query andRegion:vc.mapView.region];
+        [self updateNodesWithQuery:query andRegion:vc.region];
         
     }
     
@@ -1021,10 +1037,10 @@
         //  the node list view is on the screen. push the map view controller
         
         WMViewController* currentVC = (WMViewController*)self.topViewController;
-        mapViewController.navigationBarTitle = currentVC.navigationBarTitle;
+        self.mapViewController.navigationBarTitle = currentVC.navigationBarTitle;
         if ([currentVC respondsToSelector:@selector(useCase)])
-            mapViewController.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
-        [self pushFadeViewController:mapViewController];
+            self.mapViewController.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
+        [self pushFadeViewController:self.mapViewController];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         //  the map view is on the screen. pop the map view controller
@@ -1273,6 +1289,9 @@
 #pragma mark - WMWheelchairStatusFilter Delegate
 -(void)pressedButtonOfDotType:(DotType)type selected:(BOOL)selected
 {
+    self.mapViewController.refreshingForFilter = YES;
+    [self.mapViewController showActivityIndicator];
+    
     NSString* wheelchairStatusString = @"unknown";
     switch (type) {
         case kDotTypeGreen:
@@ -1322,6 +1341,8 @@
 #pragma mark -WMCategoryFilterPopoverView Delegate
 -(void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected
 {
+    self.mapViewController.refreshingForFilter = YES;
+    [self.mapViewController showActivityIndicator];
     
     if (selected) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:categoryID];

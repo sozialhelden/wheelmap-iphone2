@@ -18,6 +18,9 @@
 
 #define MIN_SPAN_DELTA 0.02
 
+#define DEFAULT_SEARCH_SPAN_LAT 0.005
+#define DEFAULT_SEARCH_SPAN_LONG 0.006
+
 // TODO: re-position popover after orientation change
 
 @implementation WMMapViewController
@@ -36,6 +39,27 @@
 
 @synthesize dataSource, delegate;
 
+- (MKCoordinateRegion)region {
+    
+    double lat = 0.0;
+    double lon = 0.0;
+    
+    WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.baseController;
+    
+    if (navCtrl.lastVisibleMapCenterLat == nil) {
+
+        lat = [navCtrl currentUserLocation].coordinate.latitude;
+        lon = [navCtrl currentUserLocation].coordinate.longitude;
+
+    } else {
+        lat = [navCtrl.lastVisibleMapCenterLat doubleValue];
+        lon = [navCtrl.lastVisibleMapCenterLng doubleValue];
+    }
+    NSLog(@"Get region center = %f %f", lat, lon);
+
+    
+    return MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, lon) , MKCoordinateSpanMake(DEFAULT_SEARCH_SPAN_LAT, DEFAULT_SEARCH_SPAN_LONG));
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -151,6 +175,7 @@
     if (loadingNodes) {
         return;
     }
+    
     loadingNodes = YES;
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
@@ -204,6 +229,10 @@
                     [self.mapView removeAnnotation:annotation];
             }
             
+            if (self.refreshingForFilter) {
+                self.refreshingForFilter = NO;
+                [self hideActivityIndicator];
+            }
             loadingNodes = NO;
         });
     });
@@ -339,10 +368,10 @@
     }
     
     NSLog(@"Current Use Case %d", self.useCase);
-    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
-        // do nothing
-        return;
-    }
+//    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+//        // do nothing
+//        return;
+//    }
     
     if (mapView.region.span.latitudeDelta > MIN_SPAN_DELTA || mapView.region.span.longitudeDelta > MIN_SPAN_DELTA) {
         NSLog(@"Map is not enough zoomed in to show POIs.");
@@ -404,8 +433,14 @@
         }
         
         if (shouldUpdateMap && !dontUpdateNodeList) {
-            [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
-            lastDisplayedMapCenter = self.mapView.region.center;
+            
+            if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+                [(WMNavigationControllerBase*)self.dataSource updateNodesWithLastQueryAndRegion:mapView.region];
+                lastDisplayedMapCenter = self.mapView.region.center;
+            } else {
+                [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+                lastDisplayedMapCenter = self.mapView.region.center;
+            }
         }
     }
     
