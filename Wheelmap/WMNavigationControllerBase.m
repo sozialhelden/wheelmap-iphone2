@@ -466,7 +466,7 @@
     
     NSLog(@"NEW NODE LIST = %d", newNodeList.count);
     
-    return newNodeList;
+    return unique;
 }
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord
