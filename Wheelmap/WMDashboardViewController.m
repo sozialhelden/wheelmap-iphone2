@@ -292,7 +292,9 @@
 #pragma mark - WMDataManager Delegate
 -(void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count
 {
-    
+ 
+    NSLog(@"Got new node count %@", count);
+
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     NSString *formattedCount = [formatter stringFromNumber:count];

@@ -1294,8 +1294,10 @@ static BOOL assetSyncInProgress = NO;
 - (void)fetchTotalNodeCount
 {
     
-    if (![self isInternetConnectionAvailable])
+    if (![self isInternetConnectionAvailable]) {
+        NSLog(@"Fetching node count failed. No internet available.");
         return;
+    }
     
     //
     // request total node counts

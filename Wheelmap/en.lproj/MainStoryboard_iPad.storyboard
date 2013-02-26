@@ -102,11 +102,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="LZi-qv-cjf">
-                                <rect key="frame" x="266" y="13" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" id="R3Z-JM-UnS">
+                                <rect key="frame" x="224" y="272" width="320" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="C67-a6-dfN">
+                                        <rect key="frame" x="142" y="73" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="color" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ObD-iV-lkN" customClass="WMLabel">
+                                        <rect key="frame" x="60" y="118" width="201" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AbI-sa-foh">
                                 <rect key="frame" x="244" y="82" width="280" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
@@ -136,7 +150,9 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="loadingWheel" destination="LZi-qv-cjf" id="J1e-Nn-UXO"/>
+                        <outlet property="loadingContainer" destination="R3Z-JM-UnS" id="lEN-pB-lwt"/>
+                        <outlet property="loadingLabel" destination="ObD-iV-lkN" id="hUz-He-hVP"/>
+                        <outlet property="loadingWheel" destination="C67-a6-dfN" id="jPg-Pd-0ad"/>
                         <outlet property="mapInteractionInfoLabel" destination="AbI-sa-foh" id="2db-P1-9Sh"/>
                         <outlet property="mapView" destination="Y5Z-RI-xSe" id="9aG-cs-yYS"/>
                         <outlet property="view" destination="YYb-pd-Kx6" id="koR-uE-8Fb"/>
@@ -241,6 +257,9 @@
         <image name="list_shadow.png" width="5" height="5"/>
     </resources>
     <classes>
+        <class className="WMLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WMLabel.h"/>
+        </class>
         <class className="WMMapSettingsViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapSettingsViewController.h"/>
             <relationships>
@@ -256,6 +275,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMMapViewController.h"/>
             <relationships>
                 <relationship kind="action" name="toggleMapTypeChanged:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loadingContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loadingLabel" candidateClass="WMLabel"/>
                 <relationship kind="outlet" name="loadingWheel" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="mapInteractionInfoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>

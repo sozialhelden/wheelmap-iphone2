@@ -18,6 +18,8 @@
 }
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
+@property (nonatomic) IBOutlet WMLabel* loadingLabel;
+@property (nonatomic) IBOutlet UIView* loadingContainer;
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
 @property WMNodeListViewControllerUseCase useCase;
 

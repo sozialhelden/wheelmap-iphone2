@@ -383,6 +383,10 @@
         [(id<WMNodeListView>)self.topViewController showActivityIndicator];
     }
     
+    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        [((WMRootViewController_iPad *)self.topViewController).mapViewController showActivityIndicator];
+    }
+    
 }
 
 -(void)dataManagerDidStopAllOperations:(WMDataManager *)dataManager
@@ -392,6 +396,10 @@
     
     if ([self.topViewController respondsToSelector:@selector(hideActivityIndicator)]) {
         [(id<WMNodeListView>)self.topViewController hideActivityIndicator];
+    }
+    
+    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        [((WMRootViewController_iPad *)self.topViewController).mapViewController hideActivityIndicator];
     }
 }
 

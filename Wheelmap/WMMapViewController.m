@@ -68,12 +68,24 @@
         self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     }
     
+    self.loadingContainer.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+
     dataManager = [[WMDataManager alloc] init];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    
+    self.loadingLabel.numberOfLines = 0;
+    self.loadingLabel.textColor = [UIColor whiteColor];
+    self.loadingLabel.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+    self.loadingLabel.layer.cornerRadius = 10.0f;
+    self.loadingLabel.layer.masksToBounds = YES;
+    [self.loadingLabel setText:NSLocalizedString(@"LoadingWheelText", nil)];
+    [self.loadingLabel adjustHeightToContent];
+    
+    self.loadingLabel.hidden = YES;
     self.loadingWheel.hidden = YES;
     
 }
@@ -224,12 +236,14 @@
 
 - (void)showActivityIndicator
 {
+    self.loadingLabel.hidden = NO;
     self.loadingWheel.hidden = NO;
     [self.loadingWheel startAnimating];
 }
 
 -(void)hideActivityIndicator
 {
+    self.loadingLabel.hidden = YES;
     [self.loadingWheel stopAnimating];
     self.loadingWheel.hidden = YES;
 }

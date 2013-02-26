@@ -107,11 +107,31 @@
 -(void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count
 {
     
+    NSLog(@"Got new node count %@", count);
+    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     NSString *formattedCount = [formatter stringFromNumber:count];
     
     self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", formattedCount, NSLocalizedString(@"Places", nil)];
+    [UIView animateWithDuration:0.5
+                          delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^(void)
+     {
+         self.numberOfPlacesLabel.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         
+         
+     }];
+    
+}
+
+-(void)dataManager:(WMDataManager *)dataManager fetchTotalNodeCountFailedWithError:(NSError *)error
+{
+    NSLog(@"[Error] getting total count failed with error %@", error);
+    
     [UIView animateWithDuration:0.5
                           delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                      animations:^(void)
