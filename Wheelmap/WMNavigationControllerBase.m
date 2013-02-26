@@ -447,7 +447,7 @@
     // this prevents array containing multiple entries of the same node
     NSMutableArray *unique = [NSMutableArray array];
     
-    for (id obj in nodes) {
+    for (id obj in newNodeList) {
         if (![unique containsObject:obj]) {
             [unique addObject:obj];
         }
@@ -455,7 +455,7 @@
     
     NSLog(@"NEW NODE LIST = %d", newNodeList.count);
     
-    return unique;
+    return newNodeList;
 }
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord
