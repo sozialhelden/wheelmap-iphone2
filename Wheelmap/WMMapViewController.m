@@ -179,7 +179,7 @@
     loadingNodes = YES;
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
-        NSArray* unfilteredNodes = [self.dataSource nodeList];
+        NSArray* unfilteredNodes = [self.dataSource filteredNodeList];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
         
         for (Node* node in unfilteredNodes) {

@@ -22,7 +22,7 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 1
+#define WMLogDataManager 8
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
