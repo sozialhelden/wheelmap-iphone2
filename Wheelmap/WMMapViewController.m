@@ -16,7 +16,7 @@
 #import "WMDetailNavigationController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define MIN_SPAN_DELTA 0.02
+#define MIN_SPAN_DELTA 0.01
 
 #define DEFAULT_SEARCH_SPAN_LAT 0.005
 #define DEFAULT_SEARCH_SPAN_LONG 0.006

@@ -322,8 +322,8 @@
                                                 id termsAccepted = user[@"terms_accepted"];
                                                 id privacyAccepted = user[@"privacy_accepted"];
                                                 BOOL termsAcc = [termsAccepted boolValue] && [privacyAccepted boolValue];
-                                                NSLog(@"Request: %@", request.URL.absoluteString);
-                                                NSLog(@"JSON ACCEPTED: %@ %c",termsAccepted, termsAcc);
+//                                                NSLog(@"Request: %@", request.URL.absoluteString);
+//                                                NSLog(@"JSON ACCEPTED: %@ %c",termsAccepted, termsAcc);
 
                                                 if ([self.delegate respondsToSelector:@selector(dataManagerDidUpdateTermsAccepted:withValue:)]) {
                                                     [self.delegate dataManagerDidUpdateTermsAccepted:self withValue:termsAcc];
