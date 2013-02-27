@@ -22,7 +22,7 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 8
+#define WMLogDataManager 5
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -30,7 +30,7 @@
 // won't show in results, because nodes are returned with ascending id from the server,
 // so the newest nodes come last (that"s why using pages doesn't make any sense here).
 // If you experience this problem, try to use smaller bounding boxes before raising this number.
-#define WMNodeLimit 300
+//#define WMNodeLimit 300 // removed as parameter should be configurable in backend
 
 #define UserTermsPrefix @"terms"
 
@@ -424,24 +424,27 @@
             Tile *cachedTile = nil;
             
             // we don"t do a local search yet, so we only try to get local results if there is no query string
-            if (!query) cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
+            if (!query) {
+                cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
+            }
             
             if (cachedTile) {
                 [cachedNodes addObjectsFromArray:[cachedTile.nodes allObjects]];
                 
-            } else {
-                
-                // else request nodes for that tile
-                CLLocationDegrees swLat = (CLLocationDegrees)lat / 100.0;
-                CLLocationDegrees swLon = (CLLocationDegrees)lon / 100.0;
-                CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / 100.0;
-                CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / 100.0;
-                
-                CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
-                CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
-                
-                [self fetchRemoteNodesBetweenSouthwest:sw northeast:ne query:query];
             }
+            
+            if (WMLogDataManager>1) NSLog(@"...no query, getting cached tile from context");
+            
+            // else request nodes for that tile
+            CLLocationDegrees swLat = (CLLocationDegrees)lat / 100.0;
+            CLLocationDegrees swLon = (CLLocationDegrees)lon / 100.0;
+            CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / 100.0;
+            CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / 100.0;
+            
+            CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
+            CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
+            
+            [self fetchRemoteNodesBetweenSouthwest:sw northeast:ne query:query];
         }
     }
     
@@ -499,18 +502,34 @@
 
 - (void)fetchRemoteNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
+    
     if (![self isInternetConnectionAvailable]) {
         return;
     }
     
-    NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
-                        southwest.longitude,
-                        southwest.latitude,
-                        northeast.longitude,
-                        northeast.latitude];
+    NSString *southwestLong = [self roundDown:southwest.longitude];
+    NSString * southwestLat = [self roundDown:southwest.latitude];
+    NSString * northeastLong = [self roundUp:northeast.longitude];
+    NSString * northeastLat = [self roundUp:northeast.latitude];
+        
+    NSString *coords = [NSString stringWithFormat:@"%@,%@,%@,%@",
+                        southwestLong,
+                        southwestLat,
+                        northeastLong,
+                        northeastLat];
+    
+    if (WMLogDataManager) {
+        NSLog(@"Fetching rounded coordinates: %@", coords);
+        NSLog(@"Original coordinates: %@", [NSString stringWithFormat:@"%f,%f,%f,%f",
+                                        southwest.longitude,
+                                        southwest.latitude,
+                                        northeast.longitude,
+                                        northeast.latitude]);
+    }
+
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
-    parameters[@"per_page"] = @WMNodeLimit;
+//    parameters[@"per_page"] = @WMNodeLimit;
     if (query) parameters[@"q"] = query;
     
     if (WMLogDataManager) NSLog(@"fetching nodes in bbox %@", coords);
@@ -518,19 +537,53 @@
     [[WMWheelmapAPI sharedInstance] requestResource:query ? @"nodes/search" : @"nodes"
                                              apiKey:[self apiKey]
                                          parameters:parameters
-                                               eTag:nil
+                                               eTag:[self eTagForEntity:coords]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   [self fetchNodesFailedWithError:error];
                                                   [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                [self didReceiveNodes:JSON[@"nodes"] fromQuery:query];
+                                                
+                                                
+                                                NSString *eTag = [response allHeaderFields][@"ETag"];
+                                                NSLog(@"Received etag: %@", eTag);
+                                                NSLog(@"Stored etag: %@", [self eTagForEntity:coords]);
+
+                                                BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:coords]];
+                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
+                                                
+                                                if (eTagChanged) {
+                                                    
+                                                    [self setETag:eTag forEntity:coords];
+                                                    [self didReceiveNodes:JSON[@"nodes"] fromQuery:query];
+                                                } else {
+                                                    [self decrementRunningOperations];
+                                                }
+                                                
                                             }
                                    startImmediately:YES
      ];
     
     [self incrementRunningOperations];
+}
+
+- (NSString *)roundUp:(double)input {
+    NSNumberFormatter *format = [[NSNumberFormatter alloc]init];
+    [format setNumberStyle:NSNumberFormatterDecimalStyle];
+    [format setRoundingMode:NSNumberFormatterRoundUp];
+    [format setMaximumFractionDigits:3];
+    [format setMinimumFractionDigits:3];
+    return [format stringFromNumber:[NSNumber numberWithDouble:input]];
+}
+
+- (NSString *)roundDown:(double)input {
+    NSNumberFormatter *format = [[NSNumberFormatter alloc]init];
+    [format setNumberStyle:NSNumberFormatterDecimalStyle];
+    [format setRoundingMode:NSNumberFormatterRoundDown];
+    [format setMaximumFractionDigits:3];
+    [format setMinimumFractionDigits:3];
+    return [format stringFromNumber:[NSNumber numberWithDouble:input]];
 }
 
 - (void)fetchNodesWithQuery:(NSString*)query
