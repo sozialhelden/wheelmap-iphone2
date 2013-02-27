@@ -920,6 +920,9 @@
             }
             [self presentLoginScreenWithButtonFrame:CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height)];
             return;
+        } else {
+            [self presentLoginScreenWithButtonFrame:CGRectZero];
+            return;
         }
     }
     
