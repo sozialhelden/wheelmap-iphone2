@@ -22,7 +22,7 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 5
+#define WMLogDataManager 1
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -432,9 +432,7 @@
                 [cachedNodes addObjectsFromArray:[cachedTile.nodes allObjects]];
                 
             }
-            
-            if (WMLogDataManager>1) NSLog(@"...no query, getting cached tile from context");
-            
+                        
             // else request nodes for that tile
             CLLocationDegrees swLat = (CLLocationDegrees)lat / 100.0;
             CLLocationDegrees swLon = (CLLocationDegrees)lon / 100.0;
@@ -444,7 +442,12 @@
             CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
             CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
             
-            [self fetchRemoteNodesBetweenSouthwest:sw northeast:ne query:query];
+            // for search call fetch directly, toherwise make head request first
+            if (query) {
+                [self fetchRemoteNodesBetweenSouthwest:sw northeast:ne query:query];
+            } else {
+                [self fetchRemoteNodesHeadBetweenSouthwest:sw northeast:ne];
+            }
         }
     }
     
@@ -511,12 +514,18 @@
     NSString * southwestLat = [self roundDown:southwest.latitude];
     NSString * northeastLong = [self roundUp:northeast.longitude];
     NSString * northeastLat = [self roundUp:northeast.latitude];
-        
-    NSString *coords = [NSString stringWithFormat:@"%@,%@,%@,%@",
+    
+    NSString *eTagID = [NSString stringWithFormat:@"%@,%@,%@,%@",
                         southwestLong,
                         southwestLat,
                         northeastLong,
                         northeastLat];
+    
+    NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
+                        southwest.longitude,
+                        southwest.latitude,
+                        northeast.longitude,
+                        northeast.latitude];
     
     if (WMLogDataManager) {
         NSLog(@"Fetching rounded coordinates: %@", coords);
@@ -537,7 +546,7 @@
     [[WMWheelmapAPI sharedInstance] requestResource:query ? @"nodes/search" : @"nodes"
                                              apiKey:[self apiKey]
                                          parameters:parameters
-                                               eTag:[self eTagForEntity:coords]
+                                               eTag:[self eTagForEntity:eTagID]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   [self fetchNodesFailedWithError:error];
@@ -548,14 +557,16 @@
                                                 
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
                                                 NSLog(@"Received etag: %@", eTag);
-                                                NSLog(@"Stored etag: %@", [self eTagForEntity:coords]);
+                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
 
-                                                BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:coords]];
+                                                BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:eTagID]];
                                                 NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged) {
                                                     
-                                                    [self setETag:eTag forEntity:coords];
+                                                    if (!query) {
+                                                        [self setETag:eTag forEntity:eTagID];
+                                                    }
                                                     [self didReceiveNodes:JSON[@"nodes"] fromQuery:query];
                                                 } else {
                                                     [self decrementRunningOperations];
@@ -567,6 +578,75 @@
     
     [self incrementRunningOperations];
 }
+
+// HEAD request to check etag header
+- (void)fetchRemoteNodesHeadBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast
+{
+    
+    if (![self isInternetConnectionAvailable]) {
+        return;
+    }
+    
+    NSString *southwestLong = [self roundDown:southwest.longitude];
+    NSString * southwestLat = [self roundDown:southwest.latitude];
+    NSString * northeastLong = [self roundUp:northeast.longitude];
+    NSString * northeastLat = [self roundUp:northeast.latitude];
+    
+    NSString *eTagID = [NSString stringWithFormat:@"%@,%@,%@,%@",
+                        southwestLong,
+                        southwestLat,
+                        northeastLong,
+                        northeastLat];
+    
+    NSString *coords = [NSString stringWithFormat:@"%f,%f,%f,%f",
+                        southwest.longitude,
+                        southwest.latitude,
+                        northeast.longitude,
+                        northeast.latitude];
+    
+    if (WMLogDataManager) {
+        NSLog(@"Fetching rounded coordinates: %@", coords);
+        NSLog(@"Original coordinates: %@", [NSString stringWithFormat:@"%f,%f,%f,%f",
+                                            southwest.longitude,
+                                            southwest.latitude,
+                                            northeast.longitude,
+                                            northeast.latitude]);
+    }
+    
+    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+    parameters[@"bbox"] = coords;
+    //    parameters[@"per_page"] = @WMNodeLimit;
+    
+    if (WMLogDataManager) NSLog(@"fetching nodes head in bbox %@", coords);
+    
+    [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
+                                             apiKey:[self apiKey]
+                                         parameters:parameters
+                                               eTag:[self eTagForEntity:eTagID]
+                                             method:@"HEAD"
+                                              error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                              }
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                
+                                                
+                                                NSString *eTag = [response allHeaderFields][@"ETag"];
+                                                NSLog(@"Received etag: %@", eTag);
+                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
+                                                
+                                                BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:eTagID]];
+                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
+                                                
+                                                
+                                                if (eTagChanged) {
+                                                    [self fetchRemoteNodesBetweenSouthwest:southwest northeast:northeast query:nil];
+                                                }
+                                                
+                                            }
+                                   startImmediately:YES
+     ];
+    
+}
+
 
 - (NSString *)roundUp:(double)input {
     NSNumberFormatter *format = [[NSNumberFormatter alloc]init];
