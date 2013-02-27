@@ -132,6 +132,16 @@
 {
     NSLog(@"[Error] getting total count failed with error %@", error);
     
+    NSNumber *totalCountFromFile = [dataManager totalNodeCountFromUserDefaults];
+    if (totalCountFromFile != nil) {
+        
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSString *formattedCount = [formatter stringFromNumber:totalCountFromFile];
+        
+        self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", formattedCount, NSLocalizedString(@"Places", nil)];
+    }
+
     [UIView animateWithDuration:0.5
                           delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                      animations:^(void)

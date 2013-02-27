@@ -41,6 +41,8 @@
 #define WMFilterStatusKeyRed @"FilterStatusRed"
 #define WMFilterStatusKeyNone @"FilterStatusNone"
 
+#define WM_NODE_COUNT_KEY @"WMNodeCount"
+
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *mainMOC;
 @property (nonatomic, readonly) NSManagedObjectContext *backgroundMOC;
@@ -1296,6 +1298,7 @@ static BOOL assetSyncInProgress = NO;
     
     if (![self isInternetConnectionAvailable]) {
         NSLog(@"Fetching node count failed. No internet available.");
+        [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:nil];
         return;
     }
     
@@ -1346,10 +1349,33 @@ static BOOL assetSyncInProgress = NO;
 
 }
 
+- (void)writeNodeCountToUserDefaults {
+    
+    if (self.totalNodeCount == nil) {
+        return;
+    }
+    
+    NSNumber *nodeCount = [NSNumber numberWithDouble:[self.totalNodeCount doubleValue] - [self.unknownNodeCount doubleValue]];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nodeCount forKey:WM_NODE_COUNT_KEY];
+    NSLog(@"Setting total node count to file: %@", nodeCount);
+    [defaults synchronize];
+}
+
+- (NSNumber *)totalNodeCountFromUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"Getting total node count from file: %@", [defaults objectForKey:WM_NODE_COUNT_KEY]);
+    return [defaults objectForKey:WM_NODE_COUNT_KEY];
+}
+
 -(void)notifyDelegateMarkedNodeCount
 {
     if (self.totalNodeCount && self.unknownNodeCount) {
         NSNumber *nodeCount = [NSNumber numberWithDouble:[self.totalNodeCount doubleValue] - [self.unknownNodeCount doubleValue]];
+        
+        [self writeNodeCountToUserDefaults];
+        
         if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveTotalNodeCount:)]) {
             [self.delegate dataManager:self didReceiveTotalNodeCount:nodeCount];
         } else if ([self.delegate respondsToSelector:@selector(dataManager:fetchNodeCountFailedWithError:)]) {

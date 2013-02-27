@@ -55,6 +55,7 @@
 - (void) uploadImage:(UIImage*)image forNode:(Node*)node;
 
 - (void) fetchTotalNodeCount;
+- (NSNumber *)totalNodeCountFromUserDefaults;
 
 - (NSArray*) categories;
 - (NSArray*) nodeTypes;
