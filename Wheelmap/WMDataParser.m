@@ -9,7 +9,7 @@
 #import "WMDataParser.h"
 #import <CoreData/CoreData.h>
 
-#define WMLogDataParser 0
+#define WMLogDataParser 1
 
 @implementation WMDataParser
 
@@ -100,6 +100,9 @@
         if ([descr attributesByName][@"id"]) {
             
             NSNumber *object_id = data[@"id"];
+            
+            NSLog(@"Parsed ID: %@", object_id);
+            
             if (!object_id || ![object_id isKindOfClass:[NSNumber class]]) {
                 if (WMLogDataParser>1) NSLog(@"... received object with invalid id");
                 return nil;
@@ -110,6 +113,9 @@
             [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"id==%@", object_id]];
             NSError *error = nil;
             NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+            
+            NSLog(@"Error = %@", error.localizedDescription);
+            
             object = [results lastObject];
             objectExisted = (object != nil);
         }
@@ -195,7 +201,7 @@
             case NSInteger16AttributeType:
             case NSInteger32AttributeType:
             case NSInteger64AttributeType:
-                [managedObject setValue:@([value integerValue]) forKey:key];
+                [managedObject setValue:@([value longLongValue]) forKey:key];
                 break;
                 
             case NSDoubleAttributeType:

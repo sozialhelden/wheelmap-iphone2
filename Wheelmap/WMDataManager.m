@@ -509,7 +509,7 @@
     if (![self isInternetConnectionAvailable]) {
         return;
     }
-    
+        
     NSString *southwestLong = [self roundDown:southwest.longitude];
     NSString * southwestLat = [self roundDown:southwest.latitude];
     NSString * northeastLong = [self roundUp:northeast.longitude];
@@ -554,13 +554,15 @@
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 
+//                                                NSLog(@"JSON received %@ %@", request.URL.absoluteString, JSON);
+
                                                 
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
-                                                NSLog(@"Received etag: %@", eTag);
-                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
+//                                                NSLog(@"Received etag: %@", eTag);
+//                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
 
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:eTagID]];
-                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
+//                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged) {
                                                     
@@ -630,11 +632,11 @@
                                                 
                                                 
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
-                                                NSLog(@"Received etag: %@", eTag);
-                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
+//                                                NSLog(@"Received etag: %@", eTag);
+//                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
                                                 
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:eTagID]];
-                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
+//                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
                                                 
                                                 
                                                 if (eTagChanged) {
@@ -739,6 +741,10 @@
                            NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], totalNodes);
                       } else if (WMLogDataManager) {
                          NSLog(@"parsed %i nodes", [(NSArray*)parsedNodes count]);
+                      }
+                      
+                      for (Node *node in parsedNodes) {
+                          NSLog(@"Node: %@ %@", node.name, node.id);
                       }
      
                       if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
@@ -876,7 +882,7 @@
 
 -(void) updateNode:(Node *)node
 {
-    if (WMLogDataManager) NSLog(@"update node %@", node.name);
+    if (WMLogDataManager) NSLog(@"update node %@ %@", node.name, node.id);
         
     // if this is a put
     if (node.id) {
@@ -920,6 +926,8 @@
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                 
+                                                NSLog(@"POST NODE TO %@ %@", request.URL.absoluteString, JSON);
+                                                
                                                 // save changes to disk if this was a put
                                                 if (node.id) {
                                                     [self.mainMOC performBlock:^{
@@ -927,6 +935,9 @@
                                                         if (![self.mainMOC save:&saveParentMocError]) {
                                                             if (WMLogDataManager) [self logValidationError:saveParentMocError];
                                                             NSAssert(YES, @"error saving moc after node PUT");
+                                                            NSLog(@"error saving moc after node PUT");
+                                                        } else {
+                                                            NSLog(@"POI saved to disk");
                                                         }
                                                     }];
                                                 }
