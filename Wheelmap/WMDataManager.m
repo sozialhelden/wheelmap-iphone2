@@ -43,6 +43,8 @@
 
 #define WM_NODE_COUNT_KEY @"WMNodeCount"
 
+#define WM_ALREADY_LAUNCHED_KEY @"WMFirstLaunch"
+
 @interface WMDataManager()
 @property (nonatomic, readonly) NSManagedObjectContext *mainMOC;
 @property (nonatomic, readonly) NSManagedObjectContext *backgroundMOC;
@@ -383,6 +385,17 @@
     } else {
         return NO;
     }
+}
+
+- (BOOL)isFirstLaunch {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return ![defaults boolForKey:WM_ALREADY_LAUNCHED_KEY];
+}
+
+- (void)firstLaunchOccurred {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:WM_ALREADY_LAUNCHED_KEY];
+    [defaults synchronize];
 }
 
 #pragma mark - Fetch Nodes

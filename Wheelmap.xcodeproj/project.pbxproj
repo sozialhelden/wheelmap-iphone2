@@ -736,6 +736,9 @@
 		03BD049F16A052750045D53D /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		03BD04A016A052750045D53D /* credits_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECE16A013B600F6B379 /* credits_credits.png */; };
 		03BD04A116A052750045D53D /* credits_credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECF16A013B600F6B379 /* credits_credits@2x.png */; };
+		03C70AF416DF9E740040A280 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C70AF316DF9E740040A280 /* WMFirstStartViewController.m */; };
+		03C70AF516DFA1B10040A280 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C70AF316DF9E740040A280 /* WMFirstStartViewController.m */; };
+		03C70AF616DFA1B20040A280 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C70AF316DF9E740040A280 /* WMFirstStartViewController.m */; };
 		03C74DAE16C4F1EE00C77FEF /* list_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DAC16C4F1EE00C77FEF /* list_shadow.png */; };
 		03C74DAF16C4F1EE00C77FEF /* list_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DAC16C4F1EE00C77FEF /* list_shadow.png */; };
 		03C74DB016C4F1EE00C77FEF /* list_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 03C74DAC16C4F1EE00C77FEF /* list_shadow.png */; };
@@ -1224,6 +1227,8 @@
 		039A6FF816B0231E002ECE12 /* WMDetailNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailNavigationController.h; sourceTree = "<group>"; };
 		039A6FF916B0231E002ECE12 /* WMDetailNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailNavigationController.m; sourceTree = "<group>"; };
 		03BD04A616A052750045D53D /* Wheelmap LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03C70AF216DF9E600040A280 /* WMFirstStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFirstStartViewController.h; sourceTree = "<group>"; };
+		03C70AF316DF9E740040A280 /* WMFirstStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFirstStartViewController.m; sourceTree = "<group>"; };
 		03C74DAC16C4F1EE00C77FEF /* list_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_shadow.png; sourceTree = "<group>"; };
 		03C74DAD16C4F1EE00C77FEF /* list_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_shadow@2x.png"; sourceTree = "<group>"; };
 		03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMOpenConfig.plist; sourceTree = "<group>"; };
@@ -2009,6 +2014,8 @@
 				DBCA978F167892440042358C /* WMLogoutViewController.m */,
 				0360B840169DACD100E04026 /* WMRegisterViewController.h */,
 				0360B841169DACDC00E04026 /* WMRegisterViewController.m */,
+				03C70AF216DF9E600040A280 /* WMFirstStartViewController.h */,
+				03C70AF316DF9E740040A280 /* WMFirstStartViewController.m */,
 				034FACB816A59A4A00F9F663 /* WMTermsViewController.h */,
 				034FACB516A59A4100F9F663 /* WMTermsViewController.m */,
 				034FACBB16A59BF700F9F663 /* WMAcceptTermsViewController.h */,
@@ -3763,6 +3770,7 @@
 				0327F96E16BFFB1900BA7DE7 /* WMNavigationBar_iPad.m in Sources */,
 				0327F96F16BFFB1900BA7DE7 /* WMDetailNavigationController.m in Sources */,
 				0327F97016BFFB1900BA7DE7 /* WMPopoverController.m in Sources */,
+				03C70AF616DFA1B20040A280 /* WMFirstStartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3862,6 +3870,7 @@
 				031B9CAA16AED4AE00AA0317 /* WMNavigationBar_iPad.m in Sources */,
 				039A6FFB16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */,
 				031AFD1516BA80C60036CF5D /* WMPopoverController.m in Sources */,
+				03C70AF516DFA1B10040A280 /* WMFirstStartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3963,6 +3972,7 @@
 				031B9CA916AED4AE00AA0317 /* WMNavigationBar_iPad.m in Sources */,
 				039A6FFA16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */,
 				031AFD1416BA80C60036CF5D /* WMPopoverController.m in Sources */,
+				03C70AF416DF9E740040A280 /* WMFirstStartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

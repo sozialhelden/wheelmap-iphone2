@@ -131,6 +131,9 @@
         WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
         [navCtrl pressedCurrentLocationButton:nil];
     }
+    
+    [(WMNavigationControllerBase *)self.navigationController showFirstStartScreen];
+
 }
 
 

@@ -31,7 +31,7 @@
 #import "WMCreditsViewController.h"
 #import "WMLogoutViewController.h"
 #import "WMToolBar_iPad.h"
-
+#import "WMFirstStartViewController.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -190,7 +190,15 @@
         
         self.customNavigationBar.title = NSLocalizedString(@"PlacesNearby", nil);
     }
-    
+
+}
+
+- (void)showFirstStartScreen {
+    if ([dataManager isFirstLaunch]) {
+        WMFirstStartViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMFirstStart"];
+        [self presentModalViewController:firstStartViewController animated:YES];
+        [dataManager firstLaunchOccurred];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1492,6 +1500,21 @@
         
         if ((((WMViewController *)viewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)viewController).popoverButtonFrame.size.height == 0)) {
             ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(((WMViewController *)viewController).popoverButtonFrame.origin.x, ((WMViewController *)viewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
+        }
+        
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
+        
+    } else if ([viewController isKindOfClass:[WMFirstStartViewController class]]) {
+        
+        ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
+                                                        initWithContentViewController:viewController];
+        self.popoverVC = (WMViewController *)viewController;
+        ((WMViewController *)viewController).baseController = self;
+        
+        if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+            ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(1024.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
+        } else {
+            ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(768.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
         }
         
         [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];

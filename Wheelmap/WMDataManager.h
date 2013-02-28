@@ -37,6 +37,8 @@
 - (BOOL)areUserTermsAccepted;
 - (void)userDidAcceptTerms;
 - (void)userDidNotAcceptTerms;
+- (BOOL)isFirstLaunch;
+- (void)firstLaunchOccurred;
 
 - (NSDictionary*) legacyUserCredentials;
 - (NSString*)currentUserName;
