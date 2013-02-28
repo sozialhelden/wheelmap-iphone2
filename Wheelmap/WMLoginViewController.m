@@ -13,9 +13,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMNodeListViewController.h"
 #import "WMFirstStartViewController.h"
-
-#define FORGOT_PASSWORD_LINK @"/users/password/new"
-#define WEB_LOGIN_LINK @"/users/sign_in"
+#import "Constants.h"
 
 @implementation WMLoginViewController
 

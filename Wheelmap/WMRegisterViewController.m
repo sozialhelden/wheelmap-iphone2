@@ -8,6 +8,7 @@
 
 #import "WMRegisterViewController.h"
 #import "WMWheelmapAPI.h"
+#import "Constants.h"
 
 @implementation WMRegisterViewController
 
@@ -30,7 +31,7 @@
     
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
     NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:@"/en/oauth/register_osm" relativeToURL:[NSURL URLWithString:baseURL]];
+    NSURL *url = [NSURL URLWithString:WM_REGISTER_LINK relativeToURL:[NSURL URLWithString:baseURL]];
 	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
     self.webView.scrollView.scrollsToTop = YES;

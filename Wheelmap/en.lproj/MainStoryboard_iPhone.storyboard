@@ -798,7 +798,7 @@
         <!--Register View Controller-->
         <scene sceneID="9ul-zl-S08">
             <objects>
-                <viewController id="9yT-MT-7xh" customClass="WMRegisterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMRegisterVC" id="9yT-MT-7xh" customClass="WMRegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fQN-po-bCY">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -944,6 +944,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pressedLoginButton:" destination="NR5-LN-4P4" eventType="touchUpInside" id="IRV-jc-HcL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hez-3z-5PB">
                                         <rect key="frame" x="20" y="305" width="285" height="44"/>
@@ -956,6 +959,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pressedRegisterButton:" destination="NR5-LN-4P4" eventType="touchUpInside" id="wx7-TS-UNB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </scrollView>

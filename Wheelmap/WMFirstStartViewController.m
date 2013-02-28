@@ -8,9 +8,8 @@
 
 #import "WMFirstStartViewController.h"
 #import "WMWheelmapAPI.h"
-
-#define FORGOT_PASSWORD_LINK @"/users/password/new"
-#define WEB_LOGIN_LINK @"http://wheelmap.org/users/sign_in"
+#import "Constants.h"
+#import "WMRegisterViewController.h"
 
 @implementation WMFirstStartViewController
 
@@ -72,12 +71,18 @@
 
 -(IBAction)pressedLoginButton:(id)sender
 {
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
     
+    
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 -(IBAction)pressedRegisterButton:(id)sender
 {
-    
+    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+    [self presentModalViewController:regViewController animated:YES];
 }
 
 - (void)adjustLabelHeightToText:(UILabel *)label {
