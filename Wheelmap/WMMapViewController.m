@@ -138,7 +138,7 @@
         navCtrl.lastVisibleMapSpanLng = [NSNumber numberWithDouble:self.mapView.region.span.longitudeDelta];
         
         CLLocation* userLocation = [navCtrl currentUserLocation];
-        initRegion = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005));
+        initRegion = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.004, 0.004));
         [self.mapView setRegion:initRegion animated:NO];
         [self mapView:self.mapView regionDidChangeAnimated:NO];
         

@@ -193,14 +193,6 @@
 
 }
 
-- (void)showFirstStartScreen {
-    if ([dataManager isFirstLaunch]) {
-        WMFirstStartViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMFirstStart"];
-        [self presentModalViewController:firstStartViewController animated:YES];
-        [dataManager firstLaunchOccurred];
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

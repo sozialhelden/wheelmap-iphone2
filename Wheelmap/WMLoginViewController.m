@@ -12,9 +12,10 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDetailNavigationController.h"
 #import "WMNodeListViewController.h"
+#import "WMFirstStartViewController.h"
 
 #define FORGOT_PASSWORD_LINK @"/users/password/new"
-#define WEB_LOGIN_LINK @"http://wheelmap.org/users/sign_in"
+#define WEB_LOGIN_LINK @"/users/sign_in"
 
 @implementation WMLoginViewController
 
@@ -111,6 +112,7 @@
     } else {
         self.usernameTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"WheelmapLastUserName"];
     }
+    
 }
 
 - (void)adjustLabelHeightToText:(UILabel *)label {
@@ -130,6 +132,21 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    [self showFirstStartScreen];
+}
+
+- (void)showFirstStartScreen {
+    if ([dataManager isFirstLaunch]) {
+        WMFirstStartViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMFirstStart"];
+        [self presentModalViewController:firstStartViewController animated:YES];
+        [dataManager firstLaunchOccurred];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -140,8 +157,9 @@
     
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
     NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:[FORGOT_PASSWORD_LINK stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] relativeToURL:[NSURL URLWithString:baseURL]];
-        
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, FORGOT_PASSWORD_LINK]];
+    
+    
     [[UIApplication sharedApplication] openURL:url];
 }
 
@@ -155,8 +173,8 @@
 {
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
     NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:[WEB_LOGIN_LINK stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] relativeToURL:[NSURL URLWithString:baseURL]];
-    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
+        
     [[UIApplication sharedApplication] openURL:url];
 }
 

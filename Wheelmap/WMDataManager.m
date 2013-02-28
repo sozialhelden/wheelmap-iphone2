@@ -387,7 +387,7 @@
     }
 }
 
-- (BOOL)isFirstLaunch {
+- (BOOL)isFirstLaunch {    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return ![defaults boolForKey:WM_ALREADY_LAUNCHED_KEY];
 }
@@ -756,9 +756,6 @@
                          NSLog(@"parsed %i nodes", [(NSArray*)parsedNodes count]);
                       }
                       
-                      for (Node *node in parsedNodes) {
-                          NSLog(@"Node: %@ %@", node.name, node.id);
-                      }
      
                       if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
                           [self.delegate dataManager:self didReceiveNodes:parsedNodes];

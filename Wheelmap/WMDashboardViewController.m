@@ -132,8 +132,6 @@
         [navCtrl pressedCurrentLocationButton:nil];
     }
     
-    [(WMNavigationControllerBase *)self.navigationController showFirstStartScreen];
-
 }
 
 

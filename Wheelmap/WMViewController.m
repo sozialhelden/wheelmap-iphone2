@@ -13,6 +13,7 @@
 #import "WMMapSettingsViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMRegisterViewController.h"
+#import "WMFirstStartViewController.h"
 
 @interface WMViewController ()
 
@@ -105,6 +106,19 @@
         if ([modalViewController isKindOfClass:[WMMapSettingsViewController class]]) {
             
             [super presentModalViewController:modalViewController animated:animated];
+            
+        } else if ([modalViewController isKindOfClass:[WMFirstStartViewController class]]) {
+            
+            ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
+            ((WMViewController *)modalViewController).baseController = self.baseController;
+            
+            if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+                ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(1024.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
+            } else {
+                ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(768.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
+            }
+            
+            [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
             
         } else if ([modalViewController isKindOfClass:[WMRegisterViewController class]]) {
             

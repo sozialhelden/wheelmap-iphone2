@@ -9,6 +9,9 @@
 #import "WMFirstStartViewController.h"
 #import "WMWheelmapAPI.h"
 
+#define FORGOT_PASSWORD_LINK @"/users/password/new"
+#define WEB_LOGIN_LINK @"http://wheelmap.org/users/sign_in"
+
 @implementation WMFirstStartViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -24,8 +27,36 @@
 {
     [super viewDidLoad];
     
-    [self.cancelButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
+    self.firstTextLabel.text = NSLocalizedString(@"FirstStartBothAccounts", nil);
+    self.secondTextLabel.text = NSLocalizedString(@"FirstStartNoAccount", nil);
+    self.registerLabel.text = NSLocalizedString(@"FirstStartNoAccountRegister", nil);
+    self.thirdtextLabel.text = NSLocalizedString(@"FirstStartOnlyOSM", nil);
+    self.loginLabel.text = NSLocalizedString(@"Sign In Button", nil);
     
+    [self.okButton setTitle:NSLocalizedString(@"FirstStartButton", nil) forState:UIControlStateNormal];
+    [self.okButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+    
+    [self adjustLabelHeightToText:self.firstTextLabel];
+   
+    self.secondTextLabel.frame = CGRectMake(self.secondTextLabel.frame.origin.x, self.firstTextLabel.frame.origin.y + self.firstTextLabel.frame.size.height + 20.0f, self.secondTextLabel.frame.size.width, self.secondTextLabel.frame.size.height);
+    [self adjustLabelHeightToText:self.secondTextLabel];
+
+    self.registerLabel.frame = CGRectMake(self.registerLabel.frame.origin.x, self.secondTextLabel.frame.origin.y + self.secondTextLabel.frame.size.height, self.registerLabel.frame.size.width, self.registerLabel.frame.size.height);
+    [self adjustLabelHeightToText:self.registerLabel];
+    self.registerButton.frame = self.registerLabel.frame;
+    
+    self.thirdtextLabel.frame = CGRectMake(self.thirdtextLabel.frame.origin.x, self.registerLabel.frame.origin.y + self.registerLabel.frame.size.height + 20.0f, self.thirdtextLabel.frame.size.width, self.thirdtextLabel.frame.size.height);
+    [self adjustLabelHeightToText:self.thirdtextLabel];
+
+    self.loginLabel.frame = CGRectMake(self.loginLabel.frame.origin.x, self.thirdtextLabel.frame.origin.y + self.thirdtextLabel.frame.size.height, self.loginLabel.frame.size.width, self.loginLabel.frame.size.height);
+    [self adjustLabelHeightToText:self.loginLabel];
+    self.loginButton.frame = self.loginLabel.frame;
+
+    CGSize stringsize = [self.okButton.titleLabel.text sizeWithFont:self.okButton.titleLabel.font];
+    //or whatever font you're using
+    [self.okButton setFrame:CGRectMake(320.0f - stringsize.width - 20.0f, self.loginLabel.frame.origin.y + self.loginLabel.frame.size.height + 20.0f, stringsize.width + 10.0f, stringsize.height + 10.0f)];
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.okButton.frame.origin.y + self.okButton.frame.size.height + 10.0f);
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,9 +65,30 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)pressedCancelButton:(id)sender
+-(IBAction)pressedOkButton:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction)pressedLoginButton:(id)sender
+{
+    
+}
+
+-(IBAction)pressedRegisterButton:(id)sender
+{
+    
+}
+
+- (void)adjustLabelHeightToText:(UILabel *)label {
+    CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
+    
+    CGSize expectedLabelSize = [label.text sizeWithFont:label.font constrainedToSize:maximumLabelSize lineBreakMode:label.lineBreakMode];
+    
+    //adjust the label the the new height.
+    CGRect newFrame = label.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    label.frame = newFrame;
 }
 
 @end

@@ -50,10 +50,6 @@
 //    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [self.controllerBase showFirstStartScreen];
-}
-
 - (void)nodeListDidChange
 {
     [self.listViewController nodeListDidChange];
