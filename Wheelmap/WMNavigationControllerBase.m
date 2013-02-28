@@ -299,6 +299,21 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)addTemporaryNode:(Node *)node {
+    
+//    if (node.wheelchair == nil) {
+//        node.wheelchair = @"unknown";
+//    }
+//    
+//    NSMutableArray *mutableNodes = [NSMutableArray arrayWithArray:nodes];
+//    [mutableNodes addObject:node];
+//    nodes = [NSArray arrayWithArray:mutableNodes];
+//    
+//    NSLog(@"Number of nodes = %d", nodes.count);
+//    
+//    [self refreshNodeListFromCreateNode];
+
+}
 
 #pragma mark - Data Manager Delegate
 
@@ -309,7 +324,15 @@
     
     nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
-    [self refreshNodeList];
+}
+
+- (void) refreshNodeListFromCreateNode
+{
+    NSLog(@"--- REFRESH NODE LIST AFTER ADDING NODE ---");
+    
+    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
+        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    }
 }
 
 - (void) refreshNodeList
@@ -443,6 +466,8 @@
 
 - (NSArray*) filteredNodeList
 {
+    NSLog(@"OLD NODE LIST = %d", nodes.count);
+
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
     //    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
@@ -453,6 +478,8 @@
         if ([[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES &&
             [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
             [newNodeList addObject:node];
+        } else {
+            NSLog(@"Filtered out Node %@ %@ %@ %@", node.name, node.id, wheelChairStatus, categoryID);
         }
     }
     

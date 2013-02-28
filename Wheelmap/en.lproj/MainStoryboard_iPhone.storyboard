@@ -351,6 +351,13 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jev-cq-waY">
+                                        <rect key="frame" x="20" y="306" width="283" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" id="pkX-PT-U9F">
                                         <rect key="frame" x="9" y="193" width="303" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -380,6 +387,14 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m5h-II-yAd">
+                                        <rect key="frame" x="15" y="297" width="290" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8iQ-N6-wam">
                                         <rect key="frame" x="15" y="350" width="290" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -395,6 +410,46 @@
                                             <segue destination="9yT-MT-7xh" kind="modal" id="jKD-7K-8W9"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="oGJ-Ge-ByF">
+                                        <rect key="frame" x="6" y="215" width="216" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ouY-I0-qBM">
+                                        <rect key="frame" x="9" y="221" width="213" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="forgotPasswordButtonPressed" destination="5Ta-cN-i2J" eventType="touchDown" id="3VO-5f-uKv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xtu-DS-4yF">
+                                        <rect key="frame" x="20" y="301" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="forgotPasswordButtonPressed" destination="5Ta-cN-i2J" eventType="touchDown" id="Ier-Vi-BtG"/>
+                                            <action selector="webLoginPressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="ruL-yp-5LF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
@@ -405,15 +460,20 @@
                         <outlet property="bottomTextLabel" destination="viA-74-l5N" id="2hB-SM-jnS"/>
                         <outlet property="contentScrollView" destination="ak3-pt-8a4" id="Ulb-qv-8Fj"/>
                         <outlet property="doneButton" destination="P1u-e5-3lQ" id="XAo-LM-gul"/>
+                        <outlet property="forgotPasswordButton" destination="ouY-I0-qBM" id="PQe-sz-ROy"/>
+                        <outlet property="forgotPasswordTextView" destination="oGJ-Ge-ByF" id="GdW-nz-v5p"/>
                         <outlet property="headerView" destination="FEn-2i-HbD" id="bLv-nn-z20"/>
                         <outlet property="loginButton" destination="7L1-bg-SOP" id="quU-fP-j0G"/>
                         <outlet property="logoImageView" destination="M3P-qa-2L9" id="aQ4-Uy-m3q"/>
+                        <outlet property="middleTextLabel" destination="m5h-II-yAd" id="OWU-qp-gBV"/>
                         <outlet property="passwordTextField" destination="pkX-PT-U9F" id="T8B-Rv-5yj"/>
                         <outlet property="registerButton" destination="8iQ-N6-wam" id="cHx-nD-F4D"/>
                         <outlet property="titleLabel" destination="RUF-Rd-CnZ" id="gbY-hV-1ME"/>
                         <outlet property="topTextLabel" destination="blt-ZI-Wkm" id="9QZ-yz-rWb"/>
                         <outlet property="usernameTextField" destination="SYC-n0-7i9" id="0xP-oR-mL0"/>
                         <outlet property="view" destination="equ-e3-EoV" id="Ohj-YU-fh4"/>
+                        <outlet property="webLoginButton" destination="Xtu-DS-4yF" id="Aom-JV-fa8"/>
+                        <outlet property="webLoginLabel" destination="Jev-cq-waY" id="GT4-Cw-M1K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9Y-kZ-aNL" userLabel="First Responder" sceneMemberID="firstResponder"/>

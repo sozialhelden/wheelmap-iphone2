@@ -77,11 +77,11 @@
 "accessibility_no" = "Not wheelchair accessible";
 "accessibility_unknown" = "Accessibility Unknown";
 "Sign In" = "Sign In";
-"Sign In Prompt" = "In order to edit places you need to log into your Wheelmap account and link it to an Open Streetmap account.";
+"Sign In Prompt" = "Log in with your Wheelmap account.";
 "Username" = "Email";
 "Password" = "Password";
 "Sign In Button" = "Login";
-"Sign Up Prompt" = "Don't have a Wheelmap account yet? Click the button below to sign up in the browser. Don't forget to link your account to an Open Streetmap account.";
+"Sign Up Prompt" = "Total newbie? Register with OpenStreetMap and Wheelmap.org now.";
 "Sign Up Button" = "Sign Up";
 "User Credentials Error" = "Wrong username or password. Please try again.";
 "Account Linkage Error" = "Your account is not linked to an OpenStreetMap account yet. Click OK to open the browser and change that.";
@@ -232,7 +232,7 @@
 "DashboardMap" = "MAP";
 "DashboardCategories" = "CATEGORIES";
 "DashboardHelp" = "GET ENGAGED";
-"SearchForPlace" = "Search for place";
+"SearchForPlace" = "Search for place nearby";
 "Places" = "Places";
 "TopLabelText" = "";
 "BottomLabelText" = "";
@@ -296,4 +296,11 @@
 "AcceptUserTerms" = "I accept the terms of use.";
 "PleaseAcceptAllTerms" = "Please accept the terms of use and the data privacy agreement.";
 "SaveSucess" = "Data successfully saved";
+"FirstStartBothAccounts" = "Important: You need an OpenStreetMap account AND a Wheelmap account to be able to use the Wheelmap app to its full extent.";
+"FirstStartNoAccount" = "You don’t have an OpenStreetMap account or a Wheelmap account yet?";
+"FirstStartNoAccountRegister" = "Register both now. ";
+"FirstStartOnlyOSM" = "You already have an OpenStreetMap account but no Wheelmap account yet? No problem! Log in on Wheelma.org and go to “Profile”. You can create your Wheelmap account there.";
+"FirstStartButton" = "OK, understood!";
+"LoginScreenForgotPassword" = "Forgot password?";
+"LoginScreenNoWheelmapAccount" = "Don’t have a Wheelmap account yet? Log in on Wheelmap.org with your OpenStreetMap account and go to “Profile”. You can create your Wheelmap account there. ";
 "" = "";

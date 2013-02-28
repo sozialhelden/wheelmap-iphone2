@@ -433,10 +433,14 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if ([self.navigationController isKindOfClass:[WMDetailNavigationController class]]) {
             if (((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase != nil) {
-                [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase updateNodesWithCurrentUserLocation];
+                [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase addTemporaryNode:node];
             }
         }
         [self dismissModalViewControllerAnimated:YES];
+    } else {
+        if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]]) {
+            [(WMNavigationControllerBase *)self.navigationController addTemporaryNode:node];
+        }
     }
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SaveSucess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];

@@ -13,6 +13,9 @@
 #import "WMDetailNavigationController.h"
 #import "WMNodeListViewController.h"
 
+#define FORGOT_PASSWORD_LINK @"/users/password/new"
+#define WEB_LOGIN_LINK @"http://wheelmap.org/users/sign_in"
+
 @implementation WMLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -57,6 +60,9 @@
         
     self.titleLabel.text = NSLocalizedString(@"Sign In", nil);
     self.topTextLabel.text = NSLocalizedString(@"Sign In Prompt", nil);
+    self.forgotPasswordTextView.text = NSLocalizedString(@"LoginScreenForgotPassword", nil);
+    self.middleTextLabel.text = NSLocalizedString(@"LoginScreenNoWheelmapAccount", nil);
+    self.webLoginLabel.text = NSLocalizedString(@"Sign In Button", nil);
     self.bottomTextLabel.text = NSLocalizedString(@"Sign Up Prompt", nil);
     [self.doneButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"Sign In Button", nil) forState:UIControlStateNormal];
@@ -71,17 +77,29 @@
     self.passwordTextField.frame = CGRectMake(self.passwordTextField.frame.origin.x, self.usernameTextField.frame.origin.y + self.usernameTextField.frame.size.height + 20.0f,
                                               self.passwordTextField.frame.size.width, self.passwordTextField.frame.size.height);
     
+    
+    self.forgotPasswordTextView.frame = CGRectMake(self.forgotPasswordTextView.frame.origin.x, self.passwordTextField.frame.origin.y + self.passwordTextField.frame.size.height + 10.0f, self.forgotPasswordTextView.frame.size.width, self.forgotPasswordTextView.contentSize.height);
+    
+    self.forgotPasswordButton.frame = self.forgotPasswordTextView.frame;
+    
     [self.loginButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
     self.loginButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [self.loginButton sizeToFit];
     self.loginButton.frame = CGRectMake(320.0f - self.loginButton.frame.size.width - 10.0f, self.passwordTextField.frame.origin.y + self.passwordTextField.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
     
-    NSLog(@"LOGIN BUTTON FRAME: %f %f %f %f", self.loginButton.frame.origin.x, self.loginButton.frame.origin.y, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
+
+    self.middleTextLabel.frame = CGRectMake(self.middleTextLabel.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 15.0f, self.middleTextLabel.frame.size.width, self.middleTextLabel.frame.size.height);
+    [self adjustLabelHeightToText:self.middleTextLabel];
     
-    self.bottomTextLabel.frame = CGRectMake(self.bottomTextLabel.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 10.0f, self.bottomTextLabel.frame.size.width, self.bottomTextLabel.frame.size.height);
+    self.webLoginLabel.frame = CGRectMake(self.webLoginLabel.frame.origin.x, self.middleTextLabel.frame.origin.y + self.middleTextLabel.frame.size.height, self.webLoginLabel.frame.size.width, self.webLoginLabel.frame.size.height);
+    [self adjustLabelHeightToText:self.webLoginLabel];
+   
+    self.webLoginButton.frame = self.webLoginLabel.frame;
+    
+    self.bottomTextLabel.frame = CGRectMake(self.bottomTextLabel.frame.origin.x, self.webLoginLabel.frame.origin.y + self.webLoginLabel.frame.size.height + 15.0f, self.bottomTextLabel.frame.size.width, self.bottomTextLabel.frame.size.height);
     [self adjustLabelHeightToText:self.bottomTextLabel];
     
-    self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, self.bottomTextLabel.frame.origin.y + self.bottomTextLabel.frame.size.height + 20.0f, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
+    self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, self.bottomTextLabel.frame.origin.y + self.bottomTextLabel.frame.size.height + 15.0f, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
     
     self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.registerButton.frame.origin.y + self.registerButton.frame.size.height + 20.0f);
     
@@ -118,11 +136,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)forgotPasswordButtonPressed {
+    
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    NSURL *url = [NSURL URLWithString:[FORGOT_PASSWORD_LINK stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] relativeToURL:[NSURL URLWithString:baseURL]];
+        
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 - (IBAction)loginPressed:(id)sender
 {
     
     [dataManager authenticateUserWithEmail:self.usernameTextField.text password:self.passwordTextField.text];
 }
+
+- (IBAction)webLoginPressed:(id)sender
+{
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    NSURL *url = [NSURL URLWithString:[WEB_LOGIN_LINK stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] relativeToURL:[NSURL URLWithString:baseURL]];
+    
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 
 - (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error
 {

@@ -26,8 +26,13 @@
 @property (nonatomic, weak) IBOutlet UIButton *doneButton;
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
+@property (nonatomic, weak) IBOutlet UIButton *forgotPasswordButton;
+@property (nonatomic, weak) IBOutlet UITextView *forgotPasswordTextView;
+@property (nonatomic, weak) IBOutlet UIButton *webLoginButton;
+@property (nonatomic, weak) IBOutlet UILabel *webLoginLabel;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *topTextLabel;
+@property (nonatomic, weak) IBOutlet UILabel *middleTextLabel;
 @property (nonatomic, weak) IBOutlet UILabel *bottomTextLabel;
 
 - (IBAction)loginPressed:(id)sender;

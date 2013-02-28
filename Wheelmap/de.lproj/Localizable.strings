@@ -77,11 +77,11 @@
 "accessibility_no" = "Nicht rollstuhlgerecht";
 "accessibility_unknown" = "Nicht bekannt";
 "Sign In" = "Anmelden";
-"Sign In Prompt" = "Um Orte editieren zu können, musst du dich mit deinem Wheelmap-Account anmelden. Dein Profil muss auch mit einem OpenStreetmap-Account verbunden sein.";
+"Sign In Prompt" = "Log Dich mit Deinem Wheelmap-Account ein.";
 "Username" = "Email";
 "Password" = "Passwort";
 "Sign In Button" = "Login";
-"Sign Up Prompt" = "Falls du noch keinen Wheelmap-Account hast, klick den Button unten um dich im Browser zu registrieren. Vergiss nicht dein Profil anschließend mit einem OpenStreetMap-Account zu verbinden.";
+"Sign Up Prompt" = "Neu hier? Registriere Dich jetzt in einem Prozess bei OpenStreetMap und Wheelmap.org";
 "Sign Up Button" = "Neu anmelden";
 "User Credentials Error" = "Falscher Benutzername oder Passwort. Bitte versuche es noch einmal.";
 "Account Linkage Error" = "Dein Profil ist noch nicht mit einem OpenStreetMap-Profil verbunden. Klick OK um das auf deiner Profilseite zu ändern.";
@@ -232,7 +232,7 @@
 "DashboardMap" = "KARTE";
 "DashboardCategories" = "KATEGORIEN";
 "DashboardHelp" = "MITHELFEN";
-"SearchForPlace" = "Nach Ort Suchen";
+"SearchForPlace" = "Ort in der Nähe suchen";
 "Places" = "Orte";
 "TopLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
 "BottomLabelText" = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.";
@@ -287,7 +287,7 @@
 "EditPOIViewNodeTypeLabel" = "Ortstyp";
 "SetMarkerInstruction" = "Setze den roten Marker an die genaue Position des Ortes";
 "ConfirmImageUpload" = "Wollen Sie das Foto hochladen?";
-"PleaseSetMarker" = "Keine Position dieses Ortes ist gegeben!";
+"PleaseSetMarker" = "Bitte gib die Position dieses Ortes an!";
 "NoSearchService" = "Suchfunktion nicht verfügbar";
 "DetailsView4ButtonViewShareLabel" = "Teilen";
 "NodeNoCategorySet" = "Bitte wähle eine Kategorie aus!";
@@ -296,3 +296,10 @@
 "AcceptUserTerms" = "Ich stimme den Nutzungsbedingungen zu.";
 "PleaseAcceptAllTerms" = "Bitte akzeptiere die Nutzungsbedingungen und Datenschutzbestimmungen!";
 "SaveSucess" = "Die Daten wurden erfolgreich gespeichert";
+"FirstStartBothAccounts" = "Wichtig: Um die Wheelmap-App in vollem Umfang nutzen zu können, benötigst Du einen OpenStreetMap-Account UND einen Wheelmap-Account.";
+"FirstStartNoAccount" = "Du hast bisher keinen OpenStreetMap-Account und keinen Wheelmap-Account?";
+"FirstStartNoAccountRegister" = "Registriere Dich hier in einem Prozess.";
+"FirstStartOnlyOSM" = "Du hast schon einen OpenStreetMap-Account aber noch keinen Wheelmap-Account? Kein Problem! Log dich auf Wheelmap.org mit Deinem OpenStreetMap-Account ein und klicke auf “Profil” - dort kannst du einen Wheelmap-Account anlegen.";
+"FirstStartButton" = "Ok, verstanden!";
+"LoginScreenForgotPassword" = "Passwort vergessen?";
+"LoginScreenNoWheelmapAccount" = "Noch keinen Wheelmap-Account? Log dich auf Wheelmap.org mit Deinem OpenStreetMap-Account ein, klicke auf “Profil” und lege einen Wheelmap-Account an.";
