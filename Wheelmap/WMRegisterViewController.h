@@ -16,4 +16,8 @@
 
 -(IBAction)pressedCancelButton:(id)sender;
 
+- (void)loadRegisterUrl;
+- (void)loadLoginUrl;
+- (void)loadForgotPasswordUrl;
+
 @end

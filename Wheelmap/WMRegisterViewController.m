@@ -10,7 +10,11 @@
 #import "WMWheelmapAPI.h"
 #import "Constants.h"
 
-@implementation WMRegisterViewController
+@implementation WMRegisterViewController {
+    
+    NSString *urlString;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,17 +29,63 @@
 {
     [super viewDidLoad];
     
+    [self.cancelButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
+    
+    self.webView.scrollView.scrollsToTop = YES;
+    
+    if (urlString != nil) {
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSLog(@"Loading URL %@", url);
+        
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    } else {
+        [self loadRegisterUrl];
+    }
+}
+
+- (void)loadRegisterUrl {
     self.titleLabel.text = NSLocalizedString(@"RegisterNew", nil);
 
-    [self.cancelButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    
+    urlString = [NSString stringWithFormat:@"%@%@", baseURL, WM_REGISTER_LINK];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSLog(@"Loading URL %@", url);
+    
+	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+}
+
+- (void)loadLoginUrl {
+    self.titleLabel.text = @"";
     
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
     NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:WM_REGISTER_LINK relativeToURL:[NSURL URLWithString:baseURL]];
-	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    urlString = [NSString stringWithFormat:@"%@%@", baseURL, WEB_LOGIN_LINK];
     
-    self.webView.scrollView.scrollsToTop = YES;
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"Loading URL %@", url);
+
+	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
+
+- (void)loadForgotPasswordUrl {
+    self.titleLabel.text = @"";
+    
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    urlString = [NSString stringWithFormat:@"%@%@", baseURL, FORGOT_PASSWORD_LINK];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"Loading URL %@", url);
+
+	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

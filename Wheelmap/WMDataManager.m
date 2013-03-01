@@ -388,9 +388,7 @@
 }
 
 - (BOOL)isFirstLaunch {
-    
-    return YES;
-    
+        
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return ![defaults boolForKey:WM_ALREADY_LAUNCHED_KEY];
 }

@@ -14,6 +14,7 @@
 #import "WMNodeListViewController.h"
 #import "WMFirstStartViewController.h"
 #import "Constants.h"
+#import "WMRegisterViewController.h"
 
 @implementation WMLoginViewController
 
@@ -153,12 +154,16 @@
 
 - (IBAction)forgotPasswordButtonPressed {
     
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, FORGOT_PASSWORD_LINK]];
+//    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+//    NSString *baseURL = config[@"apiBaseURL"];
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, FORGOT_PASSWORD_LINK]];
+//    
+//    
+//    [[UIApplication sharedApplication] openURL:url];
     
-    
-    [[UIApplication sharedApplication] openURL:url];
+    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+    [regViewController loadForgotPasswordUrl];
+    [self presentModalViewController:regViewController animated:YES];
 }
 
 - (IBAction)loginPressed:(id)sender
@@ -169,11 +174,15 @@
 
 - (IBAction)webLoginPressed:(id)sender
 {
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
-        
-    [[UIApplication sharedApplication] openURL:url];
+//    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+//    NSString *baseURL = config[@"apiBaseURL"];
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
+//        
+//    [[UIApplication sharedApplication] openURL:url];
+    
+    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+    [regViewController loadLoginUrl];
+    [self presentModalViewController:regViewController animated:YES];
 }
 
 
