@@ -154,16 +154,17 @@
 
 - (IBAction)forgotPasswordButtonPressed {
     
-//    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-//    NSString *baseURL = config[@"apiBaseURL"];
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, FORGOT_PASSWORD_LINK]];
-//    
-//    
-//    [[UIApplication sharedApplication] openURL:url];
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, FORGOT_PASSWORD_LINK]];
     
-    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
-    [regViewController loadForgotPasswordUrl];
-    [self presentModalViewController:regViewController animated:YES];
+    
+    [[UIApplication sharedApplication] openURL:url];
+    
+    // use this when websites are optimized for mobile
+//    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+//    [regViewController loadForgotPasswordUrl];
+//    [self presentModalViewController:regViewController animated:YES];
 }
 
 - (IBAction)loginPressed:(id)sender
@@ -174,15 +175,16 @@
 
 - (IBAction)webLoginPressed:(id)sender
 {
-//    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-//    NSString *baseURL = config[@"apiBaseURL"];
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
-//        
-//    [[UIApplication sharedApplication] openURL:url];
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
+        
+    [[UIApplication sharedApplication] openURL:url];
     
-    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
-    [regViewController loadLoginUrl];
-    [self presentModalViewController:regViewController animated:YES];
+    // use this when websites are optimized for mobile
+//    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+//    [regViewController loadLoginUrl];
+//    [self presentModalViewController:regViewController animated:YES];
 }
 
 

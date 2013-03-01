@@ -71,16 +71,17 @@
 
 -(IBAction)pressedLoginButton:(id)sender
 {
-//    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-//    NSString *baseURL = config[@"apiBaseURL"];
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
-//    
-//    
-//    [[UIApplication sharedApplication] openURL:url];
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    NSString *baseURL = config[@"apiBaseURL"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
     
-    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
-    [regViewController loadLoginUrl];
-    [self presentModalViewController:regViewController animated:YES];
+    
+    [[UIApplication sharedApplication] openURL:url];
+    
+    // use this when websites are optimized for mobile
+//    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+//    [regViewController loadLoginUrl];
+//    [self presentModalViewController:regViewController animated:YES];
 }
 
 -(IBAction)pressedRegisterButton:(id)sender
