@@ -324,6 +324,9 @@
     
     nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
+    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
+        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    }
 }
 
 - (void) refreshNodeListFromCreateNode
