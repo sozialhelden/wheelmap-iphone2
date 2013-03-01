@@ -475,29 +475,25 @@
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
     //    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
     
-    for (Node* node in nodes) {
+    NSArray *nodesCopy = [NSArray arrayWithArray:nodes];
+    
+    for (Node* node in nodesCopy) {
         NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
         if ([[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES &&
             [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
-            [newNodeList addObject:node];
+            if (![newNodeList containsObject:node]) {
+                [newNodeList addObject:node];
+            }
         } else {
-            NSLog(@"Filtered out Node %@ %@ %@ %@", node.name, node.id, wheelChairStatus, categoryID);
+//            NSLog(@"Filtered out Node %@ %@ %@ %@", node.name, node.id, wheelChairStatus, categoryID);
         }
     }
     
-    // this prevents array containing multiple entries of the same node
-    NSMutableArray *unique = [NSMutableArray array];
-    
-    for (id obj in newNodeList) {
-        if (![unique containsObject:obj]) {
-            [unique addObject:obj];
-        }
-    }
-    
+    // this prevents array containing multiple entries of the same node    
     NSLog(@"NEW NODE LIST = %d", newNodeList.count);
     
-    return unique;
+    return newNodeList;
 }
 
 -(void)updateNodesNear:(CLLocationCoordinate2D)coord

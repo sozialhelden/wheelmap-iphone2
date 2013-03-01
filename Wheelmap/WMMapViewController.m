@@ -194,6 +194,7 @@
     
     dispatch_async(backgroundQueue, ^(void) {
         
+        
         NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:self.mapView.annotations];
         
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];

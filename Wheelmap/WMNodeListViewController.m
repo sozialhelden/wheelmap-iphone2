@@ -31,6 +31,7 @@
     BOOL searching;
     BOOL receivedClearList;
     
+    dispatch_queue_t backgroundQueue;
 }
 
 @synthesize dataSource, delegate;
@@ -47,6 +48,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap.list", NULL);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
     self.tableView.scrollsToTop = YES;
@@ -222,11 +225,17 @@
     } else {
         nodes = [self.dataSource filteredNodeList];
     }
-    [self sortNodesByDistance];
     
-    NSLog(@"NUMBER OF NODES = %d", nodes.count);
-    
-    [self.tableView reloadData];
+    dispatch_async(backgroundQueue, ^(void) {
+        
+        [self sortNodesByDistance];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"NUMBER OF NODES = %d", nodes.count);
+            
+            [self.tableView reloadData];
+        });
+    });
 }
 
 - (void)sortNodesByDistance
