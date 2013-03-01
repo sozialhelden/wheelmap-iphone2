@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     
+    // clear the cookies first, as the webview would otherwise send the api token
+    // but at this point, the user did not log into the app, so the satandard app user is sent, which is bad
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (cookie in [storage cookies])
