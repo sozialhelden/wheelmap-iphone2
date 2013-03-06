@@ -22,7 +22,7 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 1
+#define WMLogDataManager 10
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -412,6 +412,13 @@
 -(NSArray*) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
     NSMutableArray *cachedNodes = [NSMutableArray array];
+   
+//    NSArray *cachedNodes = [NSArray array];
+//
+//    if (!query) {
+//        //                cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
+//        cachedNodes = [self managedObjectContext:self.mainMOC cachedNodesBetweenSouthwest:southwest northeast:northeast];
+//    }
     
     NSInteger swLatId = southwest.latitude * 100.0;
     NSInteger swLonId = southwest.longitude * 100.0;
@@ -444,7 +451,7 @@
                 [cachedNodes addObjectsFromArray:[cachedTile.nodes allObjects]];
                 
             }
-                        
+            
             // else request nodes for that tile
             CLLocationDegrees swLat = (CLLocationDegrees)lat / 100.0;
             CLLocationDegrees swLon = (CLLocationDegrees)lon / 100.0;
@@ -495,11 +502,30 @@
     
     if (WMLogDataManager>3) {
         Tile* tile = [results lastObject];
-        NSLog(@".........fetched existing tile: %@", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil);
+        NSLog(@".........fetched existing tile: %@ %d", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil, tile?tile.nodes.count:0);
+        if (tile && tile.nodes.count > 0) {
+            for (Node *node in tile.nodes) {
+                NSLog(@"Node lat %@ lon %@", node.lat, node.lon);
+                break;
+            }
+        }
     }
     
     return [results lastObject];
 }
+
+//- (NSArray*) managedObjectContext:(NSManagedObjectContext*)moc cachedNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast
+//{
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lat>=%f && lat<=%f && lon>=%f && lon<=%f", southwest.latitude, northeast.latitude, southwest.longitude, northeast.longitude];
+//    NSArray *results = [self managedObjectContext:moc fetchObjectsOfEntity:@"Node" withPredicate:predicate];
+//    
+//    if (WMLogDataManager>3) {
+//        NSLog(@".........fetched existing nodes: %d", results?results.count:0);
+//    }
+//    
+//    return results;
+//}
+
 
 - (Tile*) managedObjectContext:(NSManagedObjectContext*)moc createTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon
 {
@@ -733,8 +759,7 @@
                   if (!query) {                      
                       [(NSArray*)parsedNodes enumerateObjectsUsingBlock:^(Node* node, NSUInteger idx, BOOL *stop) {
                           CLLocationCoordinate2D location = CLLocationCoordinate2DMake([node.lat doubleValue], [node.lon doubleValue]);
-                          Tile
-                          *tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
+                          Tile *tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
                           tile.lastModified = [NSDate date];
                           node.tile = tile;
                       }];
