@@ -299,20 +299,14 @@
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
         annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+        
         UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 19, 14)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
         icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",dataManager.iconImageRootPath, node.node_type.icon]];
         annotationView.alpha = 0.0;
-        [annotationView addSubview:icon];
         
-        [UIView animateWithDuration:0.2f animations:^(void){
-            annotationView.alpha = 1.0;
-        }
-                         completion:^(BOOL finished) {
-                             annotationView.alpha = 1.0;
-                             
-                         }];
+        [annotationView addSubview:icon];
         
         return annotationView;
     }

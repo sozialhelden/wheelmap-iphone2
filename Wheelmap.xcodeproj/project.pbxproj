@@ -4342,8 +4342,8 @@
 		989927881649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Thomas (TGC6Q9BHGB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tae Hun KIM (XHE26SU3YE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tae Hun KIM (XHE26SU3YE)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4360,8 +4360,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "45B32454-B87C-4B51-A4BF-7F00111AD1B9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "45B32454-B87C-4B51-A4BF-7F00111AD1B9";
+				PROVISIONING_PROFILE = "7828E3DD-54D3-449E-B028-81F6682B0A39";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7828E3DD-54D3-449E-B028-81F6682B0A39";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
