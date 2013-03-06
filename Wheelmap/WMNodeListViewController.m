@@ -16,6 +16,7 @@
 #import "WMDataManager.h"
 #import "WMDetailNavigationController.h"
 #import "WMNodeListView.h"
+#import "WMResourceManager.h"
 
 @implementation WMNodeListViewController
 {
@@ -337,7 +338,7 @@
     UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(2, 3, 20, 16)];
     icon.contentMode = UIViewContentModeScaleAspectFit;
     icon.backgroundColor = [UIColor clearColor];
-    icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",dataManager.iconImageRootPath, node.node_type.icon]];  // node.node_type.iconPath is sometimes null. this is a hot fix.
+    icon.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon]; // node.node_type.iconPath is sometimes null. this is a hot fix.
     [cell.iconImage addSubview:icon];
     
     // show name

@@ -27,6 +27,7 @@
 #import "WMStringUtilities.h"
 #import "WMNodeListViewController.h"
 #import "WMDetailNavigationController.h"
+#import "WMResourceManager.h"
 
 #define GABIFSTATUSUNKNOWN 62
 #define MAPOPENADDITION 266
@@ -582,7 +583,7 @@
         UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 19, 14)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
-        icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",dataManager.iconImageRootPath, node.node_type.icon]];  // node.node_type.iconPath is sometimes null. this is a hot fix.
+        icon.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];  // node.node_type.iconPath is sometimes null. this is a hot fix.
         [self.annotationView addSubview:icon];
         
         return self.annotationView;

@@ -13,6 +13,7 @@
 @interface WMWheelmapAPI : AFHTTPClient
 
 @property (nonatomic, strong) Reachability* internetReachable;
+
 + (WMWheelmapAPI *)sharedInstance;
 
 - (id) initWithBaseURL:(NSURL *)url;

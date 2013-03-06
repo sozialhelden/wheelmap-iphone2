@@ -770,6 +770,9 @@
 		156A7121169B026200C22988 /* Curl_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A711F169B026200C22988 /* Curl_screen@2x.png */; };
 		156A7124169B02FF00C22988 /* Curl_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A7122169B02FF00C22988 /* Curl_logo.png */; };
 		156A7125169B02FF00C22988 /* Curl_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A7123169B02FF00C22988 /* Curl_logo@2x.png */; };
+		159430D616E7A2C10092F2E7 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 159430D516E7A2C10092F2E7 /* WMResourceManager.m */; };
+		159430D716E7A2C10092F2E7 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 159430D516E7A2C10092F2E7 /* WMResourceManager.m */; };
+		159430D816E7A2C10092F2E7 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 159430D516E7A2C10092F2E7 /* WMResourceManager.m */; };
 		15DBF574169B72EA00EBAC2A /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DBF573169B72EA00EBAC2A /* Twitter.framework */; };
 		15DBF58F169B7B5500EBAC2A /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DBF577169B7B5500EBAC2A /* NSObject+SBJson.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15DBF590169B7B5500EBAC2A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DBF57A169B7B5500EBAC2A /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1251,6 +1254,8 @@
 		156A711F169B026200C22988 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
 		156A7122169B02FF00C22988 /* Curl_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_logo.png; sourceTree = "<group>"; };
 		156A7123169B02FF00C22988 /* Curl_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_logo@2x.png"; sourceTree = "<group>"; };
+		159430D416E7A2C10092F2E7 /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
+		159430D516E7A2C10092F2E7 /* WMResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMResourceManager.m; sourceTree = "<group>"; };
 		15DBF573169B72EA00EBAC2A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		15DBF576169B7B5500EBAC2A /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		15DBF577169B7B5500EBAC2A /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
@@ -2806,6 +2811,8 @@
 				989927E4164AA31400D9003B /* WMDataManagerDelegate.h */,
 				981992581695D94200F69BA8 /* WMDataParser.h */,
 				981992591695D94200F69BA8 /* WMDataParser.m */,
+				159430D416E7A2C10092F2E7 /* WMResourceManager.h */,
+				159430D516E7A2C10092F2E7 /* WMResourceManager.m */,
 			);
 			name = DataManager;
 			sourceTree = "<group>";
@@ -3771,6 +3778,7 @@
 				0327F96F16BFFB1900BA7DE7 /* WMDetailNavigationController.m in Sources */,
 				0327F97016BFFB1900BA7DE7 /* WMPopoverController.m in Sources */,
 				03C70AF616DFA1B20040A280 /* WMFirstStartViewController.m in Sources */,
+				159430D816E7A2C10092F2E7 /* WMResourceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3871,6 +3879,7 @@
 				039A6FFB16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */,
 				031AFD1516BA80C60036CF5D /* WMPopoverController.m in Sources */,
 				03C70AF516DFA1B10040A280 /* WMFirstStartViewController.m in Sources */,
+				159430D716E7A2C10092F2E7 /* WMResourceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3973,6 +3982,7 @@
 				039A6FFA16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */,
 				031AFD1416BA80C60036CF5D /* WMPopoverController.m in Sources */,
 				03C70AF416DF9E740040A280 /* WMFirstStartViewController.m in Sources */,
+				159430D616E7A2C10092F2E7 /* WMResourceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

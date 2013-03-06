@@ -14,6 +14,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMMapSettingsViewController.h"
 #import "WMDetailNavigationController.h"
+#import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MIN_SPAN_DELTA 0.01
@@ -303,8 +304,7 @@
         UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 19, 14)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
-        icon.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@",dataManager.iconImageRootPath, node.node_type.icon]];
-        annotationView.alpha = 0.0;
+        icon.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];
         
         [annotationView addSubview:icon];
         

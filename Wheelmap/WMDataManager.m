@@ -72,9 +72,7 @@
     self = [super init];
     
     if (self) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *rootPath = [paths objectAtIndex:0];
-        self.iconImageRootPath = [NSString stringWithFormat:@"%@/icons/", rootPath];
+
     }
     
     return self;
