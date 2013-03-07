@@ -69,7 +69,7 @@
 
 - (void)gotNewUserLocation:(CLLocation *)location {
     NSLog(@"...NEW USER LOCATION...");
-    [self.mapViewController relocateMapTo:location.coordinate andSpan:MKCoordinateSpanMake(0.007, 0.007)];
+    [self.mapViewController relocateMapTo:location.coordinate andSpan:MKCoordinateSpanMake(0.004, 0.004)];
 }
 
 - (void)pressedSearchButton:(BOOL)selected {

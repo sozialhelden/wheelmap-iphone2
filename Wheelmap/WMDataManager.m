@@ -22,7 +22,7 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 10
+#define WMLogDataManager 1
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -544,6 +544,11 @@
 - (void)fetchRemoteNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
     
+    if (self.syncInProgress) {
+        if (WMLogDataManager>1) NSLog(@"Sync in progress, do not fetch");
+        return;
+    }
+    
     if (![self isInternetConnectionAvailable]) {
         return;
     }
@@ -802,6 +807,7 @@
         NSDate *startTime = [NSDate date];
         
         // create parser with temporary context
+        NSLog(@"------ PARSING DATA OBJECT IN BACKGROUND ------");
         WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:self.backgroundMOC];
         
         // parse data

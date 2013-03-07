@@ -386,6 +386,8 @@
     for (Category* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
+    
+    [self updateNodesWithCurrentUserLocation];
 }
 
 -(void)dataManager:(WMDataManager *)dataManager didFinishSyncingResourcesWithErrors:(NSArray *)errors
@@ -402,6 +404,8 @@
         WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
         [vc showUIObjectsAnimated:YES];
     }
+    
+    [self updateNodesWithCurrentUserLocation];
 }
 
 -(void)dataManagerDidStartOperation:(WMDataManager *)dataManager
