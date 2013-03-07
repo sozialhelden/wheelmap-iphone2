@@ -461,6 +461,10 @@
             CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
             CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
             
+            if (WMLogDataManager) {
+                NSLog(@"fetch corrected nodes between:%.4f/%.4f - %.4f/%.4f", sw.latitude, sw.longitude, ne.latitude, ne.longitude);
+            }
+            
             // for search call fetch directly, toherwise make head request first
             if (query) {
                 [self fetchRemoteNodesBetweenSouthwest:sw northeast:ne query:query];
