@@ -500,21 +500,21 @@
     return newNodeList;
 }
 
--(void)updateNodesNear:(CLLocationCoordinate2D)coord
-{
-    NSLog(@"UPDATE NODES NEAR");
-    
-    nodes = [dataManager fetchNodesNear:coord];
-    [self refreshNodeList];
-}
-
--(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
-{
-    NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
-    
-    nodes = [dataManager fetchNodesNear:coord];
-    [self refreshNodeList];
-}
+//-(void)updateNodesNear:(CLLocationCoordinate2D)coord
+//{
+//    NSLog(@"UPDATE NODES NEAR");
+//    
+//    nodes = [dataManager fetchNodesNear:coord];
+//    [self refreshNodeList];
+//}
+//
+//-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
+//{
+//    NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
+//    
+//    nodes = [dataManager fetchNodesNear:coord];
+//    [self refreshNodeList];
+//}
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
@@ -683,10 +683,12 @@
         if (currentVC.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMNodeListViewControllerUseCaseGlobalSearch)) {
             [self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
         } else {
-            [self updateNodesNear:newLocation.coordinate];
+//            [self updateNodesNear:newLocation.coordinate];
+            [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
         }
     } else {
-        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
+//        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
+        [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
     }
     
     self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];

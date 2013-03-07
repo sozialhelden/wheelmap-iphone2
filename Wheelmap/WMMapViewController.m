@@ -176,7 +176,7 @@
     if (loadingNodes) {
         return;
     }
-    
+        
     loadingNodes = YES;
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
@@ -192,6 +192,8 @@
     } else {
         nodes = [self.dataSource filteredNodeList];
     }
+    
+    NSLog(@"NEW NODE LIST: %d", nodes.count);
     
     dispatch_async(backgroundQueue, ^(void) {
         
@@ -374,12 +376,7 @@
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         for (id<MKAnnotation> annotation in oldAnnotations) {
             if (![annotation isKindOfClass:[MKUserLocation class]]) {
-                MKAnnotationView *pinView = [self.mapView viewForAnnotation:annotation];
-                [UIView animateWithDuration:0.2f animations:^{
-                    pinView.alpha = 0.0f;
-                } completion:^(BOOL finished) {
-                    [self.mapView removeAnnotation:annotation];
-                }];
+                [self.mapView removeAnnotation:annotation];
             }
         }
         

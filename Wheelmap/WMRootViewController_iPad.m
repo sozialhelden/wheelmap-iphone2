@@ -93,11 +93,11 @@
     return [self.dataSource filteredNodeList];
 }
 
--(void)updateNodesNear:(CLLocationCoordinate2D)coord
-{
-    [(WMNavigationControllerBase*)self.dataSource updateNodesNear:coord];
-    
-}
+//-(void)updateNodesNear:(CLLocationCoordinate2D)coord
+//{
+//    [(WMNavigationControllerBase*)self.dataSource updateNodesNear:coord];
+//    
+//}
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {

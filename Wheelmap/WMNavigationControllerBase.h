@@ -54,8 +54,8 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 - (void)addTemporaryNode:(Node *)node;
 
--(void)updateNodesNear:(CLLocationCoordinate2D)coord;
--(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;
+//-(void)updateNodesNear:(CLLocationCoordinate2D)coord;
+//-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithQuery:(NSString*)query;
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
