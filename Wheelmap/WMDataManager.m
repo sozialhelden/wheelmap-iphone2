@@ -23,6 +23,7 @@
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
 #define WMLogDataManager 1
+#define boundingBoxSize 100.0
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -30,7 +31,7 @@
 // won't show in results, because nodes are returned with ascending id from the server,
 // so the newest nodes come last (that"s why using pages doesn't make any sense here).
 // If you experience this problem, try to use smaller bounding boxes before raising this number.
-//#define WMNodeLimit 300 // removed as parameter should be configurable in backend
+#define WMNodeLimit 1000 // removed as parameter should be configurable in backend
 
 #define UserTermsPrefix @"terms"
 
@@ -419,11 +420,11 @@
 //        //                cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
 //        cachedNodes = [self managedObjectContext:self.mainMOC cachedNodesBetweenSouthwest:southwest northeast:northeast];
 //    }
-    
-    NSInteger swLatId = southwest.latitude * 100.0;
-    NSInteger swLonId = southwest.longitude * 100.0;
-    NSInteger neLatId = northeast.latitude * 100.0; neLatId++;
-    NSInteger neLonId = northeast.longitude * 100.0; neLonId++;
+        
+    NSInteger swLatId = southwest.latitude * boundingBoxSize;
+    NSInteger swLonId = southwest.longitude * boundingBoxSize;
+    NSInteger neLatId = northeast.latitude * boundingBoxSize; neLatId++;
+    NSInteger neLonId = northeast.longitude * boundingBoxSize; neLonId++;
     
     if (WMLogDataManager) {
         NSLog(@"fetch nodes between:%.4f/%.4f - %.4f/%.4f", southwest.latitude, southwest.longitude, northeast.latitude, northeast.longitude);
@@ -453,10 +454,10 @@
             }
             
             // else request nodes for that tile
-            CLLocationDegrees swLat = (CLLocationDegrees)lat / 100.0;
-            CLLocationDegrees swLon = (CLLocationDegrees)lon / 100.0;
-            CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / 100.0;
-            CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / 100.0;
+            CLLocationDegrees swLat = (CLLocationDegrees)lat / boundingBoxSize;
+            CLLocationDegrees swLon = (CLLocationDegrees)lon / boundingBoxSize;
+            CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / boundingBoxSize;
+            CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / boundingBoxSize;
             
             CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
             CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
@@ -585,7 +586,7 @@
 
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
-//    parameters[@"per_page"] = @WMNodeLimit;
+    parameters[@"per_page"] = @WMNodeLimit;
     if (query) parameters[@"q"] = query;
     
     if (WMLogDataManager) NSLog(@"fetching nodes in bbox %@", coords);
@@ -664,7 +665,7 @@
     
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
-    //    parameters[@"per_page"] = @WMNodeLimit;
+    parameters[@"per_page"] = @WMNodeLimit;
     
     if (WMLogDataManager) NSLog(@"fetching nodes head in bbox %@", coords);
     
@@ -701,8 +702,8 @@
     NSNumberFormatter *format = [[NSNumberFormatter alloc]init];
     [format setNumberStyle:NSNumberFormatterDecimalStyle];
     [format setRoundingMode:NSNumberFormatterRoundUp];
-    [format setMaximumFractionDigits:3];
-    [format setMinimumFractionDigits:3];
+    [format setMaximumFractionDigits:4];
+    [format setMinimumFractionDigits:4];
     return [format stringFromNumber:[NSNumber numberWithDouble:input]];
 }
 
@@ -710,8 +711,8 @@
     NSNumberFormatter *format = [[NSNumberFormatter alloc]init];
     [format setNumberStyle:NSNumberFormatterDecimalStyle];
     [format setRoundingMode:NSNumberFormatterRoundDown];
-    [format setMaximumFractionDigits:3];
-    [format setMinimumFractionDigits:3];
+    [format setMaximumFractionDigits:4];
+    [format setMinimumFractionDigits:4];
     return [format stringFromNumber:[NSNumber numberWithDouble:input]];
 }
 

@@ -525,8 +525,8 @@
     // [self showLoadingWheel];
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
-    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
-    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/10.0f, region.center.longitude-region.span.longitudeDelta/10.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/10.0f, region.center.longitude+region.span.longitudeDelta/10.0f);
     
     nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:nil];
     [self refreshNodeList];
