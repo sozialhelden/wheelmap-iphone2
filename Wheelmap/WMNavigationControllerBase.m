@@ -248,6 +248,14 @@
     self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
     listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
     [self clearCategoryFilterStatus];
+    
+    [categoryFilterPopover removeFromSuperview];
+    categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+    categoryFilterPopover.delegate = self;
+    categoryFilterPopover.hidden = YES;
+    [self.view addSubview:categoryFilterPopover];
+    
+    [self.customToolBar deselectCategoryButton];
 }
 
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
