@@ -50,6 +50,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 - (void)pushMap;
 - (void)setMapControllerToContribute;
 - (void)setMapControllerToNormal;
+- (void)resetMapAndListToNormalUseCase;
 - (void)mapWasMoved;
 
 - (void)addTemporaryNode:(Node *)node;

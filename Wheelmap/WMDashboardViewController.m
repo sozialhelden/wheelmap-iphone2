@@ -201,6 +201,7 @@
 -(IBAction)pressedCategoriesButton:(id)sender
 {
     WMCategoryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryViewController"];
+    vc.baseController = self.navigationController;
     
     [self.navigationController pushViewController:vc animated:YES];
     [self pressedSearchCancelButton:searchCancelButton];

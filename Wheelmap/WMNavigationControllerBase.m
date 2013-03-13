@@ -244,6 +244,12 @@
     
 }
 
+- (void)resetMapAndListToNormalUseCase {
+    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    [self clearCategoryFilterStatus];
+}
+
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
     
     [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
