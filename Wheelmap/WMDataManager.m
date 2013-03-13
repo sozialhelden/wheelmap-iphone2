@@ -22,7 +22,7 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 1
+#define WMLogDataManager 0
 #define boundingBoxSize 100.0
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
@@ -1633,7 +1633,7 @@ static BOOL assetSyncInProgress = NO;
         NSError *error = nil;
         if (!_persistentStore) {
             
-            NSLog(@"cannot add persistent store");
+//            NSLog(@"cannot add persistent store");
             
             // ... we ignore the error, and if the file already exists but is not compatible, we try to replace it with a new store file
             if ([[NSFileManager defaultManager] fileExistsAtPath:persistentStoreURL.path]) {
@@ -1644,7 +1644,7 @@ static BOOL assetSyncInProgress = NO;
                 // if meta data can't be read or model is not compatible
                 if (!metaData || ![managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:metaData]) {
                     
-                    NSLog(@"persistent store meta data can't be read or is not compatible");
+//                    NSLog(@"persistent store meta data can't be read or is not compatible");
                     
                     // if old store file can be removed
                     if ([[NSFileManager defaultManager] removeItemAtPath:persistentStoreURL.path error:&error]) {

@@ -118,7 +118,9 @@
                 ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(768.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
             }
             
-            [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
+            if (self.baseController != nil) {
+                [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
+            }
             
         } else if ([modalViewController isKindOfClass:[WMRegisterViewController class]]) {
             

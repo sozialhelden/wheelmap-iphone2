@@ -115,6 +115,9 @@
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
     WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    if (self.listViewController.controllerBase != nil) {
+        vc.baseController = self.listViewController.controllerBase;
+    }
     vc.popoverButtonFrame = frame;
     vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"Sign In", @"");
     self.customNavigationBar.title = vc.navigationBarTitle;
