@@ -244,6 +244,20 @@
     
 }
 
+- (void)resetMapAndListToNormalUseCase {
+    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    [self clearCategoryFilterStatus];
+    
+    [categoryFilterPopover removeFromSuperview];
+    categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+    categoryFilterPopover.delegate = self;
+    categoryFilterPopover.hidden = YES;
+    [self.view addSubview:categoryFilterPopover];
+    
+    [self.customToolBar deselectCategoryButton];
+}
+
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
     
     [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
@@ -386,6 +400,8 @@
     for (Category* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
+    
+    [self updateNodesWithCurrentUserLocation];
 }
 
 -(void)dataManager:(WMDataManager *)dataManager didFinishSyncingResourcesWithErrors:(NSArray *)errors
@@ -402,6 +418,8 @@
         WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
         [vc showUIObjectsAnimated:YES];
     }
+    
+    [self updateNodesWithCurrentUserLocation];
 }
 
 -(void)dataManagerDidStartOperation:(WMDataManager *)dataManager
@@ -496,21 +514,21 @@
     return newNodeList;
 }
 
--(void)updateNodesNear:(CLLocationCoordinate2D)coord
-{
-    NSLog(@"UPDATE NODES NEAR");
-    
-    nodes = [dataManager fetchNodesNear:coord];
-    [self refreshNodeList];
-}
-
--(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
-{
-    NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
-    
-    nodes = [dataManager fetchNodesNear:coord];
-    [self refreshNodeList];
-}
+//-(void)updateNodesNear:(CLLocationCoordinate2D)coord
+//{
+//    NSLog(@"UPDATE NODES NEAR");
+//    
+//    nodes = [dataManager fetchNodesNear:coord];
+//    [self refreshNodeList];
+//}
+//
+//-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
+//{
+//    NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
+//    
+//    nodes = [dataManager fetchNodesNear:coord];
+//    [self refreshNodeList];
+//}
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
@@ -521,8 +539,8 @@
     // [self showLoadingWheel];
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
-    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
-    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
+    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/10.0f, region.center.longitude-region.span.longitudeDelta/10.0f);
+    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/10.0f, region.center.longitude+region.span.longitudeDelta/10.0f);
     
     nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:nil];
     [self refreshNodeList];
@@ -679,10 +697,12 @@
         if (currentVC.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMNodeListViewControllerUseCaseGlobalSearch)) {
             [self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
         } else {
-            [self updateNodesNear:newLocation.coordinate];
+//            [self updateNodesNear:newLocation.coordinate];
+            [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
         }
     } else {
-        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
+//        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
+        [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
     }
     
     self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];

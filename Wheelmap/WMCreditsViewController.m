@@ -7,6 +7,7 @@
 //
 
 #import "WMCreditsViewController.h"
+#import "Constants.h"
 
 @interface WMCreditsViewController ()
 
@@ -43,12 +44,69 @@
     authors.image = [UIImage imageNamed:@"credits_authors.png"];
     [self.scroller addSubview:authors];
     
-    UIImageView *license = [[UIImageView alloc] initWithFrame:CGRectMake(10, authors.leftBottomY+10, 300, 140)];
-    license.image = [UIImage imageNamed:@"credits_credits.png"];
+    UILabel *creditsTitleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, authors.leftBottomY+20, 300, 18)];
+    creditsTitleLabel.textAlignment = UITextAlignmentCenter;
+    creditsTitleLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+    creditsTitleLabel.text = @"Credits:";
+    [self.scroller addSubview:creditsTitleLabel];
+    
+    UIFont *font = [UIFont systemFontOfSize:12.0f];
+    NSString *titleCardData = @"Kartendaten:";
+    CGSize stringsize = [titleCardData sizeWithFont:font];
+
+    UILabel *cardDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, creditsTitleLabel.leftBottomY+10, stringsize.width, stringsize.height)];
+    [cardDataLabel setBackgroundColor:[UIColor clearColor]];
+    cardDataLabel.textAlignment = UITextAlignmentLeft;
+    cardDataLabel.font = font;
+    cardDataLabel.text = titleCardData;
+    [self.scroller addSubview:cardDataLabel];
+    
+    UIButton *cardDataButtonOSM = [UIButton buttonWithType:UIButtonTypeCustom];
+    NSString *titleOSM = @"OpenStreetMap";
+    stringsize = [titleOSM sizeWithFont:font];
+    cardDataButtonOSM.frame = CGRectMake(cardDataLabel.frame.origin.x + cardDataLabel.frame.size.width + 5.0f, cardDataLabel.frame.origin.y, stringsize.width, stringsize.height);
+    [cardDataButtonOSM setBackgroundColor:[UIColor clearColor]];
+    cardDataButtonOSM.titleLabel.textColor = [UIColor blueColor];
+    cardDataButtonOSM.titleLabel.font = font;
+    [cardDataButtonOSM setTitle:titleOSM forState:UIControlStateNormal];
+    [cardDataButtonOSM setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [cardDataButtonOSM addTarget:self action:@selector(osmButtonPressed) forControlEvents:UIControlEventTouchDown];
+    [self.scroller addSubview:cardDataButtonOSM];
+    
+    UIButton *cardDataButtonODBL = [UIButton buttonWithType:UIButtonTypeCustom];
+    NSString *titleODBL = @"(ODbL)";
+    stringsize = [titleODBL sizeWithFont:font];
+    cardDataButtonODBL.frame = CGRectMake(cardDataButtonOSM.frame.origin.x + cardDataButtonOSM.frame.size.width + 5.0f, cardDataLabel.frame.origin.y, stringsize.width, stringsize.height);
+    [cardDataButtonODBL setBackgroundColor:[UIColor clearColor]];
+    [cardDataButtonODBL setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    cardDataButtonODBL.titleLabel.font = font;
+    [cardDataButtonODBL setTitle:titleODBL forState:UIControlStateNormal];
+    [cardDataButtonODBL addTarget:self action:@selector(odblButtonPressed) forControlEvents:UIControlEventTouchDown];
+    [self.scroller addSubview:cardDataButtonODBL];
+    
+    UIImageView *license = [[UIImageView alloc] initWithFrame:CGRectMake(20, cardDataLabel.leftBottomY+10, 61, 18)];
+    license.image = [UIImage imageNamed:@"credits_license.png"];
     license.contentMode = UIViewContentModeBottomRight;
     [self.scroller addSubview:license];
     
-    self.scroller.contentSize = CGSizeMake(self.scroller.frame.size.width, license.leftBottomY+20);
+    UILabel *licenseLabel = [[WMLabel alloc] initWithFrame:CGRectMake(license.frame.origin.x + license.frame.size.width + 10.0f, license.frame.origin.y, 210, 18)];
+    licenseLabel.textAlignment = UITextAlignmentLeft;
+    licenseLabel.font = [UIFont systemFontOfSize:12.0f];
+    licenseLabel.text = @"Map Icons Collection: Nicolas Mollet";
+    [self.scroller addSubview:licenseLabel];
+    
+    UIImageView *license2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, license.leftBottomY+10, 61, 18)];
+    license2.image = [UIImage imageNamed:@"credits_license.png"];
+    license2.contentMode = UIViewContentModeBottomRight;
+    [self.scroller addSubview:license2];
+    
+    UILabel *licenseLabel2 = [[WMLabel alloc] initWithFrame:CGRectMake(license2.frame.origin.x + license2.frame.size.width + 10.0f, license2.frame.origin.y, 210, 18)];
+    licenseLabel2.textAlignment = UITextAlignmentLeft;
+    licenseLabel2.font = [UIFont systemFontOfSize:12.0f];
+    licenseLabel2.text = @"Entypo pictograms by Daniel Bruce";
+    [self.scroller addSubview:licenseLabel2];
+    
+    self.scroller.contentSize = CGSizeMake(self.scroller.frame.size.width, license2.leftBottomY+20);
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(donePressed:)];
     [self.view addGestureRecognizer:tapGR];
@@ -58,6 +116,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)osmButtonPressed {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:OSM_URL]];
+}
+
+- (void)odblButtonPressed {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ODBL_URL]];
 }
 
 - (IBAction)donePressed:(id)sender {

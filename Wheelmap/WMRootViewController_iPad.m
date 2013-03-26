@@ -69,7 +69,7 @@
 
 - (void)gotNewUserLocation:(CLLocation *)location {
     NSLog(@"...NEW USER LOCATION...");
-    [self.mapViewController relocateMapTo:location.coordinate andSpan:MKCoordinateSpanMake(0.007, 0.007)];
+    [self.mapViewController relocateMapTo:location.coordinate andSpan:MKCoordinateSpanMake(0.004, 0.004)];
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
@@ -93,11 +93,11 @@
     return [self.dataSource filteredNodeList];
 }
 
--(void)updateNodesNear:(CLLocationCoordinate2D)coord
-{
-    [(WMNavigationControllerBase*)self.dataSource updateNodesNear:coord];
-    
-}
+//-(void)updateNodesNear:(CLLocationCoordinate2D)coord
+//{
+//    [(WMNavigationControllerBase*)self.dataSource updateNodesNear:coord];
+//    
+//}
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {

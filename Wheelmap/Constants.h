@@ -15,3 +15,6 @@
 #define FORGOT_PASSWORD_LINK @"/users/password/new"
 #define WEB_LOGIN_LINK @"/users/sign_in"
 #define WM_REGISTER_LINK @"/en/oauth/register_osm"
+
+#define OSM_URL @"http://www.openstreetmap.org/"
+#define ODBL_URL @"http://opendatacommons.org/licenses/odbl/"

@@ -22,7 +22,8 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 1
+#define WMLogDataManager 0
+#define boundingBoxSize 100.0
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
 // The API limits this value currently to 500 (as of 12/29/2012)
@@ -30,7 +31,7 @@
 // won't show in results, because nodes are returned with ascending id from the server,
 // so the newest nodes come last (that"s why using pages doesn't make any sense here).
 // If you experience this problem, try to use smaller bounding boxes before raising this number.
-//#define WMNodeLimit 300 // removed as parameter should be configurable in backend
+#define WMNodeLimit 1000 // removed as parameter should be configurable in backend
 
 #define UserTermsPrefix @"terms"
 
@@ -412,11 +413,18 @@
 -(NSArray*) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
     NSMutableArray *cachedNodes = [NSMutableArray array];
-    
-    NSInteger swLatId = southwest.latitude * 100.0;
-    NSInteger swLonId = southwest.longitude * 100.0;
-    NSInteger neLatId = northeast.latitude * 100.0; neLatId++;
-    NSInteger neLonId = northeast.longitude * 100.0; neLonId++;
+   
+//    NSArray *cachedNodes = [NSArray array];
+//
+//    if (!query) {
+//        //                cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
+//        cachedNodes = [self managedObjectContext:self.mainMOC cachedNodesBetweenSouthwest:southwest northeast:northeast];
+//    }
+        
+    NSInteger swLatId = southwest.latitude * boundingBoxSize;
+    NSInteger swLonId = southwest.longitude * boundingBoxSize;
+    NSInteger neLatId = northeast.latitude * boundingBoxSize; neLatId++;
+    NSInteger neLonId = northeast.longitude * boundingBoxSize; neLonId++;
     
     if (WMLogDataManager) {
         NSLog(@"fetch nodes between:%.4f/%.4f - %.4f/%.4f", southwest.latitude, southwest.longitude, northeast.latitude, northeast.longitude);
@@ -444,15 +452,19 @@
                 [cachedNodes addObjectsFromArray:[cachedTile.nodes allObjects]];
                 
             }
-                        
+            
             // else request nodes for that tile
-            CLLocationDegrees swLat = (CLLocationDegrees)lat / 100.0;
-            CLLocationDegrees swLon = (CLLocationDegrees)lon / 100.0;
-            CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / 100.0;
-            CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / 100.0;
+            CLLocationDegrees swLat = (CLLocationDegrees)lat / boundingBoxSize;
+            CLLocationDegrees swLon = (CLLocationDegrees)lon / boundingBoxSize;
+            CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / boundingBoxSize;
+            CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / boundingBoxSize;
             
             CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
             CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
+            
+            if (WMLogDataManager) {
+                NSLog(@"fetch corrected nodes between:%.4f/%.4f - %.4f/%.4f", sw.latitude, sw.longitude, ne.latitude, ne.longitude);
+            }
             
             // for search call fetch directly, toherwise make head request first
             if (query) {
@@ -495,11 +507,30 @@
     
     if (WMLogDataManager>3) {
         Tile* tile = [results lastObject];
-        NSLog(@".........fetched existing tile: %@", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil);
+        NSLog(@".........fetched existing tile: %@ %d", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil, tile?tile.nodes.count:0);
+        if (tile && tile.nodes.count > 0) {
+            for (Node *node in tile.nodes) {
+                NSLog(@"Node lat %@ lon %@", node.lat, node.lon);
+                break;
+            }
+        }
     }
     
     return [results lastObject];
 }
+
+//- (NSArray*) managedObjectContext:(NSManagedObjectContext*)moc cachedNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast
+//{
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lat>=%f && lat<=%f && lon>=%f && lon<=%f", southwest.latitude, northeast.latitude, southwest.longitude, northeast.longitude];
+//    NSArray *results = [self managedObjectContext:moc fetchObjectsOfEntity:@"Node" withPredicate:predicate];
+//    
+//    if (WMLogDataManager>3) {
+//        NSLog(@".........fetched existing nodes: %d", results?results.count:0);
+//    }
+//    
+//    return results;
+//}
+
 
 - (Tile*) managedObjectContext:(NSManagedObjectContext*)moc createTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon
 {
@@ -517,6 +548,11 @@
 
 - (void)fetchRemoteNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
 {
+    
+    if (self.syncInProgress) {
+        if (WMLogDataManager>1) NSLog(@"Sync in progress, do not fetch");
+        return;
+    }
     
     if (![self isInternetConnectionAvailable]) {
         return;
@@ -550,7 +586,7 @@
 
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
-//    parameters[@"per_page"] = @WMNodeLimit;
+    parameters[@"per_page"] = @WMNodeLimit;
     if (query) parameters[@"q"] = query;
     
     if (WMLogDataManager) NSLog(@"fetching nodes in bbox %@", coords);
@@ -629,7 +665,7 @@
     
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
-    //    parameters[@"per_page"] = @WMNodeLimit;
+    parameters[@"per_page"] = @WMNodeLimit;
     
     if (WMLogDataManager) NSLog(@"fetching nodes head in bbox %@", coords);
     
@@ -666,8 +702,8 @@
     NSNumberFormatter *format = [[NSNumberFormatter alloc]init];
     [format setNumberStyle:NSNumberFormatterDecimalStyle];
     [format setRoundingMode:NSNumberFormatterRoundUp];
-    [format setMaximumFractionDigits:3];
-    [format setMinimumFractionDigits:3];
+    [format setMaximumFractionDigits:4];
+    [format setMinimumFractionDigits:4];
     return [format stringFromNumber:[NSNumber numberWithDouble:input]];
 }
 
@@ -675,8 +711,8 @@
     NSNumberFormatter *format = [[NSNumberFormatter alloc]init];
     [format setNumberStyle:NSNumberFormatterDecimalStyle];
     [format setRoundingMode:NSNumberFormatterRoundDown];
-    [format setMaximumFractionDigits:3];
-    [format setMinimumFractionDigits:3];
+    [format setMaximumFractionDigits:4];
+    [format setMinimumFractionDigits:4];
     return [format stringFromNumber:[NSNumber numberWithDouble:input]];
 }
 
@@ -733,8 +769,7 @@
                   if (!query) {                      
                       [(NSArray*)parsedNodes enumerateObjectsUsingBlock:^(Node* node, NSUInteger idx, BOOL *stop) {
                           CLLocationCoordinate2D location = CLLocationCoordinate2DMake([node.lat doubleValue], [node.lon doubleValue]);
-                          Tile
-                          *tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
+                          Tile *tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
                           tile.lastModified = [NSDate date];
                           node.tile = tile;
                       }];
@@ -777,6 +812,7 @@
         NSDate *startTime = [NSDate date];
         
         // create parser with temporary context
+        NSLog(@"------ PARSING DATA OBJECT IN BACKGROUND ------");
         WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:self.backgroundMOC];
         
         // parse data
@@ -1597,7 +1633,7 @@ static BOOL assetSyncInProgress = NO;
         NSError *error = nil;
         if (!_persistentStore) {
             
-            NSLog(@"cannot add persistent store");
+//            NSLog(@"cannot add persistent store");
             
             // ... we ignore the error, and if the file already exists but is not compatible, we try to replace it with a new store file
             if ([[NSFileManager defaultManager] fileExistsAtPath:persistentStoreURL.path]) {
@@ -1608,7 +1644,7 @@ static BOOL assetSyncInProgress = NO;
                 // if meta data can't be read or model is not compatible
                 if (!metaData || ![managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:metaData]) {
                     
-                    NSLog(@"persistent store meta data can't be read or is not compatible");
+//                    NSLog(@"persistent store meta data can't be read or is not compatible");
                     
                     // if old store file can be removed
                     if ([[NSFileManager defaultManager] removeItemAtPath:persistentStoreURL.path error:&error]) {

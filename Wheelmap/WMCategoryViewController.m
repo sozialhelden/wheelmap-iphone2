@@ -44,6 +44,10 @@
 {
     [super viewWillAppear:animated];
     
+    if ([self.baseController isKindOfClass:[WMNavigationControllerBase class]]) {
+        [(WMNavigationControllerBase *)self.baseController resetMapAndListToNormalUseCase];
+    }
+    
     if (self.navigationController.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
