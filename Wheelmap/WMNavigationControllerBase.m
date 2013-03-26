@@ -69,6 +69,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
     // preload map to avoid long loading times on toggle
@@ -91,7 +92,7 @@
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = 50.0f;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
+    [self.locationManager startMonitoringSignificantLocationChanges];
     
     self.lastVisibleMapCenterLat = nil;
     self.lastVisibleMapCenterLng = nil;
@@ -666,7 +667,7 @@
 {
     NSLog(@"CLLOCATIONMANAGER:%@ and delegate: %@", self.locationManager, self.locationManager.delegate);
     if ([CLLocationManager locationServicesEnabled]) {
-        [self.locationManager startUpdatingLocation];
+        [self.locationManager startMonitoringSignificantLocationChanges];
     } else {
         NSLog(@"[CLLocataionManager] location service is disabled!");
         [self locationManager:self.locationManager didFailWithError:nil];
@@ -732,9 +733,14 @@
     
 }
 
+-(void)applicationDidEnterBackground:(NSNotification*)notification
+{
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+}
+
 - (void)applicationWillResignActive:(NSNotification*)notification
 {
-	[self.locationManager stopUpdatingLocation];
+	
 }
 
 #pragma mark - Push/Pop ViewControllers
