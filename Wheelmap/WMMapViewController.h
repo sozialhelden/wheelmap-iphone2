@@ -15,8 +15,6 @@
 @interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate>
 {
     WMDataManager *dataManager;
-    
-    NSMutableDictionary *annotationHashMap;    // node id -> annotation
 }
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
