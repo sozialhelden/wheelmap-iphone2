@@ -75,6 +75,8 @@
 {
     [super viewDidLoad];
     
+    annotationHashMap = [[NSMutableDictionary alloc] init];
+    
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
     
     self.mapView.showsUserLocation = YES;
@@ -200,6 +202,8 @@
         
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         
+        // The code block below is better to be kept as commented out.
+        //
         // fix for map sometimes showing old annotations on ipad
         //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         //        for (id<MKAnnotation> annotation in oldAnnotations) {
@@ -207,6 +211,7 @@
         //                [self.mapView removeAnnotation:annotation];
         //        }
         //    }
+        
         
         [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
             WMMapAnnotation *annotationForNode = [self annotationForNode:node];
@@ -218,17 +223,19 @@
                 WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
                 [newAnnotations addObject:annotation];
             }
-            
         }];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [newAnnotations enumerateObjectsUsingBlock:^(WMMapAnnotation *annotation, NSUInteger idx, BOOL *stop) {
                 [self.mapView addAnnotation:annotation];
+                [annotationHashMap setObject:annotation forKey:annotation.node.id];
             }];
             
             for (id<MKAnnotation> annotation in oldAnnotations) {
-                if (![annotation isKindOfClass:[MKUserLocation class]])
+                if (![annotation isKindOfClass:[MKUserLocation class]]) {
                     [self.mapView removeAnnotation:annotation];
+                    [annotationHashMap removeObjectForKey:[(WMMapAnnotation*)annotation node].id];
+                }
             }
             
             if (self.refreshingForFilter) {
@@ -242,14 +249,7 @@
 
 - (WMMapAnnotation*) annotationForNode:(Node*)node
 {
-    for (WMMapAnnotation* annotation in  self.mapView.annotations) {
-        
-        // filter out MKUserLocation annotation
-        if ([annotation isKindOfClass:[WMMapAnnotation class]] && [annotation.node isEqual:node]) {
-            return annotation;
-        }
-    }
-    return nil;
+    return [annotationHashMap objectForKey:node.id];
 }
 
 #pragma mark - Node List View Protocol
