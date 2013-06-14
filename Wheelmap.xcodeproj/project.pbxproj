@@ -1250,6 +1250,7 @@
 		03F30C541670B80600241466 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
 		03F30C8A1670F36A00241466 /* buttons_btn-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup.png"; sourceTree = "<group>"; };
 		03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup@2x.png"; sourceTree = "<group>"; };
+		03FDC3E9176B107800AF386B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		156A711E169B026200C22988 /* Curl_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_screen.png; sourceTree = "<group>"; };
 		156A711F169B026200C22988 /* Curl_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_screen@2x.png"; sourceTree = "<group>"; };
 		156A7122169B02FF00C22988 /* Curl_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Curl_logo.png; sourceTree = "<group>"; };
@@ -2917,6 +2918,7 @@
 				nb,
 				ru,
 				uk,
+				sv,
 			);
 			mainGroup = 989927401649151300D9003B;
 			productRefGroup = 9899274C1649151300D9003B /* Products */;
@@ -4052,6 +4054,7 @@
 				0383D6EC16D22F72003CBDA4 /* nb */,
 				0383D6ED16D22FFF003CBDA4 /* ru */,
 				0383D6EE16D23016003CBDA4 /* uk */,
+				03FDC3E9176B107800AF386B /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
