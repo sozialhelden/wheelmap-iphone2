@@ -48,7 +48,9 @@
 
 - (void)setIcon:(UIImage*)image withIconName:(NSString*)iconName
 {
-    [self.iconFactory setObject:image forKey:iconName];
+    if (image) {
+        [self.iconFactory setObject:image forKey:iconName];
+    }
 }
 
 @end
