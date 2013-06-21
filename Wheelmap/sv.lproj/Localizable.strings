@@ -110,7 +110,7 @@
 "arts_centre" = "Kulturcenter";
 "artwork" = "Konstverk";
 "atm" = "Bankomat";
-"attraction" = "Attraktion";
+"attraction" = "Sevärdhet";
 "bakery" = "Bageri";
 "bank" = "Bank";
 "bar" = "Bar";
@@ -228,7 +228,7 @@
 "CommentViewLabel" = "Här kan du hitta mer information om rullstolstillgängligheten hos den här platsen";
 "ShareLocationLabel" = "Jag har hittat den här platsen på Wheelmap.org";
 "AskFriendsLabel" = "Vet du om den här platsen är rullstolstillgänglig?";
-"DashboardNearby" = "PLATSER I NÄRHETEN";
+"DashboardNearby" = "PLATSER NÄRA";
 "DashboardMap" = "KARTA";
 "DashboardCategories" = "KATEGORIER";
 "DashboardHelp" = "ENGAGERA DIG";
