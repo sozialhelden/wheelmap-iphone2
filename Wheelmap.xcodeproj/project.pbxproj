@@ -4205,8 +4205,8 @@
 		03BD04A516A052750045D53D /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4223,8 +4223,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "Wheelmap LIVE";
-				PROVISIONING_PROFILE = "22609916-92F5-4602-982A-C24019DA3D65";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "22609916-92F5-4602-982A-C24019DA3D65";
+				PROVISIONING_PROFILE = "0134693C-1D9F-4760-BA62-3D5B40382C7C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0134693C-1D9F-4760-BA62-3D5B40382C7C";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
