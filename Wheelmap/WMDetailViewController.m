@@ -271,7 +271,7 @@
     startY += 16;
     
     // POSTCODE AND CITY
-    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
+    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 22)];
     self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
     self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:13];
     self.postcodeAndCityLabel.backgroundColor = [UIColor clearColor];
@@ -287,32 +287,31 @@
     [view addSubview:compassView];
     
     // WEBSITE
-    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 20)];
+    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 22)];
     self.websiteLabel.textColor = [UIColor darkGrayColor];
-    self.websiteLabel.backgroundColor = [UIColor orangeColor];
-   // self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
+    self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
     self.websiteLabel.editable = NO;
     self.websiteLabel.scrollEnabled = NO;
     self.websiteLabel.font = [UIFont systemFontOfSize:13];
     self.websiteLabel.backgroundColor = [UIColor clearColor];
-    self.websiteLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
+    self.websiteLabel.contentInset = UIEdgeInsetsMake(-5,-4,0,0);
     [view addSubview:self.websiteLabel];
     
      startY += 25;
     
     // PHONE
-    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
+    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 22)];
     self.phoneLabel.textColor = [UIColor darkGrayColor];
     self.phoneLabel.font = [UIFont systemFontOfSize:13];
-   // self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+    self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
     self.phoneLabel.editable = NO;
     self.phoneLabel.scrollEnabled = NO;
     self.phoneLabel.backgroundColor = [UIColor clearColor];
-    self.phoneLabel.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
+    self.phoneLabel.contentInset = UIEdgeInsetsMake(-5,-4,0,0);
     [view addSubview:self.phoneLabel];
     
     // DISTANCE
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-80, startY, 60, 16)];
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-80, startY, 60, 20)];
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.font = [UIFont systemFontOfSize:12];
     self.distanceLabel.backgroundColor = [UIColor clearColor];

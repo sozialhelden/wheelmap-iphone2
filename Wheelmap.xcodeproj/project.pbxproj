@@ -2893,6 +2893,11 @@
 				CLASSPREFIX = WM;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Sozialhelden e.V.";
+				TargetAttributes = {
+					9899274A1649151300D9003B = {
+						DevelopmentTeam = JZ2H644EU7;
+					};
+				};
 			};
 			buildConfigurationList = 989927451649151300D9003B /* Build configuration list for PBXProject "Wheelmap" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4247,8 +4252,8 @@
 		03F23ED316A0160600F6B379 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4265,6 +4270,7 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -4346,7 +4352,8 @@
 		989927881649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrea Gerlach (MHE33YSPTV)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Andrea Gerlach (MHE33YSPTV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrea Gerlach (MHE33YSPTV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4374,8 +4381,8 @@
 		989927891649151300D9003B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4392,7 +4399,7 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8AA63733-DDC1-4344-95D4-ABB486BE100F";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8AA63733-DDC1-4344-95D4-ABB486BE100F";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
