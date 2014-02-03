@@ -360,7 +360,6 @@
 		0327FA4F16BFFB1900BA7DE7 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		0327FA5016BFFB1900BA7DE7 /* credits_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECE16A013B600F6B379 /* credits_credits.png */; };
 		0327FA5116BFFB1900BA7DE7 /* credits_credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECF16A013B600F6B379 /* credits_credits@2x.png */; };
-		0327FA5216BFFB1900BA7DE7 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED316A6FDFA00F9F663 /* WMConfig.plist */; };
 		0327FA5316BFFB1900BA7DE7 /* icons_72-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 031B9C8E16AEC22200AA0317 /* icons_72-72.png */; };
 		0327FA5416BFFB1900BA7DE7 /* icons_144-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 031B9C8F16AEC22200AA0317 /* icons_144-144.png */; };
 		0327FA5516BFFB1900BA7DE7 /* ipad_buttons_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 031B9CAD16AEDEA900AA0317 /* ipad_buttons_credits.png */; };
@@ -385,7 +384,6 @@
 		0327FA7016BFFC3100BA7DE7 /* LIVE_icons_72-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0327FA6F16BFFC3100BA7DE7 /* LIVE_icons_72-72.png */; };
 		0327FA7216BFFC3600BA7DE7 /* LIVE_icons_57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 0327FA7116BFFC3600BA7DE7 /* LIVE_icons_57-57.png */; };
 		0327FA7416BFFC3900BA7DE7 /* LIVE_icons_114-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 0327FA7316BFFC3800BA7DE7 /* LIVE_icons_114-144.png */; };
-		0344B43016B69B39009DEE53 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED516A6FDFA00F9F663 /* WMConfig.plist */; };
 		034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */; };
 		034D38DE167738C10071EC05 /* Curl_btn-left-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CE167738C10071EC05 /* Curl_btn-left-active.png */; };
 		034D38DF167738C10071EC05 /* Curl_btn-left-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38CF167738C10071EC05 /* Curl_btn-left-active@2x.png */; };
@@ -403,7 +401,6 @@
 		034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
 		034FACB616A59A4100F9F663 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB516A59A4100F9F663 /* WMTermsViewController.m */; };
 		034FACBA16A59BEF00F9F663 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */; };
-		034FAED816A6FE0000F9F663 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 034FAED316A6FDFA00F9F663 /* WMConfig.plist */; };
 		0351F10816D37C9B00031522 /* checkbox_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10416D37C9B00031522 /* checkbox_active.png */; };
 		0351F10916D37C9B00031522 /* checkbox_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10416D37C9B00031522 /* checkbox_active.png */; };
 		0351F10A16D37C9B00031522 /* checkbox_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351F10416D37C9B00031522 /* checkbox_active.png */; };
@@ -1118,8 +1115,6 @@
 		034FACB816A59A4A00F9F663 /* WMTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTermsViewController.h; sourceTree = "<group>"; };
 		034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAcceptTermsViewController.m; sourceTree = "<group>"; };
 		034FACBB16A59BF700F9F663 /* WMAcceptTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAcceptTermsViewController.h; sourceTree = "<group>"; };
-		034FAED316A6FDFA00F9F663 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
-		034FAED516A6FDFA00F9F663 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		0351F10416D37C9B00031522 /* checkbox_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_active.png; sourceTree = "<group>"; };
 		0351F10516D37C9B00031522 /* checkbox_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_active@2x.png"; sourceTree = "<group>"; };
 		0351F10616D37C9B00031522 /* checkbox_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_inactive.png; sourceTree = "<group>"; };
@@ -1788,7 +1783,6 @@
 		034FAED216A6FDFA00F9F663 /* live */ = {
 			isa = PBXGroup;
 			children = (
-				034FAED316A6FDFA00F9F663 /* WMConfig.plist */,
 				03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */,
 			);
 			path = live;
@@ -1797,7 +1791,6 @@
 		034FAED416A6FDFA00F9F663 /* staging */ = {
 			isa = PBXGroup;
 			children = (
-				034FAED516A6FDFA00F9F663 /* WMConfig.plist */,
 				03C74DBF16C500A000C77FEF /* WMOpenConfig.plist */,
 			);
 			path = staging;
@@ -3141,7 +3134,6 @@
 				0327FA4F16BFFB1900BA7DE7 /* AirshipConfig.plist in Resources */,
 				0327FA5016BFFB1900BA7DE7 /* credits_credits.png in Resources */,
 				0327FA5116BFFB1900BA7DE7 /* credits_credits@2x.png in Resources */,
-				0327FA5216BFFB1900BA7DE7 /* WMConfig.plist in Resources */,
 				0327FA5316BFFB1900BA7DE7 /* icons_72-72.png in Resources */,
 				0327FA5416BFFB1900BA7DE7 /* icons_144-144.png in Resources */,
 				0327FA5516BFFB1900BA7DE7 /* ipad_buttons_credits.png in Resources */,
@@ -3383,7 +3375,6 @@
 				03BD049F16A052750045D53D /* AirshipConfig.plist in Resources */,
 				03BD04A016A052750045D53D /* credits_credits.png in Resources */,
 				03BD04A116A052750045D53D /* credits_credits@2x.png in Resources */,
-				034FAED816A6FE0000F9F663 /* WMConfig.plist in Resources */,
 				031B9C9116AEC22200AA0317 /* icons_72-72.png in Resources */,
 				031B9C9316AEC22200AA0317 /* icons_144-144.png in Resources */,
 				031B9CB416AEDEA900AA0317 /* ipad_buttons_credits.png in Resources */,
@@ -3633,7 +3624,6 @@
 				031B9CC416AFF90C00AA0317 /* Default-Portrait@2x~ipad.png in Resources */,
 				031B9CC516AFF91400AA0317 /* Default-Landscape~ipad.png in Resources */,
 				031B9CC716AFF91900AA0317 /* Default-Landscape@2x~ipad.png in Resources */,
-				0344B43016B69B39009DEE53 /* WMConfig.plist in Resources */,
 				03CE604616B7DFAC00DDCB00 /* ipad_buttons_icon-search-active.png in Resources */,
 				03CE604816B7DFAC00DDCB00 /* ipad_buttons_icon-search-active@2x.png in Resources */,
 				03CE604C16B7DFBD00DDCB00 /* ipad_buttons_icon-search.png in Resources */,
@@ -4275,6 +4265,7 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4355,8 +4346,8 @@
 		989927881649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrea Gerlach (MHE33YSPTV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrea Gerlach (MHE33YSPTV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/3rd-party-sdks\"",
@@ -4373,8 +4364,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

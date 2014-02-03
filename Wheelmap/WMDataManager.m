@@ -760,6 +760,7 @@
 - (void) didReceiveNodes:(NSArray *)nodes fromQuery:(NSString*)query
 {
     if (WMLogDataManager) NSLog(@"received %i nodes", [nodes count]);
+    NSLog(@"XXXX - (void) didReceiveNodes:(NSArray*)photos forNode:(Node*)node");
     
     [self parseDataObjectInBackground:nodes
                entityName:@"Node"
@@ -1109,7 +1110,8 @@ static BOOL assetSyncInProgress = NO;
                                                 if (WMLogDataManager>1) NSLog(@"... received %i categories, %@", [categories count], eTagChanged?@"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged && categories) {
-                                                    
+                                                    NSLog(@"XXXX - syncRessources");
+                                                 
                                                     [self parseDataObjectInBackground:categories
                                                                            entityName:@"Category"
                                                                           postProcess:nil
@@ -1410,7 +1412,8 @@ static BOOL assetSyncInProgress = NO;
 }
 
 - (void) didReceivePhotos:(NSArray*)photos forNode:(Node*)node
-{    
+{
+    
     [self parseDataObjectInBackground:photos
                entityName:@"Photo"
               postProcess:nil

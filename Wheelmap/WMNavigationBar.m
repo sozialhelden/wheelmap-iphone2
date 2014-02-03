@@ -197,12 +197,13 @@
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50.0f, self.bounds.origin.y, 320.0f - 50.0f, self.bounds.size.height)];
         } else {
-            searchBarContainer = [[UIImageView alloc] initWithFrame:self.bounds];
+            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y-20, self.bounds.size.width, self.bounds.size.height)];
         }
         searchBarContainer.userInteractionEnabled = YES;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             searchBarContainer.image = [UIImage imageNamed:@"navigationbar_background.png"];
         } else {
+            
             searchBarContainer.image = [UIImage imageNamed:@"search_background.png"];
         }
         searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
@@ -500,7 +501,7 @@
                             options:UIViewAnimationCurveEaseOut
                          animations:^(void)
          {
-             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
+             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height-20);
              titleLabel.alpha = 1.0;
          }
                          completion:^(BOOL finished)
@@ -517,7 +518,7 @@
                             options:UIViewAnimationCurveEaseIn
                          animations:^(void)
          {
-             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, 0);
+             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, 20);
              titleLabel.alpha = 0.2;
          }
                          completion:^(BOOL finished)

@@ -230,7 +230,6 @@
     [view addSubview:self.wheelAccessButton];
 
     if ([self.node.wheelchair isEqualToString:@"unknown"]) {
-        NSLog(@"XXXXXXXX adding askfriendsbutton");
         self.gabIfStatusUnknown = GABIFSTATUSUNKNOWN;
         
         self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -288,9 +287,10 @@
     [view addSubview:compassView];
     
     // WEBSITE
-    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
+    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 20)];
     self.websiteLabel.textColor = [UIColor darkGrayColor];
-    self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
+    self.websiteLabel.backgroundColor = [UIColor orangeColor];
+   // self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
     self.websiteLabel.editable = NO;
     self.websiteLabel.scrollEnabled = NO;
     self.websiteLabel.font = [UIFont systemFontOfSize:13];
@@ -304,7 +304,7 @@
     self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
     self.phoneLabel.textColor = [UIColor darkGrayColor];
     self.phoneLabel.font = [UIFont systemFontOfSize:13];
-    self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+   // self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
     self.phoneLabel.editable = NO;
     self.phoneLabel.scrollEnabled = NO;
     self.phoneLabel.backgroundColor = [UIColor clearColor];
@@ -472,7 +472,6 @@
     [self updateDistanceToAnnotation];
     
     self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:self.node.wheelchair]];
-    
     
 }
 
