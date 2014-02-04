@@ -54,7 +54,6 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
     self.tableView.scrollsToTop = YES;
-    
     dataManager = [[WMDataManager alloc] init];
     
     searching = NO;
@@ -76,13 +75,13 @@
     [super viewDidAppear:animated];
     
     [self.navigationController setToolbarHidden:NO animated:YES];
-    
+
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         
         isAccesoryHeaderVisible = YES;
         
-        accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
+        accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width-20, 60)];
         accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
         
@@ -97,7 +96,7 @@
         
         accesoryHeader.alpha = 0.0;
         [self.view addSubview:accesoryHeader];
-        
+      
         [UIView animateWithDuration:0.3 animations:^(void)
          {
              self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.tableView.frame.size.height-80);
@@ -116,7 +115,7 @@
              
          }
          ];
-        
+       
         [(WMNavigationControllerBase*)dataSource updateNodesWithCurrentUserLocation];
         [self loadNodes];
         
@@ -143,6 +142,7 @@
             [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         }
     }
+    
 }
 
 - (void) loadNodes
@@ -152,7 +152,7 @@
         if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
             isAccesoryHeaderVisible = YES;
             
-            accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
+            accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width-20, 60)];
             accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
             accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
             
@@ -167,7 +167,7 @@
             
             accesoryHeader.alpha = 0.0;
             [self.view addSubview:accesoryHeader];
-            
+ 
             [UIView animateWithDuration:0.3 animations:^(void)
              {
                  self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.view.frame.size.height-80);

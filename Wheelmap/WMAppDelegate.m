@@ -74,7 +74,8 @@
         installId = (NSString *)CFBridgingRelease(installIdStringRef);
         [defaults setObject:installId forKey:InstallId];
     }
-    
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
+
     return YES;
 }
 							

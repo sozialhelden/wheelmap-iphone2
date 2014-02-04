@@ -48,13 +48,13 @@
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
-    self.nearbyButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeNearby];
+    self.nearbyButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 150.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeNearby];
     [self.nearbyButton addTarget:self action:@selector(pressedNodeListButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.mapButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeMap];
+    self.mapButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 150.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeMap];
     [self.mapButton addTarget:self action:@selector(pressedMapButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.categoriesButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 273.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeCategories];
+    self.categoriesButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 293.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeCategories];
     [self.categoriesButton addTarget:self action:@selector(pressedCategoriesButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.helpButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 273.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeHelp];
+    self.helpButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 293.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeHelp];
     [self.helpButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
 
     self.searchTextField.delegate = self;
