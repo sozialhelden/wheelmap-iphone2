@@ -16,6 +16,8 @@
 #import "Constants.h"
 #import "WMRegisterViewController.h"
 
+UIView *fakeStatusBar;
+
 @implementation WMLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,6 +37,11 @@
         self.headerView.hidden = YES;
         self.contentScrollView.frame = CGRectMake(self.contentScrollView.frame.origin.x, 0.0f, self.contentScrollView.frame.size.width, self.view.frame.size.height);
     }
+    
+    fakeStatusBar = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, 20)];
+    fakeStatusBar.backgroundColor = [UIColor blackColor];
+    fakeStatusBar.hidden = YES;
+    [self.view addSubview:fakeStatusBar];
     
     self.contentScrollView.scrollsToTop = YES;
     
@@ -56,8 +63,10 @@
                                                  selector:@selector(keyboardWillHide:)
                                                      name:UIKeyboardWillHideNotification
                                                    object:self.view.window];
+    } else {
+        fakeStatusBar.frame = CGRectMake(0, 50, 1024, 20);
     }
-        
+    
     self.titleLabel.text = NSLocalizedString(@"Sign In", nil);
     self.topTextLabel.text = NSLocalizedString(@"Sign In Prompt", nil);
     self.forgotPasswordTextView.text = NSLocalizedString(@"LoginScreenForgotPassword", nil);
@@ -245,6 +254,7 @@
     if(textField == self.usernameTextField){
         [self.passwordTextField becomeFirstResponder];
     } else {
+        
         [textField resignFirstResponder];
         [self loginPressed:self.loginButton];
     }
@@ -289,7 +299,8 @@
     CGRect viewFrame = self.view.frame;
     // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
     viewFrame.origin.y += 50.0f;
-    
+    fakeStatusBar.hidden = YES;
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     // The kKeyboardAnimationDuration I am using is 0.3
@@ -311,7 +322,8 @@
     CGRect viewFrame = self.view.frame;
     // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
     viewFrame.origin.y -= 50.0f;
-    
+    fakeStatusBar.hidden = NO;
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     // The kKeyboardAnimationDuration I am using is 0.3
