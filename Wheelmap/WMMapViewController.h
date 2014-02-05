@@ -24,6 +24,7 @@
 @property (nonatomic) MKCoordinateRegion region;
 @property WMNodeListViewControllerUseCase useCase;
 @property BOOL refreshingForFilter;
+@property (strong, nonatomic) IBOutlet UIButton *mapSettingsButton;
 
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;
 - (void)zoomInForNode:(Node *)node;

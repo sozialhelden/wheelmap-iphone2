@@ -81,14 +81,14 @@
     //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
     
     // configure mapInteractionInfoLabel
-    self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3);
+    self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3-50);
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
     self.mapInteractionInfoLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     self.mapInteractionInfoLabel.layer.borderWidth = 2.0;
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
-    
+    self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     }
@@ -490,7 +490,7 @@
         return;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3);
+        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3-80);
     } completion:^(BOOL finished) {
         self.mapInteractionInfoLabel.tag = 0;
     }];
