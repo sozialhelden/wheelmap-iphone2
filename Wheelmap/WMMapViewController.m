@@ -88,7 +88,7 @@
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
-    self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
+   // self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     }
