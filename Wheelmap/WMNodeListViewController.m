@@ -9,8 +9,8 @@
 #import "WMNodeListViewController.h"
 #import "WMNodeListCell.h"
 #import "Node.h"
-#import "NodeType.h"    
-#import "WMNavigationControllerBase.h" 
+#import "NodeType.h"
+#import "WMNavigationControllerBase.h"
 #import <CoreLocation/CoreLocation.h>
 #import "WMStringUtilities.h"
 #import "WMDataManager.h"
@@ -26,7 +26,7 @@
     BOOL isAccesoryHeaderVisible;
     
     BOOL shouldShowNoResultIndicator;
-
+    
     WMDataManager *dataManager;
     
     BOOL searching;
@@ -57,7 +57,7 @@
     dataManager = [[WMDataManager alloc] init];
     
     searching = NO;
-
+    
     if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
@@ -67,7 +67,6 @@
 {
     [super viewWillAppear:animated];
     shouldShowNoResultIndicator = YES;
-        
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -75,7 +74,7 @@
     [super viewDidAppear:animated];
     
     [self.navigationController setToolbarHidden:NO animated:YES];
-
+    
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         
@@ -96,7 +95,7 @@
         
         accesoryHeader.alpha = 0.0;
         [self.view addSubview:accesoryHeader];
-      
+        
         [UIView animateWithDuration:0.3 animations:^(void)
          {
              self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.tableView.frame.size.height-80);
@@ -115,7 +114,7 @@
              
          }
          ];
-       
+        
         [(WMNavigationControllerBase*)dataSource updateNodesWithCurrentUserLocation];
         [self loadNodes];
         
@@ -128,9 +127,9 @@
         [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonCurrentLocation];
-    } 
+    }
     else {
-    
+        
         NSNumber* lastMapVisibleCenterLat = [((WMNavigationControllerBase *)self.navigationController) lastVisibleMapCenterLat];
         if (!lastMapVisibleCenterLat) {
             // there is no stored bbox. we update nodes from the user location.
@@ -167,7 +166,7 @@
             
             accesoryHeader.alpha = 0.0;
             [self.view addSubview:accesoryHeader];
- 
+            
             [UIView animateWithDuration:0.3 animations:^(void)
              {
                  self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.view.frame.size.height-80);
@@ -352,9 +351,9 @@
     CLLocation* userLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
     CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
     cell.distanceLabel.text = [WMStringUtilities localizedDistanceFromMeters:distance];
-
+    
     return cell;
-}       
+}
 
 - (void) showDetailPopoverForNode:(Node *)node
 {

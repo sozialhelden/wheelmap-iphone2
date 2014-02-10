@@ -27,7 +27,7 @@
     NSString *hockeyID = config[@"hockey_id"];
     
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:hockeyID
-                                                               delegate:self];
+                                                           delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
     
     //Init Airship launch options
@@ -74,11 +74,22 @@
         installId = (NSString *)CFBridgingRelease(installIdStringRef);
         [defaults setObject:installId forKey:InstallId];
     }
-    [application setStatusBarStyle:UIStatusBarStyleLightContent];
-
+    
+    /*// ------------- cutomization of navigation bar -------------
+     
+     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+     [[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
+     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+     
+     // ------------ cutomization of status bar ------------*/
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    //    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -87,7 +98,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 

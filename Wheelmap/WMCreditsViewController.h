@@ -10,6 +10,8 @@
 
 @interface WMCreditsViewController : WMViewController
 
+@property (nonatomic,strong) IBOutlet UIView* containerView;
+
 @property (nonatomic, strong) IBOutlet WMButton *doneButton;
 @property (nonatomic, strong) IBOutlet WMLabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UIScrollView *scroller;

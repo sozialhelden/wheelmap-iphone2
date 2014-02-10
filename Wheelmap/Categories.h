@@ -10,6 +10,7 @@
 #define Wheelmap_Categories_h
 
 #import "UIView+Geometry.h"
+#import "UIColor+WMColor.h"
 #import "UIToolbar+CustomSize.h"
 #import "UINavigationBar+CustomSize.h"
 #endif

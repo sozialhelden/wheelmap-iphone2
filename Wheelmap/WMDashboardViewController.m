@@ -23,15 +23,6 @@
 
 @implementation WMDashboardViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,31 +34,31 @@
     [self.navigationController setToolbarHidden:YES animated:NO];
     
     self.navigationController.hidesBottomBarWhenPushed = YES;
-    self.view.backgroundColor = [UIColor colorWithRed:39/255.0f green:54/255.0f blue:69/255.0f alpha:1.0f];
+    self.containerView.backgroundColor = [UIColor wmBlueColor];
     
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
-    self.nearbyButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 150.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeNearby];
+    self.nearbyButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeNearby];
     [self.nearbyButton addTarget:self action:@selector(pressedNodeListButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.mapButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 150.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeMap];
+    self.mapButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeMap];
     [self.mapButton addTarget:self action:@selector(pressedMapButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.categoriesButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 293.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeCategories];
+    self.categoriesButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 273.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeCategories];
     [self.categoriesButton addTarget:self action:@selector(pressedCategoriesButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.helpButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 293.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeHelp];
+    self.helpButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 273.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeHelp];
     [self.helpButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     self.searchTextField.delegate = self;
     self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchTextFieldBg.image = [self.searchTextFieldBg.image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 50)];
     searchTextFieldOriginalWidth = self.searchTextField.frame.size.width;
     searchTextFieldBgOriginalWidth = self.searchTextFieldBg.frame.size.width;
     
-    [self.view addSubview:self.nearbyButton];
-    [self.view addSubview:self.mapButton];
-    [self.view addSubview:self.categoriesButton];
-    [self.view addSubview:self.helpButton];
-
+    [self.containerView addSubview:self.nearbyButton];
+    [self.containerView addSubview:self.mapButton];
+    [self.containerView addSubview:self.categoriesButton];
+    [self.containerView addSubview:self.helpButton];
+    
     self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
     self.numberOfPlacesLabel.text = @"";
     self.numberOfPlacesLabel.alpha = 0.0;
@@ -94,7 +85,7 @@
     [searchCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
     searchCancelButton.hidden = YES;
     [searchCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:searchCancelButton];
+    [self.containerView addSubview:searchCancelButton];
     
     self.nearbyButton.alpha = 0.0;
     self.mapButton.alpha = 0.0;
@@ -106,7 +97,13 @@
     self.creditsButton.alpha = 0.0;
     self.loginButton.alpha = 0.0;
     
-    isUIObjectsReadyToInteract = NO;
+    //    isUIObjectsReadyToInteract = NO;
+    
+    self.navigationController.navigationBar.translucent = NO;
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     [self showUIObjectsAnimated:YES];
 }
@@ -121,10 +118,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     // this will update screen
     [self networkStatusChanged:nil];
-
+    
     // revert search
     if ([dataManager isInternetConnectionAvailable]) {
         NSLog(@"InternetConnection is available");
@@ -158,7 +155,7 @@
     //[navCtrl clearCategoryFilterStatus];
     [self pressedSearchCancelButton:searchCancelButton];
     [(WMNavigationControllerBase *)self.navigationController pushList];
-
+    
 }
 
 -(IBAction)pressedMapButton:(id)sender
@@ -167,7 +164,7 @@
     //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
     //[navCtrl clearWheelChairFilterStatus];
     //[navCtrl clearCategoryFilterStatus];
-
+    
     [self pressedSearchCancelButton:searchCancelButton];
     [(WMNavigationControllerBase *)self.navigationController setMapControllerToNormal];
     [(WMNavigationControllerBase *)self.navigationController pushMap];
@@ -216,7 +213,7 @@
         vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
     }
     
-    [self presentModalViewController:vc animated:YES];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
     
 }
 
@@ -294,9 +291,9 @@
 #pragma mark - WMDataManager Delegate
 -(void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count
 {
- 
+    
     NSLog(@"Got new node count %@", count);
-
+    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     NSString *formattedCount = [formatter stringFromNumber:count];
@@ -329,7 +326,7 @@
         
         self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", formattedCount, NSLocalizedString(@"Places", nil)];
     }
-
+    
     [UIView animateWithDuration:0.5
                           delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                      animations:^(void)
@@ -341,7 +338,7 @@
          
          
      }];
-
+    
 }
 
 -(void)showUIObjectsAnimated:(BOOL)animated
@@ -396,11 +393,11 @@
             
             [self.loginButton setImage:[UIImage imageNamed:@"start_icon-login.png"] forState:UIControlStateNormal];
             self.loginButton.enabled = NO;
-          
+            
             break;
             
         default:
-
+            
             self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
             self.searchTextField.textColor = [UIColor lightGrayColor];
             self.searchTextField.userInteractionEnabled = YES;
@@ -413,8 +410,8 @@
             } else {
                 [self.loginButton setImage:[UIImage imageNamed:@"start_icon-login.png"] forState:UIControlStateNormal];
             }
-
-           
+            
+            
             break;
     }
 }

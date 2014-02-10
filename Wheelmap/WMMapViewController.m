@@ -496,12 +496,4 @@
     }];
 }
 
-- (void)dealloc {
-    dispatch_release(backgroundQueue);
-}
-
 @end
-
-
-
-

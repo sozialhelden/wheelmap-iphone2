@@ -9,30 +9,32 @@
 #import "WMCreditsViewController.h"
 #import "Constants.h"
 
-@interface WMCreditsViewController ()
-
-@end
-
 @implementation WMCreditsViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.scroller.backgroundColor = [UIColor wmGreyColor];
     
     self.titleLabel.text = NSLocalizedString(@"Credits", nil);
     [self.doneButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
     
-    UIImageView *bmas = [[UIImageView alloc] initWithFrame:CGRectMake(10, 80, 300, 220)];
+    UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(85, 20, 150, 30)];
+    logo.image = [UIImage imageNamed:@"navigationbar_logo.png"];
+    [self.scroller addSubview:logo];
+    
+    UILabel *version = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(logo.frame)+4, CGRectGetWidth(self.scroller.frame), 22)];
+    version.textColor = [UIColor darkGrayColor];
+    version.font = [UIFont systemFontOfSize:14];
+    version.textAlignment = NSTextAlignmentCenter;
+    [self.scroller addSubview:version];
+    
+    version.text = [NSString stringWithFormat:@"iOS App Version: %@ (Build %@)",
+                    [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
+                    [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    
+    UIImageView *bmas = [[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(version.frame)+20, 300, 220)];
     bmas.image = [UIImage imageNamed:@"credits_bmas.png"];
     [self.scroller addSubview:bmas];
     
@@ -53,7 +55,7 @@
     UIFont *font = [UIFont systemFontOfSize:12.0f];
     NSString *titleCardData = @"Kartendaten:";
     CGSize stringsize = [titleCardData sizeWithFont:font];
-
+    
     UILabel *cardDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, creditsTitleLabel.leftBottomY+10, stringsize.width, stringsize.height)];
     [cardDataLabel setBackgroundColor:[UIColor clearColor]];
     cardDataLabel.textAlignment = UITextAlignmentLeft;
@@ -110,12 +112,6 @@
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(donePressed:)];
     [self.view addGestureRecognizer:tapGR];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)osmButtonPressed {

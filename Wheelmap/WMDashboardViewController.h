@@ -24,6 +24,8 @@
     BOOL isUIObjectsReadyToInteract;
 }
 
+@property (nonatomic, strong) IBOutlet UIView* containerView;
+
 @property (nonatomic, strong) IBOutlet UIImageView *searchTextFieldBg;
 @property (nonatomic, strong) IBOutlet UITextField *searchTextField;
 @property (nonatomic, strong) IBOutlet UILabel *numberOfPlacesLabel;
