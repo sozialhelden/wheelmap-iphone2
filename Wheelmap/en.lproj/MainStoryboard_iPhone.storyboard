@@ -160,8 +160,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EaE-TR-3Jc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EaE-TR-3Jc">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -171,6 +171,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EaE-TR-3Jc" firstAttribute="leading" secondItem="Ou6-wK-7ag" secondAttribute="leading" id="RkH-D4-x6z"/>
+                            <constraint firstItem="yjZ-wK-X3Y" firstAttribute="top" secondItem="EaE-TR-3Jc" secondAttribute="bottom" id="chZ-kf-PvF"/>
+                            <constraint firstAttribute="trailing" secondItem="EaE-TR-3Jc" secondAttribute="trailing" id="dQn-2c-07d"/>
+                            <constraint firstItem="EaE-TR-3Jc" firstAttribute="top" secondItem="DIb-TV-C30" secondAttribute="bottom" id="e7b-dU-vy4"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="EaE-TR-3Jc" id="hn2-ds-lYu"/>
