@@ -173,13 +173,16 @@
     [self.toolbar addSubview:self.customToolBar];
     
     // set filter popovers.
-    wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
+    wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:
+                               CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170,
+                                           self.toolbar.frame.origin.y-76)];
     wheelChairFilterPopover.hidden = YES;
     wheelChairFilterPopover.delegate = self;
     [wheelChairFilterPopover updateFilterButtons];
     [self.view addSubview:wheelChairFilterPopover];
     
-    categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+    categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:
+                             CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y-12) andCategories:dataManager.categories];
     categoryFilterPopover.delegate = self;
     categoryFilterPopover.hidden = YES;
     [self.view addSubview:categoryFilterPopover];
@@ -191,7 +194,6 @@
         
         self.customNavigationBar.title = NSLocalizedString(@"PlacesNearby", nil);
     }
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -237,7 +239,7 @@
 
 - (void)setMapControllerToContribute {
     self.mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
-
+    
 }
 
 - (void)setMapControllerToNormal {
@@ -316,18 +318,18 @@
 
 - (void)addTemporaryNode:(Node *)node {
     
-//    if (node.wheelchair == nil) {
-//        node.wheelchair = @"unknown";
-//    }
-//    
-//    NSMutableArray *mutableNodes = [NSMutableArray arrayWithArray:nodes];
-//    [mutableNodes addObject:node];
-//    nodes = [NSArray arrayWithArray:mutableNodes];
-//    
-//    NSLog(@"Number of nodes = %d", nodes.count);
-//    
-//    [self refreshNodeListFromCreateNode];
-
+    //    if (node.wheelchair == nil) {
+    //        node.wheelchair = @"unknown";
+    //    }
+    //
+    //    NSMutableArray *mutableNodes = [NSMutableArray arrayWithArray:nodes];
+    //    [mutableNodes addObject:node];
+    //    nodes = [NSArray arrayWithArray:mutableNodes];
+    //
+    //    NSLog(@"Number of nodes = %d", nodes.count);
+    //
+    //    [self refreshNodeListFromCreateNode];
+    
 }
 
 #pragma mark - Data Manager Delegate
@@ -489,7 +491,7 @@
 - (NSArray*) filteredNodeList
 {
     NSLog(@"OLD NODE LIST = %d", nodes.count);
-
+    
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
     //    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
@@ -505,11 +507,11 @@
                 [newNodeList addObject:node];
             }
         } else {
-//            NSLog(@"Filtered out Node %@ %@ %@ %@", node.name, node.id, wheelChairStatus, categoryID);
+            //            NSLog(@"Filtered out Node %@ %@ %@ %@", node.name, node.id, wheelChairStatus, categoryID);
         }
     }
     
-    // this prevents array containing multiple entries of the same node    
+    // this prevents array containing multiple entries of the same node
     NSLog(@"NEW NODE LIST = %d", newNodeList.count);
     
     return newNodeList;
@@ -518,7 +520,7 @@
 //-(void)updateNodesNear:(CLLocationCoordinate2D)coord
 //{
 //    NSLog(@"UPDATE NODES NEAR");
-//    
+//
 //    nodes = [dataManager fetchNodesNear:coord];
 //    [self refreshNodeList];
 //}
@@ -526,7 +528,7 @@
 //-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
 //{
 //    NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
-//    
+//
 //    nodes = [dataManager fetchNodesNear:coord];
 //    [self refreshNodeList];
 //}
@@ -563,7 +565,7 @@
 {
     
     lastQuery = query;
-
+    
     NSLog(@"UPDATE WITH QUERY AND REGION");
     
     CLLocationCoordinate2D southWest;
@@ -577,7 +579,7 @@
 
 -(void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region
 {
-        
+    
     NSLog(@"UPDATE WITH LAST QUERY AND REGION");
     
     CLLocationCoordinate2D southWest;
@@ -692,17 +694,17 @@
     
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-            [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];   // this will automatically update node list!
+        [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];   // this will automatically update node list!
     } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
         WMNodeListViewController *currentVC = (WMNodeListViewController*)self.topViewController;
         if (currentVC.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMNodeListViewControllerUseCaseGlobalSearch)) {
             [self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
         } else {
-//            [self updateNodesNear:newLocation.coordinate];
+            //            [self updateNodesNear:newLocation.coordinate];
             [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
         }
     } else {
-//        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
+        //        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
         [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
     }
     

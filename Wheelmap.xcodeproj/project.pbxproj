@@ -770,6 +770,12 @@
 		34C08EA018A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA118A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
+		34F5A9CE18AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
+		34F5A9CF18AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
+		34F5A9D018AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
+		34F5A9D218AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
+		34F5A9D318AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
+		34F5A9D418AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -1258,6 +1264,8 @@
 		15F31E6A16A6D389006EDBC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		34C08E9E18A8ECAC00DAF430 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
 		34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
+		34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		34F5A9D118AA3E560001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -1732,6 +1740,7 @@
 		034FAED216A6FDFA00F9F663 /* live */ = {
 			isa = PBXGroup;
 			children = (
+				34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */,
 				03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */,
 			);
 			path = live;
@@ -1740,6 +1749,7 @@
 		034FAED416A6FDFA00F9F663 /* staging */ = {
 			isa = PBXGroup;
 			children = (
+				34F5A9D118AA3E560001B79E /* WMConfig.plist */,
 				03C74DBF16C500A000C77FEF /* WMOpenConfig.plist */,
 			);
 			path = staging;
@@ -2911,6 +2921,7 @@
 				0327F9AC16BFFB1900BA7DE7 /* toolbar_icon-search.png in Resources */,
 				0327F9AD16BFFB1900BA7DE7 /* toolbar_icon-search@2x.png in Resources */,
 				0327F9AE16BFFB1900BA7DE7 /* toolbar_indicator-green.png in Resources */,
+				34F5A9D318AA3E560001B79E /* WMConfig.plist in Resources */,
 				0327F9AF16BFFB1900BA7DE7 /* toolbar_indicator-green@2x.png in Resources */,
 				0327F9B016BFFB1900BA7DE7 /* toolbar_indicator-grey.png in Resources */,
 				0327F9B116BFFB1900BA7DE7 /* toolbar_indicator-grey@2x.png in Resources */,
@@ -3087,6 +3098,7 @@
 				03C74DB016C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB316C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DBE16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
+				34F5A9CF18AA3E4F0001B79E /* WMConfig.plist in Resources */,
 				0351F10A16D37C9B00031522 /* checkbox_active.png in Resources */,
 				0351F10D16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
 				0351F11016D37C9B00031522 /* checkbox_inactive.png in Resources */,
@@ -3138,6 +3150,7 @@
 				03BD03F916A052750045D53D /* toolbar_icon-search.png in Resources */,
 				03BD03FA16A052750045D53D /* toolbar_icon-search@2x.png in Resources */,
 				03BD03FB16A052750045D53D /* toolbar_indicator-green.png in Resources */,
+				34F5A9D418AA3E560001B79E /* WMConfig.plist in Resources */,
 				03BD03FC16A052750045D53D /* toolbar_indicator-green@2x.png in Resources */,
 				03BD03FD16A052750045D53D /* toolbar_indicator-grey.png in Resources */,
 				03BD03FE16A052750045D53D /* toolbar_indicator-grey@2x.png in Resources */,
@@ -3314,6 +3327,7 @@
 				03C74DAF16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB216C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DBD16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
+				34F5A9D018AA3E4F0001B79E /* WMConfig.plist in Resources */,
 				0351F10916D37C9B00031522 /* checkbox_active.png in Resources */,
 				0351F10C16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
 				0351F10F16D37C9B00031522 /* checkbox_inactive.png in Resources */,
@@ -3365,6 +3379,7 @@
 				DBA622231668F380009FA5DF /* toolbar_icon-search.png in Resources */,
 				DBA622241668F380009FA5DF /* toolbar_icon-search@2x.png in Resources */,
 				DBA622251668F380009FA5DF /* toolbar_indicator-green.png in Resources */,
+				34F5A9D218AA3E560001B79E /* WMConfig.plist in Resources */,
 				DBA622261668F380009FA5DF /* toolbar_indicator-green@2x.png in Resources */,
 				DBA622271668F380009FA5DF /* toolbar_indicator-grey.png in Resources */,
 				DBA622281668F380009FA5DF /* toolbar_indicator-grey@2x.png in Resources */,
@@ -3541,6 +3556,7 @@
 				03C74DAE16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB116C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DC016C500A000C77FEF /* WMOpenConfig.plist in Resources */,
+				34F5A9CE18AA3E4F0001B79E /* WMConfig.plist in Resources */,
 				0351F10816D37C9B00031522 /* checkbox_active.png in Resources */,
 				0351F10B16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
 				0351F10E16D37C9B00031522 /* checkbox_inactive.png in Resources */,
