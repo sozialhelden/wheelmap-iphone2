@@ -36,6 +36,9 @@
     dispatch_queue_t backgroundQueue;
     
     BOOL loadingNodes;
+    
+    float invisibleMapInteractionInfoLabelConstraint;
+    float visibleMapInteractionInfoLabelConstraint;
 }
 
 @synthesize dataSource, delegate;
@@ -48,27 +51,18 @@
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.baseController;
     
     if (navCtrl.lastVisibleMapCenterLat == nil) {
-
+        
         lat = [navCtrl currentUserLocation].coordinate.latitude;
         lon = [navCtrl currentUserLocation].coordinate.longitude;
-
+        
     } else {
         lat = [navCtrl.lastVisibleMapCenterLat doubleValue];
         lon = [navCtrl.lastVisibleMapCenterLng doubleValue];
     }
     NSLog(@"Get region center = %f %f", lat, lon);
-
+    
     
     return MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, lon) , MKCoordinateSpanMake(DEFAULT_SEARCH_SPAN_LAT, DEFAULT_SEARCH_SPAN_LONG));
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -81,21 +75,30 @@
     //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
     
     // configure mapInteractionInfoLabel
-    self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3-50);
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
     self.mapInteractionInfoLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     self.mapInteractionInfoLabel.layer.borderWidth = 2.0;
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
-   // self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
+    // self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     }
     
     self.loadingContainer.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-
+    
     dataManager = [[WMDataManager alloc] init];
+    
+    [super viewDidLayoutSubviews];
+    
+    // set the visible/invisible constraint values
+    visibleMapInteractionInfoLabelConstraint = self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant;
+    invisibleMapInteractionInfoLabelConstraint = -CGRectGetHeight(self.mapInteractionInfoLabel.frame);
+    
+    // initially hide the map interaction info label
+    self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
+    [self.view layoutIfNeeded];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -112,7 +115,6 @@
     
     self.loadingLabel.hidden = YES;
     self.loadingWheel.hidden = YES;
-    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -176,7 +178,7 @@
     if (loadingNodes) {
         return;
     }
-        
+    
     loadingNodes = YES;
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
@@ -365,10 +367,10 @@
     }
     
     NSLog(@"Current Use Case %d", self.useCase);
-//    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
-//        // do nothing
-//        return;
-//    }
+    //    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+    //        // do nothing
+    //        return;
+    //    }
     
     if (mapView.region.span.latitudeDelta > MIN_SPAN_DELTA || mapView.region.span.longitudeDelta > MIN_SPAN_DELTA) {
         NSLog(@"Map is not enough zoomed in to show POIs.");
@@ -474,14 +476,13 @@
     }
     
     self.mapInteractionInfoLabel.text = text;
+    self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = visibleMapInteractionInfoLabelConstraint;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, 0);
+        [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         self.mapInteractionInfoLabel.tag = 1;
     }];
-    
-    
-    
 }
 
 -(void)slideOutMapInteractionAdvisor
@@ -489,8 +490,10 @@
     if (self.mapInteractionInfoLabel.tag == 0)  // indicator is already invisible
         return;
     
+    self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        self.mapInteractionInfoLabel.transform = CGAffineTransformMakeTranslation(0, -self.mapInteractionInfoLabel.frame.size.height*3-80);
+        [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         self.mapInteractionInfoLabel.tag = 0;
     }];

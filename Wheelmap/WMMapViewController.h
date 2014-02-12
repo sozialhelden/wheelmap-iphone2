@@ -17,21 +17,23 @@
     WMDataManager *dataManager;
 }
 @property (nonatomic) IBOutlet MKMapView *mapView;
+
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
 @property (nonatomic) IBOutlet WMLabel* loadingLabel;
 @property (nonatomic) IBOutlet UIView* loadingContainer;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *mapInteractionInfoLabelTopVerticalSpaceConstraint;
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
+
 @property (nonatomic) MKCoordinateRegion region;
 @property WMNodeListViewControllerUseCase useCase;
 @property BOOL refreshingForFilter;
 @property (strong, nonatomic) IBOutlet UIButton *mapSettingsButton;
 
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;
+
 - (void)zoomInForNode:(Node *)node;
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord;
 - (void) relocateMapTo:(CLLocationCoordinate2D)coord andSpan:(MKCoordinateSpan)span;
-
-//- (IBAction) returnToListViewTouched:(id)sender;
-
 
 @end
