@@ -113,8 +113,7 @@
     [self.loadingLabel setText:NSLocalizedString(@"LoadingWheelText", nil)];
     [self.loadingLabel adjustHeightToContent];
     
-    self.loadingLabel.hidden = YES;
-    self.loadingWheel.hidden = YES;
+    [self hideActivityIndicator];
 }
 
 -(void) viewDidAppear:(BOOL)animated
