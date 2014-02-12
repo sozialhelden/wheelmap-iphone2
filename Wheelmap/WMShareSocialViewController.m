@@ -17,15 +17,6 @@
 
 @implementation WMShareSocialViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-       
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -33,7 +24,6 @@
     
     // sharing manager
     sharingManager = [[WMSharingManager alloc] initWithBaseViewController:self];
-    
     
 	// Do any additional setup after loading the view.
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.smsButton.frame.origin.y + self.smsButton.frame.size.height+10);
@@ -44,8 +34,8 @@
     
     [self.closeButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     
+    self.scrollView.backgroundColor = [UIColor wmGreyColor];
     self.titleLabel.text = NSLocalizedString(@"NavBarTitleSharing", nil);
-
 }
 
 - (void) viewWillAppear:(BOOL)animated

@@ -17,15 +17,6 @@
 
 @implementation WMCommentViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,6 +24,8 @@
     
     self.dataManager = [[WMDataManager alloc] init];
     self.dataManager.delegate = self;
+    
+    self.containerView.backgroundColor = [UIColor wmGreyColor];
     
     // progress wheel
     progressWheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -71,7 +64,7 @@
     }
     
     self.currentNode.wheelchair_description = self.commentText.text;
-        
+    
     [self.dataManager updateNode:self.currentNode];
     
     progressWheel.hidden = NO;

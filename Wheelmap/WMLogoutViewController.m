@@ -18,15 +18,6 @@
 
 @implementation WMLogoutViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,10 +28,10 @@
     
     self.titleLabel.text = NSLocalizedString(@"Sign Out", nil);
     self.topTextLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Signed In As", nil), dataManager.currentUserName];
-
+    
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.logoutButton setTitle:NSLocalizedString(@"Sign Out", nil) forState:UIControlStateNormal];
-
+    
     [self.logoutButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
     self.logoutButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [self.logoutButton sizeToFit];

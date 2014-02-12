@@ -12,8 +12,9 @@
 
 @interface WMNodeListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
-
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopVerticalSpaceConstraint;
+
 @property (nonatomic, strong) NSNumber* selectedCategoryID;
 @property (nonatomic) WMNodeListViewControllerUseCase useCase;
 @property (nonatomic, strong) WMPopoverController *popover;

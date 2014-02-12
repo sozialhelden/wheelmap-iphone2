@@ -37,20 +37,14 @@
 
 @synthesize dataSource, delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap.list", NULL);
+    
+    self.view.backgroundColor = [UIColor wmGreyColor];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
     self.tableView.scrollsToTop = YES;
@@ -75,12 +69,27 @@
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
+    self.tableViewTopVerticalSpaceConstraint.constant += 80;
+    [UIView animateWithDuration:0.3 animations:^(void)
+     {
+         [self.view layoutIfNeeded];
+     }
+                     completion:^(BOOL finished)
+     {
+         [UIView animateWithDuration:0.5 animations:^(void)
+          {
+              accesoryHeader.alpha = 1.0;
+          }
+                          completion:nil
+          ];
+     }];
+    
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         
         isAccesoryHeaderVisible = YES;
         
-        accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width-20, 60)];
+        accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
         accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
         
@@ -95,25 +104,6 @@
         
         accesoryHeader.alpha = 0.0;
         [self.view addSubview:accesoryHeader];
-        
-        [UIView animateWithDuration:0.3 animations:^(void)
-         {
-             self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.tableView.frame.size.height-80);
-         }
-                         completion:^(BOOL finished)
-         {
-             [UIView animateWithDuration:0.5 animations:^(void)
-              {
-                  accesoryHeader.alpha = 1.0;
-              }
-                              completion:^(BOOL finished)
-              {
-                  
-              }
-              ];
-             
-         }
-         ];
         
         [(WMNavigationControllerBase*)dataSource updateNodesWithCurrentUserLocation];
         [self loadNodes];

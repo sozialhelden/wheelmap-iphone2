@@ -31,27 +31,18 @@
     BOOL hasCoordinate;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-
-
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.scrollView.scrollsToTop = YES;
     
+    self.scrollView.backgroundColor = [UIColor wmGreyColor];
+    
     self.dataManager = [[WMDataManager alloc] init];
     self.dataManager.useForTemporaryObjects = !self.editView;
     self.dataManager.delegate = self;
-
+    
 	// Do any additional setup after loading the view.
     self.currentCategory = self.node.node_type.category;
     self.currentNodeType = self.node.node_type;
@@ -86,7 +77,7 @@
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
-
+    
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
     self.nodeTypeLabel.text = NSLocalizedString(@"EditPOIViewNodeTypeLabel", @"");
     self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
@@ -124,7 +115,7 @@
     [self styleInputView:self.phoneInputView];
     
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
-
+    
     // progress wheel
     progressWheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     progressWheel.frame = CGRectMake(0, 0, 50, 50);
@@ -267,7 +258,7 @@
 
 
 - (void)accessButtonPressed:(NSString*)wheelchairAccess {
-      self.currentWheelchairStatus = wheelchairAccess;
+    self.currentWheelchairStatus = wheelchairAccess;
     [self setWheelAccessButton];
 }
 
@@ -295,7 +286,7 @@
     self.currentNodeType= nodeType;
     
     NSLog(@"NODE TYPE = %@", self.currentNodeType);
-
+    
     [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
 }
 
@@ -484,7 +475,7 @@
         [self.housenumberTextField becomeFirstResponder];
     } else if (textField == self.housenumberTextField) {
         [self.postcodeTextField becomeFirstResponder];
-
+        
     } else if (textField == self.postcodeTextField) {
         [self.cityTextField becomeFirstResponder];
         
@@ -521,7 +512,7 @@
         self.phoneInputView.frame = CGRectMake(self.phoneInputView.frame.origin.x, self.websiteInputView.frame.origin.y + self.websiteInputView.frame.size.height + 10.0f, self.phoneInputView.frame.size.width, self.phoneInputView.frame.size.height);
         
         [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
-
+        
     }
     
     if([aText isEqualToString:@"\n"]) {
@@ -549,7 +540,7 @@
         
         self.keyboardIsShown = NO;
     }
-        
+    
     [self saveCurrentEntriesToCurrentNode];
 }
 

@@ -182,7 +182,7 @@
     [self.view addSubview:wheelChairFilterPopover];
     
     categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:
-                             CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y-12) andCategories:dataManager.categories];
+                             CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y-11) andCategories:dataManager.categories];
     categoryFilterPopover.delegate = self;
     categoryFilterPopover.hidden = YES;
     [self.view addSubview:categoryFilterPopover];

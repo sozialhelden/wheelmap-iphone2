@@ -75,17 +75,8 @@
         [defaults setObject:installId forKey:InstallId];
     }
     
-    /*// ------------- cutomization of navigation bar -------------
-     
-     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-     [[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
-     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
-     
-     // ------------ cutomization of status bar ------------*/
-    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    //    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }

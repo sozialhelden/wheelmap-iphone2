@@ -33,8 +33,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
-    
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
@@ -42,8 +40,10 @@
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.scrollView.scrollsToTop = YES;
     
+    self.scrollView.backgroundColor = [UIColor wmGreyColor];
+    
     UIImage  *statusYesImage = [UIImage imageNamed:@"details_label-yes.png"];
-
+    
     int startY = 10;
     
     self.yesButton = [WMButton buttonWithType:UIButtonTypeCustom];
@@ -52,10 +52,10 @@
     [self.yesButton addTarget:self action:@selector(accessButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *yesButtonView = [self createButtonViewWithHealine:NSLocalizedString(@"WheelchairAccessYes", @"") image:[UIImage imageNamed:@"details_label-yes.png"] andString:NSLocalizedString(@"WheelchairAccessContentYes", @"")];
-     [self.yesButton setView:yesButtonView forControlState:UIControlStateNormal];
+    [self.yesButton setView:yesButtonView forControlState:UIControlStateNormal];
     self.yesCheckMarkImageView = [self createCheckMarkImageView];
     [self.yesButton addSubview:self.yesCheckMarkImageView];
-  
+    
     
     startY += self.yesButton.frame.size.height+10;
     
@@ -84,7 +84,7 @@
     [self.scrollView addSubview:self.yesButton];
     [self.scrollView addSubview:self.limitedButton];
     [self.scrollView addSubview:self.noButton];
-
+    
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.noButton.frame.origin.y + self.noButton.frame.size.height + 20.0f);
     
     [self.view addSubview:self.scrollView];
@@ -142,7 +142,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     imageView.image = [image stretchableImageWithLeftCapWidth:0 topCapHeight:50];
-
+    
     WMLabel *headlineLabel = [[WMLabel alloc] initWithFrame:CGRectMake(40, 10, 230, 22)];
     [headlineLabel setText:headline];
     //headlineLabel.backgroundColor = [UIColor orangeColor];
@@ -151,8 +151,8 @@
     headlineLabel.textAlignment = UITextAlignmentLeft;
     [imageView addSubview:headlineLabel];
     
-   WMLabel *contentTextField = [[WMLabel alloc] initWithFrame:CGRectMake(10, headlineLabel.frame.origin.y + headlineLabel.frame.size.height + 5, 280, 80)];
-  //  contentTextField.backgroundColor = [UIColor blueColor];
+    WMLabel *contentTextField = [[WMLabel alloc] initWithFrame:CGRectMake(10, headlineLabel.frame.origin.y + headlineLabel.frame.size.height + 5, 280, 80)];
+    //  contentTextField.backgroundColor = [UIColor blueColor];
     contentTextField.font = [UIFont systemFontOfSize:14];
     contentTextField.textColor = [UIColor whiteColor];
     contentTextField.numberOfLines = 0;
@@ -171,11 +171,11 @@
     UIImage *checkMark = [UIImage imageNamed:@"details_label-checked.png"];
     UIImageView *checkMarkView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 8, checkMark.size.width, checkMark.size.height)];
     checkMarkView.image = checkMark;
-
+    
     return checkMarkView;
 }
-                            
-                            
+
+
 /* Set a fixed size for view in popovers */
 
 - (CGSize)contentSizeForViewInPopover
@@ -213,7 +213,7 @@
     [self.delegate accessButtonPressed:self.wheelchairAccess];
     //[self.navigationController popViewControllerAnimated:YES];
     [dataManager updateWheelchairStatusOfNode:self.node];
-
+    
     [progressWheel startAnimating];
     progressWheel.hidden = NO;
 }

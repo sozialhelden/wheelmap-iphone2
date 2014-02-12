@@ -14,12 +14,12 @@
     UIActivityIndicatorView* progressWheel;
 }
 
-@property (weak, nonatomic) IBOutlet UITextView *commentText;
-
 @property (nonatomic, strong) WMDataManager *dataManager;
-
 @property (strong, nonatomic) Node *currentNode;
+
+@property (nonatomic,strong) IBOutlet UIView* containerView;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UITextView *commentText;
 
 - (void) saveEditedData;
 

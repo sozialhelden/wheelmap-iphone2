@@ -15,6 +15,8 @@
 @property (nonatomic, weak) IBOutlet UILabel* titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel* topTextLabel;
 
+@property(nonatomic,strong)IBOutlet UIView* containerView;
+
 -(IBAction)pressedLogoutButton:(id)sender;
 -(IBAction)pressedCancelButton:(id)sender;
 
