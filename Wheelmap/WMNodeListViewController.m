@@ -69,21 +69,6 @@
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
-    self.tableViewTopVerticalSpaceConstraint.constant += 80;
-    [UIView animateWithDuration:0.3 animations:^(void)
-     {
-         [self.view layoutIfNeeded];
-     }
-                     completion:^(BOOL finished)
-     {
-         [UIView animateWithDuration:0.5 animations:^(void)
-          {
-              accesoryHeader.alpha = 1.0;
-          }
-                          completion:nil
-          ];
-     }];
-    
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         
@@ -104,6 +89,21 @@
         
         accesoryHeader.alpha = 0.0;
         [self.view addSubview:accesoryHeader];
+        
+        self.tableViewTopVerticalSpaceConstraint.constant += 80;
+        [UIView animateWithDuration:0.3 animations:^(void)
+         {
+             [self.view layoutIfNeeded];
+         }
+                         completion:^(BOOL finished)
+         {
+             [UIView animateWithDuration:0.5 animations:^(void)
+              {
+                  accesoryHeader.alpha = 1.0;
+              }
+                              completion:nil
+              ];
+         }];
         
         [(WMNavigationControllerBase*)dataSource updateNodesWithCurrentUserLocation];
         [self loadNodes];
@@ -399,10 +399,4 @@
     [self.delegate nodeListView:self didSelectDetailsForNode:nodes[indexPath.row]];
 }
 
-
 @end
-
-
-
-
-

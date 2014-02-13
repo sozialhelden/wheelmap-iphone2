@@ -866,6 +866,8 @@
         <image name="Social_btn-sms.png" width="290" height="50"/>
         <image name="Social_btn-twitter.png" width="290" height="50"/>
         <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
         <image name="navigationbar_background.png" width="1" height="50"/>
         <image name="textfield_-share.png" width="290" height="120"/>
     </resources>
