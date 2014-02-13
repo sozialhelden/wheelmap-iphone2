@@ -770,12 +770,10 @@
 		34C08EA018A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA118A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
-		34F5A9CE18AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
-		34F5A9CF18AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
+		34CECF2A18AD0B6200622D4D /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
 		34F5A9D018AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
 		34F5A9D218AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
 		34F5A9D318AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
-		34F5A9D418AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -2881,6 +2879,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CECF2A18AD0B6200622D4D /* WMConfig.plist in Resources */,
 				0327F98716BFFB1900BA7DE7 /* InfoPlist.strings in Resources */,
 				0327F98816BFFB1900BA7DE7 /* MainStoryboard_iPhone.storyboard in Resources */,
 				0327F98916BFFB1900BA7DE7 /* MainStoryboard_iPad.storyboard in Resources */,
@@ -3098,7 +3097,6 @@
 				03C74DB016C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB316C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DBE16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
-				34F5A9CF18AA3E4F0001B79E /* WMConfig.plist in Resources */,
 				0351F10A16D37C9B00031522 /* checkbox_active.png in Resources */,
 				0351F10D16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
 				0351F11016D37C9B00031522 /* checkbox_inactive.png in Resources */,
@@ -3150,7 +3148,6 @@
 				03BD03F916A052750045D53D /* toolbar_icon-search.png in Resources */,
 				03BD03FA16A052750045D53D /* toolbar_icon-search@2x.png in Resources */,
 				03BD03FB16A052750045D53D /* toolbar_indicator-green.png in Resources */,
-				34F5A9D418AA3E560001B79E /* WMConfig.plist in Resources */,
 				03BD03FC16A052750045D53D /* toolbar_indicator-green@2x.png in Resources */,
 				03BD03FD16A052750045D53D /* toolbar_indicator-grey.png in Resources */,
 				03BD03FE16A052750045D53D /* toolbar_indicator-grey@2x.png in Resources */,
@@ -3556,7 +3553,6 @@
 				03C74DAE16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB116C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DC016C500A000C77FEF /* WMOpenConfig.plist in Resources */,
-				34F5A9CE18AA3E4F0001B79E /* WMConfig.plist in Resources */,
 				0351F10816D37C9B00031522 /* checkbox_active.png in Resources */,
 				0351F10B16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
 				0351F10E16D37C9B00031522 /* checkbox_inactive.png in Resources */,

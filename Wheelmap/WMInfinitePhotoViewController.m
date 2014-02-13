@@ -31,14 +31,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.containerView.backgroundColor = [UIColor wmGreyColor];
     
     self.headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
     
     [self.closeButton setTitle:NSLocalizedString(@"Ready", nil) forState:UIControlStateNormal];
     
     self.infiniteGallery = [[InfiniteGallery alloc] initWithFrame:self.galleryView.bounds];
-    self.infiniteGallery.backgroundColor = [UIColor wmBlueColor];
-    
     
     self.infiniteGallery.dataSource = self;
     self.infiniteGallery.delegate = self;

@@ -13,6 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *galleryView;
 @property (nonatomic, strong) NSMutableArray *imageURLArray;
+
+@property (nonatomic,strong) IBOutlet UIView* containerView;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet InfiniteGallery *infiniteGallery;
 @property (strong, nonatomic) IBOutlet UIButton *closeButton;

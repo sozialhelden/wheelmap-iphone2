@@ -313,7 +313,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNP-q7-mdB">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
+                                        <rect key="frame" x="0.0" y="50.000000023745891" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="Jif-Hx-fal"/>
@@ -1666,7 +1666,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
+                                        <rect key="frame" x="0.0" y="50.000000023745891" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6np-MZ-ghI">
@@ -1821,42 +1821,18 @@
     </scenes>
     <resources>
         <image name="Curl_btn-left-active.png" width="100" height="50"/>
-        <image name="Curl_btn-left-active.png" width="100" height="50"/>
         <image name="Curl_btn-left.png" width="100" height="50"/>
         <image name="Curl_btn-mid-active.png" width="100" height="50"/>
-        <image name="Curl_btn-mid-active.png" width="100" height="50"/>
         <image name="Curl_btn-mid.png" width="100" height="50"/>
-        <image name="Curl_btn-right-active.png" width="100" height="50"/>
         <image name="Curl_btn-right-active.png" width="100" height="50"/>
         <image name="Curl_btn-right.png" width="100" height="50"/>
         <image name="Curl_button.png" width="40" height="50"/>
         <image name="Curl_logo.png" width="190" height="30"/>
         <image name="buttons_btn-signup.png" width="290" height="50"/>
         <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
-        <image name="checkbox_active.png" width="14" height="14"/>
         <image name="checkbox_active.png" width="14" height="14"/>
         <image name="checkbox_inactive.png" width="14" height="14"/>
-        <image name="checkbox_inactive.png" width="14" height="14"/>
         <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_background.png" width="1" height="50"/>
-        <image name="navigationbar_logo.png" width="150" height="30"/>
-        <image name="navigationbar_logo.png" width="150" height="30"/>
-        <image name="navigationbar_logo.png" width="150" height="30"/>
         <image name="navigationbar_logo.png" width="150" height="30"/>
         <image name="start_icon-credits.png" width="30" height="30"/>
         <image name="start_icon-login.png" width="30" height="30"/>
