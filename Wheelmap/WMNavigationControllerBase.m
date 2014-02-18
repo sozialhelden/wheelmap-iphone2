@@ -175,7 +175,8 @@
     // set filter popovers.
     wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:
                                CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170,
-                                           self.toolbar.frame.origin.y-76)];
+                                           CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame)*2)];
+    
     wheelChairFilterPopover.hidden = YES;
     wheelChairFilterPopover.delegate = self;
     [wheelChairFilterPopover updateFilterButtons];
