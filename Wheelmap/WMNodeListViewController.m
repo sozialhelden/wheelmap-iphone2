@@ -37,6 +37,14 @@
 
 @synthesize dataSource, delegate;
 
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    
+    if(self = [super initWithCoder:aDecoder]){
+        backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap.list", NULL);
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -50,8 +58,6 @@
             }
         }
     }
-    
-    backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap.list", NULL);
     
     self.view.backgroundColor = [UIColor wmGreyColor];
     
