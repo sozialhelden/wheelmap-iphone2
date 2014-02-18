@@ -172,6 +172,8 @@
     self.customToolBar.delegate = self;
     [self.toolbar addSubview:self.customToolBar];
     
+    NSLog(@"FRAMEEE: %@", NSStringFromCGRect(self.customToolBar.frame));
+    
     // set filter popovers.
     wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:
                                CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170,
@@ -183,7 +185,10 @@
     [self.view addSubview:wheelChairFilterPopover];
     
     categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:
-                             CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y-11) andCategories:dataManager.categories];
+                             CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton,
+                                         CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame))
+                                                                    andCategories:dataManager.categories];
+    
     categoryFilterPopover.delegate = self;
     categoryFilterPopover.hidden = YES;
     [self.view addSubview:categoryFilterPopover];
