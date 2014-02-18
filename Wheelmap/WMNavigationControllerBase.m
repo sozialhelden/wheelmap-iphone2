@@ -644,12 +644,12 @@
 
 -(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
                                                         message:NSLocalizedString(@"No Loc Error Message", @"")
                                                        delegate:nil
                                               cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                               otherButtonTitles:nil];
-	[alertView show];
+    [alertView show];
 }
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -683,7 +683,6 @@
 
 -(void)updateNodesWithCurrentUserLocation
 {
-    
     CLLocation* newLocation = self.locationManager.location;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -742,7 +741,7 @@
 
 - (void)applicationWillResignActive:(NSNotification*)notification
 {
-	
+    
 }
 
 #pragma mark - Push/Pop ViewControllers
@@ -1275,7 +1274,7 @@
 }
 
 -(void)pressedInfoButton:(WMToolBar*)toolBar {
-    WMViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
+    WMCreditsViewController* vc = (WMCreditsViewController*)[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
     
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
@@ -1286,6 +1285,8 @@
         }
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
+    
+    vc.scroller.contentSize = CGSizeMake(320, 1000);
     
     [self presentModalViewController:vc animated:YES];
 }

@@ -190,6 +190,7 @@
         <!--Map View Controller-->
         <scene sceneID="XdE-iv-aNx">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7M-WF-JEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="WMMapViewController" title="Orte in deiner Nähe" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5R3-yI-jjZ" userLabel="Map View Controller" customClass="WMMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EHp-DK-9kr"/>
@@ -292,7 +293,6 @@
                         <outlet property="mapView" destination="xPX-T4-pL4" id="6aE-rE-Gdo"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J7M-WF-JEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="723" y="-666"/>
         </scene>
@@ -1672,34 +1672,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6np-MZ-ghI">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="697"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="xvH-K2-0k6">
-                                                        <rect key="frame" x="83" y="20" width="155" height="31"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="31" id="Nkn-Ao-95J"/>
-                                                            <constraint firstAttribute="width" constant="155" id="kOS-hR-ALR"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="iOS App Version 2.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2P7-eB-jsv">
-                                                        <rect key="frame" x="20" y="52" width="280" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="280" id="8VR-Ih-pCA"/>
-                                                            <constraint firstAttribute="height" constant="21" id="fkF-Cd-cYq"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="2P7-eB-jsv" firstAttribute="top" secondItem="xvH-K2-0k6" secondAttribute="bottom" constant="1" id="Kds-aL-lQc"/>
                                                     <constraint firstAttribute="width" constant="320" id="cAF-Ba-Oe9"/>
-                                                    <constraint firstItem="xvH-K2-0k6" firstAttribute="top" secondItem="6np-MZ-ghI" secondAttribute="top" constant="20" id="hQo-aE-xW6"/>
-                                                    <constraint firstItem="xvH-K2-0k6" firstAttribute="leading" secondItem="6np-MZ-ghI" secondAttribute="leading" constant="83" id="hYI-J3-JUO"/>
                                                     <constraint firstAttribute="height" constant="697" id="nmx-nC-gRN"/>
-                                                    <constraint firstItem="xvH-K2-0k6" firstAttribute="centerX" secondItem="2P7-eB-jsv" secondAttribute="centerX" id="xPp-tM-Dxm"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1718,7 +1693,6 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-Bd-KNY">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxu-V0-xeo" customClass="WMLabel">
@@ -1821,18 +1795,41 @@
     </scenes>
     <resources>
         <image name="Curl_btn-left-active.png" width="100" height="50"/>
+        <image name="Curl_btn-left-active.png" width="100" height="50"/>
         <image name="Curl_btn-left.png" width="100" height="50"/>
         <image name="Curl_btn-mid-active.png" width="100" height="50"/>
+        <image name="Curl_btn-mid-active.png" width="100" height="50"/>
         <image name="Curl_btn-mid.png" width="100" height="50"/>
+        <image name="Curl_btn-right-active.png" width="100" height="50"/>
         <image name="Curl_btn-right-active.png" width="100" height="50"/>
         <image name="Curl_btn-right.png" width="100" height="50"/>
         <image name="Curl_button.png" width="40" height="50"/>
         <image name="Curl_logo.png" width="190" height="30"/>
         <image name="buttons_btn-signup.png" width="290" height="50"/>
         <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="checkbox_active.png" width="14" height="14"/>
         <image name="checkbox_active.png" width="14" height="14"/>
         <image name="checkbox_inactive.png" width="14" height="14"/>
+        <image name="checkbox_inactive.png" width="14" height="14"/>
         <image name="navigationbar_background.png" width="1" height="50"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
+        <image name="navigationbar_logo.png" width="150" height="30"/>
+        <image name="navigationbar_logo.png" width="150" height="30"/>
         <image name="navigationbar_logo.png" width="150" height="30"/>
         <image name="start_icon-credits.png" width="30" height="30"/>
         <image name="start_icon-login.png" width="30" height="30"/>

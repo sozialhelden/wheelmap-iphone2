@@ -26,15 +26,14 @@
 
 @implementation WMMapViewController
 {
+    dispatch_queue_t backgroundQueue;
+    
     NSArray *nodes;
     UIPopoverController *popover;
     
     CLLocationCoordinate2D lastDisplayedMapCenter;
     
     BOOL dontUpdateNodeList;
-    
-    dispatch_queue_t backgroundQueue;
-    
     BOOL loadingNodes;
     
     float invisibleMapInteractionInfoLabelConstraint;
@@ -61,7 +60,6 @@
     }
     NSLog(@"Get region center = %f %f", lat, lon);
     
-    
     return MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, lon) , MKCoordinateSpanMake(DEFAULT_SEARCH_SPAN_LAT, DEFAULT_SEARCH_SPAN_LONG));
 }
 
@@ -74,6 +72,12 @@
     self.mapView.showsUserLocation = YES;
     //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
     
+    //    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeWidth multiplier:1.f constant:0.f];
+    //
+    //    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeHeight multiplier:1.f constant:0.f];
+    //
+    //    [self.view addConstraints:@[widthConstraint,heightConstraint]];
+    
     // configure mapInteractionInfoLabel
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
     self.mapInteractionInfoLabel.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -82,17 +86,17 @@
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
     // self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    }
+    //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    //        self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    //    }
     
-    self.loadingContainer.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    //self.loadingContainer.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     
     dataManager = [[WMDataManager alloc] init];
     
-    [super viewDidLayoutSubviews];
+    //    [super viewDidLayoutSubviews];
     
-    // set the visible/invisible constraint values
+    // set the map interaction info label visible/invisible constraint values
     visibleMapInteractionInfoLabelConstraint = self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant;
     invisibleMapInteractionInfoLabelConstraint = -CGRectGetHeight(self.mapInteractionInfoLabel.frame);
     
@@ -114,11 +118,14 @@
     [self.loadingLabel adjustHeightToContent];
     
     [self hideActivityIndicator];
+    
+    self.mapView.frame = self.view.bounds;
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     // we set the delegate in viewDidAppear to avoid node updates by map initialisation
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
@@ -133,6 +140,7 @@
     
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.dataSource;
     MKCoordinateRegion initRegion;
+    
     if (!navCtrl.lastVisibleMapCenterLat || !navCtrl.lastVisibleMapSpanLat) {
         navCtrl.lastVisibleMapCenterLat = [NSNumber numberWithDouble:self.mapView.region.center.latitude];
         navCtrl.lastVisibleMapCenterLng = [NSNumber numberWithDouble:self.mapView.region.center.longitude];
@@ -145,6 +153,7 @@
         [self mapView:self.mapView regionDidChangeAnimated:NO];
         
     } else {
+        
         initRegion = MKCoordinateRegionMake(
                                             CLLocationCoordinate2DMake([navCtrl.lastVisibleMapCenterLat doubleValue],
                                                                        [navCtrl.lastVisibleMapCenterLng doubleValue]),
@@ -162,7 +171,6 @@
     } else {
         [self loadNodes];
     }
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -173,7 +181,6 @@
 
 - (void) loadNodes
 {
-    
     if (loadingNodes) {
         return;
     }
@@ -198,9 +205,7 @@
     
     dispatch_async(backgroundQueue, ^(void) {
         
-        
         NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:self.mapView.annotations];
-        
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         
         // fix for map sometimes showing old annotations on ipad
@@ -212,6 +217,7 @@
         //    }
         
         [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
+            
             WMMapAnnotation *annotationForNode = [self annotationForNode:node];
             if (annotationForNode) {
                 // this node is already shown on the map
@@ -225,6 +231,7 @@
         }];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [newAnnotations enumerateObjectsUsingBlock:^(WMMapAnnotation *annotation, NSUInteger idx, BOOL *stop) {
                 [self.mapView addAnnotation:annotation];
             }];
@@ -356,6 +363,7 @@
 }
 
 #pragma mark - Map Interactions
+
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     

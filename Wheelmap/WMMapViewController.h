@@ -18,9 +18,9 @@
 }
 @property (nonatomic) IBOutlet MKMapView *mapView;
 
+@property (nonatomic) IBOutlet UIView* loadingContainer;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;
 @property (nonatomic) IBOutlet WMLabel* loadingLabel;
-@property (nonatomic) IBOutlet UIView* loadingContainer;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *mapInteractionInfoLabelTopVerticalSpaceConstraint;
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;

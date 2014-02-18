@@ -42,6 +42,15 @@
 {
     [super viewDidLoad];
     
+    // set the constraint that was not defined although connected in storyboard
+    if(!self.tableViewTopVerticalSpaceConstraint){
+        for(NSLayoutConstraint *c in self.tableView.superview.constraints){
+            if(c.secondAttribute == NSLayoutAttributeTop){
+                self.tableViewTopVerticalSpaceConstraint = c;
+            }
+        }
+    }
+    
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap.list", NULL);
     
     self.view.backgroundColor = [UIColor wmGreyColor];
@@ -138,10 +147,11 @@
 {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
         if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
             isAccesoryHeaderVisible = YES;
             
-            accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width-20, 60)];
+            accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
             accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
             accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
             
@@ -157,32 +167,32 @@
             accesoryHeader.alpha = 0.0;
             [self.view addSubview:accesoryHeader];
             
+            self.tableViewTopVerticalSpaceConstraint.constant += 80;
             [UIView animateWithDuration:0.3 animations:^(void)
              {
-                 self.tableView.frame = CGRectMake(0, 80, self.tableView.frame.size.width, self.view.frame.size.height-80);
+                 [self.view layoutIfNeeded];
              }
                              completion:^(BOOL finished)
              {
                  [UIView animateWithDuration:0.5 animations:^(void)
                   {
+                      NSLog(@"accesoryHeader frame: %@", NSStringFromCGRect(accesoryHeader.frame));
                       accesoryHeader.alpha = 1.0;
                   }
-                                  completion:^(BOOL finished)
-                  {
-                      [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1)  animated:YES];
-                  }
+                                  completion:nil
                   ];
-                 
-             }
-             ];
+             }];
+            
         } else {
+            
             if (self.useCase != kWMNodeListViewControllerUseCaseContribute) {
                 
                 isAccesoryHeaderVisible = NO;
                 
+                self.tableViewTopVerticalSpaceConstraint.constant = 0;
                 [UIView animateWithDuration:0.3 animations:^(void)
                  {
-                     self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.view.frame.size.height);
+                     [self.view layoutIfNeeded];
                  }
                                  completion:^(BOOL finished)
                  {
@@ -190,14 +200,9 @@
                       {
                           accesoryHeader.alpha = 0.0;
                       }
-                                      completion:^(BOOL finished)
-                      {
-                          [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1)  animated:YES];
-                      }
+                                      completion:nil
                       ];
-                     
-                 }
-                 ];
+                 }];
             }
         }
     }

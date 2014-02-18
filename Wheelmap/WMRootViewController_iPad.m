@@ -9,20 +9,12 @@
 #import "WMRootViewController_iPad.h"
 #import "WMDetailViewController.h"
 #import "WMNavigationControllerBase.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation WMRootViewController_iPad
 
 
 @synthesize dataSource, delegate;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -47,7 +39,7 @@
     [self.mapContainerView addSubview:self.mapViewController.view];
     
     self.controllerBase.mapViewController = self.mapViewController;
-//    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
+    //    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
 }
 
 - (void)nodeListDidChange
@@ -96,15 +88,13 @@
 //-(void)updateNodesNear:(CLLocationCoordinate2D)coord
 //{
 //    [(WMNavigationControllerBase*)self.dataSource updateNodesNear:coord];
-//    
+//
 //}
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
     [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:region];
 }
-
-
 
 #pragma mark - Node List Delegate
 
@@ -113,7 +103,7 @@
     if (node == nil) {
         return;
     }
-//    [self.mapViewController showDetailPopoverForNode:node];
+    //    [self.mapViewController showDetailPopoverForNode:node];
     [self.listViewController selectNode:node];
     [self.listViewController showDetailPopoverForNode:node];
 }
@@ -126,16 +116,16 @@
     // highlight node in both views
     [self.listViewController selectNode:node];
     [self.listViewController showDetailPopoverForNode:node];
-//    [self.mapViewController selectNode:node];
+    //    [self.mapViewController selectNode:node];
     [self.mapViewController zoomInForNode:node];
-
+    
 }
 
 
 #pragma mark - Node List Protocol
 
 - (void)selectNode:(Node *)node
-{    
+{
 }
 
 -(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
