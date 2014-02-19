@@ -12,3 +12,5 @@ xcschememanagement.plist
 *.xcuserdatad
 
 WMConfig.plist
+
+deploy.sh
