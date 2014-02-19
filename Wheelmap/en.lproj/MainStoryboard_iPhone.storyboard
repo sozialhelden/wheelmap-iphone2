@@ -190,7 +190,6 @@
         <!--Map View Controller-->
         <scene sceneID="XdE-iv-aNx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J7M-WF-JEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="WMMapViewController" title="Orte in deiner Nähe" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5R3-yI-jjZ" userLabel="Map View Controller" customClass="WMMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EHp-DK-9kr"/>
@@ -293,6 +292,7 @@
                         <outlet property="mapView" destination="xPX-T4-pL4" id="6aE-rE-Gdo"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7M-WF-JEw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="723" y="-666"/>
         </scene>
@@ -313,7 +313,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNP-q7-mdB">
-                                        <rect key="frame" x="0.0" y="50.000000023745891" width="320" height="497"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="Jif-Hx-fal"/>
@@ -1384,7 +1384,6 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="285" translatesAutoresizingMaskIntoConstraints="NO" id="NtI-Jz-XCh" userLabel="First Text Label">
                                         <rect key="frame" x="17" y="71" width="285" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="285" id="dbT-05-BLS"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="ols-nJ-p6d"/>
@@ -1396,7 +1395,6 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="979-JC-NjB" userLabel="Second Text Label">
                                         <rect key="frame" x="18" y="124" width="284" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="284" id="8Ww-gr-Rjc"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="L12-3P-vXG"/>
@@ -1408,7 +1406,6 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="xlM-ip-maF" userLabel="Register Label">
                                         <rect key="frame" x="18" y="157" width="284" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="0x3-Ss-zyZ"/>
                                             <constraint firstAttribute="width" constant="284" id="VFn-jp-Io6"/>
@@ -1420,7 +1417,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hez-3z-5PB" userLabel="Register Button">
                                         <rect key="frame" x="18" y="157" width="284" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1434,9 +1430,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="s5o-mi-fSG" userLabel="Third Text Label">
-                                        <rect key="frame" x="18" y="210" width="284" height="33"/>
+                                        <rect key="frame" x="18" y="195" width="284" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="XQO-jY-w9X"/>
                                             <constraint firstAttribute="width" constant="284" id="Yl1-5I-fHz"/>
@@ -1446,9 +1441,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="0Uj-VQ-NQr" userLabel="Login Label">
-                                        <rect key="frame" x="18" y="243" width="284" height="18"/>
+                                        <rect key="frame" x="18" y="228" width="284" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="284" id="LHG-qe-lue"/>
                                             <constraint firstAttribute="height" constant="18" id="m3n-hr-Jen"/>
@@ -1458,9 +1452,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5x-wp-0uZ" userLabel="Login Button">
-                                        <rect key="frame" x="18" y="243" width="284" height="18"/>
+                                        <rect key="frame" x="18" y="228" width="284" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1474,7 +1467,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1h-I4-lbf" userLabel="OK Button">
-                                        <rect key="frame" x="228" y="290" width="72" height="37"/>
+                                        <rect key="frame" x="228" y="275" width="72" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1511,7 +1504,7 @@
                                     <constraint firstItem="0Uj-VQ-NQr" firstAttribute="top" secondItem="s5o-mi-fSG" secondAttribute="bottom" id="Ozf-P9-B7o"/>
                                     <constraint firstItem="0Uj-VQ-NQr" firstAttribute="height" secondItem="g5x-wp-0uZ" secondAttribute="height" id="XG2-Fy-xdb"/>
                                     <constraint firstItem="960-3g-1mJ" firstAttribute="leading" secondItem="Mzt-6K-LGX" secondAttribute="leading" constant="82" id="ZcF-22-8qW"/>
-                                    <constraint firstItem="s5o-mi-fSG" firstAttribute="top" secondItem="xlM-ip-maF" secondAttribute="bottom" constant="35" id="Zk0-1h-9p4"/>
+                                    <constraint firstItem="s5o-mi-fSG" firstAttribute="top" secondItem="xlM-ip-maF" secondAttribute="bottom" constant="20" id="Zk0-1h-9p4"/>
                                     <constraint firstItem="979-JC-NjB" firstAttribute="centerX" secondItem="NtI-Jz-XCh" secondAttribute="centerX" constant="0.5" id="bww-OK-dr8"/>
                                     <constraint firstItem="979-JC-NjB" firstAttribute="top" secondItem="NtI-Jz-XCh" secondAttribute="bottom" constant="20" id="d9b-CW-BZj"/>
                                     <constraint firstItem="V1h-I4-lbf" firstAttribute="top" secondItem="s5o-mi-fSG" secondAttribute="bottom" constant="47" id="hfI-at-g0H"/>
@@ -1666,7 +1659,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
-                                        <rect key="frame" x="0.0" y="50.000000023745891" width="320" height="497"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6np-MZ-ghI">
