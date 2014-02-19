@@ -50,6 +50,9 @@
 {
     [super viewDidLoad];
     
+    // correct cell separator insets
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+    
     // set the constraint that was not defined although connected in storyboard
     if(!self.tableViewTopVerticalSpaceConstraint){
         for(NSLayoutConstraint *c in self.tableView.superview.constraints){

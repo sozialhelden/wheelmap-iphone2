@@ -27,8 +27,10 @@
     dataManager = [[WMDataManager alloc] init];
     categories = dataManager.categories;
     
-    self.tableView.scrollsToTop = YES;
+    // correct cell separator insets
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     
+    self.tableView.scrollsToTop = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
