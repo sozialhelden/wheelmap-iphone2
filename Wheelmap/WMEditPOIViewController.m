@@ -532,10 +532,13 @@
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         
+        NSDictionary* info = [n userInfo];
+        CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView setAnimationDuration:0.2];
-        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height + 216);
+        self.scrollView.frame = CGRectMake(0, 70, self.scrollView.frame.size.width, self.scrollView.frame.size.height + keyboardSize.height);
         [UIView commitAnimations];
         
         self.keyboardIsShown = NO;
@@ -555,12 +558,15 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView setAnimationDuration:0.2];
-        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height - 216);
+        
+        NSDictionary* info = [n userInfo];
+        CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        self.scrollView.frame = CGRectMake(0, 70, self.scrollView.frame.size.width, self.scrollView.frame.size.height - keyboardSize.height);
         [UIView commitAnimations];
     }
     
     self.keyboardIsShown = YES;
 }
-
 
 @end

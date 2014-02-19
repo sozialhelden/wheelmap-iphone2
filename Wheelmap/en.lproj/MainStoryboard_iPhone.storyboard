@@ -518,7 +518,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="290" id="RIe-ch-XuG"/>
-                                                    <constraint firstAttribute="height" constant="16" id="q2J-ql-P4Y"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="q2J-ql-P4Y"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -550,7 +550,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="49" id="oc5-za-0QV"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="oc5-za-0QV"/>
                                                     <constraint firstAttribute="width" constant="216" id="tNI-32-5S8"/>
                                                 </constraints>
                                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -596,7 +596,7 @@
                                                 <rect key="frame" x="15" y="270" width="290" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="3Uy-fh-LrZ"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="3Uy-fh-LrZ"/>
                                                     <constraint firstAttribute="width" constant="290" id="giW-jK-6ad"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -637,7 +637,7 @@
                                                 <rect key="frame" x="15" y="368" width="290" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="cb0-RN-wua"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="cb0-RN-wua"/>
                                                     <constraint firstAttribute="width" constant="290" id="lcG-VA-LGn"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
