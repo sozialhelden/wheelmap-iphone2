@@ -678,6 +678,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imc-Zs-Irf">
                                         <rect key="frame" x="240" y="6" width="72" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="f0n-jp-sMH"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <state key="normal" title="Fertig" backgroundImage="buttons_btn.png">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -715,10 +718,19 @@
                                         <rect key="frame" x="15" y="20" width="290" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="290" id="7qY-2y-gHE"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="LHz-wM-gFx"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="264" translatesAutoresizingMaskIntoConstraints="NO" id="kMs-Kb-gmg">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="264" translatesAutoresizingMaskIntoConstraints="NO" id="kMs-Kb-gmg">
                                         <rect key="frame" x="28" y="30" width="264" height="91"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="264" id="Izs-fg-m6W"/>
+                                            <constraint firstAttribute="height" constant="91" id="WBO-DM-eqD"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -763,25 +775,24 @@
                                             <action selector="facebookButtonPressed:" destination="y3p-jC-So4" eventType="touchUpInside" id="v8u-99-EK7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8N-oi-wSA">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fht-h4-g43">
                                         <rect key="frame" x="15" y="269" width="290" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="VDY-ZV-jak"/>
-                                            <constraint firstAttribute="width" constant="290" id="eoz-Ii-GAB"/>
+                                            <constraint firstAttribute="width" constant="290" id="a7M-ke-Qxu"/>
+                                            <constraint firstAttribute="height" constant="50" id="eoH-HQ-VXD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="150" maxY="0.0"/>
                                         <state key="normal" title="Email" backgroundImage="Social_btn-email.png">
-                                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="emailButtonPressed:" destination="y3p-jC-So4" eventType="touchUpInside" id="TCo-uD-unI"/>
+                                            <action selector="facebookButtonPressed:" destination="y3p-jC-So4" eventType="touchUpInside" id="k4R-bm-hIc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpS-Xp-fgm">
@@ -807,22 +818,22 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.74224728949999996" green="0.74224728949999996" blue="0.74224728949999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ZpS-Xp-fgm" secondAttribute="bottom" constant="121" id="42o-gp-RDw"/>
-                                    <constraint firstItem="J33-jY-Y1R" firstAttribute="top" secondItem="gdf-lE-K8G" secondAttribute="top" constant="20" symbolic="YES" id="64o-d3-uns"/>
-                                    <constraint firstItem="l8N-oi-wSA" firstAttribute="leading" secondItem="ZpS-Xp-fgm" secondAttribute="leading" id="Dh3-gV-prG"/>
+                                    <constraint firstItem="kMs-Kb-gmg" firstAttribute="bottom" secondItem="J33-jY-Y1R" secondAttribute="bottom" constant="-19" id="4AC-xt-ON4"/>
+                                    <constraint firstItem="kMs-Kb-gmg" firstAttribute="centerY" secondItem="J33-jY-Y1R" secondAttribute="centerY" constant="-4.5" id="9IY-b2-vyv"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZpS-Xp-fgm" secondAttribute="bottom" constant="10" id="I9V-n8-zWE"/>
                                     <constraint firstAttribute="trailing" secondItem="ZpS-Xp-fgm" secondAttribute="trailing" constant="15" id="N1d-La-gew"/>
-                                    <constraint firstItem="ARf-8e-7d8" firstAttribute="top" secondItem="J33-jY-Y1R" secondAttribute="bottom" constant="13" id="RNy-fY-rUG"/>
                                     <constraint firstItem="kMs-Kb-gmg" firstAttribute="top" secondItem="gdf-lE-K8G" secondAttribute="top" constant="30" id="SbV-F5-79A"/>
-                                    <constraint firstItem="J33-jY-Y1R" firstAttribute="centerX" secondItem="kMs-Kb-gmg" secondAttribute="centerX" id="Uwr-rd-QOK"/>
-                                    <constraint firstItem="J33-jY-Y1R" firstAttribute="leading" secondItem="ARf-8e-7d8" secondAttribute="leading" id="fMF-GM-wOY"/>
+                                    <constraint firstItem="ZpS-Xp-fgm" firstAttribute="leading" secondItem="fht-h4-g43" secondAttribute="leading" id="UI5-w9-J96"/>
+                                    <constraint firstItem="kMs-Kb-gmg" firstAttribute="top" secondItem="J33-jY-Y1R" secondAttribute="top" constant="10" id="XmO-hV-ndg"/>
+                                    <constraint firstItem="fht-h4-g43" firstAttribute="leading" secondItem="VhU-hr-EZw" secondAttribute="leading" id="aWw-Pd-5i6"/>
                                     <constraint firstItem="ARf-8e-7d8" firstAttribute="leading" secondItem="gdf-lE-K8G" secondAttribute="leading" constant="15" id="h6E-0b-PvZ"/>
                                     <constraint firstItem="VhU-hr-EZw" firstAttribute="top" secondItem="ARf-8e-7d8" secondAttribute="bottom" constant="8" id="k5t-W7-gBa"/>
                                     <constraint firstItem="kMs-Kb-gmg" firstAttribute="leading" secondItem="gdf-lE-K8G" secondAttribute="leading" constant="28" id="ksK-PS-34F"/>
-                                    <constraint firstItem="ZpS-Xp-fgm" firstAttribute="top" secondItem="l8N-oi-wSA" secondAttribute="bottom" constant="8" id="oKo-VL-2eT"/>
+                                    <constraint firstItem="kMs-Kb-gmg" firstAttribute="centerX" secondItem="J33-jY-Y1R" secondAttribute="centerX" id="luS-WW-vae"/>
+                                    <constraint firstItem="ZpS-Xp-fgm" firstAttribute="top" secondItem="fht-h4-g43" secondAttribute="bottom" constant="8" id="pLA-5b-KaR"/>
                                     <constraint firstItem="ARf-8e-7d8" firstAttribute="leading" secondItem="VhU-hr-EZw" secondAttribute="leading" id="pSV-L0-iOA"/>
                                     <constraint firstItem="ARf-8e-7d8" firstAttribute="top" secondItem="kMs-Kb-gmg" secondAttribute="bottom" constant="32" id="qB0-e4-Fsn"/>
-                                    <constraint firstItem="l8N-oi-wSA" firstAttribute="top" secondItem="VhU-hr-EZw" secondAttribute="bottom" constant="8" id="uRi-E3-cVQ"/>
-                                    <constraint firstItem="l8N-oi-wSA" firstAttribute="leading" secondItem="VhU-hr-EZw" secondAttribute="leading" id="uvu-yA-n0r"/>
+                                    <constraint firstItem="fht-h4-g43" firstAttribute="top" secondItem="VhU-hr-EZw" secondAttribute="bottom" constant="8" id="xNd-CQ-LDX"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -833,13 +844,13 @@
                             <constraint firstItem="aHO-ae-4MF" firstAttribute="leading" secondItem="9pd-5X-vMv" secondAttribute="leading" id="MZc-54-if6"/>
                             <constraint firstItem="gdf-lE-K8G" firstAttribute="leading" secondItem="9pd-5X-vMv" secondAttribute="leading" id="NT9-DZ-4bS"/>
                             <constraint firstItem="DL7-L2-QO7" firstAttribute="top" secondItem="gdf-lE-K8G" secondAttribute="bottom" id="QoI-fj-Ekp"/>
-                            <constraint firstItem="aHO-ae-4MF" firstAttribute="top" secondItem="nqU-9l-pH9" secondAttribute="bottom" id="YN8-Ag-oSz"/>
+                            <constraint firstItem="aHO-ae-4MF" firstAttribute="top" secondItem="nqU-9l-pH9" secondAttribute="bottom" id="dYF-qh-OfI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8PO-cz-BsE"/>
                     <connections>
                         <outlet property="closeButton" destination="Imc-Zs-Irf" id="Xey-lz-w7Z"/>
-                        <outlet property="emailButton" destination="l8N-oi-wSA" id="cZd-CO-QiM"/>
+                        <outlet property="emailButton" destination="fht-h4-g43" id="bco-Ua-4Ir"/>
                         <outlet property="facebookButton" destination="VhU-hr-EZw" id="Y4z-Xt-Gtr"/>
                         <outlet property="scrollView" destination="gdf-lE-K8G" id="Dcr-Ao-Xah"/>
                         <outlet property="shareLocationLabel" destination="kMs-Kb-gmg" id="LYt-oD-YVp"/>

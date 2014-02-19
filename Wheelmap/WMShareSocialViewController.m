@@ -26,7 +26,6 @@
     sharingManager = [[WMSharingManager alloc] initWithBaseViewController:self];
     
 	// Do any additional setup after loading the view.
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.smsButton.frame.origin.y + self.smsButton.frame.size.height+10);
     [self.twitterButton setTitle:NSLocalizedString(@"twitter", @"") forState:UIControlStateNormal];
     [self.facebookButton setTitle:NSLocalizedString(@"facebook", @"") forState:UIControlStateNormal];
     [self.emailButton setTitle:NSLocalizedString(@"email", @"") forState:UIControlStateNormal];
