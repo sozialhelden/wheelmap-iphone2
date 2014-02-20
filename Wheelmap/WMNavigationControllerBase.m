@@ -172,8 +172,6 @@
     self.customToolBar.delegate = self;
     [self.toolbar addSubview:self.customToolBar];
     
-    NSLog(@"FRAMEEE: %@", NSStringFromCGRect(self.customToolBar.frame));
-    
     // set filter popovers.
     wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:
                                CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170,
@@ -1463,26 +1461,31 @@
 #pragma mark - UINavigationController delegate
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([viewController isKindOfClass:[WMNodeListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
-        if (navigationController.toolbarHidden == YES)
-            [navigationController setToolbarHidden:NO animated:YES];
-    } else {
-        if (navigationController.toolbarHidden == NO)
-            [navigationController setToolbarHidden:YES animated:YES];
-    }
     
-    
-    if ([viewController isKindOfClass:[WMDashboardViewController class]]) {
-        if (navigationController.navigationBarHidden == NO) {
-            [navigationController setNavigationBarHidden:YES animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        if ([viewController isKindOfClass:[WMNodeListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
+            if (navigationController.toolbarHidden == YES)
+                [navigationController setToolbarHidden:NO animated:YES];
+        } else {
+            if (navigationController.toolbarHidden == NO)
+                [navigationController setToolbarHidden:YES animated:YES];
         }
-    } else {
-        if (navigationController.navigationBarHidden == YES) {
-            [navigationController setNavigationBarHidden:NO animated:YES];
+        
+        if ([viewController isKindOfClass:[WMDashboardViewController class]]) {
+            if (navigationController.navigationBarHidden == NO) {
+                [navigationController setNavigationBarHidden:YES animated:YES];
+            }
+        } else {
+            if (navigationController.navigationBarHidden == YES) {
+                [navigationController setNavigationBarHidden:NO animated:YES];
+            }
         }
+        
+    }else{
+        
+        [navigationController setToolbarHidden:YES];
     }
-    
-    
 }
 
 #pragma mark - Show Login screen
