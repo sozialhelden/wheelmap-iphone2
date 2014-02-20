@@ -313,7 +313,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNP-q7-mdB">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
+                                        <rect key="frame" x="0.0" y="50.000000023745891" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="Jif-Hx-fal"/>
@@ -1661,22 +1661,6 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
                                         <rect key="frame" x="0.0" y="50" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6np-MZ-ghI">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="697"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="320" id="cAF-Ba-Oe9"/>
-                                                    <constraint firstAttribute="height" constant="697" id="nmx-nC-gRN"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="6np-MZ-ghI" secondAttribute="bottom" constant="-203" id="6nA-sj-w0y"/>
-                                            <constraint firstAttribute="trailing" secondItem="6np-MZ-ghI" secondAttribute="trailing" id="CIl-eI-a6I"/>
-                                            <constraint firstItem="6np-MZ-ghI" firstAttribute="leading" secondItem="pRD-j1-cUC" secondAttribute="leading" id="F9d-4F-ixr"/>
-                                            <constraint firstItem="6np-MZ-ghI" firstAttribute="top" secondItem="pRD-j1-cUC" secondAttribute="top" id="TRd-bG-ioD"/>
-                                        </constraints>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                     </scrollView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsS-Tq-rDM" userLabel="Navigation Bar">

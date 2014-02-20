@@ -1255,18 +1255,20 @@
 }
 
 -(void)pressedLoginButton:(WMToolBar*)toolBar {
+    
     WMViewController* vc;
     if (!dataManager.userIsAuthenticated) {
         vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
     } else {
         vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
     }
+    
     vc.baseController = self;
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).loginButton.frame;
-        
         CGFloat yPosition = 1024.0f - 60.0f;
+        
         if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
             yPosition = 768.0f - 60.0f;
         }
@@ -1278,19 +1280,19 @@
 }
 
 -(void)pressedInfoButton:(WMToolBar*)toolBar {
-    WMCreditsViewController* vc = (WMCreditsViewController*)[[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
+    
+    WMViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
     
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).infoButton.frame;
         CGFloat yPosition = 1024.0f - 60.0f;
+        
         if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
             yPosition = 768.0f - 60.0f;
         }
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
-    
-    vc.scroller.contentSize = CGSizeMake(320, 1000);
     
     [self presentModalViewController:vc animated:YES];
 }
