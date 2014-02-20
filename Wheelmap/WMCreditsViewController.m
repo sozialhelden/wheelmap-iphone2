@@ -108,13 +108,7 @@
     licenseLabel2.text = @"Entypo pictograms by Daniel Bruce";
     [self.scroller addSubview:licenseLabel2];
     
-    NSLog(@"TEST111-0: %@", NSStringFromCGSize(self.view.frame.size));
-    NSLog(@"TEST111-1: %@", NSStringFromCGSize(self.scroller.contentSize));
-    
     self.scroller.contentSize = CGSizeMake(self.scroller.frame.size.width, license2.leftBottomY+20);
-    
-    NSLog(@"TEST222-0: %@", NSStringFromCGSize(self.view.frame.size));
-    NSLog(@"TEST222-1: %@", NSStringFromCGSize(self.scroller.contentSize));
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(donePressed:)];
     [self.view addGestureRecognizer:tapGR];
