@@ -793,7 +793,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="facebookButtonPressed:" destination="y3p-jC-So4" eventType="touchUpInside" id="k4R-bm-hIc"/>
+                                            <action selector="emailButtonPressed:" destination="y3p-jC-So4" eventType="touchUpInside" id="8qK-cj-gDy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpS-Xp-fgm">
@@ -918,6 +918,8 @@
         <image name="Social_btn-sms.png" width="290" height="50"/>
         <image name="Social_btn-twitter.png" width="290" height="50"/>
         <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="buttons_btn.png" width="72" height="37"/>
+        <image name="navigationbar_background.png" width="1" height="50"/>
         <image name="navigationbar_background.png" width="1" height="50"/>
         <image name="textfield_-share.png" width="290" height="120"/>
     </resources>
