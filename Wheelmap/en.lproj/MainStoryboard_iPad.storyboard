@@ -134,7 +134,7 @@
                                 <rect key="frame" x="0.0" y="20" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zA-oP-e49">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zA-oP-e49" userLabel="Loading View">
                                 <rect key="frame" x="224" y="272" width="320" height="230"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <subviews>
@@ -199,9 +199,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8Xm-qT-W2v" firstAttribute="top" secondItem="Rzm-uV-IaV" secondAttribute="bottom" constant="-20" id="AdD-pa-yUs"/>
-                            <constraint firstItem="6zA-oP-e49" firstAttribute="top" secondItem="bbJ-Wo-IdN" secondAttribute="bottom" constant="130" id="Ekz-Vq-bvK"/>
                             <constraint firstItem="bbJ-Wo-IdN" firstAttribute="centerX" secondItem="6zA-oP-e49" secondAttribute="centerX" id="IMI-H7-RJO"/>
                             <constraint firstAttribute="trailing" secondItem="vkQ-La-T3C" secondAttribute="trailing" id="Iw0-TP-o4K"/>
+                            <constraint firstItem="6zA-oP-e49" firstAttribute="top" secondItem="bPo-0B-kEP" secondAttribute="bottom" constant="252" id="QuH-fj-VdY"/>
                             <constraint firstItem="8Xm-qT-W2v" firstAttribute="top" secondItem="vkQ-La-T3C" secondAttribute="bottom" id="c1g-bB-bVD"/>
                             <constraint firstItem="Rzm-uV-IaV" firstAttribute="top" secondItem="bPo-0B-kEP" secondAttribute="bottom" id="gr0-Ff-mc3"/>
                             <constraint firstItem="Rzm-uV-IaV" firstAttribute="leading" secondItem="L08-kI-HKj" secondAttribute="leading" id="iwU-gQ-AvD"/>
