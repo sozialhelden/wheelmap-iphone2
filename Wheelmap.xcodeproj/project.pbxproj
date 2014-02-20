@@ -771,6 +771,7 @@
 		3479CF1218AD320B00BDF1EB /* Wheelmap-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989927571649151300D9003B /* Wheelmap-Info.plist */; };
 		3479CF1318AD320F00BDF1EB /* Wheelmap-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989927571649151300D9003B /* Wheelmap-Info.plist */; };
 		3479CF1418AD321100BDF1EB /* Wheelmap-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 989927571649151300D9003B /* Wheelmap-Info.plist */; };
+		348C9D6D18B64710001B022B /* Wheelmap-Info-beta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 348C9D6C18B64710001B022B /* Wheelmap-Info-beta.plist */; };
 		34C08EA018A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA118A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
@@ -1263,6 +1264,7 @@
 		15F31E6916A6D389006EDBC8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		15F31E6A16A6D389006EDBC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		34134F7518B3C6260029F320 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		348C9D6C18B64710001B022B /* Wheelmap-Info-beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Wheelmap-Info-beta.plist"; sourceTree = "<group>"; };
 		34C08E9E18A8ECAC00DAF430 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
 		34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
 		34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
@@ -2175,6 +2177,7 @@
 				9899275B1649151300D9003B /* main.m */,
 				9899275D1649151300D9003B /* Wheelmap-Prefix.pch */,
 				DB6E47A9166CA93900D9CAD9 /* Localizable.strings */,
+				348C9D6C18B64710001B022B /* Wheelmap-Info-beta.plist */,
 			);
 			name = "Supporting Files";
 			path = Wheelmap;
@@ -2952,6 +2955,7 @@
 				0327F9CA16BFFB1900BA7DE7 /* toolbar_toggle-list.png in Resources */,
 				0327F9CB16BFFB1900BA7DE7 /* toolbar_toggle-list@2x.png in Resources */,
 				0327F9CC16BFFB1900BA7DE7 /* toolbar_toggle-map.png in Resources */,
+				348C9D6D18B64710001B022B /* Wheelmap-Info-beta.plist in Resources */,
 				0327F9CD16BFFB1900BA7DE7 /* toolbar_toggle-map@2x.png in Resources */,
 				0327F9CE16BFFB1900BA7DE7 /* details_btn-status-limited.png in Resources */,
 				0327F9CF16BFFB1900BA7DE7 /* details_btn-status-limited@2x.png in Resources */,
@@ -3990,7 +3994,7 @@
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = "../Airship/**";
-				INFOPLIST_FILE = "Wheelmap LIVE copy-Info.plist";
+				INFOPLIST_FILE = "Wheelmap/Wheelmap-Info-beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4021,7 +4025,7 @@
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = "../Airship/**";
-				INFOPLIST_FILE = "Wheelmap LIVE copy-Info.plist";
+				INFOPLIST_FILE = "Wheelmap/Wheelmap-Info-beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4052,7 +4056,7 @@
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = "../Airship/**";
-				INFOPLIST_FILE = "Wheelmap LIVE copy-Info.plist";
+				INFOPLIST_FILE = "Wheelmap/Wheelmap-Info-beta.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

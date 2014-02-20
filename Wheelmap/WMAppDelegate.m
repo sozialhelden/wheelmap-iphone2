@@ -22,7 +22,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMOpenConfigFilename ofType:@"plist"]];
     NSString *hockeyID = config[@"hockey_id"];
     
@@ -76,7 +75,6 @@
     }
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }
