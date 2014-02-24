@@ -16,6 +16,12 @@
 #import "Constants.h"
 #import "WMRegisterViewController.h"
 
+@interface WMLoginViewController()
+
+@property(nonatomic,strong)UITextField* activeTextField;
+
+@end
+
 @implementation WMLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,8 +50,7 @@
     self.usernameTextField.delegate = self;
     self.passwordTextField.delegate = self;
     
-    // register for keyboard notifications
-    // not necessary on ipad, as theres enough space
+    // register for keyboard notifications (not necessary on ipad, as theres enough space)
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad){
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(keyboardWillShow:)
@@ -57,6 +62,10 @@
                                                      name:UIKeyboardWillHideNotification
                                                    object:self.view.window];
     }
+    
+    // register to dismiss keyboard when background touched
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)]];
+    
     self.titleLabel.text = NSLocalizedString(@"Sign In", nil);
     self.topTextLabel.text = NSLocalizedString(@"Sign In Prompt", nil);
     self.forgotPasswordTextView.text = NSLocalizedString(@"LoginScreenForgotPassword", nil);
@@ -68,7 +77,7 @@
     [self.registerButton setTitle:NSLocalizedString(@"RegisterNew", nil) forState:UIControlStateNormal];
     self.usernameTextField.placeholder = NSLocalizedString(@"UsernamePlaceholder", nil);
     self.passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
-
+    
     // adjust labels and buttons according to content
     [self adjustLabelHeightToText:self.topTextLabel];
     self.usernameTextField.frame = CGRectMake(self.usernameTextField.frame.origin.x, self.topTextLabel.frame.origin.y + self.topTextLabel.frame.size.height + 20.0f,
@@ -86,13 +95,13 @@
     [self.loginButton sizeToFit];
     self.loginButton.frame = CGRectMake(320.0f - self.loginButton.frame.size.width - 10.0f, self.passwordTextField.frame.origin.y + self.passwordTextField.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
     
-
+    
     self.middleTextLabel.frame = CGRectMake(self.middleTextLabel.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 15.0f, self.middleTextLabel.frame.size.width, self.middleTextLabel.frame.size.height);
     [self adjustLabelHeightToText:self.middleTextLabel];
     
     self.webLoginLabel.frame = CGRectMake(self.webLoginLabel.frame.origin.x, self.middleTextLabel.frame.origin.y + self.middleTextLabel.frame.size.height, self.webLoginLabel.frame.size.width, self.webLoginLabel.frame.size.height);
     [self adjustLabelHeightToText:self.webLoginLabel];
-   
+    
     self.webLoginButton.frame = self.webLoginLabel.frame;
     
     self.bottomTextLabel.frame = CGRectMake(self.bottomTextLabel.frame.origin.x, self.webLoginLabel.frame.origin.y + self.webLoginLabel.frame.size.height + 15.0f, self.bottomTextLabel.frame.size.width, self.bottomTextLabel.frame.size.height);
@@ -161,9 +170,9 @@
     [[UIApplication sharedApplication] openURL:url];
     
     // use this when websites are optimized for mobile
-//    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
-//    [regViewController loadForgotPasswordUrl];
-//    [self presentModalViewController:regViewController animated:YES];
+    //    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+    //    [regViewController loadForgotPasswordUrl];
+    //    [self presentModalViewController:regViewController animated:YES];
 }
 
 - (IBAction)loginPressed:(id)sender
@@ -177,13 +186,13 @@
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
     NSString *baseURL = config[@"apiBaseURL"];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
-        
+    
     [[UIApplication sharedApplication] openURL:url];
     
     // use this when websites are optimized for mobile
-//    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
-//    [regViewController loadLoginUrl];
-//    [self presentModalViewController:regViewController animated:YES];
+    //    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+    //    [regViewController loadLoginUrl];
+    //    [self presentModalViewController:regViewController animated:YES];
 }
 
 
@@ -257,10 +266,11 @@
     
     // unregister for keyboard notifications while not visible.
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad){
+        
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:UIKeyboardWillShowNotification
                                                       object:nil];
-        // unregister for keyboard notifications while not visible.
+        
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:UIKeyboardWillHideNotification
                                                       object:nil];
@@ -273,55 +283,46 @@
     
     // unregister for keyboard notifications while not visible.
     /*
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-    */
+     [[NSNotificationCenter defaultCenter] removeObserver:self
+     name:UIKeyboardWillShowNotification
+     object:nil];
+     // unregister for keyboard notifications while not visible.
+     [[NSNotificationCenter defaultCenter] removeObserver:self
+     name:UIKeyboardWillHideNotification
+     object:nil];
+     */
 }
 
 - (void)keyboardWillHide:(NSNotification *)n
-{    
-    // resize the scrollview
-    CGRect viewFrame = self.view.frame;
-    // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
-    viewFrame.origin.y += 50.0f;
-    self.titleLabel.hidden = NO;
-
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    // The kKeyboardAnimationDuration I am using is 0.3
-    [UIView setAnimationDuration:0.2];
-    [self.view setFrame:viewFrame];
-    [UIView commitAnimations];
-    
-    keyboardIsShown = NO;
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.contentScrollView.contentInset = contentInsets;
+    self.contentScrollView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)keyboardWillShow:(NSNotification *)n
 {
-    // This is an ivar I'm using to ensure that we do not do the frame size adjustment on the UIScrollView if the keyboard is already shown.  This can happen if the user, after fixing editing a UITextField, scrolls the resized UIScrollView to another UITextField and attempts to edit the next UITextField.  If we were to resize the UIScrollView again, it would be disastrous.  NOTE: The keyboard notification will fire even when the keyboard is already shown.
-    if (keyboardIsShown) {
-        return;
+    NSDictionary* info = [n userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0,0,keyboardSize.height,0); // TODO check why 44px missing (view behind bottom bar?)
+    self.contentScrollView.contentInset = contentInsets;
+    self.contentScrollView.scrollIndicatorInsets = contentInsets;
+    
+    CGRect visibleRect = self.view.frame;
+    visibleRect.size.height -= keyboardSize.height;
+    
+    if (!CGRectContainsPoint(visibleRect, CGPointMake(0, CGRectGetMaxY(self.activeTextField.frame))) ) {
+        [self.contentScrollView scrollRectToVisible:self.activeTextField.frame animated:YES];
     }
-    
-    // resize the noteView
-    CGRect viewFrame = self.view.frame;
-    // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
-    viewFrame.origin.y -= 50.0f;
-    self.titleLabel.hidden = YES;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    // The kKeyboardAnimationDuration I am using is 0.3
-    [UIView setAnimationDuration:0.2];
-    [self.view setFrame:viewFrame];
-    [UIView commitAnimations];
-    
-    keyboardIsShown = YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    self.activeTextField = textField;
+}
+
+-(void)dismissKeyboard{
+    [self.view endEditing:YES];
 }
 
 - (CGSize)contentSizeForViewInPopover {

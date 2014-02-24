@@ -13,7 +13,6 @@
 @interface WMLoginViewController : WMViewController <UITextFieldDelegate, WMDataManagerDelegate> {
     
     WMDataManager *dataManager;
-    BOOL keyboardIsShown;
 }
 
 @property (nonatomic, weak) IBOutlet UITextField *usernameTextField;

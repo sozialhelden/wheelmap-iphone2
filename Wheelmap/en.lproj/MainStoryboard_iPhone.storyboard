@@ -313,7 +313,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNP-q7-mdB">
-                                        <rect key="frame" x="0.0" y="50.000000023745891" width="320" height="497"/>
+                                        <rect key="frame" x="0.0" y="50.000000047535245" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="Jif-Hx-fal"/>
@@ -1659,7 +1659,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
+                                        <rect key="frame" x="0.0" y="50.000000023745891" width="320" height="497"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                     </scrollView>
