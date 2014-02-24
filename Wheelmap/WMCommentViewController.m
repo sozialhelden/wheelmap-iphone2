@@ -40,6 +40,8 @@
     self.commentText.layer.borderWidth = 1.0f;
     self.commentText.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.commentText.layer setCornerRadius:5.0f];
+    
+    self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", nil);
 }
 
 - (void) viewDidAppear:(BOOL)animated {
