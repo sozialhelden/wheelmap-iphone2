@@ -8,7 +8,13 @@
 
 #import "WMKeychainWrapper.h"
 
-#define WMKeychainServiceName @"Wheelmap iOS"
+#ifdef DEV
+    #define WMKeychainServiceName @"Wheelmap iOS DEV"
+#elif BETA
+    #define WMKeychainServiceName @"Wheelmap iOS BETA"
+#else
+    #define WMKeychainServiceName @"Wheelmap iOS"
+#endif
 #define WMLegacyKeychainServiceName @"Wheelmap"
 
 @implementation WMKeychainWrapper
