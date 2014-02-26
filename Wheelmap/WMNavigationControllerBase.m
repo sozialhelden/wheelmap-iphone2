@@ -1485,7 +1485,7 @@
         }
         
     }else{
-        
+        [navigationController setNavigationBarHidden:NO animated:YES];
         [navigationController setToolbarHidden:YES];
     }
 }
