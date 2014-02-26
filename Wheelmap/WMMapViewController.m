@@ -98,7 +98,7 @@
     
     // set the map interaction info label visible/invisible constraint values
     visibleMapInteractionInfoLabelConstraint = self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant;
-    invisibleMapInteractionInfoLabelConstraint = -CGRectGetHeight(self.mapInteractionInfoLabel.frame);
+    invisibleMapInteractionInfoLabelConstraint = -CGRectGetHeight(self.mapInteractionInfoLabel.frame)-20.0f;
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
