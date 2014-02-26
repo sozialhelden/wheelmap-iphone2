@@ -777,7 +777,8 @@
 		34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34F5A9D018AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
 		34F5A9D218AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
-		34F5A9D318AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
+		4360DCD518BE0C7C00D57E2A /* WMOpenConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */; };
+		4360DCD618BE0C8D00D57E2A /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -1052,7 +1053,7 @@
 		031B9CB016AEDEA900AA0317 /* ipad_buttons_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_login@2x.png"; sourceTree = "<group>"; };
 		031B9CB116AEDEA900AA0317 /* ipad_buttons_mithelfen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_buttons_mithelfen.png; sourceTree = "<group>"; };
 		031B9CB216AEDEA900AA0317 /* ipad_buttons_mithelfen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_mithelfen@2x.png"; sourceTree = "<group>"; };
-		0327FA6B16BFFB1900BA7DE7 /* Wheelmap LIVE copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0327FA6B16BFFB1900BA7DE7 /* Wheelmap-BETA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-BETA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		034D38C8167735BF0071EC05 /* WMMapSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapSettingsViewController.h; sourceTree = "<group>"; };
 		034D38C9167735BF0071EC05 /* WMMapSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapSettingsViewController.m; sourceTree = "<group>"; };
 		034D38CE167738C10071EC05 /* Curl_btn-left-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Curl_btn-left-active.png"; sourceTree = "<group>"; };
@@ -1182,7 +1183,7 @@
 		039A2F0716A42999000E9D41 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		039A6FF816B0231E002ECE12 /* WMDetailNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailNavigationController.h; sourceTree = "<group>"; };
 		039A6FF916B0231E002ECE12 /* WMDetailNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailNavigationController.m; sourceTree = "<group>"; };
-		03BD04A616A052750045D53D /* Wheelmap LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03BD04A616A052750045D53D /* Wheelmap-LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C70AF216DF9E600040A280 /* WMFirstStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFirstStartViewController.h; sourceTree = "<group>"; };
 		03C70AF316DF9E740040A280 /* WMFirstStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFirstStartViewController.m; sourceTree = "<group>"; };
 		03C74DAC16C4F1EE00C77FEF /* list_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_shadow.png; sourceTree = "<group>"; };
@@ -1269,6 +1270,7 @@
 		34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
 		34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		34F5A9D118AA3E560001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = WMOpenConfig.plist; path = config/beta/WMOpenConfig.plist; sourceTree = SOURCE_ROOT; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -1733,6 +1735,7 @@
 		034FAED116A6FDFA00F9F663 /* config */ = {
 			isa = PBXGroup;
 			children = (
+				4360DCD318BE0C3600D57E2A /* beta */,
 				034FAED216A6FDFA00F9F663 /* live */,
 				034FAED416A6FDFA00F9F663 /* staging */,
 			);
@@ -2082,6 +2085,14 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		4360DCD318BE0C3600D57E2A /* beta */ = {
+			isa = PBXGroup;
+			children = (
+				4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */,
+			);
+			name = beta;
+			sourceTree = "<group>";
+		};
 		9890C536168F337900AD7C07 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -2116,8 +2127,8 @@
 			children = (
 				9899274B1649151300D9003B /* Wheelmap-DEV.app */,
 				989927751649151300D9003B /* WheelmapTests.octest */,
-				03BD04A616A052750045D53D /* Wheelmap LIVE.app */,
-				0327FA6B16BFFB1900BA7DE7 /* Wheelmap LIVE copy.app */,
+				03BD04A616A052750045D53D /* Wheelmap-LIVE.app */,
+				0327FA6B16BFFB1900BA7DE7 /* Wheelmap-BETA.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2773,7 +2784,7 @@
 			);
 			name = "Wheelmap-BETA";
 			productName = Wheelmap;
-			productReference = 0327FA6B16BFFB1900BA7DE7 /* Wheelmap LIVE copy.app */;
+			productReference = 0327FA6B16BFFB1900BA7DE7 /* Wheelmap-BETA.app */;
 			productType = "com.apple.product-type.application";
 		};
 		03BD036716A052750045D53D /* Wheelmap-LIVE */ = {
@@ -2790,7 +2801,7 @@
 			);
 			name = "Wheelmap-LIVE";
 			productName = Wheelmap;
-			productReference = 03BD04A616A052750045D53D /* Wheelmap LIVE.app */;
+			productReference = 03BD04A616A052750045D53D /* Wheelmap-LIVE.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9899274A1649151300D9003B /* Wheelmap-DEV */ = {
@@ -2918,13 +2929,13 @@
 				0327F9A616BFFB1900BA7DE7 /* toolbar_icon-category.png in Resources */,
 				0327F9A716BFFB1900BA7DE7 /* toolbar_icon-category@2x.png in Resources */,
 				0327F9A816BFFB1900BA7DE7 /* toolbar_icon-filter.png in Resources */,
+				4360DCD618BE0C8D00D57E2A /* WMConfig.plist in Resources */,
 				0327F9A916BFFB1900BA7DE7 /* toolbar_icon-filter@2x.png in Resources */,
 				0327F9AA16BFFB1900BA7DE7 /* toolbar_icon-location.png in Resources */,
 				0327F9AB16BFFB1900BA7DE7 /* toolbar_icon-location@2x.png in Resources */,
 				0327F9AC16BFFB1900BA7DE7 /* toolbar_icon-search.png in Resources */,
 				0327F9AD16BFFB1900BA7DE7 /* toolbar_icon-search@2x.png in Resources */,
 				0327F9AE16BFFB1900BA7DE7 /* toolbar_indicator-green.png in Resources */,
-				34F5A9D318AA3E560001B79E /* WMConfig.plist in Resources */,
 				0327F9AF16BFFB1900BA7DE7 /* toolbar_indicator-green@2x.png in Resources */,
 				0327F9B016BFFB1900BA7DE7 /* toolbar_indicator-grey.png in Resources */,
 				0327F9B116BFFB1900BA7DE7 /* toolbar_indicator-grey@2x.png in Resources */,
@@ -3036,6 +3047,7 @@
 				0327FA1916BFFB1900BA7DE7 /* Curl_btn-mid-active@2x.png in Resources */,
 				0327FA1A16BFFB1900BA7DE7 /* Curl_btn-mid.png in Resources */,
 				0327FA1B16BFFB1900BA7DE7 /* Curl_btn-mid@2x.png in Resources */,
+				4360DCD518BE0C7C00D57E2A /* WMOpenConfig.plist in Resources */,
 				0327FA1C16BFFB1900BA7DE7 /* Curl_btn-right-active.png in Resources */,
 				0327FA1D16BFFB1900BA7DE7 /* Curl_btn-right-active@2x.png in Resources */,
 				0327FA1E16BFFB1900BA7DE7 /* Curl_btn-right.png in Resources */,
@@ -4004,7 +4016,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				OTHER_LDFLAGS = "-Objc";
-				PRODUCT_NAME = "Wheelmap LIVE copy";
+				PRODUCT_NAME = "Wheelmap-BETA";
 				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4038,7 +4050,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				OTHER_LDFLAGS = "-Objc";
-				PRODUCT_NAME = "Wheelmap LIVE copy";
+				PRODUCT_NAME = "Wheelmap-BETA";
 				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4072,7 +4084,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				OTHER_LDFLAGS = "-Objc";
-				PRODUCT_NAME = "Wheelmap LIVE copy";
+				PRODUCT_NAME = "Wheelmap-BETA";
 				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4106,7 +4118,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				OTHER_LDFLAGS = "-Objc";
-				PRODUCT_NAME = "Wheelmap LIVE";
+				PRODUCT_NAME = "Wheelmap-LIVE";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4140,7 +4152,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				OTHER_LDFLAGS = "-Objc";
-				PRODUCT_NAME = "Wheelmap LIVE";
+				PRODUCT_NAME = "Wheelmap-LIVE";
 				PROVISIONING_PROFILE = "A43C54AA-EB3E-4FED-9C0E-9BC73D3C518A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A43C54AA-EB3E-4FED-9C0E-9BC73D3C518A";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4174,7 +4186,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				OTHER_LDFLAGS = "-Objc";
-				PRODUCT_NAME = "Wheelmap LIVE";
+				PRODUCT_NAME = "Wheelmap-LIVE";
 				PROVISIONING_PROFILE = "0134693C-1D9F-4760-BA62-3D5B40382C7C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0134693C-1D9F-4760-BA62-3D5B40382C7C";
 				TARGETED_DEVICE_FAMILY = "1,2";
