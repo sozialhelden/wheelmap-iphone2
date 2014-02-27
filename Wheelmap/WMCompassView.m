@@ -133,6 +133,16 @@
     return 0.0f;
 }
 
+- (void) dealloc {
+    // Removing observers
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidEnterBackgroundNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
+}
+
 
 
 
