@@ -66,7 +66,8 @@
         CFDictionaryAddValue(query, kSecValueData, (CFDataRef)tokenData);
         status = SecItemAdd(query, NULL);
     }
-        
+    CFBridgingRelease(query);
+  
     return status == noErr;
 }
 
@@ -122,9 +123,11 @@
     CFDataRef result = NULL;
     OSStatus status = SecItemCopyMatching(query, (CFTypeRef *)&result);
     if(status == errSecItemNotFound) {
+        CFBridgingRelease(query);
         return nil;
     }
-    
+    CFBridgingRelease(query);
+
     NSString *password = [[NSString alloc] initWithData:CFBridgingRelease(result) encoding: NSUTF8StringEncoding];
     return password;
 }
@@ -144,11 +147,13 @@
     CFDictionaryRef result = NULL;
     OSStatus status = SecItemCopyMatching(query, (CFTypeRef *)&result);
     if (status == errSecItemNotFound) {
+        CFBridgingRelease(query);
         return nil;
     }
+    CFBridgingRelease(query);
     
     NSDictionary *dict = (__bridge_transfer NSDictionary *)result;
-    NSString *account = dict[(__bridge NSString*)kSecAttrAccount];
+    NSString *account = dict[(__bridge_transfer NSString*)kSecAttrAccount];
     return account;
 }
 
@@ -164,6 +169,7 @@
     if (account) CFDictionaryAddValue(query, kSecAttrAccount, (CFStringRef)account);
     
     OSStatus status = SecItemDelete(query);
+    CFBridgingRelease(query);
     
     return status == noErr;
 }
