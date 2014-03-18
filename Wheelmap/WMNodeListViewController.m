@@ -232,21 +232,25 @@
     
     dispatch_async(backgroundQueue, ^(void) {
         
-        [self sortNodesByDistance];
+        __block NSArray *nodesTemp = [self sortNodesByDistance:[nodes copy]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"NUMBER OF NODES = %d", nodes.count);
+            
+            nodes = nodesTemp;
+            nodesTemp = nil;
             
             [self.tableView reloadData];
+
+            NSLog(@"NUMBER OF NODES = %d", nodes.count);
         });
     });
 }
 
-- (void)sortNodesByDistance
+- (NSArray*)sortNodesByDistance:(NSArray*)nodesTemp
 {
     CLLocation* userLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
     
-    nodes = [nodes sortedArrayUsingComparator:^NSComparisonResult(Node* n1, Node* n2) {
+    nodesTemp = [nodesTemp sortedArrayUsingComparator:^NSComparisonResult(Node* n1, Node* n2) {
         
         CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:[n1.lat doubleValue] longitude:[n1.lon doubleValue]];
         CLLocationDistance d1 = [userLocation distanceFromLocation:loc1];
@@ -258,6 +262,8 @@
         if (d1 < d2) return NSOrderedAscending;
         return NSOrderedSame;
     }];
+    
+    return nodesTemp;
 }
 
 #pragma mark - Node View Protocol
