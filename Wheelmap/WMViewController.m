@@ -102,6 +102,13 @@
 - (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
+        UINavigationController *navigationController;
+        if ([modalViewController isKindOfClass:[UINavigationController class]]) {
+            navigationController = (UINavigationController*) modalViewController;
+            modalViewController = modalViewController.childViewControllers[0];
+        }
+
+        
         if ([modalViewController isKindOfClass:[WMMapSettingsViewController class]]) {
             
             [super presentModalViewController:modalViewController animated:animated];
@@ -124,7 +131,11 @@
         } else if ([modalViewController isKindOfClass:[WMRegisterViewController class]]) {
             
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
-                ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
+                if(navigationController) {
+                    ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:navigationController];
+                } else {
+                    ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
+                }
                 ((WMViewController *)modalViewController).baseController = self.baseController;
                 
                 if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
