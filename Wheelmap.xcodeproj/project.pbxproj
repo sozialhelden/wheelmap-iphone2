@@ -1270,6 +1270,7 @@
 		34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
 		34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		34F5A9D118AA3E560001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		434AB7DA192648B800B21E13 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = WMOpenConfig.plist; path = config/beta/WMOpenConfig.plist; sourceTree = SOURCE_ROOT; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
@@ -2876,6 +2877,7 @@
 				ru,
 				uk,
 				sv,
+				it,
 			);
 			mainGroup = 989927401649151300D9003B;
 			productRefGroup = 9899274C1649151300D9003B /* Products */;
@@ -3983,6 +3985,7 @@
 				0383D6ED16D22FFF003CBDA4 /* ru */,
 				0383D6EE16D23016003CBDA4 /* uk */,
 				03FDC3E9176B107800AF386B /* sv */,
+				434AB7DA192648B800B21E13 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
