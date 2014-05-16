@@ -1,1 +1,1 @@
-*.strings	diff
+*.strings utf16 diff=l10n
