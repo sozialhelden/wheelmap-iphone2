@@ -23,9 +23,9 @@
     UIView* nextView;
     UIView* prevView;
     
-    int prevIndex;
-    int currIndex;
-    int nextIndex;
+    long prevIndex;
+    long currIndex;
+    long nextIndex;
     
     CGRect pageZeroRect, pageOneRect, pageTwoRect;
     
@@ -40,11 +40,11 @@
 @property (nonatomic, assign) UIView *nextView;
 @property (nonatomic, assign) UIView *prevView;
 
-- (UIView*)loadViewForPage:(int)pageNum;
-- (UIView*)cachedViewForPage:(int)pageNum;
+- (UIView*)loadViewForPage:(long)pageNum;
+- (UIView*)cachedViewForPage:(long)pageNum;
 - (void)loadPages;
 
-- (void)animateToPageNum:(int)pageNum;
+- (void)animateToPageNum:(long)pageNum;
 - (void)clampContentOffsets;  // used if wrapsAround = NO
 
 
@@ -137,7 +137,7 @@
     
     if (dataSource) {
         //currIndex = 0;  // This should be set in the init method so that subclasses can set it and it not get changed here.
-        int numPagesInGallery = [dataSource numberOfPagesForGallery:self];
+        long numPagesInGallery = [dataSource numberOfPagesForGallery:self];
         
         prevIndex = currIndex - 1 < 0 ? numPagesInGallery - 1 : currIndex - 1;
         nextIndex = currIndex + 1 > numPagesInGallery -1 ? 0 : currIndex + 1; 
@@ -277,14 +277,14 @@
 
 #pragma mark Changing Pages
 
-- (void)gotoPageNumber:(int)pageNum
+- (void)gotoPageNumber:(long)pageNum
 {
     pageNum = pageNum % [self.dataSource numberOfPagesForGallery:self];
     
     [self animateToPageNum:pageNum];
 }
 
-- (void)animateToPageNum:(int)pageNum
+- (void)animateToPageNum:(long)pageNum
 {
     if (currIndex == pageNum) {
         return;
@@ -460,7 +460,7 @@
 
 - (void)loadPages
 {
-    int pageIndex;  // the page we will work on
+    long pageIndex;  // the page we will work on
     CGRect pageRect;  // the frame that the controller's view will take
     UIView *page = nil;  // the pageController for the page
     
@@ -549,7 +549,7 @@
     
 }
 
--(UIView*)cachedViewForPage:(int)pageNum
+-(UIView*)cachedViewForPage:(long)pageNum
 {
     UIView *theView = [scroller viewWithTag:kViewTagOffset + pageNum];
     if (theView == nil) {
@@ -561,14 +561,14 @@
 }
 
 
--(UIView*)loadViewForPage:(int)pageNum
+-(UIView*)loadViewForPage:(long)pageNum
 {
     // TODO, first see if the desired page is already in the scrollview, only THEN, reload him
     
     UIView *pageView = nil;
     
     if (pageView == nil) {
-        pageView = [self.dataSource viewForGallery: self pageNum: pageNum pagesize:self.bounds.size];
+        pageView = [self.dataSource viewForGallery:self pageNum:pageNum pagesize:self.bounds.size];
         pageView.tag = kViewTagOffset + pageNum;       
     }
     
@@ -579,7 +579,7 @@
 
 #pragma mark Testing / Expanding Gallery Delegate
 
-- (UIView*)viewForGallery:(InfiniteGallery*)g pageNum:(int)pageNum pagesize:(CGSize)size
+- (UIView*)viewForGallery:(InfiniteGallery*)g pageNum:(long)pageNum pagesize:(CGSize)size
 {
     CGRect frame = CGRectMake(0, 0, size.width, size.height);
     
@@ -610,7 +610,7 @@
     return view;
     
 }
-- (int)numberOfPagesForGallery:(InfiniteGallery*)g
+- (long)numberOfPagesForGallery:(InfiniteGallery*)g
 {
     return 5;
 }

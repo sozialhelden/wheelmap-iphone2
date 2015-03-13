@@ -22,7 +22,7 @@
 #import "WMPhotoViewController.h"
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import "Category.h"
+#import "WMCategory.h"
 #import "WMNavigationControllerBase.h"
 #import "WMStringUtilities.h"
 #import "WMNodeListViewController.h"
@@ -68,7 +68,21 @@
     self.mainView.backgroundColor = [UIColor clearColor];
     
     // MAPVIEW
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    [MBXMapKit setAccessToken:[config valueForKey:@"mbxAccessToken"]];
+    
     self.mapView = [[MKMapView alloc] initWithFrame:MAPVIEWCLOSEDSTATE];
+
+    self.mapView.showsBuildings = NO;
+    self.mapView.rotateEnabled = NO;
+    self.mapView.pitchEnabled = NO;
+    self.mapView.mapType = MKMapTypeStandard;
+    
+    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:@"mbxMapID"]];
+    self.rasterOverlay.delegate = self;
+    
+    [self.mapView addOverlay:self.rasterOverlay];
+    
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mapView.layer.borderWidth = 1.0f;
     self.mapView.delegate = self;
@@ -77,7 +91,7 @@
     self.mapView.showsUserLocation=YES;
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
     [self.mainView addSubview:self.mapView];
-    
+
     // ENLARGE MAP BUTTON
     UIImage *enlargeMapImage = [UIImage imageNamed:@"details-expand-map.png"];
     self.enlargeMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -155,6 +169,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
+    
     self.title = NSLocalizedString(@"NavBarTitleDetail", nil);
     self.navigationBarTitle = self.title;
     
@@ -169,6 +185,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    [super viewDidAppear:animated];
     
     // self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
     // self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
@@ -315,7 +332,7 @@
     self.distanceLabel.textColor = [UIColor darkGrayColor];
     self.distanceLabel.font = [UIFont systemFontOfSize:12];
     self.distanceLabel.backgroundColor = [UIColor clearColor];
-    self.distanceLabel.textAlignment = UITextAlignmentCenter;
+    self.distanceLabel.textAlignment = NSTextAlignmentCenter;
     [view addSubview:self.distanceLabel];
     
     return view;
@@ -429,7 +446,7 @@
     belowButtonLabel.text = title;
     belowButtonLabel.font = [UIFont systemFontOfSize:11];
     belowButtonLabel.textColor = [UIColor darkGrayColor];
-    belowButtonLabel.textAlignment = UITextAlignmentCenter;
+    belowButtonLabel.textAlignment = NSTextAlignmentCenter;
     return belowButtonLabel;
 }
 
@@ -563,6 +580,17 @@
 
 
 #pragma mark - Map
+// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    // This is boilerplate code to connect tile overlay layers with suitable renderers
+    //
+    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
+    {
+        MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
+        return renderer;
+    }
+    return nil;
+}
 
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -695,6 +723,41 @@
     }
 }
 
+#pragma mark - MBXRasterTileOverlayDelegate implementation
+
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error
+{
+    // This delegate callback is for centering the map once the map metadata has been loaded
+    //
+    if (error)
+    {
+        NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+    }
+    else
+    {
+        [_mapView mbx_setCenterCoordinate:overlay.center zoomLevel:overlay.centerZoom animated:NO];
+    }
+}
+
+
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error
+{
+    // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
+    //
+    if (error)
+    {
+        NSLog(@"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+    }
+    else
+    {
+        [_mapView addAnnotations:markers];
+    }
+}
+
+- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
 
 #pragma mark - ActionSheets
 
@@ -817,7 +880,7 @@
         [self.popOverController dismissPopoverAnimated:YES];
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -848,12 +911,12 @@
             // if the source type was camere, we should dismiss camera view.
             // otherwise we do not need to dismiss view controller (photo gallery) programatically
             if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
-                [self dismissModalViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES];
             break;
         case 1:
             // confirmed
             [dataManager uploadImage:imageReadyToUpload forNode:self.node];
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES];
             WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
             [navCtrl showLoadingWheel];
             break;
@@ -926,7 +989,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
-        [self presentModalViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
     }
     NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
@@ -944,7 +1007,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
-        [self presentModalViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
     }
     NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
@@ -996,6 +1059,33 @@
         default:
             self.cameraButton.enabled = YES;
             break;
+    }
+}
+
+#pragma mark - AlertView stuff
+- (void)attribution:(NSString *)attribution
+{
+    NSString *title = @"Attribution";
+    NSString *message = attribution;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Mapbox Details", @"OSM Details", nil];
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if([alertView.title isEqualToString:@"Attribution"])
+    {
+        // For the attribution alert dialog, open the Mapbox and OSM copyright pages when their respective buttons are pressed
+        //
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Mapbox Details"])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.mapbox.com/tos/"]];
+        }
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"OSM Details"])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.openstreetmap.org/copyright"]];
+        }
     }
 }
 

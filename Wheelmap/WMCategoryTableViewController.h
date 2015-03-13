@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Category.h"
+#import "WMCategory.h"
 
 @interface WMCategoryTableViewController : WMTableViewController
 
 @property (nonatomic, strong) NSArray *categoryArray;
 @property (strong, nonatomic) id delegate;
-@property (strong, nonatomic) Category *currentCategory;
+@property (strong, nonatomic) WMCategory *currentCategory;
 
-- (id)initWithStyle:(UITableViewStyle)style andCategory:(Category*)c;
+- (id)initWithStyle:(UITableViewStyle)style andCategory:(WMCategory*)c;
 @end

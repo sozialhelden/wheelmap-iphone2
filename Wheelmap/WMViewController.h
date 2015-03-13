@@ -19,5 +19,5 @@
 @property (nonatomic, strong) NSString* navigationBarTitle;
 
 - (void)presentForcedModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated;
-
+- (void)dismissViewControllerAnimated:(BOOL)animated;
 @end

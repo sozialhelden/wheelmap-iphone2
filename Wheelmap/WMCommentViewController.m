@@ -45,6 +45,7 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if ((self.currentNode.wheelchair_description != nil) && (![self.currentNode.wheelchair_description isEqualToString:@""])) {
         self.commentText.text = self.currentNode.wheelchair_description;
     }

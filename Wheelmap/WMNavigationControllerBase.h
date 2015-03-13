@@ -44,7 +44,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong)  WMViewController *popoverVC;
 
-- (void)showFirstStartScreen;
+//- (void)showFirstStartScreen;
 
 - (void)pushList;
 - (void)pushMap;

@@ -45,7 +45,10 @@
     [self adjustLabelHeightToText:self.loginLabel];
     self.loginButton.frame = self.loginLabel.frame;
     
-    CGSize stringsize = [self.okButton.titleLabel.text sizeWithFont:self.okButton.titleLabel.font];
+    CGSize stringsize = [self.okButton.titleLabel.text boundingRectWithSize:CGSizeMake(300.0f, FLT_MAX)
+                                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                                 attributes:@{NSFontAttributeName:self.okButton.titleLabel.font}
+                                                                    context:nil].size;
     //or whatever font you're using
     [self.okButton setFrame:CGRectMake(320.0f - stringsize.width - 20.0f, self.loginLabel.frame.origin.y + self.loginLabel.frame.size.height + 20.0f, stringsize.width + 10.0f, stringsize.height + 10.0f)];
     
@@ -60,35 +63,38 @@
 
 -(IBAction)pressedOkButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 -(IBAction)pressedLoginButton:(id)sender
 {
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
+    //NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    //NSString *baseURL = config[@"apiBaseURL"];
+    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
     
     
-    [[UIApplication sharedApplication] openURL:url];
+    //[[UIApplication sharedApplication] openURL:url];
     
     // use this when websites are optimized for mobile
-    //    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
-    //    [regViewController loadLoginUrl];
-    //    [self presentModalViewController:regViewController animated:YES];
+        WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+        [regViewController loadLoginUrl];
+        [self presentViewController:regViewController animated:YES completion:nil];
 }
 
 -(IBAction)pressedRegisterButton:(id)sender
 {
     WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
     [regViewController loadRegisterUrl];
-    [self presentModalViewController:regViewController animated:YES];
+    [self presentViewController:regViewController animated:YES completion:nil];
 }
 
 - (void)adjustLabelHeightToText:(UILabel *)label {
     CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
     
-    CGSize expectedLabelSize = [label.text sizeWithFont:label.font constrainedToSize:maximumLabelSize lineBreakMode:label.lineBreakMode];
+    CGSize expectedLabelSize = [label.text boundingRectWithSize:maximumLabelSize
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:label.font}
+                                                        context:nil].size;
     
     //adjust the label the the new height.
     CGRect newFrame = label.frame;

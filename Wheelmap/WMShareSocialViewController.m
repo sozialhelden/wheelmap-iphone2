@@ -72,7 +72,7 @@
 }
 
 - (IBAction)closeButtonPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload {

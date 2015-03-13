@@ -8,7 +8,7 @@
 
 #import "WMLoginViewController.h"
 #import "WMDataManager.h"
-#import "WMTermsViewController.h"
+//#import "WMTermsViewController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMDetailNavigationController.h"
 #import "WMNodeListViewController.h"
@@ -23,6 +23,8 @@
 @end
 
 @implementation WMLoginViewController
+
+@synthesize dataManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +51,12 @@
 	
     self.usernameTextField.delegate = self;
     self.passwordTextField.delegate = self;
+    
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveAuthenticationData:)
+                                                 name:@"didReceiveAuthentificationData"
+                                               object:nil];
     
     // register for keyboard notifications (not necessary on ipad, as theres enough space)
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad){
@@ -125,7 +133,10 @@
 - (void)adjustLabelHeightToText:(UILabel *)label {
     CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
     
-    CGSize expectedLabelSize = [label.text sizeWithFont:label.font constrainedToSize:maximumLabelSize lineBreakMode:label.lineBreakMode];
+    CGSize expectedLabelSize = [label.text boundingRectWithSize:maximumLabelSize
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:label.font}
+                                                        context:nil].size;
     
     //adjust the label the the new height.
     CGRect newFrame = label.frame;
@@ -149,7 +160,7 @@
 - (void)showFirstStartScreen {
     if ([dataManager isFirstLaunch]) {
         WMFirstStartViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMFirstStart"];
-        [self presentModalViewController:firstStartViewController animated:YES];
+        [self presentViewController:firstStartViewController animated:YES completion:nil];
         [dataManager firstLaunchOccurred];
     }
 }
@@ -175,6 +186,13 @@
     //    [self presentModalViewController:regViewController animated:YES];
 }
 
+- (IBAction)registerPressed:(id)sender
+{
+    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+    [regViewController loadRegisterUrl];
+    [self presentViewController:regViewController animated:YES completion:nil];
+}
+
 - (IBAction)loginPressed:(id)sender
 {
     
@@ -183,16 +201,16 @@
 
 - (IBAction)webLoginPressed:(id)sender
 {
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
+    //NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    //NSString *baseURL = config[@"apiBaseURL"];
+    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
     
-    [[UIApplication sharedApplication] openURL:url];
+    //[[UIApplication sharedApplication] openURL:url];
     
     // use this when websites are optimized for mobile
-    //    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
-    //    [regViewController loadLoginUrl];
-    //    [self presentModalViewController:regViewController animated:YES];
+    WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
+    [regViewController loadLoginUrl];
+    [self presentViewController:regViewController animated:YES completion:nil];
 }
 
 
@@ -219,7 +237,7 @@
         if (self.navigationController != nil) {
             [self.navigationController popViewControllerAnimated:YES];
         } else {
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES];
         }
     } else {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -228,7 +246,7 @@
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
                 [(WMNavigationControllerBase *)self.baseController showAcceptTermsViewController];
-                [self dismissModalViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES];
             }
         } else {
             [(WMNavigationControllerBase *)self.presentingViewController showAcceptTermsViewController];
@@ -245,7 +263,7 @@
     if (self.navigationController != nil) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES];
     }
 }
 
@@ -260,7 +278,7 @@
     return YES;
 }
 
-- (void)viewDidUnload {
+- (void)viewDidDisappear:(BOOL)animated {
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
@@ -275,6 +293,7 @@
                                                         name:UIKeyboardWillHideNotification
                                                       object:nil];
     }
+    [super viewDidDisappear:animated];
 }
 
 - (void)dealloc {
@@ -329,4 +348,11 @@
     return CGSizeMake(320.0f, 550.0f);
 }
 
+- (void) didReceiveAuthenticationData:(NSNotification*)n{
+    NSLog(@"auth Data:%@", n);
+    
+    NSDictionary *userData = [[n userInfo] objectForKey:@"authData"];
+    
+    [self.dataManager didReceiveAuthenticationData:userData forAccount:@"WheelmapOverOSM"];
+}
 @end

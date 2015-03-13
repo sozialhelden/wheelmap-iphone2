@@ -71,9 +71,12 @@
     WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
     normalBtnLabel.fontSize = 13.0;
     normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
-    normalBtnLabel.textAlignment = UITextAlignmentCenter;
+    normalBtnLabel.textAlignment = NSTextAlignmentCenter;
     normalBtnLabel.textColor = [UIColor whiteColor];
-    CGSize expSize = [normalBtnLabel.text sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
+    CGSize expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                    attributes:@{NSFontAttributeName:normalBtnLabel.font}
+                                                       context:nil].size;
     if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
     normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
     normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 40);

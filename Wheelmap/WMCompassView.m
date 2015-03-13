@@ -10,6 +10,7 @@
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define RAD_TO_DEG(r) ((r) * (180 / M_PI))
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @implementation WMCompassView
 
@@ -35,6 +36,11 @@
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.delegate=self;
+        
+        if(IS_OS_8_OR_LATER) {
+            [self.locationManager requestAlwaysAuthorization];
+        }
+        
         [self.locationManager startUpdatingLocation];
                                                            
         //Start the compass updates.
@@ -51,6 +57,9 @@
 
 - (void) startUpdating:(NSNotification*)notification {
     NSLog(@"Starting");
+    if(IS_OS_8_OR_LATER) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
     [self.locationManager startUpdatingHeading];
     [self.locationManager startUpdatingLocation];
 }

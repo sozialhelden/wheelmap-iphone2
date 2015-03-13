@@ -69,7 +69,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Category* c = [categories objectAtIndex:indexPath.row];
+    WMCategory* c = [categories objectAtIndex:indexPath.row];
     NSString* cellID = [NSString stringWithFormat:@"CategoryVCCell-%@", c.id];
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
@@ -84,7 +84,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Category* c = [categories objectAtIndex:indexPath.row];
+    WMCategory* c = [categories objectAtIndex:indexPath.row];
     NSString* categoryName = c.localized_name;
     NSNumber* categoryID = c.id;
     

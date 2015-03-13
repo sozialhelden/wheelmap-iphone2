@@ -56,12 +56,12 @@
         [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
     
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated:YES];
     
 }
 -(IBAction)pressedCancelButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 @end

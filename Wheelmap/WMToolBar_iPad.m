@@ -64,7 +64,7 @@
         self.numberOfPlacesLabel.textColor = [UIColor colorWithRed:106.0f/255.0f green:120.0f/255.0f blue:134.0f/255.0f alpha:1.0f];
         self.numberOfPlacesLabel.adjustsFontSizeToFitWidth = YES;
         self.numberOfPlacesLabel.font = [UIFont systemFontOfSize:22.0f];
-        self.numberOfPlacesLabel.textAlignment = UITextAlignmentCenter;
+        self.numberOfPlacesLabel.textAlignment = NSTextAlignmentCenter;
         self.numberOfPlacesLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:self.numberOfPlacesLabel];
         

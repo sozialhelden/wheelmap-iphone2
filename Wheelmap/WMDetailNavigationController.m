@@ -22,8 +22,6 @@
 
 @implementation WMDetailNavigationController {
     WMDataManager *dataManager;
-    
-    CLLocationCoordinate2D initialCoordinate;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,7 +58,7 @@
 }
 
 - (void)mapWasMoved:(CLLocationCoordinate2D)coordinate {
-    initialCoordinate = coordinate;
+    self.initialCoordinate = coordinate;
 }
 
 -(void)pressedBackButton:(WMNavigationBar*)navigationBar {
@@ -78,7 +76,6 @@
         
         WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
         vc.node = ((WMDetailViewController *)self.topViewController).node;
-        vc.initialCoordinate = initialCoordinate;
         vc.initialCoordinate = self.initialCoordinate;
         vc.editView = YES;
         vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");

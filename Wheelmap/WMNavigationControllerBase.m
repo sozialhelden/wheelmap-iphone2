@@ -21,7 +21,7 @@
 #import "WMNodeTypeTableViewController.h"
 #import "Node.h"
 #import "NodeType.h"
-#import "Category.h"
+#import "WMCategory.h"
 #import "WMAcceptTermsViewController.h"
 #import "Reachability.h"
 #import "WMRootViewController_iPad.h"
@@ -111,7 +111,7 @@
                                    [NSNumber numberWithBool:YES], @"no",
                                    [NSNumber numberWithBool:YES], @"unknown",nil];
     self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
-    for (Category* c in dataManager.categories) {
+    for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
     
@@ -136,7 +136,11 @@
     
     CGSize maximumLabelSize = CGSizeMake(loadingLabel.frame.size.width, FLT_MAX);
     
-    CGSize expectedLabelSize = [loadingLabel.text sizeWithFont:loadingLabel.font constrainedToSize:maximumLabelSize lineBreakMode:loadingLabel.lineBreakMode];
+    CGSize expectedLabelSize = [loadingLabel.text boundingRectWithSize:maximumLabelSize
+                                                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                                                  attributes:@{NSFontAttributeName:loadingLabel.font}
+                                                                     context:nil].size;
+//                                sizeWithFont:loadingLabel.font constrainedToSize:maximumLabelSize lineBreakMode:loadingLabel.lineBreakMode];
     
     //adjust the label the the new height.
     CGRect newFrame = loadingLabel.frame;
@@ -404,7 +408,7 @@
     
     [categoryFilterPopover refreshViewWithCategories:aDataManager.categories];
     [self.categoryFilterStatus removeAllObjects];
-    for (Category* c in dataManager.categories) {
+    for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
     
@@ -494,7 +498,7 @@
 
 - (NSArray*) filteredNodeList
 {
-    NSLog(@"OLD NODE LIST = %d", nodes.count);
+    NSLog(@"OLD NODE LIST = %lu", (unsigned long)nodes.count);
     
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
@@ -516,7 +520,7 @@
     }
     
     // this prevents array containing multiple entries of the same node
-    NSLog(@"NEW NODE LIST = %d", newNodeList.count);
+    NSLog(@"NEW NODE LIST = %lu", (unsigned long)newNodeList.count);
     
     return newNodeList;
 }
@@ -658,16 +662,20 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    CLLocation* newLocation = [locations objectAtIndex:0];
-    [self locationManager:manager didUpdateToLocation:newLocation fromLocation:nil];
+    //ToDo: ??? Orginal machte kein Sinn?
+    //CLLocation* newLocation = [locations objectAtIndex:0];
+    NSLog(@"Location is updated!");
+    [self updateNodesWithCurrentUserLocation];
+    //[self locationManager:manager didUpdateToLocation:newLocation fromLocation:nil];
 }
 
+/*
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"Location is updated!");
     [self updateNodesWithCurrentUserLocation];
 }
-
+*/
 
 -(void)updateUserLocation
 {
@@ -923,12 +931,12 @@
 }
 
 - (void)showAcceptTermsViewController {
-    [self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO completion:nil];
     
     WMAcceptTermsViewController *termsVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
     termsVC.popoverButtonFrame = CGRectMake(self.view.frame.size.width/2, 400.0f, 5.0f, 5.0f);
     
-    [self presentModalViewController:termsVC animated:YES];
+    [self presentViewController:termsVC animated:YES completion:nil];
 }
 
 #pragma mark - WMNavigationBar Delegate
@@ -1276,7 +1284,7 @@
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)pressedInfoButton:(WMToolBar*)toolBar {
@@ -1294,7 +1302,7 @@
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)pressedHelpButton:(WMToolBar*)toolBar {
@@ -1495,7 +1503,7 @@
 {
     WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
     vc.popoverButtonFrame = frame;
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

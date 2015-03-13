@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Category, Node;
+#import "WMCategory.h"
+#import "Node.h"
+
+@class WMCategory, Node;
 
 @interface NodeType : NSManagedObject
 
@@ -18,7 +21,7 @@
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSString * localized_name;
-@property (nonatomic, retain) Category *category;
+@property (nonatomic, retain) WMCategory *category;
 @property (nonatomic, retain) NSSet *node;
 @end
 

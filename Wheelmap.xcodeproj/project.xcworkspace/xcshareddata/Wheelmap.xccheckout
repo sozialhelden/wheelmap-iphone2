@@ -10,29 +10,29 @@
 	<string>Wheelmap</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0C2871F8-9FCA-4E5D-B518-7982775BB51F</key>
-		<string>https://github.com/sozialhelden/wheelmap-iphone2</string>
+		<key>EE7891875B210ACE07E53855CBE373AA1A9A9D6B</key>
+		<string>wbx-linux-02:/home/wbxmobile/wheelmap-iphone2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Wheelmap.xcodeproj/project.xcworkspace</string>
+	<string>Wheelmap.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0C2871F8-9FCA-4E5D-B518-7982775BB51F</key>
+		<key>EE7891875B210ACE07E53855CBE373AA1A9A9D6B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/sozialhelden/wheelmap-iphone2</string>
+	<string>wbx-linux-02:/home/wbxmobile/wheelmap-iphone2.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0C2871F8-9FCA-4E5D-B518-7982775BB51F</string>
+	<string>EE7891875B210ACE07E53855CBE373AA1A9A9D6B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0C2871F8-9FCA-4E5D-B518-7982775BB51F</string>
+			<string>EE7891875B210ACE07E53855CBE373AA1A9A9D6B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>wheelmap-iphone2</string>
 		</dict>
