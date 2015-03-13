@@ -76,4 +76,5 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 
 -(CLLocation*)currentUserLocation;
+
 @end

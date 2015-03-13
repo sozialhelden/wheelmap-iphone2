@@ -141,7 +141,7 @@
         [termsViewController showDataTerms:YES];
     }
     
-    [self presentViewController:termsViewController animated:YES completion:nil];
+    [self presentViewController:termsViewController animated:YES];
 }
 
 -(IBAction)pressedCheckboxButton:(UIButton *)sender {

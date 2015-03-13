@@ -936,7 +936,7 @@
     WMAcceptTermsViewController *termsVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
     termsVC.popoverButtonFrame = CGRectMake(self.view.frame.size.width/2, 400.0f, 5.0f, 5.0f);
     
-    [self presentViewController:termsVC animated:YES completion:nil];
+    [self presentViewController:termsVC animated:YES];
 }
 
 #pragma mark - WMNavigationBar Delegate
@@ -1284,7 +1284,7 @@
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentViewController:vc animated:YES completion:nil];
+    [self presentViewController:vc animated:YES];
 }
 
 -(void)pressedInfoButton:(WMToolBar*)toolBar {
@@ -1302,7 +1302,7 @@
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentViewController:vc animated:YES completion:nil];
+    [self presentViewController:vc animated:YES];
 }
 
 -(void)pressedHelpButton:(WMToolBar*)toolBar {
@@ -1503,7 +1503,7 @@
 {
     WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
     vc.popoverButtonFrame = frame;
-    [self presentViewController:vc animated:YES completion:nil];
+    [self presentViewController:vc animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -1516,17 +1516,17 @@
     return YES;
 }
 
-- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         if ([modalViewController isKindOfClass:[WMViewController class]]) {
-            [self dismissModalViewControllerAnimated:NO];
+            [self dismissViewControllerAnimated:NO completion:nil];
             [self presentPopover:modalViewController animated:animated];
         } else {
-            [super presentModalViewController:modalViewController animated:animated];
+            [super presentViewController:modalViewController animated:animated completion:nil];
         }
     } else {
-        [super presentModalViewController:modalViewController animated:animated];
+        [super presentViewController:modalViewController animated:animated completion:nil];
     }
 }
 
@@ -1541,7 +1541,10 @@
             ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(((WMViewController *)viewController).popoverButtonFrame.origin.x, ((WMViewController *)viewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
         }
         
-        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame
+                                                                      inView:self.view
+                                                    permittedArrowDirections:0
+                                                                    animated:animated];
         
     } else if ([viewController isKindOfClass:[WMFirstStartViewController class]]) {
         
@@ -1556,7 +1559,10 @@
             ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(768.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
         }
         
-        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame
+                                                                      inView:self.view
+                                                    permittedArrowDirections:0
+                                                                    animated:animated];
         
     } else if ([viewController isKindOfClass:[WMViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
@@ -1564,7 +1570,10 @@
         self.popoverVC = (WMViewController *)viewController;
         ((WMViewController *)viewController).baseController = self;
         
-        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame
+                                                                      inView:self.view
+                                                    permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                                    animated:animated];
     }
 }
 

@@ -196,9 +196,9 @@
     [self changeScreenStatusFor:[viewControllers lastObject]];
 }
 
-- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self dismissModalViewControllerAnimated:NO];
+        [self dismissViewControllerAnimated:NO completion:nil];
         if ([modalViewController isKindOfClass:[WMLoginViewController class]]) {
             ((WMLoginViewController *)modalViewController).popover = [[WMPopoverController alloc]
                                                                  initWithContentViewController:modalViewController];
@@ -211,7 +211,7 @@
             [((WMLoginViewController *)modalViewController).popover presentPopoverFromRect:((WMLoginViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
         }
     } else {
-        [super presentModalViewController:modalViewController animated:animated];
+        [super presentViewController:modalViewController animated:animated completion:nil];
     }
 }
 

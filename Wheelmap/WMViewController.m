@@ -99,7 +99,7 @@
     [super presentViewController:modalViewController animated:animated completion:nil];
 }
 
-- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         UINavigationController *navigationController;
@@ -111,7 +111,7 @@
         
         if ([modalViewController isKindOfClass:[WMMapSettingsViewController class]]) {
             
-            [super presentModalViewController:modalViewController animated:animated];
+            [super presentViewController:modalViewController animated:animated completion:nil];
             
         } else if ([modalViewController isKindOfClass:[WMFirstStartViewController class]]) {
             
@@ -186,7 +186,7 @@
             }
         }
     } else {
-        [super presentModalViewController:modalViewController animated:animated];
+        [super presentViewController:modalViewController animated:animated completion:nil];
     }
 }
 

@@ -78,14 +78,14 @@
     // use this when websites are optimized for mobile
         WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
         [regViewController loadLoginUrl];
-        [self presentViewController:regViewController animated:YES completion:nil];
+        [self presentViewController:regViewController animated:YES];
 }
 
 -(IBAction)pressedRegisterButton:(id)sender
 {
     WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
     [regViewController loadRegisterUrl];
-    [self presentViewController:regViewController animated:YES completion:nil];
+    [self presentViewController:regViewController animated:YES];
 }
 
 - (void)adjustLabelHeightToText:(UILabel *)label {

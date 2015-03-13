@@ -801,7 +801,7 @@
                 
                 [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             } else {
-                [self presentViewController:self.imagePicker animated:YES completion:nil];
+                [self presentViewController:self.imagePicker animated:YES];
             }
         } else if (buttonIndex == 1) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -812,7 +812,7 @@
                 
                 [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             } else {
-                [self presentViewController:self.imagePicker animated:YES completion:nil];
+                [self presentViewController:self.imagePicker animated:YES];
             }
         }
     } else if (actionSheet.tag == 3) {
@@ -989,7 +989,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:vc animated:YES];
     }
     NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
@@ -1007,7 +1007,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:vc animated:YES];
     }
     NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];

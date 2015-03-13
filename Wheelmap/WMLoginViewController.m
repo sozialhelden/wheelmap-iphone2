@@ -160,7 +160,7 @@
 - (void)showFirstStartScreen {
     if ([dataManager isFirstLaunch]) {
         WMFirstStartViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMFirstStart"];
-        [self presentViewController:firstStartViewController animated:YES completion:nil];
+        [self presentViewController:firstStartViewController animated:YES];
         [dataManager firstLaunchOccurred];
     }
 }
@@ -190,7 +190,7 @@
 {
     WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
     [regViewController loadRegisterUrl];
-    [self presentViewController:regViewController animated:YES completion:nil];
+    [self presentViewController:regViewController animated:YES];
 }
 
 - (IBAction)loginPressed:(id)sender
@@ -210,7 +210,7 @@
     // use this when websites are optimized for mobile
     WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
     [regViewController loadLoginUrl];
-    [self presentViewController:regViewController animated:YES completion:nil];
+    [self presentViewController:regViewController animated:YES];
 }
 
 

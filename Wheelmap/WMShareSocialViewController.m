@@ -87,7 +87,7 @@
 }
 
 // sharing viewcontrollers are always presented modally, so don't override for ipad
-- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
     [self presentForcedModalViewController:modalViewController animated:animated];
 }
 
