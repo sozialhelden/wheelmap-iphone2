@@ -11,7 +11,8 @@
 #import "WMMapViewController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMCategoryViewController.h"
-#import "WMLoginViewController.h"
+//#import "WMLoginViewController.h"
+#import "WMOSMStartViewController.h"
 #import "WMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
@@ -211,7 +212,7 @@
 {
     WMViewController* vc;
     if (!dataManager.userIsAuthenticated) {
-        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
     } else {
         vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
     }

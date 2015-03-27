@@ -52,12 +52,6 @@
     self.usernameTextField.delegate = self;
     self.passwordTextField.delegate = self;
     
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveAuthenticationData:)
-                                                 name:@"didReceiveAuthentificationData"
-                                               object:nil];
-    
     // register for keyboard notifications (not necessary on ipad, as theres enough space)
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad){
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -159,8 +153,10 @@
 
 - (void)showFirstStartScreen {
     if ([dataManager isFirstLaunch]) {
+        
         WMFirstStartViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMFirstStart"];
         [self presentViewController:firstStartViewController animated:YES];
+        
         [dataManager firstLaunchOccurred];
     }
 }
@@ -346,13 +342,5 @@
 
 - (CGSize)contentSizeForViewInPopover {
     return CGSizeMake(320.0f, 550.0f);
-}
-
-- (void) didReceiveAuthenticationData:(NSNotification*)n{
-    NSLog(@"auth Data:%@", n);
-    
-    NSDictionary *userData = [[n userInfo] objectForKey:@"authData"];
-    
-    [self.dataManager didReceiveAuthenticationData:userData forAccount:@"WheelmapOverOSM"];
 }
 @end

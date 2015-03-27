@@ -777,6 +777,15 @@
 		18A056EB1A6D4F1800FA88E8 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */; };
 		18A056EC1A6D4F1800FA88E8 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */; };
 		18A056ED1A6D4F1800FA88E8 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */; };
+		18A4EA261AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */; };
+		18A4EA271AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */; };
+		18A4EA281AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */; };
+		18A4EA2B1AC4457500C90404 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2A1AC4457500C90404 /* WMOSMStartViewController.m */; };
+		18A4EA2C1AC4457500C90404 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2A1AC4457500C90404 /* WMOSMStartViewController.m */; };
+		18A4EA2D1AC4457500C90404 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2A1AC4457500C90404 /* WMOSMStartViewController.m */; };
+		18A4EA301AC569F300C90404 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */; };
+		18A4EA311AC569F300C90404 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */; };
+		18A4EA321AC569F300C90404 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */; };
 		18D375041A5D8D4700187374 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D373D21A5D8D4600187374 /* AppledocSettings.plist */; };
 		18D375051A5D8D4700187374 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D373D21A5D8D4600187374 /* AppledocSettings.plist */; };
 		18D375061A5D8D4700187374 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D373D21A5D8D4600187374 /* AppledocSettings.plist */; };
@@ -1596,6 +1605,12 @@
 		18A056E41A6D1F7000FA88E8 /* UIWebView+UAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+UAAdditions.h"; sourceTree = "<group>"; };
 		18A056E51A6D1F7000FA88E8 /* UIWebView+UAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+UAAdditions.m"; sourceTree = "<group>"; };
 		18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		18A4EA241AC41D7C00C90404 /* WMOSMDescribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMDescribeViewController.h; sourceTree = "<group>"; };
+		18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMDescribeViewController.m; sourceTree = "<group>"; };
+		18A4EA291AC4457500C90404 /* WMOSMStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMStartViewController.h; sourceTree = "<group>"; };
+		18A4EA2A1AC4457500C90404 /* WMOSMStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMStartViewController.m; sourceTree = "<group>"; };
+		18A4EA2E1AC569F300C90404 /* WMOSMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMLoginViewController.h; sourceTree = "<group>"; };
+		18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMLoginViewController.m; sourceTree = "<group>"; };
 		18B3E7AA1A8CB80900AA2998 /* WMDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WMDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		18D373D21A5D8D4600187374 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		18D373D51A5D8D4600187374 /* UANativeBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UANativeBridge.h; sourceTree = "<group>"; };
@@ -2395,14 +2410,20 @@
 		03F30C521670B7E200241466 /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
+				18A4EA291AC4457500C90404 /* WMOSMStartViewController.h */,
+				18A4EA2A1AC4457500C90404 /* WMOSMStartViewController.m */,
 				03F30C531670B80600241466 /* WMLoginViewController.h */,
 				03F30C541670B80600241466 /* WMLoginViewController.m */,
 				DBCA978E167892440042358C /* WMLogoutViewController.h */,
 				DBCA978F167892440042358C /* WMLogoutViewController.m */,
 				0360B840169DACD100E04026 /* WMRegisterViewController.h */,
 				0360B841169DACDC00E04026 /* WMRegisterViewController.m */,
+				18A4EA2E1AC569F300C90404 /* WMOSMLoginViewController.h */,
+				18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */,
 				03C70AF216DF9E600040A280 /* WMFirstStartViewController.h */,
 				03C70AF316DF9E740040A280 /* WMFirstStartViewController.m */,
+				18A4EA241AC41D7C00C90404 /* WMOSMDescribeViewController.h */,
+				18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */,
 				034FACB816A59A4A00F9F663 /* WMTermsViewController.h */,
 				034FACB516A59A4100F9F663 /* WMTermsViewController.m */,
 				034FACBB16A59BF700F9F663 /* WMAcceptTermsViewController.h */,
@@ -4528,6 +4549,7 @@
 				0327F91716BFFB1900BA7DE7 /* WMNodeListViewController.m in Sources */,
 				18D376431A5D8D4700187374 /* UAMapPresentationController.m in Sources */,
 				0327F91816BFFB1900BA7DE7 /* WMNodeListCell.m in Sources */,
+				18A4EA311AC569F300C90404 /* WMOSMLoginViewController.m in Sources */,
 				18D375B91A5D8D4700187374 /* UAURLProtocol.m in Sources */,
 				18D3752F1A5D8D4700187374 /* UAAddCustomEventAction.m in Sources */,
 				0327F91916BFFB1900BA7DE7 /* WMWheelmapAPI.m in Sources */,
@@ -4596,6 +4618,7 @@
 				18D376041A5D8D4700187374 /* UAChannelRegistrar.m in Sources */,
 				18D3751D1A5D8D4700187374 /* UAActionJSDelegate.m in Sources */,
 				18D375F21A5D8D4700187374 /* UAInboxMessageData.m in Sources */,
+				18A4EA2C1AC4457500C90404 /* WMOSMStartViewController.m in Sources */,
 				18D3752C1A5D8D4700187374 /* UAActivityViewController.m in Sources */,
 				18D3758F1A5D8D4700187374 /* UALandingPageOverlayController.m in Sources */,
 				0327F93A16BFFB1900BA7DE7 /* ioapi.c in Sources */,
@@ -4698,6 +4721,7 @@
 				18D376491A5D8D4700187374 /* UAPushNotificationHandler.m in Sources */,
 				18D375B31A5D8D4700187374 /* UASyncAction.m in Sources */,
 				0327F96816BFFB1900BA7DE7 /* WMRegisterViewController.m in Sources */,
+				18A4EA271AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */,
 				0327F96916BFFB1900BA7DE7 /* UIDevice+Hardware.m in Sources */,
 				18D376011A5D8D4700187374 /* UAChannelAPIClient.m in Sources */,
 				18D375171A5D8D4700187374 /* UAAction.m in Sources */,
@@ -4741,6 +4765,7 @@
 				03BD036B16A052750045D53D /* WMNodeListViewController.m in Sources */,
 				18D376441A5D8D4700187374 /* UAMapPresentationController.m in Sources */,
 				03BD036C16A052750045D53D /* WMNodeListCell.m in Sources */,
+				18A4EA321AC569F300C90404 /* WMOSMLoginViewController.m in Sources */,
 				18D375BA1A5D8D4700187374 /* UAURLProtocol.m in Sources */,
 				18D375301A5D8D4700187374 /* UAAddCustomEventAction.m in Sources */,
 				03BD036D16A052750045D53D /* WMWheelmapAPI.m in Sources */,
@@ -4809,6 +4834,7 @@
 				18D376051A5D8D4700187374 /* UAChannelRegistrar.m in Sources */,
 				18D3751E1A5D8D4700187374 /* UAActionJSDelegate.m in Sources */,
 				18D375F31A5D8D4700187374 /* UAInboxMessageData.m in Sources */,
+				18A4EA2D1AC4457500C90404 /* WMOSMStartViewController.m in Sources */,
 				18D3752D1A5D8D4700187374 /* UAActivityViewController.m in Sources */,
 				18D375901A5D8D4700187374 /* UALandingPageOverlayController.m in Sources */,
 				03BD038E16A052750045D53D /* ioapi.c in Sources */,
@@ -4911,6 +4937,7 @@
 				18D3764A1A5D8D4700187374 /* UAPushNotificationHandler.m in Sources */,
 				18D375B41A5D8D4700187374 /* UASyncAction.m in Sources */,
 				03BD03BD16A052750045D53D /* WMRegisterViewController.m in Sources */,
+				18A4EA281AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */,
 				980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */,
 				18D376021A5D8D4700187374 /* UAChannelAPIClient.m in Sources */,
 				18D375181A5D8D4700187374 /* UAAction.m in Sources */,
@@ -4992,6 +5019,7 @@
 				18D375371A5D8D4700187374 /* UAAnalytics.m in Sources */,
 				18D375F71A5D8D4700187374 /* UAInboxPushHandler.m in Sources */,
 				18D376571A5D8D4700187374 /* UAPushSettingsTagsViewController.m in Sources */,
+				18A4EA301AC569F300C90404 /* WMOSMLoginViewController.m in Sources */,
 				98CA2301166676AB00DF0EA3 /* AFPropertyListRequestOperation.m in Sources */,
 				98CA2302166676AB00DF0EA3 /* AFURLConnectionOperation.m in Sources */,
 				98CA2303166676AB00DF0EA3 /* AFXMLRequestOperation.m in Sources */,
@@ -5101,6 +5129,7 @@
 				18D3759A1A5D8D4700187374 /* UAModifyTagsAction.m in Sources */,
 				18D3763C1A5D8D4700187374 /* UALocationDemoAnnotation.m in Sources */,
 				15DBF597169B7B5500EBAC2A /* SBJsonStreamWriterState.m in Sources */,
+				18A4EA261AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */,
 				18D3760F1A5D8D4700187374 /* NSString+UALocalization.m in Sources */,
 				18D375581A5D8D4700187374 /* UADelayOperation.m in Sources */,
 				15DBF598169B7B5500EBAC2A /* SBJsonTokeniser.m in Sources */,
@@ -5121,6 +5150,7 @@
 				98AA096416A32A77006AC882 /* Tile.m in Sources */,
 				18D3750D1A5D8D4700187374 /* NSJSONSerialization+UAAdditions.m in Sources */,
 				18D376001A5D8D4700187374 /* UAChannelAPIClient.m in Sources */,
+				18A4EA2B1AC4457500C90404 /* WMOSMStartViewController.m in Sources */,
 				980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */,
 				18D376061A5D8D4700187374 /* UAChannelRegistrationPayload.m in Sources */,
 				18D3752B1A5D8D4700187374 /* UAActivityViewController.m in Sources */,
