@@ -90,6 +90,10 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
     self.locationManager.distanceFilter = 50.0f;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
@@ -237,8 +241,8 @@
         self.mapViewController.baseController = self;
     }
     self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-    [self pushViewController:listViewController animated:NO];
-    [self pushViewController:self.mapViewController animated:YES];
+    [self pushViewController:listViewController animated:YES];
+    [self pushViewController:self.mapViewController animated:NO];
 }
 
 - (void)setMapControllerToContribute {
