@@ -775,10 +775,7 @@
 		34C08EA018A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA118A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
-		34F5A9D018AA3E4F0001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */; };
-		34F5A9D218AA3E560001B79E /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
 		4360DCD518BE0C7C00D57E2A /* WMOpenConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */; };
-		4360DCD618BE0C8D00D57E2A /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34F5A9D118AA3E560001B79E /* WMConfig.plist */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -803,11 +800,6 @@
 		9899275C1649151300D9003B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899275B1649151300D9003B /* main.m */; };
 		989927601649151300D9003B /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899275F1649151300D9003B /* WMAppDelegate.m */; };
 		989927691649151300D9003B /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989927671649151300D9003B /* MainStoryboard_iPhone.storyboard */; };
-		989927771649151300D9003B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927761649151300D9003B /* SenTestingKit.framework */; };
-		989927781649151300D9003B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
-		989927791649151300D9003B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
-		989927811649151300D9003B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9899277F1649151300D9003B /* InfoPlist.strings */; };
-		989927841649151300D9003B /* WheelmapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927831649151300D9003B /* WheelmapTests.m */; };
 		989927921649462E00D9003B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927911649462E00D9003B /* MapKit.framework */; };
 		989927951649481300D9003B /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989927941649481300D9003B /* WMNodeListViewController.m */; };
 		9899279D16494B5F00D9003B /* WMNodeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9899279C16494B5F00D9003B /* WMNodeListCell.m */; };
@@ -845,7 +837,6 @@
 		C5AA825E18A274D2001B2BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AA825D18A274D1001B2BBA /* Images.xcassets */; };
 		C5AA825F18A274D2001B2BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AA825D18A274D1001B2BBA /* Images.xcassets */; };
 		C5AA826018A274D2001B2BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AA825D18A274D1001B2BBA /* Images.xcassets */; };
-		C5AA826118A274D2001B2BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AA825D18A274D1001B2BBA /* Images.xcassets */; };
 		D53D23D81670F42A0062B8D3 /* details_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D61670F4290062B8D3 /* details_compass.png */; };
 		D53D23D91670F42A0062B8D3 /* details_compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D53D23D71670F4290062B8D3 /* details_compass@2x.png */; };
 		D5406D5A166A49650016E275 /* Social_btn-email.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D52166A49650016E275 /* Social_btn-email.png */; };
@@ -1029,16 +1020,6 @@
 		DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCA979916789B610042358C /* HockeySDKResources.bundle */; };
 		DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979B16789B910042358C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9899277A1649151300D9003B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 989927421649151300D9003B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9899274A1649151300D9003B;
-			remoteInfo = Wheelmap;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		031AFD1216BA80C60036CF5D /* WMPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPopoverController.h; sourceTree = "<group>"; };
@@ -1268,8 +1249,6 @@
 		348C9D6C18B64710001B022B /* Wheelmap-Info-beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Wheelmap-Info-beta.plist"; sourceTree = "<group>"; };
 		34C08E9E18A8ECAC00DAF430 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
 		34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
-		34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
-		34F5A9D118AA3E560001B79E /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		434AB7DA192648B800B21E13 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = WMOpenConfig.plist; path = config/beta/WMOpenConfig.plist; sourceTree = SOURCE_ROOT; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
@@ -1309,12 +1288,7 @@
 		9899275E1649151300D9003B /* WMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppDelegate.h; sourceTree = "<group>"; };
 		9899275F1649151300D9003B /* WMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppDelegate.m; sourceTree = "<group>"; };
 		989927681649151300D9003B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		989927751649151300D9003B /* WheelmapTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WheelmapTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		989927761649151300D9003B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		9899277E1649151300D9003B /* WheelmapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WheelmapTests-Info.plist"; sourceTree = "<group>"; };
-		989927801649151300D9003B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		989927821649151300D9003B /* WheelmapTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WheelmapTests.h; sourceTree = "<group>"; };
-		989927831649151300D9003B /* WheelmapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WheelmapTests.m; sourceTree = "<group>"; };
 		989927911649462E00D9003B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		989927931649481300D9003B /* WMNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListViewController.h; sourceTree = "<group>"; };
 		989927941649481300D9003B /* WMNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeListViewController.m; sourceTree = "<group>"; };
@@ -1680,16 +1654,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		989927711649151300D9003B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				989927771649151300D9003B /* SenTestingKit.framework in Frameworks */,
-				989927781649151300D9003B /* UIKit.framework in Frameworks */,
-				989927791649151300D9003B /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1746,7 +1710,6 @@
 		034FAED216A6FDFA00F9F663 /* live */ = {
 			isa = PBXGroup;
 			children = (
-				34F5A9CD18AA3E4F0001B79E /* WMConfig.plist */,
 				03C74DBC16C5009400C77FEF /* WMOpenConfig.plist */,
 			);
 			path = live;
@@ -1755,7 +1718,6 @@
 		034FAED416A6FDFA00F9F663 /* staging */ = {
 			isa = PBXGroup;
 			children = (
-				34F5A9D118AA3E560001B79E /* WMConfig.plist */,
 				03C74DBF16C500A000C77FEF /* WMOpenConfig.plist */,
 			);
 			path = staging;
@@ -2117,7 +2079,6 @@
 				0360B9BA169DC16A00E04026 /* Airship */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
-				9899277C1649151300D9003B /* WheelmapTests */,
 				9899274E1649151300D9003B /* Frameworks */,
 				9899274C1649151300D9003B /* Products */,
 			);
@@ -2127,7 +2088,6 @@
 			isa = PBXGroup;
 			children = (
 				9899274B1649151300D9003B /* Wheelmap-DEV.app */,
-				989927751649151300D9003B /* WheelmapTests.octest */,
 				03BD04A616A052750045D53D /* Wheelmap-LIVE.app */,
 				0327FA6B16BFFB1900BA7DE7 /* Wheelmap-BETA.app */,
 			);
@@ -2193,25 +2153,6 @@
 			);
 			name = "Supporting Files";
 			path = Wheelmap;
-			sourceTree = "<group>";
-		};
-		9899277C1649151300D9003B /* WheelmapTests */ = {
-			isa = PBXGroup;
-			children = (
-				989927821649151300D9003B /* WheelmapTests.h */,
-				989927831649151300D9003B /* WheelmapTests.m */,
-				9899277D1649151300D9003B /* Supporting Files */,
-			);
-			path = WheelmapTests;
-			sourceTree = "<group>";
-		};
-		9899277D1649151300D9003B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9899277E1649151300D9003B /* WheelmapTests-Info.plist */,
-				9899277F1649151300D9003B /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9899279E164973CF00D9003B /* WheelmapAPI */ = {
@@ -2822,25 +2763,6 @@
 			productReference = 9899274B1649151300D9003B /* Wheelmap-DEV.app */;
 			productType = "com.apple.product-type.application";
 		};
-		989927741649151300D9003B /* WheelmapTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9899278A1649151300D9003B /* Build configuration list for PBXNativeTarget "WheelmapTests" */;
-			buildPhases = (
-				989927701649151300D9003B /* Sources */,
-				989927711649151300D9003B /* Frameworks */,
-				989927721649151300D9003B /* Resources */,
-				989927731649151300D9003B /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9899277B1649151300D9003B /* PBXTargetDependency */,
-			);
-			name = WheelmapTests;
-			productName = WheelmapTests;
-			productReference = 989927751649151300D9003B /* WheelmapTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2887,7 +2809,6 @@
 				9899274A1649151300D9003B /* Wheelmap-DEV */,
 				0327F91316BFFB1900BA7DE7 /* Wheelmap-BETA */,
 				03BD036716A052750045D53D /* Wheelmap-LIVE */,
-				989927741649151300D9003B /* WheelmapTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2931,7 +2852,6 @@
 				0327F9A616BFFB1900BA7DE7 /* toolbar_icon-category.png in Resources */,
 				0327F9A716BFFB1900BA7DE7 /* toolbar_icon-category@2x.png in Resources */,
 				0327F9A816BFFB1900BA7DE7 /* toolbar_icon-filter.png in Resources */,
-				4360DCD618BE0C8D00D57E2A /* WMConfig.plist in Resources */,
 				0327F9A916BFFB1900BA7DE7 /* toolbar_icon-filter@2x.png in Resources */,
 				0327F9AA16BFFB1900BA7DE7 /* toolbar_icon-location.png in Resources */,
 				0327F9AB16BFFB1900BA7DE7 /* toolbar_icon-location@2x.png in Resources */,
@@ -3345,7 +3265,6 @@
 				03C74DAF16C4F1EE00C77FEF /* list_shadow.png in Resources */,
 				03C74DB216C4F1EE00C77FEF /* list_shadow@2x.png in Resources */,
 				03C74DBD16C5009400C77FEF /* WMOpenConfig.plist in Resources */,
-				34F5A9D018AA3E4F0001B79E /* WMConfig.plist in Resources */,
 				0351F10916D37C9B00031522 /* checkbox_active.png in Resources */,
 				0351F10C16D37C9B00031522 /* checkbox_active@2x.png in Resources */,
 				0351F10F16D37C9B00031522 /* checkbox_inactive.png in Resources */,
@@ -3397,7 +3316,6 @@
 				DBA622231668F380009FA5DF /* toolbar_icon-search.png in Resources */,
 				DBA622241668F380009FA5DF /* toolbar_icon-search@2x.png in Resources */,
 				DBA622251668F380009FA5DF /* toolbar_indicator-green.png in Resources */,
-				34F5A9D218AA3E560001B79E /* WMConfig.plist in Resources */,
 				DBA622261668F380009FA5DF /* toolbar_indicator-green@2x.png in Resources */,
 				DBA622271668F380009FA5DF /* toolbar_indicator-grey.png in Resources */,
 				DBA622281668F380009FA5DF /* toolbar_indicator-grey@2x.png in Resources */,
@@ -3582,32 +3500,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		989927721649151300D9003B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				989927811649151300D9003B /* InfoPlist.strings in Resources */,
-				C5AA826118A274D2001B2BBA /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		989927731649151300D9003B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0327F91416BFFB1900BA7DE7 /* Sources */ = {
@@ -3918,23 +3811,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		989927701649151300D9003B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				989927841649151300D9003B /* WheelmapTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9899277B1649151300D9003B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9899274A1649151300D9003B /* Wheelmap-DEV */;
-			targetProxy = 9899277A1649151300D9003B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		34134F7418B3C6260029F320 /* MainStoryboard_iPad.storyboard */ = {
@@ -3959,14 +3836,6 @@
 				989927681649151300D9003B /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		9899277F1649151300D9003B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				989927801649151300D9003B /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		DB6E47A9166CA93900D9CAD9 /* Localizable.strings */ = {
@@ -4286,27 +4155,6 @@
 			};
 			name = AppStore;
 		};
-		03F23ED416A0160600F6B379 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Wheelmap.app/Wheelmap";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
-				INFOPLIST_FILE = "WheelmapTests/WheelmapTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = AppStore;
-		};
 		989927851649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4444,48 +4292,6 @@
 			};
 			name = Release;
 		};
-		9899278B1649151300D9003B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Wheelmap.app/Wheelmap";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
-				INFOPLIST_FILE = "WheelmapTests/WheelmapTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		9899278C1649151300D9003B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Wheelmap.app/Wheelmap";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
-				INFOPLIST_FILE = "WheelmapTests/WheelmapTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4525,16 +4331,6 @@
 				989927881649151300D9003B /* Debug */,
 				989927891649151300D9003B /* Release */,
 				03F23ED316A0160600F6B379 /* AppStore */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9899278A1649151300D9003B /* Build configuration list for PBXNativeTarget "WheelmapTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9899278B1649151300D9003B /* Debug */,
-				9899278C1649151300D9003B /* Release */,
-				03F23ED416A0160600F6B379 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -32,6 +32,7 @@
 #import "WMLogoutViewController.h"
 #import "WMToolBar_iPad.h"
 #import "WMFirstStartViewController.h"
+#import "Constants.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -65,6 +66,8 @@
     
     self.delegate = self;
     
+    self.mapViewController = self;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -90,6 +93,14 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if (IS_OS_8_OR_LATER)
+    {
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
+    
     self.locationManager.distanceFilter = 50.0f;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
@@ -236,9 +247,9 @@
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
     }
+    
     self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-    [self pushViewController:listViewController animated:NO];
-    [self pushViewController:self.mapViewController animated:YES];
+    [self  pushViewController:listViewController animated:YES];
 }
 
 - (void)setMapControllerToContribute {
