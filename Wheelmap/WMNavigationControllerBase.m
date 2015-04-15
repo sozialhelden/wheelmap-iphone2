@@ -65,6 +65,8 @@
     
     self.delegate = self;
     
+    self.mapViewController = self;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -240,9 +242,10 @@
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
     }
+    
     self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-    [self pushViewController:listViewController animated:YES];
-    [self pushViewController:self.mapViewController animated:NO];
+    [self  pushViewController:listViewController animated:YES];
+    //[self  pushViewController:self.mapViewController animated:NO];
 }
 
 - (void)setMapControllerToContribute {

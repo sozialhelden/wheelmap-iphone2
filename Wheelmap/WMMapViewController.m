@@ -108,6 +108,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    self.mapView.delegate = self;
     
     self.loadingLabel.numberOfLines = 0;
     self.loadingLabel.textColor = [UIColor whiteColor];
@@ -176,6 +177,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.mapView.delegate = nil;
     [self slideOutMapInteractionAdvisor];
 }
 
@@ -208,27 +210,23 @@
         NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:self.mapView.annotations];
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         
-        // fix for map sometimes showing old annotations on ipad
-        //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        //        for (id<MKAnnotation> annotation in oldAnnotations) {
-        //            if (![annotation isKindOfClass:[MKUserLocation class]])
-        //                [self.mapView removeAnnotation:annotation];
-        //        }
-        //    }
-        
-        [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
-            
-            WMMapAnnotation *annotationForNode = [self annotationForNode:node];
-            if (annotationForNode) {
-                // this node is already shown on the map
-                [oldAnnotations removeObject:annotationForNode];
-            } else {
-                // this node is new
-                WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
-                [newAnnotations addObject:annotation];
-            }
-            
-        }];
+        if (newAnnotations.count > 0 && oldAnnotations.count >0) {
+            [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
+                
+                WMMapAnnotation *annotationForNode = [self annotationForNode:node];
+                if (annotationForNode != nil) {
+                    // this node is already shown on the map
+                    [oldAnnotations removeObject:annotationForNode];
+                } else {
+                    // this node is new
+                    WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
+                    if (annotation != nil) {
+                         [newAnnotations addObject:annotation];
+                    }
+                }
+                
+            }];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
