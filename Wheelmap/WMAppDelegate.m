@@ -50,10 +50,11 @@
     // Set the notification types required for the app (optional). This value defaults
     // to badge, alert and sound, so it's only necessary to set it if you want
     // to add or remove types.
+    
     [UAPush shared].userNotificationTypes = (UIUserNotificationTypeAlert |
                                              UIUserNotificationTypeBadge |
                                              UIUserNotificationTypeSound);
-    
+
     // start listening to AFNetworking operations and show/hide activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     

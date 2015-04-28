@@ -12,6 +12,9 @@
 
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
+@property (nonatomic, weak) IBOutlet UILabel *whyOSMLabel;
+@property (nonatomic, weak) IBOutlet UITextView *whyOSMTextView;
+
 @property (nonatomic, weak) IBOutlet UIButton* okButton;
 
 @end

@@ -197,6 +197,12 @@
     }
 }
 
+- (IBAction)whyOSMPressed:(id)sender {
+    
+    WMOSMDescribeViewController *osmDescribeViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMDescribeViewController"];
+    [self presentViewController:osmDescribeViewController animated:YES];
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -224,7 +230,7 @@
     
     NSDictionary *userData = [[n userInfo] objectForKey:@"authData"];
     
-    NSString *email = @"WheelmapOverOSM";
+    NSString *email = @"Wheelmap over OSM";
     if([userData valueForKey:@"email"]){
         email = [userData valueForKey:@"email"];
     }

@@ -19,6 +19,9 @@
     
     self.scrollView.backgroundColor = [UIColor wmGreyColor];
     
+    [self.whyOSMLabel setText:NSLocalizedString(@"WhyOSMAccount", nil)];
+    [self.whyOSMTextView setText:NSLocalizedString(@"DescribeWhyOSMAccount", nil)];
+    
     [self.okButton setTitle:NSLocalizedString(@"FirstStartButton", nil) forState:UIControlStateNormal];
     [self.okButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
     

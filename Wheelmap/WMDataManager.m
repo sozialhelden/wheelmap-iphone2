@@ -282,7 +282,7 @@
             NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
             [userDefault setObject:[self currentUserName] forKey:@"WheelmapLastUserName"];
             
-            BOOL termsAccepted = [user[@"terms_accepted"] boolValue] & [user[@"privacy_accepted"] boolValue];
+            BOOL termsAccepted = ([user[@"terms_accepted"] boolValue] & [user[@"privacy_accepted"] boolValue]);
             if (termsAccepted) {
                 [self userDidAcceptTerms];  // save to local device
             } else {
@@ -370,6 +370,7 @@
 
 - (void)userDidAcceptTerms {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"acount name:%@", [self currentUserTermsKey]);
     [defaults setValue:@"YES" forKey:[self currentUserTermsKey]];
     [defaults synchronize];
 }

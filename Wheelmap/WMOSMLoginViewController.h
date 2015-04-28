@@ -18,6 +18,7 @@
 
 - (void)loadRegisterUrl;
 - (void)loadLoginUrl;
-- (void)loadForgotPasswordUrl;
+//- (void)loadForgotPasswordUrl;
+- (IBAction)whyOSM:(id)sender;
 
 @end

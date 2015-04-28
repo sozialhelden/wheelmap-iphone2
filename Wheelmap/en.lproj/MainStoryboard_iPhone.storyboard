@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PAo-CL-fP5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PAo-CL-fP5">
     <dependencies>
         <deployment version="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Dashboard View Controller-->
@@ -17,22 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H2Y-nc-CTN" userLabel="Container View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2Y-nc-CTN" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="start_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-sA-MVk">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" image="start_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-sA-MVk">
                                         <rect key="frame" x="0.0" y="26" width="320" height="45"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="start_searchbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ha-Zh-CKZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="start_searchbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ha-Zh-CKZ">
                                         <rect key="frame" x="20" y="74" width="280" height="40"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
                                         <rect key="frame" x="33" y="78" width="230" height="30"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41a-ZN-xe8">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41a-ZN-xe8">
                                         <rect key="frame" x="20" y="506" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="start_icon-credits.png">
@@ -46,7 +46,7 @@
                                             <segue destination="LHv-7p-vb9" kind="modal" id="3rr-uS-mAi"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJJ-fI-xar">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJJ-fI-xar">
                                         <rect key="frame" x="270" y="506" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="start_icon-login.png">
@@ -60,23 +60,53 @@
                                             <action selector="pressedLoginButton:" destination="WwW-IJ-J40" eventType="touchUpInside" id="s9A-qM-J9o"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6u-5v-jvR" customClass="WMLabel">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6u-5v-jvR" customClass="WMLabel">
                                         <rect key="frame" x="58" y="508" width="205" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="LUu-4G-Gv4"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.3411764705882353" green="0.39215686274509803" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="b6Q-Qs-89s">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="b6Q-Qs-89s">
                                         <rect key="frame" x="142" y="184" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18431372940540314" green="0.27058824896812439" blue="0.39607846736907959" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstItem="b6Q-Qs-89s" firstAttribute="top" secondItem="tNJ-yc-nG9" secondAttribute="bottom" constant="76" id="0Vk-M9-j8K"/>
+                                    <constraint firstItem="tNJ-yc-nG9" firstAttribute="leading" secondItem="H2Y-nc-CTN" secondAttribute="leading" constant="33" id="18e-e9-IsP"/>
+                                    <constraint firstItem="b6Q-Qs-89s" firstAttribute="centerX" secondItem="l6u-5v-jvR" secondAttribute="centerX" id="20V-Ul-Vea"/>
+                                    <constraint firstItem="5ha-Zh-CKZ" firstAttribute="top" secondItem="TUN-sA-MVk" secondAttribute="bottom" constant="3" id="4qh-qq-ymv"/>
+                                    <constraint firstItem="tNJ-yc-nG9" firstAttribute="top" secondItem="TUN-sA-MVk" secondAttribute="bottom" constant="7" id="9Tp-0I-R8j"/>
+                                    <constraint firstItem="5ha-Zh-CKZ" firstAttribute="trailing" secondItem="wJJ-fI-xar" secondAttribute="trailing" id="FDX-5C-Ise"/>
+                                    <constraint firstItem="TUN-sA-MVk" firstAttribute="top" secondItem="H2Y-nc-CTN" secondAttribute="top" constant="26" id="HMw-v4-dHZ"/>
+                                    <constraint firstItem="wJJ-fI-xar" firstAttribute="bottom" secondItem="l6u-5v-jvR" secondAttribute="bottom" id="IVo-9t-dOg"/>
+                                    <constraint firstItem="b6Q-Qs-89s" firstAttribute="centerX" secondItem="5ha-Zh-CKZ" secondAttribute="centerX" id="LDr-iZ-UJv"/>
+                                    <constraint firstItem="TUN-sA-MVk" firstAttribute="centerX" secondItem="5ha-Zh-CKZ" secondAttribute="centerX" id="NTU-Lx-pKl"/>
+                                    <constraint firstAttribute="trailing" secondItem="tNJ-yc-nG9" secondAttribute="trailing" constant="57" id="Tws-CK-uTx"/>
+                                    <constraint firstItem="l6u-5v-jvR" firstAttribute="trailing" secondItem="tNJ-yc-nG9" secondAttribute="trailing" id="csO-xD-gzu"/>
+                                    <constraint firstItem="5ha-Zh-CKZ" firstAttribute="leading" secondItem="41a-ZN-xe8" secondAttribute="leading" id="fM2-gt-8FC"/>
+                                    <constraint firstItem="TUN-sA-MVk" firstAttribute="leading" secondItem="H2Y-nc-CTN" secondAttribute="leading" id="htj-7g-Oa1"/>
+                                    <constraint firstItem="wJJ-fI-xar" firstAttribute="top" secondItem="41a-ZN-xe8" secondAttribute="top" id="kdj-kV-FAo"/>
+                                    <constraint firstAttribute="bottom" secondItem="41a-ZN-xe8" secondAttribute="bottom" constant="12" id="mlZ-UZ-KOD"/>
+                                    <constraint firstItem="l6u-5v-jvR" firstAttribute="leading" secondItem="41a-ZN-xe8" secondAttribute="trailing" constant="8" symbolic="YES" id="pRd-Nb-A44"/>
+                                    <constraint firstItem="b6Q-Qs-89s" firstAttribute="top" secondItem="5ha-Zh-CKZ" secondAttribute="bottom" constant="70" id="sFD-LB-vDD"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H2Y-nc-CTN" firstAttribute="bottom" secondItem="kT3-Pr-pnY" secondAttribute="top" id="FxN-jF-M4Q"/>
+                            <constraint firstItem="H2Y-nc-CTN" firstAttribute="top" secondItem="obc-Uy-UTS" secondAttribute="bottom" id="iMw-Rn-3ff"/>
+                            <constraint firstItem="H2Y-nc-CTN" firstAttribute="leading" secondItem="LAb-k1-rkp" secondAttribute="leading" id="vb2-hU-6JH"/>
+                            <constraint firstAttribute="trailing" secondItem="H2Y-nc-CTN" secondAttribute="trailing" id="zC4-Jl-vLC"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="29C-yd-aZr"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="containerView" destination="H2Y-nc-CTN" id="QZx-6T-lh0"/>
                         <outlet property="creditsButton" destination="41a-ZN-xe8" id="V65-8i-vqR"/>
@@ -533,41 +563,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="321" height="500"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="eGA-Ra-E0q">
-                                                <rect key="frame" x="83" y="24" width="155" height="31"/>
+                                                <rect key="frame" x="83" y="20" width="155" height="31"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Um dich bei bei Wheelmap einzuloggen, benötigst Du ein Nutzerkonto der Openstreetmap (OSM)." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="tax-Gm-ts7" userLabel="Top Text Label">
-                                                <rect key="frame" x="15" y="50" width="291" height="60"/>
+                                                <rect key="frame" x="15" y="50" width="291" height="50"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxB-FO-lwr">
-                                                <rect key="frame" x="9" y="110" width="302" height="160"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <string key="text">Vier Schritte zum Login:
-1. Auf  “Weiter zur OSM” klicken und dort OSM-Nutzerkonto anlegen
-2. Email-Programm öffnen und Bestätigungslink klicken 3. Wheelmap-App öffnen
-4. Mit dem OSM-Nutzerkonto (Nutzernamen &amp; Passwort) einloggen</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbt-HI-E89" userLabel="Large Button">
-                                                <rect key="frame" x="15" y="422" width="291" height="50"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                <state key="normal" title="OSM Registrierung" backgroundImage="buttons_btn-signup.png">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="registerPressed:" destination="PTd-16-DQ9" eventType="touchUpInside" id="GuK-XG-5Jh"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUE-4s-891" userLabel="Small Button">
-                                                <rect key="frame" x="106" y="280" width="200" height="37"/>
+                                                <rect key="frame" x="60" y="105" width="200" height="37"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="Weiter zum OSM-Login" backgroundImage="buttons_btn.png">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -578,6 +583,55 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="loginPressed:" destination="PTd-16-DQ9" eventType="touchUpInside" id="br9-BY-Rqn"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F31-1c-tXs">
+                                                <rect key="frame" x="15" y="155" width="290" height="2"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Noch kein OSM-Nutzerkonto?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-0b-1Z5">
+                                                <rect key="frame" x="15" y="160" width="290" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxB-FO-lwr">
+                                                <rect key="frame" x="9" y="180" width="302" height="160"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <string key="text">Vier Schritte zum Login:
+1. Auf  “Weiter zur OSM” klicken und dort OSM-Nutzerkonto anlegen
+2. Email-Programm öffnen und Bestätigungslink klicken 3. Wheelmap-App öffnen
+4. Mit dem OSM-Nutzerkonto (Nutzernamen &amp; Passwort) einloggen</string>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbt-HI-E89" userLabel="Large Button">
+                                                <rect key="frame" x="15" y="325" width="291" height="50"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="OSM-Registrierung" backgroundImage="buttons_btn-signup.png">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="registerPressed:" destination="PTd-16-DQ9" eventType="touchUpInside" id="GuK-XG-5Jh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCC-Am-H45">
+                                                <rect key="frame" x="15" y="380" width="291" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="Warum ist ein OSM-Nutzerkonto notwendig?">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="whyOSMPressed:" destination="PTd-16-DQ9" eventType="touchUpInside" id="8Jg-SN-f4L"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -596,9 +650,12 @@
                         <outlet property="loginButton" destination="nUE-4s-891" id="j05-T4-i7e"/>
                         <outlet property="logoImageView" destination="eGA-Ra-E0q" id="eIf-vO-AOo"/>
                         <outlet property="registerButton" destination="cbt-HI-E89" id="Xnu-s8-GLR"/>
+                        <outlet property="stepsLabel" destination="mgt-0b-1Z5" id="sas-5E-tDF"/>
+                        <outlet property="stepsTextView" destination="AxB-FO-lwr" id="LHz-C6-Uh8"/>
                         <outlet property="titleLabel" destination="GKY-Ga-HTa" id="pWp-ne-zl1"/>
                         <outlet property="topTextLabel" destination="tax-Gm-ts7" id="4cf-Dj-bIP"/>
                         <outlet property="view" destination="LUy-zb-cxk" id="mrB-1e-l5w"/>
+                        <outlet property="whyButton" destination="JCC-Am-H45" id="Wbe-uz-SYi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNm-ig-onA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1256,12 +1313,15 @@
                                         <rect key="frame" x="82" y="20" width="155" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wi8-KI-hol">
+                                        <rect key="frame" x="15" y="65" width="295" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zLS-qe-PdU">
-                                        <rect key="frame" x="9" y="59" width="302" height="200"/>
+                                        <rect key="frame" x="9" y="85" width="302" height="200"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <string key="text">Warum ist ein OSM-Nutzerkonto notwendig?
-
-Alle Orte und Informationen auf Wheelmap.org sind in der OSM gespeichert. Um neue Informationen oder neue Orte einzutragen, ist deshalb ein OpenStreetmap-Konto nötig, mit dem man sich auf Wheelmap einloggen kann.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -1291,6 +1351,8 @@ Alle Orte und Informationen auf Wheelmap.org sind in der OSM gespeichert. Um neu
                     <connections>
                         <outlet property="okButton" destination="M3L-ul-Riw" id="nlb-wx-hrR"/>
                         <outlet property="scrollView" destination="zeo-O3-EfZ" id="oQB-pe-xFI"/>
+                        <outlet property="whyOSMLabel" destination="Wi8-KI-hol" id="qIw-Jy-qnb"/>
+                        <outlet property="whyOSMTextView" destination="zLS-qe-PdU" id="F1z-c4-BKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Edg-ga-D7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1375,6 +1437,7 @@ Alle Orte und Informationen auf Wheelmap.org sind in der OSM gespeichert. Um neu
                 <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="PAo-CL-fP5" customClass="WMNavigationControllerBase" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qk5-4C-VTa">

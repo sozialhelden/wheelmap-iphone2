@@ -20,9 +20,11 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *contentScrollView;
 
 @property (nonatomic, weak) IBOutlet UIButton *doneButton;
+@property (nonatomic, weak) IBOutlet UILabel *stepsLabel;
 @property (nonatomic, weak) IBOutlet UITextView *stepsTextView;
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
+@property (nonatomic, weak) IBOutlet UIButton *whyButton;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *topTextLabel;
 @property (nonatomic, retain) WMDataManager *dataManager;
@@ -30,6 +32,7 @@
 - (IBAction)registerPressed:(id)sender;
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)donePressed:(id)sender;
+- (IBAction)whyOSMPressed:(id)sender;
 - (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager;
 
 @end

@@ -10,6 +10,7 @@
 #import "WMWheelmapAPI.h"
 #import "Constants.h"
 #import "WMDataManager.h"
+#import "WMOSMDescribeViewController.h"
 
 @implementation WMOSMLoginViewController {
     
@@ -124,6 +125,8 @@
         
         NSString *apiToken = @"undefined";
         NSString *email = @"WheelmapUserOverOSM";
+        NSNumber *privacy_policy = [NSNumber numberWithBool:FALSE];
+        NSNumber *terms = [NSNumber numberWithBool:FALSE];
         NSString *url = request.URL.absoluteString;
         
         NSArray *comp1 = [url componentsSeparatedByString:@"?"];
@@ -138,6 +141,10 @@
                     apiToken = value;
                 }else if([variableKey isEqualToString:@"email"] && value!=nil){
                     email = value;
+                }else if([variableKey isEqualToString:@"privacy_accepted"] && value!=nil && [value isEqualToString:@"true"]){
+                    privacy_policy = [NSNumber numberWithBool:TRUE];
+                }else if([variableKey isEqualToString:@"terms_accepted"] && value!=nil && [value isEqualToString:@"true"]){
+                    terms = [NSNumber numberWithBool:TRUE];
                 }
             }
         }
@@ -145,7 +152,7 @@
         if(![apiToken isEqualToString:@"undefined"]){
             [[NSNotificationCenter defaultCenter] postNotificationName:@"didReceiveAuthenticationData"
                                                                 object:self
-                                                              userInfo:@{@"authData":@{@"api_key":apiToken, @"email":email}}];
+                                                              userInfo:@{@"authData":@{@"api_key":apiToken, @"email":email, @"privacy_accepted":privacy_policy , @"terms_accepted":terms}}];
             //[self.loginVC.dataManager didReceiveAuthenticationData: forAccount:@"wheelmapApp"];
             [self dismissViewControllerAnimated:YES];
         }
@@ -178,6 +185,11 @@
 
     }
   */
+}
+
+-(IBAction)whyOSM:(id)sender{
+    WMOSMDescribeViewController *osmDescribeViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMDescribe"];
+    [self presentViewController:osmDescribeViewController animated:YES];
 }
 
 @end
