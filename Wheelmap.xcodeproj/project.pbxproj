@@ -117,7 +117,6 @@
 		0327F96E16BFFB1900BA7DE7 /* WMNavigationBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 031B9CA816AED4AE00AA0317 /* WMNavigationBar_iPad.m */; };
 		0327F96F16BFFB1900BA7DE7 /* WMDetailNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A6FF916B0231E002ECE12 /* WMDetailNavigationController.m */; };
 		0327F97016BFFB1900BA7DE7 /* WMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AFD1316BA80C60036CF5D /* WMPopoverController.m */; };
-		0327F97216BFFB1900BA7DE7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB34169DC20B00E04026 /* StoreKit.framework */; };
 		0327F97316BFFB1900BA7DE7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB32169DC20200E04026 /* CoreTelephony.framework */; };
 		0327F97416BFFB1900BA7DE7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB30169DC1FB00E04026 /* libsqlite3.dylib */; };
 		0327F97516BFFB1900BA7DE7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
@@ -377,7 +376,6 @@
 		0360BB2F169DC1CE00E04026 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB2E169DC1CE00E04026 /* CFNetwork.framework */; };
 		0360BB31169DC1FB00E04026 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB30169DC1FB00E04026 /* libsqlite3.dylib */; };
 		0360BB33169DC20200E04026 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB32169DC20200E04026 /* CoreTelephony.framework */; };
-		0360BB35169DC20B00E04026 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB34169DC20B00E04026 /* StoreKit.framework */; };
 		0360BB3C169DC26800E04026 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		0379A7D41684852B00C2DFF8 /* toolbar_button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0379A7D31684852B00C2DFF8 /* toolbar_button_selected@2x.png */; };
 		039A6FFA16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A6FF916B0231E002ECE12 /* WMDetailNavigationController.m */; };
@@ -466,7 +464,6 @@
 		03BD03BB16A052750045D53D /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DBF5A8169B7B8000EBAC2A /* FBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03BD03BC16A052750045D53D /* WMCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DBF5B2169B7C0400EBAC2A /* WMCreditsViewController.m */; };
 		03BD03BD16A052750045D53D /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360B841169DACDC00E04026 /* WMRegisterViewController.m */; };
-		03BD03BF16A052750045D53D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB34169DC20B00E04026 /* StoreKit.framework */; };
 		03BD03C016A052750045D53D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB32169DC20200E04026 /* CoreTelephony.framework */; };
 		03BD03C116A052750045D53D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB30169DC1FB00E04026 /* libsqlite3.dylib */; };
 		03BD03C216A052750045D53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
@@ -2256,7 +2253,6 @@
 				1842DE891A697282001D52CF /* QuickLook.framework in Frameworks */,
 				0327F97516BFFB1900BA7DE7 /* Security.framework in Frameworks */,
 				0327F97916BFFB1900BA7DE7 /* Social.framework in Frameworks */,
-				0327F97216BFFB1900BA7DE7 /* StoreKit.framework in Frameworks */,
 				0327F97B16BFFB1900BA7DE7 /* SystemConfiguration.framework in Frameworks */,
 				0327F97716BFFB1900BA7DE7 /* Twitter.framework in Frameworks */,
 				0327F98116BFFB1900BA7DE7 /* UIKit.framework in Frameworks */,
@@ -2288,7 +2284,6 @@
 				1842DE881A697278001D52CF /* QuickLook.framework in Frameworks */,
 				03BD03C216A052750045D53D /* Security.framework in Frameworks */,
 				03BD03C616A052750045D53D /* Social.framework in Frameworks */,
-				03BD03BF16A052750045D53D /* StoreKit.framework in Frameworks */,
 				03BD03C816A052750045D53D /* SystemConfiguration.framework in Frameworks */,
 				03BD03C416A052750045D53D /* Twitter.framework in Frameworks */,
 				03BD03CE16A052750045D53D /* UIKit.framework in Frameworks */,
@@ -2320,7 +2315,6 @@
 				1842DE8A1A697289001D52CF /* QuickLook.framework in Frameworks */,
 				98655CC41675FD14007083DF /* Security.framework in Frameworks */,
 				DB4EB532167FC8170096CEDE /* Social.framework in Frameworks */,
-				0360BB35169DC20B00E04026 /* StoreKit.framework in Frameworks */,
 				DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */,
 				15DBF574169B72EA00EBAC2A /* Twitter.framework in Frameworks */,
 				989927501649151300D9003B /* UIKit.framework in Frameworks */,
