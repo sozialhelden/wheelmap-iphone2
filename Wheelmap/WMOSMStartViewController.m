@@ -66,19 +66,25 @@
     // adjust labels and buttons according to content
 //    [self adjustLabelHeightToText:self.topTextLabel];
 
-    
+    self.topTextLabel.text = NSLocalizedString(@"LoginOverOSMText", nil);
+    self.stepsLabel.text = NSLocalizedString(@"OSMAccount", nil);
     
     self.stepsTextView.frame = CGRectMake(self.stepsTextView.frame.origin.x, self.stepsTextView.frame.origin.y + self.stepsTextView.frame.size.height + 10.0f, self.stepsTextView.frame.size.width, self.stepsTextView.contentSize.height);
     
     self.stepsTextView.frame = self.stepsTextView.frame;
+    self.stepsTextView.text = NSLocalizedString(@"StepsToOSMAccount", nil);
+    
     
     [self.loginButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
     self.loginButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [self.loginButton sizeToFit];
     self.loginButton.frame = CGRectMake(320.0f - self.loginButton.frame.size.width - 10.0f, self.stepsTextView.frame.origin.y + self.stepsTextView.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
-    
+    [self.loginButton setTitle:NSLocalizedString(@"LoginOverOSM", nil) forState:UIControlStateNormal];
     
     self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 25.0f, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
+    [self.registerButton setTitle:@"OSMRegistration" forState:UIControlStateNormal];
+    
+    [self.whyButton setTitle:@"WhyOSMAccount" forState:UIControlStateNormal];
     
     self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.registerButton.frame.origin.y + self.registerButton.frame.size.height + 20.0f);
     

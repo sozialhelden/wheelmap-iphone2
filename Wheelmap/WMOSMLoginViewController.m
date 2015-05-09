@@ -188,7 +188,7 @@
 }
 
 -(IBAction)whyOSM:(id)sender{
-    WMOSMDescribeViewController *osmDescribeViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMDescribe"];
+    WMOSMDescribeViewController *osmDescribeViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMDescribeViewController"];
     [self presentViewController:osmDescribeViewController animated:YES];
 }
 

@@ -61,6 +61,7 @@
                 <navigationController definesPresentationContext="YES" navigationBarHidden="YES" toolbarHidden="NO" id="PEZ-co-Xz5" customClass="WMNavigationControllerBase" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="XZm-C5-Mcr">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
