@@ -94,6 +94,7 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }
