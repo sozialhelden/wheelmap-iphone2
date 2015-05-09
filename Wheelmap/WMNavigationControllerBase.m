@@ -16,7 +16,8 @@
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
-#import "WMLoginViewController.h"
+//#import "WMLoginViewController.h"
+#import "WMOSMStartViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "WMNodeTypeTableViewController.h"
 #import "Node.h"
@@ -285,7 +286,7 @@
                 yPosition = 768.0f - 60.0f;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMLoginViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
+        } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             CGFloat yPosition = 1024.0f - 60.0f;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -1502,7 +1503,7 @@
 #pragma mark - Show Login screen
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
-    WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    WMOSMStartViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
     vc.popoverButtonFrame = frame;
     [self presentViewController:vc animated:YES];
 }
