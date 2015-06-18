@@ -7,9 +7,6 @@
 //
 
 #import "NodeType.h"
-#import "Category.h"
-#import "Node.h"
-
 
 @implementation NodeType
 

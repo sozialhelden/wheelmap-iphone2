@@ -500,12 +500,9 @@
         <image name="textfield_-share.png" width="290" height="120"/>
     </resources>
     <classes>
-<<<<<<< HEAD
         <class className="InfiniteGallery" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InfiniteGallery.h"/>
         </class>
-=======
->>>>>>> 16592fca85ed6f509fb368517c5dd567533c3bce
         <class className="WMButton" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMButton.h"/>
         </class>
@@ -519,10 +516,7 @@
         <class className="WMDetailViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMDetailViewController.h"/>
             <relationships>
-<<<<<<< HEAD
-=======
                 <relationship kind="action" name="accessButtonPressed:" candidateClass="NSString"/>
->>>>>>> 16592fca85ed6f509fb368517c5dd567533c3bce
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
@@ -558,7 +552,6 @@
                 <relationship kind="outlet" name="wheelAccessButton" candidateClass="UIButton"/>
             </relationships>
         </class>
-<<<<<<< HEAD
         <class className="WMInfinitePhotoViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMInfinitePhotoViewController.h"/>
             <relationships>
@@ -573,8 +566,6 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
-=======
->>>>>>> 16592fca85ed6f509fb368517c5dd567533c3bce
         <class className="WMSetMarkerViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMSetMarkerViewController.h"/>
             <relationships>

@@ -12,10 +12,11 @@
 
 #import "WMMapAnnotation.h"
 #import "WMDataManager.h"
+#import "MBXMapKit.h"
 
 @class Node;
 
-@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate>
+@interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, MBXRasterTileOverlayDelegate, MBXOfflineMapDownloaderDelegate>
 {
     WMDataManager* dataManager;
     UIImage* imageReadyToUpload;
@@ -29,6 +30,7 @@
 
 //MAP VIEW
 @property (nonatomic, strong) MKMapView *mapView;
+@property (nonatomic) MBXRasterTileOverlay *rasterOverlay;
 @property (assign) BOOL mapViewOpen;
 //CONTENT VIEW
 @property (nonatomic, strong) UIView *contentView;
@@ -86,6 +88,6 @@
 
 
 - (void) pushEditViewController;
-- (void) setUpdatedNode: (Node*) node;
+//- (void) setUpdatedNode: (Node*) node;
 
 @end

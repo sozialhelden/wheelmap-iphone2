@@ -98,9 +98,9 @@
         
         WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
         headerTextLabel.fontSize = 13.0;
-        headerTextLabel.textAlignment = UITextAlignmentLeft;
+        headerTextLabel.textAlignment = NSTextAlignmentLeft;
         headerTextLabel.numberOfLines = 3;
-        headerTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
+        headerTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         headerTextLabel.textColor = [UIColor whiteColor];
         headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
         [accesoryHeader addSubview:headerTextLabel];
@@ -166,9 +166,9 @@
             
             WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
             headerTextLabel.fontSize = 13.0;
-            headerTextLabel.textAlignment = UITextAlignmentLeft;
+            headerTextLabel.textAlignment = NSTextAlignmentLeft;
             headerTextLabel.numberOfLines = 3;
-            headerTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
+            headerTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             headerTextLabel.textColor = [UIColor whiteColor];
             headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
             [accesoryHeader addSubview:headerTextLabel];
@@ -241,7 +241,7 @@
             
             [self.tableView reloadData];
 
-            NSLog(@"NUMBER OF NODES = %d", nodes.count);
+            NSLog(@"NUMBER OF NODES = %lu", (unsigned long)nodes.count);
         });
     });
 }

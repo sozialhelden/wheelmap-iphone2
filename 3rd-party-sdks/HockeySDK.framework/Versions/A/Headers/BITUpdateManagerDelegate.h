@@ -1,7 +1,7 @@
 /*
  * Author: Andreas Linde <mail@andreaslinde.de>
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2014 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -36,29 +36,6 @@
  */
 
 @protocol BITUpdateManagerDelegate <NSObject>
-
-///-----------------------------------------------------------------------------
-/// @name Configuration
-///-----------------------------------------------------------------------------
-
-/**
- Return the unique device identifier
- 
- Return the device UDID which is required for beta testing, should return nil for app store configuration!
- Example implementation if your Xcode configuration for the App Store is called "AppStore":
- 
-    - (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
-    #ifndef (CONFIGURATION_AppStore)
-      if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
-        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
-    #endif
- 
-      return nil;
-    }
- 
- @param updateManager The `BITUpdateManager` instance invoking this delegate
- */
-- (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager;
 
 @optional
 
@@ -130,6 +107,24 @@
 
 
 ///-----------------------------------------------------------------------------
+/// @name Privacy
+///-----------------------------------------------------------------------------
+
+/**
+ Invoked right before the app will exit to allow app update to start (>= iOS8 only)
+ 
+ The iOS installation mechanism only starts if the app the should be updated is currently
+ not running. On all iOS versions up to iOS 7, the system did automatically exit the app
+ in these cases. Since iOS 8 this isn't done any longer.
+ 
+ @param updateManager The `BITUpdateManager` instance invoking this delegate
+ */
+- (void)updateManagerWillExitApp:(BITUpdateManager *)updateManager;
+
+
+#pragma mark - Deprecated
+
+///-----------------------------------------------------------------------------
 /// @name Update View Presentation Helper
 ///-----------------------------------------------------------------------------
 
@@ -141,7 +136,9 @@
  `UIViewController` that should be used to present the update user interface modal.
 
  @param updateManager The `BITUpdateManager` instance invoking this delegate
+ 
+ @deprecated Please use `BITHockeyManagerDelegate viewControllerForHockeyManager:componentManager:` instead
  */
-- (UIViewController *)viewControllerForUpdateManager:(BITUpdateManager *)updateManager;
+- (UIViewController *)viewControllerForUpdateManager:(BITUpdateManager *)updateManager DEPRECATED_ATTRIBUTE;
 
 @end

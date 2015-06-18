@@ -64,7 +64,7 @@
     [fbController setInitialText:body];
     //[fbController addURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://jam.solutions.smfhq.com/staging/events/%@", eventToBeSent.objectID]]];
     
-    [self.baseVC presentModalViewController:fbController animated:YES];
+    [self.baseVC presentViewController:fbController animated:YES completion:nil];
 }
 
 -(void)facebookPostingForVersionFive:(NSString *)body {
@@ -91,11 +91,12 @@
 #pragma mark - Tweeter
 -(void)tweet:(NSString*)body
 {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+    //if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
         [self tweetForVersionSixAndAbove:body];
+    /*
     } else {
         [self tweetForVersionFive:body];
-    }
+    }*/
     
 }
 
@@ -132,25 +133,25 @@
     [fbController setInitialText:body];
     //[fbController addURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://jam.solutions.smfhq.com/staging/events/%@", eventToBeSent.objectID]]];
     
-    [self.baseVC presentModalViewController:fbController animated:YES];
+    [self.baseVC presentViewController:fbController animated:YES completion:nil];
     
 }
-
+/*
 -(void)tweetForVersionFive:(NSString *)body
 {
-    TWTweetComposeViewController* tweetVc = [[TWTweetComposeViewController alloc] init];
-    TWTweetComposeViewControllerCompletionHandler completionHandler = ^(TWTweetComposeViewControllerResult result){
-        [self.baseVC dismissModalViewControllerAnimated:YES];
+    SLComposeViewController* tweetVc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    SLComposeViewControllerCompletionHandler completionHandler = ^(SLComposeViewControllerResult result){
+        [self.baseVC dismissViewControllerAnimated:YES completion:nil];
     };
     [tweetVc setCompletionHandler:completionHandler];
     
     
     [tweetVc setInitialText:body];
     
-    [self.baseVC presentModalViewController:tweetVc animated:YES];
+    [self.baseVC presentViewController:tweetVc animated:YES completion:nil];
     
 }
-
+*/
 #pragma mark - Mail
 -(void)sendMailWithSubject:(NSString*)subject andBody:(NSString*)body
 {
@@ -160,7 +161,7 @@
         [controller setSubject:subject];
         [controller setMessageBody:body isHTML:NO];
         
-        [self.baseVC presentModalViewController:controller animated:YES];
+        [self.baseVC presentViewController:controller animated:YES completion:nil];
     }
 }
 
@@ -179,7 +180,7 @@
         [alert show];
     }
     
-    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - SMS
@@ -191,7 +192,7 @@
         controller.body = body;
         
         controller.messageComposeDelegate = self;
-        [self.baseVC presentModalViewController:controller animated:YES];
+        [self.baseVC presentViewController:controller animated:YES completion:nil];
     } else {
         NSLog(@"SMS service is not available!");
     }
@@ -212,7 +213,7 @@
         [alert show];
     }
     
-    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 
     
 }

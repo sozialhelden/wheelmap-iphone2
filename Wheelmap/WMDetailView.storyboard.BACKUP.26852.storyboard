@@ -106,13 +106,10 @@
         <!--Category Table View Controller-->
         <scene sceneID="3D1-uu-jim">
             <objects>
-<<<<<<< HEAD
                 <tableViewController storyboardIdentifier="WMCategoryTableViewController" id="WdI-dc-CnC" customClass="WMCategoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X5B-3c-heL">
-=======
                 <tableViewController storyboardIdentifier="WMCategoryTableViewController" hidesBottomBarWhenPushed="YES" id="WdI-dc-CnC" customClass="WMCategoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="X5B-3c-heL">
->>>>>>> ad14d3a8339690143cca5d8b0f8c47e88d7990ab
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,17 +148,14 @@
         <!--EditPOI View Controller-->
         <scene sceneID="nut-wU-LKh">
             <objects>
-<<<<<<< HEAD
                 <viewController storyboardIdentifier="WMEditPOIViewController" id="1Xb-3o-iQI" customClass="WMEditPOIViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XI4-p5-YW3">
                         <rect key="frame" x="0.0" y="20" width="320" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-=======
                 <viewController storyboardIdentifier="WMEditPOIViewController" hidesBottomBarWhenPushed="YES" id="1Xb-3o-iQI" customClass="WMEditPOIViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yOc-TU-zAc">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
->>>>>>> ad14d3a8339690143cca5d8b0f8c47e88d7990ab
                         <subviews>
                             <view contentMode="scaleToFill" id="GtR-5A-1ZI">
                                 <rect key="frame" x="10" y="20" width="300" height="44"/>

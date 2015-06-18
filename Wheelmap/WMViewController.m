@@ -96,10 +96,10 @@
 }
 
 - (void)presentForcedModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
-    [super presentModalViewController:modalViewController animated:animated];
+    [super presentViewController:modalViewController animated:animated completion:nil];
 }
 
-- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         UINavigationController *navigationController;
@@ -111,7 +111,7 @@
         
         if ([modalViewController isKindOfClass:[WMMapSettingsViewController class]]) {
             
-            [super presentModalViewController:modalViewController animated:animated];
+            [super presentViewController:modalViewController animated:animated completion:nil];
             
         } else if ([modalViewController isKindOfClass:[WMFirstStartViewController class]]) {
             
@@ -162,7 +162,7 @@
             
         } else if (![modalViewController isKindOfClass:[WMTermsViewController class]]) {
             
-            [self dismissModalViewControllerAnimated:NO];
+            [self dismissViewControllerAnimated:NO];
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
                 ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
                 ((WMViewController *)modalViewController).baseController = self.baseController;
@@ -186,15 +186,15 @@
             }
         }
     } else {
-        [super presentModalViewController:modalViewController animated:animated];
+        [super presentViewController:modalViewController animated:animated completion:nil];
     }
 }
 
-- (void)dismissModalViewControllerAnimated:(BOOL)animated {
+- (void)dismissViewControllerAnimated:(BOOL)animated{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]] && ![self isKindOfClass:[WMMapSettingsViewController class]]) {
         [self.popover dismissPopoverAnimated:animated];
     } else {
-        [super dismissModalViewControllerAnimated:animated];
+        [super dismissViewControllerAnimated:animated completion:nil];
     }
 }
 

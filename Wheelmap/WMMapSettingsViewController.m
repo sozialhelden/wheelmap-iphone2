@@ -107,7 +107,7 @@
         }
     }
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 @end

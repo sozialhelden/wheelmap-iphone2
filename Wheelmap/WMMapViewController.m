@@ -68,6 +68,20 @@
     [super viewDidLoad];
     
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
+
+    // MAPVIEW
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    [MBXMapKit setAccessToken:[config valueForKey:@"mbxAccessToken"]];
+    
+    self.mapView.showsBuildings = NO;
+    self.mapView.rotateEnabled = NO;
+    self.mapView.pitchEnabled = NO;
+    self.mapView.mapType = MKMapTypeStandard;
+    
+    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:@"mbxMapID"]];
+    self.rasterOverlay.delegate = self;
+    
+    [self.mapView addOverlay:self.rasterOverlay];
     
     self.mapView.showsUserLocation = YES;
     //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
@@ -155,8 +169,7 @@
         
     } else {
         
-        initRegion = MKCoordinateRegionMake(
-                                            CLLocationCoordinate2DMake([navCtrl.lastVisibleMapCenterLat doubleValue],
+        initRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake([navCtrl.lastVisibleMapCenterLat doubleValue],
                                                                        [navCtrl.lastVisibleMapCenterLng doubleValue]),
                                             MKCoordinateSpanMake([navCtrl.lastVisibleMapSpanLat doubleValue],
                                                                  [navCtrl.lastVisibleMapSpanLng doubleValue])
@@ -164,14 +177,13 @@
         [self.mapView setRegion:initRegion animated:NO];
     }
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch ||
+        self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand)
+    {
         // show current location button, if it is hidden
         [((WMNavigationControllerBase *)self.navigationController).customToolBar showButton:kWMToolBarButtonCurrentLocation];
-        [self loadNodes];   // load nodes from the dataSource
-        
-    } else {
-        [self loadNodes];
     }
+        [self loadNodes];// load nodes from the dataSource
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -203,11 +215,11 @@
         nodes = [self.dataSource filteredNodeList];
     }
     
-    NSLog(@"NEW NODE LIST: %d", nodes.count);
+    NSLog(@"NEW NODE LIST: %lu", (unsigned long)nodes.count);
     
     dispatch_async(backgroundQueue, ^(void) {
         
-        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:self.mapView.annotations];
+        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];//self.mapView.annotations];
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         
         if (newAnnotations.count > 0 && oldAnnotations.count >0) {
@@ -246,6 +258,12 @@
             loadingNodes = NO;
         });
     });
+}
+
+- (IBAction)iPhoneInfoButtonAction:(id)sender {
+    // This responds to the info button from the iPhone storyboard getting pressed
+    //
+    [self attribution:_rasterOverlay.attribution];
 }
 
 - (WMMapAnnotation*) annotationForNode:(Node*)node
@@ -293,6 +311,17 @@
 }
 
 #pragma mark - Map View Delegate
+// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    // This is boilerplate code to connect tile overlay layers with suitable renderers
+    //
+    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
+    {
+        MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
+        return renderer;
+    }
+    return nil;
+}
 
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -361,7 +390,6 @@
 }
 
 #pragma mark - Map Interactions
-
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     
@@ -470,6 +498,41 @@
     [self.mapView setRegion:newRegion animated:YES];
     
 }
+#pragma mark - MBXRasterTileOverlayDelegate implementation
+
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error
+{
+    // This delegate callback is for centering the map once the map metadata has been loaded
+    //
+    if (error)
+    {
+        NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+    }
+    else
+    {
+        [_mapView mbx_setCenterCoordinate:overlay.center zoomLevel:overlay.centerZoom animated:NO];
+    }
+}
+
+
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error
+{
+    // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
+    //
+    if (error)
+    {
+        NSLog(@"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+    }
+    else
+    {
+        [_mapView addAnnotations:markers];
+    }
+}
+
+- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
 
 #pragma mark - Map Interaction Advisor
 -(void)slideInMapInteractionAdvisorWithText:(NSString*)text
@@ -503,5 +566,33 @@
         self.mapInteractionInfoLabel.tag = 0;
     }];
 }
+
+#pragma mark - AlertView stuff
+- (void)attribution:(NSString *)attribution
+{
+    NSString *title = @"Attribution";
+    NSString *message = attribution;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Mapbox Details", @"OSM Details", nil];
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if([alertView.title isEqualToString:@"Attribution"])
+    {
+        // For the attribution alert dialog, open the Mapbox and OSM copyright pages when their respective buttons are pressed
+        //
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Mapbox Details"])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.mapbox.com/tos/"]];
+        }
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"OSM Details"])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.openstreetmap.org/copyright"]];
+        }
+    }
+}
+
 
 @end

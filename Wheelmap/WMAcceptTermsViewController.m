@@ -43,8 +43,10 @@
     self.link2TextView.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"AcceptDataTerms", nil), WheelMapDataTermsURL];
     
     CGSize maximumLabelSize = CGSizeMake(self.textLabel.frame.size.width, FLT_MAX);
-    
-    CGSize expectedLabelSize = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:maximumLabelSize lineBreakMode:self.textLabel.lineBreakMode];
+    CGSize expectedLabelSize = [self.textLabel.text boundingRectWithSize:maximumLabelSize
+                                                                 options:NSStringDrawingUsesLineFragmentOrigin
+                                                              attributes:@{NSFontAttributeName:self.textLabel.font}
+                                                                 context:nil].size;
     
     //adjust the label the the new height.
     CGRect newFrame = self.textLabel.frame;
@@ -101,13 +103,13 @@
     self.loadingWheel.hidden = YES;
     if (accepted) {
         [_dataManager userDidAcceptTerms];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES];
     } else {
         [_dataManager userDidNotAcceptTerms];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"TermsDeniedText", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         
         [alert show];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES];
     }
 }
 
@@ -121,7 +123,7 @@
     
     [_dataManager removeUserAuthentication];
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 -(IBAction)pressedDeclineButton:(id)sender {
@@ -139,7 +141,7 @@
         [termsViewController showDataTerms:YES];
     }
     
-    [self presentModalViewController:termsViewController animated:YES];
+    [self presentViewController:termsViewController animated:YES];
 }
 
 -(IBAction)pressedCheckboxButton:(UIButton *)sender {

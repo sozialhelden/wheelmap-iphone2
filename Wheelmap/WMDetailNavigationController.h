@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) WMNodeListViewController* listViewController;
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
-@property (nonatomic) CLLocationCoordinate2D initialCoordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D initialCoordinate;
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 - (void) showLoadingWheel;

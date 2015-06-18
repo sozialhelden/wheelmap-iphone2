@@ -16,14 +16,14 @@
 
 @protocol InfiniteGalleryDataSource <NSObject>
 
-- (UIView*)viewForGallery:(InfiniteGallery*)g pageNum:(int)pageNum pagesize:(CGSize)size;  // uses gallery frame size to create itself
-- (int)numberOfPagesForGallery:(InfiniteGallery*)g;
+- (UIView*)viewForGallery:(InfiniteGallery*)g pageNum:(long)pageNum pagesize:(CGSize)size;  // uses gallery frame size to create itself
+- (long)numberOfPagesForGallery:(InfiniteGallery*)g;
 
 @end
 
 @protocol InfiniteGalleryDelegate <NSObject>
 
--(void)gallery:(InfiniteGallery*)g didTurnToPage:(int)page totalPages:(int)total;
+-(void)gallery:(InfiniteGallery*)g didTurnToPage:(long)page totalPages:(long)total;
 
 @end
 
@@ -39,7 +39,7 @@
 
 @property BOOL wrapsAround;
 
-- (void)gotoPageNumber:(int)pageNum;
+- (void)gotoPageNumber:(long)pageNum;
 - (UIColor*)bgcolor;
 - (void)setBgcolor:(UIColor*)color;
 - (void)reloadData;

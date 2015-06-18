@@ -8,7 +8,7 @@
 
 #import "WMViewController.h"
 #import "WMDataManager.h"
-#import "Category.h"
+#import "WMCategory.h"
 
 @interface WMCategoryViewController : WMViewController <UITableViewDataSource, UITableViewDelegate>
 {
