@@ -23,7 +23,7 @@
             titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 100, CELL_HEIGHT)];
         }
         titleLabel.fontSize = 15.0;
-        titleLabel.textAlignment = UITextAlignmentLeft;
+        titleLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:titleLabel];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

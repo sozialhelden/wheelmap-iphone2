@@ -15,17 +15,14 @@
 
 @class Node;
 
-<<<<<<< HEAD
 @interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic) Node *node;
 
-=======
 @interface WMDetailViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate>
 {
     WMDataManager* dataManager;
 }
->>>>>>> ab3c659d2dc77b4bfb394594254297eecbe9c34b
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *mainView;
 

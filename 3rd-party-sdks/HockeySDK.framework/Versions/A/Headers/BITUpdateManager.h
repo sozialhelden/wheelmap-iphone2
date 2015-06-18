@@ -2,7 +2,7 @@
  * Author: Andreas Linde <mail@andreaslinde.de>
  *         Peter Steinberger
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2014 HockeyApp, Bit Stadium GmbH.
  * Copyright (c) 2011 Andreas Linde.
  * All rights reserved.
  *
@@ -29,25 +29,26 @@
  */
 
 
-#import <UIKit/UIKit.h>
+#import "BITHockeyBaseManager.h"
 
 
-typedef enum {
-	BITUpdateComparisonResultDifferent,
-	BITUpdateComparisonResultGreater
-} BITUpdateComparisonResult;
-
-typedef enum {
-	BITUpdateAuthorizationDenied,
-	BITUpdateAuthorizationAllowed,
-	BITUpdateAuthorizationPending
-} BITUpdateAuthorizationState;
-
-typedef enum {
+/**
+ *  Update check interval
+ */
+typedef NS_ENUM (NSUInteger, BITUpdateSetting) {
+  /**
+   *  On every startup or or when the app comes to the foreground
+   */
   BITUpdateCheckStartup = 0,
+  /**
+   *  Once a day
+   */
   BITUpdateCheckDaily = 1,
+  /**
+   *  Manually
+   */
   BITUpdateCheckManually = 2
-} BITUpdateSetting;
+};
 
 @protocol BITUpdateManagerDelegate;
 
@@ -61,78 +62,17 @@ typedef enum {
  This modul handles version updates, presents update and version information in a App Store like user interface,
  collects usage information and provides additional authorization options when using Ad-Hoc provisioning profiles.
  
- To use this module, it is important to implement set the `delegate` property and implement
- `[BITUpdateManagerDelegate customDeviceIdentifierForUpdateManager:]`.
+ This module automatically disables itself when running in an App Store build by default!
  
- Example implementation if your Xcode configuration for the App Store is called "AppStore":
-    - (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
-    #ifndef (CONFIGURATION_AppStore)
-      if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
-        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
-    #endif
-    
-      return nil;
-    }
-  
-    [[BITHockeyManager sharedHockeyManager].updateManager setDelegate:self];
+ The protocol `BITUpdateManagerDelegate` provides delegates to inform about events and adjust a few behaviors.
+ 
+ To use the server side restriction feature, to provide updates only to specific users, you need to setup the
+ `BITAuthenticator` class. This allows the update request to tell the server which user is using the app on the
+ current device and then let the server decide which updates the device may see.
  
  */
 
-@interface BITUpdateManager : NSObject <UIAlertViewDelegate> {
-@private
-  NSString *_appIdentifier;
-  NSString *_currentAppVersion;
-  
-  UINavigationController *_navController;
-  BITUpdateViewController *_currentHockeyViewController;
-  
-  BOOL _dataFound;
-  BOOL _showFeedback;
-  BOOL _updateAlertShowing;
-  BOOL _lastCheckFailed;
-  BOOL _sendUsageData;
-  
-  BOOL _isAppStoreEnvironment;
-  
-  BOOL _didSetupDidBecomeActiveNotifications;
-  
-  NSString *_uuid;
-}
-
-
-///-----------------------------------------------------------------------------
-/// @name Delegate
-///-----------------------------------------------------------------------------
-
-/**
- Sets the `BITUpdateManagerDelegate` delegate.
- 
- When using `BITUpdateManager` to distribute updates of your beta or enterprise
- application, it is _REQUIRED_ to set this delegate and implement
- `[BITUpdateManagerDelegate customDeviceIdentifierForUpdateManager:]`!
- */
-@property (nonatomic, assign) id delegate;
-
-
-///-----------------------------------------------------------------------------
-/// @name Configuration
-///-----------------------------------------------------------------------------
-
-/**
- The type of version comparisson.
- 
- Defines when a version is defined as being newer than the currently installed
- version. This must be assigned one of the following:
- 
- When running the app from the App Store, this setting is ignored.
-
- - `BITUpdateComparisonResultDifferent`: Version is different
- - `BITUpdateComparisonResultGreater`: Version is greater
- 
- **Default**: BITUpdateComparisonResultGreater
- */
-@property (nonatomic, assign) BITUpdateComparisonResult compareVersionType;
-
+@interface BITUpdateManager : BITHockeyBaseManager <UIAlertViewDelegate>
 
 ///-----------------------------------------------------------------------------
 /// @name Update Checking
@@ -144,7 +84,7 @@ typedef enum {
  When to check for new updates.
  
  Defines when a the SDK should check if there is a new update available on the
- server. This must be assigned one of the following:
+ server. This must be assigned one of the following, see `BITUpdateSetting`:
  
  - `BITUpdateCheckStartup`: On every startup or or when the app comes to the foreground
  - `BITUpdateCheckDaily`: Once a day
@@ -158,6 +98,7 @@ typedef enum {
  invoke the update checking process yourself with `checkForUpdate` somehow, e.g. by
  proving an update check button for the user or integrating the Update View into your
  user interface.
+ @see BITUpdateSetting
  @see checkForUpdateOnLaunch
  @see checkForUpdate
  */
@@ -230,39 +171,6 @@ typedef enum {
 
 
 ///-----------------------------------------------------------------------------
-/// @name Authorization
-///-----------------------------------------------------------------------------
-
-/**
- Flag that determines if each update should be authenticated
- 
- If enabled each update will be authenticated on startup against the HockeyApp servers.
- The process will basically validate if the current device is part of the provisioning
- profile on the server. If not, it will present a blocking view on top of the apps UI
- so that no interaction is possible.
- 
- When running the app from the App Store, this setting is ignored.
- 
- *Default*: _NO_
- @see authenticationSecret
- @warning This only works when using Ad-Hoc provisioning profiles!
- */
-@property (nonatomic, assign, getter=isRequireAuthorization) BOOL requireAuthorization;
-
-
-/**
- The authentication token from HockeyApp.
- 
- Set the token to the `Secret ID` which HockeyApp provides for every app.
- 
- When running the app from the App Store, this setting is ignored.
- 
- @see requireAuthorization
- */
-@property (nonatomic, retain) NSString *authenticationSecret;
-
-
-///-----------------------------------------------------------------------------
 /// @name Expiry
 ///-----------------------------------------------------------------------------
 
@@ -280,28 +188,34 @@ typedef enum {
  When running the app from the App Store, this setting is ignored.
  
  *Default*: nil
+ @see disableUpdateCheckOptionWhenExpired
  @see [BITUpdateManagerDelegate shouldDisplayExpiryAlertForUpdateManager:]
  @see [BITUpdateManagerDelegate didDisplayExpiryAlertForUpdateManager:]
  @warning This only works when using Ad-Hoc provisioning profiles!
  */
-@property (nonatomic, retain) NSDate *expiryDate;
+@property (nonatomic, strong) NSDate *expiryDate;
+
+/**
+ Disable the update check button from expiry screen or alerts
+
+ If do not want your users to be able to check for updates once a version is expired,
+ then enable this property.
+ 
+ If this is not enabled, the users will be able to check for updates and install them
+ if any is available for the current device.
+
+ *Default*: NO
+ @see expiryDate
+ @see [BITUpdateManagerDelegate shouldDisplayExpiryAlertForUpdateManager:]
+ @see [BITUpdateManagerDelegate didDisplayExpiryAlertForUpdateManager:]
+ @warning This only works when using Ad-Hoc provisioning profiles!
+*/
+@property (nonatomic) BOOL disableUpdateCheckOptionWhenExpired;
 
 
 ///-----------------------------------------------------------------------------
 /// @name User Interface
 ///-----------------------------------------------------------------------------
-
-/**
- The UIBarStyle of the update user interface navigation bar.
- */
-@property (nonatomic, assign) UIBarStyle barStyle;
-
-
-/**
- The UIModalPresentationStyle for showing the update user interface when invoked
- with the update alert.
- */
-@property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
 
 
 /**

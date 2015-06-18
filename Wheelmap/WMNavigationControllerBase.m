@@ -16,12 +16,13 @@
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
-#import "WMLoginViewController.h"
+//#import "WMLoginViewController.h"
+#import "WMOSMStartViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "WMNodeTypeTableViewController.h"
 #import "Node.h"
 #import "NodeType.h"
-#import "Category.h"
+#import "WMCategory.h"
 #import "WMAcceptTermsViewController.h"
 #import "Reachability.h"
 #import "WMRootViewController_iPad.h"
@@ -33,6 +34,9 @@
 #import "WMToolBar_iPad.h"
 #import "WMFirstStartViewController.h"
 #import "Constants.h"
+
+//#import "WMFirstStartViewController.h"
+#import "WMOSMDescribeViewController.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -122,7 +126,7 @@
                                    [NSNumber numberWithBool:YES], @"no",
                                    [NSNumber numberWithBool:YES], @"unknown",nil];
     self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
-    for (Category* c in dataManager.categories) {
+    for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
     
@@ -147,7 +151,11 @@
     
     CGSize maximumLabelSize = CGSizeMake(loadingLabel.frame.size.width, FLT_MAX);
     
-    CGSize expectedLabelSize = [loadingLabel.text sizeWithFont:loadingLabel.font constrainedToSize:maximumLabelSize lineBreakMode:loadingLabel.lineBreakMode];
+    CGSize expectedLabelSize = [loadingLabel.text boundingRectWithSize:maximumLabelSize
+                                                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                                                  attributes:@{NSFontAttributeName:loadingLabel.font}
+                                                                     context:nil].size;
+//                                sizeWithFont:loadingLabel.font constrainedToSize:maximumLabelSize lineBreakMode:loadingLabel.lineBreakMode];
     
     //adjust the label the the new height.
     CGRect newFrame = loadingLabel.frame;
@@ -291,7 +299,7 @@
                 yPosition = 768.0f - 60.0f;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMLoginViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
+        } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             CGFloat yPosition = 1024.0f - 60.0f;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -415,7 +423,7 @@
     
     [categoryFilterPopover refreshViewWithCategories:aDataManager.categories];
     [self.categoryFilterStatus removeAllObjects];
-    for (Category* c in dataManager.categories) {
+    for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
     
@@ -505,7 +513,7 @@
 
 - (NSArray*) filteredNodeList
 {
-    NSLog(@"OLD NODE LIST = %d", nodes.count);
+    NSLog(@"OLD NODE LIST = %lu", (unsigned long)nodes.count);
     
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
@@ -527,7 +535,7 @@
     }
     
     // this prevents array containing multiple entries of the same node
-    NSLog(@"NEW NODE LIST = %d", newNodeList.count);
+    NSLog(@"NEW NODE LIST = %lu", (unsigned long)newNodeList.count);
     
     return newNodeList;
 }
@@ -669,16 +677,20 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    CLLocation* newLocation = [locations objectAtIndex:0];
-    [self locationManager:manager didUpdateToLocation:newLocation fromLocation:nil];
+    //ToDo: ??? Orginal machte kein Sinn?
+    //CLLocation* newLocation = [locations objectAtIndex:0];
+    NSLog(@"Location is updated!");
+    [self updateNodesWithCurrentUserLocation];
+    //[self locationManager:manager didUpdateToLocation:newLocation fromLocation:nil];
 }
 
+/*
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"Location is updated!");
     [self updateNodesWithCurrentUserLocation];
 }
-
+*/
 
 -(void)updateUserLocation
 {
@@ -934,12 +946,12 @@
 }
 
 - (void)showAcceptTermsViewController {
-    [self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO completion:nil];
     
     WMAcceptTermsViewController *termsVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
     termsVC.popoverButtonFrame = CGRectMake(self.view.frame.size.width/2, 400.0f, 5.0f, 5.0f);
     
-    [self presentModalViewController:termsVC animated:YES];
+    [self presentViewController:termsVC animated:YES];
 }
 
 #pragma mark - WMNavigationBar Delegate
@@ -1269,7 +1281,7 @@
     
     WMViewController* vc;
     if (!dataManager.userIsAuthenticated) {
-        vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+        vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
     } else {
         vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
     }
@@ -1287,7 +1299,7 @@
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES];
 }
 
 -(void)pressedInfoButton:(WMToolBar*)toolBar {
@@ -1305,7 +1317,7 @@
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES];
 }
 
 -(void)pressedHelpButton:(WMToolBar*)toolBar {
@@ -1504,9 +1516,9 @@
 #pragma mark - Show Login screen
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
-    WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
+    WMOSMStartViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
     vc.popoverButtonFrame = frame;
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -1519,17 +1531,17 @@
     return YES;
 }
 
-- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         if ([modalViewController isKindOfClass:[WMViewController class]]) {
-            [self dismissModalViewControllerAnimated:NO];
+            [self dismissViewControllerAnimated:NO completion:nil];
             [self presentPopover:modalViewController animated:animated];
         } else {
-            [super presentModalViewController:modalViewController animated:animated];
+            [super presentViewController:modalViewController animated:animated completion:nil];
         }
     } else {
-        [super presentModalViewController:modalViewController animated:animated];
+        [super presentViewController:modalViewController animated:animated completion:nil];
     }
 }
 
@@ -1544,10 +1556,13 @@
             ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(((WMViewController *)viewController).popoverButtonFrame.origin.x, ((WMViewController *)viewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
         }
         
-        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame
+                                                                      inView:self.view
+                                                    permittedArrowDirections:0
+                                                                    animated:animated];
         
-    } else if ([viewController isKindOfClass:[WMFirstStartViewController class]]) {
-        
+    //} else if ([viewController isKindOfClass:[WMFirstStartViewController class]]) {
+    } else if ([viewController isKindOfClass:[WMOSMDescribeViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
                                                         initWithContentViewController:viewController];
         self.popoverVC = (WMViewController *)viewController;
@@ -1559,7 +1574,10 @@
             ((WMViewController *)viewController).popoverButtonFrame = CGRectMake(768.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
         }
         
-        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:0 animated:animated];
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame
+                                                                      inView:self.view
+                                                    permittedArrowDirections:0
+                                                                    animated:animated];
         
     } else if ([viewController isKindOfClass:[WMViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
@@ -1567,7 +1585,10 @@
         self.popoverVC = (WMViewController *)viewController;
         ((WMViewController *)viewController).baseController = self;
         
-        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+        [((WMViewController *)viewController).popover presentPopoverFromRect:((WMViewController *)viewController).popoverButtonFrame
+                                                                      inView:self.view
+                                                    permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                                    animated:animated];
     }
 }
 

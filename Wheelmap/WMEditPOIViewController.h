@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "WMDataManagerDelegate.h"
 
-@class Node, Category, NodeType;
+@class Node, WMCategory, NodeType;
 
 @interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate>
 {
@@ -62,7 +62,7 @@
 @property (nonatomic, assign) BOOL keyboardIsShown;
 @property (nonatomic, strong) UIImage *accessImage;
 @property (nonatomic, strong) NSString *wheelchairAccess;
-@property (nonatomic, strong) Category *currentCategory;
+@property (nonatomic, strong) WMCategory *currentCategory;
 @property (nonatomic, strong) NodeType *currentNodeType;
 @property (nonatomic, strong) NSString *currentWheelchairStatus;
 @property (nonatomic, strong) NSString *currentInfoFieldText;
@@ -75,7 +75,7 @@
 - (IBAction)setNodeType:(id)sender;
 - (IBAction)setCategory:(id)sender;
 - (IBAction)showAccessOptions:(id)sender;
-- (void)categoryChosen:(Category*)category;
+- (void)categoryChosen:(WMCategory*)category;
 - (void)nodeTypeChosen:(NodeType*)nodeType;
 - (void)markerSet:(CLLocationCoordinate2D)coord;
 - (void) saveEditedData;

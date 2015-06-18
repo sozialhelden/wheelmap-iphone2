@@ -9,6 +9,7 @@
 #import "WMRegisterViewController.h"
 #import "WMWheelmapAPI.h"
 #import "Constants.h"
+#import "WMDataManager.h"
 
 @implementation WMRegisterViewController {
     
@@ -48,9 +49,10 @@
         NSLog(@"Loading URL %@", url);
         
         [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-    } else {
+    }/* else {
         [self loadRegisterUrl];
-    }
+    }*/
+    
 }
 
 - (void)loadRegisterUrl {
@@ -61,11 +63,11 @@
     
     urlString = [NSString stringWithFormat:@"%@%@", baseURL, WM_REGISTER_LINK];
     
-    NSURL *url = [NSURL URLWithString:urlString];
+    //NSURL *url = [NSURL URLWithString:urlString];
     
-    NSLog(@"Loading URL %@", url);
+    //NSLog(@"Loading URL %@", url);
     
-	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+	//[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
 }
 
@@ -76,10 +78,10 @@
     NSString *baseURL = config[@"apiBaseURL"];
     urlString = [NSString stringWithFormat:@"%@%@", baseURL, WEB_LOGIN_LINK];
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSLog(@"Loading URL %@", url);
+    //NSURL *url = [NSURL URLWithString:urlString];
+    //NSLog(@"Loading URL %@", url);
 
-	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+	//[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)loadForgotPasswordUrl {
@@ -89,10 +91,10 @@
     NSString *baseURL = config[@"apiBaseURL"];
     urlString = [NSString stringWithFormat:@"%@%@", baseURL, FORGOT_PASSWORD_LINK];
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSLog(@"Loading URL %@", url);
+    //NSURL *url = [NSURL URLWithString:urlString];
+    //NSLog(@"Loading URL %@", url);
 
-	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+	//[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 
@@ -106,13 +108,50 @@
     NSLog(@"WebView loading failed: %@",error.localizedDescription);
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"WebView finished loading");
-}
-
 -(IBAction)pressedCancelButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
+}
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    NSLog(@"req: %@\n", request);
+    if([webView.request.URL.absoluteString containsString:@"www.facebook.com"]){
+        return NO;
+    }
+    
+    BOOL headerIsPresent = [[request allHTTPHeaderFields] objectForKey:@"Install-Id"]!=nil;
+    
+    if(headerIsPresent || (![request.URL.absoluteString containsString:@"/users/auth/osm/callback"])) return YES;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSURL *url = [request URL];
+            NSMutableURLRequest* request2 = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+            [request2 setHTTPMethod:@"GET"];
+            // set the new headers
+            [request2 setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"installId"] forHTTPHeaderField:@"Install-ID"];
+            NSLog(@"install id; %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"installId"]);
+            // reload the request
+            [webView loadRequest:request2];
+        });
+    });
+    return NO;
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+ /*
+    if([webView.request.URL.absoluteString containsString:@"/users/signed_in_token"]){
+        NSString *apiToken = [self.webView stringByEvaluatingJavaScriptFromString:@"$('#user_authentication_token').val();"];
+        if(![apiToken isEqualToString:@"undefined"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didReceiveAuthenticationData"
+                                                                object:self
+                                                              userInfo:@{@"authData":@{@"api_key":apiToken}}];
+            //[self.loginVC.dataManager didReceiveAuthenticationData: forAccount:@"wheelmapApp"];
+            [self dismissViewControllerAnimated:YES];
+        }
+    }
+  */
 }
 
 @end

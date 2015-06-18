@@ -15,7 +15,7 @@
 #import "Node.h"
 #import "Photo.h"
 #import "Image.h"
-#import "Category.h"
+#import "WMCategory.h"
 #import "Tile.h"
 #import "WMDataParser.h"
 
@@ -50,12 +50,12 @@
 @property (nonatomic, readonly) NSManagedObjectContext *mainMOC;
 @property (nonatomic, readonly) NSManagedObjectContext *backgroundMOC;
 @property (nonatomic) NSManagedObjectContext *temporaryMOC;
+@property (nonatomic, readonly, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, readonly) NSPersistentStore *persistentStore;
 @property (nonatomic, readonly) WMKeychainWrapper *keychainWrapper;
 @property (nonatomic) NSNumber* totalNodeCount;
 @property (nonatomic) NSNumber* unknownNodeCount;
 @end
-
 
 @implementation WMDataManager
 {
@@ -67,6 +67,8 @@
     
     BOOL assetAvaialbleOnLocalDevice;
 }
+
+@synthesize managedObjectModel = __managedObjectModel;
 
 -(id)init
 {
@@ -96,7 +98,7 @@
 {
     numRunningOperations++;
     
-    if (WMLogDataManager>1) NSLog(@"number of operations: %i", numRunningOperations);
+    if (WMLogDataManager>1) NSLog(@"number of operations: %lu", (unsigned long)numRunningOperations);
     
     if (numRunningOperations==1 && [self.delegate respondsToSelector:@selector(dataManagerDidStartOperation:)]) {
         [self.delegate dataManagerDidStartOperation:self];
@@ -107,7 +109,7 @@
 {
     numRunningOperations = MAX(0, --numRunningOperations);
     
-    if (WMLogDataManager>1) NSLog(@"number of operations: %i", numRunningOperations);
+    if (WMLogDataManager>1) NSLog(@"number of operations: %lu", (unsigned long)numRunningOperations);
     
     if (numRunningOperations==0) {
         if ([self.delegate respondsToSelector:@selector(dataManagerDidStopAllOperations:)]) {
@@ -130,11 +132,11 @@
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"tile!=nil"];
     NSUInteger totalNodes = [self.mainMOC countForFetchRequest:fetchRequest error:&error];
     
-    if (WMLogDataManager>2) NSLog(@"total nodes: %i", totalNodes);
+    if (WMLogDataManager>2) NSLog(@"total nodes: %lu", (unsigned long)totalNodes);
     
     if (totalNodes > WMCacheSize) {
         
-        if (WMLogDataManager) NSLog(@"cleaning cache, total nodes: %i", totalNodes);
+        if (WMLogDataManager) NSLog(@"cleaning cache, total nodes: %lu", (unsigned long)totalNodes);
         
         // delete oldest tiles in background
         [self.backgroundMOC performBlock:^{
@@ -162,7 +164,7 @@
                     
                     currentNumberOfNodes -= numNodesInTile;
                     
-                    if (WMLogDataManager>1) NSLog(@"... deleted tile with %i nodes", numNodesInTile);
+                    if (WMLogDataManager>1) NSLog(@"... deleted tile with %lu nodes", (unsigned long)numNodesInTile);
                 }
                 
                 // save background moc
@@ -179,7 +181,7 @@
                         if (![self.mainMOC save:&saveParentMocError]) {
                             // TODO: handle error
                         } else {
-                            if (WMLogDataManager>1) NSLog(@"... new node count=%i, saved to main moc", currentNumberOfNodes);
+                            if (WMLogDataManager>1) NSLog(@"... new node count=%lu, saved to main moc", (unsigned long)currentNumberOfNodes);
                         }
                     }];
                 }
@@ -250,6 +252,7 @@
                                                   [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                NSLog(@"req:%@ \nresp:%@", request, response);
                                                 [self didReceiveAuthenticationData:JSON[@"user"] forAccount:email];
                                                 [self decrementRunningOperations];
                                             }
@@ -263,7 +266,8 @@
 {
     NSString *userToken = user[@"api_key"];
     
-    if (WMLogDataManager) NSLog(@"received user token %@", userToken);
+    //if (WMLogDataManager)
+        NSLog(@"received user token %@", userToken);
     
     if (userToken) {
         
@@ -278,7 +282,7 @@
             NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
             [userDefault setObject:[self currentUserName] forKey:@"WheelmapLastUserName"];
             
-            BOOL termsAccepted = [user[@"terms_accepted"] boolValue] & [user[@"privacy_accepted"] boolValue];
+            BOOL termsAccepted = ([user[@"terms_accepted"] boolValue] & [user[@"privacy_accepted"] boolValue]);
             if (termsAccepted) {
                 [self userDidAcceptTerms];  // save to local device
             } else {
@@ -366,6 +370,7 @@
 
 - (void)userDidAcceptTerms {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"acount name:%@", [self currentUserTermsKey]);
     [defaults setValue:@"YES" forKey:[self currentUserTermsKey]];
     [defaults synchronize];
 }
@@ -433,12 +438,12 @@
     NSAssert(swLatId < neLatId && swLonId < neLonId, @"Invalid parameters passed to fetchNodesBetweenSouthwest:northeast:");
     
     // step through grid along latitude
-    for (int lat = swLatId; lat < neLatId; lat++) {
+    for (long lat = swLatId; lat < neLatId; lat++) {
         
         // step through grid along longitude
-        for (int lon = swLonId; lon < neLonId; lon++) {
+        for (long lon = swLonId; lon < neLonId; lon++) {
  
-            if (WMLogDataManager>1) NSLog(@"...looking for nodes in tile %i/%i", lat, lon);
+            if (WMLogDataManager>1) NSLog(@"...looking for nodes in tile %li/%li", lat, lon);
             
             // check if tile is already in cache
             Tile *cachedTile = nil;
@@ -507,7 +512,7 @@
     
     if (WMLogDataManager>3) {
         Tile* tile = [results lastObject];
-        NSLog(@".........fetched existing tile: %@ %d", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil, tile?tile.nodes.count:0);
+        NSLog(@".........fetched existing tile: %@ %lu", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil, (unsigned long)(tile?tile.nodes.count:0));
         if (tile && tile.nodes.count > 0) {
             for (Node *node in tile.nodes) {
                 NSLog(@"Node lat %@ lon %@", node.lat, node.lon);
@@ -759,7 +764,7 @@
 
 - (void) didReceiveNodes:(NSArray *)nodes fromQuery:(NSString*)query
 {
-    if (WMLogDataManager) NSLog(@"received %i nodes", [nodes count]);
+    if (WMLogDataManager) NSLog(@"received %lu nodes", (unsigned long)[nodes count]);
     NSLog(@"XXXX - (void) didReceiveNodes:(NSArray*)photos forNode:(Node*)node");
     
     [self parseDataObjectInBackground:nodes
@@ -786,9 +791,9 @@
                       if (WMLogDataManager>3) {
                           NSError *error = nil;
                           NSUInteger totalNodes = [self.mainMOC countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Node"] error:&error];
-                           NSLog(@"parsed %i nodes. Total count is now %i", [(NSArray*)parsedNodes count], totalNodes);
+                           NSLog(@"parsed %lu nodes. Total count is now %lu", (unsigned long)[(NSArray*)parsedNodes count], (unsigned long)totalNodes);
                       } else if (WMLogDataManager) {
-                         NSLog(@"parsed %i nodes", [(NSArray*)parsedNodes count]);
+                         NSLog(@"parsed %lu nodes", (unsigned long)[(NSArray*)parsedNodes count]);
                       }
                       
      
@@ -1017,9 +1022,9 @@ static BOOL assetSyncInProgress = NO;
    
     if (WMLogDataManager) NSLog(@"syncResources");
     if (WMLogDataManager>1) {
-        NSLog(@"... num categories: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Category" withPredicate:nil] count]);
-        NSLog(@"... num node types: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
-        NSLog(@"... num assets: %i", [[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
+        NSLog(@"... num categories: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"WMCategory" withPredicate:nil] count]);
+        NSLog(@"... num node types: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
+        NSLog(@"... num assets: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
     }
     
     // make sure there's only one sync running at a time
@@ -1094,7 +1099,7 @@ static BOOL assetSyncInProgress = NO;
     [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
                                              apiKey:[self apiKey]
                                          parameters:@{@"locale" :[[NSLocale preferredLanguages] objectAtIndex:0]}
-                                               eTag:localeChanged ? nil : [self eTagForEntity:@"Category"]
+                                               eTag:localeChanged ? nil : [self eTagForEntity:@"WMCategory"]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                   if (WMLogDataManager>1) NSLog(@"... error loading categories");
@@ -1106,14 +1111,14 @@ static BOOL assetSyncInProgress = NO;
                                                 
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
                                                 id categories = JSON[@"categories"];
-                                                BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:@"Category"]];
-                                                if (WMLogDataManager>1) NSLog(@"... received %i categories, %@", [categories count], eTagChanged?@"eTag changed":@"eTag is same");
+                                                BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:@"WMCategory"]];
+                                                if (WMLogDataManager>1) NSLog(@"... received %lu categories, %@", (unsigned long)[categories count], eTagChanged?@"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged && categories) {
                                                     NSLog(@"XXXX - syncRessources");
                                                  
                                                     [self parseDataObjectInBackground:categories
-                                                                           entityName:@"Category"
+                                                                           entityName:@"WMCategory"
                                                                           postProcess:nil
                                                                                 error:^(NSError *error) {
                                                                                     categorySyncInProgress = NO;
@@ -1122,7 +1127,7 @@ static BOOL assetSyncInProgress = NO;
                                                                                 }
                                                                               success:^(id parsedObject) {
                                                                                   categorySyncInProgress = NO;
-                                                                                  [self setETag:eTag forEntity:@"Category"];
+                                                                                  [self setETag:eTag forEntity:@"WMCategory"];
                                                                                   [self finishSync];
                                                                               }
                                                      ];
@@ -1151,7 +1156,7 @@ static BOOL assetSyncInProgress = NO;
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
                                                 id nodeTypes = JSON[@"node_types"];
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:@"NodeType"]];
-                                                if (WMLogDataManager>1) NSLog(@"... received %i node types %@", [nodeTypes count], eTagChanged?@"eTag changed":@"eTag is same");
+                                                if (WMLogDataManager>1) NSLog(@"... received %lu node types %@", (unsigned long)[nodeTypes count], eTagChanged?@"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged && nodeTypes) {
                                                     
@@ -1194,7 +1199,7 @@ static BOOL assetSyncInProgress = NO;
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
                                                 id assets = JSON[@"assets"];
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:@"Asset"]];
-                                                if (WMLogDataManager>1) NSLog(@"... received %i assets %@", [assets count], eTagChanged?@"eTag changed":@"eTag is same");
+                                                if (WMLogDataManager>1) NSLog(@"... received %lu assets %@", (unsigned long)[assets count], eTagChanged?@"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged && assets) {
                                                     
@@ -1338,7 +1343,7 @@ static BOOL assetSyncInProgress = NO;
         }
         
         if (syncErrors) {
-            if (WMLogDataManager>1) NSLog(@"... finished sync with %i errors", [syncErrors count]);
+            if (WMLogDataManager>1) NSLog(@"... finished sync with %lu errors", (unsigned long)[syncErrors count]);
             if ([self.delegate respondsToSelector:@selector(dataManager:didFinishSyncingResourcesWithErrors:)]) {
                 [self.delegate dataManager:self didFinishSyncingResourcesWithErrors:syncErrors];
             }
@@ -1346,9 +1351,9 @@ static BOOL assetSyncInProgress = NO;
             if (WMLogDataManager>1) NSLog(@"... finished sync with no errors");
             
             if (WMLogDataManager) {
-                NSArray *categories = [self managedObjectContext:self.mainMOC  fetchObjectsOfEntity:@"Category" withPredicate:nil];
+                NSArray *categories = [self managedObjectContext:self.mainMOC  fetchObjectsOfEntity:@"WMCategory" withPredicate:nil];
                 NSArray *nodeTypes = [self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
-                NSLog(@"counting %i NodeType, %i Category", [categories count], [nodeTypes count]);
+                NSLog(@"counting %lu NodeType, %lu Category", (unsigned long)[categories count], (unsigned long)[nodeTypes count]);
             }
             
             if ([self.delegate respondsToSelector:@selector(dataManagerDidFinishSyncingResources:)]) {
@@ -1504,6 +1509,9 @@ static BOOL assetSyncInProgress = NO;
                                                eTag:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                  if ([response statusCode] == 401) {
+                                                      [self removeUserAuthentication];
+                                                  }
                                                   if ([self.delegate respondsToSelector:@selector(dataManager:fetchTotalNodeCountFailedWithError:)]) {
                                                       [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:error];
                                                   }
@@ -1582,11 +1590,11 @@ static BOOL assetSyncInProgress = NO;
 - (NSArray *)categories
 {
     NSManagedObjectContext *context = self.useForTemporaryObjects ? self.temporaryMOC : self.mainMOC;
-    NSArray* categories = [self managedObjectContext:context fetchObjectsOfEntity:@"Category" withPredicate:nil];
+    NSArray* categories = [self managedObjectContext:context fetchObjectsOfEntity:@"WMCategory" withPredicate:nil];
     
     return [categories sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        Category *c1 = (Category*)a;
-        Category *c2 = (Category*)b;
+        WMCategory *c1 = (WMCategory*)a;
+        WMCategory *c2 = (WMCategory*)b;
         return [c1.localized_name localizedCaseInsensitiveCompare:c2.localized_name];
     }];
 }
@@ -1616,8 +1624,8 @@ static BOOL assetSyncInProgress = NO;
     dispatch_once(&onceToken, ^{
         
         // create model
-        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"WMDataModel" withExtension:@"momd"];
-        NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+        //NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"WMDataModel" withExtension:@"momd"];
+        NSManagedObjectModel *managedObjectModel = [self managedObjectModel];//[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
         
         // create store coordinator
         NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
@@ -1683,6 +1691,20 @@ static BOOL assetSyncInProgress = NO;
     });
     
     return _mainMOC;
+}
+
+/**
+ Returns the managed object model for the application.
+ If the model doesn't already exist, it is created from the application's model.
+ */
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (__managedObjectModel != nil)
+    {
+        return __managedObjectModel;
+    }
+    __managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    return __managedObjectModel;
 }
 
 - (NSManagedObjectContext*) backgroundMOC

@@ -47,25 +47,32 @@
     [self.scroller addSubview:authors];
     
     UILabel *creditsTitleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, authors.leftBottomY+20, 300, 18)];
-    creditsTitleLabel.textAlignment = UITextAlignmentCenter;
+    creditsTitleLabel.textAlignment = NSTextAlignmentCenter;
     creditsTitleLabel.font = [UIFont boldSystemFontOfSize:16.0f];
     creditsTitleLabel.text = @"Credits:";
     [self.scroller addSubview:creditsTitleLabel];
     
     UIFont *font = [UIFont systemFontOfSize:12.0f];
+    CGSize size = CGSizeMake(320, 16);
     NSString *titleCardData = @"Kartendaten:";
-    CGSize stringsize = [titleCardData sizeWithFont:font];
+    CGSize stringsize = [titleCardData boundingRectWithSize:size
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                 attributes:@{NSFontAttributeName:font}
+                                                    context:nil].size;
     
     UILabel *cardDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, creditsTitleLabel.leftBottomY+10, stringsize.width, stringsize.height)];
     [cardDataLabel setBackgroundColor:[UIColor clearColor]];
-    cardDataLabel.textAlignment = UITextAlignmentLeft;
+    cardDataLabel.textAlignment = NSTextAlignmentLeft;
     cardDataLabel.font = font;
     cardDataLabel.text = titleCardData;
     [self.scroller addSubview:cardDataLabel];
     
     UIButton *cardDataButtonOSM = [UIButton buttonWithType:UIButtonTypeCustom];
     NSString *titleOSM = @"OpenStreetMap";
-    stringsize = [titleOSM sizeWithFont:font];
+    stringsize = [titleOSM boundingRectWithSize:size
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:@{NSFontAttributeName:font}
+                                        context:nil].size;
     cardDataButtonOSM.frame = CGRectMake(cardDataLabel.frame.origin.x + cardDataLabel.frame.size.width + 5.0f, cardDataLabel.frame.origin.y, stringsize.width, stringsize.height);
     [cardDataButtonOSM setBackgroundColor:[UIColor clearColor]];
     cardDataButtonOSM.titleLabel.textColor = [UIColor blueColor];
@@ -77,7 +84,10 @@
     
     UIButton *cardDataButtonODBL = [UIButton buttonWithType:UIButtonTypeCustom];
     NSString *titleODBL = @"(ODbL)";
-    stringsize = [titleODBL sizeWithFont:font];
+    stringsize = [titleODBL boundingRectWithSize:size
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName:font}
+                                         context:nil].size;
     cardDataButtonODBL.frame = CGRectMake(cardDataButtonOSM.frame.origin.x + cardDataButtonOSM.frame.size.width + 5.0f, cardDataLabel.frame.origin.y, stringsize.width, stringsize.height);
     [cardDataButtonODBL setBackgroundColor:[UIColor clearColor]];
     [cardDataButtonODBL setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -92,7 +102,7 @@
     [self.scroller addSubview:license];
     
     UILabel *licenseLabel = [[WMLabel alloc] initWithFrame:CGRectMake(license.frame.origin.x + license.frame.size.width + 10.0f, license.frame.origin.y, 210, 18)];
-    licenseLabel.textAlignment = UITextAlignmentLeft;
+    licenseLabel.textAlignment = NSTextAlignmentLeft;
     licenseLabel.font = [UIFont systemFontOfSize:12.0f];
     licenseLabel.text = @"Map Icons Collection: Nicolas Mollet";
     [self.scroller addSubview:licenseLabel];
@@ -103,7 +113,7 @@
     [self.scroller addSubview:license2];
     
     UILabel *licenseLabel2 = [[WMLabel alloc] initWithFrame:CGRectMake(license2.frame.origin.x + license2.frame.size.width + 10.0f, license2.frame.origin.y, 210, 18)];
-    licenseLabel2.textAlignment = UITextAlignmentLeft;
+    licenseLabel2.textAlignment = NSTextAlignmentLeft;
     licenseLabel2.font = [UIFont systemFontOfSize:12.0f];
     licenseLabel2.text = @"Entypo pictograms by Daniel Bruce";
     [self.scroller addSubview:licenseLabel2];
@@ -123,7 +133,7 @@
 }
 
 - (IBAction)donePressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 - (CGSize)contentSizeForViewInPopover {

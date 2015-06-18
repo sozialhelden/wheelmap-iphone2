@@ -51,7 +51,7 @@
 
 -(IBAction)pressedCancelButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 - (void)showDataTerms:(BOOL)showDataTerms {

@@ -8,7 +8,7 @@
 
 #import "WMCategoryTableViewController.h"
 #import "WMDataManager.h"
-#import "Category.h"
+#import "WMCategory.h"
 #import "WMEditPOIViewController.h"
 
 @interface WMCategoryTableViewController ()
@@ -17,7 +17,7 @@
 
 @implementation WMCategoryTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style andCategory:(Category*)c
+- (id)initWithStyle:(UITableViewStyle)style andCategory:(WMCategory*)c
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -47,8 +47,8 @@
     
     self.tableView.scrollsToTop = YES;
     
-    int highlightedCellRow = -1;
-    for (Category* c in self.categoryArray) {
+    long highlightedCellRow = -1;
+    for (WMCategory* c in self.categoryArray) {
         NSNumber* ID = c.id;
         if ([ID intValue] == [[self.currentCategory id] intValue]) {
             highlightedCellRow = [self.categoryArray indexOfObject:c];
@@ -81,7 +81,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    Category *cat = [self.categoryArray objectAtIndex:indexPath.row];
+    WMCategory *cat = [self.categoryArray objectAtIndex:indexPath.row];
     NSString *catString = cat.localized_name;
     static NSString *CellIdentifier = @"CategoryCell";
     
@@ -156,7 +156,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Category *cat = [self.categoryArray objectAtIndex:indexPath.row];
+    WMCategory *cat = [self.categoryArray objectAtIndex:indexPath.row];
     [self.delegate categoryChosen:cat];
     [self.navigationController popViewControllerAnimated:YES];
 }

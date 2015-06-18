@@ -30,7 +30,7 @@
     NSParameterAssert(object);
     NSParameterAssert(entityName);
     
-    if (WMLogDataParser) NSLog(@"parsing %@ %@", entityName, dispatch_get_current_queue() == dispatch_get_main_queue() ? @"on main queue" : @"on background queue");
+//    if (WMLogDataParser) NSLog(@"parsing %@ %@", entityName, dispatch_get_current_queue() == dispatch_get_main_queue() ? @"on main queue" : @"on background queue");
     
     id parsedObject = nil;
     
@@ -221,7 +221,7 @@
                 break;
                 
             default:
-                if (WMLogDataParser>2) NSLog(@"...... Unexpected attribute type %i in entity %@", type, managedObject.entity.name);
+                if (WMLogDataParser>2) NSLog(@"...... Unexpected attribute type %lu in entity %@", type, managedObject.entity.name);
                 return NO;
         }
         

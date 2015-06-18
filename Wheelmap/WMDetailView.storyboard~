@@ -254,8 +254,6 @@
         <image name="Social_btn-sms.png" width="290" height="50"/>
         <image name="Social_btn-twitter.png" width="290" height="50"/>
     </resources>
-<<<<<<< HEAD
-=======
     <classes>
         <class className="WMAskFriendsViewController" superclassName="WMViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMAskFriendsViewController.h"/>
@@ -283,7 +281,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WMWheelchairStatusViewController.h"/>
         </class>
     </classes>
->>>>>>> 17ff632fcf0fd72be5bd324d49b25c8a7ad17f3b
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

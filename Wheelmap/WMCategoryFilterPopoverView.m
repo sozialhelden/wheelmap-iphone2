@@ -8,7 +8,7 @@
 
 #import "WMCategoryFilterPopoverView.h"
 #import "WMCategoryFilterTableViewCell.h"
-#import "Category.h"
+#import "WMCategory.h"
 
 @implementation WMCategoryFilterPopoverView
 
@@ -90,19 +90,19 @@
     return CELL_HEIGHT;
 }
 
--(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.categoryList.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Category* c = [self.categoryList objectAtIndex:indexPath.row];
+    WMCategory* c = [self.categoryList objectAtIndex:indexPath.row];
     NSString* cellID = [NSString stringWithFormat:@"CategoryListCell-%@", c.localized_name];
     WMCategoryFilterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];    // TODO: is this ID OK?
     if (!cell) {
         cell = [[WMCategoryFilterTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        Category* c = [self.categoryList objectAtIndex:indexPath.row];
+        WMCategory* c = [self.categoryList objectAtIndex:indexPath.row];
         cell.title = c.localized_name;
         cell.selected = YES;
     }
@@ -112,7 +112,7 @@
 
 -(void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Category* c = [self.categoryList objectAtIndex:indexPath.row];
+    WMCategory* c = [self.categoryList objectAtIndex:indexPath.row];
     WMCategoryFilterTableViewCell* cell = (WMCategoryFilterTableViewCell*)[aTableView cellForRowAtIndexPath:indexPath];
     if ([self.delegate respondsToSelector:@selector(categoryFilterStatusDidChangeForCategoryID:selected:)]) {
         [self.delegate categoryFilterStatusDidChangeForCategoryID:c.id selected:cell.isSelected];

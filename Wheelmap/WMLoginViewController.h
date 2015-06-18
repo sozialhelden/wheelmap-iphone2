@@ -33,8 +33,11 @@
 @property (nonatomic, weak) IBOutlet UILabel *topTextLabel;
 @property (nonatomic, weak) IBOutlet UILabel *middleTextLabel;
 @property (nonatomic, weak) IBOutlet UILabel *bottomTextLabel;
+@property (nonatomic, retain) WMDataManager *dataManager;
 
+- (IBAction)registerPressed:(id)sender;
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)donePressed:(id)sender;
+- (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager;
 
 @end
