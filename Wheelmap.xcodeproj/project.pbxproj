@@ -1206,7 +1206,9 @@
 		34C08EA118A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		4360DCD518BE0C7C00D57E2A /* WMOpenConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */; };
-		74A5C40B1B3420090002E1D5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74A5C40A1B3420090002E1D5 /* WMConfig.plist */; };
+		74A5C40D1B3432460002E1D5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74A5C40C1B3432460002E1D5 /* WMConfig.plist */; };
+		74A5C40E1B3432460002E1D5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74A5C40C1B3432460002E1D5 /* WMConfig.plist */; };
+		74A5C40F1B3432460002E1D5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74A5C40C1B3432460002E1D5 /* WMConfig.plist */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -1904,7 +1906,7 @@
 		34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
 		434AB7DA192648B800B21E13 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = WMOpenConfig.plist; path = config/beta/WMOpenConfig.plist; sourceTree = SOURCE_ROOT; };
-		74A5C40A1B3420090002E1D5 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
+		74A5C40C1B3432460002E1D5 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -2993,7 +2995,6 @@
 		4360DCD318BE0C3600D57E2A /* beta */ = {
 			isa = PBXGroup;
 			children = (
-				74A5C40A1B3420090002E1D5 /* WMConfig.plist */,
 				4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */,
 			);
 			name = beta;
@@ -3017,6 +3018,7 @@
 			children = (
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				0360BB3B169DC26800E04026 /* AirshipConfig.plist */,
+				74A5C40C1B3432460002E1D5 /* WMConfig.plist */,
 				034FAED116A6FDFA00F9F663 /* config */,
 				15F31E6816A6D389006EDBC8 /* Reachability */,
 				18D373D11A5D8D4600187374 /* Airship */,
@@ -3976,6 +3978,7 @@
 				0327FA3B16BFFB1900BA7DE7 /* Curl_screen.png in Resources */,
 				0327FA3C16BFFB1900BA7DE7 /* Curl_screen@2x.png in Resources */,
 				0327FA3D16BFFB1900BA7DE7 /* Curl_logo.png in Resources */,
+				74A5C40E1B3432460002E1D5 /* WMConfig.plist in Resources */,
 				0327FA3E16BFFB1900BA7DE7 /* Curl_logo@2x.png in Resources */,
 				0327FA3F16BFFB1900BA7DE7 /* FBConnect.bundle in Resources */,
 				0327FA4016BFFB1900BA7DE7 /* FBDialog.bundle in Resources */,
@@ -4094,6 +4097,7 @@
 				03BD041316A052750045D53D /* toolbar_statusfilter-yes.png in Resources */,
 				03BD041416A052750045D53D /* toolbar_statusfilter-yes@2x.png in Resources */,
 				03BD041516A052750045D53D /* toolbar_toggle-btn.png in Resources */,
+				74A5C40F1B3432460002E1D5 /* WMConfig.plist in Resources */,
 				03BD041616A052750045D53D /* toolbar_toggle-btn@2x.png in Resources */,
 				03BD041716A052750045D53D /* toolbar_toggle-list.png in Resources */,
 				03BD041816A052750045D53D /* toolbar_toggle-list@2x.png in Resources */,
@@ -4412,7 +4416,7 @@
 				DB6E4794166BF21D00D9CAD9 /* start_icon-grid-category@2x.png in Resources */,
 				DB6E4795166BF21D00D9CAD9 /* start_icon-grid-help.png in Resources */,
 				DB6E4796166BF21D00D9CAD9 /* start_icon-grid-help@2x.png in Resources */,
-				74A5C40B1B3420090002E1D5 /* WMConfig.plist in Resources */,
+				74A5C40D1B3432460002E1D5 /* WMConfig.plist in Resources */,
 				DB6E4797166BF21D00D9CAD9 /* start_icon-grid-locallist.png in Resources */,
 				DB6E4798166BF21D00D9CAD9 /* start_icon-grid-locallist@2x.png in Resources */,
 				DB6E4799166BF21D00D9CAD9 /* start_icon-grid-map.png in Resources */,
