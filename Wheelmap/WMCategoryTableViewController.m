@@ -48,14 +48,19 @@
     self.tableView.scrollsToTop = YES;
     
     long highlightedCellRow = -1;
-    for (WMCategory* c in self.categoryArray) {
-        NSNumber* ID = c.id;
-        if ([ID intValue] == [[self.currentCategory id] intValue]) {
-            highlightedCellRow = [self.categoryArray indexOfObject:c];
+    if (self.categoryArray != nil) {
+        for (WMCategory* c in self.categoryArray) {
+            NSNumber* ID = c.id;
+            if ([ID intValue] == [[self.currentCategory id] intValue]) {
+                highlightedCellRow = [self.categoryArray indexOfObject:c];
+            }
         }
     }
     
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:highlightedCellRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    if (highlightedCellRow >= 0) {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:highlightedCellRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
