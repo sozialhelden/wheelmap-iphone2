@@ -771,9 +771,6 @@
 		18A056E61A6D1F7000FA88E8 /* UIWebView+UAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A056E51A6D1F7000FA88E8 /* UIWebView+UAAdditions.m */; };
 		18A056E71A6D1F7000FA88E8 /* UIWebView+UAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A056E51A6D1F7000FA88E8 /* UIWebView+UAAdditions.m */; };
 		18A056E81A6D1F7000FA88E8 /* UIWebView+UAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A056E51A6D1F7000FA88E8 /* UIWebView+UAAdditions.m */; };
-		18A056EB1A6D4F1800FA88E8 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */; };
-		18A056EC1A6D4F1800FA88E8 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */; };
-		18A056ED1A6D4F1800FA88E8 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */; };
 		18A4EA261AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */; };
 		18A4EA271AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */; };
 		18A4EA281AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */; };
@@ -1209,6 +1206,7 @@
 		34C08EA118A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */; };
 		4360DCD518BE0C7C00D57E2A /* WMOpenConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */; };
+		74A5C40B1B3420090002E1D5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74A5C40A1B3420090002E1D5 /* WMConfig.plist */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -1601,7 +1599,6 @@
 		18A056E01A6D1F0500FA88E8 /* libUAirship-5.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libUAirship-5.1.1.a"; path = "Airship/libUAirship-5.1.1.a"; sourceTree = "<group>"; };
 		18A056E41A6D1F7000FA88E8 /* UIWebView+UAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+UAAdditions.h"; sourceTree = "<group>"; };
 		18A056E51A6D1F7000FA88E8 /* UIWebView+UAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+UAAdditions.m"; sourceTree = "<group>"; };
-		18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		18A4EA241AC41D7C00C90404 /* WMOSMDescribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMDescribeViewController.h; sourceTree = "<group>"; };
 		18A4EA251AC41D7C00C90404 /* WMOSMDescribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMDescribeViewController.m; sourceTree = "<group>"; };
 		18A4EA291AC4457500C90404 /* WMOSMStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMStartViewController.h; sourceTree = "<group>"; };
@@ -1907,6 +1904,7 @@
 		34C08E9F18A8ECAC00DAF430 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
 		434AB7DA192648B800B21E13 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = WMOpenConfig.plist; path = config/beta/WMOpenConfig.plist; sourceTree = SOURCE_ROOT; };
+		74A5C40A1B3420090002E1D5 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WMConfig.plist; sourceTree = "<group>"; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -1944,7 +1942,6 @@
 		9899275E1649151300D9003B /* WMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppDelegate.h; sourceTree = "<group>"; };
 		9899275F1649151300D9003B /* WMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppDelegate.m; sourceTree = "<group>"; };
 		989927681649151300D9003B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		989927761649151300D9003B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		989927911649462E00D9003B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		989927931649481300D9003B /* WMNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListViewController.h; sourceTree = "<group>"; };
 		989927941649481300D9003B /* WMNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeListViewController.m; sourceTree = "<group>"; };
@@ -2309,7 +2306,6 @@
 				1842DE801A6971CF001D52CF /* CoreText.framework in Frameworks */,
 				989927521649151300D9003B /* Foundation.framework in Frameworks */,
 				DBCA979816789B4D0042358C /* HockeySDK.framework in Frameworks */,
-				0360BAC5169DC16A00E04026 /* libUAirship-1.3.7.a in Frameworks */,
 				989927921649462E00D9003B /* MapKit.framework in Frameworks */,
 				DB4EB530167FC8080096CEDE /* MessageUI.framework in Frameworks */,
 				9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */,
@@ -2997,6 +2993,7 @@
 		4360DCD318BE0C3600D57E2A /* beta */ = {
 			isa = PBXGroup;
 			children = (
+				74A5C40A1B3420090002E1D5 /* WMConfig.plist */,
 				4360DCD418BE0C7C00D57E2A /* WMOpenConfig.plist */,
 			);
 			name = beta;
@@ -3018,7 +3015,6 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				18A056EA1A6D4F1800FA88E8 /* WMConfig.plist */,
 				D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */,
 				0360BB3B169DC26800E04026 /* AirshipConfig.plist */,
 				034FAED116A6FDFA00F9F663 /* config */,
@@ -3912,7 +3908,6 @@
 				0327FA0016BFFB1900BA7DE7 /* start_icon-grid-locallist@2x.png in Resources */,
 				0327FA0116BFFB1900BA7DE7 /* start_icon-grid-map.png in Resources */,
 				0327FA0216BFFB1900BA7DE7 /* start_icon-grid-map@2x.png in Resources */,
-				18A056EC1A6D4F1800FA88E8 /* WMConfig.plist in Resources */,
 				0327FA0316BFFB1900BA7DE7 /* start_icon-login.png in Resources */,
 				0327FA0416BFFB1900BA7DE7 /* start_icon-login@2x.png in Resources */,
 				0327FA0516BFFB1900BA7DE7 /* start_logo.png in Resources */,
@@ -4099,7 +4094,6 @@
 				03BD041316A052750045D53D /* toolbar_statusfilter-yes.png in Resources */,
 				03BD041416A052750045D53D /* toolbar_statusfilter-yes@2x.png in Resources */,
 				03BD041516A052750045D53D /* toolbar_toggle-btn.png in Resources */,
-				18A056ED1A6D4F1800FA88E8 /* WMConfig.plist in Resources */,
 				03BD041616A052750045D53D /* toolbar_toggle-btn@2x.png in Resources */,
 				03BD041716A052750045D53D /* toolbar_toggle-list.png in Resources */,
 				03BD041816A052750045D53D /* toolbar_toggle-list@2x.png in Resources */,
@@ -4353,7 +4347,6 @@
 				DBA6223D1668F380009FA5DF /* toolbar_statusfilter-yes.png in Resources */,
 				C5AA825E18A274D2001B2BBA /* Images.xcassets in Resources */,
 				DBA6223E1668F380009FA5DF /* toolbar_statusfilter-yes@2x.png in Resources */,
-				18A056EB1A6D4F1800FA88E8 /* WMConfig.plist in Resources */,
 				DBA6223F1668F380009FA5DF /* toolbar_toggle-btn.png in Resources */,
 				DBA622401668F380009FA5DF /* toolbar_toggle-btn@2x.png in Resources */,
 				DBA622411668F380009FA5DF /* toolbar_toggle-list.png in Resources */,
@@ -4419,6 +4412,7 @@
 				DB6E4794166BF21D00D9CAD9 /* start_icon-grid-category@2x.png in Resources */,
 				DB6E4795166BF21D00D9CAD9 /* start_icon-grid-help.png in Resources */,
 				DB6E4796166BF21D00D9CAD9 /* start_icon-grid-help@2x.png in Resources */,
+				74A5C40B1B3420090002E1D5 /* WMConfig.plist in Resources */,
 				DB6E4797166BF21D00D9CAD9 /* start_icon-grid-locallist.png in Resources */,
 				DB6E4798166BF21D00D9CAD9 /* start_icon-grid-locallist@2x.png in Resources */,
 				DB6E4799166BF21D00D9CAD9 /* start_icon-grid-map.png in Resources */,
@@ -5341,8 +5335,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "Wheelmap-BETA";
-				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
+				PROVISIONING_PROFILE = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5687,8 +5681,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
+				PROVISIONING_PROFILE = "40ca143d-74b0-468d-87d7-a02584839393";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40ca143d-74b0-468d-87d7-a02584839393";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5725,8 +5719,8 @@
 				);
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4A9CB5B6-9708-4CBB-842B-17F72BA28FF8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4A9CB5B6-9708-4CBB-842B-17F72BA28FF8";
+				PROVISIONING_PROFILE = "508df28e-cef1-4aaf-ba97-c52be8468225";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "508df28e-cef1-4aaf-ba97-c52be8468225";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

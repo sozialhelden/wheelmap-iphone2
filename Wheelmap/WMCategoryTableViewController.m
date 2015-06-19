@@ -48,7 +48,7 @@
     self.tableView.scrollsToTop = YES;
     
     long highlightedCellRow = -1;
-    if (self.categoryArray.count > 0) {
+    if (self.categoryArray != nil) {
         for (WMCategory* c in self.categoryArray) {
             NSNumber* ID = c.id;
             if ([ID intValue] == [[self.currentCategory id] intValue]) {
@@ -57,7 +57,7 @@
         }
     }
     
-    if (highlightedCellRow > 0) {
+    if (highlightedCellRow >= 0) {
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:highlightedCellRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
     }
     
