@@ -50,9 +50,11 @@
     long highlightedCellRow = -1;
     if (self.categoryArray != nil) {
         for (WMCategory* c in self.categoryArray) {
-            NSNumber* ID = c.id;
-            if ([ID intValue] == [[self.currentCategory id] intValue]) {
-                highlightedCellRow = [self.categoryArray indexOfObject:c];
+            if (c.id != nil) {
+                NSNumber* ID = c.id;
+                if ([ID intValue] == [[self.currentCategory id] intValue]) {
+                    highlightedCellRow = [self.categoryArray indexOfObject:c];
+                }
             }
         }
     }
