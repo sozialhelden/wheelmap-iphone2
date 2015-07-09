@@ -82,15 +82,7 @@
     self.rasterOverlay.delegate = self;
     
     [self.mapView addOverlay:self.rasterOverlay];
-    
     self.mapView.showsUserLocation = YES;
-    //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
-    
-    //    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeWidth multiplier:1.f constant:0.f];
-    //
-    //    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeHeight multiplier:1.f constant:0.f];
-    //
-    //    [self.view addConstraints:@[widthConstraint,heightConstraint]];
     
     // configure mapInteractionInfoLabel
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
@@ -99,16 +91,8 @@
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
-    // self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
-    //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-    //        self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    //    }
-    
-    //self.loadingContainer.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     
     dataManager = [[WMDataManager alloc] init];
-    
-    //    [super viewDidLayoutSubviews];
     
     // set the map interaction info label visible/invisible constraint values
     visibleMapInteractionInfoLabelConstraint = self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant;
