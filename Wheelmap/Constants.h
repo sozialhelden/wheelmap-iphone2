@@ -21,3 +21,6 @@
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define ODBL_URL @"http://opendatacommons.org/licenses/odbl/"
+
+#define K_MAP_ID        @"mbxMapID"
+#define K_ACESSS_TOKEN  @"mbxAccessToken"

@@ -16,6 +16,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Constants.h"
 
 #define MIN_SPAN_DELTA 0.01
 
@@ -66,21 +67,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initMapView];
     
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
-
-    // MAPVIEW
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    [MBXMapKit setAccessToken:[config valueForKey:@"mbxAccessToken"]];
+    dataManager = [[WMDataManager alloc] init];
     
+    [self.view layoutIfNeeded];
+    
+}
+
+// Initiliaze Map View
+- (void) initMapView{
+    
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    [MBXMapKit setAccessToken:[config valueForKey:K_ACESSS_TOKEN]];
     self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
-    
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:@"mbxMapID"]];
+    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:K_MAP_ID]];
     self.rasterOverlay.delegate = self;
-    
     [self.mapView addOverlay:self.rasterOverlay];
     self.mapView.showsUserLocation = YES;
     
@@ -92,16 +98,41 @@
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
     
-    dataManager = [[WMDataManager alloc] init];
-    
     // set the map interaction info label visible/invisible constraint values
     visibleMapInteractionInfoLabelConstraint = self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant;
     invisibleMapInteractionInfoLabelConstraint = -CGRectGetHeight(self.mapInteractionInfoLabel.frame)-20.0f;
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
-    [self.view layoutIfNeeded];
+    self.locationManager = [[CLLocationManager alloc] init];
+    
+    if (self.mapView.userLocation == nil) {
+        [self relocateMapTo:[self setUserLocation] andSpan:MKCoordinateSpanMake(0.003, 0.003)];
+        [self.mapView setCenterCoordinate:self.locationManager.location.coordinate];
+    }else{
+        [self relocateMapTo:self.mapView.userLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];
+        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate];
+    }
+    
 }
+
+- (CLLocationCoordinate2D) setUserLocation{
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if (IS_OS_8_OR_LATER)
+    {
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
+    self.locationManager.distanceFilter = 50.0f;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startMonitoringSignificantLocationChanges];
+    
+    return self.locationManager.location.coordinate;
+}
+
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -203,26 +234,22 @@
     
     dispatch_async(backgroundQueue, ^(void) {
         
-        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];//self.mapView.annotations];
+        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         
-        if (newAnnotations.count > 0 && oldAnnotations.count >0) {
-            [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
-                
-                WMMapAnnotation *annotationForNode = [self annotationForNode:node];
-                if (annotationForNode != nil) {
-                    // this node is already shown on the map
-                    [oldAnnotations removeObject:annotationForNode];
-                } else {
-                    // this node is new
-                    WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
-                    if (annotation != nil) {
-                         [newAnnotations addObject:annotation];
-                    }
-                }
-                
-            }];
-        }
+        [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
+            
+            WMMapAnnotation *annotationForNode = [self annotationForNode:node];
+            if (annotationForNode != nil) {
+                // this node is already shown on the map
+                [oldAnnotations removeObject:annotationForNode];
+            } else {
+                // this node is new
+                WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
+                [newAnnotations addObject:annotation];
+            }
+            
+        }];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
