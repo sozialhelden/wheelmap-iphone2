@@ -82,9 +82,9 @@
     [self.loginButton setTitle:NSLocalizedString(@"LoginOverOSM", nil) forState:UIControlStateNormal];
     
     self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 25.0f, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
-    [self.registerButton setTitle:@"OSMRegistration" forState:UIControlStateNormal];
+    [self.registerButton setTitle:NSLocalizedString(@"OSMRegistration", nil) forState:UIControlStateNormal];
     
-    [self.whyButton setTitle:@"WhyOSMAccount" forState:UIControlStateNormal];
+    [self.whyButton setTitle:NSLocalizedString(@"WhyOSMAccount", nil) forState:UIControlStateNormal];
     
     self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.registerButton.frame.origin.y + self.registerButton.frame.size.height + 20.0f);
     
