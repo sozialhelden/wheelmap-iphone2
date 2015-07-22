@@ -16,6 +16,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Constants.h"
 
 #define MIN_SPAN_DELTA 0.01
 
@@ -66,31 +67,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initMapView];
     
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
-
-    // MAPVIEW
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    [MBXMapKit setAccessToken:[config valueForKey:@"mbxAccessToken"]];
+    dataManager = [[WMDataManager alloc] init];
     
+    [self.view layoutIfNeeded];
+    
+}
+
+// Initiliaze Map View
+- (void) initMapView{
+    
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    [MBXMapKit setAccessToken:[config valueForKey:K_ACESSS_TOKEN]];
     self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
-    
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:@"mbxMapID"]];
+    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:K_MAP_ID]];
     self.rasterOverlay.delegate = self;
-    
     [self.mapView addOverlay:self.rasterOverlay];
-    
     self.mapView.showsUserLocation = YES;
-    //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
-    
-    //    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeWidth multiplier:1.f constant:0.f];
-    //
-    //    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeHeight multiplier:1.f constant:0.f];
-    //
-    //    [self.view addConstraints:@[widthConstraint,heightConstraint]];
     
     // configure mapInteractionInfoLabel
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
@@ -99,16 +97,6 @@
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
-    // self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
-    //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-    //        self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    //    }
-    
-    //self.loadingContainer.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    
-    dataManager = [[WMDataManager alloc] init];
-    
-    //    [super viewDidLayoutSubviews];
     
     // set the map interaction info label visible/invisible constraint values
     visibleMapInteractionInfoLabelConstraint = self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant;
@@ -116,12 +104,40 @@
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
-    [self.view layoutIfNeeded];
+    self.locationManager = [[CLLocationManager alloc] init];
+    
+    if (self.mapView.userLocation == nil) {
+        [self relocateMapTo:[self setUserLocation] andSpan:MKCoordinateSpanMake(0.003, 0.003)];
+        [self.mapView setCenterCoordinate:self.locationManager.location.coordinate];
+    }else{
+        [self relocateMapTo:self.mapView.userLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];
+        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate];
+    }
+    
 }
+
+- (CLLocationCoordinate2D) setUserLocation{
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if (IS_OS_8_OR_LATER)
+    {
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
+    self.locationManager.distanceFilter = 50.0f;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startMonitoringSignificantLocationChanges];
+    
+    return self.locationManager.location.coordinate;
+}
+
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    self.mapView.delegate = self;
     
     self.loadingLabel.numberOfLines = 0;
     self.loadingLabel.textColor = [UIColor whiteColor];
@@ -188,6 +204,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.mapView.delegate = nil;
     [self slideOutMapInteractionAdvisor];
 }
 
@@ -217,21 +234,13 @@
     
     dispatch_async(backgroundQueue, ^(void) {
         
-        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];//self.mapView.annotations];
+        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
-        
-        // fix for map sometimes showing old annotations on ipad
-        //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        //        for (id<MKAnnotation> annotation in oldAnnotations) {
-        //            if (![annotation isKindOfClass:[MKUserLocation class]])
-        //                [self.mapView removeAnnotation:annotation];
-        //        }
-        //    }
         
         [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
             
             WMMapAnnotation *annotationForNode = [self annotationForNode:node];
-            if (annotationForNode) {
+            if (annotationForNode != nil) {
                 // this node is already shown on the map
                 [oldAnnotations removeObject:annotationForNode];
             } else {
