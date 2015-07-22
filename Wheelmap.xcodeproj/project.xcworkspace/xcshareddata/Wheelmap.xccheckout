@@ -11,7 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>EE7891875B210ACE07E53855CBE373AA1A9A9D6B</key>
-		<string>https://github.com/smartmobilefactory/wheelmap-iOS.git</string>
+		<string>https://github.com/smartmobilefactory/wheelmap-iphone2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Wheelmap.xcodeproj/project.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/smartmobilefactory/wheelmap-iOS.git</string>
+	<string>https://github.com/smartmobilefactory/wheelmap-iphone2.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>EE7891875B210ACE07E53855CBE373AA1A9A9D6B</string>
 			<key>IDESourceControlWCCName</key>
-			<string>wheelmap-iOS</string>
+			<string>wheelmap-iphone2</string>
 		</dict>
 	</array>
 </dict>
