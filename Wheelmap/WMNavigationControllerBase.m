@@ -245,9 +245,11 @@
     }
     listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
     [self pushViewController:listViewController animated:YES];
+    
 }
 
 - (void)pushMap {
+    
     if (listViewController == nil) {
         listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     }
@@ -256,8 +258,9 @@
         self.mapViewController.baseController = self;
     }
     
-    self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
     [self  pushViewController:listViewController animated:YES];
+    [self pushFadeViewController:self.mapViewController];
+    
 }
 
 - (void)setMapControllerToContribute {

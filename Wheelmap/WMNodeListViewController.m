@@ -17,6 +17,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMNodeListView.h"
 #import "WMResourceManager.h"
+#import "WMMapViewController.h"
 
 @implementation WMNodeListViewController
 {
@@ -28,6 +29,7 @@
     BOOL shouldShowNoResultIndicator;
     
     WMDataManager *dataManager;
+    WMMapViewController *mapView;
     
     BOOL searching;
     BOOL receivedClearList;
@@ -73,6 +75,7 @@
     if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
