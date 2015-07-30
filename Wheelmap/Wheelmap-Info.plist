@@ -32,11 +32,11 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard_iPhone</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is required to find out where you are</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>MainStoryboard_iPad</string>
-	<key>NSLocationAlwaysUsageDescription</key>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Location is required to find out where you are</string>
+    <key>NSLocationAlwaysUsageDescription</key>
 	<string>Location is required to find out where you are</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>

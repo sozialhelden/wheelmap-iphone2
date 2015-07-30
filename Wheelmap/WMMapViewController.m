@@ -104,8 +104,7 @@
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
-    self.locationManager = [[CLLocationManager alloc] init];
-    
+    [self setUserLocation];
     if (self.mapView.userLocation == nil) {
         [self relocateMapTo:[self setUserLocation] andSpan:MKCoordinateSpanMake(0.003, 0.003)];
         [self.mapView setCenterCoordinate:self.locationManager.location.coordinate];
