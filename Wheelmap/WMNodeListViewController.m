@@ -30,6 +30,7 @@
     
     WMDataManager *dataManager;
     WMMapViewController *mapView;
+    WMLabel* headerLabel;
     
     BOOL searching;
     BOOL receivedClearList;
@@ -87,8 +88,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     [self.navigationController setToolbarHidden:NO animated:YES];
+    
+    [self initNodeType];
+    
+    
+}
+
+-(void) initNodeType{
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
@@ -99,14 +106,8 @@
         accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
         
-        WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
-        headerTextLabel.fontSize = 13.0;
-        headerTextLabel.textAlignment = NSTextAlignmentLeft;
-        headerTextLabel.numberOfLines = 3;
-        headerTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-        headerTextLabel.textColor = [UIColor whiteColor];
-        headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
-        [accesoryHeader addSubview:headerTextLabel];
+        headerLabel = [[WMLabel alloc] initWithFrameByNodeType:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60) nodeType:self.useCase];
+        [accesoryHeader addSubview:headerLabel];
         
         accesoryHeader.alpha = 0.0;
         [self.view addSubview:accesoryHeader];
@@ -152,7 +153,6 @@
             [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         }
     }
-    
 }
 
 - (void) loadNodes
@@ -167,15 +167,8 @@
             accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
             accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
             
-            
-            WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
-            headerTextLabel.fontSize = 13.0;
-            headerTextLabel.textAlignment = NSTextAlignmentLeft;
-            headerTextLabel.numberOfLines = 3;
-            headerTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-            headerTextLabel.textColor = [UIColor whiteColor];
-            headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
-            [accesoryHeader addSubview:headerTextLabel];
+            headerLabel = [[WMLabel alloc] initWithFrameByNodeType:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60) nodeType:self.useCase];
+            [accesoryHeader addSubview:headerLabel];
             
             accesoryHeader.alpha = 0.0;
             [self.view addSubview:accesoryHeader];
@@ -220,9 +213,10 @@
         }
     }
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseContribute && nodes.count > 0) {
+    if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
         NSArray* unfilteredNodes = [self.dataSource filteredNodeList];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
+        
         if(unfilteredNodes.count > 0){
             for (Node* node in unfilteredNodes) {
                 if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {

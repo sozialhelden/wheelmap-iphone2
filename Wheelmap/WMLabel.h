@@ -21,5 +21,6 @@ typedef enum {
 @property (nonatomic) CGFloat fontSize;
 
 - (void)adjustHeightToContent;
+- (id)initWithFrameByNodeType:(CGRect)frame nodeType:(enum WMNodeListViewControllerUseCase*)nodeType;
 
 @end
