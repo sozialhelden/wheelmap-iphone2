@@ -7,6 +7,7 @@
 //
 
 #import "WMToolBar.h"
+#import "Constants.h"
 
 
 @implementation WMToolBar
@@ -18,24 +19,17 @@
         
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
-        // Initialization code
-        backgroundImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 60)];
-        backgroundImg.image = [UIImage imageNamed:@"toolbar_background.png"];
-        backgroundImg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [self addSubview:backgroundImg];
+        [self setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
         
         currentLocationButton = [WMButton buttonWithType:UIButtonTypeCustom];
         currentLocationButton.frame = CGRectMake(2, 3, 58, 58);
-        [currentLocationButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
-        [currentLocationButton setImage:[UIImage imageNamed:@"toolbar_icon-location.png"] forState:UIControlStateNormal];
+        [currentLocationButton setImage:[UIImage imageNamed:@"ToolbarCenterIcon"] forState:UIControlStateNormal];
         [currentLocationButton addTarget:self action:@selector(pressedCurrentLocationButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:currentLocationButton];
         
         searchButton = [WMButton buttonWithType:UIButtonTypeCustom];
         searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 3, 58, 58);
-        [searchButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
-        [searchButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button-search-active.png"] forState:UIControlStateSelected];
-        [searchButton setImage:[UIImage imageNamed:@"toolbar_icon-search.png"] forState:UIControlStateNormal];
+        [searchButton setImage:[UIImage imageNamed:@"ToolbarSearchIcon"] forState:UIControlStateNormal];
 
         [searchButton addTarget:self action:@selector(pressedSearchButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:searchButton];
@@ -45,25 +39,22 @@
         self.toggleButton.frame = CGRectMake(0, -2, 70, 62);
         self.toggleButton.center = CGPointMake(self.center.x, self.toggleButton.center.y);
         UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
-        toggleBtnNormalView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         UIImageView* toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
-        toggleBtnListIcon.image = [UIImage imageNamed:@"toolbar_toggle-map.png"];
+        toggleBtnListIcon.image = [UIImage imageNamed:@"ToolbarMapIcon"];
         toggleBtnListIcon.contentMode = UIViewContentModeCenter;
         [toggleBtnNormalView addSubview:toggleBtnListIcon];
         [self.toggleButton setView:toggleBtnNormalView forControlState:UIControlStateNormal];
         
         UIImageView* toggleBtnHighlightedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
-        toggleBtnHighlightedView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
-        toggleBtnListIcon.image = [UIImage imageNamed:@"toolbar_toggle-map.png"];
+        toggleBtnListIcon.image = [UIImage imageNamed:@"ToolbarListIcon"];
         toggleBtnListIcon.contentMode = UIViewContentModeCenter;
         [toggleBtnHighlightedView addSubview:toggleBtnListIcon];
         [self.toggleButton setView:toggleBtnHighlightedView forControlState:UIControlStateHighlighted];
         
         UIImageView* toggleBtnSelectedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
-        toggleBtnSelectedView.image = [UIImage imageNamed:@"toolbar_toggle-btn.png"];
         UIImageView* toggleBtnMapIcon = [[UIImageView alloc] initWithFrame:toggleBtnSelectedView.bounds];
-        toggleBtnMapIcon.image = [UIImage imageNamed:@"toolbar_toggle-list.png"];
+        toggleBtnMapIcon.image = [UIImage imageNamed:@"ToolbarListIcon"];
         toggleBtnMapIcon.contentMode = UIViewContentModeCenter;
         [toggleBtnSelectedView addSubview:toggleBtnMapIcon];
         [self.toggleButton setView:toggleBtnSelectedView forControlState:UIControlStateSelected];
@@ -74,9 +65,7 @@
         
         categoryFilterButton = [WMButton buttonWithType:UIButtonTypeCustom];
         categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 3, 58, 58);
-        [categoryFilterButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
-        [categoryFilterButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button-search-active.png"] forState:UIControlStateSelected];
-        [categoryFilterButton setImage:[UIImage imageNamed:@"toolbar_icon-category.png"] forState:UIControlStateNormal];
+        [categoryFilterButton setImage:[UIImage imageNamed:@"ToolbarKategorieIcon"] forState:UIControlStateNormal];
         [categoryFilterButton addTarget:self action:@selector(pressedCategoryFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:categoryFilterButton];
         self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);

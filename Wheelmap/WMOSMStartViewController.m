@@ -37,6 +37,7 @@
         self.headerView.hidden = YES;
         self.contentScrollView.frame = CGRectMake(self.contentScrollView.frame.origin.x, 0.0f, self.contentScrollView.frame.size.width, self.view.frame.size.height);
     }
+    [self.navigationBar setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
     
     self.contentScrollView.scrollsToTop = YES;
     
@@ -75,7 +76,7 @@
     self.stepsTextView.text = NSLocalizedString(@"StepsToOSMAccount", nil);
     
     
-    [self.loginButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
+    [self.loginButton setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
     self.loginButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [self.loginButton sizeToFit];
     self.loginButton.frame = CGRectMake(320.0f - self.loginButton.frame.size.width - 10.0f, self.stepsTextView.frame.origin.y + self.stepsTextView.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);

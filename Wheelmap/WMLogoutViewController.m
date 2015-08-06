@@ -9,6 +9,7 @@
 #import "WMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
+#import "Constants.h"
 
 @interface WMLogoutViewController ()
 {
@@ -23,7 +24,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
+    [self.navigationController.navigationBar setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
     dataManager = [[WMDataManager alloc] init];
     
     self.titleLabel.text = NSLocalizedString(@"Sign Out", nil);
