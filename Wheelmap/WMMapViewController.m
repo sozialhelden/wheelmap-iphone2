@@ -39,6 +39,8 @@
     
     float invisibleMapInteractionInfoLabelConstraint;
     float visibleMapInteractionInfoLabelConstraint;
+    
+    CLLocation* userCurrentLocation;
 }
 
 @synthesize dataSource, delegate;
@@ -67,12 +69,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMapView];
-    
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
     dataManager = [[WMDataManager alloc] init];
     
     [self.view layoutIfNeeded];
+    
+    [self initMapView];
     
 }
 
@@ -104,18 +106,9 @@
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
-    [self setUserLocation];
-    if (self.mapView.userLocation == nil) {
-        [self relocateMapTo:[self setUserLocation] andSpan:MKCoordinateSpanMake(0.003, 0.003)];
-        [self.mapView setCenterCoordinate:self.locationManager.location.coordinate];
-    }else{
-        [self relocateMapTo:self.mapView.userLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];
-        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate];
-    }
     
-}
-
-- (CLLocationCoordinate2D) setUserLocation{
+ 
+    self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
     if (IS_OS_8_OR_LATER)
@@ -124,11 +117,14 @@
             [self.locationManager requestWhenInUseAuthorization];
         }
     }
+    
     self.locationManager.distanceFilter = 50.0f;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
     
-    return self.locationManager.location.coordinate;
+    userCurrentLocation = self.locationManager.location;
+    [self relocateMapTo:userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
+    
 }
 
 
@@ -206,6 +202,7 @@
     self.mapView.delegate = nil;
     [self slideOutMapInteractionAdvisor];
 }
+
 
 - (void) loadNodes
 {
@@ -319,6 +316,8 @@
     dontUpdateNodeList = YES;
     [self relocateMapTo:CLLocationCoordinate2DMake(node.lat.doubleValue, node.lon.doubleValue  - 0.0005) andSpan:MKCoordinateSpanMake(0.001, 0.001)];
 }
+
+
 
 #pragma mark - Map View Delegate
 // And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
@@ -520,7 +519,7 @@
     }
     else
     {
-        [_mapView mbx_setCenterCoordinate:overlay.center zoomLevel:overlay.centerZoom animated:NO];
+        [self.mapView setCenterCoordinate:userCurrentLocation.coordinate];
     }
 }
 
