@@ -19,7 +19,7 @@
         
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
-        [self setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
+        [self setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
         
         currentLocationButton = [WMButton buttonWithType:UIButtonTypeCustom];
         currentLocationButton.frame = CGRectMake(2, 3, 58, 58);

@@ -9,7 +9,6 @@
 #import "WMNavigationBar.h"
 #import "Reachability.h"
 #import "WMWheelmapAPI.h"
-#import "Constants.h"
 
 @implementation WMNavigationBar
 @synthesize leftButtonStyle = _leftButtonStyle;
@@ -23,7 +22,7 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.autoresizesSubviews = YES;
 
-        [self setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
+        [self setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
         
         currentLeftButton = nil;
         currentRightButton = nil;
@@ -217,7 +216,7 @@
         }
         searchBarContainer.userInteractionEnabled = YES;
         
-        [searchBarContainer setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
+        [searchBarContainer setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
         
         searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
         [self addSubview:searchBarContainer];

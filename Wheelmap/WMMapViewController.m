@@ -75,7 +75,6 @@
     [self.view layoutIfNeeded];
     
     [self initMapView];
-    
 }
 
 // Initiliaze Map View
@@ -124,7 +123,6 @@
     
     userCurrentLocation = self.locationManager.location;
     [self relocateMapTo:userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
-    
 }
 
 
@@ -202,7 +200,6 @@
     self.mapView.delegate = nil;
     [self slideOutMapInteractionAdvisor];
 }
-
 
 - (void) loadNodes
 {
@@ -316,8 +313,6 @@
     dontUpdateNodeList = YES;
     [self relocateMapTo:CLLocationCoordinate2DMake(node.lat.doubleValue, node.lon.doubleValue  - 0.0005) andSpan:MKCoordinateSpanMake(0.001, 0.001)];
 }
-
-
 
 #pragma mark - Map View Delegate
 // And this somewhere in your class that’s mapView’s delegate (most likely a view controller).

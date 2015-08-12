@@ -15,7 +15,7 @@
 {
     [super viewDidLoad];
     
-    [self.navigationBar setBackgroundColor:NAVBAR_BACKGROUND_COLOR];
+    [self.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     self.scroller.backgroundColor = [UIColor wmGreyColor];
     
     self.titleLabel.text = NSLocalizedString(@"Credits", nil);

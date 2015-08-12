@@ -24,7 +24,3 @@
 
 #define K_MAP_ID        @"mbxMapID"
 #define K_ACESSS_TOKEN  @"mbxAccessToken"
-
-//Color schemas
-#define NAVBAR_BACKGROUND_COLOR [UIColor colorWithRed:0.153 green:0.212 blue:0.271 alpha:1]
-
