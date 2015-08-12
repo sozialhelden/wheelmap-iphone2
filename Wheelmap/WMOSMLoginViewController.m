@@ -31,6 +31,7 @@
 {
     [super viewDidLoad];
     
+    [self.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     // clear the cookies first, as the webview would otherwise send the api token
     // but at this point, the user did not log into the app, so the satandard app user is sent, which is bad
     NSHTTPCookie *cookie;

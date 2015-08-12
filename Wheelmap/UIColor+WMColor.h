@@ -10,5 +10,6 @@
 
 + (UIColor *)wmBlueColor;
 + (UIColor *)wmGreyColor;
++ (UIColor *)wmNavigationBackgroundColor;
 
 @end
