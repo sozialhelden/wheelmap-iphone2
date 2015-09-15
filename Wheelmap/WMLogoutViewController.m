@@ -23,7 +23,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     dataManager = [[WMDataManager alloc] init];
     
     self.titleLabel.text = NSLocalizedString(@"Sign Out", nil);

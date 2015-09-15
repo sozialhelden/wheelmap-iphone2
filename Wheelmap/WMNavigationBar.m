@@ -22,12 +22,7 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.autoresizesSubviews = YES;
 
-        // Initialization code
-        backgroundImg = [[UIImageView alloc] initWithFrame:self.bounds];
-        backgroundImg.image = [UIImage imageNamed:@"navigationbar_background.png"];
-        backgroundImg.contentMode = UIViewContentModeScaleToFill;
-        backgroundImg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [self addSubview:backgroundImg];
+        [self setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
         
         currentLeftButton = nil;
         currentRightButton = nil;
@@ -39,7 +34,7 @@
         dashboardButton = [WMButton buttonWithType:UIButtonTypeCustom];
         dashboardButton.frame = leftButtonRect;
         dashboardButton.backgroundColor = [UIColor clearColor];
-        [dashboardButton setImage:[UIImage imageNamed:@"navigationbar_homebutton.png"] forState:UIControlStateNormal];
+        [dashboardButton setImage:[UIImage imageNamed:@"NavigationBarDashboardIcon"] forState:UIControlStateNormal];
         dashboardButton.contentMode = UIViewContentModeCenter;
         dashboardButton.hidden = YES;
         [dashboardButton addTarget:self action:@selector(pressedDashboardButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -126,7 +121,7 @@
         self.contributeButton = [WMButton buttonWithType:UIButtonTypeCustom];
         self.contributeButton.frame = rightButtonRect;
         self.contributeButton.backgroundColor = [UIColor clearColor];
-        [self.contributeButton setImage:[UIImage imageNamed:@"navigationbar_addbutton.png"] forState:UIControlStateNormal];
+        [self.contributeButton setImage:[UIImage imageNamed:@"NavigationBarAddIcon"] forState:UIControlStateNormal];
         self.contributeButton.contentMode = UIViewContentModeCenter;
         self.contributeButton.hidden = YES;
         [self.contributeButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -220,18 +215,14 @@
             searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y-20, self.bounds.size.width, self.bounds.size.height)];
         }
         searchBarContainer.userInteractionEnabled = YES;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            searchBarContainer.image = [UIImage imageNamed:@"navigationbar_background.png"];
-        } else {
-            
-            searchBarContainer.image = [UIImage imageNamed:@"search_background.png"];
-        }
+        
+        [searchBarContainer setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
+        
         searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
         [self addSubview:searchBarContainer];
     
         // search cancel button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 10, 15, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);

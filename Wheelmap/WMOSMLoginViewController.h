@@ -13,6 +13,7 @@
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) IBOutlet UIButton* cancelButton;
 @property (nonatomic, weak) IBOutlet UILabel* titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *navigationBar;
 
 -(IBAction)pressedCancelButton:(id)sender;
 

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet WMButton *doneButton;
 @property (nonatomic, strong) IBOutlet WMLabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UIScrollView *scroller;
+@property (weak, nonatomic) IBOutlet UIView *navigationBar;
 
 - (IBAction)donePressed:(id)sender;
 
