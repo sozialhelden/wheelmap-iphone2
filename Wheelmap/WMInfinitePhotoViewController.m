@@ -46,6 +46,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.infiniteGallery gotoPageNumber:self.tappedImage];
 }
 
@@ -57,12 +58,12 @@
 
 #pragma mark InfiniteGallery
 
--(int)numberOfPagesForGallery:(InfiniteGallery *)g {
+-(long)numberOfPagesForGallery:(InfiniteGallery *)g {
     
     return self.imageURLArray.count;
 }
 
--(UIView*)viewForGallery:(InfiniteGallery *)g pageNum:(int)pageNum pagesize:(CGSize)size {
+-(UIView*)viewForGallery:(InfiniteGallery *)g pageNum:(long)pageNum pagesize:(CGSize)size {
     
     NSString *currentImageURL = [self.imageURLArray objectAtIndex:pageNum];
     UIImageView *imageView = [UIImageView new];
@@ -79,7 +80,7 @@
     [super viewDidUnload];
 }
 - (IBAction)closeButtonPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
     
 }
 @end

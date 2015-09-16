@@ -16,7 +16,7 @@
 #import "WMCategoryTableViewController.h"
 #import "WMNodeTypeTableViewController.h"
 #import "WMDataManagerDelegate.h"
-#import "Category.h"
+#import "WMCategory.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMRootViewController_iPad.h"
@@ -128,18 +128,17 @@
     
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
     self.title = NSLocalizedString(@"NavBarTitleEdit", nil);
     self.navigationBarTitle = self.title;
     
     [(WMDetailNavigationController *)self.navigationController changeScreenStatusFor:self];
     
     [self updateFields];
-    
 }
-
 
 - (void) updateFields {
     self.nameTextField.text = self.node.name;
@@ -160,7 +159,7 @@
     
     self.infoInputView.frame = CGRectMake(self.infoInputView.frame.origin.x, self.infoInputView.frame.origin.y, self.infoInputView.frame.size.width, frame.size.height);
     
-    self.addressInputView.frame = CGRectMake(self.addressInputView.frame.origin.x, self.infoInputView.frame.origin.y + self.infoInputView.frame.size.height + 10.0f, self.addressInputView.frame.size.width, self.addressInputView.frame.size.height);
+    self.addressInputView.frame = CGRectMake(self.addressInputView.frame.origin.x, self.infoInputView.frame.origin.y + self.infoInputView.frame.size.height + 10.0f, self.addressInputView.frame.size.width, 124);//self.addressInputView.frame.size.height);
     
     self.websiteInputView.frame = CGRectMake(self.websiteInputView.frame.origin.x, self.addressInputView.frame.origin.y + self.addressInputView.frame.size.height + 10.0f, self.websiteInputView.frame.size.width, self.websiteInputView.frame.size.height);
     
@@ -262,7 +261,7 @@
     [self setWheelAccessButton];
 }
 
-- (void)categoryChosen:(Category *)category {
+- (void)categoryChosen:(WMCategory *)category {
     self.currentCategory = category;
     BOOL nodeTypeStillValid = NO;
     NodeType* fallBackNodeType = nil;
@@ -427,7 +426,7 @@
                 [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase addTemporaryNode:node];
             }
         }
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES];
     } else {
         if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]]) {
             [(WMNavigationControllerBase *)self.navigationController addTemporaryNode:node];

@@ -9,7 +9,7 @@
 #import "WMViewController.h"
 #import "WMMapViewController.h"
 
-static int selectedMapType;
+static long selectedMapType;
 
 @interface WMMapSettingsViewController : WMViewController
 

@@ -22,8 +22,6 @@
 
 @implementation WMDetailNavigationController {
     WMDataManager *dataManager;
-    
-    CLLocationCoordinate2D initialCoordinate;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,7 +58,7 @@
 }
 
 - (void)mapWasMoved:(CLLocationCoordinate2D)coordinate {
-    initialCoordinate = coordinate;
+    self.initialCoordinate = coordinate;
 }
 
 -(void)pressedBackButton:(WMNavigationBar*)navigationBar {
@@ -78,7 +76,6 @@
         
         WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
         vc.node = ((WMDetailViewController *)self.topViewController).node;
-        vc.initialCoordinate = initialCoordinate;
         vc.initialCoordinate = self.initialCoordinate;
         vc.editView = YES;
         vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
@@ -199,9 +196,9 @@
     [self changeScreenStatusFor:[viewControllers lastObject]];
 }
 
-- (void)presentModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self dismissModalViewControllerAnimated:NO];
+        [self dismissViewControllerAnimated:NO completion:nil];
         if ([modalViewController isKindOfClass:[WMLoginViewController class]]) {
             ((WMLoginViewController *)modalViewController).popover = [[WMPopoverController alloc]
                                                                  initWithContentViewController:modalViewController];
@@ -214,7 +211,7 @@
             [((WMLoginViewController *)modalViewController).popover presentPopoverFromRect:((WMLoginViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
         }
     } else {
-        [super presentModalViewController:modalViewController animated:animated];
+        [super presentViewController:modalViewController animated:animated completion:nil];
     }
 }
 

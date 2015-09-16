@@ -10,13 +10,18 @@
 #import <MapKit/MapKit.h>
 #import "WMNodeListView.h"
 #import "WMDataManager.h"
+#import "MBXMapKit.h"
+#import <CoreLocation/CoreLocation.h>
+
 @class MKMapView, Node;
 
-@interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate>
+@interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate, MBXRasterTileOverlayDelegate>
 {
     WMDataManager *dataManager;
 }
 @property (nonatomic) IBOutlet MKMapView *mapView;
+@property (nonatomic) MBXRasterTileOverlay *rasterOverlay;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic) IBOutlet UIView* loadingContainer;
 @property (nonatomic) IBOutlet UIActivityIndicatorView* loadingWheel;

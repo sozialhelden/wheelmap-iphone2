@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="11G63" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Asset" representedClassName="Asset" syncable="YES">
         <attribute name="id" attributeType="Integer 32" syncable="YES"/>
         <attribute name="modified_at" attributeType="Date" syncable="YES"/>
@@ -59,11 +59,11 @@
     </entity>
     <elements>
         <element name="Asset" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Category" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Node" positionX="160" positionY="192" width="128" height="270"/>
         <element name="NodeType" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Tile" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Category" positionX="160" positionY="192" width="128" height="103"/>
     </elements>
 </model>

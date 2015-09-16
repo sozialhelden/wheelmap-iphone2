@@ -16,6 +16,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Constants.h"
 
 #define MIN_SPAN_DELTA 0.01
 
@@ -38,6 +39,8 @@
     
     float invisibleMapInteractionInfoLabelConstraint;
     float visibleMapInteractionInfoLabelConstraint;
+    
+    CLLocation* userCurrentLocation;
 }
 
 @synthesize dataSource, delegate;
@@ -66,17 +69,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
+    dataManager = [[WMDataManager alloc] init];
     
+    [self.view layoutIfNeeded];
+    
+    [self initMapView];
+}
+
+// Initiliaze Map View
+- (void) initMapView{
+    
+    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+    [MBXMapKit setAccessToken:[config valueForKey:K_ACESSS_TOKEN]];
+    self.mapView.showsBuildings = NO;
+    self.mapView.rotateEnabled = NO;
+    self.mapView.pitchEnabled = NO;
+    self.mapView.mapType = MKMapTypeStandard;
+    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:K_MAP_ID]];
+    self.rasterOverlay.delegate = self;
+    [self.mapView addOverlay:self.rasterOverlay];
     self.mapView.showsUserLocation = YES;
-    //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:NO];
-    
-    //    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeWidth multiplier:1.f constant:0.f];
-    //
-    //    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.mapView attribute:NSLayoutAttributeHeight multiplier:1.f constant:0.f];
-    //
-    //    [self.view addConstraints:@[widthConstraint,heightConstraint]];
     
     // configure mapInteractionInfoLabel
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
@@ -85,16 +98,6 @@
     self.mapInteractionInfoLabel.layer.cornerRadius = 10.0;
     self.mapInteractionInfoLabel.layer.masksToBounds = YES;
     self.mapInteractionInfoLabel.numberOfLines = 2;
-    // self.mapSettingsButton.frame = CGRectMake(self.view.frame.size.width-self.mapSettingsButton.frame.size.width, self.view.frame.size.height-self.mapSettingsButton.frame.size.height, self.mapSettingsButton.frame.size.width, self.mapSettingsButton.frame.size.height);
-    //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-    //        self.mapInteractionInfoLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    //    }
-    
-    //self.loadingContainer.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    
-    dataManager = [[WMDataManager alloc] init];
-    
-    //    [super viewDidLayoutSubviews];
     
     // set the map interaction info label visible/invisible constraint values
     visibleMapInteractionInfoLabelConstraint = self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant;
@@ -102,12 +105,32 @@
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
-    [self.view layoutIfNeeded];
+    
+ 
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if (IS_OS_8_OR_LATER)
+    {
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
+    
+    self.locationManager.distanceFilter = 50.0f;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startMonitoringSignificantLocationChanges];
+    
+    userCurrentLocation = self.locationManager.location;
+    [self relocateMapTo:userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
 }
+
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    self.mapView.delegate = self;
     
     self.loadingLabel.numberOfLines = 0;
     self.loadingLabel.textColor = [UIColor whiteColor];
@@ -154,8 +177,7 @@
         
     } else {
         
-        initRegion = MKCoordinateRegionMake(
-                                            CLLocationCoordinate2DMake([navCtrl.lastVisibleMapCenterLat doubleValue],
+        initRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake([navCtrl.lastVisibleMapCenterLat doubleValue],
                                                                        [navCtrl.lastVisibleMapCenterLng doubleValue]),
                                             MKCoordinateSpanMake([navCtrl.lastVisibleMapSpanLat doubleValue],
                                                                  [navCtrl.lastVisibleMapSpanLng doubleValue])
@@ -163,19 +185,19 @@
         [self.mapView setRegion:initRegion animated:NO];
     }
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch ||
+        self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand)
+    {
         // show current location button, if it is hidden
         [((WMNavigationControllerBase *)self.navigationController).customToolBar showButton:kWMToolBarButtonCurrentLocation];
-        [self loadNodes];   // load nodes from the dataSource
-        
-    } else {
-        [self loadNodes];
     }
+        [self loadNodes];// load nodes from the dataSource
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.mapView.delegate = nil;
     [self slideOutMapInteractionAdvisor];
 }
 
@@ -201,25 +223,17 @@
         nodes = [self.dataSource filteredNodeList];
     }
     
-    NSLog(@"NEW NODE LIST: %d", nodes.count);
+    NSLog(@"NEW NODE LIST: %lu", (unsigned long)nodes.count);
     
     dispatch_async(backgroundQueue, ^(void) {
         
-        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:self.mapView.annotations];
+        NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
-        
-        // fix for map sometimes showing old annotations on ipad
-        //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        //        for (id<MKAnnotation> annotation in oldAnnotations) {
-        //            if (![annotation isKindOfClass:[MKUserLocation class]])
-        //                [self.mapView removeAnnotation:annotation];
-        //        }
-        //    }
         
         [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
             
             WMMapAnnotation *annotationForNode = [self annotationForNode:node];
-            if (annotationForNode) {
+            if (annotationForNode != nil) {
                 // this node is already shown on the map
                 [oldAnnotations removeObject:annotationForNode];
             } else {
@@ -248,6 +262,12 @@
             loadingNodes = NO;
         });
     });
+}
+
+- (IBAction)iPhoneInfoButtonAction:(id)sender {
+    // This responds to the info button from the iPhone storyboard getting pressed
+    //
+    [self attribution:_rasterOverlay.attribution];
 }
 
 - (WMMapAnnotation*) annotationForNode:(Node*)node
@@ -295,6 +315,17 @@
 }
 
 #pragma mark - Map View Delegate
+// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    // This is boilerplate code to connect tile overlay layers with suitable renderers
+    //
+    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
+    {
+        MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
+        return renderer;
+    }
+    return nil;
+}
 
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -363,7 +394,6 @@
 }
 
 #pragma mark - Map Interactions
-
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     
@@ -472,6 +502,41 @@
     [self.mapView setRegion:newRegion animated:YES];
     
 }
+#pragma mark - MBXRasterTileOverlayDelegate implementation
+
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error
+{
+    // This delegate callback is for centering the map once the map metadata has been loaded
+    //
+    if (error)
+    {
+        NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+    }
+    else
+    {
+        [self.mapView setCenterCoordinate:userCurrentLocation.coordinate];
+    }
+}
+
+
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error
+{
+    // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
+    //
+    if (error)
+    {
+        NSLog(@"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+    }
+    else
+    {
+        [_mapView addAnnotations:markers];
+    }
+}
+
+- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
 
 #pragma mark - Map Interaction Advisor
 -(void)slideInMapInteractionAdvisorWithText:(NSString*)text
@@ -505,5 +570,33 @@
         self.mapInteractionInfoLabel.tag = 0;
     }];
 }
+
+#pragma mark - AlertView stuff
+- (void)attribution:(NSString *)attribution
+{
+    NSString *title = @"Attribution";
+    NSString *message = attribution;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Mapbox Details", @"OSM Details", nil];
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if([alertView.title isEqualToString:@"Attribution"])
+    {
+        // For the attribution alert dialog, open the Mapbox and OSM copyright pages when their respective buttons are pressed
+        //
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Mapbox Details"])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.mapbox.com/tos/"]];
+        }
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"OSM Details"])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.openstreetmap.org/copyright"]];
+        }
+    }
+}
+
 
 @end

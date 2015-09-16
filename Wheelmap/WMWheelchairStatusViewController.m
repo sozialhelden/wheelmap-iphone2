@@ -148,7 +148,7 @@
     //headlineLabel.backgroundColor = [UIColor orangeColor];
     headlineLabel.font = [UIFont boldSystemFontOfSize:15];
     headlineLabel.textColor = [UIColor whiteColor];
-    headlineLabel.textAlignment = UITextAlignmentLeft;
+    headlineLabel.textAlignment = NSTextAlignmentLeft;
     [imageView addSubview:headlineLabel];
     
     WMLabel *contentTextField = [[WMLabel alloc] initWithFrame:CGRectMake(10, headlineLabel.frame.origin.y + headlineLabel.frame.size.height + 5, 280, 80)];

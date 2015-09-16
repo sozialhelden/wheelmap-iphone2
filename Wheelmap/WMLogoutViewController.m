@@ -23,11 +23,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     dataManager = [[WMDataManager alloc] init];
     
     self.titleLabel.text = NSLocalizedString(@"Sign Out", nil);
-    self.topTextLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Signed In As", nil), dataManager.currentUserName];
+    self.topTextLabel.text = [NSString stringWithFormat:@"%@", NSLocalizedString(@"Signed In", nil)];//, dataManager.currentUserName];
     
     [self.cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [self.logoutButton setTitle:NSLocalizedString(@"Sign Out", nil) forState:UIControlStateNormal];
@@ -56,12 +56,12 @@
         [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
     
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated:YES];
     
 }
 -(IBAction)pressedCancelButton:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES];
 }
 
 @end

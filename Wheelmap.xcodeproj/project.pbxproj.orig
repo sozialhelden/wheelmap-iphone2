@@ -1527,7 +1527,6 @@
 				034D38EC167738C10071EC05 /* Curl_screen.png in Resources */,
 				034D38ED167738C10071EC05 /* Curl_screen@2x.png in Resources */,
 				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
-<<<<<<< HEAD
 				D544B6EE1679D3D00077F5B7 /* WMConfig.plist in Resources */,
 				D51117E1167A9FAA005B2289 /* more-buttons_info-deactive@2x.png in Resources */,
 				D51117E2167A9FAA005B2289 /* more-buttons_info–deactive.png in Resources */,
@@ -1541,11 +1540,9 @@
 				D51117EA167A9FAA005B2289 /* more-buttons_share-deactive@2x.png in Resources */,
 				D51117EB167A9FAA005B2289 /* more-buttons_share.png in Resources */,
 				D51117EC167A9FAA005B2289 /* more-buttons_share@2x.png in Resources */,
-=======
 				DB18F81C1679DCE400855296 /* Default.png in Resources */,
 				DB18F81F1679DCE700855296 /* Default@2x.png in Resources */,
 				DB18F82F167A083A00855296 /* WMConfig.plist in Resources */,
->>>>>>> ab3c659d2dc77b4bfb394594254297eecbe9c34b
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

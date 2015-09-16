@@ -17,6 +17,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMNodeListView.h"
 #import "WMResourceManager.h"
+#import "WMMapViewController.h"
 
 @implementation WMNodeListViewController
 {
@@ -28,6 +29,8 @@
     BOOL shouldShowNoResultIndicator;
     
     WMDataManager *dataManager;
+    WMMapViewController *mapView;
+    WMLabel* headerLabel;
     
     BOOL searching;
     BOOL receivedClearList;
@@ -73,6 +76,7 @@
     if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -84,8 +88,14 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     [self.navigationController setToolbarHidden:NO animated:YES];
+    
+    [self initNodeType];
+    
+    
+}
+
+-(void) initNodeType{
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
@@ -96,14 +106,8 @@
         accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
         
-        WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
-        headerTextLabel.fontSize = 13.0;
-        headerTextLabel.textAlignment = UITextAlignmentLeft;
-        headerTextLabel.numberOfLines = 3;
-        headerTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
-        headerTextLabel.textColor = [UIColor whiteColor];
-        headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
-        [accesoryHeader addSubview:headerTextLabel];
+        headerLabel = [[WMLabel alloc] initWithFrameByNodeType:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60) nodeType:self.useCase];
+        [accesoryHeader addSubview:headerLabel];
         
         accesoryHeader.alpha = 0.0;
         [self.view addSubview:accesoryHeader];
@@ -149,7 +153,6 @@
             [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         }
     }
-    
 }
 
 - (void) loadNodes
@@ -164,14 +167,8 @@
             accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
             accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
             
-            WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
-            headerTextLabel.fontSize = 13.0;
-            headerTextLabel.textAlignment = UITextAlignmentLeft;
-            headerTextLabel.numberOfLines = 3;
-            headerTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
-            headerTextLabel.textColor = [UIColor whiteColor];
-            headerTextLabel.text = NSLocalizedString(@"HelpByMarking", nil);
-            [accesoryHeader addSubview:headerTextLabel];
+            headerLabel = [[WMLabel alloc] initWithFrameByNodeType:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60) nodeType:self.useCase];
+            [accesoryHeader addSubview:headerLabel];
             
             accesoryHeader.alpha = 0.0;
             [self.view addSubview:accesoryHeader];
@@ -220,9 +217,11 @@
         NSArray* unfilteredNodes = [self.dataSource filteredNodeList];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
         
-        for (Node* node in unfilteredNodes) {
-            if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
-                [newNodeList addObject:node];
+        if(unfilteredNodes.count > 0){
+            for (Node* node in unfilteredNodes) {
+                if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
+                    [newNodeList addObject:node];
+                }
             }
         }
         nodes = newNodeList;
@@ -230,20 +229,24 @@
         nodes = [self.dataSource filteredNodeList];
     }
     
-    dispatch_async(backgroundQueue, ^(void) {
+    if (nodes.count > 0) {
         
-        __block NSArray *nodesTemp = [self sortNodesByDistance:[nodes copy]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(backgroundQueue, ^(void) {
             
-            nodes = nodesTemp;
-            nodesTemp = nil;
+            __block NSArray *nodesTemp = [self sortNodesByDistance:[nodes copy]];
             
-            [self.tableView reloadData];
-
-            NSLog(@"NUMBER OF NODES = %d", nodes.count);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                nodes = nodesTemp;
+                nodesTemp = nil;
+                
+                [self.tableView reloadData];
+                
+                NSLog(@"NUMBER OF NODES = %lu", (unsigned long)nodes.count);
+            });
         });
-    });
+    }
+    
 }
 
 - (NSArray*)sortNodesByDistance:(NSArray*)nodesTemp

@@ -30,6 +30,7 @@
 @property (nonatomic, readonly) BOOL syncInProgress;
 
 - (void) authenticateUserWithEmail:(NSString*)email password:(NSString*)password;
+- (void) didReceiveAuthenticationData:(NSDictionary*)user forAccount:(NSString*)account;
 - (void) updateTermsAccepted:(BOOL)accepted;
 - (void) removeUserAuthentication;
 - (BOOL) userIsAuthenticated;

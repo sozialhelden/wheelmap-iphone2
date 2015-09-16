@@ -20,7 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *closeButton;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 
-@property (assign) int tappedImage;
+@property (assign) long tappedImage;
 
 - (IBAction)closeButtonPressed:(id)sender;
 @end

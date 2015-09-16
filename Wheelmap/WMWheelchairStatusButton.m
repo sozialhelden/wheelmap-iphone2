@@ -20,9 +20,8 @@
     if (self) {
         // normalView
         UIImageView* normalView = [[UIImageView alloc] initWithFrame:self.bounds];
-        normalView.image = [UIImage imageNamed:@"toolbar_button.png"];
         UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(14, 10, 30, 30)];
-        icon.image = [UIImage imageNamed:@"toolbar_icon-filter.png"];
+        icon.image = [UIImage imageNamed:@"ToolbarLabelIcon"];
         [normalView addSubview:icon];
         dotGreen = [[UIImageView alloc] initWithFrame:CGRectMake(15, 40, 6, 8)];
         dotGreen.image = [UIImage imageNamed:@"toolbar_indicator-green.png"];
