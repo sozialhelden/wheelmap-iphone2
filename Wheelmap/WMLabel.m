@@ -26,6 +26,24 @@
     return self;
 }
 
+- (id)initWithFrameByNodeType:(CGRect)frame nodeType:(enum WMNodeListViewControllerUseCase*)nodeType
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        if ((WMNodeListViewControllerUseCase)nodeType == kWMNodeListViewControllerUseCaseContribute) {
+            self.fontSize = 13.0;
+            self.textAlignment = NSTextAlignmentLeft;
+            self.numberOfLines = 3;
+            self.lineBreakMode = NSLineBreakByTruncatingTail;
+            self.textColor = [UIColor whiteColor];
+            self.text = NSLocalizedString(@"HelpByMarking", nil);
+        }
+    }
+    return self;
+}
+
+
+
 #pragma mark -
 #pragma mark Font Size and Types
 -(void)setFontSize:(CGFloat)fontSize

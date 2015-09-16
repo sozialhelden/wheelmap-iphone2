@@ -18,4 +18,8 @@
     return [UIColor colorWithRed:248/255.0f green:247/255.0f blue:247/255.0f alpha:1.0f];
 }
 
++ (UIColor *)wmNavigationBackgroundColor{
+    return [UIColor colorWithRed:0.153 green:0.212 blue:0.271 alpha:1];
+}
+
 @end

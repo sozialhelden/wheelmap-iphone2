@@ -39,6 +39,8 @@
     
     float invisibleMapInteractionInfoLabelConstraint;
     float visibleMapInteractionInfoLabelConstraint;
+    
+    CLLocation* userCurrentLocation;
 }
 
 @synthesize dataSource, delegate;
@@ -67,13 +69,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initMapView];
-    
     backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap", NULL);
     dataManager = [[WMDataManager alloc] init];
     
     [self.view layoutIfNeeded];
     
+    [self initMapView];
 }
 
 // Initiliaze Map View
@@ -104,19 +105,9 @@
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
+    
+ 
     self.locationManager = [[CLLocationManager alloc] init];
-    
-    if (self.mapView.userLocation == nil) {
-        [self relocateMapTo:[self setUserLocation] andSpan:MKCoordinateSpanMake(0.003, 0.003)];
-        [self.mapView setCenterCoordinate:self.locationManager.location.coordinate];
-    }else{
-        [self relocateMapTo:self.mapView.userLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];
-        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate];
-    }
-    
-}
-
-- (CLLocationCoordinate2D) setUserLocation{
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
     if (IS_OS_8_OR_LATER)
@@ -125,11 +116,13 @@
             [self.locationManager requestWhenInUseAuthorization];
         }
     }
+    
     self.locationManager.distanceFilter = 50.0f;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
     
-    return self.locationManager.location.coordinate;
+    userCurrentLocation = self.locationManager.location;
+    [self relocateMapTo:userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
 }
 
 
@@ -521,7 +514,7 @@
     }
     else
     {
-        [_mapView mbx_setCenterCoordinate:overlay.center zoomLevel:overlay.centerZoom animated:NO];
+        [self.mapView setCenterCoordinate:userCurrentLocation.coordinate];
     }
 }
 

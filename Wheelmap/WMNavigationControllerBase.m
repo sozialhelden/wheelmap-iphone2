@@ -245,9 +245,11 @@
     }
     listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
     [self pushViewController:listViewController animated:YES];
+    
 }
 
 - (void)pushMap {
+    
     if (listViewController == nil) {
         listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     }
@@ -256,8 +258,9 @@
         self.mapViewController.baseController = self;
     }
     
-    self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
     [self  pushViewController:listViewController animated:YES];
+    [self pushFadeViewController:self.mapViewController];
+    
 }
 
 - (void)setMapControllerToContribute {
@@ -339,21 +342,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)addTemporaryNode:(Node *)node {
-    
-    //    if (node.wheelchair == nil) {
-    //        node.wheelchair = @"unknown";
-    //    }
-    //
-    //    NSMutableArray *mutableNodes = [NSMutableArray arrayWithArray:nodes];
-    //    [mutableNodes addObject:node];
-    //    nodes = [NSArray arrayWithArray:mutableNodes];
-    //
-    //    NSLog(@"Number of nodes = %d", nodes.count);
-    //
-    //    [self refreshNodeListFromCreateNode];
-    
-}
 
 #pragma mark - Data Manager Delegate
 
@@ -677,20 +665,10 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    //ToDo: ??? Orginal machte kein Sinn?
-    //CLLocation* newLocation = [locations objectAtIndex:0];
     NSLog(@"Location is updated!");
     [self updateNodesWithCurrentUserLocation];
-    //[self locationManager:manager didUpdateToLocation:newLocation fromLocation:nil];
 }
 
-/*
--(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    NSLog(@"Location is updated!");
-    [self updateNodesWithCurrentUserLocation];
-}
-*/
 
 -(void)updateUserLocation
 {
@@ -711,7 +689,6 @@
 -(void)updateNodesWithCurrentUserLocation
 {
     CLLocation* newLocation = self.locationManager.location;
-    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if ([self.topViewController isKindOfClass:WMRootViewController_iPad.class]) {
             [(WMRootViewController_iPad *)self.topViewController gotNewUserLocation:newLocation];
