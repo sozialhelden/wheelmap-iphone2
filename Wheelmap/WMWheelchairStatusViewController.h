@@ -24,9 +24,9 @@ typedef enum {
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property WMWheelChairStatusViewControllerUseCase useCase;
-@property (weak, nonatomic) IBOutlet WMButton *yesButton;
-@property (weak, nonatomic) IBOutlet WMButton *limitedButton;
-@property (weak, nonatomic) IBOutlet WMButton *noButton;
+@property (strong, nonatomic) IBOutlet WMButton *yesButton;
+@property (strong, nonatomic) IBOutlet WMButton *limitedButton;
+@property (strong, nonatomic) IBOutlet WMButton *noButton;
 
 @property (nonatomic, strong) UIImageView *yesCheckMarkImageView;
 @property (nonatomic, strong) UIImageView *limitedCheckMarkImageView;
