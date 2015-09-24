@@ -3723,7 +3723,7 @@
 			attributes = {
 				CLASSPREFIX = WM;
 				LastTestingUpgradeCheck = 0610;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Sozialhelden e.V.";
 			};
 			buildConfigurationList = 989927451649151300D9003B /* Build configuration list for PBXProject "Wheelmap" */;
@@ -5290,6 +5290,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
 				PRODUCT_NAME = "Wheelmap-BETA";
 				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
@@ -5328,6 +5329,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
 				PRODUCT_NAME = "Wheelmap-BETA";
 				PROVISIONING_PROFILE = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
@@ -5366,6 +5368,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
 				PRODUCT_NAME = "Wheelmap-BETA";
 				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
@@ -5404,6 +5407,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
 				PRODUCT_NAME = "Wheelmap-LIVE";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -5442,6 +5446,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
 				PRODUCT_NAME = "Wheelmap-LIVE";
 				PROVISIONING_PROFILE = "50d7e403-e300-4200-9e3c-3a9e8eaf8d52";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50d7e403-e300-4200-9e3c-3a9e8eaf8d52";
@@ -5480,6 +5485,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
 				PRODUCT_NAME = "Wheelmap-LIVE";
 				PROVISIONING_PROFILE = "4e01bd74-6b9b-4669-85fb-7ca4388edf6d";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4e01bd74-6b9b-4669-85fb-7ca4388edf6d";
@@ -5492,10 +5498,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -5551,6 +5553,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
@@ -5563,10 +5566,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -5577,6 +5576,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 82;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -5603,10 +5603,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -5662,6 +5658,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -5700,6 +5697,7 @@
 					"$(PROJECT_DIR)/Mapbox",
 				);
 				OTHER_LDFLAGS = "-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "508df28e-cef1-4aaf-ba97-c52be8468225";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "508df28e-cef1-4aaf-ba97-c52be8468225";
