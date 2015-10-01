@@ -244,8 +244,7 @@
         listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     }
     listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    [self pushViewController:listViewController animated:YES];
-    
+	[self pushFadeViewController:listViewController];
 }
 
 - (void)pushMap {
@@ -258,9 +257,8 @@
         self.mapViewController.baseController = self;
     }
     
-    [self  pushViewController:listViewController animated:YES];
-    [self pushFadeViewController:self.mapViewController];
-    
+    [self pushViewController:self.mapViewController animated:YES];
+
 }
 
 - (void)setMapControllerToContribute {
@@ -1103,13 +1101,27 @@
         
         WMViewController* currentVC = (WMViewController*)self.topViewController;
         self.mapViewController.navigationBarTitle = currentVC.navigationBarTitle;
-        if ([currentVC respondsToSelector:@selector(useCase)])
+		if ([currentVC respondsToSelector:@selector(useCase)]) {
             self.mapViewController.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
-        [self pushFadeViewController:self.mapViewController];
-        
+		}
+		
+		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
+		if ([toVC isKindOfClass:[WMMapViewController class]]) {
+			// Map view controller is already there, we just have to pop fade
+			[self popFadeViewController];
+		} else {
+			[self pushFadeViewController:self.mapViewController];
+		}
+		
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         //  the map view is on the screen. pop the map view controller
-        [self popFadeViewController];
+		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
+		if ([toVC isKindOfClass:[WMNodeListViewController class]]) {
+			[self popFadeViewController];
+		} else {
+			// List view controller is already there, we just have to pop fade
+			[self pushFadeViewController:listViewController];
+		}
     }
     
 }
