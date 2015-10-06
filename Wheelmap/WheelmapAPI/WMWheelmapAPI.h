@@ -18,6 +18,7 @@
 
 - (id) initWithBaseURL:(NSURL *)url;
 
+	
 - (NSOperation*) requestResource:(NSString *)resource
                           apiKey:(NSString*)apiKey
                       parameters:(NSDictionary *)parameters
@@ -39,5 +40,11 @@
                         error:(void (^)(NSURLRequest *, NSHTTPURLResponse *, NSError *, id))errorBlock
                       success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, id))successBlock
              startImmediately:(BOOL)startImmediately;
+
+#pragma mark - Helper
+
++ (NSString *)baseUrl;
+
++ (BOOL)isStagingBackend;
 
 @end

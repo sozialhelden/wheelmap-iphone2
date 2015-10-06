@@ -18,8 +18,7 @@
     static WMWheelmapAPI *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-        NSString *baseURL = config[@"apiBaseURL"];
+		NSString *baseURL = self.class.baseUrl;
         NSURL *apiURL = [NSURL URLWithString:@"api" relativeToURL:[NSURL URLWithString:baseURL]];
         _sharedInstance = [[WMWheelmapAPI alloc] initWithBaseURL:apiURL];
     });
@@ -148,6 +147,20 @@
     
     return operation;
 
+}
+
+#pragma mark - Helper
+
++ (NSString *)baseUrl {
+	NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
+	return config[@"apiBaseURL"];
+}
+
++ (BOOL)isStagingBackend {
+	if ([self.class.baseUrl rangeOfString:@"staging"].location != NSNotFound) {
+		return YES;
+	}
+	return NO;
 }
 
 
