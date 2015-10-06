@@ -15,6 +15,7 @@
 #import "WMFirstStartViewController.h"
 #import "Constants.h"
 #import "WMRegisterViewController.h"
+#import "WMWheelmapAPI.h"
 
 @interface WMLoginViewController()
 
@@ -170,7 +171,7 @@
 - (IBAction)forgotPasswordButtonPressed {
     
     NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
+	NSString *baseURL = WMWheelmapAPI.baseUrl;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, FORGOT_PASSWORD_LINK]];
     
     
@@ -197,12 +198,6 @@
 
 - (IBAction)webLoginPressed:(id)sender
 {
-    //NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    //NSString *baseURL = config[@"apiBaseURL"];
-    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", baseURL, WEB_LOGIN_LINK]];
-    
-    //[[UIApplication sharedApplication] openURL:url];
-    
     // use this when websites are optimized for mobile
     WMRegisterViewController *regViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMRegisterVC"];
     [regViewController loadLoginUrl];

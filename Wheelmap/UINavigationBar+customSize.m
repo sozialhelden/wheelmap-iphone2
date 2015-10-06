@@ -12,7 +12,7 @@
 -(CGSize)sizeThatFits:(CGSize)size
 {
     CGSize result = [super sizeThatFits:size];
-    result.height = 50;
+    result.height = K_NAVIGATION_BAR_HEIGHT;
     return result;
 }
 @end

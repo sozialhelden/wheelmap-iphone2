@@ -18,7 +18,8 @@
 #import "WMCategory.h"
 #import "Tile.h"
 #import "WMDataParser.h"
-
+#import "WMWheelmapAPI.h"
+#import "Constants.h"
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
@@ -774,10 +775,13 @@
                   // assign tile to each parsed node if this is not a search result
                   if (!query) {                      
                       [(NSArray*)parsedNodes enumerateObjectsUsingBlock:^(Node* node, NSUInteger idx, BOOL *stop) {
-                          CLLocationCoordinate2D location = CLLocationCoordinate2DMake([node.lat doubleValue], [node.lon doubleValue]);
-                          Tile *tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
-                          tile.lastModified = [NSDate date];
-                          node.tile = tile;
+						  // Make sure the object is still valid in the context and update the tile.
+						  if ((node == nil) || ([self.backgroundMOC existingObjectWithID:node.objectID error:NULL] == nil)) {
+							  CLLocationCoordinate2D location = CLLocationCoordinate2DMake([node.lat doubleValue], [node.lon doubleValue]);
+							  Tile *tile = [self managedObjectContext:self.backgroundMOC tileForLocation:location];
+							  tile.lastModified = [NSDate date];
+							  node.tile = tile;
+						  }
                       }];
                   }
               }
@@ -1754,9 +1758,13 @@ static BOOL assetSyncInProgress = NO;
 
 - (NSString*) eTagForEntity:(NSString*)entityName
 {
-    NSDictionary *metaData = [self.mainMOC.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
-    NSDictionary *eTags = metaData[@"eTags"];
-    return eTags[entityName];
+	if (K_USE_ETAGS == YES) {
+		NSDictionary *metaData = [self.mainMOC.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
+		NSDictionary *eTags = metaData[K_DATA_KEY_ETAGS];
+		return eTags[entityName];
+	} else {
+		return @"";
+	}
 }
 
 - (void) setETag:(NSString*)eTag forEntity:(NSString*)entityName
@@ -1769,7 +1777,7 @@ static BOOL assetSyncInProgress = NO;
         NSMutableDictionary *metaData = [[self.mainMOC.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
         
         // create eTags dictionary if necessary
-        NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
+        NSMutableDictionary *eTags = [[metaData objectForKey:K_DATA_KEY_ETAGS] mutableCopy] ?: [NSMutableDictionary dictionary];
         
         // use entity name as key of eTag
         if (eTag) {
@@ -1781,7 +1789,7 @@ static BOOL assetSyncInProgress = NO;
         }
         
         // save new eTags dictionary in meta data
-        [metaData setObject:eTags forKey:@"eTags"];
+        [metaData setObject:eTags forKey:K_DATA_KEY_ETAGS];
         
         // save altered meta data to persistent store
         [self.mainMOC.persistentStoreCoordinator setMetadata:metaData forPersistentStore:self.persistentStore];

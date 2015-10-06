@@ -146,11 +146,8 @@
 		0327F99016BFFB1900BA7DE7 /* navigationbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADC6EF164C15A700251943 /* navigationbar_logo@2x.png */; };
 		0327F99116BFFB1900BA7DE7 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
 		0327F99216BFFB1900BA7DE7 /* Berlin, Friedrichstr.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */; };
-		0327F99316BFFB1900BA7DE7 /* buttons_back-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621CF1668F357009FA5DF /* buttons_back-btn.png */; };
 		0327F99416BFFB1900BA7DE7 /* buttons_back-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D01668F357009FA5DF /* buttons_back-btn@2x.png */; };
 		0327F99516BFFB1900BA7DE7 /* buttons_btn-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D11668F357009FA5DF /* buttons_btn-right@2x.png */; };
-		0327F99616BFFB1900BA7DE7 /* buttons_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D21668F357009FA5DF /* buttons_btn.png */; };
-		0327F99716BFFB1900BA7DE7 /* buttons_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D31668F357009FA5DF /* buttons_btn@2x.png */; };
 		0327F99816BFFB1900BA7DE7 /* navigationbar_addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D41668F357009FA5DF /* navigationbar_addbutton.png */; };
 		0327F99916BFFB1900BA7DE7 /* navigationbar_addbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D51668F357009FA5DF /* navigationbar_addbutton@2x.png */; };
 		0327F99A16BFFB1900BA7DE7 /* navigationbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D61668F357009FA5DF /* navigationbar_background.png */; };
@@ -306,7 +303,6 @@
 		0327FA3016BFFB1900BA7DE7 /* details-expand-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F229F6167B317C00EDFA5B /* details-expand-map@2x.png */; };
 		0327FA3116BFFB1900BA7DE7 /* search_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB523167F4A810096CEDE /* search_background.png */; };
 		0327FA3216BFFB1900BA7DE7 /* search_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB524167F4A810096CEDE /* search_background@2x.png */; };
-		0327FA3316BFFB1900BA7DE7 /* search_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB525167F4A810096CEDE /* search_searchbar.png */; };
 		0327FA3416BFFB1900BA7DE7 /* search_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */; };
 		0327FA3716BFFB1900BA7DE7 /* toolbar_button-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E41684886B00E8206B /* toolbar_button-search-active.png */; };
 		0327FA3816BFFB1900BA7DE7 /* toolbar_button-search-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E51684886B00E8206B /* toolbar_button-search-active@2x.png */; };
@@ -493,11 +489,8 @@
 		03BD03DD16A052750045D53D /* navigationbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADC6EF164C15A700251943 /* navigationbar_logo@2x.png */; };
 		03BD03DE16A052750045D53D /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
 		03BD03DF16A052750045D53D /* Berlin, Friedrichstr.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D5E0F0DD1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx */; };
-		03BD03E016A052750045D53D /* buttons_back-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621CF1668F357009FA5DF /* buttons_back-btn.png */; };
 		03BD03E116A052750045D53D /* buttons_back-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D01668F357009FA5DF /* buttons_back-btn@2x.png */; };
 		03BD03E216A052750045D53D /* buttons_btn-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D11668F357009FA5DF /* buttons_btn-right@2x.png */; };
-		03BD03E316A052750045D53D /* buttons_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D21668F357009FA5DF /* buttons_btn.png */; };
-		03BD03E416A052750045D53D /* buttons_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D31668F357009FA5DF /* buttons_btn@2x.png */; };
 		03BD03E516A052750045D53D /* navigationbar_addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D41668F357009FA5DF /* navigationbar_addbutton.png */; };
 		03BD03E616A052750045D53D /* navigationbar_addbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D51668F357009FA5DF /* navigationbar_addbutton@2x.png */; };
 		03BD03E716A052750045D53D /* navigationbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D61668F357009FA5DF /* navigationbar_background.png */; };
@@ -653,7 +646,6 @@
 		03BD047D16A052750045D53D /* details-expand-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5F229F6167B317C00EDFA5B /* details-expand-map@2x.png */; };
 		03BD047E16A052750045D53D /* search_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB523167F4A810096CEDE /* search_background.png */; };
 		03BD047F16A052750045D53D /* search_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB524167F4A810096CEDE /* search_background@2x.png */; };
-		03BD048016A052750045D53D /* search_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB525167F4A810096CEDE /* search_searchbar.png */; };
 		03BD048116A052750045D53D /* search_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */; };
 		03BD048516A052750045D53D /* toolbar_button-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E41684886B00E8206B /* toolbar_button-search-active.png */; };
 		03BD048616A052750045D53D /* toolbar_button-search-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E51684886B00E8206B /* toolbar_button-search-active@2x.png */; };
@@ -1335,7 +1327,6 @@
 		DB18F865167B33E400855296 /* more-buttons_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F859167B33E400855296 /* more-buttons_share@2x.png */; };
 		DB4EB527167F4A810096CEDE /* search_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB523167F4A810096CEDE /* search_background.png */; };
 		DB4EB528167F4A810096CEDE /* search_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB524167F4A810096CEDE /* search_background@2x.png */; };
-		DB4EB529167F4A810096CEDE /* search_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB525167F4A810096CEDE /* search_searchbar.png */; };
 		DB4EB52A167F4A810096CEDE /* search_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */; };
 		DB4EB52E167FC7EF0096CEDE /* WMSharingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4EB52D167FC7EF0096CEDE /* WMSharingManager.m */; };
 		DB4EB530167FC8080096CEDE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4EB52F167FC8080096CEDE /* MessageUI.framework */; };
@@ -1371,11 +1362,8 @@
 		DB6E479F166BF21D00D9CAD9 /* start_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E478D166BF21D00D9CAD9 /* start_searchbar.png */; };
 		DB6E47A0166BF21D00D9CAD9 /* start_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E478E166BF21D00D9CAD9 /* start_searchbar@2x.png */; };
 		DB6E47A7166CA93900D9CAD9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB6E47A9166CA93900D9CAD9 /* Localizable.strings */; };
-		DBA621DA1668F358009FA5DF /* buttons_back-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621CF1668F357009FA5DF /* buttons_back-btn.png */; };
 		DBA621DB1668F358009FA5DF /* buttons_back-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D01668F357009FA5DF /* buttons_back-btn@2x.png */; };
 		DBA621DC1668F358009FA5DF /* buttons_btn-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D11668F357009FA5DF /* buttons_btn-right@2x.png */; };
-		DBA621DD1668F358009FA5DF /* buttons_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D21668F357009FA5DF /* buttons_btn.png */; };
-		DBA621DE1668F358009FA5DF /* buttons_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D31668F357009FA5DF /* buttons_btn@2x.png */; };
 		DBA621DF1668F358009FA5DF /* navigationbar_addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D41668F357009FA5DF /* navigationbar_addbutton.png */; };
 		DBA621E01668F358009FA5DF /* navigationbar_addbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D51668F357009FA5DF /* navigationbar_addbutton@2x.png */; };
 		DBA621E11668F358009FA5DF /* navigationbar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA621D61668F357009FA5DF /* navigationbar_background.png */; };
@@ -2085,7 +2073,6 @@
 		DB18F859167B33E400855296 /* more-buttons_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "more-buttons_share@2x.png"; path = "Wheelmap/Resources/Details/AdditionalButtons/more-buttons_share@2x.png"; sourceTree = SOURCE_ROOT; };
 		DB4EB523167F4A810096CEDE /* search_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_background.png; path = NavigationBar/search_background.png; sourceTree = "<group>"; };
 		DB4EB524167F4A810096CEDE /* search_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search_background@2x.png"; path = "NavigationBar/search_background@2x.png"; sourceTree = "<group>"; };
-		DB4EB525167F4A810096CEDE /* search_searchbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_searchbar.png; path = NavigationBar/search_searchbar.png; sourceTree = "<group>"; };
 		DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search_searchbar@2x.png"; path = "NavigationBar/search_searchbar@2x.png"; sourceTree = "<group>"; };
 		DB4EB52C167FC7EF0096CEDE /* WMSharingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSharingManager.h; sourceTree = "<group>"; };
 		DB4EB52D167FC7EF0096CEDE /* WMSharingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSharingManager.m; sourceTree = "<group>"; };
@@ -2127,11 +2114,8 @@
 		DB6E47A8166CA93900D9CAD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DB6E47AA166CA9D300D9CAD9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DB8005441681F246009D4FA3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DBA621CF1668F357009FA5DF /* buttons_back-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttons_back-btn.png"; path = "NavigationBar/buttons_back-btn.png"; sourceTree = "<group>"; };
 		DBA621D01668F357009FA5DF /* buttons_back-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttons_back-btn@2x.png"; path = "NavigationBar/buttons_back-btn@2x.png"; sourceTree = "<group>"; };
 		DBA621D11668F357009FA5DF /* buttons_btn-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttons_btn-right@2x.png"; path = "NavigationBar/buttons_btn-right@2x.png"; sourceTree = "<group>"; };
-		DBA621D21668F357009FA5DF /* buttons_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttons_btn.png; path = NavigationBar/buttons_btn.png; sourceTree = "<group>"; };
-		DBA621D31668F357009FA5DF /* buttons_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttons_btn@2x.png"; path = "NavigationBar/buttons_btn@2x.png"; sourceTree = "<group>"; };
 		DBA621D41668F357009FA5DF /* navigationbar_addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navigationbar_addbutton.png; path = NavigationBar/navigationbar_addbutton.png; sourceTree = "<group>"; };
 		DBA621D51668F357009FA5DF /* navigationbar_addbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigationbar_addbutton@2x.png"; path = "NavigationBar/navigationbar_addbutton@2x.png"; sourceTree = "<group>"; };
 		DBA621D61668F357009FA5DF /* navigationbar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navigationbar_background.png; path = NavigationBar/navigationbar_background.png; sourceTree = "<group>"; };
@@ -3371,15 +3355,11 @@
 				03CE604316B7DF9D00DDCB00 /* iPad */,
 				DB4EB523167F4A810096CEDE /* search_background.png */,
 				DB4EB524167F4A810096CEDE /* search_background@2x.png */,
-				DB4EB525167F4A810096CEDE /* search_searchbar.png */,
 				DB4EB526167F4A810096CEDE /* search_searchbar@2x.png */,
 				98ADC6EE164C15A700251943 /* navigationbar_logo.png */,
 				98ADC6EF164C15A700251943 /* navigationbar_logo@2x.png */,
-				DBA621CF1668F357009FA5DF /* buttons_back-btn.png */,
 				DBA621D01668F357009FA5DF /* buttons_back-btn@2x.png */,
 				DBA621D11668F357009FA5DF /* buttons_btn-right@2x.png */,
-				DBA621D21668F357009FA5DF /* buttons_btn.png */,
-				DBA621D31668F357009FA5DF /* buttons_btn@2x.png */,
 				DBA621D41668F357009FA5DF /* navigationbar_addbutton.png */,
 				DBA621D51668F357009FA5DF /* navigationbar_addbutton@2x.png */,
 				DBA621D61668F357009FA5DF /* navigationbar_background.png */,
@@ -3780,11 +3760,8 @@
 				0327F99116BFFB1900BA7DE7 /* WMDetailView.storyboard in Resources */,
 				18D376641A5D8D4700187374 /* UAPushUI.strings in Resources */,
 				0327F99216BFFB1900BA7DE7 /* Berlin, Friedrichstr.gpx in Resources */,
-				0327F99316BFFB1900BA7DE7 /* buttons_back-btn.png in Resources */,
 				0327F99416BFFB1900BA7DE7 /* buttons_back-btn@2x.png in Resources */,
 				0327F99516BFFB1900BA7DE7 /* buttons_btn-right@2x.png in Resources */,
-				0327F99616BFFB1900BA7DE7 /* buttons_btn.png in Resources */,
-				0327F99716BFFB1900BA7DE7 /* buttons_btn@2x.png in Resources */,
 				18D376941A5D8D4700187374 /* UAPushSettingsUserInfoView.xib in Resources */,
 				0327F99816BFFB1900BA7DE7 /* navigationbar_addbutton.png in Resources */,
 				0327F99916BFFB1900BA7DE7 /* navigationbar_addbutton@2x.png in Resources */,
@@ -3966,7 +3943,6 @@
 				0327FA3116BFFB1900BA7DE7 /* search_background.png in Resources */,
 				0327FA3216BFFB1900BA7DE7 /* search_background@2x.png in Resources */,
 				18D376161A5D8D4700187374 /* UAInteractiveNotifications.strings in Resources */,
-				0327FA3316BFFB1900BA7DE7 /* search_searchbar.png in Resources */,
 				18D376701A5D8D4700187374 /* middle-detail@2x.png in Resources */,
 				0327FA3416BFFB1900BA7DE7 /* search_searchbar@2x.png in Resources */,
 				0327FA3716BFFB1900BA7DE7 /* toolbar_button-search-active.png in Resources */,
@@ -4031,11 +4007,8 @@
 				03BD03DD16A052750045D53D /* navigationbar_logo@2x.png in Resources */,
 				03BD03DE16A052750045D53D /* WMDetailView.storyboard in Resources */,
 				03BD03DF16A052750045D53D /* Berlin, Friedrichstr.gpx in Resources */,
-				03BD03E016A052750045D53D /* buttons_back-btn.png in Resources */,
 				03BD03E116A052750045D53D /* buttons_back-btn@2x.png in Resources */,
 				03BD03E216A052750045D53D /* buttons_btn-right@2x.png in Resources */,
-				03BD03E316A052750045D53D /* buttons_btn.png in Resources */,
-				03BD03E416A052750045D53D /* buttons_btn@2x.png in Resources */,
 				03BD03E516A052750045D53D /* navigationbar_addbutton.png in Resources */,
 				18D3762C1A5D8D4700187374 /* UAInboxUI.strings in Resources */,
 				03BD03E616A052750045D53D /* navigationbar_addbutton@2x.png in Resources */,
@@ -4218,7 +4191,6 @@
 				03BD047D16A052750045D53D /* details-expand-map@2x.png in Resources */,
 				03BD047E16A052750045D53D /* search_background.png in Resources */,
 				03BD047F16A052750045D53D /* search_background@2x.png in Resources */,
-				03BD048016A052750045D53D /* search_searchbar.png in Resources */,
 				03BD048116A052750045D53D /* search_searchbar@2x.png in Resources */,
 				03BD048516A052750045D53D /* toolbar_button-search-active.png in Resources */,
 				03BD048616A052750045D53D /* toolbar_button-search-active@2x.png in Resources */,
@@ -4285,11 +4257,8 @@
 				98ADC706164C15A700251943 /* navigationbar_logo@2x.png in Resources */,
 				9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */,
 				D5E0F0DE1667B0FE00B78F57 /* Berlin, Friedrichstr.gpx in Resources */,
-				DBA621DA1668F358009FA5DF /* buttons_back-btn.png in Resources */,
 				DBA621DB1668F358009FA5DF /* buttons_back-btn@2x.png in Resources */,
 				DBA621DC1668F358009FA5DF /* buttons_btn-right@2x.png in Resources */,
-				DBA621DD1668F358009FA5DF /* buttons_btn.png in Resources */,
-				DBA621DE1668F358009FA5DF /* buttons_btn@2x.png in Resources */,
 				DBA621DF1668F358009FA5DF /* navigationbar_addbutton.png in Resources */,
 				18D3762A1A5D8D4700187374 /* UAInboxUI.strings in Resources */,
 				DBA621E01668F358009FA5DF /* navigationbar_addbutton@2x.png in Resources */,
@@ -4472,7 +4441,6 @@
 				D5F229F8167B317C00EDFA5B /* details-expand-map@2x.png in Resources */,
 				DB4EB527167F4A810096CEDE /* search_background.png in Resources */,
 				DB4EB528167F4A810096CEDE /* search_background@2x.png in Resources */,
-				DB4EB529167F4A810096CEDE /* search_searchbar.png in Resources */,
 				DB4EB52A167F4A810096CEDE /* search_searchbar@2x.png in Resources */,
 				DB67C1E61684886B00E8206B /* toolbar_button-search-active.png in Resources */,
 				DB67C1E71684886B00E8206B /* toolbar_button-search-active@2x.png in Resources */,
@@ -5267,7 +5235,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5306,7 +5274,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5345,7 +5313,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5384,7 +5352,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5423,7 +5391,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5462,7 +5430,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5506,7 +5474,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -5530,7 +5498,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5575,7 +5543,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5611,7 +5579,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -5635,7 +5603,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5674,7 +5642,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 85;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

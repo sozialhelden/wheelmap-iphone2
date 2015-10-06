@@ -32,9 +32,9 @@
         dataManager = [[WMDataManager alloc] init];
         
         // set custom nagivation and tool bars
-        self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, 50);
+        self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, K_NAVIGATION_BAR_HEIGHT);
         
-        self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, 50)];
+        self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
         [self.customNavigationBar adjustButtonsToPopoverPresentation];
         self.customNavigationBar.delegate = self;
         if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {

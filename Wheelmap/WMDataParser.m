@@ -40,20 +40,15 @@
         
         // create managed objects for all items in array
         for (NSDictionary *item in (NSArray*)object) {
-            
             NSManagedObject *newObject = [self createOrUpdateManagedObjectWithEntityName:entityName objectData:item];
             if (newObject) {
-                
                 resultObjectsItems = [resultObjectsItems arrayByAddingObject:newObject];
-                
             } else {
                 
-                if (error != NULL) *error = [NSError errorWithDomain:WMDataParserErrorDomain code:WMDataParserManagedObjectCreationError userInfo:nil];
-                
-                // roll back already created objects
-                for (NSManagedObject *alreadyCreatedObject in resultObjectsItems) {
-                    [self.managedObjectContext deleteObject:alreadyCreatedObject];
-                }
+				if (error != NULL) {
+					*error = [NSError errorWithDomain:WMDataParserErrorDomain code:WMDataParserManagedObjectCreationError userInfo:nil];
+				}
+
                 // skip rest of array
                 break;
             }
@@ -81,8 +76,10 @@
 
 - (NSManagedObject*) createOrUpdateManagedObjectWithEntityName:(NSString*)entityName objectData:(NSDictionary*)data
 {
-    NSParameterAssert(data != nil);
-    
+	if (data == nil) {
+		return nil;
+	}
+
     NSManagedObject *object = nil;
     
     // check if there is an entity with this name

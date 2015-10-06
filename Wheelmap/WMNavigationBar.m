@@ -41,23 +41,10 @@
         [self addSubview:dashboardButton];
         
         // back button
-        UIImageView* backBtnBgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        backBtnBgImg.image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)];
-        WMLabel* backBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(15, 0, 100, 35)];
-        backBtnLabel.fontSize = 13.0;
-        backBtnLabel.text = NSLocalizedString(@"BackButton", nil);
-        backBtnLabel.textColor = [UIColor whiteColor];
-        CGSize expSize = [backBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                                     attributes:@{NSFontAttributeName:backBtnLabel.font}
-                                                        context:nil].size;
-                          //sizeWithFont:backBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
-        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-        backBtnLabel.frame = CGRectMake(backBtnLabel.frame.origin.x, backBtnLabel.frame.origin.y, expSize.width, backBtnLabel.frame.size.height);
-        backBtnBgImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+20, 37);
-        [backBtnBgImg addSubview:backBtnLabel];
+        UIImageView* backBtnBgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        backBtnBgImg.image = [UIImage imageNamed:@"buttons_back-btn.png"];
         backButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        backButton.frame = CGRectMake(8, 6, backBtnBgImg.frame.size.width, backBtnBgImg.frame.size.height);
+        backButton.frame = CGRectMake(0, 0, backBtnBgImg.frame.size.width, backBtnBgImg.frame.size.height);
         [backButton setView:backBtnBgImg forControlState:UIControlStateNormal];
         backButton.hidden = YES;
         [backButton addTarget:self action:@selector(pressedBackButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,7 +58,7 @@
         normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
         normalBtnLabel.textAlignment = NSTextAlignmentCenter;
         normalBtnLabel.textColor = [UIColor whiteColor];
-        expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
+        CGSize expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
                                                    options:NSStringDrawingUsesLineFragmentOrigin
                                                 attributes:@{NSFontAttributeName:normalBtnLabel.font}
                                                    context:nil].size;
@@ -199,7 +186,7 @@
         titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, self.bounds.size.height)];
         titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [titleLabel setBackgroundColor:[UIColor clearColor]];
-        titleLabel.fontSize = 20.0;
+        titleLabel.fontSize = 15.0;
         titleLabel.fontType = kWMLabelFontTypeBold;
         titleLabel.textColor = [UIColor whiteColor];
         [self addSubview:titleLabel];
@@ -210,7 +197,7 @@
         
         // search bar
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50.0f, self.bounds.origin.y, 320.0f - 50.0f, self.bounds.size.height)];
+            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + K_NAVIGATION_BAR_HEIGHT, self.bounds.origin.y, 320.0f - K_NAVIGATION_BAR_HEIGHT, self.bounds.size.height)];
         } else {
             searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y-20, self.bounds.size.width, self.bounds.size.height)];
         }

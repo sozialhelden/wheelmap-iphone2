@@ -30,7 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+
     [self.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     // clear the cookies first, as the webview would otherwise send the api token
     // but at this point, the user did not log into the app, so the satandard app user is sent, which is bad
@@ -60,10 +61,7 @@
 - (void)loadRegisterUrl {
     self.titleLabel.text = NSLocalizedString(@"RegisterNew", nil);
 
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
-    
-    urlString = [NSString stringWithFormat:@"%@%@", baseURL, WM_REGISTER_LINK];
+	urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, WM_REGISTER_LINK];
     
     //NSURL *url = [NSURL URLWithString:urlString];
     
@@ -75,10 +73,8 @@
 
 - (void)loadLoginUrl {
     self.titleLabel.text = @"";
-    
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
-    urlString = [NSString stringWithFormat:@"%@%@", baseURL, WEB_LOGIN_LINK];
+
+    urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, WEB_LOGIN_LINK];
     
     //NSURL *url = [NSURL URLWithString:urlString];
     //NSLog(@"Loading URL %@", url);
@@ -88,10 +84,8 @@
 
 - (void)loadForgotPasswordUrl {
     self.titleLabel.text = @"";
-    
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    NSString *baseURL = config[@"apiBaseURL"];
-    urlString = [NSString stringWithFormat:@"%@%@", baseURL, FORGOT_PASSWORD_LINK];
+
+    urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, FORGOT_PASSWORD_LINK];
     
     //NSURL *url = [NSURL URLWithString:urlString];
     //NSLog(@"Loading URL %@", url);
