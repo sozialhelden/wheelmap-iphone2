@@ -1077,12 +1077,7 @@
         vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
         self.customNavigationBar.title = vc.navigationBarTitle;
-        
-        WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
-        nodeListVC.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
-        nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
-        self.customNavigationBar.title = nodeListVC.navigationBarTitle;
-        
+
         [self updateNodesWithQuery:query andRegion:vc.region];
         
     }
