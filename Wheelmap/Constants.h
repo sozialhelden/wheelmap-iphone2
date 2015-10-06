@@ -27,3 +27,5 @@
 
 // ETags aren't working et the moment. If you enable ist, please check if they are sent valid from the backend
 #define K_USE_ETAGS				NO
+
+#define K_NAVIGATION_BAR_HEIGHT		44.0f

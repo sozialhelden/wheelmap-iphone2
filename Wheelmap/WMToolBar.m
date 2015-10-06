@@ -36,7 +36,7 @@
         
         // toggle button uses setView:forControlState: method
         self.toggleButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.toggleButton.frame = CGRectMake(0, -2, 70, 62);
+        self.toggleButton.frame = CGRectMake(0, 3, 68, 58);
         self.toggleButton.center = CGPointMake(self.center.x, self.toggleButton.center.y);
         UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         UIImageView* toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
@@ -70,7 +70,7 @@
         [self addSubview:categoryFilterButton];
         self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
         
-        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 3, 58, 58)];
+        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 5, 56, 56)];
         self.wheelChairStatusFilterButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [self.wheelChairStatusFilterButton addTarget:self action:@selector(pressedWheelChairStatusFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.wheelChairStatusFilterButton];

@@ -50,7 +50,7 @@
     
     self.searchTextField.delegate = self;
     self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.searchTextFieldBg.image = [self.searchTextFieldBg.image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 50)];
+    self.searchTextFieldBg.image = [self.searchTextFieldBg.image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, K_NAVIGATION_BAR_HEIGHT)];
     searchTextFieldOriginalWidth = self.searchTextField.frame.size.width;
     searchTextFieldBgOriginalWidth = self.searchTextFieldBg.frame.size.width;
     
