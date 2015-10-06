@@ -29,3 +29,5 @@
 #define K_USE_ETAGS				NO
 
 #define K_NAVIGATION_BAR_HEIGHT		44.0f
+
+#define K_DATA_KEY_ETAGS			@"eTags"

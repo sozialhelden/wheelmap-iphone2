@@ -1760,7 +1760,7 @@ static BOOL assetSyncInProgress = NO;
 {
 	if (K_USE_ETAGS == YES) {
 		NSDictionary *metaData = [self.mainMOC.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore];
-		NSDictionary *eTags = metaData[@"eTags"];
+		NSDictionary *eTags = metaData[K_DATA_KEY_ETAGS];
 		return eTags[entityName];
 	} else {
 		return @"";
@@ -1777,7 +1777,7 @@ static BOOL assetSyncInProgress = NO;
         NSMutableDictionary *metaData = [[self.mainMOC.persistentStoreCoordinator metadataForPersistentStore:self.persistentStore] mutableCopy];
         
         // create eTags dictionary if necessary
-        NSMutableDictionary *eTags = [[metaData objectForKey:@"eTags"] mutableCopy] ?: [NSMutableDictionary dictionary];
+        NSMutableDictionary *eTags = [[metaData objectForKey:K_DATA_KEY_ETAGS] mutableCopy] ?: [NSMutableDictionary dictionary];
         
         // use entity name as key of eTag
         if (eTag) {
@@ -1789,7 +1789,7 @@ static BOOL assetSyncInProgress = NO;
         }
         
         // save new eTags dictionary in meta data
-        [metaData setObject:eTags forKey:@"eTags"];
+        [metaData setObject:eTags forKey:K_DATA_KEY_ETAGS];
         
         // save altered meta data to persistent store
         [self.mainMOC.persistentStoreCoordinator setMetadata:metaData forPersistentStore:self.persistentStore];
