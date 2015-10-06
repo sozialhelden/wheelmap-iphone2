@@ -53,8 +53,6 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 - (void)resetMapAndListToNormalUseCase;
 - (void)mapWasMoved;
 
-- (void)addTemporaryNode:(Node *)node;
-
 //-(void)updateNodesNear:(CLLocationCoordinate2D)coord;
 //-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
