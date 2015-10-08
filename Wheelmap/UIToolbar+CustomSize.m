@@ -13,7 +13,7 @@
 -(CGSize)sizeThatFits:(CGSize)size
 {
     CGSize result = [super sizeThatFits:size];
-    result.height = 60;
+    result.height = K_TOOLBAR_BAR_HEIGHT;
     return result;
 }
 @end

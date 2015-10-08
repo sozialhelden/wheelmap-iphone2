@@ -28,6 +28,11 @@
 // ETags aren't working et the moment. If you enable ist, please check if they are sent valid from the backend
 #define K_USE_ETAGS				NO
 
-#define K_NAVIGATION_BAR_HEIGHT		44.0f
+#define K_NAVIGATION_BAR_HEIGHT					44.0f
+#define K_TOOLBAR_BAR_HEIGHT					49.0f
+#define K_TOOLBAR_BUTTONS_WITH					58.0f
+#define K_TOOLBAR_TOOGLE_BUTTON_OFFSET			5.0f
+
+#define K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET		4.0f
 
 #define K_DATA_KEY_ETAGS			@"eTags"
