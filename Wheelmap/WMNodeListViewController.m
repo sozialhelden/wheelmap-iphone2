@@ -347,7 +347,7 @@
     }
     
     cell.iconImage.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-    UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(2, 3, 20, 16)];
+    UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 4, 20, 16)];
     icon.contentMode = UIViewContentModeScaleAspectFit;
     icon.backgroundColor = [UIColor clearColor];
     icon.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon]; // node.node_type.iconPath is sometimes null. this is a hot fix.
