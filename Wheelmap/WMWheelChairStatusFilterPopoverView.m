@@ -23,7 +23,7 @@
         
         // Initialization code
         buttonGreen = [WMButton buttonWithType:UIButtonTypeCustom];
-        buttonGreen.frame = CGRectMake(0, 0, 53, 60);
+        buttonGreen.frame = CGRectMake(0, 0, 53, K_TOOLBAR_BAR_HEIGHT);
         [buttonGreen setImage:[UIImage imageNamed:@"toolbar_statusfilter-yes.png"] forState:UIControlStateNormal];
         [buttonGreen setImage:[UIImage imageNamed:@"toolbar_statusfilter-yes-active.png"] forState:UIControlStateHighlighted];
         [buttonGreen setImage:[UIImage imageNamed:@"toolbar_statusfilter-yes-active.png"] forState:UIControlStateSelected];
@@ -33,7 +33,7 @@
         [self addSubview:buttonGreen];
         
         buttonYellow = [WMButton buttonWithType:UIButtonTypeCustom];
-        buttonYellow.frame = CGRectMake(50, 0, 51, 60);
+        buttonYellow.frame = CGRectMake(50, 0, 51, K_TOOLBAR_BAR_HEIGHT);
         [buttonYellow setImage:[UIImage imageNamed:@"toolbar_statusfilter-limited.png"] forState:UIControlStateNormal];
         [buttonYellow setImage:[UIImage imageNamed:@"toolbar_statusfilter-limited-active.png"] forState:UIControlStateHighlighted];
         [buttonYellow setImage:[UIImage imageNamed:@"toolbar_statusfilter-limited-active.png"] forState:UIControlStateSelected];
@@ -43,7 +43,7 @@
         [self addSubview:buttonYellow];
         
         buttonRed = [WMButton buttonWithType:UIButtonTypeCustom];
-        buttonRed.frame = CGRectMake(100, 0, 51, 60);
+        buttonRed.frame = CGRectMake(100, 0, 51, K_TOOLBAR_BAR_HEIGHT);
         [buttonRed setImage:[UIImage imageNamed:@"toolbar_statusfilter-no.png"] forState:UIControlStateNormal];
         [buttonRed setImage:[UIImage imageNamed:@"toolbar_statusfilter-no-active.png"] forState:UIControlStateHighlighted];
         [buttonRed setImage:[UIImage imageNamed:@"toolbar_statusfilter-no-active.png"] forState:UIControlStateSelected];
@@ -53,7 +53,7 @@
         [self addSubview:buttonRed];
         
         buttonNone = [WMButton buttonWithType:UIButtonTypeCustom];
-        buttonNone.frame = CGRectMake(150, 0, 53, 60);
+        buttonNone.frame = CGRectMake(150, 0, 53, K_TOOLBAR_BAR_HEIGHT);
         [buttonNone setImage:[UIImage imageNamed:@"toolbar_statusfilter-unknown.png"] forState:UIControlStateNormal];
         [buttonNone setImage:[UIImage imageNamed:@"toolbar_statusfilter-unknown-active.png"] forState:UIControlStateHighlighted];
         [buttonNone setImage:[UIImage imageNamed:@"toolbar_statusfilter-unknown-active.png"] forState:UIControlStateSelected];

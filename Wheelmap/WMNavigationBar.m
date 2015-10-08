@@ -239,11 +239,11 @@
         
         // search text field
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, searchBarContainer.frame.size.width - 10.0f, 40)];
+            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, searchBarContainer.frame.size.width - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET, self.frame.size.height - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET)];
         } else {
-            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, searchBarCancelButton.frame.origin.x - 5 - 5, 40)];
+            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, searchBarCancelButton.frame.origin.x - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET, self.frame.size.height - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET)];
         }
-        searchBarTextFieldBg.image = [[UIImage imageNamed:@"search_searchbar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+        searchBarTextFieldBg.image = [[UIImage imageNamed:@"search_searchbar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET)];
         searchBarTextFieldBg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [searchBarContainer addSubview:searchBarTextFieldBg];
         searchBarTextFieldBg.userInteractionEnabled = YES;

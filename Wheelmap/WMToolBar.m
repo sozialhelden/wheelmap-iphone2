@@ -22,13 +22,13 @@
         [self setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
         
         currentLocationButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        currentLocationButton.frame = CGRectMake(2, 3, 58, 58);
+        currentLocationButton.frame = CGRectMake(2, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
         [currentLocationButton setImage:[UIImage imageNamed:@"ToolbarCenterIcon"] forState:UIControlStateNormal];
         [currentLocationButton addTarget:self action:@selector(pressedCurrentLocationButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:currentLocationButton];
         
         searchButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 3, 58, 58);
+        searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
         [searchButton setImage:[UIImage imageNamed:@"ToolbarSearchIcon"] forState:UIControlStateNormal];
 
         [searchButton addTarget:self action:@selector(pressedSearchButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -36,26 +36,26 @@
         
         // toggle button uses setView:forControlState: method
         self.toggleButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.toggleButton.frame = CGRectMake(0, 3, 68, 58);
+        self.toggleButton.frame = CGRectMake(K_TOOLBAR_BUTTONS_WITH-K_TOOLBAR_BAR_HEIGHT, K_TOOLBAR_TOOGLE_BUTTON_OFFSET, K_TOOLBAR_BAR_HEIGHT, K_TOOLBAR_BAR_HEIGHT-2*K_TOOLBAR_TOOGLE_BUTTON_OFFSET);
         self.toggleButton.center = CGPointMake(self.center.x, self.toggleButton.center.y);
         UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         UIImageView* toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
         toggleBtnListIcon.image = [UIImage imageNamed:@"ToolbarMapIcon"];
-        toggleBtnListIcon.contentMode = UIViewContentModeCenter;
+        toggleBtnListIcon.contentMode = UIViewContentModeScaleAspectFit;
         [toggleBtnNormalView addSubview:toggleBtnListIcon];
         [self.toggleButton setView:toggleBtnNormalView forControlState:UIControlStateNormal];
         
         UIImageView* toggleBtnHighlightedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
         toggleBtnListIcon.image = [UIImage imageNamed:@"ToolbarListIcon"];
-        toggleBtnListIcon.contentMode = UIViewContentModeCenter;
+        toggleBtnListIcon.contentMode = UIViewContentModeScaleAspectFit;
         [toggleBtnHighlightedView addSubview:toggleBtnListIcon];
         [self.toggleButton setView:toggleBtnHighlightedView forControlState:UIControlStateHighlighted];
         
         UIImageView* toggleBtnSelectedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
         UIImageView* toggleBtnMapIcon = [[UIImageView alloc] initWithFrame:toggleBtnSelectedView.bounds];
         toggleBtnMapIcon.image = [UIImage imageNamed:@"ToolbarListIcon"];
-        toggleBtnMapIcon.contentMode = UIViewContentModeCenter;
+        toggleBtnMapIcon.contentMode = UIViewContentModeScaleAspectFit;
         [toggleBtnSelectedView addSubview:toggleBtnMapIcon];
         [self.toggleButton setView:toggleBtnSelectedView forControlState:UIControlStateSelected];
         self.toggleButton.enabledToggle = YES;
@@ -64,13 +64,14 @@
         [self addSubview:self.toggleButton];
         
         categoryFilterButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-58, 3, 58, 58);
+        categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-K_TOOLBAR_BUTTONS_WITH, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
         [categoryFilterButton setImage:[UIImage imageNamed:@"ToolbarKategorieIcon"] forState:UIControlStateNormal];
         [categoryFilterButton addTarget:self action:@selector(pressedCategoryFilterButton:) forControlEvents:UIControlEventTouchUpInside];
+		categoryFilterButton.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:categoryFilterButton];
         self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
         
-        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-58, 5, 56, 56)];
+        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-K_TOOLBAR_BUTTONS_WITH, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT)];
         self.wheelChairStatusFilterButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [self.wheelChairStatusFilterButton addTarget:self action:@selector(pressedWheelChairStatusFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.wheelChairStatusFilterButton];

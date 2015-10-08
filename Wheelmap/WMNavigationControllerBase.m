@@ -180,13 +180,13 @@
     }
     self.customNavigationBar.delegate = self;
     [self.navigationBar addSubview:self.customNavigationBar];
-    self.toolbar.frame = CGRectMake(0, self.toolbar.frame.origin.y, self.view.frame.size.width, 60);
+    self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height-K_TOOLBAR_BAR_HEIGHT, self.view.frame.size.width, K_TOOLBAR_BAR_HEIGHT);
     self.toolbar.backgroundColor = [UIColor whiteColor];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.customToolBar = [[WMToolBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, 60)];
+        self.customToolBar = [[WMToolBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
     } else {
-        self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, 60)];
+        self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, self.toolbar.frame.size.height-K_TOOLBAR_BAR_HEIGHT, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
     }
     self.customToolBar.delegate = self;
     [self.toolbar addSubview:self.customToolBar];
@@ -288,30 +288,30 @@
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
     
     [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-60)];
+    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT)];
     
     if (self.popoverVC.popover.isShowing == YES) {
         
         [self.popoverVC.popover dismissPopoverAnimated:NO];
         if ([self.popoverVC isKindOfClass:[WMCreditsViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).infoButton.frame;
-            CGFloat yPosition = 1024.0f - 60.0f;
+            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
-                yPosition = 768.0f - 60.0f;
+                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
         } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
-            CGFloat yPosition = 1024.0f - 60.0f;
+            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
-                yPosition = 768.0f - 60.0f;
+                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
         } else if ([self.popoverVC isKindOfClass:[WMEditPOIViewController class]]) {
             CGRect buttonFrame = ((WMNavigationBar_iPad *)self.customNavigationBar).contributeButton.frame;
-            CGFloat yPosition = 1024.0f - 60.0f;
+            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
-                yPosition = 768.0f - 60.0f;
+                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
         }
@@ -969,9 +969,9 @@
             
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             
-            CGFloat yPosition = 1024.0f - 60.0f;
+            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-                yPosition = 768.0f - 60.0f;
+                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             [self presentLoginScreenWithButtonFrame:CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height)];
             return;
@@ -1210,10 +1210,13 @@
         } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
             WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
             WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+			if ([nodeListVC isKindOfClass:[WMNodeListViewController class]]) {
+				nodeListVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+				nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+			}
+			
             currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
-            nodeListVC.useCase = kWMNodeListViewControllerUseCaseNormal;
             currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-            nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
             self.customNavigationBar.title = currentVC.navigationBarTitle;
         }
         
@@ -1274,10 +1277,10 @@
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).loginButton.frame;
-        CGFloat yPosition = 1024.0f - 60.0f;
+        CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
         
         if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-            yPosition = 768.0f - 60.0f;
+            yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
         }
         
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
@@ -1293,10 +1296,10 @@
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).infoButton.frame;
-        CGFloat yPosition = 1024.0f - 60.0f;
+        CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
         
         if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-            yPosition = 768.0f - 60.0f;
+            yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
         }
         vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }

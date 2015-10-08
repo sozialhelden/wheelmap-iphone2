@@ -238,11 +238,6 @@
 		0327F9EF16BFFB1900BA7DE7 /* Social_btn-sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D57166A49650016E275 /* Social_btn-sms@2x.png */; };
 		0327F9F016BFFB1900BA7DE7 /* Social_btn-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D58166A49650016E275 /* Social_btn-twitter.png */; };
 		0327F9F116BFFB1900BA7DE7 /* Social_btn-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */; };
-		0327F9F216BFFB1900BA7DE7 /* marker_limited.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */; };
-		0327F9F316BFFB1900BA7DE7 /* marker_no.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4773166BF0BB00D9CAD9 /* marker_no.png */; };
-		0327F9F416BFFB1900BA7DE7 /* marker_position.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4774166BF0BB00D9CAD9 /* marker_position.png */; };
-		0327F9F516BFFB1900BA7DE7 /* marker_unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4775166BF0BB00D9CAD9 /* marker_unknown.png */; };
-		0327F9F616BFFB1900BA7DE7 /* marker_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4776166BF0BB00D9CAD9 /* marker_yes.png */; };
 		0327F9F716BFFB1900BA7DE7 /* start_btn-grid.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477D166BF21D00D9CAD9 /* start_btn-grid.png */; };
 		0327F9F816BFFB1900BA7DE7 /* start_btn-grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477E166BF21D00D9CAD9 /* start_btn-grid@2x.png */; };
 		0327F9F916BFFB1900BA7DE7 /* start_icon-credits.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477F166BF21D00D9CAD9 /* start_icon-credits.png */; };
@@ -581,11 +576,6 @@
 		03BD043C16A052750045D53D /* Social_btn-sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D57166A49650016E275 /* Social_btn-sms@2x.png */; };
 		03BD043D16A052750045D53D /* Social_btn-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D58166A49650016E275 /* Social_btn-twitter.png */; };
 		03BD043E16A052750045D53D /* Social_btn-twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5406D59166A49650016E275 /* Social_btn-twitter@2x.png */; };
-		03BD043F16A052750045D53D /* marker_limited.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */; };
-		03BD044016A052750045D53D /* marker_no.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4773166BF0BB00D9CAD9 /* marker_no.png */; };
-		03BD044116A052750045D53D /* marker_position.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4774166BF0BB00D9CAD9 /* marker_position.png */; };
-		03BD044216A052750045D53D /* marker_unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4775166BF0BB00D9CAD9 /* marker_unknown.png */; };
-		03BD044316A052750045D53D /* marker_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4776166BF0BB00D9CAD9 /* marker_yes.png */; };
 		03BD044416A052750045D53D /* start_btn-grid.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477D166BF21D00D9CAD9 /* start_btn-grid.png */; };
 		03BD044516A052750045D53D /* start_btn-grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477E166BF21D00D9CAD9 /* start_btn-grid@2x.png */; };
 		03BD044616A052750045D53D /* start_icon-credits.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477F166BF21D00D9CAD9 /* start_icon-credits.png */; };
@@ -1338,11 +1328,6 @@
 		DB67C1E61684886B00E8206B /* toolbar_button-search-active.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E41684886B00E8206B /* toolbar_button-search-active.png */; };
 		DB67C1E71684886B00E8206B /* toolbar_button-search-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB67C1E51684886B00E8206B /* toolbar_button-search-active@2x.png */; };
 		DB6E4770166B9B7A00D9CAD9 /* WMDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */; };
-		DB6E4777166BF0BB00D9CAD9 /* marker_limited.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */; };
-		DB6E4778166BF0BB00D9CAD9 /* marker_no.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4773166BF0BB00D9CAD9 /* marker_no.png */; };
-		DB6E4779166BF0BB00D9CAD9 /* marker_position.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4774166BF0BB00D9CAD9 /* marker_position.png */; };
-		DB6E477A166BF0BB00D9CAD9 /* marker_unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4775166BF0BB00D9CAD9 /* marker_unknown.png */; };
-		DB6E477B166BF0BB00D9CAD9 /* marker_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E4776166BF0BB00D9CAD9 /* marker_yes.png */; };
 		DB6E478F166BF21D00D9CAD9 /* start_btn-grid.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477D166BF21D00D9CAD9 /* start_btn-grid.png */; };
 		DB6E4790166BF21D00D9CAD9 /* start_btn-grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477E166BF21D00D9CAD9 /* start_btn-grid@2x.png */; };
 		DB6E4791166BF21D00D9CAD9 /* start_icon-credits.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E477F166BF21D00D9CAD9 /* start_icon-credits.png */; };
@@ -2088,11 +2073,6 @@
 		DB67C1E51684886B00E8206B /* toolbar_button-search-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar_button-search-active@2x.png"; path = "ToolBar/toolbar_button-search-active@2x.png"; sourceTree = "<group>"; };
 		DB6E476E166B9B7A00D9CAD9 /* WMDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardViewController.h; sourceTree = "<group>"; };
 		DB6E476F166B9B7A00D9CAD9 /* WMDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardViewController.m; sourceTree = "<group>"; };
-		DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_limited.png; sourceTree = "<group>"; };
-		DB6E4773166BF0BB00D9CAD9 /* marker_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_no.png; sourceTree = "<group>"; };
-		DB6E4774166BF0BB00D9CAD9 /* marker_position.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_position.png; sourceTree = "<group>"; };
-		DB6E4775166BF0BB00D9CAD9 /* marker_unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_unknown.png; sourceTree = "<group>"; };
-		DB6E4776166BF0BB00D9CAD9 /* marker_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_yes.png; sourceTree = "<group>"; };
 		DB6E477D166BF21D00D9CAD9 /* start_btn-grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_btn-grid.png"; sourceTree = "<group>"; };
 		DB6E477E166BF21D00D9CAD9 /* start_btn-grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_btn-grid@2x.png"; sourceTree = "<group>"; };
 		DB6E477F166BF21D00D9CAD9 /* start_icon-credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon-credits.png"; sourceTree = "<group>"; };
@@ -3335,12 +3315,7 @@
 		D5EFDE201668E44100CEB2C0 /* Marker */ = {
 			isa = PBXGroup;
 			children = (
-				DB6E4772166BF0BB00D9CAD9 /* marker_limited.png */,
-				DB6E4773166BF0BB00D9CAD9 /* marker_no.png */,
-				DB6E4774166BF0BB00D9CAD9 /* marker_position.png */,
 				DB59D5DC1690E7B200E9B3D9 /* marker_position@2x.png */,
-				DB6E4775166BF0BB00D9CAD9 /* marker_unknown.png */,
-				DB6E4776166BF0BB00D9CAD9 /* marker_yes.png */,
 				98ADC6D6164BEEDA00251943 /* marker_limited@2x.png */,
 				98ADC6D7164BEEDA00251943 /* marker_no@2x.png */,
 				98ADC6D8164BEEDA00251943 /* marker_unknown@2x.png */,
@@ -3865,11 +3840,6 @@
 				0327F9EF16BFFB1900BA7DE7 /* Social_btn-sms@2x.png in Resources */,
 				0327F9F016BFFB1900BA7DE7 /* Social_btn-twitter.png in Resources */,
 				0327F9F116BFFB1900BA7DE7 /* Social_btn-twitter@2x.png in Resources */,
-				0327F9F216BFFB1900BA7DE7 /* marker_limited.png in Resources */,
-				0327F9F316BFFB1900BA7DE7 /* marker_no.png in Resources */,
-				0327F9F416BFFB1900BA7DE7 /* marker_position.png in Resources */,
-				0327F9F516BFFB1900BA7DE7 /* marker_unknown.png in Resources */,
-				0327F9F616BFFB1900BA7DE7 /* marker_yes.png in Resources */,
 				0327F9F716BFFB1900BA7DE7 /* start_btn-grid.png in Resources */,
 				18D3762E1A5D8D4700187374 /* list-image-placeholder.png in Resources */,
 				0327F9F816BFFB1900BA7DE7 /* start_btn-grid@2x.png in Resources */,
@@ -4115,12 +4085,7 @@
 				03BD043C16A052750045D53D /* Social_btn-sms@2x.png in Resources */,
 				03BD043D16A052750045D53D /* Social_btn-twitter.png in Resources */,
 				03BD043E16A052750045D53D /* Social_btn-twitter@2x.png in Resources */,
-				03BD043F16A052750045D53D /* marker_limited.png in Resources */,
 				18D376381A5D8D4700187374 /* UAInboxMessageListController.xib in Resources */,
-				03BD044016A052750045D53D /* marker_no.png in Resources */,
-				03BD044116A052750045D53D /* marker_position.png in Resources */,
-				03BD044216A052750045D53D /* marker_unknown.png in Resources */,
-				03BD044316A052750045D53D /* marker_yes.png in Resources */,
 				03BD044416A052750045D53D /* start_btn-grid.png in Resources */,
 				03BD044516A052750045D53D /* start_btn-grid@2x.png in Resources */,
 				C5AA825F18A274D2001B2BBA /* Images.xcassets in Resources */,
@@ -4366,11 +4331,6 @@
 				D5406D60166A49650016E275 /* Social_btn-twitter.png in Resources */,
 				18D376361A5D8D4700187374 /* UAInboxMessageListController.xib in Resources */,
 				D5406D61166A49650016E275 /* Social_btn-twitter@2x.png in Resources */,
-				DB6E4777166BF0BB00D9CAD9 /* marker_limited.png in Resources */,
-				DB6E4778166BF0BB00D9CAD9 /* marker_no.png in Resources */,
-				DB6E4779166BF0BB00D9CAD9 /* marker_position.png in Resources */,
-				DB6E477A166BF0BB00D9CAD9 /* marker_unknown.png in Resources */,
-				DB6E477B166BF0BB00D9CAD9 /* marker_yes.png in Resources */,
 				DB6E478F166BF21D00D9CAD9 /* start_btn-grid.png in Resources */,
 				18D3766C1A5D8D4700187374 /* middle-detail.png in Resources */,
 				DB6E4790166BF21D00D9CAD9 /* start_btn-grid@2x.png in Resources */,
@@ -5235,7 +5195,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5274,7 +5234,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5313,7 +5273,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5352,7 +5312,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5391,7 +5351,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5430,7 +5390,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5474,7 +5434,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -5498,7 +5458,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5543,7 +5503,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5579,7 +5539,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -5603,7 +5563,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5642,7 +5602,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 87;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

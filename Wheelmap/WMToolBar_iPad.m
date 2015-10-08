@@ -35,15 +35,13 @@
         currentLocationButton.frame = CGRectMake(self.wheelChairStatusFilterButton.frame.origin.x - currentLocationButton.frame.size.width - 5.0f , currentLocationButton.frame.origin.y, currentLocationButton.frame.size.width, currentLocationButton.frame.size.height);
         
         self.infoButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.infoButton.frame = CGRectMake(2, 3, 58, 58);
-        [self.infoButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        self.infoButton.frame = CGRectMake(2, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
         [self.infoButton setImage:[UIImage imageNamed:@"ipad_buttons_credits.png"] forState:UIControlStateNormal];
         [self.infoButton addTarget:self action:@selector(pressedInfoButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.infoButton];
         
         self.loginButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.loginButton.frame = CGRectMake(self.infoButton.frame.origin.x + self.infoButton.frame.size.width + 5.0f, 3, 58, 58);
-        [self.loginButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        self.loginButton.frame = CGRectMake(self.infoButton.frame.origin.x + self.infoButton.frame.size.width + 5.0f, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
         [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_login.png"] forState:UIControlStateNormal];
         [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_loggedin.png"] forState:UIControlStateSelected];
         [self.loginButton addTarget:self action:@selector(pressedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -51,14 +49,13 @@
         
         self.helpButton = [WMButton buttonWithType:UIButtonTypeCustom];
         self.helpButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        self.helpButton.frame = CGRectMake(currentLocationButton.frame.origin.x - 58.0f - 5.0f, 3, 58, 58);
-        [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
+        self.helpButton.frame = CGRectMake(currentLocationButton.frame.origin.x - K_TOOLBAR_BUTTONS_WITH - 5.0f, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
         [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button-search-active.png"] forState:UIControlStateSelected];
         [self.helpButton setImage:[UIImage imageNamed:@"ipad_buttons_mithelfen.png"] forState:UIControlStateNormal];
         [self.helpButton addTarget:self action:@selector(pressedHelpButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.helpButton];
         
-        self.numberOfPlacesLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f, 3, 320.0f - (self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f), 54.0f)];
+        self.numberOfPlacesLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f, 0, 320.0f - (self.loginButton.frame.origin.x + self.loginButton.frame.size.width + 5.0f), 54.0f)];
         self.numberOfPlacesLabel.text = @"";
         self.numberOfPlacesLabel.alpha = 0.0;
         self.numberOfPlacesLabel.textColor = [UIColor colorWithRed:106.0f/255.0f green:120.0f/255.0f blue:134.0f/255.0f alpha:1.0f];

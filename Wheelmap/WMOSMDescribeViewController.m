@@ -18,20 +18,14 @@
     [super viewDidLoad];
     
     self.scrollView.backgroundColor = [UIColor wmGreyColor];
-    
+
     [self.whyOSMLabel setText:NSLocalizedString(@"WhyOSMAccount", nil)];
     [self.whyOSMTextView setText:NSLocalizedString(@"DescribeWhyOSMAccount", nil)];
     
     [self.okButton setTitle:NSLocalizedString(@"FirstStartButton", nil) forState:UIControlStateNormal];
-    [self.okButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)] forState:UIControlStateNormal];
-    
-/*    CGSize stringsize = [self.okButton.titleLabel.text boundingRectWithSize:CGSizeMake(300.0f, FLT_MAX)
-                                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                                 attributes:@{NSFontAttributeName:self.okButton.titleLabel.font}
-                                                                    context:nil].size;
-    //or whatever font you're using
-    [self.okButton setFrame:CGRectMake(320.0f - stringsize.width - 20.0f, self.loginLabel.frame.origin.y + self.loginLabel.frame.size.height + 20.0f, stringsize.width + 10.0f, stringsize.height + 10.0f)];
-*/    
+	[self.okButton setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
+	self.okButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
+
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.okButton.frame.origin.y + self.okButton.frame.size.height + 10.0f);
 }
 

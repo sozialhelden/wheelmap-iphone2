@@ -20,19 +20,19 @@
     if (self) {
         // normalView
         UIImageView* normalView = [[UIImageView alloc] initWithFrame:self.bounds];
-        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(14, 10, 30, 30)];
+        UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(14, 6, 30, 30)];
         icon.image = [UIImage imageNamed:@"ToolbarLabelIcon"];
         [normalView addSubview:icon];
-        dotGreen = [[UIImageView alloc] initWithFrame:CGRectMake(15, 40, 6, 8)];
+        dotGreen = [[UIImageView alloc] initWithFrame:CGRectMake(15, icon.frame.size.height+K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET, 6, 8)];
         dotGreen.image = [UIImage imageNamed:@"toolbar_indicator-green.png"];
         [normalView addSubview:dotGreen];
-        dotYellow = [[UIImageView alloc] initWithFrame:CGRectMake(dotGreen.topRightX+2, 40, 6, 8)];
+        dotYellow = [[UIImageView alloc] initWithFrame:CGRectMake(dotGreen.topRightX+2, icon.frame.size.height+K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET, 6, 8)];
         dotYellow.image = [UIImage imageNamed:@"toolbar_indicator-orange.png"];
         [normalView addSubview:dotYellow];
-        dotRed = [[UIImageView alloc] initWithFrame:CGRectMake(dotYellow.topRightX+2, 40, 6, 8)];
+        dotRed = [[UIImageView alloc] initWithFrame:CGRectMake(dotYellow.topRightX+2, icon.frame.size.height+K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET, 6, 8)];
         dotRed.image = [UIImage imageNamed:@"toolbar_indicator-red.png"];
         [normalView addSubview:dotRed];
-        dotNone = [[UIImageView alloc] initWithFrame:CGRectMake(dotRed.topRightX+2, 40, 6, 8)];
+        dotNone = [[UIImageView alloc] initWithFrame:CGRectMake(dotRed.topRightX+2, icon.frame.size.height+K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET, 6, 8)];
         dotNone.image = [UIImage imageNamed:@"toolbar_indicator-grey.png"];
         [normalView addSubview:dotNone];
         
