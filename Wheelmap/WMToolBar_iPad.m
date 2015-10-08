@@ -36,14 +36,12 @@
         
         self.infoButton = [WMButton buttonWithType:UIButtonTypeCustom];
         self.infoButton.frame = CGRectMake(2, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
-        [self.infoButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [self.infoButton setImage:[UIImage imageNamed:@"ipad_buttons_credits.png"] forState:UIControlStateNormal];
         [self.infoButton addTarget:self action:@selector(pressedInfoButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.infoButton];
         
         self.loginButton = [WMButton buttonWithType:UIButtonTypeCustom];
         self.loginButton.frame = CGRectMake(self.infoButton.frame.origin.x + self.infoButton.frame.size.width + 5.0f, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
-        [self.loginButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_login.png"] forState:UIControlStateNormal];
         [self.loginButton setImage:[UIImage imageNamed:@"ipad_buttons_loggedin.png"] forState:UIControlStateSelected];
         [self.loginButton addTarget:self action:@selector(pressedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -52,7 +50,6 @@
         self.helpButton = [WMButton buttonWithType:UIButtonTypeCustom];
         self.helpButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         self.helpButton.frame = CGRectMake(currentLocationButton.frame.origin.x - K_TOOLBAR_BUTTONS_WITH - 5.0f, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
-        [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button.png"] forState:UIControlStateNormal];
         [self.helpButton setBackgroundImage:[UIImage imageNamed:@"toolbar_button-search-active.png"] forState:UIControlStateSelected];
         [self.helpButton setImage:[UIImage imageNamed:@"ipad_buttons_mithelfen.png"] forState:UIControlStateNormal];
         [self.helpButton addTarget:self action:@selector(pressedHelpButton:) forControlEvents:UIControlEventTouchUpInside];
