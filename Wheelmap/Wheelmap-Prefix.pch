@@ -24,7 +24,8 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
 
-//    #import "Constants.h"
+	// Libraries
+	#import <MarqueeLabel/MarqueeLabel.h>
 #endif
 
 // custom defines and macro functions
