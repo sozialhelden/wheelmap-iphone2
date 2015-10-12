@@ -1103,8 +1103,12 @@
 		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
 		if ([toVC isKindOfClass:[WMMapViewController class]]) {
 			// Map view controller is already there, we just have to pop fade
+			((WMMapViewController*)toVC).useCase = ((WMNodeListViewController*)self.topViewController).useCase;
+			((WMMapViewController*)toVC).navigationBarTitle = ((WMNodeListViewController*)self.topViewController).navigationBarTitle;
 			[self popFadeViewController];
 		} else {
+			self.mapViewController.useCase = ((WMNodeListViewController*)self.topViewController).useCase;
+			self.mapViewController.navigationBarTitle = ((WMNodeListViewController*)self.topViewController).navigationBarTitle;
 			[self pushFadeViewController:self.mapViewController];
 		}
 		
@@ -1112,9 +1116,13 @@
         //  the map view is on the screen. pop the map view controller
 		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
 		if ([toVC isKindOfClass:[WMNodeListViewController class]]) {
+			((WMNodeListViewController*)toVC).useCase = ((WMMapViewController*)self.topViewController).useCase;
+			((WMNodeListViewController*)toVC).navigationBarTitle = ((WMMapViewController*)self.topViewController).navigationBarTitle;
 			[self popFadeViewController];
 		} else {
 			// List view controller is already there, we just have to pop fade
+			listViewController.useCase = ((WMMapViewController*)self.topViewController).useCase;
+			listViewController.navigationBarTitle = ((WMMapViewController*)self.topViewController).navigationBarTitle;
 			[self pushFadeViewController:listViewController];
 		}
     }
@@ -1157,11 +1165,8 @@
         if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
             return;
         }
-        WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
         currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
-        nodeListVC.useCase = kWMNodeListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-        nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
     }
     
