@@ -156,6 +156,7 @@
     //[navCtrl clearWheelChairFilterStatus];
     //[navCtrl clearCategoryFilterStatus];
     [self pressedSearchCancelButton:searchCancelButton];
+	[(WMNavigationControllerBase *)self.navigationController setListViewControllerToNormal];
     [(WMNavigationControllerBase *)self.navigationController pushList];
     
 }
@@ -170,7 +171,6 @@
     [self pressedSearchCancelButton:searchCancelButton];
     [(WMNavigationControllerBase *)self.navigationController setMapControllerToNormal];
     [(WMNavigationControllerBase *)self.navigationController pushMap];
-    
 }
 
 -(IBAction)pressedContributeButton:(id)sender

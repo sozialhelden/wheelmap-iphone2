@@ -244,7 +244,8 @@
         listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
     }
     listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-	[self pushFadeViewController:listViewController];
+	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+	[self pushViewController:listViewController animated:YES];
 }
 
 - (void)pushMap {
@@ -256,19 +257,21 @@
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
     }
-    
     [self pushViewController:self.mapViewController animated:YES];
-
 }
 
 - (void)setMapControllerToContribute {
     self.mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
-    
 }
 
 - (void)setMapControllerToNormal {
     self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    
+	self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+}
+
+- (void)setListViewControllerToNormal {
+	listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 }
 
 - (void)resetMapAndListToNormalUseCase {
