@@ -50,6 +50,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 - (void)pushMap;
 - (void)setMapControllerToContribute;
 - (void)setMapControllerToNormal;
+- (void)setListViewControllerToNormal;
 - (void)resetMapAndListToNormalUseCase;
 - (void)mapWasMoved;
 
