@@ -102,10 +102,10 @@
     license.contentMode = UIViewContentModeBottomRight;
     [self.scroller addSubview:license];
     
-    UILabel *licenseLabel = [[WMLabel alloc] initWithFrame:CGRectMake(license.frame.origin.x + license.frame.size.width + 10.0f, license.frame.origin.y, 210, 18)];
+    MarqueeLabel *licenseLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(license.frame.origin.x + license.frame.size.width + 10.0f, license.frame.origin.y, 210, 18)];
     licenseLabel.textAlignment = NSTextAlignmentLeft;
     licenseLabel.font = [UIFont systemFontOfSize:12.0f];
-    licenseLabel.text = @"Map Icons Collection: Nicolas Mollet";
+    licenseLabel.text = @"Map Icons Collection https://mapicons.mapsmarker.com";
     [self.scroller addSubview:licenseLabel];
     
     UIImageView *license2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, license.leftBottomY+10, 61, 18)];
