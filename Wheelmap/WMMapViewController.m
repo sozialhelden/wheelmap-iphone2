@@ -54,8 +54,8 @@
     
     if (navCtrl.lastVisibleMapCenterLat == nil) {
         
-        lat = [navCtrl currentUserLocation].coordinate.latitude;
-        lon = [navCtrl currentUserLocation].coordinate.longitude;
+        lat = navCtrl.currentLocation.coordinate.latitude;
+        lon = navCtrl.currentLocation.coordinate.longitude;
         
     } else {
         lat = [navCtrl.lastVisibleMapCenterLat doubleValue];
@@ -170,7 +170,7 @@
         navCtrl.lastVisibleMapSpanLat = [NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta];
         navCtrl.lastVisibleMapSpanLng = [NSNumber numberWithDouble:self.mapView.region.span.longitudeDelta];
         
-        CLLocation* userLocation = [navCtrl currentUserLocation];
+        CLLocation* userLocation = navCtrl.currentLocation;
         initRegion = MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.004, 0.004));
         [self.mapView setRegion:initRegion animated:NO];
         [self mapView:self.mapView regionDidChangeAnimated:NO];

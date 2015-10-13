@@ -60,7 +60,7 @@
 }
 
 - (void)gotNewUserLocation:(CLLocation *)location {
-    NSLog(@"...NEW USER LOCATION...");
+    NSLog(@"gotNewUserLocation: %@", location);
     [self.mapViewController relocateMapTo:location.coordinate andSpan:MKCoordinateSpanMake(0.004, 0.004)];
 }
 

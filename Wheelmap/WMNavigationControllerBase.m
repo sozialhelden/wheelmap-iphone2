@@ -105,10 +105,9 @@
         }
     }
     
-    self.locationManager.distanceFilter = 50.0f;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startMonitoringSignificantLocationChanges];
-    
+    [self.locationManager startUpdatingLocation];
+
     self.lastVisibleMapCenterLat = nil;
     self.lastVisibleMapCenterLng = nil;
     self.lastVisibleMapSpanLat = nil;
@@ -666,10 +665,12 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"Location is updated!");
-    [self updateNodesWithCurrentUserLocation];
-}
+	if ((locations != nil) && (locations.count > 0)) {
+		self.currentLocation = locations.firstObject;
+	}
 
+	NSLog(@"Location is updated! New location: %@", self.currentLocation);
+}
 
 -(void)updateUserLocation
 {
@@ -682,14 +683,9 @@
     }
 }
 
--(CLLocation*)currentUserLocation
-{
-    return self.locationManager.location;
-}
-
 -(void)updateNodesWithCurrentUserLocation
 {
-    CLLocation* newLocation = self.locationManager.location;
+    CLLocation* newLocation = self.currentLocation;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if ([self.topViewController isKindOfClass:WMRootViewController_iPad.class]) {
             [(WMRootViewController_iPad *)self.topViewController gotNewUserLocation:newLocation];
@@ -997,7 +993,7 @@
             vc.initialCoordinate = self.mapViewController.region.center;
         }
     } else {
-        vc.initialCoordinate = self.currentUserLocation.coordinate;
+        vc.initialCoordinate = self.currentLocation.coordinate;
     }
     vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -1236,7 +1232,7 @@
                                                                                     [self.lastVisibleMapSpanLng doubleValue])
                                                                )];
         } else {
-            [self updateNodesWithRegion:MKCoordinateRegionMake(self.locationManager.location.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
+            [self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
         }
         
         
