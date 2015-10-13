@@ -31,18 +31,19 @@ WMWheelChairStatusFilterPopoverViewDelegate,
 WMCategoryFilterPopoverViewDelegate,
 UINavigationControllerDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) WMNavigationBar* customNavigationBar;
-@property (nonatomic, strong) WMToolBar* customToolBar;
-@property (nonatomic, strong) NSMutableDictionary* wheelChairFilterStatus;
-@property (nonatomic, strong) NSMutableDictionary* categoryFilterStatus;
-@property (nonatomic, strong) NSNumber* lastVisibleMapCenterLat;  // this will store last visible map region, so that we can restore last nodes.
-@property (nonatomic, strong) NSNumber* lastVisibleMapCenterLng;
-@property (nonatomic, strong) NSNumber* lastVisibleMapSpanLat;
-@property (nonatomic, strong) NSNumber* lastVisibleMapSpanLng;
-@property (nonatomic, strong) WMMapViewController* mapViewController;
+@property (nonatomic, strong) CLLocationManager *		locationManager;
+@property (nonatomic, strong) CLLocation *				currentLocation;
+@property (nonatomic, strong) WMNavigationBar *			customNavigationBar;
+@property (nonatomic, strong) WMToolBar *				customToolBar;
+@property (nonatomic, strong) NSMutableDictionary *		wheelChairFilterStatus;
+@property (nonatomic, strong) NSMutableDictionary *		categoryFilterStatus;
+@property (nonatomic, strong) NSNumber *				lastVisibleMapCenterLat;  // this will store last visible map region, so that we can restore last nodes.
+@property (nonatomic, strong) NSNumber *				lastVisibleMapCenterLng;
+@property (nonatomic, strong) NSNumber *				lastVisibleMapSpanLat;
+@property (nonatomic, strong) NSNumber *				lastVisibleMapSpanLng;
+@property (nonatomic, strong) WMMapViewController *		mapViewController;
 
-@property (nonatomic, strong)  WMViewController *popoverVC;
+@property (nonatomic, strong)  WMViewController *		popoverVC;
 
 //- (void)showFirstStartScreen;
 
@@ -73,7 +74,5 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 - (void)showAcceptTermsViewController;
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
-
--(CLLocation*)currentUserLocation;
 
 @end

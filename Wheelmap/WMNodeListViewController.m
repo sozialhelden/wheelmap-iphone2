@@ -251,7 +251,7 @@
 
 - (NSArray*)sortNodesByDistance:(NSArray*)nodesTemp
 {
-    CLLocation* userLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
+    CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
     
     nodesTemp = [nodesTemp sortedArrayUsingComparator:^NSComparisonResult(Node* n1, Node* n2) {
         
@@ -361,7 +361,7 @@
     
     // show node distance
     CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
-    CLLocation* userLocation = [(WMNavigationControllerBase*)dataSource currentUserLocation];
+    CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
     CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
     cell.distanceLabel.text = [WMStringUtilities localizedDistanceFromMeters:distance];
     
