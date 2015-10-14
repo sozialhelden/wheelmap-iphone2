@@ -73,7 +73,6 @@
 		0327F94216BFFB1900BA7DE7 /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
 		0327F94316BFFB1900BA7DE7 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
 		0327F94416BFFB1900BA7DE7 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
-		0327F94516BFFB1900BA7DE7 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		0327F94616BFFB1900BA7DE7 /* WMKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E94C921675F62E00994DBA /* WMKeychainWrapper.m */; };
 		0327F94716BFFB1900BA7DE7 /* WMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3851675E4A500C58813 /* WMCompassView.m */; };
 		0327F94816BFFB1900BA7DE7 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
@@ -419,7 +418,6 @@
 		03BD039616A052750045D53D /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE56B0166E6604008E389D /* WMSetMarkerViewController.m */; };
 		03BD039716A052750045D53D /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5683A1166E9F35005B2EE5 /* WMCategoryViewController.m */; };
 		03BD039816A052750045D53D /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
-		03BD039916A052750045D53D /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		03BD039A16A052750045D53D /* WMKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E94C921675F62E00994DBA /* WMKeychainWrapper.m */; };
 		03BD039B16A052750045D53D /* WMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3851675E4A500C58813 /* WMCompassView.m */; };
 		03BD039C16A052750045D53D /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D555D3D51677897D00C58813 /* WMInfinitePhotoViewController.m */; };
@@ -686,7 +684,6 @@
 		03F23ED016A013B600F6B379 /* credits_credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECE16A013B600F6B379 /* credits_credits.png */; };
 		03F23ED116A013B600F6B379 /* credits_credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F23ECF16A013B600F6B379 /* credits_credits@2x.png */; };
 		03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30BFA1670A1F700241466 /* WMDashboardButton.m */; };
-		03F30C551670B80600241466 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F30C541670B80600241466 /* WMLoginViewController.m */; };
 		03F30C8C1670F36A00241466 /* buttons_btn-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8A1670F36A00241466 /* buttons_btn-signup.png */; };
 		03F30C8D1670F36B00241466 /* buttons_btn-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */; };
 		156A7120169B026200C22988 /* Curl_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 156A711E169B026200C22988 /* Curl_screen.png */; };
@@ -1096,8 +1093,6 @@
 		03F23ECF16A013B600F6B379 /* credits_credits@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits_credits@2x.png"; sourceTree = "<group>"; };
 		03F30BF91670A1F700241466 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
 		03F30BFA1670A1F700241466 /* WMDashboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardButton.m; sourceTree = "<group>"; };
-		03F30C531670B80600241466 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
-		03F30C541670B80600241466 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
 		03F30C8A1670F36A00241466 /* buttons_btn-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup.png"; sourceTree = "<group>"; };
 		03F30C8B1670F36A00241466 /* buttons_btn-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup@2x.png"; sourceTree = "<group>"; };
 		03FDC3E9176B107800AF386B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1690,8 +1685,6 @@
 			children = (
 				18A4EA291AC4457500C90404 /* WMOSMStartViewController.h */,
 				18A4EA2A1AC4457500C90404 /* WMOSMStartViewController.m */,
-				03F30C531670B80600241466 /* WMLoginViewController.h */,
-				03F30C541670B80600241466 /* WMLoginViewController.m */,
 				DBCA978E167892440042358C /* WMLogoutViewController.h */,
 				DBCA978F167892440042358C /* WMLogoutViewController.m */,
 				0360B840169DACD100E04026 /* WMRegisterViewController.h */,
@@ -3410,7 +3403,6 @@
 				0327F94216BFFB1900BA7DE7 /* WMSetMarkerViewController.m in Sources */,
 				0327F94316BFFB1900BA7DE7 /* WMCategoryViewController.m in Sources */,
 				0327F94416BFFB1900BA7DE7 /* WMDashboardButton.m in Sources */,
-				0327F94516BFFB1900BA7DE7 /* WMLoginViewController.m in Sources */,
 				18D6A1971A8B900D00D871F3 /* MBXMapKit.m in Sources */,
 				0327F94616BFFB1900BA7DE7 /* WMKeychainWrapper.m in Sources */,
 				0327F94716BFFB1900BA7DE7 /* WMCompassView.m in Sources */,
@@ -3521,7 +3513,6 @@
 				03BD039616A052750045D53D /* WMSetMarkerViewController.m in Sources */,
 				03BD039716A052750045D53D /* WMCategoryViewController.m in Sources */,
 				03BD039816A052750045D53D /* WMDashboardButton.m in Sources */,
-				03BD039916A052750045D53D /* WMLoginViewController.m in Sources */,
 				18D6A1981A8B900D00D871F3 /* MBXMapKit.m in Sources */,
 				03BD039A16A052750045D53D /* WMKeychainWrapper.m in Sources */,
 				03BD039B16A052750045D53D /* WMCompassView.m in Sources */,
@@ -3631,7 +3622,6 @@
 				D5EE56B1166E6604008E389D /* WMSetMarkerViewController.m in Sources */,
 				DB5683A2166E9F35005B2EE5 /* WMCategoryViewController.m in Sources */,
 				03F30C011670AF7700241466 /* WMDashboardButton.m in Sources */,
-				03F30C551670B80600241466 /* WMLoginViewController.m in Sources */,
 				98655CC61675FE18007083DF /* WMKeychainWrapper.m in Sources */,
 				D555D3861675E4A600C58813 /* WMCompassView.m in Sources */,
 				D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */,

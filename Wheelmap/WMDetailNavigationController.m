@@ -9,7 +9,6 @@
 #import "WMDetailNavigationController.h"
 #import "WMDetailViewController.h"
 #import "WMEditPOIViewController.h"
-#import "WMLoginViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMCommentViewController.h"
 #import "WMRootViewController_iPad.h"
@@ -67,22 +66,23 @@
 -(void)pressedDashboardButton:(WMNavigationBar*)navigationBar {}
 
 -(void)pressedEditButton:(WMNavigationBar*)navigationBar {
-    if (![dataManager userIsAuthenticated]) {
-        [self presentLoginScreenWithButtonFrame:CGRectZero];
+	// Check if the user is logged in.
+    if (([dataManager userIsAuthenticated] == NO) && ([self.listViewController.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES)) {
+		// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
+		[((WMNavigationControllerBase *)self.listViewController.navigationController) presentLoginScreen];
         return;
-    }
-    
-    if ([self.topViewController isKindOfClass:[WMDetailViewController class]]) {
-        
-        WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
-        vc.node = ((WMDetailViewController *)self.topViewController).node;
-        vc.initialCoordinate = self.initialCoordinate;
-        vc.editView = YES;
-        vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-        [self pushViewController:vc animated:YES];
-    } else {
-        NSLog(@"ERROR! Pushing Edit screen from sth different than Detail screen");
-    }
+	}
+
+	if ([self.topViewController isKindOfClass:[WMDetailViewController class]] == YES) {
+		WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
+		vc.node = ((WMDetailViewController *)self.topViewController).node;
+		vc.initialCoordinate = self.initialCoordinate;
+		vc.editView = YES;
+		vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
+		[self pushViewController:vc animated:YES];
+	}else {
+		NSLog(@"ERROR! Pushing Edit screen from sth. different than Detail screen");
+	}
 }
 
 
@@ -111,18 +111,6 @@
 
 -(void)searchStringIsGiven:(NSString*)query {}
 
--(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
-{
-    WMLoginViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLoginViewController"];
-    if (self.listViewController.controllerBase != nil) {
-        vc.baseController = self.listViewController.controllerBase;
-    }
-    vc.popoverButtonFrame = frame;
-    vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"Sign In", @"");
-    self.customNavigationBar.title = vc.navigationBarTitle;
-    [self pushViewController:vc animated:YES];
-}
-
 #pragma mark - NavigationController stack
 
 - (void)changeScreenStatusFor:(UIViewController *)viewController {
@@ -137,9 +125,6 @@
             self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         }
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
-    } else if ([viewController isKindOfClass:[WMLoginViewController class]]) {
-        self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
-        self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleCancelButton;
     } else if ([viewController isKindOfClass:[WMCommentViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
@@ -194,25 +179,6 @@
 {
     [super setViewControllers:viewControllers animated:animated];
     [self changeScreenStatusFor:[viewControllers lastObject]];
-}
-
-- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self dismissViewControllerAnimated:NO completion:nil];
-        if ([modalViewController isKindOfClass:[WMLoginViewController class]]) {
-            ((WMLoginViewController *)modalViewController).popover = [[WMPopoverController alloc]
-                                                                 initWithContentViewController:modalViewController];
-            ((WMLoginViewController *)modalViewController).baseController = self;
-            
-            if ((((WMLoginViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMLoginViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
-                ((WMLoginViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMLoginViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMLoginViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
-            }
-            
-            [((WMLoginViewController *)modalViewController).popover presentPopoverFromRect:((WMLoginViewController *)modalViewController).popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
-        }
-    } else {
-        [super presentViewController:modalViewController animated:animated completion:nil];
-    }
 }
 
 - (void) showLoadingWheel {

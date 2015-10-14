@@ -16,7 +16,6 @@
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
-//#import "WMLoginViewController.h"
 #import "WMOSMStartViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "WMNodeTypeTableViewController.h"
@@ -965,13 +964,7 @@
     if (![dataManager userIsAuthenticated]) {
         if ([self.customToolBar isKindOfClass:[WMToolBar_iPad class]]) {
             
-            CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
-            
-            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
-            if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
-            }
-            [self presentLoginScreenWithButtonFrame:CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height)];
+			[self presentLoginScreen];
             return;
         } else {
             [self presentLoginScreenWithButtonFrame:CGRectZero];
@@ -1504,6 +1497,17 @@
 }
 
 #pragma mark - Show Login screen
+
+- (void)presentLoginScreen {
+	CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
+
+	CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
+	if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+		yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
+	}
+	[self presentLoginScreenWithButtonFrame:CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height)];
+}
+
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
     WMOSMStartViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
