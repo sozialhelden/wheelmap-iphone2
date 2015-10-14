@@ -67,7 +67,7 @@
 
 -(void)pressedEditButton:(WMNavigationBar*)navigationBar {
 	// Check if the user is logged in.
-    if (([dataManager userIsAuthenticated] == NO) && ([self.listViewController.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES)) {
+    if ((dataManager.userIsAuthenticated == NO) && ([self.listViewController.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES)) {
 		// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
 		[((WMNavigationControllerBase *)self.listViewController.navigationController) presentLoginScreen];
         return;
