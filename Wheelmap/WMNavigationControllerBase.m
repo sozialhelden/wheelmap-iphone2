@@ -69,9 +69,7 @@
     [super viewDidLoad];
     
     self.delegate = self;
-    
-    self.mapViewController = self;
-    
+
     self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
