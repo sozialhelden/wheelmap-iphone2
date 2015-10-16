@@ -88,7 +88,8 @@
     [self.whyButton setTitle:NSLocalizedString(@"WhyOSMAccount", nil) forState:UIControlStateNormal];
     
     self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.registerButton.frame.origin.y + self.registerButton.frame.size.height + 20.0f);
-    
+
+	self.preferredContentSize = CGSizeMake(320.0f, 547.0f);
 }
 
 - (void)adjustLabelHeightToText:(UILabel *)label {
@@ -224,10 +225,6 @@
                                                       object:nil];
     }
     [super viewDidDisappear:animated];
-}
-
-- (CGSize)contentSizeForViewInPopover {
-    return CGSizeMake(320.0f, 550.0f);
 }
 
 - (void) didReceiveAuthenticationData:(NSNotification*)n{
