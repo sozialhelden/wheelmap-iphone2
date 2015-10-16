@@ -44,6 +44,9 @@
     }
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
+
+	// Set the preferred content size to make sure the popover controller has the right size.
+	self.preferredContentSize = CGSizeMake(320.0f, 550.0f);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -89,10 +92,6 @@
 -(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
-}
-
-- (CGSize)contentSizeForViewInPopover {
-    return CGSizeMake(320.0f, 550.0f);
 }
 
 - (void)presentForcedModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
