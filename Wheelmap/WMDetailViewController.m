@@ -155,7 +155,9 @@
     [self.mapView addGestureRecognizer:enlargeMapRecognizer];
     
     [self.scrollView addSubview:self.mainView];
-    
+
+	// Set the preferred content size to make sure the popover controller has the right size.
+	self.preferredContentSize = self.scrollView.contentSize;
 }
 
 - (void)viewDidUnload {
@@ -448,13 +450,6 @@
     belowButtonLabel.textColor = [UIColor darkGrayColor];
     belowButtonLabel.textAlignment = NSTextAlignmentCenter;
     return belowButtonLabel;
-}
-
-/* Set a fixed size for view in popovers */
-
-- (CGSize)contentSizeForViewInPopover
-{
-    return CGSizeMake(320.0f, 590.0f);
 }
 
 - (void)updateFields {
