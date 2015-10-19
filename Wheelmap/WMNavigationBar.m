@@ -602,28 +602,16 @@
 
 - (void)adjustButtonsToPopoverPresentation {
     // back button
-    UIImageView* backBtnBgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 32)];
-    backBtnBgImg.image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 10)];
-    WMLabel* backBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(15, 0, 100, 30)];
-    backBtnLabel.fontSize = 13.0;
-    backBtnLabel.text = NSLocalizedString(@"BackButton", nil);
-    backBtnLabel.textColor = [UIColor whiteColor];
-    CGSize expSize = [backBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                    attributes:@{NSFontAttributeName:backBtnLabel.font}
-                                                       context:nil].size;
-    if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-    backBtnLabel.frame = CGRectMake(backBtnLabel.frame.origin.x, backBtnLabel.frame.origin.y, expSize.width, backBtnLabel.frame.size.height);
-    backBtnBgImg.frame  = CGRectMake(0, 0, backBtnLabel.frame.size.width+20, 32);
-    [backBtnBgImg addSubview:backBtnLabel];
-    
+    UIImage *image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 12.f, 0, 12.f)];
+
+
     BOOL hidden = backButton.hidden;
-    
+
     [backButton removeFromSuperview];
     
     backButton = [WMButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(8, 12, backBtnBgImg.frame.size.width, backBtnBgImg.frame.size.height);
-    [backButton setView:backBtnBgImg forControlState:UIControlStateNormal];
+    backButton.frame = CGRectMake(0, 0, 40, 30);
+	[backButton setBackgroundImage:image forState:UIControlStateNormal];
     backButton.hidden = hidden;
     [backButton addTarget:self action:@selector(pressedBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:backButton];
@@ -640,7 +628,7 @@
     normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
     normalBtnLabel.textAlignment = NSTextAlignmentCenter;
     normalBtnLabel.textColor = [UIColor whiteColor];
-    expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
+    CGSize expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:@{NSFontAttributeName:normalBtnLabel.font}
                                               context:nil].size;
