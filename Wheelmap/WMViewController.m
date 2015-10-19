@@ -44,6 +44,9 @@
     }
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
+
+	// Set the preferred content size to make sure the popover controller has the right size.
+	self.preferredContentSize = CGSizeMake(320.0f, 547.0f);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -89,10 +92,6 @@
 -(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
-}
-
-- (CGSize)contentSizeForViewInPopover {
-    return CGSizeMake(320.0f, 550.0f);
 }
 
 - (void)presentForcedModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated {
@@ -164,14 +163,19 @@
             
             [self dismissViewControllerAnimated:NO];
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
-                ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
-                ((WMViewController *)modalViewController).baseController = self.baseController;
-                
-                if ((((WMViewController *)modalViewController).popoverButtonFrame.size.width == 0) || (((WMViewController *)modalViewController).popoverButtonFrame.size.height == 0)) {
-                    ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(((WMViewController *)modalViewController).popoverButtonFrame.origin.x, ((WMViewController *)modalViewController).popoverButtonFrame.origin.y, 10.0f, 10.0f);
+				WMViewController *wmViewController = (WMViewController *)modalViewController;
+                wmViewController.popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
+                wmViewController.baseController = self.baseController;
+
+				UIPopoverArrowDirection popoverDirection = UIPopoverArrowDirectionAny;
+                if ((wmViewController.popoverButtonFrame.size.width == 0) || (wmViewController.popoverButtonFrame.size.height == 0)) {
+					// Show the popover controller in the middle of the screen if no rect is set.
+                    wmViewController.popoverButtonFrame = CGRectMake(UIScreen.mainScreen.bounds.size.width/2, UIScreen.mainScreen.bounds.size.height/2, 1.0f, 1.0f);
+					// Use now arrows
+					popoverDirection = 0;
                 }
                 
-                [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
+                [wmViewController.popover presentPopoverFromRect:wmViewController.popoverButtonFrame inView:self.baseController.view permittedArrowDirections:popoverDirection animated:animated];
             }
         } else {
             if ((self.baseController != nil) && (self.baseController.view != nil)) {

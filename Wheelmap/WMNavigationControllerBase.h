@@ -73,6 +73,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 - (void)showAcceptTermsViewController;
 
--(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
+- (void)presentLoginScreen;
+- (void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 
 @end

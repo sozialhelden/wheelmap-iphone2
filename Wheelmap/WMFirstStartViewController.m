@@ -27,7 +27,6 @@
     self.loginLabel.text = NSLocalizedString(@"Sign In Button", nil);
     
     [self.okButton setTitle:NSLocalizedString(@"FirstStartButton", nil) forState:UIControlStateNormal];
-    [self.okButton setBackgroundImage:[[UIImage imageNamed:@"buttons_btn.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
     
     [self adjustLabelHeightToText:self.firstTextLabel];
     

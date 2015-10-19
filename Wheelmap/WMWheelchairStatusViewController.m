@@ -98,7 +98,9 @@
     progressWheel.layer.cornerRadius = 5.0;
     progressWheel.layer.masksToBounds = YES;
     [self.view addSubview:progressWheel];
-    
+
+	// Set the preferred content size to make sure the popover controller has the right size.
+	self.preferredContentSize = CGSizeMake(320, 480);
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -174,16 +176,6 @@
     
     return checkMarkView;
 }
-
-
-/* Set a fixed size for view in popovers */
-
-- (CGSize)contentSizeForViewInPopover
-{
-    return CGSizeMake(320, 480);
-}
-
-
 
 - (void)viewDidUnload {
     [self setYesButton:nil];

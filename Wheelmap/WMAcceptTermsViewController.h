@@ -11,18 +11,18 @@
 
 @interface WMAcceptTermsViewController : WMViewController <WMDataManagerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIScrollView* scrollView;
-@property (nonatomic, weak) IBOutlet UILabel* textLabel;
-@property (nonatomic, weak) IBOutlet UIButton* interceptButton;
-@property (nonatomic, weak) IBOutlet UIButton* intercept2Button;
-@property (nonatomic, weak) IBOutlet UITextView* linkTextView;
-@property (nonatomic, weak) IBOutlet UITextView* link2TextView;
-@property (nonatomic, weak) IBOutlet UIButton* acceptButton;
-@property (nonatomic, weak) IBOutlet UIButton* declineButton;
-@property (nonatomic, weak) IBOutlet UILabel* titleLabel;
-@property (nonatomic, weak) IBOutlet UIView* loadingWheel;
-@property (nonatomic, weak) IBOutlet UIButton* checkBoxTermsButton;
-@property (nonatomic, weak) IBOutlet UIButton* checkBoxDataButton;
+@property (nonatomic, weak) IBOutlet UIScrollView *			scrollView;
+@property (nonatomic, weak) IBOutlet UILabel *				textLabel;
+@property (nonatomic, weak) IBOutlet UIButton *				interceptButton;
+@property (nonatomic, weak) IBOutlet UIButton *				intercept2Button;
+@property (nonatomic, weak) IBOutlet UITextView *			linkTextView;
+@property (nonatomic, weak) IBOutlet UITextView *			link2TextView;
+@property (nonatomic, weak) IBOutlet WMStandardButton *		acceptButton;
+@property (nonatomic, weak) IBOutlet WMStandardButton *		declineButton;
+@property (nonatomic, weak) IBOutlet UILabel *				titleLabel;
+@property (nonatomic, weak) IBOutlet UIView *				loadingWheel;
+@property (nonatomic, weak) IBOutlet UIButton *				checkBoxTermsButton;
+@property (nonatomic, weak) IBOutlet UIButton *				checkBoxDataButton;
 
 -(IBAction)pressedAcceptButton:(id)sender;
 -(IBAction)pressedDeclineButton:(id)sender;
