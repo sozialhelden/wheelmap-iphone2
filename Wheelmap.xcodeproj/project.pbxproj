@@ -783,6 +783,9 @@
 		74A5C40F1B3432460002E1D5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74A5C40C1B3432460002E1D5 /* WMConfig.plist */; };
 		757E60E31BCC123A00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E21BCC123A00E31CFB /* libPods.a */; };
 		757E60E91BCC12AB00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E81BCC12AB00E31CFB /* libPods.a */; };
+		87910DE71BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */; };
+		87910DE81BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */; };
+		87910DE91BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -1193,6 +1196,8 @@
 		757E60E21BCC123A00E31CFB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		757E60E81BCC12AB00E31CFB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		75915A251B5FFA3600FAE2E7 /* Wheelmap-Info-LIVE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wheelmap-Info-LIVE.plist"; sourceTree = "<group>"; };
+		87910DE51BD4E79B00E0CAE0 /* WMStandardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStandardButton.h; sourceTree = "<group>"; };
+		87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStandardButton.m; sourceTree = "<group>"; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -1829,6 +1834,15 @@
 			name = beta;
 			sourceTree = "<group>";
 		};
+		87910DE41BD4E78200E0CAE0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87910DE51BD4E79B00E0CAE0 /* WMStandardButton.h */,
+				87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9890C536168F337900AD7C07 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1909,6 +1923,7 @@
 		989927551649151300D9003B /* Wheelmap */ = {
 			isa = PBXGroup;
 			children = (
+				87910DE41BD4E78200E0CAE0 /* Views */,
 				C5AA825D18A274D1001B2BBA /* Images.xcassets */,
 				DB4EB52B167FC7CD0096CEDE /* SharingManager */,
 				9899275E1649151300D9003B /* WMAppDelegate.h */,
@@ -3443,6 +3458,7 @@
 				18A4EA271AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */,
 				0327F96916BFFB1900BA7DE7 /* UIDevice+Hardware.m in Sources */,
 				0327F96A16BFFB1900BA7DE7 /* WMAcceptTermsViewController.m in Sources */,
+				87910DE81BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */,
 				0327F96B16BFFB1900BA7DE7 /* WMTermsViewController.m in Sources */,
 				0327F96C16BFFB1900BA7DE7 /* Reachability.m in Sources */,
 				0327F96D16BFFB1900BA7DE7 /* WMToolBar_iPad.m in Sources */,
@@ -3553,6 +3569,7 @@
 				18A4EA281AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */,
 				980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */,
 				15F31E6516A6BCD2006EDBC8 /* WMAcceptTermsViewController.m in Sources */,
+				87910DE91BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */,
 				15F31E6716A6BCD6006EDBC8 /* WMTermsViewController.m in Sources */,
 				15F31E6C16A6D6FD006EDBC8 /* Reachability.m in Sources */,
 				031B9CA616AEC7D600AA0317 /* WMToolBar_iPad.m in Sources */,
@@ -3661,6 +3678,7 @@
 				15DBF5AE169B7B8000EBAC2A /* FBLoginDialog.m in Sources */,
 				15DBF5AF169B7B8000EBAC2A /* FBRequest.m in Sources */,
 				15DBF5B3169B7C0400EBAC2A /* WMCreditsViewController.m in Sources */,
+				87910DE71BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */,
 				0360B842169DACDC00E04026 /* WMRegisterViewController.m in Sources */,
 				9896047016A08225009418A2 /* Node.m in Sources */,
 				98AA096416A32A77006AC882 /* Tile.m in Sources */,

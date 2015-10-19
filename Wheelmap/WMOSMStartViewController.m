@@ -75,10 +75,7 @@
     self.stepsTextView.frame = self.stepsTextView.frame;
     self.stepsTextView.text = NSLocalizedString(@"StepsToOSMAccount", nil);
     
-    
-    [self.loginButton setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
-    self.loginButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
-    [self.loginButton sizeToFit];
+
     self.loginButton.frame = CGRectMake(320.0f - self.loginButton.frame.size.width - 10.0f, self.stepsTextView.frame.origin.y + self.stepsTextView.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
     [self.loginButton setTitle:NSLocalizedString(@"LoginOverOSM", nil) forState:UIControlStateNormal];
     
