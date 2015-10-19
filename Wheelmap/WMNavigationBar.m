@@ -52,7 +52,6 @@
         
         // cancel button
         UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
@@ -79,7 +78,6 @@
         CGRect rightButtonRect = CGRectMake(self.frame.size.width-5-40, 5, 40, 40);
 
         UIImageView* normalBtnImg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnImg1.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         WMLabel* normalBtnLabel1 = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel1.fontSize = 13.0;
         normalBtnLabel1.text = NSLocalizedString(@"Cancel", nil);
@@ -118,7 +116,6 @@
         
         // edit button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"NavBarEditButton", nil);
@@ -146,7 +143,6 @@
         
         // save button
         normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
         normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
         normalBtnLabel.fontSize = 13.0;
         normalBtnLabel.text = NSLocalizedString(@"NavBarSaveButton", nil);
@@ -634,7 +630,6 @@
     [cancelButton removeFromSuperview];
     
     UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 32)];
-    normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
     WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     normalBtnLabel.fontSize = 13.0;
     normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
@@ -676,7 +671,6 @@
     [self.editButton removeFromSuperview];
     
     normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 32)];
-    normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
     normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     normalBtnLabel.fontSize = 13.0;
     normalBtnLabel.text = NSLocalizedString(@"NavBarEditButton", nil);
@@ -707,7 +701,6 @@
     [saveButton removeFromSuperview];
     
     normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 32)];
-    normalBtnImg.image = [[UIImage imageNamed:@"buttons_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)];
     normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     normalBtnLabel.fontSize = 13.0;
     normalBtnLabel.text = NSLocalizedString(@"NavBarSaveButton", nil);

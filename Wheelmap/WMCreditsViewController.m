@@ -123,6 +123,9 @@
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(donePressed:)];
     [self.view addGestureRecognizer:tapGR];
+
+	// Set the preferred content size to make sure the popover controller has the right size.
+	self.preferredContentSize =  CGSizeMake(320.0f, 567.0f);
 }
 
 - (void)osmButtonPressed {
@@ -135,10 +138,6 @@
 
 - (IBAction)donePressed:(id)sender {
     [self dismissViewControllerAnimated:YES];
-}
-
-- (CGSize)contentSizeForViewInPopover {
-    return CGSizeMake(320.0f, 600.0f);
 }
 
 @end
