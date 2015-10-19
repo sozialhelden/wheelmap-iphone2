@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
     self.scrollView.scrollsToTop = YES;
-    
+
     self.scrollView.backgroundColor = [UIColor wmGreyColor];
     
     self.dataManager = [[WMDataManager alloc] init];
@@ -55,6 +55,7 @@
     self.cityTextField.delegate = self;
     self.websiteTextField.delegate = self;
     self.phoneTextField.delegate = self;
+	self.infoPlaceholderTextView.placeholder = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewStreet", @"");
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewHousenumber", @"");
     self.streetTextField.placeholder = NSLocalizedString(@"EditPOIViewPostcode", @"");
@@ -113,9 +114,7 @@
     [self styleInputView:self.addressInputView];
     [self styleInputView:self.websiteInputView];
     [self styleInputView:self.phoneInputView];
-    
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
-    
+
     // progress wheel
     progressWheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     progressWheel.frame = CGRectMake(0, 0, 50, 50);
@@ -136,8 +135,13 @@
     self.navigationBarTitle = self.title;
     
     [(WMDetailNavigationController *)self.navigationController changeScreenStatusFor:self];
-    
+
     [self updateFields];
+
+	// Update the scroll view constrians
+	self.scrollViewContentWidthConstraint.constant = self.view.frame.size.width;
+	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + self.phoneInputViewBottomConstraint.constant;
+	[self.scrollView layoutIfNeeded];
 }
 
 - (void) updateFields {
@@ -146,26 +150,14 @@
     [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
     [self setWheelAccessButton];
     self.infoTextView.text = self.node.wheelchair_description;
+	// Show the infoTextView if no info is set.
+	self.infoPlaceholderTextView.hidden = !(self.infoTextView.text == nil || self.infoTextView.text.length == 0);
     self.streetTextField.text = self.node.street;
     self.housenumberTextField.text = self.node.housenumber;
     self.postcodeTextField.text = self.node.postcode;
     self.cityTextField.text = self.node.city;
     self.websiteTextField.text = self.node.website;
     self.phoneTextField.text = self.node.phone;
-    
-    CGRect frame = self.infoTextView.frame;
-    frame.size.height = self.infoTextView.contentSize.height + 10.0f;
-    self.infoTextView.frame = frame;
-    
-    self.infoInputView.frame = CGRectMake(self.infoInputView.frame.origin.x, self.infoInputView.frame.origin.y, self.infoInputView.frame.size.width, frame.size.height);
-    
-    self.addressInputView.frame = CGRectMake(self.addressInputView.frame.origin.x, self.infoInputView.frame.origin.y + self.infoInputView.frame.size.height + 10.0f, self.addressInputView.frame.size.width, 124);//self.addressInputView.frame.size.height);
-    
-    self.websiteInputView.frame = CGRectMake(self.websiteInputView.frame.origin.x, self.addressInputView.frame.origin.y + self.addressInputView.frame.size.height + 10.0f, self.websiteInputView.frame.size.width, self.websiteInputView.frame.size.height);
-    
-    self.phoneInputView.frame = CGRectMake(self.phoneInputView.frame.origin.x, self.websiteInputView.frame.origin.y + self.websiteInputView.frame.size.height + 10.0f, self.phoneInputView.frame.size.width, self.phoneInputView.frame.size.height);
-    
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -489,20 +481,14 @@
     NSString* newText = [self.infoTextView.text stringByReplacingCharactersInRange:aRange withString:aText];
     
     if (aTextView == self.infoTextView) {
-        CGRect frame = self.infoTextView.frame;
-        frame.size.height = self.infoTextView.contentSize.height + 10.0f;
-        self.infoTextView.frame = frame;
-        
-        self.infoInputView.frame = CGRectMake(self.infoInputView.frame.origin.x, self.infoInputView.frame.origin.y, self.infoInputView.frame.size.width, frame.size.height);
-        
-        self.addressInputView.frame = CGRectMake(self.addressInputView.frame.origin.x, self.infoInputView.frame.origin.y + self.infoInputView.frame.size.height + 10.0f, self.addressInputView.frame.size.width, self.addressInputView.frame.size.height);
-        
-        self.websiteInputView.frame = CGRectMake(self.websiteInputView.frame.origin.x, self.addressInputView.frame.origin.y + self.addressInputView.frame.size.height + 10.0f, self.websiteInputView.frame.size.width, self.websiteInputView.frame.size.height);
-        
-        self.phoneInputView.frame = CGRectMake(self.phoneInputView.frame.origin.x, self.websiteInputView.frame.origin.y + self.websiteInputView.frame.size.height + 10.0f, self.phoneInputView.frame.size.width, self.phoneInputView.frame.size.height);
-        
-        [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + 20)];
-        
+
+		self.infoInputViewHeightConstraint.constant = self.infoTextView.contentSize.height + 2 * self.infoTextViewTopConstraint.constant;
+
+		[UIView animateWithDuration:K_ANIMATION_DURATION_SHORT animations:^{
+			[self.view layoutIfNeeded];
+		}];
+
+		self.infoPlaceholderTextView.hidden = (newText.length > 0);
     }
     
     if([aText isEqualToString:@"\n"]) {
@@ -517,46 +503,47 @@
     }
 }
 
-
-- (void)keyboardWillHide:(NSNotification *)n {
+- (void)keyboardWillHide:(NSNotification *)notification {
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        
-        NSDictionary* info = [n userInfo];
-        CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationDuration:0.2];
-        self.scrollView.frame = CGRectMake(0, 70, self.scrollView.frame.size.width, self.scrollView.frame.size.height + keyboardSize.height);
-        [UIView commitAnimations];
-        
-        self.keyboardIsShown = NO;
+		[self keyboardDidMove:notification];
     }
-    
+
+	self.keyboardIsShown = NO;
+
     [self saveCurrentEntriesToCurrentNode];
 }
 
-- (void)keyboardWillShow:(NSNotification *)n {
+- (void)keyboardWillShow:(NSNotification *)notification {
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         
         if (self.keyboardIsShown) {
             return;
         }
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationDuration:0.2];
-        
-        NSDictionary* info = [n userInfo];
-        CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-        
-        self.scrollView.frame = CGRectMake(0, 70, self.scrollView.frame.size.width, self.scrollView.frame.size.height - keyboardSize.height);
-        [UIView commitAnimations];
+
+		[self keyboardDidMove:notification];
     }
     
     self.keyboardIsShown = YES;
+}
+
+- (void)keyboardDidMove:(NSNotification *)notification {
+	// Adjust the keyboard bottom spacing to match the keyboard position
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
+	[UIView setAnimationCurve:[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue]];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+
+	BOOL isOpening = ([notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].origin.y > [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].origin.y);
+
+	UIEdgeInsets contentInset = self.scrollView.contentInset;
+	contentInset.bottom = (isOpening ? [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height : 0);
+	self.scrollView.contentInset = contentInset;
+	self.scrollView.scrollIndicatorInsets = contentInset;
+	[self.scrollView layoutIfNeeded];
+
+	[UIView commitAnimations];
 }
 
 @end
