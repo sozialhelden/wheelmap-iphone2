@@ -10,10 +10,10 @@
 
 @interface WMLogoutViewController : WMViewController
 
-@property (nonatomic, weak) IBOutlet UIButton* logoutButton;
-@property (nonatomic, weak) IBOutlet UIButton* cancelButton;
-@property (nonatomic, weak) IBOutlet UILabel* titleLabel;
-@property (nonatomic, weak) IBOutlet UILabel* topTextLabel;
+@property (nonatomic, weak) IBOutlet WMStandardButton *		logoutButton;
+@property (nonatomic, weak) IBOutlet UIButton *				cancelButton;
+@property (nonatomic, weak) IBOutlet UILabel *				titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *				topTextLabel;
 
 @property(nonatomic,strong)IBOutlet UIView* containerView;
 

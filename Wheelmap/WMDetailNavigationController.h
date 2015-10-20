@@ -19,7 +19,6 @@
 @property (nonatomic, strong) WMNavigationBar* customNavigationBar;
 @property (nonatomic, assign) CLLocationCoordinate2D initialCoordinate;
 
--(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 - (void) showLoadingWheel;
 - (void)changeScreenStatusFor:(UIViewController *)viewController;
 - (void)mapWasMoved:(CLLocationCoordinate2D)coordinate;

@@ -35,16 +35,15 @@
     
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.title = @"";
+
+	// Set the preferred content size to make sure the popover controller has the right size.
+	self.preferredContentSize = CGSizeMake(320.0f, 590.0f);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (CGSize)contentSizeForViewInPopover {
-    return CGSizeMake(320.0f, 590.0f);
 }
 
 @end

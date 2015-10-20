@@ -298,40 +298,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uEm-sD-f33" userLabel="Container View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEm-sD-f33" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MNP-q7-mdB">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNP-q7-mdB">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                         <animations/>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                     </scrollView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twS-E8-IFu" customClass="WMLabel">
-                                        <rect key="frame" x="80" y="12" width="143" height="21"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Gf-FX-Wxz" userLabel="Navigation View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Credit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twS-E8-IFu" customClass="WMLabel">
+                                                <rect key="frame" x="136" y="12" width="48" height="21"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="sE4-9c-1aU"/>
+                                                </constraints>
+                                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCy-Uo-OcN" customClass="WMButton">
+                                                <rect key="frame" x="274" y="4" width="37" height="37"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37" id="FV1-ee-qI8"/>
+                                                    <constraint firstAttribute="height" constant="37" id="M43-zd-991"/>
+                                                </constraints>
+                                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                                <state key="normal" title="Done">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="donePressed:" destination="LHv-7p-vb9" eventType="touchUpInside" id="ULY-mk-d2w"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <animations/>
-                                        <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCy-Uo-OcN" customClass="WMButton">
-                                        <rect key="frame" x="239" y="6" width="72" height="37"/>
-                                        <animations/>
-                                        <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="donePressed:" destination="LHv-7p-vb9" eventType="touchUpInside" id="ULY-mk-d2w"/>
-                                        </connections>
-                                    </button>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerY" secondItem="dCy-Uo-OcN" secondAttribute="centerY" id="0kk-A2-ywG"/>
+                                            <constraint firstAttribute="centerX" secondItem="twS-E8-IFu" secondAttribute="centerX" id="6xf-vZ-hkL"/>
+                                            <constraint firstAttribute="height" constant="44" id="Ct0-TL-5eT"/>
+                                            <constraint firstAttribute="centerY" secondItem="twS-E8-IFu" secondAttribute="centerY" id="cfD-fQ-HZN"/>
+                                            <constraint firstAttribute="trailing" secondItem="dCy-Uo-OcN" secondAttribute="trailing" constant="9" id="xG6-FI-PEh"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5Gf-FX-Wxz" secondAttribute="trailing" id="IZf-jM-kHv"/>
+                                    <constraint firstItem="5Gf-FX-Wxz" firstAttribute="top" secondItem="uEm-sD-f33" secondAttribute="top" id="JwW-5R-eqM"/>
+                                    <constraint firstItem="MNP-q7-mdB" firstAttribute="leading" secondItem="uEm-sD-f33" secondAttribute="leading" id="VGH-wb-TgF"/>
+                                    <constraint firstAttribute="bottom" secondItem="MNP-q7-mdB" secondAttribute="bottom" id="W5M-Sf-xwU"/>
+                                    <constraint firstItem="MNP-q7-mdB" firstAttribute="top" secondItem="5Gf-FX-Wxz" secondAttribute="bottom" id="Z4n-79-hR1"/>
+                                    <constraint firstItem="5Gf-FX-Wxz" firstAttribute="leading" secondItem="uEm-sD-f33" secondAttribute="leading" id="eHl-d4-G2A"/>
+                                    <constraint firstAttribute="trailing" secondItem="MNP-q7-mdB" secondAttribute="trailing" id="xxJ-yE-o4V"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uEm-sD-f33" firstAttribute="leading" secondItem="uY5-zF-5c6" secondAttribute="leading" id="JGP-1z-si9"/>
+                            <constraint firstItem="uEm-sD-f33" firstAttribute="top" secondItem="7kk-ou-rSP" secondAttribute="bottom" id="cbA-sL-BrH"/>
+                            <constraint firstAttribute="trailing" secondItem="uEm-sD-f33" secondAttribute="trailing" id="hgR-pv-xGL"/>
+                            <constraint firstItem="WdG-qs-8gO" firstAttribute="top" secondItem="uEm-sD-f33" secondAttribute="bottom" id="nzZ-vR-AY3"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
@@ -379,210 +415,6 @@
             </objects>
             <point key="canvasLocation" x="-1137" y="728"/>
         </scene>
-        <!--Login View Controller-->
-        <scene sceneID="iLj-YD-2e8">
-            <objects>
-                <viewController storyboardIdentifier="WMLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5Ta-cN-i2J" customClass="WMLoginViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Vgd-0s-03q"/>
-                        <viewControllerLayoutGuide type="bottom" id="2rR-8F-u0d"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="equ-e3-EoV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FEn-2i-HbD" userLabel="Navigation Bar">
-                                <rect key="frame" x="0.0" y="20" width="320" height="50"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Vz-L1-bT3">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                        <animations/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUF-Rd-CnZ">
-                                        <rect key="frame" x="89" y="14" width="143" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1u-e5-3lQ">
-                                        <rect key="frame" x="240" y="6" width="72" height="37"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="donePressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="0tq-vQ-ldC"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ekh-9c-kjK" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ak3-pt-8a4">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="M3P-qa-2L9">
-                                                <rect key="frame" x="83" y="24" width="155" height="31"/>
-                                                <animations/>
-                                            </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="blt-ZI-Wkm" userLabel="Below icon Label">
-                                                <rect key="frame" x="15" y="76" width="290" height="16"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SYC-n0-7i9">
-                                                <rect key="frame" x="9" y="105" width="303" height="40"/>
-                                                <animations/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pkX-PT-U9F">
-                                                <rect key="frame" x="9" y="165" width="303" height="40"/>
-                                                <animations/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
-                                            </textField>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGJ-Ge-ByF">
-                                                <rect key="frame" x="9" y="213" width="216" height="49"/>
-                                                <animations/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouY-I0-qBM" userLabel="Text View Button">
-                                                <rect key="frame" x="9" y="213" width="216" height="49"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="forgotPasswordButtonPressed" destination="5Ta-cN-i2J" eventType="touchDown" id="3VO-5f-uKv"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7L1-bg-SOP" userLabel="Small Button">
-                                                <rect key="frame" x="238" y="213" width="72" height="37"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                <state key="normal" backgroundImage="buttons_btn.png">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="loginPressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="zPW-ev-xgV"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="m5h-II-yAd" userLabel="Middle Text Label">
-                                                <rect key="frame" x="15" y="270" width="290" height="70"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Jev-cq-waY" userLabel="Web Login Label">
-                                                <rect key="frame" x="15" y="339" width="290" height="16"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtu-DS-4yF" userLabel="Web Login Button">
-                                                <rect key="frame" x="15" y="339" width="290" height="16"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="webLoginPressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="EGX-0x-yU5"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="viA-74-l5N" userLabel="Bottom Text Label">
-                                                <rect key="frame" x="15" y="368" width="290" height="40"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iQ-N6-wam" userLabel="Large Button">
-                                                <rect key="frame" x="15" y="422" width="290" height="50"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                <state key="normal" backgroundImage="buttons_btn-signup.png">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="registerPressed:" destination="5Ta-cN-i2J" eventType="touchUpInside" id="LAn-ZA-YHv"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <animations/>
-                                        <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                                    </scrollView>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <connections>
-                        <outlet property="bottomTextLabel" destination="viA-74-l5N" id="2hB-SM-jnS"/>
-                        <outlet property="contentScrollView" destination="ak3-pt-8a4" id="Ulb-qv-8Fj"/>
-                        <outlet property="doneButton" destination="P1u-e5-3lQ" id="XAo-LM-gul"/>
-                        <outlet property="forgotPasswordButton" destination="ouY-I0-qBM" id="PQe-sz-ROy"/>
-                        <outlet property="forgotPasswordTextView" destination="oGJ-Ge-ByF" id="GdW-nz-v5p"/>
-                        <outlet property="headerView" destination="FEn-2i-HbD" id="bLv-nn-z20"/>
-                        <outlet property="loginButton" destination="7L1-bg-SOP" id="quU-fP-j0G"/>
-                        <outlet property="logoImageView" destination="M3P-qa-2L9" id="aQ4-Uy-m3q"/>
-                        <outlet property="middleTextLabel" destination="m5h-II-yAd" id="OWU-qp-gBV"/>
-                        <outlet property="passwordTextField" destination="pkX-PT-U9F" id="T8B-Rv-5yj"/>
-                        <outlet property="registerButton" destination="8iQ-N6-wam" id="cHx-nD-F4D"/>
-                        <outlet property="titleLabel" destination="RUF-Rd-CnZ" id="gbY-hV-1ME"/>
-                        <outlet property="topTextLabel" destination="blt-ZI-Wkm" id="9QZ-yz-rWb"/>
-                        <outlet property="usernameTextField" destination="SYC-n0-7i9" id="0xP-oR-mL0"/>
-                        <outlet property="view" destination="equ-e3-EoV" id="Ohj-YU-fh4"/>
-                        <outlet property="webLoginButton" destination="Xtu-DS-4yF" id="Aom-JV-fa8"/>
-                        <outlet property="webLoginLabel" destination="Jev-cq-waY" id="GT4-Cw-M1K"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G9Y-kZ-aNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-686" y="33"/>
-        </scene>
         <!--Start View Controller-->
         <scene sceneID="jdI-IH-X6j">
             <objects>
@@ -595,8 +427,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csz-5Q-mxa" userLabel="Navigation Bar">
-                                <rect key="frame" x="0.0" y="20" width="320" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSc-BA-nhq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="kvU-Jz-Ca9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csz-5Q-mxa" userLabel="Navigation Bar">
+                                <rect key="frame" x="0.0" y="20" width="320" height="48"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKY-Ga-HTa">
                                         <rect key="frame" x="89" y="14" width="143" height="21"/>
@@ -620,11 +460,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-z6-UZd" userLabel="Container View">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-z6-UZd" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="68" width="320" height="500"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf9-oE-Vft">
-                                        <rect key="frame" x="0.0" y="0.0" width="321" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="321" height="520"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="eGA-Ra-E0q">
                                                 <rect key="frame" x="83" y="20" width="155" height="31"/>
@@ -637,7 +477,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUE-4s-891" userLabel="Small Button">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUE-4s-891" userLabel="Small Button" customClass="WMStandardButton">
                                                 <rect key="frame" x="60" y="105" width="200" height="37"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
@@ -716,8 +556,16 @@
                             </view>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hSc-BA-nhq" firstAttribute="leading" secondItem="LUy-zb-cxk" secondAttribute="leading" id="1oi-1Y-L3Y"/>
+                            <constraint firstItem="KRS-z6-UZd" firstAttribute="top" secondItem="csz-5Q-mxa" secondAttribute="bottom" id="ErI-u3-Vgr"/>
+                            <constraint firstItem="hSc-BA-nhq" firstAttribute="top" secondItem="LUy-zb-cxk" secondAttribute="top" id="adz-ok-ifl"/>
+                            <constraint firstItem="csz-5Q-mxa" firstAttribute="top" secondItem="FZF-mk-vdo" secondAttribute="bottom" id="lpk-EV-sRs"/>
+                            <constraint firstAttribute="trailing" secondItem="hSc-BA-nhq" secondAttribute="trailing" id="luR-gm-xGu"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="contentScrollView" destination="Gf9-oE-Vft" id="Ntv-qn-4BD"/>
                         <outlet property="doneButton" destination="v8W-7U-81h" id="iJz-mY-X5M"/>
@@ -883,11 +731,11 @@
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-K8-gkg" userLabel="Decline Button">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-K8-gkg" userLabel="Decline Button" customClass="WMStandardButton">
                                         <rect key="frame" x="10" y="324" width="100" height="37"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
+                                        <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -898,11 +746,11 @@
                                             <action selector="pressedDeclineButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="97e-9f-fVb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A78-mf-EAG" userLabel="Accept Button">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A78-mf-EAG" userLabel="Accept Button" customClass="WMStandardButton">
                                         <rect key="frame" x="210" y="324" width="100" height="37"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
+                                        <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -954,21 +802,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vuW-0B-4gb">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuW-0B-4gb">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLQ-UQ-S5c">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="4RV-ma-ECF">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <animations/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLQ-UQ-S5c">
                                         <rect key="frame" x="89" y="14" width="143" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e03-Fq-ny1">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e03-Fq-ny1">
                                         <rect key="frame" x="240" y="6" width="72" height="37"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="s5l-Cq-Qxm"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
+                                        <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -982,6 +837,17 @@
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="e03-Fq-ny1" secondAttribute="trailing" constant="8" id="8Xa-Lr-OZT"/>
+                                    <constraint firstItem="4RV-ma-ECF" firstAttribute="leading" secondItem="vuW-0B-4gb" secondAttribute="leading" id="GfM-gx-chd"/>
+                                    <constraint firstAttribute="height" constant="50" id="Gu8-Td-xeN"/>
+                                    <constraint firstAttribute="trailing" secondItem="4RV-ma-ECF" secondAttribute="trailing" id="VFj-99-k4X"/>
+                                    <constraint firstAttribute="centerY" secondItem="pLQ-UQ-S5c" secondAttribute="centerY" id="VgA-3v-2fT"/>
+                                    <constraint firstAttribute="bottom" secondItem="4RV-ma-ECF" secondAttribute="bottom" id="XJq-yA-Zrc"/>
+                                    <constraint firstAttribute="centerY" secondItem="e03-Fq-ny1" secondAttribute="centerY" id="fBi-tg-lwK"/>
+                                    <constraint firstItem="4RV-ma-ECF" firstAttribute="top" secondItem="vuW-0B-4gb" secondAttribute="top" id="rAw-BH-ULA"/>
+                                    <constraint firstAttribute="centerX" secondItem="pLQ-UQ-S5c" secondAttribute="centerX" id="v39-wL-NXb"/>
+                                </constraints>
                             </view>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="peR-yq-Zd6">
                                 <rect key="frame" x="0.0" y="68" width="320" height="500"/>
@@ -997,6 +863,11 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vuW-0B-4gb" firstAttribute="top" secondItem="MwH-9L-o5U" secondAttribute="bottom" id="6ts-jY-5rH"/>
+                            <constraint firstAttribute="trailing" secondItem="vuW-0B-4gb" secondAttribute="trailing" id="Bqw-oF-7Z7"/>
+                            <constraint firstItem="vuW-0B-4gb" firstAttribute="leading" secondItem="jtb-S4-iBD" secondAttribute="leading" id="Z4H-VT-HQr"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="e03-Fq-ny1" id="Ggh-at-f62"/>
@@ -1024,9 +895,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raV-76-4C1" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jcl-aE-09K" userLabel="Navigation Bar">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcl-aE-09K" userLabel="Navigation Bar">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fqq-Fx-WTE">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                <animations/>
+                                            </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9X-rz-c6K">
                                                 <rect key="frame" x="89" y="14" width="143" height="21"/>
                                                 <animations/>
@@ -1037,8 +912,11 @@
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGp-LQ-DlN">
                                                 <rect key="frame" x="240" y="6" width="72" height="37"/>
                                                 <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="37" id="ggr-kX-vTI"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                                <state key="normal" backgroundImage="buttons_btn.png">
+                                                <state key="normal">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1053,22 +931,26 @@
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="HGp-LQ-DlN" firstAttribute="centerY" secondItem="B9X-rz-c6K" secondAttribute="centerY" id="2ji-3H-kK1"/>
-                                            <constraint firstItem="HGp-LQ-DlN" firstAttribute="top" secondItem="Jcl-aE-09K" secondAttribute="top" constant="6" id="Inf-It-Sj0"/>
-                                            <constraint firstItem="HGp-LQ-DlN" firstAttribute="leading" secondItem="B9X-rz-c6K" secondAttribute="trailing" constant="8" symbolic="YES" id="e84-kQ-UMV"/>
-                                            <constraint firstItem="B9X-rz-c6K" firstAttribute="top" secondItem="Jcl-aE-09K" secondAttribute="top" constant="14" id="rAM-Fp-h6d"/>
-                                            <constraint firstItem="B9X-rz-c6K" firstAttribute="leading" secondItem="Jcl-aE-09K" secondAttribute="leading" constant="89" id="w1d-Kj-V6P"/>
+                                            <constraint firstAttribute="bottom" secondItem="Fqq-Fx-WTE" secondAttribute="bottom" id="0Rr-Ls-LsJ"/>
+                                            <constraint firstItem="Fqq-Fx-WTE" firstAttribute="leading" secondItem="Jcl-aE-09K" secondAttribute="leading" id="Dl9-v9-juQ"/>
+                                            <constraint firstAttribute="centerY" secondItem="HGp-LQ-DlN" secondAttribute="centerY" id="EMQ-Mu-G0C"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fqq-Fx-WTE" secondAttribute="trailing" id="Xvw-so-QmU"/>
+                                            <constraint firstAttribute="height" constant="50" id="bao-8h-v1G"/>
+                                            <constraint firstAttribute="centerX" secondItem="B9X-rz-c6K" secondAttribute="centerX" id="cl5-1D-0MK"/>
+                                            <constraint firstItem="Fqq-Fx-WTE" firstAttribute="top" secondItem="Jcl-aE-09K" secondAttribute="top" id="cvL-RD-gSK"/>
+                                            <constraint firstAttribute="trailing" secondItem="HGp-LQ-DlN" secondAttribute="trailing" constant="8" id="hmI-9N-34m"/>
+                                            <constraint firstAttribute="centerY" secondItem="B9X-rz-c6K" secondAttribute="centerY" id="hnd-VZ-7JY"/>
                                         </constraints>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="kka-sJ-6o8">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="kka-sJ-6o8">
                                         <rect key="frame" x="83" y="67" width="155" height="31"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="85i-9u-lpc"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" misplaced="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="dAc-cZ-D1j">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="dAc-cZ-D1j">
                                         <rect key="frame" x="15" y="106" width="290" height="67"/>
                                         <animations/>
                                         <constraints>
@@ -1078,11 +960,14 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EF0-i1-vyG">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EF0-i1-vyG" customClass="WMStandardButton">
                                         <rect key="frame" x="233" y="181" width="72" height="37"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="znT-Gm-mNk"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
+                                        <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1100,13 +985,16 @@
                                     <constraint firstItem="kka-sJ-6o8" firstAttribute="top" secondItem="Jcl-aE-09K" secondAttribute="bottom" constant="17" id="9j1-hX-0gr"/>
                                     <constraint firstItem="Jcl-aE-09K" firstAttribute="leading" secondItem="raV-76-4C1" secondAttribute="leading" id="CKF-VL-4Uc"/>
                                     <constraint firstItem="EF0-i1-vyG" firstAttribute="top" secondItem="dAc-cZ-D1j" secondAttribute="bottom" constant="8" symbolic="YES" id="F7f-Gn-2pw"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jcl-aE-09K" secondAttribute="trailing" id="HVy-Gd-MMP"/>
                                     <constraint firstItem="dAc-cZ-D1j" firstAttribute="centerX" secondItem="kka-sJ-6o8" secondAttribute="centerX" id="J0i-96-pUD"/>
                                     <constraint firstItem="EF0-i1-vyG" firstAttribute="trailing" secondItem="dAc-cZ-D1j" secondAttribute="trailing" id="J1Q-Hx-mrI"/>
+                                    <constraint firstItem="Jcl-aE-09K" firstAttribute="leading" secondItem="raV-76-4C1" secondAttribute="leading" id="VAZ-Zm-mAU"/>
                                     <constraint firstItem="kka-sJ-6o8" firstAttribute="centerX" secondItem="Jcl-aE-09K" secondAttribute="centerX" id="fdB-qh-7Y7"/>
                                     <constraint firstAttribute="trailing" secondItem="Jcl-aE-09K" secondAttribute="trailing" id="qcb-jj-yEN"/>
                                     <constraint firstItem="kka-sJ-6o8" firstAttribute="leading" secondItem="raV-76-4C1" secondAttribute="leading" constant="83" id="rHS-xi-rvc"/>
                                     <constraint firstItem="dAc-cZ-D1j" firstAttribute="top" secondItem="kka-sJ-6o8" secondAttribute="bottom" constant="8" symbolic="YES" id="rzF-iw-XgI"/>
                                     <constraint firstItem="dAc-cZ-D1j" firstAttribute="leading" secondItem="raV-76-4C1" secondAttribute="leading" constant="15" id="vf9-VH-iSv"/>
+                                    <constraint firstItem="Jcl-aE-09K" firstAttribute="top" secondItem="raV-76-4C1" secondAttribute="top" id="wOs-8J-gDF"/>
                                     <constraint firstItem="Jcl-aE-09K" firstAttribute="top" secondItem="raV-76-4C1" secondAttribute="top" id="xab-j8-R7L"/>
                                 </constraints>
                             </view>
@@ -1171,7 +1059,7 @@
                                         <rect key="frame" x="240" y="6" width="72" height="37"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
+                                        <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1223,7 +1111,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-jG-gLb">
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-jG-gLb">
                                 <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1232,7 +1120,7 @@
                                     <outlet property="delegate" destination="eF4-hj-Die" id="SDU-UB-myU"/>
                                 </connections>
                             </webView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-II-axu" userLabel="Navigation Bar">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-II-axu" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRu-uB-KA4">
@@ -1268,7 +1156,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hxx-jG-gLb" firstAttribute="top" secondItem="ArC-II-axu" secondAttribute="bottom" id="D6L-XQ-Ixo"/>
+                            <constraint firstItem="ArC-II-axu" firstAttribute="top" secondItem="sfY-e4-HTv" secondAttribute="bottom" id="vPt-9T-h0k"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="pWE-7p-8dk"/>
                     <connections>
                         <outlet property="cancelButton" destination="qHs-Je-6Ff" id="8r0-m3-WdT"/>
@@ -1367,13 +1260,13 @@
                                             <action selector="pressedLoginButton:" destination="NR5-LN-4P4" eventType="touchUpInside" id="IRV-jc-HcL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1h-I4-lbf" userLabel="OK Button">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1h-I4-lbf" userLabel="OK Button" customClass="WMStandardButton">
                                         <rect key="frame" x="228" y="275" width="72" height="37"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                        <state key="normal" backgroundImage="buttons_btn.png">
+                                        <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1391,7 +1284,7 @@
                             </scrollView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -1602,10 +1495,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I0W-uc-23X" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="497"/>
+                                        <rect key="frame" x="1" y="50" width="320" height="517"/>
                                         <animations/>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                     </scrollView>
@@ -1698,7 +1591,6 @@
         <image name="Curl_button.png" width="40" height="50"/>
         <image name="Curl_logo.png" width="190" height="30"/>
         <image name="buttons_btn-signup.png" width="290" height="50"/>
-        <image name="buttons_btn.png" width="72" height="37"/>
         <image name="checkbox_active.png" width="14" height="14"/>
         <image name="checkbox_inactive.png" width="14" height="14"/>
         <image name="navigationbar_background.png" width="1" height="50"/>

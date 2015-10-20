@@ -155,7 +155,9 @@
     [self.mapView addGestureRecognizer:enlargeMapRecognizer];
     
     [self.scrollView addSubview:self.mainView];
-    
+
+	// Set the preferred content size to make sure the popover controller has the right size.
+	self.preferredContentSize = self.scrollView.contentSize;
 }
 
 - (void)viewDidUnload {
@@ -448,13 +450,6 @@
     belowButtonLabel.textColor = [UIColor darkGrayColor];
     belowButtonLabel.textAlignment = NSTextAlignmentCenter;
     return belowButtonLabel;
-}
-
-/* Set a fixed size for view in popovers */
-
-- (CGSize)contentSizeForViewInPopover
-{
-    return CGSizeMake(320.0f, 590.0f);
 }
 
 - (void)updateFields {
@@ -841,10 +836,17 @@
 }
 
 - (void) cameraButtonPressed {
-    
-    if (![dataManager userIsAuthenticated]) {
-        WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-        [navCtrl presentLoginScreenWithButtonFrame:self.cameraButton.frame];
+
+	// Check if user is authenticated
+    if (dataManager.userIsAuthenticated == YES) {
+		if ([self.navigationController isKindOfClass:[WMDetailNavigationController class]] == YES) {
+			// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
+			WMDetailNavigationController *detailNavigationController = (WMDetailNavigationController *) self.navigationController;
+			[((WMNavigationControllerBase *)detailNavigationController.listViewController.navigationController) presentLoginScreen];
+		} else if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES) {
+			WMNavigationControllerBase *baseNavigationController = (WMNavigationControllerBase *) self.navigationController;
+			[baseNavigationController presentLoginScreenWithButtonFrame:self.cameraButton.frame];
+		}
         return;
     }
     
