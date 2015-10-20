@@ -39,4 +39,6 @@
 
 #define K_ANIMATION_DURATION_SHORT				0.3f
 
-#define K_DATA_KEY_ETAGS			@"eTags"
+#define K_DATA_KEY_ETAGS							@"eTags"
+
+#define K_DB_KEY_CATEGORY_LOCALIZED_NAME			@"localized_name"

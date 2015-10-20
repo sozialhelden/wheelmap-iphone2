@@ -311,7 +311,7 @@
     vc.title =  NSLocalizedString(@"NavBarTitleSetNodeType", nil);
     vc.navigationBarTitle = vc.title;
     vc.delegate = self;
-    vc.nodeArray = [[NSSet alloc] initWithSet:self.currentCategory.nodeType];
+    vc.nodeArray = [self.currentCategory sortedNodeTypes];
     vc.currentNodeType = self.currentNodeType;
     [self.navigationController pushViewController:vc animated:YES];
 }

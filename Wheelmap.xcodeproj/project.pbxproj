@@ -792,6 +792,9 @@
 		87910DE71BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */; };
 		87910DE81BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */; };
 		87910DE91BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */; };
+		87D26E421BD6364A0077132F /* WMCategory+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D26E411BD6364A0077132F /* WMCategory+helper.m */; };
+		87D26E431BD6364A0077132F /* WMCategory+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D26E411BD6364A0077132F /* WMCategory+helper.m */; };
+		87D26E441BD6364A0077132F /* WMCategory+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D26E411BD6364A0077132F /* WMCategory+helper.m */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -1206,6 +1209,8 @@
 		8765B68F1BD6280400861268 /* start_logo_staging@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_logo_staging@2x.png"; sourceTree = "<group>"; };
 		87910DE51BD4E79B00E0CAE0 /* WMStandardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStandardButton.h; sourceTree = "<group>"; };
 		87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStandardButton.m; sourceTree = "<group>"; };
+		87D26E401BD6364A0077132F /* WMCategory+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMCategory+Helper.h"; sourceTree = "<group>"; };
+		87D26E411BD6364A0077132F /* WMCategory+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WMCategory+helper.m"; sourceTree = "<group>"; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -1851,6 +1856,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		87D26E3F1BD6364A0077132F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				87D26E401BD6364A0077132F /* WMCategory+Helper.h */,
+				87D26E411BD6364A0077132F /* WMCategory+helper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		9890C536168F337900AD7C07 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -2027,6 +2041,7 @@
 		98CA22DA16664C4D00DF0EA3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				87D26E3F1BD6364A0077132F /* Helper */,
 				98AA096216A32A77006AC882 /* Tile.h */,
 				98AA096316A32A77006AC882 /* Tile.m */,
 				9896046E16A08225009418A2 /* Node.h */,
@@ -3399,6 +3414,7 @@
 				0327F92216BFFB1900BA7DE7 /* AFHTTPClient.m in Sources */,
 				0327F92316BFFB1900BA7DE7 /* AFHTTPRequestOperation.m in Sources */,
 				0327F92416BFFB1900BA7DE7 /* AFImageRequestOperation.m in Sources */,
+				87D26E431BD6364A0077132F /* WMCategory+helper.m in Sources */,
 				0327F92516BFFB1900BA7DE7 /* AFJSONRequestOperation.m in Sources */,
 				0327F92616BFFB1900BA7DE7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				0327F92716BFFB1900BA7DE7 /* AFPropertyListRequestOperation.m in Sources */,
@@ -3510,6 +3526,7 @@
 				03BD037616A052750045D53D /* AFHTTPClient.m in Sources */,
 				03BD037716A052750045D53D /* AFHTTPRequestOperation.m in Sources */,
 				03BD037816A052750045D53D /* AFImageRequestOperation.m in Sources */,
+				87D26E441BD6364A0077132F /* WMCategory+helper.m in Sources */,
 				03BD037916A052750045D53D /* AFJSONRequestOperation.m in Sources */,
 				03BD037A16A052750045D53D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				03BD037B16A052750045D53D /* AFPropertyListRequestOperation.m in Sources */,
@@ -3688,6 +3705,7 @@
 				15DBF599169B7B5500EBAC2A /* SBJsonUTF8Stream.m in Sources */,
 				15DBF59A169B7B5500EBAC2A /* SBJsonWriter.m in Sources */,
 				18D6A1961A8B900D00D871F3 /* MBXMapKit.m in Sources */,
+				87D26E421BD6364A0077132F /* WMCategory+helper.m in Sources */,
 				15DBF5A9169B7B8000EBAC2A /* Facebook+Singleton.m in Sources */,
 				15DBF5AA169B7B8000EBAC2A /* Facebook.m in Sources */,
 				15DBF5AD169B7B8000EBAC2A /* FBDialog.m in Sources */,
