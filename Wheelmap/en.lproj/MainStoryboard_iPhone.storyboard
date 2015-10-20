@@ -153,7 +153,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" tag="123" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EaE-TR-3Jc">
+                            <tableView clipsSubviews="YES" tag="123" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EaE-TR-3Jc">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -165,6 +165,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EaE-TR-3Jc" firstAttribute="leading" secondItem="Ou6-wK-7ag" secondAttribute="leading" id="2eb-aB-ehd"/>
+                            <constraint firstItem="EaE-TR-3Jc" firstAttribute="top" secondItem="vQa-y0-LYV" secondAttribute="bottom" id="OVy-bX-tfS"/>
+                            <constraint firstItem="j0N-j3-YEM" firstAttribute="top" secondItem="EaE-TR-3Jc" secondAttribute="bottom" id="d5n-5e-mf4"/>
+                            <constraint firstAttribute="trailing" secondItem="EaE-TR-3Jc" secondAttribute="trailing" id="kix-tx-l6G"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="EaE-TR-3Jc" id="sKW-mG-oUA"/>
@@ -395,7 +401,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oGg-9f-WSI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oGg-9f-WSI">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -407,6 +413,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oGg-9f-WSI" secondAttribute="trailing" id="061-Pj-Jzm"/>
+                            <constraint firstItem="gnJ-qe-dfa" firstAttribute="top" secondItem="oGg-9f-WSI" secondAttribute="bottom" id="5I9-t7-vTh"/>
+                            <constraint firstItem="oGg-9f-WSI" firstAttribute="leading" secondItem="dOl-d1-T1g" secondAttribute="leading" id="bKT-g6-lza"/>
+                            <constraint firstItem="oGg-9f-WSI" firstAttribute="top" secondItem="7to-eJ-jPA" secondAttribute="bottom" id="r6C-xM-U9H"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="oGg-9f-WSI" id="O0A-Kf-bP2"/>
@@ -436,7 +448,7 @@
                                     <constraint firstAttribute="height" constant="20" id="kvU-Jz-Ca9"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csz-5Q-mxa" userLabel="Navigation Bar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csz-5Q-mxa" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="320" height="48"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKY-Ga-HTa">
@@ -459,9 +471,12 @@
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="qWl-Lh-otC"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-z6-UZd" userLabel="Container View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-z6-UZd" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="68" width="320" height="500"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gf9-oE-Vft">
@@ -560,10 +575,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hSc-BA-nhq" firstAttribute="leading" secondItem="LUy-zb-cxk" secondAttribute="leading" id="1oi-1Y-L3Y"/>
+                            <constraint firstAttribute="trailing" secondItem="KRS-z6-UZd" secondAttribute="trailing" id="6bY-HR-bm2"/>
+                            <constraint firstItem="csz-5Q-mxa" firstAttribute="top" secondItem="FZF-mk-vdo" secondAttribute="bottom" id="Eko-Kz-DNO"/>
                             <constraint firstItem="KRS-z6-UZd" firstAttribute="top" secondItem="csz-5Q-mxa" secondAttribute="bottom" id="ErI-u3-Vgr"/>
+                            <constraint firstItem="csz-5Q-mxa" firstAttribute="leading" secondItem="LUy-zb-cxk" secondAttribute="leading" id="V1B-VP-7J8"/>
+                            <constraint firstItem="hki-Ol-Qu4" firstAttribute="top" secondItem="KRS-z6-UZd" secondAttribute="bottom" id="YDJ-rp-3ud"/>
                             <constraint firstItem="hSc-BA-nhq" firstAttribute="top" secondItem="LUy-zb-cxk" secondAttribute="top" id="adz-ok-ifl"/>
+                            <constraint firstItem="KRS-z6-UZd" firstAttribute="leading" secondItem="LUy-zb-cxk" secondAttribute="leading" id="b6Z-T7-OnU"/>
                             <constraint firstItem="csz-5Q-mxa" firstAttribute="top" secondItem="FZF-mk-vdo" secondAttribute="bottom" id="lpk-EV-sRs"/>
                             <constraint firstAttribute="trailing" secondItem="hSc-BA-nhq" secondAttribute="trailing" id="luR-gm-xGu"/>
+                            <constraint firstAttribute="trailing" secondItem="csz-5Q-mxa" secondAttribute="trailing" id="opm-6G-Wvf"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -599,7 +620,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cjy-sA-3xx" userLabel="Loading View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjy-sA-3xx" userLabel="Loading View">
                                 <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Qnd-Jd-ZEF">
@@ -610,7 +631,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqH-9e-ReQ" userLabel="Navigation Bar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqH-9e-ReQ" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="de5-Ek-ex7">
@@ -627,8 +648,11 @@
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NaY-OP-L5A"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-Pl-zdR" customClass="UIScrollView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-Pl-zdR" customClass="UIScrollView">
                                 <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="n3e-28-PuM">
@@ -769,6 +793,19 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jjN-Pl-zdR" secondAttribute="trailing" id="3Wo-Mm-sP7"/>
+                            <constraint firstAttribute="trailing" secondItem="yqH-9e-ReQ" secondAttribute="trailing" id="6hi-eM-RSf"/>
+                            <constraint firstItem="uIr-RL-9zr" firstAttribute="top" secondItem="jjN-Pl-zdR" secondAttribute="bottom" id="FHb-iD-dX1"/>
+                            <constraint firstItem="jjN-Pl-zdR" firstAttribute="leading" secondItem="xdV-mm-zs4" secondAttribute="leading" id="Hku-JU-14K"/>
+                            <constraint firstAttribute="trailing" secondItem="Cjy-sA-3xx" secondAttribute="trailing" id="MAQ-Dt-QzJ"/>
+                            <constraint firstItem="uIr-RL-9zr" firstAttribute="top" secondItem="Cjy-sA-3xx" secondAttribute="bottom" id="NAt-y0-QWz"/>
+                            <constraint firstItem="yqH-9e-ReQ" firstAttribute="leading" secondItem="xdV-mm-zs4" secondAttribute="leading" id="XAn-0r-b46"/>
+                            <constraint firstItem="jjN-Pl-zdR" firstAttribute="top" secondItem="yqH-9e-ReQ" secondAttribute="bottom" id="a0x-bC-KB0"/>
+                            <constraint firstItem="Cjy-sA-3xx" firstAttribute="leading" secondItem="xdV-mm-zs4" secondAttribute="leading" id="bwj-ra-iom"/>
+                            <constraint firstItem="yqH-9e-ReQ" firstAttribute="top" secondItem="f7f-fR-Vbl" secondAttribute="bottom" id="f65-xR-Xtj"/>
+                            <constraint firstItem="Cjy-sA-3xx" firstAttribute="top" secondItem="yqH-9e-ReQ" secondAttribute="bottom" id="xrW-MY-mDs"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -850,8 +887,8 @@
                                     <constraint firstAttribute="centerX" secondItem="pLQ-UQ-S5c" secondAttribute="centerX" id="v39-wL-NXb"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="peR-yq-Zd6">
-                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peR-yq-Zd6">
+                                <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
@@ -866,8 +903,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vuW-0B-4gb" firstAttribute="top" secondItem="MwH-9L-o5U" secondAttribute="bottom" id="6ts-jY-5rH"/>
+                            <constraint firstAttribute="bottom" secondItem="peR-yq-Zd6" secondAttribute="bottom" id="BJ0-Bw-5Kx"/>
                             <constraint firstAttribute="trailing" secondItem="vuW-0B-4gb" secondAttribute="trailing" id="Bqw-oF-7Z7"/>
+                            <constraint firstAttribute="trailing" secondItem="peR-yq-Zd6" secondAttribute="trailing" id="K8h-bd-z7B"/>
+                            <constraint firstItem="peR-yq-Zd6" firstAttribute="top" secondItem="vuW-0B-4gb" secondAttribute="bottom" id="M5Y-43-cko"/>
                             <constraint firstItem="vuW-0B-4gb" firstAttribute="leading" secondItem="jtb-S4-iBD" secondAttribute="leading" id="Z4H-VT-HQr"/>
+                            <constraint firstItem="peR-yq-Zd6" firstAttribute="leading" secondItem="jtb-S4-iBD" secondAttribute="leading" id="zLm-YF-suN"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1033,7 +1074,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aqj-pU-hAU">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqj-pU-hAU">
                                 <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1042,7 +1083,7 @@
                                     <outlet property="delegate" destination="9yT-MT-7xh" id="YX3-UY-osL"/>
                                 </connections>
                             </webView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvk-ec-fur" userLabel="Navigation Bar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvk-ec-fur" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="xWU-ae-nwf">
@@ -1082,11 +1123,23 @@
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8qi-rP-tAm"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Aqj-pU-hAU" firstAttribute="leading" secondItem="fQN-po-bCY" secondAttribute="leading" id="34Y-UN-56o"/>
+                            <constraint firstItem="9ru-0c-5oB" firstAttribute="top" secondItem="Aqj-pU-hAU" secondAttribute="bottom" id="CYj-vT-LFy"/>
+                            <constraint firstItem="Aqj-pU-hAU" firstAttribute="top" secondItem="fvk-ec-fur" secondAttribute="bottom" id="Ove-jy-PTk"/>
+                            <constraint firstItem="fvk-ec-fur" firstAttribute="leading" secondItem="fQN-po-bCY" secondAttribute="leading" id="d6o-eb-H3c"/>
+                            <constraint firstAttribute="trailing" secondItem="Aqj-pU-hAU" secondAttribute="trailing" id="dKz-c7-fyY"/>
+                            <constraint firstItem="fvk-ec-fur" firstAttribute="top" secondItem="LM5-MZ-7hd" secondAttribute="bottom" id="otC-Vf-gMQ"/>
+                            <constraint firstAttribute="trailing" secondItem="fvk-ec-fur" secondAttribute="trailing" id="xSd-Vi-ooW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0cD-9v-EYR"/>
                     <connections>
@@ -1112,7 +1165,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-jG-gLb">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-jG-gLb">
                                 <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1121,7 +1174,7 @@
                                     <outlet property="delegate" destination="eF4-hj-Die" id="SDU-UB-myU"/>
                                 </connections>
                             </webView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-II-axu" userLabel="Navigation Bar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-II-axu" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRu-uB-KA4">
@@ -1152,13 +1205,23 @@
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7SU-n5-QGA"/>
+                                </constraints>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hxx-jG-gLb" secondAttribute="trailing" id="BA0-eT-jMe"/>
+                            <constraint firstItem="hxx-jG-gLb" firstAttribute="leading" secondItem="hjy-RI-gwq" secondAttribute="leading" id="BDZ-jL-CN7"/>
                             <constraint firstItem="hxx-jG-gLb" firstAttribute="top" secondItem="ArC-II-axu" secondAttribute="bottom" id="D6L-XQ-Ixo"/>
+                            <constraint firstItem="hxx-jG-gLb" firstAttribute="top" secondItem="ArC-II-axu" secondAttribute="bottom" id="KTr-zT-RyI"/>
+                            <constraint firstItem="ArC-II-axu" firstAttribute="leading" secondItem="hjy-RI-gwq" secondAttribute="leading" id="Pfy-zR-r5O"/>
+                            <constraint firstAttribute="trailing" secondItem="ArC-II-axu" secondAttribute="trailing" id="RkJ-Zc-bv5"/>
+                            <constraint firstItem="LRI-XY-Gmv" firstAttribute="top" secondItem="hxx-jG-gLb" secondAttribute="bottom" id="gea-bN-roA"/>
+                            <constraint firstItem="ArC-II-axu" firstAttribute="top" secondItem="sfY-e4-HTv" secondAttribute="bottom" id="kXP-TY-297"/>
                             <constraint firstItem="ArC-II-axu" firstAttribute="top" secondItem="sfY-e4-HTv" secondAttribute="bottom" id="vPt-9T-h0k"/>
                         </constraints>
                     </view>
@@ -1188,7 +1251,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mzt-6K-LGX">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mzt-6K-LGX">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="960-3g-1mJ">
@@ -1286,6 +1349,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mzt-6K-LGX" firstAttribute="top" secondItem="Dyb-9t-TrB" secondAttribute="bottom" id="PDi-EX-fe0"/>
+                            <constraint firstItem="Mzt-6K-LGX" firstAttribute="leading" secondItem="lr5-Eq-p3n" secondAttribute="leading" id="bQN-2j-h2c"/>
+                            <constraint firstAttribute="trailing" secondItem="Mzt-6K-LGX" secondAttribute="trailing" id="dms-bI-1Ta"/>
+                            <constraint firstItem="UXJ-oN-wmf" firstAttribute="top" secondItem="Mzt-6K-LGX" secondAttribute="bottom" id="pPv-Ir-7PC"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -1495,15 +1564,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I0W-uc-23X" userLabel="Container View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0W-uc-23X" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
                                         <rect key="frame" x="1" y="50" width="320" height="517"/>
                                         <animations/>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                     </scrollView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qsS-Tq-rDM" userLabel="Navigation Bar">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsS-Tq-rDM" userLabel="Navigation Bar">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-Bd-KNY">
@@ -1538,14 +1607,32 @@
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="SVb-l7-fpq"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pRD-j1-cUC" secondAttribute="trailing" id="CWM-Cc-aGp"/>
+                                    <constraint firstItem="qsS-Tq-rDM" firstAttribute="leading" secondItem="I0W-uc-23X" secondAttribute="leading" id="IHa-LU-FhW"/>
+                                    <constraint firstItem="pRD-j1-cUC" firstAttribute="top" secondItem="qsS-Tq-rDM" secondAttribute="bottom" id="Mht-BC-yay"/>
+                                    <constraint firstItem="pRD-j1-cUC" firstAttribute="leading" secondItem="I0W-uc-23X" secondAttribute="leading" id="fkB-dG-lv1"/>
+                                    <constraint firstAttribute="trailing" secondItem="qsS-Tq-rDM" secondAttribute="trailing" id="k6x-ul-sKm"/>
+                                    <constraint firstItem="qsS-Tq-rDM" firstAttribute="top" secondItem="I0W-uc-23X" secondAttribute="top" id="nQA-6h-7tP"/>
+                                    <constraint firstAttribute="bottom" secondItem="pRD-j1-cUC" secondAttribute="bottom" id="oWk-af-16K"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="I0W-uc-23X" secondAttribute="trailing" id="WTQ-qa-gWF"/>
+                            <constraint firstItem="LFy-zQ-Vns" firstAttribute="top" secondItem="I0W-uc-23X" secondAttribute="bottom" id="eBV-PY-VgD"/>
+                            <constraint firstItem="I0W-uc-23X" firstAttribute="top" secondItem="DEo-K0-cCA" secondAttribute="top" id="mXR-dQ-7VZ"/>
+                            <constraint firstItem="I0W-uc-23X" firstAttribute="leading" secondItem="DEo-K0-cCA" secondAttribute="leading" id="vfC-HR-VmY"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
