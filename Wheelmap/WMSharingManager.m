@@ -61,9 +61,8 @@
         }};
     [fbController setCompletionHandler:completionHandler];
     
-    [fbController setInitialText:body];
-    //[fbController addURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://jam.solutions.smfhq.com/staging/events/%@", eventToBeSent.objectID]]];
-    
+    [fbController addURL:[NSURL URLWithString:body]];
+
     [self.baseVC presentViewController:fbController animated:YES completion:nil];
 }
 

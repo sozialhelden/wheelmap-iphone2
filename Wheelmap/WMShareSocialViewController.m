@@ -58,7 +58,7 @@
 
 - (IBAction)facebookButtonPressed:(id)sender {
     NSLog(@"Facebook Button pressed");
-    [sharingManager facebookPosting:self.shareLocationLabel.text];
+    [sharingManager facebookPosting:self.shareURlString];
 }
 
 - (IBAction)smsButtonPressed:(id)sender {
