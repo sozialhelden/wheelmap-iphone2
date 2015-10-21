@@ -54,7 +54,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating:) name:UIApplicationDidBecomeActiveNotification object:nil];
 
         if(IS_OS_8_OR_LATER) {
-            [self.locationManager requestAlwaysAuthorization];
+            [self.locationManager requestWhenInUseAuthorization];
         }
         
         if ([CLLocationManager locationServicesEnabled]){
@@ -72,7 +72,7 @@
 - (void) startUpdating:(NSNotification*)notification {
     NSLog(@"Starting");
     if(IS_OS_8_OR_LATER) {
-        [self.locationManager requestAlwaysAuthorization];
+        [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingHeading];
     [self.locationManager startUpdatingLocation];

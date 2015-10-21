@@ -16,6 +16,7 @@
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
 #import "Reachability.h"
+#import "WMWheelmapAPI.h"
 
 @interface WMDashboardViewController ()
 
@@ -98,9 +99,13 @@
     self.numberOfPlacesLabel.alpha = 0.0;
     self.creditsButton.alpha = 0.0;
     self.loginButton.alpha = 0.0;
-    
-    //    isUIObjectsReadyToInteract = NO;
-    
+
+	if (WMWheelmapAPI.isStagingBackend == YES) {
+		self.logoImageView.image = [UIImage imageNamed:@"start_logo_staging.png"];
+	} else {
+		self.logoImageView.image = [UIImage imageNamed:@"start_logo.png"];
+	}
+
     self.navigationController.navigationBar.translucent = NO;
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){

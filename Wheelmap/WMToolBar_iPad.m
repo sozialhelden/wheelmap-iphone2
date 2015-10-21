@@ -7,6 +7,7 @@
 //
 
 #import "WMToolBar_iPad.h"
+#import "WMWheelmapAPI.h"
 
 @implementation WMToolBar_iPad {
     
@@ -63,8 +64,17 @@
         self.numberOfPlacesLabel.font = [UIFont systemFontOfSize:22.0f];
         self.numberOfPlacesLabel.textAlignment = NSTextAlignmentCenter;
         self.numberOfPlacesLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:self.numberOfPlacesLabel];
-        
+		[self addSubview:self.numberOfPlacesLabel];
+
+		if (WMWheelmapAPI.isStagingBackend == YES) {
+			UILabel *stagingDebugLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.numberOfPlacesLabel.frame.size.height)];
+			stagingDebugLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+			stagingDebugLabel.text = @"(Staging)";
+			stagingDebugLabel.textAlignment = NSTextAlignmentCenter;
+			stagingDebugLabel.textColor = [UIColor redColor];
+			[self addSubview:stagingDebugLabel];
+		}
+
         [dataManager fetchTotalNodeCount];
     }
     

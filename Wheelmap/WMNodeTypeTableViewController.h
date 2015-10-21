@@ -10,7 +10,7 @@
 #import "NodeType.h"
 @interface WMNodeTypeTableViewController : WMTableViewController
 
-@property (nonatomic, strong) NSSet *nodeArray;
-@property (strong, nonatomic) id delegate;
-@property (strong, nonatomic) NodeType *currentNodeType;
+@property (nonatomic, strong) NSArray *		nodeArray;
+@property (strong, nonatomic) id			delegate;
+@property (strong, nonatomic) NodeType *	currentNodeType;
 @end
