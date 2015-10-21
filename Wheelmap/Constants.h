@@ -37,4 +37,8 @@
 
 #define K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET		4.0f
 
-#define K_DATA_KEY_ETAGS			@"eTags"
+#define K_ANIMATION_DURATION_SHORT				0.3f
+
+#define K_DATA_KEY_ETAGS							@"eTags"
+
+#define K_DB_KEY_CATEGORY_LOCALIZED_NAME			@"localized_name"

@@ -996,6 +996,7 @@
     NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
     NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
     NSURL *url = [NSURL URLWithString: urlString];
+	vc.shareURlString = url.absoluteString;
     vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
     
 }

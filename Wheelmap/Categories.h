@@ -13,4 +13,5 @@
 #import "UIColor+WMColor.h"
 #import "UIToolbar+CustomSize.h"
 #import "UINavigationBar+CustomSize.h"
+#import "WMCategory+Helper.h"
 #endif

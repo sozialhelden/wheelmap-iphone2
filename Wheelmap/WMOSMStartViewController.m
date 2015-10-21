@@ -32,11 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if (self.navigationController != nil) {
-        self.headerView.hidden = YES;
-        self.contentScrollView.frame = CGRectMake(self.contentScrollView.frame.origin.x, 0.0f, self.contentScrollView.frame.size.width, self.view.frame.size.height);
-    }
+
     [self.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     
     self.contentScrollView.scrollsToTop = YES;

@@ -44,7 +44,7 @@
     for (NodeType* c in self.nodeArray) {
         NSNumber* ID = c.id;
         if ([ID intValue] == [[self.currentNodeType id] intValue]) {
-            highlightedCellRow = [[self.nodeArray allObjects] indexOfObject:c];
+            highlightedCellRow = [self.nodeArray indexOfObject:c];
         }
     }
     
@@ -80,7 +80,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NodeType *nodeType = [self.nodeArray.allObjects objectAtIndex:indexPath.row];
+    NodeType *nodeType = [self.nodeArray objectAtIndex:indexPath.row];
                           //objectAtIndex:indexPath.row];
     NSString *nodeString = nodeType.localized_name;
     static NSString *CellIdentifier = @"NodeTypeCell";
@@ -104,7 +104,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NodeType *nodeType = [self.nodeArray.allObjects objectAtIndex:indexPath.row];
+    NodeType *nodeType = [self.nodeArray objectAtIndex:indexPath.row];
     [self.delegate nodeTypeChosen:nodeType];
     [self.navigationController popViewControllerAnimated:YES];
 }
