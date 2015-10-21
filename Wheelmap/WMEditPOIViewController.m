@@ -482,7 +482,7 @@
     
     if (aTextView == self.infoTextView) {
 
-		self.infoInputViewHeightConstraint.constant = self.infoTextView.contentSize.height + 2 * self.infoTextViewTopConstraint.constant;
+		self.infoInputViewHeightConstraint.constant = self.infoTextView.contentSize.height + (2 * self.infoTextViewTopConstraint.constant);
 
 		[UIView animateWithDuration:K_ANIMATION_DURATION_SHORT animations:^{
 			[self.view layoutIfNeeded];
