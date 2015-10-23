@@ -117,19 +117,19 @@
 
 - (void) updateCheckMarks {
     
-    if ([self.wheelchairAccess isEqualToString:@"yes"]) {
+    if ([self.wheelchairAccess isEqualToString:K_WHEELCHAIR_STATE_YES]) {
         self.yesCheckMarkImageView.hidden = NO;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = YES;
-    } else if ([self.wheelchairAccess isEqualToString:@"limited"]) {
+    } else if ([self.wheelchairAccess isEqualToString:K_WHEELCHAIR_STATE_LIMITED]) {
         self.yesCheckMarkImageView.hidden = YES;
         self.limitedCheckMarkImageView.hidden = NO;
         self.noCheckMarkImageView.hidden = YES;
-    } else if ([self.wheelchairAccess isEqualToString:@"no"]) {
+    } else if ([self.wheelchairAccess isEqualToString:K_WHEELCHAIR_STATE_NO]) {
         self.yesCheckMarkImageView.hidden = YES;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = NO;
-    }  else if ([self.wheelchairAccess isEqualToString:@"unknown"]) {
+    }  else if ([self.wheelchairAccess isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
         self.yesCheckMarkImageView.hidden = YES;
         self.limitedCheckMarkImageView.hidden = YES;
         self.noCheckMarkImageView.hidden = YES;
@@ -188,11 +188,11 @@
     
     UIButton *button = (UIButton*) sender;
     if (button.tag == 0) {
-        self.wheelchairAccess = @"yes";
+        self.wheelchairAccess = K_WHEELCHAIR_STATE_YES;
     } else if (button.tag == 1) {
-        self.wheelchairAccess = @"limited";
+        self.wheelchairAccess = K_WHEELCHAIR_STATE_LIMITED;
     } else if (button.tag == 2) {
-        self.wheelchairAccess = @"no";
+        self.wheelchairAccess = K_WHEELCHAIR_STATE_NO;
     }
     [self updateCheckMarks];
     if (self.useCase == kWMWheelChairStatusViewControllerUseCasePutNode) {

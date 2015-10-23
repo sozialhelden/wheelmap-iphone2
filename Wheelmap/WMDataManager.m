@@ -1534,7 +1534,7 @@ static BOOL assetSyncInProgress = NO;
     //
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
                                              apiKey:[self apiKey]
-                                         parameters:@{@"per_page":@1, @"wheelchair":@"unknown"}
+                                         parameters:@{@"per_page":@1, @"wheelchair":K_WHEELCHAIR_STATE_UNKNOWN}
                                                eTag:nil
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

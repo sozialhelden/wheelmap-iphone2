@@ -210,17 +210,17 @@
     loadingNodes = YES;
     
     if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
-        NSArray* unfilteredNodes = [self.dataSource filteredNodeList];
+        NSArray* unfilteredNodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
         
         for (Node* node in unfilteredNodes) {
-            if ([node.wheelchair caseInsensitiveCompare:@"unknown"] == NSOrderedSame) {
+            if ([node.wheelchair caseInsensitiveCompare:K_WHEELCHAIR_STATE_UNKNOWN] == NSOrderedSame) {
                 [newNodeList addObject:node];
             }
         }
         nodes = newNodeList;
     } else {
-        nodes = [self.dataSource filteredNodeList];
+        nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
     
     NSLog(@"NEW NODE LIST: %lu", (unsigned long)nodes.count);

@@ -16,7 +16,7 @@
 @protocol WMNodeListDataSource <NSObject>
 
 - (NSArray*) nodeList;
-- (NSArray*) filteredNodeList;
+- (NSArray*)filteredNodeListForUseCase:(WMNodeListViewControllerUseCase)useCase;
 
 @end
 

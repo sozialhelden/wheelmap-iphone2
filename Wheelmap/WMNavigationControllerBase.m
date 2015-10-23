@@ -118,10 +118,10 @@
         initialNodeListView.delegate = self;
     }
     
-    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"yes",
-                                   [NSNumber numberWithBool:YES], @"limited",
-                                   [NSNumber numberWithBool:YES], @"no",
-                                   [NSNumber numberWithBool:YES], @"unknown",nil];
+    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_YES,
+                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_LIMITED,
+                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_NO,
+                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_UNKNOWN,nil];
     self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
     for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
@@ -499,8 +499,7 @@
     return nodes;
 }
 
-- (NSArray*) filteredNodeList
-{
+- (NSArray*)filteredNodeListForUseCase:(WMNodeListViewControllerUseCase)useCase {
     NSLog(@"OLD NODE LIST = %lu", (unsigned long)nodes.count);
     
     // filter nodes here
@@ -512,11 +511,12 @@
     for (Node* node in nodesCopy) {
         NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
-        if ([[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES &&
-            [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
-            if (![newNodeList containsObject:node]) {
-                [newNodeList addObject:node];
-            }
+        if (((useCase == kWMNodeListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN])
+			|| [[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES)
+			&& [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
+				if (![newNodeList containsObject:node]) {
+					[newNodeList addObject:node];
+				}
         } else {
             //            NSLog(@"Filtered out Node %@ %@ %@ %@", node.name, node.id, wheelChairStatus, categoryID);
         }
@@ -1369,26 +1369,26 @@
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];
     
-    NSString* wheelchairStatusString = @"unknown";
+    NSString* wheelchairStatusString = K_WHEELCHAIR_STATE_UNKNOWN;
     switch (type) {
         case kDotTypeGreen:
             self.customToolBar.wheelChairStatusFilterButton.selectedGreenDot = selected;
-            wheelchairStatusString = @"yes";
+            wheelchairStatusString = K_WHEELCHAIR_STATE_YES;
             break;
             
         case kDotTypeYellow:
             self.customToolBar.wheelChairStatusFilterButton.selectedYellowDot = selected;
-            wheelchairStatusString = @"limited";
+            wheelchairStatusString = K_WHEELCHAIR_STATE_LIMITED;
             break;
             
         case kDotTypeRed:
             self.customToolBar.wheelChairStatusFilterButton.selectedRedDot = selected;
-            wheelchairStatusString = @"no";
+            wheelchairStatusString = K_WHEELCHAIR_STATE_NO;
             break;
             
         case kDotTypeNone:
             self.customToolBar.wheelChairStatusFilterButton.selectedNoneDot = selected;
-            wheelchairStatusString = @"unknown";
+            wheelchairStatusString = K_WHEELCHAIR_STATE_UNKNOWN;
             break;
             
         default:
@@ -1405,14 +1405,10 @@
     
 }
 
--(void)clearWheelChairFilterStatus
-{
-    
+-(void)clearWheelChairFilterStatus	{
     for (NSNumber* key in [self.wheelChairFilterStatus allKeys]) {
         [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
     }
-    
-    
 }
 
 #pragma mark -WMCategoryFilterPopoverView Delegate
@@ -1440,9 +1436,7 @@
     } else {
         [self.customToolBar selectCategoryButton];
     }
-    
-    
-    
+
     [self refreshNodeList];
 }
 

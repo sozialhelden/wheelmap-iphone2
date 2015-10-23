@@ -80,9 +80,8 @@
     return [self.dataSource nodeList];
 }
 
--(NSArray*)filteredNodeList
-{
-    return [self.dataSource filteredNodeList];
+-(NSArray*)filteredNodeListForUseCaseForUseCase:(WMNodeListViewControllerUseCase)useCase {
+    return [self.dataSource filteredNodeListForUseCase:useCase];
 }
 
 //-(void)updateNodesNear:(CLLocationCoordinate2D)coord

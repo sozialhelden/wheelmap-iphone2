@@ -178,20 +178,7 @@
     [(WMNavigationControllerBase *)self.navigationController pushMap];
 }
 
--(IBAction)pressedContributeButton:(id)sender
-{
-    // set the filters here
-    //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    //[navCtrl clearWheelChairFilterStatus];
-    //[navCtrl clearCategoryFilterStatus];
-    //for (NSString* key in [navCtrl.wheelChairFilterStatus allKeys]) {
-    //    if ([key isEqualToString:@"unknown"]) {
-    //        [navCtrl.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
-    //    } else {
-    //        [navCtrl.wheelChairFilterStatus setObject:[NSNumber numberWithBool:NO] forKey:key];
-    //    }
-    //}
-    
+-(IBAction)pressedContributeButton:(id)sender {
     //
     // we filter unknown nodes not using global filter setting!
     
