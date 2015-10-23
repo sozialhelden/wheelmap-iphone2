@@ -131,9 +131,13 @@
 }
 
 
-- (IBAction)registerPressed:(id)sender
-{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, WEB_LOGIN_LINK]]];
+- (IBAction)registerPressed:(id)sender {
+	NSString *urlPath = WM_REGISTER_LINK;
+	if (WMWheelmapAPI.isStagingBackend == YES) {
+		// The direct register link isn't working in the staging environment. We use the login link here.
+		urlPath = WEB_LOGIN_LINK;
+	}
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, urlPath]]];
 }
 
 - (IBAction)loginPressed:(id)sender
