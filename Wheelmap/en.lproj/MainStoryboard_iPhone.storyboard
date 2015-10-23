@@ -1364,29 +1364,43 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeo-O3-EfZ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="4YT-d8-CNb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="4YT-d8-CNb">
                                         <rect key="frame" x="82" y="40" width="155" height="31"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="Mgw-YZ-sdc"/>
+                                            <constraint firstAttribute="width" constant="155" id="S4l-Vc-gz9"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wi8-KI-hol">
-                                        <rect key="frame" x="15" y="65" width="295" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wi8-KI-hol">
+                                        <rect key="frame" x="15" y="75" width="295" height="21"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="02v-QZ-RIb"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zLS-qe-PdU">
-                                        <rect key="frame" x="9" y="85" width="302" height="200"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zLS-qe-PdU">
+                                        <rect key="frame" x="9" y="105" width="302" height="200"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="3Pc-c4-Dbt"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3L-ul-Riw" userLabel="OK Button">
-                                        <rect key="frame" x="60" y="301" width="200" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3L-ul-Riw" userLabel="OK Button">
+                                        <rect key="frame" x="60" y="332" width="200" height="37"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="ODu-Us-7KI"/>
+                                            <constraint firstAttribute="width" constant="200" id="yrM-lG-0Ks"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
                                         <state key="normal">
@@ -1406,13 +1420,30 @@
                                 <color key="backgroundColor" red="0.74224728949999996" green="0.74224728949999996" blue="0.74224728949999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="BBn-mT-NcA"/>
+                                    <constraint firstItem="M3L-ul-Riw" firstAttribute="centerX" secondItem="zeo-O3-EfZ" secondAttribute="centerX" id="DGE-em-2gN"/>
+                                    <constraint firstItem="Wi8-KI-hol" firstAttribute="top" secondItem="4YT-d8-CNb" secondAttribute="bottom" constant="10" id="F3P-Ey-nwP"/>
+                                    <constraint firstItem="zLS-qe-PdU" firstAttribute="leading" secondItem="zeo-O3-EfZ" secondAttribute="leading" constant="15" id="LZ0-tw-5Fe"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wi8-KI-hol" secondAttribute="trailing" constant="15" id="Mqh-YX-op5"/>
+                                    <constraint firstAttribute="trailing" secondItem="zLS-qe-PdU" secondAttribute="trailing" constant="15" id="S8J-G4-Fwu"/>
+                                    <constraint firstItem="zLS-qe-PdU" firstAttribute="top" secondItem="Wi8-KI-hol" secondAttribute="bottom" constant="10" id="blb-1o-tKI"/>
+                                    <constraint firstItem="M3L-ul-Riw" firstAttribute="top" secondItem="zLS-qe-PdU" secondAttribute="bottom" constant="20" id="cgu-RN-Mx1"/>
+                                    <constraint firstItem="4YT-d8-CNb" firstAttribute="top" secondItem="zeo-O3-EfZ" secondAttribute="top" constant="40" id="dYU-2t-0VG"/>
+                                    <constraint firstItem="Wi8-KI-hol" firstAttribute="leading" secondItem="zeo-O3-EfZ" secondAttribute="leading" constant="15" id="lV3-7p-DkT"/>
                                     <constraint firstAttribute="height" constant="568" id="pBX-jV-NdM"/>
+                                    <constraint firstItem="4YT-d8-CNb" firstAttribute="centerX" secondItem="zeo-O3-EfZ" secondAttribute="centerX" id="tCn-TN-pZn"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zeo-O3-EfZ" firstAttribute="leading" secondItem="s6H-Yw-cwt" secondAttribute="leading" id="0fi-PW-9ns"/>
+                            <constraint firstItem="zeo-O3-EfZ" firstAttribute="top" secondItem="s6H-Yw-cwt" secondAttribute="top" id="HO6-Mk-kvN"/>
+                            <constraint firstAttribute="trailing" secondItem="zeo-O3-EfZ" secondAttribute="trailing" id="bIj-Xc-jRX"/>
+                            <constraint firstItem="x7p-cw-WZx" firstAttribute="top" secondItem="zeo-O3-EfZ" secondAttribute="bottom" id="uAu-GT-0pF"/>
+                        </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="okButton" destination="M3L-ul-Riw" id="nlb-wx-hrR"/>
                         <outlet property="scrollView" destination="zeo-O3-EfZ" id="oQB-pe-xFI"/>
