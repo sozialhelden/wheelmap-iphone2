@@ -42,3 +42,10 @@
 #define K_DATA_KEY_ETAGS							@"eTags"
 
 #define K_DB_KEY_CATEGORY_LOCALIZED_NAME			@"localized_name"
+
+#define K_WHEELCHAIR_STATE_UNKNOWN					@"unknown"
+#define K_WHEELCHAIR_STATE_LIMITED					@"limited"
+#define K_WHEELCHAIR_STATE_YES						@"yes"
+#define K_WHEELCHAIR_STATE_NO						@"no"
+
+

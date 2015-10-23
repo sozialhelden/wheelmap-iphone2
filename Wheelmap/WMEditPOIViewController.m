@@ -215,16 +215,16 @@
 
 - (void)setWheelAccessButton {
     
-    if ([self.currentWheelchairStatus isEqualToString:@"yes"]) {
+    if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_YES]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:@"no"]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_NO]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:@"limited"]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_LIMITED]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:@"unknown"]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
     } else {
