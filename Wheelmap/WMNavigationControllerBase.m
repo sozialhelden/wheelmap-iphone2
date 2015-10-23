@@ -264,11 +264,13 @@
 - (void)setMapControllerToNormal {
     self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
 	self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+	[self.customToolBar showAllButtons];
 }
 
 - (void)setListViewControllerToNormal {
 	listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
 	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+	[self.customToolBar showAllButtons];
 }
 
 - (void)resetMapAndListToNormalUseCase {
