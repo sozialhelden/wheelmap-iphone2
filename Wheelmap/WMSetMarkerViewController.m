@@ -208,10 +208,6 @@
     {
         NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
     }
-    else
-    {
-        [_mapView mbx_setCenterCoordinate:overlay.center zoomLevel:overlay.centerZoom animated:NO];
-    }
 }
 
 

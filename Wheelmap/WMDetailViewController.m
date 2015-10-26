@@ -838,7 +838,7 @@
 - (void) cameraButtonPressed {
 
 	// Check if user is authenticated
-    if (dataManager.userIsAuthenticated == YES) {
+    if (dataManager.userIsAuthenticated == NO) {
 		if ([self.navigationController isKindOfClass:[WMDetailNavigationController class]] == YES) {
 			// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
 			WMDetailNavigationController *detailNavigationController = (WMDetailNavigationController *) self.navigationController;
