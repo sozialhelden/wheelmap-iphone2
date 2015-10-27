@@ -1,15 +1,18 @@
 PODS:
   - MarqueeLabel (2.3.3)
+  - Reachability (3.2)
   - UrbanAirship-iOS-SDK (5.1.1):
     - UrbanAirship-iOS-SDK/Core (= 5.1.1)
   - UrbanAirship-iOS-SDK/Core (5.1.1)
 
 DEPENDENCIES:
   - MarqueeLabel (~> 2.3.2)
+  - Reachability (~> 3.2)
   - UrbanAirship-iOS-SDK (~> 5.1.1)
 
 SPEC CHECKSUMS:
   MarqueeLabel: a8171ed961be61ed8f21d94a5f0d569a9c45df3b
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   UrbanAirship-iOS-SDK: e97975b3bacb0c772cf25f35d42e8618e66825dd
 
 COCOAPODS: 0.39.0

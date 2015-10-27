@@ -111,7 +111,6 @@
 		0327F96916BFFB1900BA7DE7 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		0327F96A16BFFB1900BA7DE7 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */; };
 		0327F96B16BFFB1900BA7DE7 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB516A59A4100F9F663 /* WMTermsViewController.m */; };
-		0327F96C16BFFB1900BA7DE7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F31E6A16A6D389006EDBC8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0327F96D16BFFB1900BA7DE7 /* WMToolBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 031B9CA416AEC7D600AA0317 /* WMToolBar_iPad.m */; };
 		0327F96E16BFFB1900BA7DE7 /* WMNavigationBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 031B9CA816AED4AE00AA0317 /* WMNavigationBar_iPad.m */; };
 		0327F96F16BFFB1900BA7DE7 /* WMDetailNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A6FF916B0231E002ECE12 /* WMDetailNavigationController.m */; };
@@ -722,8 +721,6 @@
 		15DBF5E0169C694000EBAC2A /* start_icon-logged-in@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DBF5DE169C694000EBAC2A /* start_icon-logged-in@2x.png */; };
 		15F31E6516A6BCD2006EDBC8 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB916A59BEF00F9F663 /* WMAcceptTermsViewController.m */; };
 		15F31E6716A6BCD6006EDBC8 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034FACB516A59A4100F9F663 /* WMTermsViewController.m */; };
-		15F31E6B16A6D389006EDBC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F31E6A16A6D389006EDBC8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15F31E6C16A6D6FD006EDBC8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F31E6A16A6D389006EDBC8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1842DE7C1A69714B001D52CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842DE7B1A69714B001D52CF /* AudioToolbox.framework */; };
 		1842DE7D1A697154001D52CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842DE7B1A69714B001D52CF /* AudioToolbox.framework */; };
 		1842DE7E1A697160001D52CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842DE7B1A69714B001D52CF /* AudioToolbox.framework */; };
@@ -1160,8 +1157,6 @@
 		15DBF5BC169B7E0400EBAC2A /* credits_verein@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits_verein@2x.png"; sourceTree = "<group>"; };
 		15DBF5DD169C694000EBAC2A /* start_icon-logged-in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon-logged-in.png"; sourceTree = "<group>"; };
 		15DBF5DE169C694000EBAC2A /* start_icon-logged-in@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon-logged-in@2x.png"; sourceTree = "<group>"; };
-		15F31E6916A6D389006EDBC8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		15F31E6A16A6D389006EDBC8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		1842DE7B1A69714B001D52CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1842DE7F1A6971CF001D52CF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		1842DE831A697230001D52CF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -1802,15 +1797,6 @@
 			path = Credits;
 			sourceTree = "<group>";
 		};
-		15F31E6816A6D389006EDBC8 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				15F31E6916A6D389006EDBC8 /* Reachability.h */,
-				15F31E6A16A6D389006EDBC8 /* Reachability.m */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
 		18D6A1881A8B900D00D871F3 /* mbxmapkit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1877,7 +1863,6 @@
 				0360BB3B169DC26800E04026 /* AirshipConfig.plist */,
 				74A5C40C1B3432460002E1D5 /* WMConfig.plist */,
 				034FAED116A6FDFA00F9F663 /* config */,
-				15F31E6816A6D389006EDBC8 /* Reachability */,
 				18D6A1881A8B900D00D871F3 /* mbxmapkit */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
@@ -3524,7 +3509,6 @@
 				0327F96A16BFFB1900BA7DE7 /* WMAcceptTermsViewController.m in Sources */,
 				87910DE81BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */,
 				0327F96B16BFFB1900BA7DE7 /* WMTermsViewController.m in Sources */,
-				0327F96C16BFFB1900BA7DE7 /* Reachability.m in Sources */,
 				0327F96D16BFFB1900BA7DE7 /* WMToolBar_iPad.m in Sources */,
 				0327F96E16BFFB1900BA7DE7 /* WMNavigationBar_iPad.m in Sources */,
 				0327F96F16BFFB1900BA7DE7 /* WMDetailNavigationController.m in Sources */,
@@ -3636,7 +3620,6 @@
 				15F31E6516A6BCD2006EDBC8 /* WMAcceptTermsViewController.m in Sources */,
 				87910DE91BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */,
 				15F31E6716A6BCD6006EDBC8 /* WMTermsViewController.m in Sources */,
-				15F31E6C16A6D6FD006EDBC8 /* Reachability.m in Sources */,
 				031B9CA616AEC7D600AA0317 /* WMToolBar_iPad.m in Sources */,
 				031B9CAA16AED4AE00AA0317 /* WMNavigationBar_iPad.m in Sources */,
 				039A6FFB16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */,
@@ -3752,7 +3735,6 @@
 				980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */,
 				034FACB616A59A4100F9F663 /* WMTermsViewController.m in Sources */,
 				034FACBA16A59BEF00F9F663 /* WMAcceptTermsViewController.m in Sources */,
-				15F31E6B16A6D389006EDBC8 /* Reachability.m in Sources */,
 				031B9CA516AEC7D600AA0317 /* WMToolBar_iPad.m in Sources */,
 				031B9CA916AED4AE00AA0317 /* WMNavigationBar_iPad.m in Sources */,
 				039A6FFA16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */,

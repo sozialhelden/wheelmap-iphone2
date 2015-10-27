@@ -15,7 +15,6 @@
 #import "WMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
-#import "Reachability.h"
 #import "WMWheelmapAPI.h"
 
 @interface WMDashboardViewController ()

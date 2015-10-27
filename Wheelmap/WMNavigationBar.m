@@ -7,7 +7,6 @@
 //
 
 #import "WMNavigationBar.h"
-#import "Reachability.h"
 #import "WMWheelmapAPI.h"
 
 @implementation WMNavigationBar
