@@ -10,7 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 #import "SSZipArchive.h"
-#import "Reachability.h"
 
 @class Node;
 

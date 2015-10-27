@@ -7,7 +7,6 @@
 //
 
 #import "WMNavigationBar_iPad.h"
-#import "Reachability.h"
 #import "WMWheelmapAPI.h"
 
 @implementation WMNavigationBar_iPad
