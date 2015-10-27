@@ -25,6 +25,12 @@
 #define K_MAP_ID				@"mbxMapID"
 #define K_ACESSS_TOKEN			@"mbxAccessToken"
 
+// WMConfig
+#define WM_CONFIG_FILENAME							[[NSBundle mainBundle] objectForInfoDictionaryKey:@"WMConfigFilename"]
+#define WM_CONFIG									[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WM_CONFIG_FILENAME ofType:nil]]
+
+#define K_HOCKEY_APP_ID								WM_CONFIG[@"hockeyAppId"]
+
 // ETags aren't working et the moment. If you enable ist, please check if they are sent valid from the backend
 #define K_USE_ETAGS				NO
 
@@ -38,9 +44,6 @@
 #define K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET		4.0f
 
 #define K_ANIMATION_DURATION_SHORT				0.3f
-
-#define OPEN_CONFIG_DICTIONARY						[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMOpenConfigFilename ofType:@"plist"]]
-#define K_HOCKEY_APP_ID								OPEN_CONFIG_DICTIONARY[@"hockey_id"]
 
 #define K_DATA_KEY_ETAGS							@"eTags"
 
