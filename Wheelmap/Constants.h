@@ -39,6 +39,9 @@
 
 #define K_ANIMATION_DURATION_SHORT				0.3f
 
+#define OPEN_CONFIG_DICTIONARY						[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMOpenConfigFilename ofType:@"plist"]]
+#define K_HOCKEY_APP_ID								OPEN_CONFIG_DICTIONARY[@"hockey_id"]
+
 #define K_DATA_KEY_ETAGS							@"eTags"
 
 #define K_DB_KEY_CATEGORY_LOCALIZED_NAME			@"localized_name"
