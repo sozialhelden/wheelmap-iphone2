@@ -10,11 +10,10 @@
 
 @implementation WMSharingManager
 
--(id)initWithBaseViewController:(UIViewController *)vc
-{
+- (id)initWithBaseViewController:(UIViewController *)viewController {
     self = [super init];
     if (self) {
-        self.baseVC = vc;
+        self.baseVC = viewController;
     }
     
     return self;
@@ -22,7 +21,7 @@
 
 #pragma mark - Facebook
 
--(void)facebookPosting:(NSString *)body {
+- (void)facebookPosting:(NSString *)body {
     SLComposeViewController* fbController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     SLComposeViewControllerCompletionHandler __block completionHandler=
     ^(SLComposeViewControllerResult result){
@@ -57,19 +56,8 @@
 }
 
 #pragma mark - Tweeter
--(void)tweet:(NSString*)body
-{
-    //if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
-        [self tweetForVersionSixAndAbove:body];
-    /*
-    } else {
-        [self tweetForVersionFive:body];
-    }*/
-    
-}
 
--(void)tweetForVersionSixAndAbove:(NSString *)body
-{
+- (void)tweet:(NSString *)body {
     SLComposeViewController* fbController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     SLComposeViewControllerCompletionHandler __block completionHandler=
     ^(SLComposeViewControllerResult result){
@@ -104,25 +92,10 @@
     [self.baseVC presentViewController:fbController animated:YES completion:nil];
     
 }
-/*
--(void)tweetForVersionFive:(NSString *)body
-{
-    SLComposeViewController* tweetVc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    SLComposeViewControllerCompletionHandler completionHandler = ^(SLComposeViewControllerResult result){
-        [self.baseVC dismissViewControllerAnimated:YES completion:nil];
-    };
-    [tweetVc setCompletionHandler:completionHandler];
-    
-    
-    [tweetVc setInitialText:body];
-    
-    [self.baseVC presentViewController:tweetVc animated:YES completion:nil];
-    
-}
-*/
+
 #pragma mark - Mail
--(void)sendMailWithSubject:(NSString*)subject andBody:(NSString*)body
-{
+
+- (void)sendMailWithSubject:(NSString*)subject andBody:(NSString*)body {
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
         controller.mailComposeDelegate = self;
@@ -152,8 +125,8 @@
 }
 
 #pragma mark - SMS
--(void)sendSMSwithBody:(NSString *)body
-{
+
+- (void)sendSMSwithBody:(NSString *)body {
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText])
     {
@@ -166,8 +139,7 @@
     }
 }
 
--(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     if (result == MessageComposeResultSent) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SMSSendSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
@@ -182,8 +154,6 @@
     }
     
     [controller dismissViewControllerAnimated:YES completion:nil];
-
-    
 }
 
 
