@@ -126,9 +126,10 @@
 # pragma mark - Helper
 
 - (void)setupHockeyApp {
-	[[BITHockeyManager sharedHockeyManager] configureWithIdentifier:K_HOCKEY_APP_ID];
-	[[BITHockeyManager sharedHockeyManager] startManager];
-	[[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+	[BITHockeyManager.sharedHockeyManager configureWithIdentifier:K_HOCKEY_APP_ID];
+	[BITHockeyManager.sharedHockeyManager startManager];
+	[BITHockeyManager.sharedHockeyManager.crashManager setCrashManagerStatus: BITCrashManagerStatusAutoSend];
+	[BITHockeyManager.sharedHockeyManager.authenticator authenticateInstallation];
 }
 
 @end
