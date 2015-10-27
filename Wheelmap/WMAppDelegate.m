@@ -11,7 +11,6 @@
 #import "UAirship.h"
 #import "UAPush.h"
 #import <HockeySDK/HockeySDK.h>
-#import "AFNetworkActivityIndicatorManager.h"
 #import "Constants.h"
 
 @interface WMAppDelegate (HockeySDK) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
