@@ -27,6 +27,8 @@
 	#import "WMStandardButton.h"
 
 	// Libraries
+	#import <Reachability/Reachability.h>
+	#import <AFNetworking/AFNetworking.h>
 	#import <MarqueeLabel/MarqueeLabel.h>
 #endif
 

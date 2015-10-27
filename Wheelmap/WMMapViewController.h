@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "WMNodeListView.h"
 #import "WMDataManager.h"
-#import "MBXMapKit.h"
+#import <MBXMapKit/MBXMapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
 @class MKMapView, Node;
