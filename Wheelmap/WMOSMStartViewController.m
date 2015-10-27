@@ -114,10 +114,7 @@
 
 - (void)showFirstStartScreen {
     if ([dataManager isFirstLaunch]) {
-        /*
-        WMFirstStartViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMFirstStart"];
-         */
-        WMOSMDescribeViewController *firstStartViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMDescribeViewController"];
+        WMOSMDescribeViewController *firstStartViewController = [UIStoryboard instantiatedDescribeViewController];
         [self presentViewController:firstStartViewController animated:YES];
         
         [dataManager firstLaunchOccurred];
@@ -142,7 +139,7 @@
 
 - (IBAction)loginPressed:(id)sender
 {
-    WMOSMLoginViewController *osmLoginViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMLoginVC"];
+    WMOSMLoginViewController *osmLoginViewController = [UIStoryboard instantiatedOSMLoginViewController];
     [osmLoginViewController loadLoginUrl];
     [self presentViewController:osmLoginViewController animated:YES];
 }
@@ -202,7 +199,7 @@
 
 - (IBAction)whyOSMPressed:(id)sender {
     
-    WMOSMDescribeViewController *osmDescribeViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMDescribeViewController"];
+    WMOSMDescribeViewController *osmDescribeViewController = [UIStoryboard instantiatedDescribeViewController];
     [self presentViewController:osmDescribeViewController animated:YES];
 }
 

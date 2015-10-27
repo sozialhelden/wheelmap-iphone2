@@ -74,12 +74,12 @@
 	}
 
 	if ([self.topViewController isKindOfClass:[WMDetailViewController class]] == YES) {
-		WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
-		vc.node = ((WMDetailViewController *)self.topViewController).node;
-		vc.initialCoordinate = self.initialCoordinate;
-		vc.editView = YES;
-		vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-		[self pushViewController:vc animated:YES];
+		WMEditPOIViewController* editPOIViewController = [UIStoryboard instantiatedEditPOIViewController];
+		editPOIViewController.node = ((WMDetailViewController *)self.topViewController).node;
+		editPOIViewController.initialCoordinate = self.initialCoordinate;
+		editPOIViewController.editView = YES;
+		editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
+		[self pushViewController:editPOIViewController animated:YES];
 	}else {
 		NSLog(@"ERROR! Pushing Edit screen from sth. different than Detail screen");
 	}

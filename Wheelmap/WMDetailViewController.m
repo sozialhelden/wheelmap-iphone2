@@ -1039,12 +1039,12 @@
         [navCtrl presentLoginScreenWithButtonFrame:navCtrl.customNavigationBar.editButton.frame];
         return;
     }
-    
-    WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
-    vc.node = self.node;
-    vc.editView = YES;
-    vc.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-    [self.navigationController pushViewController:vc animated:YES];
+
+	WMEditPOIViewController *editPOIViewController = [UIStoryboard instantiatedEditPOIViewController];
+    editPOIViewController.node = self.node;
+    editPOIViewController.editView = YES;
+    editPOIViewController.title = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
+    [self.navigationController pushViewController:editPOIViewController animated:YES];
 }
 
 #pragma mark - Network Status Changes

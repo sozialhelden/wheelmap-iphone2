@@ -643,7 +643,7 @@
 
 - (void) pushDetailsViewControllerForNode:(Node*)node
 {
-    WMDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateInitialViewController];
+    WMDetailViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
     detailViewController.baseController = self;
     detailViewController.node = node;
     [self pushViewController:detailViewController animated:YES];
@@ -921,10 +921,10 @@
 - (void)showAcceptTermsViewController {
     [self dismissViewControllerAnimated:NO completion:nil];
     
-    WMAcceptTermsViewController *termsVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
-    termsVC.popoverButtonFrame = CGRectMake(self.view.frame.size.width/2, 400.0f, 5.0f, 5.0f);
+    WMAcceptTermsViewController *termsViewController = [UIStoryboard instantiatedAcceptTermsViewController];
+    termsViewController.popoverButtonFrame = CGRectMake(self.view.frame.size.width/2, 400.0f, 5.0f, 5.0f);
     
-    [self presentViewController:termsVC animated:YES];
+    [self presentViewController:termsViewController animated:YES];
 }
 
 #pragma mark - WMNavigationBar Delegate
@@ -974,35 +974,35 @@
     }
     
     contributePressed = NO;
-    
-    WMEditPOIViewController* vc = [[UIStoryboard storyboardWithName:@"WMDetailView" bundle:nil] instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
+
+	WMEditPOIViewController *editPOIViewController = [UIStoryboard instantiatedEditPOIViewController];
     if (mapViewWasMoved) {
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-                vc.initialCoordinate = ((WMRootViewController_iPad *)self.topViewController).mapViewController.region.center;
+                editPOIViewController.initialCoordinate = ((WMRootViewController_iPad *)self.topViewController).mapViewController.region.center;
             }
         } else {
-            vc.initialCoordinate = self.mapViewController.region.center;
+            editPOIViewController.initialCoordinate = self.mapViewController.region.center;
         }
     } else {
-        vc.initialCoordinate = self.currentLocation.coordinate;
+        editPOIViewController.initialCoordinate = self.currentLocation.coordinate;
     }
-    vc.title = vc.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
+    editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
-        WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:vc];
-        detailNavController.customNavigationBar.title = vc.navigationBarTitle;
+        WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:editPOIViewController];
+        detailNavController.customNavigationBar.title = editPOIViewController.navigationBarTitle;
         
-        vc.isRootViewController = YES;
-        vc.popoverButtonFrame = CGRectMake(self.customNavigationBar.contributeButton.frame.origin.x + 20.0f, self.customNavigationBar.contributeButton.frame.origin.y + 20.0f, self.customNavigationBar.contributeButton.frame.size.width, self.customNavigationBar.contributeButton.frame.size.height);
+        editPOIViewController.isRootViewController = YES;
+        editPOIViewController.popoverButtonFrame = CGRectMake(self.customNavigationBar.contributeButton.frame.origin.x + 20.0f, self.customNavigationBar.contributeButton.frame.origin.y + 20.0f, self.customNavigationBar.contributeButton.frame.size.width, self.customNavigationBar.contributeButton.frame.size.height);
         
-        vc.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
-        vc.baseController = self;
+        editPOIViewController.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
+        editPOIViewController.baseController = self;
         
-        [vc.popover presentPopoverFromRect:vc.popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [editPOIViewController.popover presentPopoverFromRect:editPOIViewController.popoverButtonFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     } else {
-        [self pushViewController:vc animated:YES];
+        [self pushViewController:editPOIViewController animated:YES];
     }
 }
 
@@ -1263,14 +1263,14 @@
 
 -(void)pressedLoginButton:(WMToolBar*)toolBar {
     
-    WMViewController* vc;
+    WMViewController* viewController;
     if (!dataManager.userIsAuthenticated) {
-        vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
+        viewController = [UIStoryboard instantiatedOSMStartViewController];
     } else {
-        vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
+        viewController = [UIStoryboard instantiatedLogoutViewController];
     }
     
-    vc.baseController = self;
+    viewController.baseController = self;
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
         CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).loginButton.frame;
@@ -1280,15 +1280,15 @@
             yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
         }
         
-        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+        viewController.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentViewController:vc animated:YES];
+    [self presentViewController:viewController animated:YES];
 }
 
 -(void)pressedInfoButton:(WMToolBar*)toolBar {
     
-    WMViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
+    WMViewController* creditsViewController = [UIStoryboard instantiatedCreditsViewController];
     
     if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
         
@@ -1298,10 +1298,10 @@
         if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
             yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
         }
-        vc.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+        creditsViewController.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
     
-    [self presentViewController:vc animated:YES];
+    [self presentViewController:creditsViewController animated:YES];
 }
 
 -(void)pressedHelpButton:(WMToolBar*)toolBar {
@@ -1505,9 +1505,9 @@
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
-    WMOSMStartViewController* vc = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
-    vc.popoverButtonFrame = frame;
-    [self presentViewController:vc animated:YES];
+    WMOSMStartViewController* osmStartViewController = [UIStoryboard instantiatedOSMStartViewController];
+    osmStartViewController.popoverButtonFrame = frame;
+    [self presentViewController:osmStartViewController animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
