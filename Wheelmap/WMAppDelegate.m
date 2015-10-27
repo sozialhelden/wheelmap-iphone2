@@ -127,9 +127,8 @@
 
 - (void)setupHockeyApp {
 	[[BITHockeyManager sharedHockeyManager] configureWithIdentifier:K_HOCKEY_APP_ID];
-	// Do some additional configuration if needed here
 	[[BITHockeyManager sharedHockeyManager] startManager];
-	[[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation]; // This line is obsolete in the crash only build
+	[[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
 @end
