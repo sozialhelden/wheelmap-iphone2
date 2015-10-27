@@ -7,7 +7,6 @@
 //
 
 #import "WMWheelmapAPI.h"
-#import "AFJSONRequestOperation.h"
 #import "UIDevice+Hardware.h"
 
 @implementation WMWheelmapAPI
