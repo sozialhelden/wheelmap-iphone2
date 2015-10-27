@@ -80,13 +80,12 @@
 // Initiliaze Map View
 - (void) initMapView{
     
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    [MBXMapKit setAccessToken:[config valueForKey:K_ACESSS_TOKEN]];
+    [MBXMapKit setAccessToken:K_MBX_TOKEN];
     self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:K_MAP_ID]];
+    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
     self.rasterOverlay.delegate = self;
     [self.mapView addOverlay:self.rasterOverlay];
     self.mapView.showsUserLocation = YES;

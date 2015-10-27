@@ -219,9 +219,7 @@
     
     // else, use app key
     if (!appApiKey) {
-        // load it from config file if necessary
-        NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-        appApiKey = config[@"appAPIKey"];
+        appApiKey = K_API_KEY;
     }
 
     return appApiKey;

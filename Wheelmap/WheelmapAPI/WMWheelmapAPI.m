@@ -151,8 +151,7 @@
 #pragma mark - Helper
 
 + (NSString *)baseUrl {
-	NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-	return config[@"apiBaseURL"];
+	return K_API_BASE_URL;
 }
 
 + (BOOL)isStagingBackend {

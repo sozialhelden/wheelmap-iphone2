@@ -22,14 +22,16 @@
 #define IS_OS_8_OR_LATER		([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define ODBL_URL				@"http://opendatacommons.org/licenses/odbl/"
 
-#define K_MAP_ID				@"mbxMapID"
-#define K_ACESSS_TOKEN			@"mbxAccessToken"
-
 // WMConfig
+
 #define WM_CONFIG_FILENAME							[[NSBundle mainBundle] objectForInfoDictionaryKey:@"WMConfigFilename"]
 #define WM_CONFIG									[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WM_CONFIG_FILENAME ofType:nil]]
 
+#define K_MBX_TOKEN									WM_CONFIG[@"mbxAccessToken"]
+#define K_MBX_MAP_ID								WM_CONFIG[@"mbxMapID"]
 #define K_HOCKEY_APP_ID								WM_CONFIG[@"hockeyAppId"]
+#define K_API_KEY									WM_CONFIG[@"appAPIKey"]
+#define K_API_BASE_URL								WM_CONFIG[@"apiBaseURL"]
 
 // ETags aren't working et the moment. If you enable ist, please check if they are sent valid from the backend
 #define K_USE_ETAGS				NO

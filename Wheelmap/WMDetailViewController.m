@@ -68,8 +68,7 @@
     self.mainView.backgroundColor = [UIColor clearColor];
     
     // MAPVIEW
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMConfigFilename ofType:@"plist"]];
-    [MBXMapKit setAccessToken:[config valueForKey:@"mbxAccessToken"]];
+    [MBXMapKit setAccessToken:K_MBX_TOKEN];
     
     self.mapView = [[MKMapView alloc] initWithFrame:MAPVIEWCLOSEDSTATE];
 
@@ -78,7 +77,7 @@
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
     
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:[config valueForKey:@"mbxMapID"]];
+    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
     self.rasterOverlay.delegate = self;
     
     [self.mapView addOverlay:self.rasterOverlay];
