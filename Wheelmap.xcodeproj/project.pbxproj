@@ -106,7 +106,6 @@
 		0327F98116BFFB1900BA7DE7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		0327F98216BFFB1900BA7DE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		0327F98316BFFB1900BA7DE7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
-		0327F98416BFFB1900BA7DE7 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979716789B4D0042358C /* HockeySDK.framework */; };
 		0327F98716BFFB1900BA7DE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 989927581649151300D9003B /* InfoPlist.strings */; };
 		0327F98816BFFB1900BA7DE7 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989927671649151300D9003B /* MainStoryboard_iPhone.storyboard */; };
 		0327F98A16BFFB1900BA7DE7 /* marker_limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADC6D6164BEEDA00251943 /* marker_limited@2x.png */; };
@@ -251,7 +250,6 @@
 		0327FA1F16BFFB1900BA7DE7 /* Curl_btn-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */; };
 		0327FA2016BFFB1900BA7DE7 /* Curl_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DA167738C10071EC05 /* Curl_button.png */; };
 		0327FA2116BFFB1900BA7DE7 /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
-		0327FA2216BFFB1900BA7DE7 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCA979916789B610042358C /* HockeySDKResources.bundle */; };
 		0327FA2316BFFB1900BA7DE7 /* more-buttons_info-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84E167B33E400855296 /* more-buttons_info-deactive@2x.png */; };
 		0327FA2416BFFB1900BA7DE7 /* more-buttons_info–deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84F167B33E400855296 /* more-buttons_info–deactive.png */; };
 		0327FA2516BFFB1900BA7DE7 /* more-buttons_info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F850167B33E400855296 /* more-buttons_info.png */; };
@@ -413,7 +411,6 @@
 		03BD03CE16A052750045D53D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		03BD03CF16A052750045D53D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		03BD03D016A052750045D53D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
-		03BD03D116A052750045D53D /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979716789B4D0042358C /* HockeySDK.framework */; };
 		03BD03D416A052750045D53D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 989927581649151300D9003B /* InfoPlist.strings */; };
 		03BD03D516A052750045D53D /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 989927671649151300D9003B /* MainStoryboard_iPhone.storyboard */; };
 		03BD03D716A052750045D53D /* marker_limited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ADC6D6164BEEDA00251943 /* marker_limited@2x.png */; };
@@ -558,7 +555,6 @@
 		03BD046C16A052750045D53D /* Curl_btn-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38D9167738C10071EC05 /* Curl_btn-right@2x.png */; };
 		03BD046D16A052750045D53D /* Curl_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DA167738C10071EC05 /* Curl_button.png */; };
 		03BD046E16A052750045D53D /* Curl_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 034D38DB167738C10071EC05 /* Curl_button@2x.png */; };
-		03BD046F16A052750045D53D /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCA979916789B610042358C /* HockeySDKResources.bundle */; };
 		03BD047016A052750045D53D /* more-buttons_info-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84E167B33E400855296 /* more-buttons_info-deactive@2x.png */; };
 		03BD047116A052750045D53D /* more-buttons_info–deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F84F167B33E400855296 /* more-buttons_info–deactive.png */; };
 		03BD047216A052750045D53D /* more-buttons_info.png in Resources */ = {isa = PBXBuildFile; fileRef = DB18F850167B33E400855296 /* more-buttons_info.png */; };
@@ -933,8 +929,6 @@
 		DBA62286166A421C009FA5DF /* WMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA62285166A421B009FA5DF /* WMTableViewController.m */; };
 		DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA6228C166A6846009FA5DF /* QuartzCore.framework */; };
 		DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCA978F167892440042358C /* WMLogoutViewController.m */; };
-		DBCA979816789B4D0042358C /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979716789B4D0042358C /* HockeySDK.framework */; };
-		DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCA979916789B610042358C /* HockeySDKResources.bundle */; };
 		DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979B16789B910042358C /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
@@ -1363,8 +1357,6 @@
 		DBA6228C166A6846009FA5DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DBCA978E167892440042358C /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
 		DBCA978F167892440042358C /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
-		DBCA979716789B4D0042358C /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "3rd-party-sdks/HockeySDK.framework"; sourceTree = "<group>"; };
-		DBCA979916789B610042358C /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HockeySDKResources.bundle; path = "3rd-party-sdks/HockeySDKResources.bundle"; sourceTree = "<group>"; };
 		DBCA979B16789B910042358C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DBF87610166DF78D000D9C4E /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 		E4E1D26DFD410DD6358525DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -1388,7 +1380,6 @@
 				0327F97316BFFB1900BA7DE7 /* CoreTelephony.framework in Frameworks */,
 				1842DE811A6971D9001D52CF /* CoreText.framework in Frameworks */,
 				0327F98216BFFB1900BA7DE7 /* Foundation.framework in Frameworks */,
-				0327F98416BFFB1900BA7DE7 /* HockeySDK.framework in Frameworks */,
 				0327F98016BFFB1900BA7DE7 /* MapKit.framework in Frameworks */,
 				0327F97A16BFFB1900BA7DE7 /* MessageUI.framework in Frameworks */,
 				0327F97816BFFB1900BA7DE7 /* MobileCoreServices.framework in Frameworks */,
@@ -1419,7 +1410,6 @@
 				03BD03C016A052750045D53D /* CoreTelephony.framework in Frameworks */,
 				1842DE821A6971E3001D52CF /* CoreText.framework in Frameworks */,
 				03BD03CF16A052750045D53D /* Foundation.framework in Frameworks */,
-				03BD03D116A052750045D53D /* HockeySDK.framework in Frameworks */,
 				03BD03CD16A052750045D53D /* MapKit.framework in Frameworks */,
 				03BD03C716A052750045D53D /* MessageUI.framework in Frameworks */,
 				03BD03C516A052750045D53D /* MobileCoreServices.framework in Frameworks */,
@@ -1449,7 +1439,6 @@
 				0360BB33169DC20200E04026 /* CoreTelephony.framework in Frameworks */,
 				1842DE801A6971CF001D52CF /* CoreText.framework in Frameworks */,
 				989927521649151300D9003B /* Foundation.framework in Frameworks */,
-				DBCA979816789B4D0042358C /* HockeySDK.framework in Frameworks */,
 				989927921649462E00D9003B /* MapKit.framework in Frameworks */,
 				DB4EB530167FC8080096CEDE /* MessageUI.framework in Frameworks */,
 				9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */,
@@ -1708,8 +1697,6 @@
 				DBCA979B16789B910042358C /* SystemConfiguration.framework */,
 				DB4EB531167FC8160096CEDE /* Social.framework */,
 				DB4EB52F167FC8080096CEDE /* MessageUI.framework */,
-				DBCA979916789B610042358C /* HockeySDKResources.bundle */,
-				DBCA979716789B4D0042358C /* HockeySDK.framework */,
 				98655CC31675FD14007083DF /* Security.framework */,
 				982E68E8166A9FC10062715C /* libz.dylib */,
 				DBA6228C166A6846009FA5DF /* QuartzCore.framework */,
@@ -2547,7 +2534,6 @@
 				0327FA1F16BFFB1900BA7DE7 /* Curl_btn-right@2x.png in Resources */,
 				0327FA2016BFFB1900BA7DE7 /* Curl_button.png in Resources */,
 				0327FA2116BFFB1900BA7DE7 /* Curl_button@2x.png in Resources */,
-				0327FA2216BFFB1900BA7DE7 /* HockeySDKResources.bundle in Resources */,
 				0327FA2316BFFB1900BA7DE7 /* more-buttons_info-deactive@2x.png in Resources */,
 				0327FA2416BFFB1900BA7DE7 /* more-buttons_info–deactive.png in Resources */,
 				0327FA2516BFFB1900BA7DE7 /* more-buttons_info.png in Resources */,
@@ -2762,7 +2748,6 @@
 				03BD046C16A052750045D53D /* Curl_btn-right@2x.png in Resources */,
 				03BD046D16A052750045D53D /* Curl_button.png in Resources */,
 				03BD046E16A052750045D53D /* Curl_button@2x.png in Resources */,
-				03BD046F16A052750045D53D /* HockeySDKResources.bundle in Resources */,
 				03BD047016A052750045D53D /* more-buttons_info-deactive@2x.png in Resources */,
 				03BD047116A052750045D53D /* more-buttons_info–deactive.png in Resources */,
 				03BD047216A052750045D53D /* more-buttons_info.png in Resources */,
@@ -2976,7 +2961,6 @@
 				034D38E9167738C10071EC05 /* Curl_btn-right@2x.png in Resources */,
 				034D38EA167738C10071EC05 /* Curl_button.png in Resources */,
 				034D38EB167738C10071EC05 /* Curl_button@2x.png in Resources */,
-				DBCA979A16789B610042358C /* HockeySDKResources.bundle in Resources */,
 				DB18F85A167B33E400855296 /* more-buttons_info-deactive@2x.png in Resources */,
 				DB18F85B167B33E400855296 /* more-buttons_info–deactive.png in Resources */,
 				DB18F85C167B33E400855296 /* more-buttons_info.png in Resources */,
@@ -3496,11 +3480,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3532,11 +3512,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3568,11 +3544,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3604,11 +3576,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3640,11 +3608,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3676,11 +3640,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3716,6 +3676,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 105;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -3742,11 +3703,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3784,6 +3741,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -3820,6 +3778,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 105;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -3846,11 +3805,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3882,11 +3837,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
 				CURRENT_PROJECT_VERSION = 105;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rd-party-sdks\"",
-					"$(PROJECT_DIR)/3rd-party-sdks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wheelmap/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
