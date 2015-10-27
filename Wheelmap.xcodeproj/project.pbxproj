@@ -666,24 +666,6 @@
 		18A4EA301AC569F300C90404 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */; };
 		18A4EA311AC569F300C90404 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */; };
 		18A4EA321AC569F300C90404 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */; };
-		18D6A1961A8B900D00D871F3 /* MBXMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18B1A8B900D00D871F3 /* MBXMapKit.m */; };
-		18D6A1971A8B900D00D871F3 /* MBXMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18B1A8B900D00D871F3 /* MBXMapKit.m */; };
-		18D6A1981A8B900D00D871F3 /* MBXMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18B1A8B900D00D871F3 /* MBXMapKit.m */; };
-		18D6A1991A8B900D00D871F3 /* MBXOfflineMapDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18D1A8B900D00D871F3 /* MBXOfflineMapDatabase.m */; };
-		18D6A19A1A8B900D00D871F3 /* MBXOfflineMapDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18D1A8B900D00D871F3 /* MBXOfflineMapDatabase.m */; };
-		18D6A19B1A8B900D00D871F3 /* MBXOfflineMapDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18D1A8B900D00D871F3 /* MBXOfflineMapDatabase.m */; };
-		18D6A19C1A8B900D00D871F3 /* MBXOfflineMapDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18F1A8B900D00D871F3 /* MBXOfflineMapDownloader.m */; };
-		18D6A19D1A8B900D00D871F3 /* MBXOfflineMapDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18F1A8B900D00D871F3 /* MBXOfflineMapDownloader.m */; };
-		18D6A19E1A8B900D00D871F3 /* MBXOfflineMapDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A18F1A8B900D00D871F3 /* MBXOfflineMapDownloader.m */; };
-		18D6A19F1A8B900D00D871F3 /* MBXPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1911A8B900D00D871F3 /* MBXPointAnnotation.m */; };
-		18D6A1A01A8B900D00D871F3 /* MBXPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1911A8B900D00D871F3 /* MBXPointAnnotation.m */; };
-		18D6A1A11A8B900D00D871F3 /* MBXPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1911A8B900D00D871F3 /* MBXPointAnnotation.m */; };
-		18D6A1A21A8B900D00D871F3 /* MBXRasterTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1931A8B900D00D871F3 /* MBXRasterTileOverlay.m */; };
-		18D6A1A31A8B900D00D871F3 /* MBXRasterTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1931A8B900D00D871F3 /* MBXRasterTileOverlay.m */; };
-		18D6A1A41A8B900D00D871F3 /* MBXRasterTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1931A8B900D00D871F3 /* MBXRasterTileOverlay.m */; };
-		18D6A1A51A8B900D00D871F3 /* MBXRasterTileRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1951A8B900D00D871F3 /* MBXRasterTileRenderer.m */; };
-		18D6A1A61A8B900D00D871F3 /* MBXRasterTileRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1951A8B900D00D871F3 /* MBXRasterTileRenderer.m */; };
-		18D6A1A71A8B900D00D871F3 /* MBXRasterTileRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6A1951A8B900D00D871F3 /* MBXRasterTileRenderer.m */; };
 		2EA5AB16280C161522CCBB3D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
 		34134F7618B3C6260029F320 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34134F7418B3C6260029F320 /* MainStoryboard_iPad.storyboard */; };
 		34134F7718B3C6260029F320 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34134F7418B3C6260029F320 /* MainStoryboard_iPad.storyboard */; };
@@ -1042,19 +1024,6 @@
 		18A4EA2E1AC569F300C90404 /* WMOSMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMLoginViewController.h; sourceTree = "<group>"; };
 		18A4EA2F1AC569F300C90404 /* WMOSMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMLoginViewController.m; sourceTree = "<group>"; };
 		18B3E7AA1A8CB80900AA2998 /* WMDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WMDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
-		18D6A1891A8B900D00D871F3 /* MBXConstantsAndTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXConstantsAndTypes.h; sourceTree = "<group>"; };
-		18D6A18A1A8B900D00D871F3 /* MBXMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXMapKit.h; sourceTree = "<group>"; };
-		18D6A18B1A8B900D00D871F3 /* MBXMapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXMapKit.m; sourceTree = "<group>"; };
-		18D6A18C1A8B900D00D871F3 /* MBXOfflineMapDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXOfflineMapDatabase.h; sourceTree = "<group>"; };
-		18D6A18D1A8B900D00D871F3 /* MBXOfflineMapDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXOfflineMapDatabase.m; sourceTree = "<group>"; };
-		18D6A18E1A8B900D00D871F3 /* MBXOfflineMapDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXOfflineMapDownloader.h; sourceTree = "<group>"; };
-		18D6A18F1A8B900D00D871F3 /* MBXOfflineMapDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXOfflineMapDownloader.m; sourceTree = "<group>"; };
-		18D6A1901A8B900D00D871F3 /* MBXPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXPointAnnotation.h; sourceTree = "<group>"; };
-		18D6A1911A8B900D00D871F3 /* MBXPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXPointAnnotation.m; sourceTree = "<group>"; };
-		18D6A1921A8B900D00D871F3 /* MBXRasterTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXRasterTileOverlay.h; sourceTree = "<group>"; };
-		18D6A1931A8B900D00D871F3 /* MBXRasterTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXRasterTileOverlay.m; sourceTree = "<group>"; };
-		18D6A1941A8B900D00D871F3 /* MBXRasterTileRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXRasterTileRenderer.h; sourceTree = "<group>"; };
-		18D6A1951A8B900D00D871F3 /* MBXRasterTileRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXRasterTileRenderer.m; sourceTree = "<group>"; };
 		34134F7518B3C6260029F320 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		348C9D6C18B64710001B022B /* Wheelmap-Info-beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Wheelmap-Info-beta.plist"; sourceTree = "<group>"; };
 		34C08E9E18A8ECAC00DAF430 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
@@ -1591,26 +1560,6 @@
 			path = Credits;
 			sourceTree = "<group>";
 		};
-		18D6A1881A8B900D00D871F3 /* mbxmapkit */ = {
-			isa = PBXGroup;
-			children = (
-				18D6A18A1A8B900D00D871F3 /* MBXMapKit.h */,
-				18D6A18B1A8B900D00D871F3 /* MBXMapKit.m */,
-				18D6A1891A8B900D00D871F3 /* MBXConstantsAndTypes.h */,
-				18D6A18C1A8B900D00D871F3 /* MBXOfflineMapDatabase.h */,
-				18D6A18D1A8B900D00D871F3 /* MBXOfflineMapDatabase.m */,
-				18D6A18E1A8B900D00D871F3 /* MBXOfflineMapDownloader.h */,
-				18D6A18F1A8B900D00D871F3 /* MBXOfflineMapDownloader.m */,
-				18D6A1901A8B900D00D871F3 /* MBXPointAnnotation.h */,
-				18D6A1911A8B900D00D871F3 /* MBXPointAnnotation.m */,
-				18D6A1921A8B900D00D871F3 /* MBXRasterTileOverlay.h */,
-				18D6A1931A8B900D00D871F3 /* MBXRasterTileOverlay.m */,
-				18D6A1941A8B900D00D871F3 /* MBXRasterTileRenderer.h */,
-				18D6A1951A8B900D00D871F3 /* MBXRasterTileRenderer.m */,
-			);
-			path = mbxmapkit;
-			sourceTree = "<group>";
-		};
 		4360DCD318BE0C3600D57E2A /* beta */ = {
 			isa = PBXGroup;
 			children = (
@@ -1657,7 +1606,6 @@
 				0360BB3B169DC26800E04026 /* AirshipConfig.plist */,
 				74A5C40C1B3432460002E1D5 /* WMConfig.plist */,
 				034FAED116A6FDFA00F9F663 /* config */,
-				18D6A1881A8B900D00D871F3 /* mbxmapkit */,
 				989927561649151300D9003B /* Supporting Files */,
 				989927551649151300D9003B /* Wheelmap */,
 				98ADC6D1164BEEDA00251943 /* Resources */,
@@ -3172,7 +3120,6 @@
 				0327F91816BFFB1900BA7DE7 /* WMNodeListCell.m in Sources */,
 				18A4EA311AC569F300C90404 /* WMOSMLoginViewController.m in Sources */,
 				0327F91916BFFB1900BA7DE7 /* WMWheelmapAPI.m in Sources */,
-				18D6A1A61A8B900D00D871F3 /* MBXRasterTileRenderer.m in Sources */,
 				0327F91A16BFFB1900BA7DE7 /* WMNavigationControllerBase.m in Sources */,
 				0327F91B16BFFB1900BA7DE7 /* WMMapViewController.m in Sources */,
 				0327F91C16BFFB1900BA7DE7 /* WMDataManager.m in Sources */,
@@ -3183,7 +3130,6 @@
 				0327F92116BFFB1900BA7DE7 /* WMDataModel.xcdatamodeld in Sources */,
 				87D26E431BD6364A0077132F /* WMCategory+helper.m in Sources */,
 				34C08EA118A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */,
-				18D6A1A31A8B900D00D871F3 /* MBXRasterTileOverlay.m in Sources */,
 				0327F92B16BFFB1900BA7DE7 /* WMButton.m in Sources */,
 				0327F92C16BFFB1900BA7DE7 /* WMLabel.m in Sources */,
 				0327F92D16BFFB1900BA7DE7 /* WMNavigationBar.m in Sources */,
@@ -3211,13 +3157,11 @@
 				0327F94216BFFB1900BA7DE7 /* WMSetMarkerViewController.m in Sources */,
 				0327F94316BFFB1900BA7DE7 /* WMCategoryViewController.m in Sources */,
 				0327F94416BFFB1900BA7DE7 /* WMDashboardButton.m in Sources */,
-				18D6A1971A8B900D00D871F3 /* MBXMapKit.m in Sources */,
 				0327F94616BFFB1900BA7DE7 /* WMKeychainWrapper.m in Sources */,
 				0327F94716BFFB1900BA7DE7 /* WMCompassView.m in Sources */,
 				0327F94816BFFB1900BA7DE7 /* WMInfinitePhotoViewController.m in Sources */,
 				0327F94916BFFB1900BA7DE7 /* InfiniteGallery.m in Sources */,
 				0327F94A16BFFB1900BA7DE7 /* WMMapSettingsViewController.m in Sources */,
-				18D6A19A1A8B900D00D871F3 /* MBXOfflineMapDatabase.m in Sources */,
 				0327F94B16BFFB1900BA7DE7 /* WMCategoryTableViewController.m in Sources */,
 				0327F94C16BFFB1900BA7DE7 /* WMLogoutViewController.m in Sources */,
 				0327F94D16BFFB1900BA7DE7 /* WMNodeTypeTableViewController.m in Sources */,
@@ -3241,9 +3185,7 @@
 				0327F96F16BFFB1900BA7DE7 /* WMDetailNavigationController.m in Sources */,
 				0327F97016BFFB1900BA7DE7 /* WMPopoverController.m in Sources */,
 				03C70AF616DFA1B20040A280 /* WMFirstStartViewController.m in Sources */,
-				18D6A1A01A8B900D00D871F3 /* MBXPointAnnotation.m in Sources */,
 				159430D816E7A2C10092F2E7 /* WMResourceManager.m in Sources */,
-				18D6A19D1A8B900D00D871F3 /* MBXOfflineMapDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3257,7 +3199,6 @@
 				03BD036C16A052750045D53D /* WMNodeListCell.m in Sources */,
 				18A4EA321AC569F300C90404 /* WMOSMLoginViewController.m in Sources */,
 				03BD036D16A052750045D53D /* WMWheelmapAPI.m in Sources */,
-				18D6A1A71A8B900D00D871F3 /* MBXRasterTileRenderer.m in Sources */,
 				03BD036E16A052750045D53D /* WMNavigationControllerBase.m in Sources */,
 				03BD036F16A052750045D53D /* WMMapViewController.m in Sources */,
 				03BD037016A052750045D53D /* WMDataManager.m in Sources */,
@@ -3268,7 +3209,6 @@
 				03BD037516A052750045D53D /* WMDataModel.xcdatamodeld in Sources */,
 				87D26E441BD6364A0077132F /* WMCategory+helper.m in Sources */,
 				34C08EA218A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */,
-				18D6A1A41A8B900D00D871F3 /* MBXRasterTileOverlay.m in Sources */,
 				03BD037F16A052750045D53D /* WMButton.m in Sources */,
 				03BD038016A052750045D53D /* WMLabel.m in Sources */,
 				03BD038116A052750045D53D /* WMNavigationBar.m in Sources */,
@@ -3296,13 +3236,11 @@
 				03BD039616A052750045D53D /* WMSetMarkerViewController.m in Sources */,
 				03BD039716A052750045D53D /* WMCategoryViewController.m in Sources */,
 				03BD039816A052750045D53D /* WMDashboardButton.m in Sources */,
-				18D6A1981A8B900D00D871F3 /* MBXMapKit.m in Sources */,
 				03BD039A16A052750045D53D /* WMKeychainWrapper.m in Sources */,
 				03BD039B16A052750045D53D /* WMCompassView.m in Sources */,
 				03BD039C16A052750045D53D /* WMInfinitePhotoViewController.m in Sources */,
 				03BD039D16A052750045D53D /* InfiniteGallery.m in Sources */,
 				03BD039E16A052750045D53D /* WMMapSettingsViewController.m in Sources */,
-				18D6A19B1A8B900D00D871F3 /* MBXOfflineMapDatabase.m in Sources */,
 				03BD039F16A052750045D53D /* WMCategoryTableViewController.m in Sources */,
 				03BD03A016A052750045D53D /* WMLogoutViewController.m in Sources */,
 				03BD03A116A052750045D53D /* WMNodeTypeTableViewController.m in Sources */,
@@ -3326,9 +3264,7 @@
 				039A6FFB16B0231E002ECE12 /* WMDetailNavigationController.m in Sources */,
 				031AFD1516BA80C60036CF5D /* WMPopoverController.m in Sources */,
 				03C70AF516DFA1B10040A280 /* WMFirstStartViewController.m in Sources */,
-				18D6A1A11A8B900D00D871F3 /* MBXPointAnnotation.m in Sources */,
 				159430D716E7A2C10092F2E7 /* WMResourceManager.m in Sources */,
-				18D6A19E1A8B900D00D871F3 /* MBXOfflineMapDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3336,7 +3272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D6A1A21A8B900D00D871F3 /* MBXRasterTileOverlay.m in Sources */,
 				9899275C1649151300D9003B /* main.m in Sources */,
 				989927601649151300D9003B /* WMAppDelegate.m in Sources */,
 				989927951649481300D9003B /* WMNodeListViewController.m in Sources */,
@@ -3345,7 +3280,6 @@
 				989927D4164A8AEF00D9003B /* WMNavigationControllerBase.m in Sources */,
 				989927DB164A9EFD00D9003B /* WMMapViewController.m in Sources */,
 				989927DE164AA0D100D9003B /* WMDataManager.m in Sources */,
-				18D6A1A51A8B900D00D871F3 /* MBXRasterTileRenderer.m in Sources */,
 				989927E7164ABDC700D9003B /* WMRootViewController_iPad.m in Sources */,
 				98ADC6E4164BF04F00251943 /* WMMapAnnotation.m in Sources */,
 				9817AF51164D617A00703A92 /* WMDetailViewController.m in Sources */,
@@ -3369,7 +3303,6 @@
 				D5406D64166A4AA40016E275 /* WMShareSocialViewController.m in Sources */,
 				98AC54AB166AA09A00E87965 /* ioapi.c in Sources */,
 				98AC54AC166AA09A00E87965 /* mztools.c in Sources */,
-				18D6A19C1A8B900D00D871F3 /* MBXOfflineMapDownloader.m in Sources */,
 				98AC54AD166AA09A00E87965 /* unzip.c in Sources */,
 				98AC54AE166AA09A00E87965 /* zip.c in Sources */,
 				98AC54AF166AA09A00E87965 /* SSZipArchive.m in Sources */,
@@ -3383,7 +3316,6 @@
 				D555D3861675E4A600C58813 /* WMCompassView.m in Sources */,
 				D555D3D61677897E00C58813 /* WMInfinitePhotoViewController.m in Sources */,
 				D555D3D916778C2800C58813 /* InfiniteGallery.m in Sources */,
-				18D6A1991A8B900D00D871F3 /* MBXOfflineMapDatabase.m in Sources */,
 				034D38CA167735BF0071EC05 /* WMMapSettingsViewController.m in Sources */,
 				D555D3FA1678956700C58813 /* WMCategoryTableViewController.m in Sources */,
 				DBCA9790167892440042358C /* WMLogoutViewController.m in Sources */,
@@ -3396,10 +3328,8 @@
 				9890C572168F417900AD7C07 /* NodeType.m in Sources */,
 				9819925A1695D94200F69BA8 /* WMDataParser.m in Sources */,
 				983BDBB6169C1128003B99A8 /* WMCategory.m in Sources */,
-				18D6A19F1A8B900D00D871F3 /* MBXPointAnnotation.m in Sources */,
 				34C08EA018A8ECAC00DAF430 /* UIColor+WMColor.m in Sources */,
 				18A4EA261AC41D7C00C90404 /* WMOSMDescribeViewController.m in Sources */,
-				18D6A1961A8B900D00D871F3 /* MBXMapKit.m in Sources */,
 				87D26E421BD6364A0077132F /* WMCategory+helper.m in Sources */,
 				15DBF5B3169B7C0400EBAC2A /* WMCreditsViewController.m in Sources */,
 				87910DE71BD4E79B00E0CAE0 /* WMStandardButton.m in Sources */,

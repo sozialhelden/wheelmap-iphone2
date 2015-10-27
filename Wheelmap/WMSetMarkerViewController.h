@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "Node.h"
-#import "MBXMapKit.h"
+#import <MBXMapKit/MBXMapKit.h>
 
 @interface WMSetMarkerViewController : WMViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBXRasterTileOverlayDelegate>
 
