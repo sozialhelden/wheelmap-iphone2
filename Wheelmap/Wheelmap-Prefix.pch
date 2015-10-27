@@ -27,6 +27,7 @@
 	#import "WMStandardButton.h"
 
 	// Libraries
+	#import <DKHelper/DKHelper.h>
 	#import <Reachability/Reachability.h>
 	#import <AFNetworking/AFNetworking.h>
 	#import <MarqueeLabel/MarqueeLabel.h>
@@ -56,12 +57,6 @@ typedef enum {
     kWMNodeListViewControllerUseCaseContribute,
     kWMNodeListViewControllerUseCaseCategory
 } WMNodeListViewControllerUseCase;
-
-#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 #define UI_USER_INTERFACE_IDIOM() \
 ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] ? \

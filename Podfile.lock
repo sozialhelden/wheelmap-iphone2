@@ -1,5 +1,6 @@
 PODS:
   - AFNetworking (1.3.4)
+  - DKHelper (0.9.6)
   - HockeySDK (3.8.4):
     - HockeySDK/AllFeaturesLib (= 3.8.4)
   - HockeySDK/AllFeaturesLib (3.8.4)
@@ -12,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.4)
+  - DKHelper (~> 0.9.6)
   - HockeySDK (~> 3.8.4)
   - MarqueeLabel (~> 2.3.2)
   - MBXMapKit (~> 0.8.0)
@@ -20,6 +22,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  DKHelper: 55010f62ced3d9fcc33e196e767da4c357ef90cb
   HockeySDK: 464a9eb01c42718515629d8d1d406983e5f855dc
   MarqueeLabel: a8171ed961be61ed8f21d94a5f0d569a9c45df3b
   MBXMapKit: 56040108ea7fbb87f98ea896d620e0d4290c2dbd

@@ -45,7 +45,9 @@ Pods/
 Carthage/Build
 
 # Wheelmap Configuration
-WMConfig.plist
+PLists/WMConfig.plist
+PLists/WMConfig-Alpha.plist
+PLists/WMConfig-Beta.plist
 
 # Deploy script
 deploy.sh
