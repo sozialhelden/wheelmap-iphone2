@@ -24,11 +24,9 @@
 		0327F98116BFFB1900BA7DE7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		0327F98216BFFB1900BA7DE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		0327F98316BFFB1900BA7DE7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
-		0327FA4F16BFFB1900BA7DE7 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		0360BB2F169DC1CE00E04026 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB2E169DC1CE00E04026 /* CFNetwork.framework */; };
 		0360BB31169DC1FB00E04026 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB30169DC1FB00E04026 /* libsqlite3.dylib */; };
 		0360BB33169DC20200E04026 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB32169DC20200E04026 /* CoreTelephony.framework */; };
-		0360BB3C169DC26800E04026 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		03BD03C016A052750045D53D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB32169DC20200E04026 /* CoreTelephony.framework */; };
 		03BD03C116A052750045D53D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0360BB30169DC1FB00E04026 /* libsqlite3.dylib */; };
 		03BD03C216A052750045D53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
@@ -46,7 +44,6 @@
 		03BD03CE16A052750045D53D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9899274F1649151300D9003B /* UIKit.framework */; };
 		03BD03CF16A052750045D53D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927511649151300D9003B /* Foundation.framework */; };
 		03BD03D016A052750045D53D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927531649151300D9003B /* CoreGraphics.framework */; };
-		03BD049F16A052750045D53D /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0360BB3B169DC26800E04026 /* AirshipConfig.plist */; };
 		15DBF574169B72EA00EBAC2A /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DBF573169B72EA00EBAC2A /* Twitter.framework */; };
 		1842DE7C1A69714B001D52CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842DE7B1A69714B001D52CF /* AudioToolbox.framework */; };
 		1842DE7D1A697154001D52CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1842DE7B1A69714B001D52CF /* AudioToolbox.framework */; };
@@ -720,7 +717,6 @@
 		0360BB30169DC1FB00E04026 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0360BB32169DC20200E04026 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0360BB34169DC20B00E04026 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		0360BB3B169DC26800E04026 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		03BD04A616A052750045D53D /* Wheelmap-Live.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Live.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		15DBF573169B72EA00EBAC2A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
@@ -1685,7 +1681,6 @@
 		989927401649151300D9003B = {
 			isa = PBXGroup;
 			children = (
-				0360BB3B169DC26800E04026 /* AirshipConfig.plist */,
 				872FD9631BDFD11C00764FC5 /* PLists */,
 				872FDDA01BDFEF6D00764FC5 /* Core */,
 				872FDF251BDFEFAA00764FC5 /* Helper */,
@@ -1996,7 +1991,6 @@
 				8774E6681BE0D93800A3E7EA /* marker_limited@2x.png in Resources */,
 				8774E6711BE0D93800A3E7EA /* marker_unknown@2x.png in Resources */,
 				8774E6531BE0D93800A3E7EA /* more-buttons_share@2x.png in Resources */,
-				0327FA4F16BFFB1900BA7DE7 /* AirshipConfig.plist in Resources */,
 				8774E61A1BE0D93800A3E7EA /* details_label-checked@2x.png in Resources */,
 				8774E5C31BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */,
 				8774E6741BE0D93800A3E7EA /* marker_yes@2x.png in Resources */,
@@ -2124,7 +2118,6 @@
 				8774E58E1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B71BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
 				8774E6F01BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
-				03BD049F16A052750045D53D /* AirshipConfig.plist in Resources */,
 				8774E6151BE0D93800A3E7EA /* details_compass@2x.png in Resources */,
 				8774E5B21BE0D93800A3E7EA /* start_logo.png in Resources */,
 				8774E68D1BE0D93800A3E7EA /* Social_btn-facebook@2x.png in Resources */,
@@ -2294,7 +2287,6 @@
 				8774E6671BE0D93800A3E7EA /* marker_limited@2x.png in Resources */,
 				8774E6701BE0D93800A3E7EA /* marker_unknown@2x.png in Resources */,
 				8774E6521BE0D93800A3E7EA /* more-buttons_share@2x.png in Resources */,
-				0360BB3C169DC26800E04026 /* AirshipConfig.plist in Resources */,
 				8774E6191BE0D93800A3E7EA /* details_label-checked@2x.png in Resources */,
 				8774E5C21BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */,
 				8774E6731BE0D93800A3E7EA /* marker_yes@2x.png in Resources */,
