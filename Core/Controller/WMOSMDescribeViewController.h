@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMViewController.h"
-
 @interface WMOSMDescribeViewController : WMViewController <UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;

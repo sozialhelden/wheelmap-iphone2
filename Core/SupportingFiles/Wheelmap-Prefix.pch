@@ -14,8 +14,11 @@
 
 	#import "Constants.h"
 
-    // import all of the custom widgets
-    #import "CustomUIElements.h"
+    // Import all of the custom widgets
+	#import "WMLabel.h"
+	#import "WMButton.h"
+	#import "WMViewController.h"
+	#import "WMTableViewController.h"
 
     // Categories
 	#import "UIColor+WMColor.h"

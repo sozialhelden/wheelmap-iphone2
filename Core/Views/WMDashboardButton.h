@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMButton.h"
-
 typedef enum {
     
     WMDashboardButtonTypeNearby,

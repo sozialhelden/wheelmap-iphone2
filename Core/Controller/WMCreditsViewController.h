@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMViewController.h"
-
 @interface WMCreditsViewController : WMViewController
 
 @property (nonatomic,strong) IBOutlet UIView* containerView;

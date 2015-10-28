@@ -1084,7 +1084,6 @@
 		872FDDEC1BDFEF6D00764FC5 /* WMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
 		872FDDED1BDFEF6D00764FC5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		872FDDEE1BDFEF6D00764FC5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
-		872FDDEF1BDFEF6D00764FC5 /* CustomUIElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIElements.h; sourceTree = "<group>"; };
 		872FDDF21BDFEF6D00764FC5 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
 		872FDDF31BDFEF6D00764FC5 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		872FDDF41BDFEF6D00764FC5 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -1543,7 +1542,6 @@
 				872FDE161BDFEF6D00764FC5 /* Views */,
 				872FDE131BDFEF6D00764FC5 /* SupportingFiles */,
 				872FDDAF1BDFEF6D00764FC5 /* Constants.h */,
-				872FDDEF1BDFEF6D00764FC5 /* CustomUIElements.h */,
 				872FDE3A1BDFEF6D00764FC5 /* WMAppDelegate.h */,
 				872FDE3B1BDFEF6D00764FC5 /* WMAppDelegate.m */,
 			);
