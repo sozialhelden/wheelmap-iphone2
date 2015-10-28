@@ -1036,7 +1036,6 @@
 		872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DetailView.storyboard; path = Resources/DetailView.storyboard; sourceTree = SOURCE_ROOT; };
 		872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "Resources/Main-iPad.storyboard"; sourceTree = SOURCE_ROOT; };
 		872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPhone.storyboard"; path = "Resources/Main-iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
-		872FDDA21BDFEF6D00764FC5 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
 		872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
 		872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+customSize.h"; sourceTree = "<group>"; };
@@ -1579,7 +1578,6 @@
 		872FDDA11BDFEF6D00764FC5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				872FDDA21BDFEF6D00764FC5 /* Categories.h */,
 				872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */,
 				872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */,
 				872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */,
