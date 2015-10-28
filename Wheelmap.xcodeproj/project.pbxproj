@@ -135,9 +135,6 @@
 		872FDE721BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */; };
 		872FDE731BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */; };
 		872FDE741BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */; };
-		872FDE751BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */; };
-		872FDE761BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */; };
-		872FDE771BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */; };
 		872FDE781BDFEF6D00764FC5 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */; };
 		872FDE791BDFEF6D00764FC5 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */; };
 		872FDE7A1BDFEF6D00764FC5 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */; };
@@ -1063,8 +1060,6 @@
 		872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInfinitePhotoViewController.m; sourceTree = "<group>"; };
 		872FDDC91BDFEF6D00764FC5 /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
 		872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
-		872FDDCB1BDFEF6D00764FC5 /* WMMapSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapSettingsViewController.h; sourceTree = "<group>"; };
-		872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapSettingsViewController.m; sourceTree = "<group>"; };
 		872FDDCD1BDFEF6D00764FC5 /* WMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewController.h; sourceTree = "<group>"; };
 		872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewController.m; sourceTree = "<group>"; };
 		872FDDCF1BDFEF6D00764FC5 /* WMNavigationControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationControllerBase.h; sourceTree = "<group>"; };
@@ -1607,8 +1602,6 @@
 				872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */,
 				872FDDC91BDFEF6D00764FC5 /* WMLogoutViewController.h */,
 				872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */,
-				872FDDCB1BDFEF6D00764FC5 /* WMMapSettingsViewController.h */,
-				872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */,
 				872FDDCD1BDFEF6D00764FC5 /* WMMapViewController.h */,
 				872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */,
 				872FDDCF1BDFEF6D00764FC5 /* WMNavigationControllerBase.h */,
@@ -3207,7 +3200,6 @@
 				872FDE7F1BDFEF6D00764FC5 /* WMNodeListViewController.m in Sources */,
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDE821BDFEF6D00764FC5 /* WMNodeTypeTableViewController.m in Sources */,
-				872FDE761BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */,
 				872FDE971BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */,
 				872FDF231BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				872FDE731BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */,
@@ -3287,7 +3279,6 @@
 				872FDE801BDFEF6D00764FC5 /* WMNodeListViewController.m in Sources */,
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDE831BDFEF6D00764FC5 /* WMNodeTypeTableViewController.m in Sources */,
-				872FDE771BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */,
 				872FDE981BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */,
 				872FDF241BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				872FDE741BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */,
@@ -3367,7 +3358,6 @@
 				872FDE7E1BDFEF6D00764FC5 /* WMNodeListViewController.m in Sources */,
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDE811BDFEF6D00764FC5 /* WMNodeTypeTableViewController.m in Sources */,
-				872FDE751BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */,
 				872FDE961BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */,
 				872FDF221BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				872FDE721BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */,

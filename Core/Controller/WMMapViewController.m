@@ -12,7 +12,6 @@
 #import "Node.h"
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
-#import "WMMapSettingsViewController.h"
 #import "WMDetailNavigationController.h"
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>

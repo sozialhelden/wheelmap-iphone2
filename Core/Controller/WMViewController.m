@@ -10,7 +10,6 @@
 #import "WMInfinitePhotoViewController.h"
 #import "WMTermsViewController.h"
 #import "WMAcceptTermsViewController.h"
-#import "WMMapSettingsViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMRegisterViewController.h"
 
@@ -107,11 +106,7 @@
         }
 
         
-        if ([modalViewController isKindOfClass:[WMMapSettingsViewController class]]) {
-            
-            [super presentViewController:modalViewController animated:animated completion:nil];
-            
-        } else if ([modalViewController isKindOfClass:[WMRegisterViewController class]]) {
+        if ([modalViewController isKindOfClass:[WMRegisterViewController class]]) {
             
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
                 if(navigationController) {
@@ -179,7 +174,7 @@
 }
 
 - (void)dismissViewControllerAnimated:(BOOL)animated{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]] && ![self isKindOfClass:[WMMapSettingsViewController class]]) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
         [self.popover dismissPopoverAnimated:animated];
     } else {
         [super dismissViewControllerAnimated:animated completion:nil];
