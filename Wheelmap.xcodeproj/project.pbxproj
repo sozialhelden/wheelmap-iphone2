@@ -715,7 +715,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0327FA6B16BFFB1900BA7DE7 /* Wheelmap Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0327FA6B16BFFB1900BA7DE7 /* Wheelmap-Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0360BB2E169DC1CE00E04026 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0360BB30169DC1FB00E04026 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0360BB32169DC20200E04026 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1048,7 +1048,7 @@
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		9899274B1649151300D9003B /* Wheelmap Alpha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap Alpha.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9899274B1649151300D9003B /* Wheelmap-Alpha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Alpha.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9899274F1649151300D9003B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		989927511649151300D9003B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		989927531649151300D9003B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1700,9 +1700,9 @@
 		9899274C1649151300D9003B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9899274B1649151300D9003B /* Wheelmap Alpha.app */,
+				9899274B1649151300D9003B /* Wheelmap-Alpha.app */,
 				03BD04A616A052750045D53D /* Wheelmap.app */,
-				0327FA6B16BFFB1900BA7DE7 /* Wheelmap Beta.app */,
+				0327FA6B16BFFB1900BA7DE7 /* Wheelmap-Beta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1771,12 +1771,12 @@
 			);
 			name = "Wheelmap-Beta";
 			productName = Wheelmap;
-			productReference = 0327FA6B16BFFB1900BA7DE7 /* Wheelmap Beta.app */;
+			productReference = 0327FA6B16BFFB1900BA7DE7 /* Wheelmap-Beta.app */;
 			productType = "com.apple.product-type.application";
 		};
-		03BD036716A052750045D53D /* Wheelmap */ = {
+		03BD036716A052750045D53D /* Wheelmap-Live */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap" */;
+			buildConfigurationList = 03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-Live" */;
 			buildPhases = (
 				757E60E61BCC126700E31CFB /* Check Pods Manifest.lock */,
 				03BD036816A052750045D53D /* Sources */,
@@ -1789,7 +1789,7 @@
 			);
 			dependencies = (
 			);
-			name = Wheelmap;
+			name = "Wheelmap-Live";
 			productName = Wheelmap;
 			productReference = 03BD04A616A052750045D53D /* Wheelmap.app */;
 			productType = "com.apple.product-type.application";
@@ -1811,7 +1811,7 @@
 			);
 			name = "Wheelmap-Alpha";
 			productName = Wheelmap;
-			productReference = 9899274B1649151300D9003B /* Wheelmap Alpha.app */;
+			productReference = 9899274B1649151300D9003B /* Wheelmap-Alpha.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1863,7 +1863,7 @@
 			targets = (
 				9899274A1649151300D9003B /* Wheelmap-Alpha */,
 				0327F91316BFFB1900BA7DE7 /* Wheelmap-Beta */,
-				03BD036716A052750045D53D /* Wheelmap */,
+				03BD036716A052750045D53D /* Wheelmap-Live */,
 			);
 		};
 /* End PBXProject section */
@@ -2746,7 +2746,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
-				PRODUCT_NAME = "Wheelmap Beta";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2777,7 +2777,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
-				PRODUCT_NAME = "Wheelmap Beta";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2940,7 +2940,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
-				PRODUCT_NAME = "Wheelmap Alpha";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2971,7 +2971,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
-				PRODUCT_NAME = "Wheelmap Alpha";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "508df28e-cef1-4aaf-ba97-c52be8468225";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "508df28e-cef1-4aaf-ba97-c52be8468225";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2991,7 +2991,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap" */ = {
+		03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-Live" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03BD04A316A052750045D53D /* Debug */,
