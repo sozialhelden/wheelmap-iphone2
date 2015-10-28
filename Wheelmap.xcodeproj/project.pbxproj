@@ -105,9 +105,6 @@
 		872FDE4E1BDFEF6D00764FC5 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */; };
 		872FDE4F1BDFEF6D00764FC5 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */; };
 		872FDE501BDFEF6D00764FC5 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */; };
-		872FDE511BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */; };
-		872FDE521BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */; };
-		872FDE531BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */; };
 		872FDE541BDFEF6D00764FC5 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */; };
 		872FDE551BDFEF6D00764FC5 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */; };
 		872FDE561BDFEF6D00764FC5 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */; };
@@ -1049,8 +1046,6 @@
 		872FDDAF1BDFEF6D00764FC5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		872FDDB11BDFEF6D00764FC5 /* WMAcceptTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAcceptTermsViewController.h; sourceTree = "<group>"; };
 		872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAcceptTermsViewController.m; sourceTree = "<group>"; };
-		872FDDB31BDFEF6D00764FC5 /* WMCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryListViewController.h; sourceTree = "<group>"; };
-		872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryListViewController.m; sourceTree = "<group>"; };
 		872FDDB51BDFEF6D00764FC5 /* WMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryTableViewController.h; sourceTree = "<group>"; };
 		872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryTableViewController.m; sourceTree = "<group>"; };
 		872FDDB71BDFEF6D00764FC5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
@@ -1597,8 +1592,6 @@
 			children = (
 				872FDDB11BDFEF6D00764FC5 /* WMAcceptTermsViewController.h */,
 				872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */,
-				872FDDB31BDFEF6D00764FC5 /* WMCategoryListViewController.h */,
-				872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */,
 				872FDDB51BDFEF6D00764FC5 /* WMCategoryTableViewController.h */,
 				872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */,
 				872FDDB71BDFEF6D00764FC5 /* WMCategoryViewController.h */,
@@ -3207,7 +3200,6 @@
 				872FDF001BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE21BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE581BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
-				872FDE521BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */,
 				872FDED31BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE491BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
 				872FDF351BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
@@ -3289,7 +3281,6 @@
 				872FDF011BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE31BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE591BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
-				872FDE531BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */,
 				872FDED41BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE4A1BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
 				872FDF361BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
@@ -3371,7 +3362,6 @@
 				872FDEFF1BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE11BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE571BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
-				872FDE511BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */,
 				872FDED21BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE481BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
 				872FDF341BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
