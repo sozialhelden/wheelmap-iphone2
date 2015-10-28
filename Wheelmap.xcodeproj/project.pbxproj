@@ -78,9 +78,9 @@
 		872FDD5A1BDFE28A00764FC5 /* WMNodeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */; };
 		872FDD5B1BDFE28A00764FC5 /* WMNodeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */; };
 		872FDD5C1BDFE28A00764FC5 /* WMNodeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */; };
-		872FDD971BDFE3FB00764FC5 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */; };
-		872FDD981BDFE3FB00764FC5 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */; };
-		872FDD991BDFE3FB00764FC5 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */; };
+		872FDD971BDFE3FB00764FC5 /* POI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* POI.storyboard */; };
+		872FDD981BDFE3FB00764FC5 /* POI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* POI.storyboard */; };
+		872FDD991BDFE3FB00764FC5 /* POI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* POI.storyboard */; };
 		872FDD9A1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */; };
 		872FDD9B1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */; };
 		872FDD9C1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */; };
@@ -715,13 +715,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0327FA6B16BFFB1900BA7DE7 /* Wheelmap-BETA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-BETA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0327FA6B16BFFB1900BA7DE7 /* Wheelmap-Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0360BB2E169DC1CE00E04026 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0360BB30169DC1FB00E04026 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0360BB32169DC20200E04026 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0360BB34169DC20B00E04026 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0360BB3B169DC26800E04026 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
-		03BD04A616A052750045D53D /* Wheelmap-LIVE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-LIVE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03BD04A616A052750045D53D /* Wheelmap-Live.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Live.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		15DBF573169B72EA00EBAC2A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		1842DE7B1A69714B001D52CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -763,7 +763,7 @@
 		872FDA7C1BDFE0A100764FC5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		872FDA7D1BDFE0A100764FC5 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 		872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMNodeListCell.xib; sourceTree = "<group>"; };
-		872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DetailView.storyboard; path = Resources/DetailView.storyboard; sourceTree = SOURCE_ROOT; };
+		872FDD941BDFE3FB00764FC5 /* POI.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = POI.storyboard; path = Resources/POI.storyboard; sourceTree = SOURCE_ROOT; };
 		872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "Resources/Main-iPad.storyboard"; sourceTree = SOURCE_ROOT; };
 		872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPhone.storyboard"; path = "Resources/Main-iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
 		872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
@@ -1048,7 +1048,7 @@
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		9899274B1649151300D9003B /* Wheelmap-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9899274B1649151300D9003B /* Wheelmap-Alpha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Alpha.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9899274F1649151300D9003B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		989927511649151300D9003B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		989927531649151300D9003B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1176,7 +1176,7 @@
 				8774E4F11BE0D93800A3E7EA /* Images */,
 				872FDA651BDFE0A100764FC5 /* Images.xcassets */,
 				872FDA661BDFE0A100764FC5 /* Localized */,
-				872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */,
+				872FDD941BDFE3FB00764FC5 /* POI.storyboard */,
 				872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */,
 				872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */,
 				872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */,
@@ -1700,9 +1700,9 @@
 		9899274C1649151300D9003B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9899274B1649151300D9003B /* Wheelmap-DEV.app */,
-				03BD04A616A052750045D53D /* Wheelmap-LIVE.app */,
-				0327FA6B16BFFB1900BA7DE7 /* Wheelmap-BETA.app */,
+				9899274B1649151300D9003B /* Wheelmap-Alpha.app */,
+				03BD04A616A052750045D53D /* Wheelmap-Live.app */,
+				0327FA6B16BFFB1900BA7DE7 /* Wheelmap-Beta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1754,9 +1754,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0327F91316BFFB1900BA7DE7 /* Wheelmap-BETA */ = {
+		0327F91316BFFB1900BA7DE7 /* Wheelmap-Beta */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0327FA6716BFFB1900BA7DE7 /* Build configuration list for PBXNativeTarget "Wheelmap-BETA" */;
+			buildConfigurationList = 0327FA6716BFFB1900BA7DE7 /* Build configuration list for PBXNativeTarget "Wheelmap-Beta" */;
 			buildPhases = (
 				757E60E41BCC125F00E31CFB /* Check Pods Manifest.lock */,
 				0327F91416BFFB1900BA7DE7 /* Sources */,
@@ -1769,14 +1769,14 @@
 			);
 			dependencies = (
 			);
-			name = "Wheelmap-BETA";
+			name = "Wheelmap-Beta";
 			productName = Wheelmap;
-			productReference = 0327FA6B16BFFB1900BA7DE7 /* Wheelmap-BETA.app */;
+			productReference = 0327FA6B16BFFB1900BA7DE7 /* Wheelmap-Beta.app */;
 			productType = "com.apple.product-type.application";
 		};
-		03BD036716A052750045D53D /* Wheelmap-LIVE */ = {
+		03BD036716A052750045D53D /* Wheelmap-Live */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-LIVE" */;
+			buildConfigurationList = 03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-Live" */;
 			buildPhases = (
 				757E60E61BCC126700E31CFB /* Check Pods Manifest.lock */,
 				03BD036816A052750045D53D /* Sources */,
@@ -1789,14 +1789,14 @@
 			);
 			dependencies = (
 			);
-			name = "Wheelmap-LIVE";
+			name = "Wheelmap-Live";
 			productName = Wheelmap;
-			productReference = 03BD04A616A052750045D53D /* Wheelmap-LIVE.app */;
+			productReference = 03BD04A616A052750045D53D /* Wheelmap-Live.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9899274A1649151300D9003B /* Wheelmap-DEV */ = {
+		9899274A1649151300D9003B /* Wheelmap-Alpha */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 989927871649151300D9003B /* Build configuration list for PBXNativeTarget "Wheelmap-DEV" */;
+			buildConfigurationList = 989927871649151300D9003B /* Build configuration list for PBXNativeTarget "Wheelmap-Alpha" */;
 			buildPhases = (
 				313525CDFB0FBBA39E694853 /* Check Pods Manifest.lock */,
 				989927471649151300D9003B /* Sources */,
@@ -1809,9 +1809,9 @@
 			);
 			dependencies = (
 			);
-			name = "Wheelmap-DEV";
+			name = "Wheelmap-Alpha";
 			productName = Wheelmap;
-			productReference = 9899274B1649151300D9003B /* Wheelmap-DEV.app */;
+			productReference = 9899274B1649151300D9003B /* Wheelmap-Alpha.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1861,9 +1861,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9899274A1649151300D9003B /* Wheelmap-DEV */,
-				0327F91316BFFB1900BA7DE7 /* Wheelmap-BETA */,
-				03BD036716A052750045D53D /* Wheelmap-LIVE */,
+				9899274A1649151300D9003B /* Wheelmap-Alpha */,
+				0327F91316BFFB1900BA7DE7 /* Wheelmap-Beta */,
+				03BD036716A052750045D53D /* Wheelmap-Live */,
 			);
 		};
 /* End PBXProject section */
@@ -1890,7 +1890,7 @@
 				8774E67D1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65C1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
 				8774E66E1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
-				872FDD981BDFE3FB00764FC5 /* DetailView.storyboard in Resources */,
+				872FDD981BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CB1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
 				8774E6621BE0D93800A3E7EA /* list_shadow.png in Resources */,
 				8774E5F01BE0D93800A3E7EA /* details_btn-photoupload@2x.png in Resources */,
@@ -2039,7 +2039,7 @@
 				8774E67E1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65D1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
 				8774E66F1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
-				872FDD991BDFE3FB00764FC5 /* DetailView.storyboard in Resources */,
+				872FDD991BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CC1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
 				8774E6631BE0D93800A3E7EA /* list_shadow.png in Resources */,
 				8774E5F11BE0D93800A3E7EA /* details_btn-photoupload@2x.png in Resources */,
@@ -2188,7 +2188,7 @@
 				8774E67C1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65B1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
 				8774E66D1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
-				872FDD971BDFE3FB00764FC5 /* DetailView.storyboard in Resources */,
+				872FDD971BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CA1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
 				8774E6611BE0D93800A3E7EA /* list_shadow.png in Resources */,
 				8774E5EF1BE0D93800A3E7EA /* details_btn-photoupload@2x.png in Resources */,
@@ -2738,7 +2738,6 @@
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
 					BETA,
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -2747,7 +2746,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
-				PRODUCT_NAME = "Wheelmap-BETA";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2770,7 +2769,6 @@
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
 					BETA,
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -2779,45 +2777,13 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
-				PRODUCT_NAME = "Wheelmap-BETA";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
-		};
-		0327FA6A16BFFB1900BA7DE7 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DA26444CED63501D106705A /* Pods.appstore.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Beta";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 105;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
-					BETA,
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "PLists/Wheelmap-Beta-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
-				PRODUCT_NAME = "Wheelmap-BETA";
-				PROVISIONING_PROFILE = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B4E56BF-0E04-47EE-8E89-8594C9FE8EAB";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = AppStore;
 		};
 		03BD04A316A052750045D53D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2834,7 +2800,6 @@
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
 					LIVE,
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -2843,7 +2808,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
-				PRODUCT_NAME = "Wheelmap-LIVE";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2866,7 +2831,6 @@
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
 					LIVE,
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -2875,108 +2839,13 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
-				PRODUCT_NAME = "Wheelmap-LIVE";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "50d7e403-e300-4200-9e3c-3a9e8eaf8d52";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50d7e403-e300-4200-9e3c-3a9e8eaf8d52";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
-		};
-		03BD04A516A052750045D53D /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DA26444CED63501D106705A /* Pods.appstore.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
-				CURRENT_PROJECT_VERSION = 105;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
-					LIVE,
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "PLists/Wheelmap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
-				PRODUCT_NAME = "Wheelmap-LIVE";
-				PROVISIONING_PROFILE = "4e01bd74-6b9b-4669-85fb-7ca4388edf6d";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4e01bd74-6b9b-4669-85fb-7ca4388edf6d";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = AppStore;
-		};
-		03F23ED216A0160600F6B379 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DA26444CED63501D106705A /* Pods.appstore.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 105;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = AppStore;
-		};
-		03F23ED316A0160600F6B379 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DA26444CED63501D106705A /* Pods.appstore.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Dev";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 105;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
-					DEV,
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "PLists/Wheelmap-Alpha-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7C6F0C7-B40C-4BFF-9784-63C81E195C41";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = AppStore;
 		};
 		989927851649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3063,8 +2932,7 @@
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
-					DEV,
+					ALPHA,
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Alpha-Info.plist";
@@ -3095,8 +2963,7 @@
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"CONFIGURATION_$(CONFIGURATION)",
-					DEV,
+					ALPHA,
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Alpha-Info.plist";
@@ -3115,22 +2982,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0327FA6716BFFB1900BA7DE7 /* Build configuration list for PBXNativeTarget "Wheelmap-BETA" */ = {
+		0327FA6716BFFB1900BA7DE7 /* Build configuration list for PBXNativeTarget "Wheelmap-Beta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0327FA6816BFFB1900BA7DE7 /* Debug */,
 				0327FA6916BFFB1900BA7DE7 /* Release */,
-				0327FA6A16BFFB1900BA7DE7 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-LIVE" */ = {
+		03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-Live" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03BD04A316A052750045D53D /* Debug */,
 				03BD04A416A052750045D53D /* Release */,
-				03BD04A516A052750045D53D /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3140,17 +3005,15 @@
 			buildConfigurations = (
 				989927851649151300D9003B /* Debug */,
 				989927861649151300D9003B /* Release */,
-				03F23ED216A0160600F6B379 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		989927871649151300D9003B /* Build configuration list for PBXNativeTarget "Wheelmap-DEV" */ = {
+		989927871649151300D9003B /* Build configuration list for PBXNativeTarget "Wheelmap-Alpha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				989927881649151300D9003B /* Debug */,
 				989927891649151300D9003B /* Release */,
-				03F23ED316A0160600F6B379 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -13,7 +13,7 @@
 + (UIStoryboard*)mainStoryboard;
 + (UIStoryboard*)mainIPhoneStoryboard;
 + (UIStoryboard*)mainIPadStoryboard;
-+ (UIStoryboard*)detailStoryboard;
++ (UIStoryboard*)poiStoryboard;
 
 #pragma mark - Instantiations
 

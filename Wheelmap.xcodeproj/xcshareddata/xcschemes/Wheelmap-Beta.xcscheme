@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
-               BuildableName = "Wheelmap-BETA.app"
-               BlueprintName = "Wheelmap-BETA"
+               BuildableName = "Wheelmap-Beta.app"
+               BlueprintName = "Wheelmap-Beta"
                ReferencedContainer = "container:Wheelmap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
-            BuildableName = "Wheelmap-BETA.app"
-            BlueprintName = "Wheelmap-BETA"
+            BuildableName = "Wheelmap-Beta.app"
+            BlueprintName = "Wheelmap-Beta"
             ReferencedContainer = "container:Wheelmap.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
-            BuildableName = "Wheelmap-BETA.app"
-            BlueprintName = "Wheelmap-BETA"
+            BuildableName = "Wheelmap-Beta.app"
+            BlueprintName = "Wheelmap-Beta"
             ReferencedContainer = "container:Wheelmap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
-            BuildableName = "Wheelmap-BETA.app"
-            BlueprintName = "Wheelmap-BETA"
+            BuildableName = "Wheelmap-Beta.app"
+            BlueprintName = "Wheelmap-Beta"
             ReferencedContainer = "container:Wheelmap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
