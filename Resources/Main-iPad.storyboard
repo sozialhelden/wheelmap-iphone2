@@ -197,9 +197,6 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="gba-pA-AmV" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="aZg-xx-8tW"/>
-                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -233,124 +230,9 @@
             </objects>
             <point key="canvasLocation" x="-577" y="323"/>
         </scene>
-        <!--Map Settings View Controller-->
-        <scene sceneID="LkE-dW-5Ku">
-            <objects>
-                <viewController id="gba-pA-AmV" customClass="WMMapSettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Irt-YO-WCa"/>
-                        <viewControllerLayoutGuide type="bottom" id="XmH-Qw-gOR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CKK-IR-dhZ">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Curl_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="kvm-YP-WM1">
-                                <rect key="frame" x="289" y="759" width="190" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9XQ-Ss-ATj"/>
-                                    <constraint firstAttribute="width" constant="190" id="C1z-HT-m9f"/>
-                                </constraints>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkQ-AF-9nh">
-                                <rect key="frame" x="234" y="833" width="300" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTM-Ve-MDn">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <state key="normal" backgroundImage="Curl_btn-left.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" backgroundImage="Curl_btn-left-active.png"/>
-                                        <state key="highlighted" backgroundImage="Curl_btn-left-active.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="segmentedControlButtonPressed:" destination="gba-pA-AmV" eventType="touchUpInside" id="KWF-yf-Egr"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mE7-pz-JvW">
-                                        <rect key="frame" x="100" y="0.0" width="100" height="50"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" backgroundImage="Curl_btn-mid.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" backgroundImage="Curl_btn-mid-active.png"/>
-                                        <state key="highlighted" backgroundImage="Curl_btn-mid-active.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="segmentedControlButtonPressed:" destination="gba-pA-AmV" eventType="touchUpInside" id="PrJ-tJ-cGZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yM-6B-fs6">
-                                        <rect key="frame" x="200" y="0.0" width="100" height="50"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" backgroundImage="Curl_btn-right.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" backgroundImage="Curl_btn-right-active.png"/>
-                                        <state key="highlighted" backgroundImage="Curl_btn-right-active.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="segmentedControlButtonPressed:" destination="gba-pA-AmV" eventType="touchUpInside" id="0yv-is-2es"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="3yM-6B-fs6" secondAttribute="trailing" id="3YE-ET-4dR"/>
-                                    <constraint firstAttribute="height" constant="50" id="GVt-Or-vNR"/>
-                                    <constraint firstItem="TTM-Ve-MDn" firstAttribute="top" secondItem="3yM-6B-fs6" secondAttribute="top" id="It4-h7-LSy"/>
-                                    <constraint firstItem="3yM-6B-fs6" firstAttribute="leading" secondItem="mE7-pz-JvW" secondAttribute="trailing" id="J3c-IA-Y0O"/>
-                                    <constraint firstAttribute="width" constant="300" id="LUK-2a-dga"/>
-                                    <constraint firstAttribute="trailing" secondItem="TTM-Ve-MDn" secondAttribute="trailing" constant="200" id="M7v-af-6p6"/>
-                                    <constraint firstItem="TTM-Ve-MDn" firstAttribute="top" secondItem="mE7-pz-JvW" secondAttribute="top" id="PZC-Y7-2iw"/>
-                                    <constraint firstItem="TTM-Ve-MDn" firstAttribute="top" secondItem="gkQ-AF-9nh" secondAttribute="top" id="W6B-TB-svh"/>
-                                    <constraint firstItem="mE7-pz-JvW" firstAttribute="leading" secondItem="TTM-Ve-MDn" secondAttribute="trailing" id="X3G-bn-Njo"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <animations/>
-                        <constraints>
-                            <constraint firstItem="kvm-YP-WM1" firstAttribute="centerX" secondItem="gkQ-AF-9nh" secondAttribute="centerX" id="2V9-ZW-yTc"/>
-                            <constraint firstItem="XmH-Qw-gOR" firstAttribute="top" secondItem="gkQ-AF-9nh" secondAttribute="bottom" constant="141" id="Ksh-9C-1df"/>
-                            <constraint firstItem="gkQ-AF-9nh" firstAttribute="top" secondItem="kvm-YP-WM1" secondAttribute="bottom" constant="44" id="Z1D-Pq-jBU"/>
-                            <constraint firstAttribute="centerX" secondItem="gkQ-AF-9nh" secondAttribute="centerX" id="bDn-2z-oTP"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <connections>
-                        <outlet property="buttonsView" destination="gkQ-AF-9nh" id="Mur-p8-Fd9"/>
-                        <outlet property="hybridButton" destination="mE7-pz-JvW" id="cdw-Qc-67J"/>
-                        <outlet property="satelliteButton" destination="3yM-6B-fs6" id="d80-vN-clk"/>
-                        <outlet property="standardButton" destination="TTM-Ve-MDn" id="2Tx-dc-GPP"/>
-                        <outlet property="wheelmapLogo" destination="kvm-YP-WM1" id="fp5-qd-8Rs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oit-yl-iIs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="331" y="323"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="Curl_btn-left-active.png" width="100" height="50"/>
-        <image name="Curl_btn-left.png" width="100" height="50"/>
-        <image name="Curl_btn-mid-active.png" width="100" height="50"/>
-        <image name="Curl_btn-mid.png" width="100" height="50"/>
-        <image name="Curl_btn-right-active.png" width="100" height="50"/>
-        <image name="Curl_btn-right.png" width="100" height="50"/>
         <image name="Curl_button.png" width="40" height="50"/>
-        <image name="Curl_logo.png" width="190" height="30"/>
         <image name="list_shadow.png" width="5" height="5"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

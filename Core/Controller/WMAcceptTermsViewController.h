@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMViewController.h"
 #import "WMDataManager.h"
 
 @interface WMAcceptTermsViewController : WMViewController <WMDataManagerDelegate>

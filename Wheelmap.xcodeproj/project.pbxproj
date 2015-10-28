@@ -90,9 +90,6 @@
 		872FDE3C1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */; };
 		872FDE3D1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */; };
 		872FDE3E1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */; };
-		872FDE3F1BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */; };
-		872FDE401BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */; };
-		872FDE411BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */; };
 		872FDE421BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */; };
 		872FDE431BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */; };
 		872FDE441BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */; };
@@ -108,9 +105,6 @@
 		872FDE4E1BDFEF6D00764FC5 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */; };
 		872FDE4F1BDFEF6D00764FC5 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */; };
 		872FDE501BDFEF6D00764FC5 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */; };
-		872FDE511BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */; };
-		872FDE521BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */; };
-		872FDE531BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */; };
 		872FDE541BDFEF6D00764FC5 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */; };
 		872FDE551BDFEF6D00764FC5 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */; };
 		872FDE561BDFEF6D00764FC5 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */; };
@@ -135,18 +129,12 @@
 		872FDE691BDFEF6D00764FC5 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */; };
 		872FDE6A1BDFEF6D00764FC5 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */; };
 		872FDE6B1BDFEF6D00764FC5 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */; };
-		872FDE6C1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */; };
-		872FDE6D1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */; };
-		872FDE6E1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */; };
 		872FDE6F1BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */; };
 		872FDE701BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */; };
 		872FDE711BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */; };
 		872FDE721BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */; };
 		872FDE731BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */; };
 		872FDE741BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */; };
-		872FDE751BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */; };
-		872FDE761BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */; };
-		872FDE771BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */; };
 		872FDE781BDFEF6D00764FC5 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */; };
 		872FDE791BDFEF6D00764FC5 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */; };
 		872FDE7A1BDFEF6D00764FC5 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */; };
@@ -168,15 +156,9 @@
 		872FDE8A1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDA1BDFEF6D00764FC5 /* WMOSMStartViewController.m */; };
 		872FDE8B1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDA1BDFEF6D00764FC5 /* WMOSMStartViewController.m */; };
 		872FDE8C1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDA1BDFEF6D00764FC5 /* WMOSMStartViewController.m */; };
-		872FDE8D1BDFEF6D00764FC5 /* WMPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDC1BDFEF6D00764FC5 /* WMPhotoViewController.m */; };
-		872FDE8E1BDFEF6D00764FC5 /* WMPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDC1BDFEF6D00764FC5 /* WMPhotoViewController.m */; };
-		872FDE8F1BDFEF6D00764FC5 /* WMPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDC1BDFEF6D00764FC5 /* WMPhotoViewController.m */; };
 		872FDE901BDFEF6D00764FC5 /* WMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */; };
 		872FDE911BDFEF6D00764FC5 /* WMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */; };
 		872FDE921BDFEF6D00764FC5 /* WMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */; };
-		872FDE931BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */; };
-		872FDE941BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */; };
-		872FDE951BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */; };
 		872FDE961BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */; };
 		872FDE971BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */; };
 		872FDE981BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */; };
@@ -312,9 +294,6 @@
 		872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
 		872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
 		872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
-		872FDF341BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */; };
-		872FDF351BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */; };
-		872FDF361BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */; };
 		872FE01A1BDFF18F00764FC5 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FDF381BDFF18F00764FC5 /* bg.png */; };
 		872FE01B1BDFF18F00764FC5 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FDF381BDFF18F00764FC5 /* bg.png */; };
 		872FE01C1BDFF18F00764FC5 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FDF381BDFF18F00764FC5 /* bg.png */; };
@@ -972,6 +951,9 @@
 		872FE2A81BDFF18F00764FC5 /* toolbar_toggle-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */; };
 		872FE2A91BDFF18F00764FC5 /* toolbar_toggle-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */; };
 		872FE2AA1BDFF18F00764FC5 /* toolbar_toggle-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */; };
+		8774E4EE1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
+		8774E4EF1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
+		8774E4F01BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
 		9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */; };
@@ -1039,11 +1021,8 @@
 		872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DetailView.storyboard; path = Resources/DetailView.storyboard; sourceTree = SOURCE_ROOT; };
 		872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "Resources/Main-iPad.storyboard"; sourceTree = SOURCE_ROOT; };
 		872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPhone.storyboard"; path = "Resources/Main-iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
-		872FDDA21BDFEF6D00764FC5 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
 		872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
-		872FDDA51BDFEF6D00764FC5 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
-		872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+customSize.h"; sourceTree = "<group>"; };
 		872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+customSize.m"; sourceTree = "<group>"; };
 		872FDDA91BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+Wheelmap.h"; sourceTree = "<group>"; };
@@ -1055,8 +1034,6 @@
 		872FDDAF1BDFEF6D00764FC5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		872FDDB11BDFEF6D00764FC5 /* WMAcceptTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAcceptTermsViewController.h; sourceTree = "<group>"; };
 		872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAcceptTermsViewController.m; sourceTree = "<group>"; };
-		872FDDB31BDFEF6D00764FC5 /* WMCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryListViewController.h; sourceTree = "<group>"; };
-		872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryListViewController.m; sourceTree = "<group>"; };
 		872FDDB51BDFEF6D00764FC5 /* WMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryTableViewController.h; sourceTree = "<group>"; };
 		872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryTableViewController.m; sourceTree = "<group>"; };
 		872FDDB71BDFEF6D00764FC5 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
@@ -1073,14 +1050,10 @@
 		872FDDC21BDFEF6D00764FC5 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
 		872FDDC31BDFEF6D00764FC5 /* WMEditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIViewController.h; sourceTree = "<group>"; };
 		872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
-		872FDDC51BDFEF6D00764FC5 /* WMFirstStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFirstStartViewController.h; sourceTree = "<group>"; };
-		872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFirstStartViewController.m; sourceTree = "<group>"; };
 		872FDDC71BDFEF6D00764FC5 /* WMInfinitePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInfinitePhotoViewController.h; sourceTree = "<group>"; };
 		872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInfinitePhotoViewController.m; sourceTree = "<group>"; };
 		872FDDC91BDFEF6D00764FC5 /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
 		872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
-		872FDDCB1BDFEF6D00764FC5 /* WMMapSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapSettingsViewController.h; sourceTree = "<group>"; };
-		872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapSettingsViewController.m; sourceTree = "<group>"; };
 		872FDDCD1BDFEF6D00764FC5 /* WMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewController.h; sourceTree = "<group>"; };
 		872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewController.m; sourceTree = "<group>"; };
 		872FDDCF1BDFEF6D00764FC5 /* WMNavigationControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationControllerBase.h; sourceTree = "<group>"; };
@@ -1095,12 +1068,8 @@
 		872FDDD81BDFEF6D00764FC5 /* WMOSMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMLoginViewController.m; sourceTree = "<group>"; };
 		872FDDD91BDFEF6D00764FC5 /* WMOSMStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMStartViewController.h; sourceTree = "<group>"; };
 		872FDDDA1BDFEF6D00764FC5 /* WMOSMStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMStartViewController.m; sourceTree = "<group>"; };
-		872FDDDB1BDFEF6D00764FC5 /* WMPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoViewController.h; sourceTree = "<group>"; };
-		872FDDDC1BDFEF6D00764FC5 /* WMPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoViewController.m; sourceTree = "<group>"; };
 		872FDDDD1BDFEF6D00764FC5 /* WMPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPopoverController.h; sourceTree = "<group>"; };
 		872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPopoverController.m; sourceTree = "<group>"; };
-		872FDDDF1BDFEF6D00764FC5 /* WMRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRegisterViewController.h; sourceTree = "<group>"; };
-		872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRegisterViewController.m; sourceTree = "<group>"; };
 		872FDDE11BDFEF6D00764FC5 /* WMRootViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRootViewController_iPad.h; sourceTree = "<group>"; };
 		872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRootViewController_iPad.m; sourceTree = "<group>"; };
 		872FDDE31BDFEF6D00764FC5 /* WMSetMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSetMarkerViewController.h; sourceTree = "<group>"; };
@@ -1115,7 +1084,6 @@
 		872FDDEC1BDFEF6D00764FC5 /* WMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
 		872FDDED1BDFEF6D00764FC5 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		872FDDEE1BDFEF6D00764FC5 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
-		872FDDEF1BDFEF6D00764FC5 /* CustomUIElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIElements.h; sourceTree = "<group>"; };
 		872FDDF21BDFEF6D00764FC5 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
 		872FDDF31BDFEF6D00764FC5 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		872FDDF41BDFEF6D00764FC5 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -1169,7 +1137,6 @@
 		872FDE2C1BDFEF6D00764FC5 /* WMNodeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListCell.h; sourceTree = "<group>"; };
 		872FDE2D1BDFEF6D00764FC5 /* WMNodeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeListCell.m; sourceTree = "<group>"; };
 		872FDE2E1BDFEF6D00764FC5 /* WMNodeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListView.h; sourceTree = "<group>"; };
-		872FDE2F1BDFEF6D00764FC5 /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
 		872FDE301BDFEF6D00764FC5 /* WMStandardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStandardButton.h; sourceTree = "<group>"; };
 		872FDE311BDFEF6D00764FC5 /* WMStandardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStandardButton.m; sourceTree = "<group>"; };
 		872FDE321BDFEF6D00764FC5 /* WMToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMToolBar.h; sourceTree = "<group>"; };
@@ -1196,8 +1163,6 @@
 		872FDF271BDFEFAA00764FC5 /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
 		872FDF281BDFEFAA00764FC5 /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
 		872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMResourceManager.m; sourceTree = "<group>"; };
-		872FDF2C1BDFEFAA00764FC5 /* WMStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStringUtilities.h; sourceTree = "<group>"; };
-		872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStringUtilities.m; sourceTree = "<group>"; };
 		872FDF381BDFF18F00764FC5 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		872FDF391BDFF18F00764FC5 /* buttons_btn-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup.png"; sourceTree = "<group>"; };
 		872FDF3A1BDFF18F00764FC5 /* buttons_btn-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup@2x.png"; sourceTree = "<group>"; };
@@ -1417,6 +1382,9 @@
 		872FE0171BDFF18F00764FC5 /* toolbar_toggle-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-list@2x.png"; sourceTree = "<group>"; };
 		872FE0181BDFF18F00764FC5 /* toolbar_toggle-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-map.png"; sourceTree = "<group>"; };
 		872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-map@2x.png"; sourceTree = "<group>"; };
+		8774E4EA1BE0CCDC00A3E7EA /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
+		8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Distance.h"; sourceTree = "<group>"; };
+		8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Distance.m"; sourceTree = "<group>"; };
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1574,7 +1542,6 @@
 				872FDE161BDFEF6D00764FC5 /* Views */,
 				872FDE131BDFEF6D00764FC5 /* SupportingFiles */,
 				872FDDAF1BDFEF6D00764FC5 /* Constants.h */,
-				872FDDEF1BDFEF6D00764FC5 /* CustomUIElements.h */,
 				872FDE3A1BDFEF6D00764FC5 /* WMAppDelegate.h */,
 				872FDE3B1BDFEF6D00764FC5 /* WMAppDelegate.m */,
 			);
@@ -1584,11 +1551,10 @@
 		872FDDA11BDFEF6D00764FC5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				872FDDA21BDFEF6D00764FC5 /* Categories.h */,
+				8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */,
+				8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */,
 				872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */,
 				872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */,
-				872FDDA51BDFEF6D00764FC5 /* UIDevice+Hardware.h */,
-				872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */,
 				872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */,
 				872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */,
 				872FDDA91BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.h */,
@@ -1606,8 +1572,6 @@
 			children = (
 				872FDDB11BDFEF6D00764FC5 /* WMAcceptTermsViewController.h */,
 				872FDDB21BDFEF6D00764FC5 /* WMAcceptTermsViewController.m */,
-				872FDDB31BDFEF6D00764FC5 /* WMCategoryListViewController.h */,
-				872FDDB41BDFEF6D00764FC5 /* WMCategoryListViewController.m */,
 				872FDDB51BDFEF6D00764FC5 /* WMCategoryTableViewController.h */,
 				872FDDB61BDFEF6D00764FC5 /* WMCategoryTableViewController.m */,
 				872FDDB71BDFEF6D00764FC5 /* WMCategoryViewController.h */,
@@ -1624,14 +1588,10 @@
 				872FDDC21BDFEF6D00764FC5 /* WMDetailViewController.m */,
 				872FDDC31BDFEF6D00764FC5 /* WMEditPOIViewController.h */,
 				872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */,
-				872FDDC51BDFEF6D00764FC5 /* WMFirstStartViewController.h */,
-				872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */,
 				872FDDC71BDFEF6D00764FC5 /* WMInfinitePhotoViewController.h */,
 				872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */,
 				872FDDC91BDFEF6D00764FC5 /* WMLogoutViewController.h */,
 				872FDDCA1BDFEF6D00764FC5 /* WMLogoutViewController.m */,
-				872FDDCB1BDFEF6D00764FC5 /* WMMapSettingsViewController.h */,
-				872FDDCC1BDFEF6D00764FC5 /* WMMapSettingsViewController.m */,
 				872FDDCD1BDFEF6D00764FC5 /* WMMapViewController.h */,
 				872FDDCE1BDFEF6D00764FC5 /* WMMapViewController.m */,
 				872FDDCF1BDFEF6D00764FC5 /* WMNavigationControllerBase.h */,
@@ -1646,12 +1606,8 @@
 				872FDDD81BDFEF6D00764FC5 /* WMOSMLoginViewController.m */,
 				872FDDD91BDFEF6D00764FC5 /* WMOSMStartViewController.h */,
 				872FDDDA1BDFEF6D00764FC5 /* WMOSMStartViewController.m */,
-				872FDDDB1BDFEF6D00764FC5 /* WMPhotoViewController.h */,
-				872FDDDC1BDFEF6D00764FC5 /* WMPhotoViewController.m */,
 				872FDDDD1BDFEF6D00764FC5 /* WMPopoverController.h */,
 				872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */,
-				872FDDDF1BDFEF6D00764FC5 /* WMRegisterViewController.h */,
-				872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */,
 				872FDDE11BDFEF6D00764FC5 /* WMRootViewController_iPad.h */,
 				872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */,
 				872FDDE31BDFEF6D00764FC5 /* WMSetMarkerViewController.h */,
@@ -1786,7 +1742,6 @@
 				872FDE2C1BDFEF6D00764FC5 /* WMNodeListCell.h */,
 				872FDE2D1BDFEF6D00764FC5 /* WMNodeListCell.m */,
 				872FDE2E1BDFEF6D00764FC5 /* WMNodeListView.h */,
-				872FDE2F1BDFEF6D00764FC5 /* WMResourceManager.h */,
 				872FDE301BDFEF6D00764FC5 /* WMStandardButton.h */,
 				872FDE311BDFEF6D00764FC5 /* WMStandardButton.m */,
 				872FDE321BDFEF6D00764FC5 /* WMToolBar.h */,
@@ -1840,7 +1795,6 @@
 			children = (
 				872FDF261BDFEFAA00764FC5 /* WMKeychainWrapper */,
 				872FDF291BDFEFAA00764FC5 /* WMResourceManager */,
-				872FDF2B1BDFEFAA00764FC5 /* WMStringUtilities */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1857,18 +1811,10 @@
 		872FDF291BDFEFAA00764FC5 /* WMResourceManager */ = {
 			isa = PBXGroup;
 			children = (
+				8774E4EA1BE0CCDC00A3E7EA /* WMResourceManager.h */,
 				872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */,
 			);
 			path = WMResourceManager;
-			sourceTree = "<group>";
-		};
-		872FDF2B1BDFEFAA00764FC5 /* WMStringUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				872FDF2C1BDFEFAA00764FC5 /* WMStringUtilities.h */,
-				872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */,
-			);
-			path = WMStringUtilities;
 			sourceTree = "<group>";
 		};
 		872FDF371BDFF18F00764FC5 /* Images */ = {
@@ -3196,9 +3142,7 @@
 				872FDE8B1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */,
 				872FDE461BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDC1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
-				872FDE401BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */,
 				872FDF061BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				872FDE6D1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				872FDEEB1BDFEF6D00764FC5 /* WMMapAnnotation.m in Sources */,
 				872FDEFA1BDFEF6D00764FC5 /* WMToolBar.m in Sources */,
@@ -3206,7 +3150,6 @@
 				872FDEA61BDFEF6D00764FC5 /* WMViewController.m in Sources */,
 				872FDED91BDFEF6D00764FC5 /* WMButton.m in Sources */,
 				872FDF1D1BDFEF9900764FC5 /* unzip.c in Sources */,
-				872FDE941BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */,
 				872FDEC11BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				872FDE911BDFEF6D00764FC5 /* WMPopoverController.m in Sources */,
 				872FDEE81BDFEF6D00764FC5 /* WMLabel.m in Sources */,
@@ -3217,10 +3160,9 @@
 				872FDF001BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE21BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE581BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
-				872FDE521BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */,
+				8774E4EF1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				872FDED31BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE491BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				872FDF351BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
 				872FDEA31BDFEF6D00764FC5 /* WMTermsViewController.m in Sources */,
 				872FDEBE1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE671BDFEF6D00764FC5 /* WMDetailViewController.m in Sources */,
@@ -3233,7 +3175,6 @@
 				872FDE7F1BDFEF6D00764FC5 /* WMNodeListViewController.m in Sources */,
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDE821BDFEF6D00764FC5 /* WMNodeTypeTableViewController.m in Sources */,
-				872FDE761BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */,
 				872FDE971BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */,
 				872FDF231BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				872FDE731BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */,
@@ -3254,7 +3195,6 @@
 				872FDEF41BDFEF6D00764FC5 /* WMNodeListCell.m in Sources */,
 				872FDEA91BDFEF6D00764FC5 /* WMWheelchairStatusViewController.m in Sources */,
 				872FDEF71BDFEF6D00764FC5 /* WMStandardButton.m in Sources */,
-				872FDE8E1BDFEF6D00764FC5 /* WMPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3279,9 +3219,7 @@
 				872FDE8C1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */,
 				872FDE471BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDD1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
-				872FDE411BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */,
 				872FDF071BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				872FDE6E1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				872FDEEC1BDFEF6D00764FC5 /* WMMapAnnotation.m in Sources */,
 				872FDEFB1BDFEF6D00764FC5 /* WMToolBar.m in Sources */,
@@ -3289,7 +3227,6 @@
 				872FDEA71BDFEF6D00764FC5 /* WMViewController.m in Sources */,
 				872FDEDA1BDFEF6D00764FC5 /* WMButton.m in Sources */,
 				872FDF1E1BDFEF9900764FC5 /* unzip.c in Sources */,
-				872FDE951BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */,
 				872FDEC21BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				872FDE921BDFEF6D00764FC5 /* WMPopoverController.m in Sources */,
 				872FDEE91BDFEF6D00764FC5 /* WMLabel.m in Sources */,
@@ -3300,10 +3237,9 @@
 				872FDF011BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE31BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE591BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
-				872FDE531BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */,
+				8774E4F01BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				872FDED41BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE4A1BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				872FDF361BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
 				872FDEA41BDFEF6D00764FC5 /* WMTermsViewController.m in Sources */,
 				872FDEBF1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE681BDFEF6D00764FC5 /* WMDetailViewController.m in Sources */,
@@ -3316,7 +3252,6 @@
 				872FDE801BDFEF6D00764FC5 /* WMNodeListViewController.m in Sources */,
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDE831BDFEF6D00764FC5 /* WMNodeTypeTableViewController.m in Sources */,
-				872FDE771BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */,
 				872FDE981BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */,
 				872FDF241BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				872FDE741BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */,
@@ -3337,7 +3272,6 @@
 				872FDEF51BDFEF6D00764FC5 /* WMNodeListCell.m in Sources */,
 				872FDEAA1BDFEF6D00764FC5 /* WMWheelchairStatusViewController.m in Sources */,
 				872FDEF81BDFEF6D00764FC5 /* WMStandardButton.m in Sources */,
-				872FDE8F1BDFEF6D00764FC5 /* WMPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3362,9 +3296,7 @@
 				872FDE8A1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */,
 				872FDE451BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDB1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
-				872FDE3F1BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */,
 				872FDF051BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				872FDE6C1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				872FDEEA1BDFEF6D00764FC5 /* WMMapAnnotation.m in Sources */,
 				872FDEF91BDFEF6D00764FC5 /* WMToolBar.m in Sources */,
@@ -3372,7 +3304,6 @@
 				872FDEA51BDFEF6D00764FC5 /* WMViewController.m in Sources */,
 				872FDED81BDFEF6D00764FC5 /* WMButton.m in Sources */,
 				872FDF1C1BDFEF9900764FC5 /* unzip.c in Sources */,
-				872FDE931BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */,
 				872FDEC01BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				872FDE901BDFEF6D00764FC5 /* WMPopoverController.m in Sources */,
 				872FDEE71BDFEF6D00764FC5 /* WMLabel.m in Sources */,
@@ -3383,10 +3314,9 @@
 				872FDEFF1BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE11BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE571BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
-				872FDE511BDFEF6D00764FC5 /* WMCategoryListViewController.m in Sources */,
+				8774E4EE1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				872FDED21BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE481BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				872FDF341BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
 				872FDEA21BDFEF6D00764FC5 /* WMTermsViewController.m in Sources */,
 				872FDEBD1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE661BDFEF6D00764FC5 /* WMDetailViewController.m in Sources */,
@@ -3399,7 +3329,6 @@
 				872FDE7E1BDFEF6D00764FC5 /* WMNodeListViewController.m in Sources */,
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDE811BDFEF6D00764FC5 /* WMNodeTypeTableViewController.m in Sources */,
-				872FDE751BDFEF6D00764FC5 /* WMMapSettingsViewController.m in Sources */,
 				872FDE961BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */,
 				872FDF221BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				872FDE721BDFEF6D00764FC5 /* WMLogoutViewController.m in Sources */,
@@ -3420,7 +3349,6 @@
 				872FDEF31BDFEF6D00764FC5 /* WMNodeListCell.m in Sources */,
 				872FDEA81BDFEF6D00764FC5 /* WMWheelchairStatusViewController.m in Sources */,
 				872FDEF61BDFEF6D00764FC5 /* WMStandardButton.m in Sources */,
-				872FDE8D1BDFEF6D00764FC5 /* WMPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

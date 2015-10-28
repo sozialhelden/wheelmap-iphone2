@@ -12,7 +12,6 @@
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
 #import <CoreLocation/CoreLocation.h>
-#import "WMStringUtilities.h"
 #import "WMDataManager.h"
 #import "WMDetailNavigationController.h"
 #import "WMNodeListView.h"
@@ -363,7 +362,7 @@
     CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
     CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
     CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
-    cell.distanceLabel.text = [WMStringUtilities localizedDistanceFromMeters:distance];
+    cell.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
     
     return cell;
 }

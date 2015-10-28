@@ -30,10 +30,8 @@
 #import "WMCreditsViewController.h"
 #import "WMLogoutViewController.h"
 #import "WMToolBar_iPad.h"
-#import "WMFirstStartViewController.h"
 #import "Constants.h"
 
-//#import "WMFirstStartViewController.h"
 #import "WMOSMDescribeViewController.h"
 
 @implementation WMNavigationControllerBase
@@ -1550,7 +1548,6 @@
                                                     permittedArrowDirections:0
                                                                     animated:animated];
         
-    //} else if ([viewController isKindOfClass:[WMFirstStartViewController class]]) {
     } else if ([viewController isKindOfClass:[WMOSMDescribeViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
                                                         initWithContentViewController:viewController];

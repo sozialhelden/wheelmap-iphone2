@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WMNavigationBar.h"
 #import "WMNavigationBarDelegate.h"
-#import "WMButton.h"
 
 @interface WMNavigationBar_iPad : WMNavigationBar {
     

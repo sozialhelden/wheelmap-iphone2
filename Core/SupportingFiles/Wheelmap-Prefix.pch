@@ -14,13 +14,24 @@
 
 	#import "Constants.h"
 
-    // import all of the custom widgets
-    #import "CustomUIElements.h"
+    // Import all of the custom widgets
+	#import "WMLabel.h"
+	#import "WMButton.h"
+	#import "WMViewController.h"
+	#import "WMTableViewController.h"
 
-    // categories
-    #import "Categories.h"
+    // Categories
+	#import "NSString+Distance.h"
+	#import "UIColor+WMColor.h"
+	#import "UINavigationBar+CustomSize.h"
+	#import "UIStoryboard+Wheelmap.h"
+	#import "UIToolbar+CustomSize.h"
+	#import "UIView+Geometry.h"
 
-    // required libs for AFNetworking
+	// Database
+	#import "WMCategory+Helper.h"
+
+	// required libs for AFNetworking
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
 
