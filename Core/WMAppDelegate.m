@@ -7,9 +7,6 @@
 //
 
 #import "WMAppDelegate.h"
-#import "UAConfig.h"
-#import "UAirship.h"
-#import "UAPush.h"
 #import <HockeySDK/HockeySDK.h>
 #import "Constants.h"
 
@@ -19,31 +16,6 @@
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
 
 	[self setupHockeyApp];
-
-    //Init Airship launch options
-    UAConfig *takeOffOptions = [UAConfig defaultConfig];
-//    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
-//    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-    
-    // Create Airship singleton that's used to talk to Urban Airship servers.
-    // Please populate AirshipConfig.plist with your info from http://go.urbanairship.com
-    [UAirship takeOff:takeOffOptions];
-    
-//    // Register for notifications
-//    [[UAPush shared]
-//     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                         UIRemoteNotificationTypeSound |
-//                                         UIRemoteNotificationTypeAlert)];
-    // Set the icon badge to zero on startup (optional)
-    [[UAPush shared] resetBadge];
-    
-    // Set the notification types required for the app (optional). This value defaults
-    // to badge, alert and sound, so it's only necessary to set it if you want
-    // to add or remove types.
-    
-    [UAPush shared].userNotificationTypes = (UIUserNotificationTypeAlert |
-                                             UIUserNotificationTypeBadge |
-                                             UIUserNotificationTypeSound);
 
     // start listening to AFNetworking operations and show/hide activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
@@ -107,16 +79,6 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
-
-//- (void)applicationWillTerminate:(UIApplication *)application
-//{
-//    [UAirship land];
-//}
-
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//    // Updates the device token and registers the token with UA
-//    [[UAPush shared] registerDeviceToken:deviceToken];
-//}
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     NSLog(@"URL = %@", url.absoluteString);

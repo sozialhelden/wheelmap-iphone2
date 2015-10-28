@@ -1,17 +1,17 @@
 //
-//  WMRootViewController_iPad.m
+//  WMIPadRootViewController.m
 //  Wheelmap
 //
 //  Created by Dorian Roy on 07.11.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMRootViewController_iPad.h"
+#import "WMIPadRootViewController.h"
 #import "WMDetailViewController.h"
 #import "WMNavigationControllerBase.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation WMRootViewController_iPad
+@implementation WMIPadRootViewController
 
 
 @synthesize dataSource, delegate;

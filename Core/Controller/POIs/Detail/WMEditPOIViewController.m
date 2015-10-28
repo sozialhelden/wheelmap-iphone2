@@ -19,7 +19,7 @@
 #import "WMCategory.h"
 #import "Node.h"
 #import "NodeType.h"
-#import "WMRootViewController_iPad.h"
+#import "WMIPadRootViewController.h"
 #import "WMDetailNavigationController.h"
 
 @interface WMEditPOIViewController ()
