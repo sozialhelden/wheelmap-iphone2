@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3</string>
+	<string>3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -51,9 +51,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is required to find out where you are</string>
 	<key>UIMainStoryboardFile</key>
-	<string>MainStoryboard_iPhone</string>
+	<string>Main-iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>MainStoryboard_iPad</string>
+	<string>Main-iPad</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -73,11 +73,11 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.5057141012396694</real>
+				<real>0.50571410123966942</real>
 				<key>Green</key>
-				<real>4.147589610121488e-05</real>
+				<real>4.1475896101214877e-05</real>
 				<key>Red</key>
-				<real>0</real>
+				<real>0.0</real>
 			</dict>
 			<key>Translucent</key>
 			<false/>
