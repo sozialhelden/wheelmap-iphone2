@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9899274A1649151300D9003B"
-               BuildableName = "Wheelmap-DEV.app"
-               BlueprintName = "Wheelmap-DEV"
+               BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
+               BuildableName = "Wheelmap Beta.app"
+               BlueprintName = "Wheelmap-Beta"
                ReferencedContainer = "container:Wheelmap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9899274A1649151300D9003B"
-            BuildableName = "Wheelmap-DEV.app"
-            BlueprintName = "Wheelmap-DEV"
+            BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
+            BuildableName = "Wheelmap Beta.app"
+            BlueprintName = "Wheelmap-Beta"
             ReferencedContainer = "container:Wheelmap.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9899274A1649151300D9003B"
-            BuildableName = "Wheelmap-DEV.app"
-            BlueprintName = "Wheelmap-DEV"
+            BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
+            BuildableName = "Wheelmap Beta.app"
+            BlueprintName = "Wheelmap-Beta"
             ReferencedContainer = "container:Wheelmap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9899274A1649151300D9003B"
-            BuildableName = "Wheelmap-DEV.app"
-            BlueprintName = "Wheelmap-DEV"
+            BlueprintIdentifier = "0327F91316BFFB1900BA7DE7"
+            BuildableName = "Wheelmap Beta.app"
+            BlueprintName = "Wheelmap-Beta"
             ReferencedContainer = "container:Wheelmap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
