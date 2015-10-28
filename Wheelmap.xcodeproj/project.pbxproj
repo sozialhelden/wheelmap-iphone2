@@ -721,7 +721,7 @@
 		0360BB32169DC20200E04026 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0360BB34169DC20B00E04026 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0360BB3B169DC26800E04026 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
-		03BD04A616A052750045D53D /* Wheelmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wheelmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03BD04A616A052750045D53D /* Wheelmap-Live.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Live.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		15DBF573169B72EA00EBAC2A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		1842DE7B1A69714B001D52CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1701,7 +1701,7 @@
 			isa = PBXGroup;
 			children = (
 				9899274B1649151300D9003B /* Wheelmap-Alpha.app */,
-				03BD04A616A052750045D53D /* Wheelmap.app */,
+				03BD04A616A052750045D53D /* Wheelmap-Live.app */,
 				0327FA6B16BFFB1900BA7DE7 /* Wheelmap-Beta.app */,
 			);
 			name = Products;
@@ -1791,7 +1791,7 @@
 			);
 			name = "Wheelmap-Live";
 			productName = Wheelmap;
-			productReference = 03BD04A616A052750045D53D /* Wheelmap.app */;
+			productReference = 03BD04A616A052750045D53D /* Wheelmap-Live.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9899274A1649151300D9003B /* Wheelmap-Alpha */ = {
@@ -2808,7 +2808,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
-				PRODUCT_NAME = Wheelmap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2839,7 +2839,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
-				PRODUCT_NAME = Wheelmap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "50d7e403-e300-4200-9e3c-3a9e8eaf8d52";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50d7e403-e300-4200-9e3c-3a9e8eaf8d52";
 				TARGETED_DEVICE_FAMILY = "1,2";
