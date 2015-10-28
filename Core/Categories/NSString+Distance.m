@@ -18,7 +18,7 @@
 
 		// reuse formatter instance
 		static NSNumberFormatter *formatter;
-		if (!formatter) {
+		if (formatter == NO) {
 			formatter = [[NSNumberFormatter alloc] init];
 			formatter.roundingMode = NSNumberFormatterRoundUp;
 			formatter.usesGroupingSeparator = YES;
@@ -30,18 +30,18 @@
 			formatter.decimalSeparator = [[NSLocale currentLocale] objectForKey:NSLocaleDecimalSeparator];
 		}
 
-		CGFloat distance = useMetricSystem ? meters / 1000.0 : meters / 1609.344; // 1 Mile = 1609.344 Meters
+		CGFloat distance = (useMetricSystem ? (meters / 1000.0) : (meters / 1609.344)); // 1 Mile = 1609.344 Meters
 
 		// don't use decimal digits for numbers greater than 10
-		formatter.maximumFractionDigits = distance > 10.0 ? 0 : 1;
+		formatter.maximumFractionDigits = (distance > 10.0 ? 0 : 1);
 
-		NSString *distanceUnit = useMetricSystem ? @"km" : @"mi";
-		NSString *distanceString = [formatter stringFromNumber:[NSNumber numberWithFloat:distance]];
+		NSString *distanceUnit = (useMetricSystem ? @"km" : @"mi");
+		NSString *distanceString = [formatter stringFromNumber:@(distance)];
 		return [NSString stringWithFormat: @"%@ %@", distanceString, distanceUnit];
 	}
 
 	// for smaller distances, always use meters
-	return [NSString stringWithFormat: @"%@ m", [NSString stringWithFormat: @"%.0f", meters]];
+	return [NSString stringWithFormat: @"%.0f m", meters];
 }
 
 @end
