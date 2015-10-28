@@ -129,9 +129,6 @@
 		872FDE691BDFEF6D00764FC5 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */; };
 		872FDE6A1BDFEF6D00764FC5 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */; };
 		872FDE6B1BDFEF6D00764FC5 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */; };
-		872FDE6C1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */; };
-		872FDE6D1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */; };
-		872FDE6E1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */; };
 		872FDE6F1BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */; };
 		872FDE701BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */; };
 		872FDE711BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */; };
@@ -1062,8 +1059,6 @@
 		872FDDC21BDFEF6D00764FC5 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
 		872FDDC31BDFEF6D00764FC5 /* WMEditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIViewController.h; sourceTree = "<group>"; };
 		872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
-		872FDDC51BDFEF6D00764FC5 /* WMFirstStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFirstStartViewController.h; sourceTree = "<group>"; };
-		872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFirstStartViewController.m; sourceTree = "<group>"; };
 		872FDDC71BDFEF6D00764FC5 /* WMInfinitePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInfinitePhotoViewController.h; sourceTree = "<group>"; };
 		872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInfinitePhotoViewController.m; sourceTree = "<group>"; };
 		872FDDC91BDFEF6D00764FC5 /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
@@ -1608,8 +1603,6 @@
 				872FDDC21BDFEF6D00764FC5 /* WMDetailViewController.m */,
 				872FDDC31BDFEF6D00764FC5 /* WMEditPOIViewController.h */,
 				872FDDC41BDFEF6D00764FC5 /* WMEditPOIViewController.m */,
-				872FDDC51BDFEF6D00764FC5 /* WMFirstStartViewController.h */,
-				872FDDC61BDFEF6D00764FC5 /* WMFirstStartViewController.m */,
 				872FDDC71BDFEF6D00764FC5 /* WMInfinitePhotoViewController.h */,
 				872FDDC81BDFEF6D00764FC5 /* WMInfinitePhotoViewController.m */,
 				872FDDC91BDFEF6D00764FC5 /* WMLogoutViewController.h */,
@@ -3181,7 +3174,6 @@
 				872FDE461BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDC1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDF061BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				872FDE6D1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				872FDEEB1BDFEF6D00764FC5 /* WMMapAnnotation.m in Sources */,
 				872FDEFA1BDFEF6D00764FC5 /* WMToolBar.m in Sources */,
@@ -3262,7 +3254,6 @@
 				872FDE471BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDD1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDF071BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				872FDE6E1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				872FDEEC1BDFEF6D00764FC5 /* WMMapAnnotation.m in Sources */,
 				872FDEFB1BDFEF6D00764FC5 /* WMToolBar.m in Sources */,
@@ -3343,7 +3334,6 @@
 				872FDE451BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDB1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDF051BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				872FDE6C1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				872FDEEA1BDFEF6D00764FC5 /* WMMapAnnotation.m in Sources */,
 				872FDEF91BDFEF6D00764FC5 /* WMToolBar.m in Sources */,
