@@ -53,9 +53,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is required to find out where you are</string>
 	<key>UIMainStoryboardFile</key>
-	<string>MainStoryboard_iPhone</string>
+	<string>Main-iPad</string>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>MainStoryboard_iPad</string>
+	<string>Main-iPad</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -79,9 +79,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>view controller based status ba</key>
-	<string></string>
 	<key>WMConfigFilename</key>
 	<string>WMConfig-Beta.plist</string>
+	<key>view controller based status ba</key>
+	<string></string>
 </dict>
 </plist>
