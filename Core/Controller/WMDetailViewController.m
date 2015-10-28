@@ -23,7 +23,6 @@
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
 #import "WMNavigationControllerBase.h"
-#import "WMStringUtilities.h"
 #import "WMNodeListViewController.h"
 #import "WMDetailNavigationController.h"
 #import "WMResourceManager.h"
@@ -630,7 +629,7 @@
     
     CLLocationDistance distance = [pinLocation distanceFromLocation:userLocation];
     
-    self.distanceLabel.text = [WMStringUtilities localizedDistanceFromMeters:distance];
+    self.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {

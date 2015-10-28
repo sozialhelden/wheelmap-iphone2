@@ -21,6 +21,7 @@
 	#import "WMTableViewController.h"
 
     // Categories
+	#import "NSString+Distance.h"
 	#import "UIColor+WMColor.h"
 	#import "UINavigationBar+CustomSize.h"
 	#import "UIStoryboard+Wheelmap.h"

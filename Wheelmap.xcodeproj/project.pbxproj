@@ -294,9 +294,6 @@
 		872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
 		872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
 		872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
-		872FDF341BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */; };
-		872FDF351BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */; };
-		872FDF361BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */; };
 		872FE01A1BDFF18F00764FC5 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FDF381BDFF18F00764FC5 /* bg.png */; };
 		872FE01B1BDFF18F00764FC5 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FDF381BDFF18F00764FC5 /* bg.png */; };
 		872FE01C1BDFF18F00764FC5 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FDF381BDFF18F00764FC5 /* bg.png */; };
@@ -954,6 +951,9 @@
 		872FE2A81BDFF18F00764FC5 /* toolbar_toggle-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */; };
 		872FE2A91BDFF18F00764FC5 /* toolbar_toggle-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */; };
 		872FE2AA1BDFF18F00764FC5 /* toolbar_toggle-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */; };
+		8774E4EE1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
+		8774E4EF1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
+		8774E4F01BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
 		9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */; };
@@ -1163,8 +1163,6 @@
 		872FDF271BDFEFAA00764FC5 /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
 		872FDF281BDFEFAA00764FC5 /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
 		872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMResourceManager.m; sourceTree = "<group>"; };
-		872FDF2C1BDFEFAA00764FC5 /* WMStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStringUtilities.h; sourceTree = "<group>"; };
-		872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStringUtilities.m; sourceTree = "<group>"; };
 		872FDF381BDFF18F00764FC5 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		872FDF391BDFF18F00764FC5 /* buttons_btn-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup.png"; sourceTree = "<group>"; };
 		872FDF3A1BDFF18F00764FC5 /* buttons_btn-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_btn-signup@2x.png"; sourceTree = "<group>"; };
@@ -1385,6 +1383,8 @@
 		872FE0181BDFF18F00764FC5 /* toolbar_toggle-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-map.png"; sourceTree = "<group>"; };
 		872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-map@2x.png"; sourceTree = "<group>"; };
 		8774E4EA1BE0CCDC00A3E7EA /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
+		8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Distance.h"; sourceTree = "<group>"; };
+		8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Distance.m"; sourceTree = "<group>"; };
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1551,6 +1551,8 @@
 		872FDDA11BDFEF6D00764FC5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */,
+				8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */,
 				872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */,
 				872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */,
 				872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */,
@@ -1793,7 +1795,6 @@
 			children = (
 				872FDF261BDFEFAA00764FC5 /* WMKeychainWrapper */,
 				872FDF291BDFEFAA00764FC5 /* WMResourceManager */,
-				872FDF2B1BDFEFAA00764FC5 /* WMStringUtilities */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1814,15 +1815,6 @@
 				872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */,
 			);
 			path = WMResourceManager;
-			sourceTree = "<group>";
-		};
-		872FDF2B1BDFEFAA00764FC5 /* WMStringUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				872FDF2C1BDFEFAA00764FC5 /* WMStringUtilities.h */,
-				872FDF2D1BDFEFAA00764FC5 /* WMStringUtilities.m */,
-			);
-			path = WMStringUtilities;
 			sourceTree = "<group>";
 		};
 		872FDF371BDFF18F00764FC5 /* Images */ = {
@@ -3168,9 +3160,9 @@
 				872FDF001BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE21BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE581BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
+				8774E4EF1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				872FDED31BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE491BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				872FDF351BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
 				872FDEA31BDFEF6D00764FC5 /* WMTermsViewController.m in Sources */,
 				872FDEBE1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE671BDFEF6D00764FC5 /* WMDetailViewController.m in Sources */,
@@ -3245,9 +3237,9 @@
 				872FDF011BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE31BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE591BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
+				8774E4F01BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				872FDED41BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE4A1BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				872FDF361BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
 				872FDEA41BDFEF6D00764FC5 /* WMTermsViewController.m in Sources */,
 				872FDEBF1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE681BDFEF6D00764FC5 /* WMDetailViewController.m in Sources */,
@@ -3322,9 +3314,9 @@
 				872FDEFF1BDFEF6D00764FC5 /* WMWheelchairStatusButton.m in Sources */,
 				872FDEE11BDFEF6D00764FC5 /* WMCompassView.m in Sources */,
 				872FDE571BDFEF6D00764FC5 /* WMCategoryViewController.m in Sources */,
+				8774E4EE1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				872FDED21BDFEF6D00764FC5 /* main.m in Sources */,
 				872FDE481BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				872FDF341BDFEFAA00764FC5 /* WMStringUtilities.m in Sources */,
 				872FDEA21BDFEF6D00764FC5 /* WMTermsViewController.m in Sources */,
 				872FDEBD1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE661BDFEF6D00764FC5 /* WMDetailViewController.m in Sources */,
