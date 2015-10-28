@@ -19,7 +19,6 @@
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
 #import "WMCompassView.h"
-#import "WMPhotoViewController.h"
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
