@@ -9,7 +9,6 @@
 #import "WMOSMDescribeViewController.h"
 #import "WMWheelmapAPI.h"
 #import "Constants.h"
-#import "WMRegisterViewController.h"
 
 @implementation WMOSMDescribeViewController
 

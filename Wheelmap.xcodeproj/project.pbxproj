@@ -159,9 +159,6 @@
 		872FDE901BDFEF6D00764FC5 /* WMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */; };
 		872FDE911BDFEF6D00764FC5 /* WMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */; };
 		872FDE921BDFEF6D00764FC5 /* WMPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */; };
-		872FDE931BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */; };
-		872FDE941BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */; };
-		872FDE951BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */; };
 		872FDE961BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */; };
 		872FDE971BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */; };
 		872FDE981BDFEF6D00764FC5 /* WMRootViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */; };
@@ -1073,8 +1070,6 @@
 		872FDDDA1BDFEF6D00764FC5 /* WMOSMStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMStartViewController.m; sourceTree = "<group>"; };
 		872FDDDD1BDFEF6D00764FC5 /* WMPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPopoverController.h; sourceTree = "<group>"; };
 		872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPopoverController.m; sourceTree = "<group>"; };
-		872FDDDF1BDFEF6D00764FC5 /* WMRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRegisterViewController.h; sourceTree = "<group>"; };
-		872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRegisterViewController.m; sourceTree = "<group>"; };
 		872FDDE11BDFEF6D00764FC5 /* WMRootViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRootViewController_iPad.h; sourceTree = "<group>"; };
 		872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRootViewController_iPad.m; sourceTree = "<group>"; };
 		872FDDE31BDFEF6D00764FC5 /* WMSetMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSetMarkerViewController.h; sourceTree = "<group>"; };
@@ -1613,8 +1608,6 @@
 				872FDDDA1BDFEF6D00764FC5 /* WMOSMStartViewController.m */,
 				872FDDDD1BDFEF6D00764FC5 /* WMPopoverController.h */,
 				872FDDDE1BDFEF6D00764FC5 /* WMPopoverController.m */,
-				872FDDDF1BDFEF6D00764FC5 /* WMRegisterViewController.h */,
-				872FDDE01BDFEF6D00764FC5 /* WMRegisterViewController.m */,
 				872FDDE11BDFEF6D00764FC5 /* WMRootViewController_iPad.h */,
 				872FDDE21BDFEF6D00764FC5 /* WMRootViewController_iPad.m */,
 				872FDDE31BDFEF6D00764FC5 /* WMSetMarkerViewController.h */,
@@ -3167,7 +3160,6 @@
 				872FDEA61BDFEF6D00764FC5 /* WMViewController.m in Sources */,
 				872FDED91BDFEF6D00764FC5 /* WMButton.m in Sources */,
 				872FDF1D1BDFEF9900764FC5 /* unzip.c in Sources */,
-				872FDE941BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */,
 				872FDEC11BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				872FDE911BDFEF6D00764FC5 /* WMPopoverController.m in Sources */,
 				872FDEE81BDFEF6D00764FC5 /* WMLabel.m in Sources */,
@@ -3245,7 +3237,6 @@
 				872FDEA71BDFEF6D00764FC5 /* WMViewController.m in Sources */,
 				872FDEDA1BDFEF6D00764FC5 /* WMButton.m in Sources */,
 				872FDF1E1BDFEF9900764FC5 /* unzip.c in Sources */,
-				872FDE951BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */,
 				872FDEC21BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				872FDE921BDFEF6D00764FC5 /* WMPopoverController.m in Sources */,
 				872FDEE91BDFEF6D00764FC5 /* WMLabel.m in Sources */,
@@ -3323,7 +3314,6 @@
 				872FDEA51BDFEF6D00764FC5 /* WMViewController.m in Sources */,
 				872FDED81BDFEF6D00764FC5 /* WMButton.m in Sources */,
 				872FDF1C1BDFEF9900764FC5 /* unzip.c in Sources */,
-				872FDE931BDFEF6D00764FC5 /* WMRegisterViewController.m in Sources */,
 				872FDEC01BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				872FDE901BDFEF6D00764FC5 /* WMPopoverController.m in Sources */,
 				872FDEE71BDFEF6D00764FC5 /* WMLabel.m in Sources */,

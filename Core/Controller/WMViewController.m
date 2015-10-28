@@ -11,7 +11,6 @@
 #import "WMTermsViewController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMShareSocialViewController.h"
-#import "WMRegisterViewController.h"
 
 @interface WMViewController ()
 
@@ -106,26 +105,7 @@
         }
 
         
-        if ([modalViewController isKindOfClass:[WMRegisterViewController class]]) {
-            
-            if ((self.baseController != nil) && (self.baseController.view != nil)) {
-                if(navigationController) {
-                    ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:navigationController];
-                } else {
-                    ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
-                }
-                ((WMViewController *)modalViewController).baseController = self.baseController;
-                
-                if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-                    ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(1024.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
-                } else {
-                    ((WMViewController *)modalViewController).popoverButtonFrame = CGRectMake(768.0f/2 - 160.0f, 150.0f, 320.0f, 500.0f);
-                }
-                
-                [((WMViewController *)modalViewController).popover presentPopoverFromRect:((WMViewController *)modalViewController).popoverButtonFrame inView:self.baseController.view permittedArrowDirections:0 animated:animated];
-            }
-            
-        } else if ([modalViewController isKindOfClass:[WMShareSocialViewController class]]) {
+       if ([modalViewController isKindOfClass:[WMShareSocialViewController class]]) {
             
             if ((self.baseController != nil) && (self.baseController.view != nil)) {
                 ((WMViewController *)modalViewController).popover = [[WMPopoverController alloc] initWithContentViewController:modalViewController];
