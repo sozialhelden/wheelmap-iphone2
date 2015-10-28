@@ -551,13 +551,17 @@
 }
 
 - (void)showCommentView {
-    
-    if (![dataManager userIsAuthenticated]) {
-        WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-        [navCtrl presentLoginScreenWithButtonFrame:self.moreInfoButton.frame];
-        return;
-    }
-    
+
+	if (dataManager.userIsAuthenticated == NO) {
+		WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
+		if ([navigationController isKindOfClass:[WMDetailNavigationController class]]) {
+			[(WMDetailNavigationController*)navigationController showLoginViewController];
+		} else {
+			[navigationController presentLoginScreenWithButtonFrame:self.moreInfoButton.frame];
+		}
+		return;
+	}
+
     WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
     vc.currentNode = self.node;
     vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
