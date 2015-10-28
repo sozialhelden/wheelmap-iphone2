@@ -90,9 +90,6 @@
 		872FDE3C1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */; };
 		872FDE3D1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */; };
 		872FDE3E1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */; };
-		872FDE3F1BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */; };
-		872FDE401BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */; };
-		872FDE411BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */; };
 		872FDE421BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */; };
 		872FDE431BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */; };
 		872FDE441BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */; };
@@ -1042,8 +1039,6 @@
 		872FDDA21BDFEF6D00764FC5 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
 		872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WMColor.m"; sourceTree = "<group>"; };
-		872FDDA51BDFEF6D00764FC5 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
-		872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+customSize.h"; sourceTree = "<group>"; };
 		872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+customSize.m"; sourceTree = "<group>"; };
 		872FDDA91BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+Wheelmap.h"; sourceTree = "<group>"; };
@@ -1587,8 +1582,6 @@
 				872FDDA21BDFEF6D00764FC5 /* Categories.h */,
 				872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */,
 				872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */,
-				872FDDA51BDFEF6D00764FC5 /* UIDevice+Hardware.h */,
-				872FDDA61BDFEF6D00764FC5 /* UIDevice+Hardware.m */,
 				872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */,
 				872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */,
 				872FDDA91BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.h */,
@@ -3196,7 +3189,6 @@
 				872FDE8B1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */,
 				872FDE461BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDC1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
-				872FDE401BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */,
 				872FDF061BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
 				872FDE6D1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
@@ -3279,7 +3271,6 @@
 				872FDE8C1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */,
 				872FDE471BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDD1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
-				872FDE411BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */,
 				872FDF071BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
 				872FDE6E1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
@@ -3362,7 +3353,6 @@
 				872FDE8A1BDFEF6D00764FC5 /* WMOSMStartViewController.m in Sources */,
 				872FDE451BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDEDB1BDFEF6D00764FC5 /* WMCategoryFilterPopoverView.m in Sources */,
-				872FDE3F1BDFEF6D00764FC5 /* UIDevice+Hardware.m in Sources */,
 				872FDF051BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
 				872FDE6C1BDFEF6D00764FC5 /* WMFirstStartViewController.m in Sources */,
 				872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
