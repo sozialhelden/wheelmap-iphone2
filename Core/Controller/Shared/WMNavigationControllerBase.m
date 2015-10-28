@@ -23,7 +23,7 @@
 #import "NodeType.h"
 #import "WMCategory.h"
 #import "WMAcceptTermsViewController.h"
-#import "WMRootViewController_iPad.h"
+#import "WMIPadRootViewController.h"
 #import "WMNodeListViewController.h"
 #import "WMDetailNavigationController.h"
 #import "WMAcceptTermsViewController.h"
@@ -84,8 +84,8 @@
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
-    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-        WMRootViewController_iPad* vc = (WMRootViewController_iPad*)self.topViewController;
+    if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        WMIPadRootViewController* vc = (WMIPadRootViewController*)self.topViewController;
         vc.controllerBase = self;
     }
     
@@ -442,8 +442,8 @@
         [(id<WMNodeListView>)self.topViewController showActivityIndicator];
     }
     
-    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-        [((WMRootViewController_iPad *)self.topViewController).mapViewController showActivityIndicator];
+    if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        [((WMIPadRootViewController *)self.topViewController).mapViewController showActivityIndicator];
     }
     
 }
@@ -457,8 +457,8 @@
         [(id<WMNodeListView>)self.topViewController hideActivityIndicator];
     }
     
-    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-        [((WMRootViewController_iPad *)self.topViewController).mapViewController hideActivityIndicator];
+    if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        [((WMIPadRootViewController *)self.topViewController).mapViewController hideActivityIndicator];
     }
 }
 
@@ -608,8 +608,8 @@
 {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-            [(WMRootViewController_iPad *)self.topViewController nodeListView:nodeListView didSelectNode:node];
+        if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+            [(WMIPadRootViewController *)self.topViewController nodeListView:nodeListView didSelectNode:node];
         }
         return;
     }
@@ -628,8 +628,8 @@
 {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-            [(WMRootViewController_iPad *)self.topViewController nodeListView:nodeListView didSelectDetailsForNode:node];
+        if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+            [(WMIPadRootViewController *)self.topViewController nodeListView:nodeListView didSelectDetailsForNode:node];
         }
         return;
     }
@@ -684,8 +684,8 @@
 {
     CLLocation* newLocation = self.currentLocation;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if ([self.topViewController isKindOfClass:WMRootViewController_iPad.class]) {
-            [(WMRootViewController_iPad *)self.topViewController gotNewUserLocation:newLocation];
+        if ([self.topViewController isKindOfClass:WMIPadRootViewController.class]) {
+            [(WMIPadRootViewController *)self.topViewController gotNewUserLocation:newLocation];
         }
     }
     
@@ -977,8 +977,8 @@
     if (mapViewWasMoved) {
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-                editPOIViewController.initialCoordinate = ((WMRootViewController_iPad *)self.topViewController).mapViewController.region.center;
+            if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+                editPOIViewController.initialCoordinate = ((WMIPadRootViewController *)self.topViewController).mapViewController.region.center;
             }
         } else {
             editPOIViewController.initialCoordinate = self.mapViewController.region.center;
@@ -1049,8 +1049,8 @@
         ((WMToolBar_iPad *)self.customToolBar).helpButton.selected = NO;
     }
     
-    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-        WMRootViewController_iPad* vc = (WMRootViewController_iPad*)self.topViewController;
+    if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        WMIPadRootViewController* vc = (WMIPadRootViewController*)self.topViewController;
         vc.listViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         vc.mapViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
         [self updateNodesWithQuery:query andRegion:vc.mapViewController.region];
@@ -1135,8 +1135,8 @@
     
     [self.customToolBar deselectSearchButton];
     
-    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-        WMRootViewController_iPad* currentVC = (WMRootViewController_iPad*)self.topViewController;
+    if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
         if (currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseContribute) {
             return;
         }
@@ -1168,7 +1168,7 @@
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
     
-    if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+    if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if (!selected) {
             if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
                 [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
@@ -1180,7 +1180,7 @@
     if (selected) {
         [self.customNavigationBar showSearchBar];
         
-        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             if (!selected) {
                 if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
                     [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
@@ -1191,8 +1191,8 @@
         }
     } else {
         
-        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
-            WMRootViewController_iPad* currentVC = (WMRootViewController_iPad*)self.topViewController;
+        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+            WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
             [currentVC pressedSearchButton:selected];
             
             [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
@@ -1304,15 +1304,15 @@
 
 -(void)pressedHelpButton:(WMToolBar*)toolBar {
     
-    if ([self.topViewController isKindOfClass:[WMRootViewController_iPad class]]) {
+    if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
             if (( (WMToolBar_iPad *)toolBar).helpButton.selected == NO) {
-                ((WMRootViewController_iPad *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-                ((WMRootViewController_iPad *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
                 [self pressedCurrentLocationButton:self.customToolBar];
             } else {
-                ((WMRootViewController_iPad *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
-                ((WMRootViewController_iPad *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
                 [self pressedCurrentLocationButton:self.customToolBar];
             }
         }

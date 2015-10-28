@@ -8,7 +8,7 @@
         <!--Test-->
         <scene sceneID="k9z-wk-zTc">
             <objects>
-                <viewController id="q23-nO-Fnh" customClass="WMRootViewController_iPad" sceneMemberID="viewController">
+                <viewController id="q23-nO-Fnh" customClass="WMIPadRootViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6yb-yQ-DdN"/>
                         <viewControllerLayoutGuide type="bottom" id="BS2-zD-cEx"/>

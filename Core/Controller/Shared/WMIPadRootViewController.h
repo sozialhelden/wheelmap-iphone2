@@ -1,5 +1,5 @@
 //
-//  WMRootViewController_iPad.h
+//  WMIPadRootViewController.h
 //  Wheelmap
 //
 //  Created by Dorian Roy on 07.11.12.
@@ -14,7 +14,7 @@
 
 @class WMNodeListViewController, WMMapViewController;
 
-@interface WMRootViewController_iPad : UIViewController<WMNodeListView,WMNodeListDataSource, WMNodeListDelegate>
+@interface WMIPadRootViewController : UIViewController<WMNodeListView,WMNodeListDataSource, WMNodeListDelegate>
 
 @property (nonatomic) IBOutlet UIView<WMNodeListView> *listContainerView;
 @property (nonatomic) IBOutlet UIView<WMNodeListView> *mapContainerView;

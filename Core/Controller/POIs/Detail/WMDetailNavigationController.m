@@ -11,7 +11,7 @@
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMCommentViewController.h"
-#import "WMRootViewController_iPad.h"
+#import "WMIPadRootViewController.h"
 #import "WMNodeListViewController.h"
 #import "WMAcceptTermsViewController.h"
 
