@@ -78,9 +78,9 @@
 		872FDD5A1BDFE28A00764FC5 /* WMNodeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */; };
 		872FDD5B1BDFE28A00764FC5 /* WMNodeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */; };
 		872FDD5C1BDFE28A00764FC5 /* WMNodeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */; };
-		872FDD971BDFE3FB00764FC5 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */; };
-		872FDD981BDFE3FB00764FC5 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */; };
-		872FDD991BDFE3FB00764FC5 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */; };
+		872FDD971BDFE3FB00764FC5 /* POI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* POI.storyboard */; };
+		872FDD981BDFE3FB00764FC5 /* POI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* POI.storyboard */; };
+		872FDD991BDFE3FB00764FC5 /* POI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD941BDFE3FB00764FC5 /* POI.storyboard */; };
 		872FDD9A1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */; };
 		872FDD9B1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */; };
 		872FDD9C1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */; };
@@ -763,7 +763,7 @@
 		872FDA7C1BDFE0A100764FC5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		872FDA7D1BDFE0A100764FC5 /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_TW; path = zh_TW.lproj/Localizable.strings; sourceTree = "<group>"; };
 		872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMNodeListCell.xib; sourceTree = "<group>"; };
-		872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DetailView.storyboard; path = Resources/DetailView.storyboard; sourceTree = SOURCE_ROOT; };
+		872FDD941BDFE3FB00764FC5 /* POI.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = POI.storyboard; path = Resources/POI.storyboard; sourceTree = SOURCE_ROOT; };
 		872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "Resources/Main-iPad.storyboard"; sourceTree = SOURCE_ROOT; };
 		872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPhone.storyboard"; path = "Resources/Main-iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
 		872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WMColor.h"; sourceTree = "<group>"; };
@@ -1176,7 +1176,7 @@
 				8774E4F11BE0D93800A3E7EA /* Images */,
 				872FDA651BDFE0A100764FC5 /* Images.xcassets */,
 				872FDA661BDFE0A100764FC5 /* Localized */,
-				872FDD941BDFE3FB00764FC5 /* DetailView.storyboard */,
+				872FDD941BDFE3FB00764FC5 /* POI.storyboard */,
 				872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */,
 				872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */,
 				872FDD501BDFE28A00764FC5 /* WMNodeListCell.xib */,
@@ -1890,7 +1890,7 @@
 				8774E67D1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65C1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
 				8774E66E1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
-				872FDD981BDFE3FB00764FC5 /* DetailView.storyboard in Resources */,
+				872FDD981BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CB1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
 				8774E6621BE0D93800A3E7EA /* list_shadow.png in Resources */,
 				8774E5F01BE0D93800A3E7EA /* details_btn-photoupload@2x.png in Resources */,
@@ -2039,7 +2039,7 @@
 				8774E67E1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65D1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
 				8774E66F1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
-				872FDD991BDFE3FB00764FC5 /* DetailView.storyboard in Resources */,
+				872FDD991BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CC1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
 				8774E6631BE0D93800A3E7EA /* list_shadow.png in Resources */,
 				8774E5F11BE0D93800A3E7EA /* details_btn-photoupload@2x.png in Resources */,
@@ -2188,7 +2188,7 @@
 				8774E67C1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65B1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
 				8774E66D1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
-				872FDD971BDFE3FB00764FC5 /* DetailView.storyboard in Resources */,
+				872FDD971BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CA1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
 				8774E6611BE0D93800A3E7EA /* list_shadow.png in Resources */,
 				8774E5EF1BE0D93800A3E7EA /* details_btn-photoupload@2x.png in Resources */,

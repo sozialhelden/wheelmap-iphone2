@@ -26,14 +26,14 @@
 	return [UIStoryboard storyboardWithName:@"Main-iPad" bundle:nil];
 }
 
-+ (UIStoryboard*)detailStoryboard {
-	return [UIStoryboard storyboardWithName:@"DetailView" bundle:nil];
++ (UIStoryboard*)poiStoryboard {
+	return [UIStoryboard storyboardWithName:@"POI" bundle:nil];
 }
 
 #pragma mark - Instantiations
 
 + (id)instantiatedEditPOIViewController {
-	return [UIStoryboard.detailStoryboard instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
+	return [UIStoryboard.poiStoryboard instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
 }
 
 + (id)instantiatedRegisterViewController {
@@ -41,7 +41,7 @@
 }
 
 + (id)instantiatedDetailViewController {
-	return [UIStoryboard.detailStoryboard instantiateInitialViewController];
+	return [UIStoryboard.poiStoryboard instantiateInitialViewController];
 }
 
 + (id)instantiatedAcceptTermsViewController {
