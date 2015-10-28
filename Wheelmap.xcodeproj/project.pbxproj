@@ -1138,7 +1138,6 @@
 		872FDE2C1BDFEF6D00764FC5 /* WMNodeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListCell.h; sourceTree = "<group>"; };
 		872FDE2D1BDFEF6D00764FC5 /* WMNodeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeListCell.m; sourceTree = "<group>"; };
 		872FDE2E1BDFEF6D00764FC5 /* WMNodeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListView.h; sourceTree = "<group>"; };
-		872FDE2F1BDFEF6D00764FC5 /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
 		872FDE301BDFEF6D00764FC5 /* WMStandardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStandardButton.h; sourceTree = "<group>"; };
 		872FDE311BDFEF6D00764FC5 /* WMStandardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStandardButton.m; sourceTree = "<group>"; };
 		872FDE321BDFEF6D00764FC5 /* WMToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMToolBar.h; sourceTree = "<group>"; };
@@ -1386,6 +1385,7 @@
 		872FE0171BDFF18F00764FC5 /* toolbar_toggle-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-list@2x.png"; sourceTree = "<group>"; };
 		872FE0181BDFF18F00764FC5 /* toolbar_toggle-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-map.png"; sourceTree = "<group>"; };
 		872FE0191BDFF18F00764FC5 /* toolbar_toggle-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_toggle-map@2x.png"; sourceTree = "<group>"; };
+		8774E4EA1BE0CCDC00A3E7EA /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1742,7 +1742,6 @@
 				872FDE2C1BDFEF6D00764FC5 /* WMNodeListCell.h */,
 				872FDE2D1BDFEF6D00764FC5 /* WMNodeListCell.m */,
 				872FDE2E1BDFEF6D00764FC5 /* WMNodeListView.h */,
-				872FDE2F1BDFEF6D00764FC5 /* WMResourceManager.h */,
 				872FDE301BDFEF6D00764FC5 /* WMStandardButton.h */,
 				872FDE311BDFEF6D00764FC5 /* WMStandardButton.m */,
 				872FDE321BDFEF6D00764FC5 /* WMToolBar.h */,
@@ -1813,6 +1812,7 @@
 		872FDF291BDFEFAA00764FC5 /* WMResourceManager */ = {
 			isa = PBXGroup;
 			children = (
+				8774E4EA1BE0CCDC00A3E7EA /* WMResourceManager.h */,
 				872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */,
 			);
 			path = WMResourceManager;
