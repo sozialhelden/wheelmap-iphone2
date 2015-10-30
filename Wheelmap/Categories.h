@@ -14,4 +14,5 @@
 #import "UIToolbar+CustomSize.h"
 #import "UINavigationBar+CustomSize.h"
 #import "WMCategory+Helper.h"
+#import "NSError+Wheelmap.h"
 #endif
