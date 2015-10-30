@@ -18,7 +18,7 @@
 #import "WMCategoryViewController.h"
 #import "WMOSMOnboardingViewController.h"
 #import "WMSetMarkerViewController.h"
-#import "WMNodeTypeTableViewController.h"
+#import "WMEditPOITypeViewController.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMCategory.h"
@@ -902,7 +902,7 @@
         
     } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
                [vc isKindOfClass:[WMSetMarkerViewController class]] ||
-               [vc isKindOfClass:[WMNodeTypeTableViewController class]]) {
+               [vc isKindOfClass:[WMEditPOITypeViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     

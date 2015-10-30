@@ -14,7 +14,7 @@
 #import "WMSetMarkerViewController.h"
 #import "NodeType.h"
 #import "WMEditPOICategoryViewController.h"
-#import "WMNodeTypeTableViewController.h"
+#import "WMEditPOITypeViewController.h"
 #import "WMDataManagerDelegate.h"
 #import "WMCategory.h"
 #import "Node.h"
@@ -307,7 +307,7 @@
 - (IBAction)setNodeType:(id)sender {
     [self buttonPressed];
     
-    WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
+    WMEditPOITypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOITypeViewController"];
     vc.title =  NSLocalizedString(@"NavBarTitleSetNodeType", nil);
     vc.navigationBarTitle = vc.title;
     vc.delegate = self;

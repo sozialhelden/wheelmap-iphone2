@@ -1,40 +1,18 @@
 //
-//  WMNodeTypeTableViewController.m
+//  WMEditPOITypeViewController.m
 //  Wheelmap
 //
 //  Created by Andrea Gerlach on 12.12.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMNodeTypeTableViewController.h"
+#import "WMEditPOITypeViewController.h"
 #import "NodeType.h"
 #import "WMEditPOIViewController.h"
 
-@interface WMNodeTypeTableViewController ()
+@implementation WMEditPOITypeViewController
 
-@end
-
-@implementation WMNodeTypeTableViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
- 	// Do any additional setup after loading the view.
-    
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.title = NSLocalizedString(@"NavBarTitleSetNodeType", nil);
@@ -53,33 +31,18 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 36;
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return self.nodeArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NodeType *nodeType = [self.nodeArray objectAtIndex:indexPath.row];
                           //objectAtIndex:indexPath.row];
     NSString *nodeString = nodeType.localized_name;
@@ -94,21 +57,16 @@
     
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.contentView.backgroundColor = [UIColor clearColor];
-    
-    
+
     return cell;
 }
 
 #pragma mark - Table view delegate
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NodeType *nodeType = [self.nodeArray objectAtIndex:indexPath.row];
     [self.delegate nodeTypeChosen:nodeType];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 
 @end
