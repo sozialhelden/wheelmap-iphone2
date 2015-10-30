@@ -15,7 +15,6 @@
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Constants.h"
 
 #define MIN_SPAN_DELTA 0.01
 

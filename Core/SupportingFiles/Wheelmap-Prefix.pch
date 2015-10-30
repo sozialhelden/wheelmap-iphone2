@@ -12,7 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-	#import "Constants.h"
+	#import "WMConstants.h"
 	#import "WMProtocols.h"
 
     // Import all of the custom widgets

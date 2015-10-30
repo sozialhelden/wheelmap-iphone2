@@ -7,7 +7,6 @@
 //
 
 #import "WMCompassView.h"
-#import "Constants.h"
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define RAD_TO_DEG(r) ((r) * (180 / M_PI))

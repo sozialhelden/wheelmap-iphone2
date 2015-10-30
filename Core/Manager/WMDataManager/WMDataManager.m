@@ -19,7 +19,6 @@
 #import "Tile.h"
 #import "WMDataParser.h"
 #import "WMWheelmapAPI.h"
-#import "Constants.h"
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000

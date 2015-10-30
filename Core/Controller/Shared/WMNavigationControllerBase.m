@@ -30,7 +30,6 @@
 #import "WMCreditsViewController.h"
 #import "WMOSMLogoutViewController.h"
 #import "WMToolBar_iPad.h"
-#import "Constants.h"
 
 #import "WMOSMDescriptionViewController.h"
 

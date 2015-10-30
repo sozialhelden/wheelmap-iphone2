@@ -12,7 +12,6 @@
 #import "WMPOIIPadNavigationController.h"
 #import "WMPOIsListViewController.h"
 #import "WMOSMDescriptionViewController.h"
-#import "Constants.h"
 #import "WMOSMLoginViewController.h"
 #import "WMWheelmapAPI.h"
 

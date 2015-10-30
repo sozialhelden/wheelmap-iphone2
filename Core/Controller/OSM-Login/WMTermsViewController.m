@@ -7,7 +7,6 @@
 //
 
 #import "WMTermsViewController.h"
-#import "Constants.h"
 
 @implementation WMTermsViewController
 

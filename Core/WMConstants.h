@@ -1,10 +1,13 @@
 //
-//  Constants.h
+//  WMConstants.h
 //  Wheelmap
 //
 //  Created by Michael Thomas on 14.01.13.
 //  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
+
+#ifndef Wheelmap_WMConstants_h
+#define Wheelmap_WMConstants_h
 
 #define LastRunVersion			@"LastRunVersion"
 #define InstallId				@"installId"
@@ -72,4 +75,4 @@ typedef enum {
 	kWMPOIsListViewControllerUseCaseCategory
 } WMPOIsListViewControllerUseCase;
 
-
+#endif

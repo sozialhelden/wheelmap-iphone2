@@ -775,7 +775,7 @@
 		872FDDAC1BDFEF6D00764FC5 /* UIToolbar+CustomSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+CustomSize.m"; sourceTree = "<group>"; };
 		872FDDAD1BDFEF6D00764FC5 /* UIView+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Geometry.h"; sourceTree = "<group>"; };
 		872FDDAE1BDFEF6D00764FC5 /* UIView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Geometry.m"; sourceTree = "<group>"; };
-		872FDDAF1BDFEF6D00764FC5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		872FDDAF1BDFEF6D00764FC5 /* WMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMConstants.h; sourceTree = "<group>"; };
 		872FDDF21BDFEF6D00764FC5 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
 		872FDDF31BDFEF6D00764FC5 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		872FDDF41BDFEF6D00764FC5 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -1201,7 +1201,7 @@
 				878EC88A1BE0F7960099EDD1 /* Controller */,
 				878EC91A1BE0F9200099EDD1 /* Views */,
 				872FDE131BDFEF6D00764FC5 /* SupportingFiles */,
-				872FDDAF1BDFEF6D00764FC5 /* Constants.h */,
+				872FDDAF1BDFEF6D00764FC5 /* WMConstants.h */,
 				878EC9751BE0F92F0099EDD1 /* WMProtocols.h */,
 				872FDE3A1BDFEF6D00764FC5 /* WMAppDelegate.h */,
 				872FDE3B1BDFEF6D00764FC5 /* WMAppDelegate.m */,

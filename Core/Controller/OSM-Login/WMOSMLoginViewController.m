@@ -8,7 +8,6 @@
 
 #import "WMOSMLoginViewController.h"
 #import "WMWheelmapAPI.h"
-#import "Constants.h"
 #import "WMDataManager.h"
 #import "WMOSMDescriptionViewController.h"
 

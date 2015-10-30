@@ -8,7 +8,6 @@
 
 #import "WMAcceptTermsViewController.h"
 #import "WMTermsViewController.h"
-#import "Constants.h"
 
 @interface WMAcceptTermsViewController ()
 {

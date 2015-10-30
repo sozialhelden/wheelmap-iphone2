@@ -8,7 +8,6 @@
 
 #import "WMAppDelegate.h"
 #import <HockeySDK/HockeySDK.h>
-#import "Constants.h"
 
 @implementation WMAppDelegate
 
