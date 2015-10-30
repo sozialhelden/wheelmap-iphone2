@@ -28,7 +28,7 @@
 #import "WMDetailNavigationController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
-#import "WMLogoutViewController.h"
+#import "WMOSMLogoutViewController.h"
 #import "WMToolBar_iPad.h"
 #import "Constants.h"
 
@@ -299,7 +299,7 @@
                 yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
+        } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -1265,7 +1265,7 @@
     if (!dataManager.userIsAuthenticated) {
         viewController = [UIStoryboard instantiatedOSMStartViewController];
     } else {
-        viewController = [UIStoryboard instantiatedLogoutViewController];
+        viewController = [UIStoryboard instantiatedOSMLogoutViewController];
     }
     
     viewController.baseController = self;

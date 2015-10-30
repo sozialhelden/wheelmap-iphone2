@@ -27,7 +27,7 @@
 
 + (id)instantiatedOSMStartViewController;
 
-+ (id)instantiatedLogoutViewController;
++ (id)instantiatedOSMLogoutViewController;
 
 + (id)instantiatedCreditsViewController;
 

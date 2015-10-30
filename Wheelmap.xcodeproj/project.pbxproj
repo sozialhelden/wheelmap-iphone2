@@ -579,9 +579,9 @@
 		878EC8CD1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */; };
 		878EC8CE1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */; };
 		878EC8CF1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */; };
-		878EC8D01BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */; };
-		878EC8D11BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */; };
-		878EC8D21BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */; };
+		878EC8D01BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */; };
+		878EC8D11BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */; };
+		878EC8D21BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */; };
 		878EC8D31BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */; };
 		878EC8D41BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */; };
 		878EC8D51BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */; };
@@ -964,8 +964,8 @@
 		878EC8901BE0F7960099EDD1 /* WMDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardViewController.m; sourceTree = "<group>"; };
 		878EC8921BE0F7960099EDD1 /* WMAcceptTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAcceptTermsViewController.h; sourceTree = "<group>"; };
 		878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAcceptTermsViewController.m; sourceTree = "<group>"; };
-		878EC8941BE0F7960099EDD1 /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
-		878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
+		878EC8941BE0F7960099EDD1 /* WMOSMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMLogoutViewController.h; sourceTree = "<group>"; };
+		878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMLogoutViewController.m; sourceTree = "<group>"; };
 		878EC8961BE0F7960099EDD1 /* WMOSMDescribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMDescribeViewController.h; sourceTree = "<group>"; };
 		878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMDescribeViewController.m; sourceTree = "<group>"; };
 		878EC8981BE0F7960099EDD1 /* WMOSMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMLoginViewController.h; sourceTree = "<group>"; };
@@ -1622,8 +1622,8 @@
 			children = (
 				878EC8921BE0F7960099EDD1 /* WMAcceptTermsViewController.h */,
 				878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */,
-				878EC8941BE0F7960099EDD1 /* WMLogoutViewController.h */,
-				878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */,
+				878EC8941BE0F7960099EDD1 /* WMOSMLogoutViewController.h */,
+				878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */,
 				878EC8961BE0F7960099EDD1 /* WMOSMDescribeViewController.h */,
 				878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */,
 				878EC8981BE0F7960099EDD1 /* WMOSMLoginViewController.h */,
@@ -2642,7 +2642,7 @@
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDF231BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9721BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
-				878EC8D11BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */,
+				878EC8D11BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC8E01BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
 				878EC9481BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAC1BDFEF6D00764FC5 /* Asset.m in Sources */,
@@ -2720,7 +2720,7 @@
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDF241BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9731BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
-				878EC8D21BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */,
+				878EC8D21BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC8E11BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
 				878EC9491BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAD1BDFEF6D00764FC5 /* Asset.m in Sources */,
@@ -2798,7 +2798,7 @@
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDF221BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9711BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
-				878EC8D01BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */,
+				878EC8D01BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC8DF1BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
 				878EC9471BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAB1BDFEF6D00764FC5 /* Asset.m in Sources */,

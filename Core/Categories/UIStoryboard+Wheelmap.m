@@ -52,8 +52,8 @@
 	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
 }
 
-+ (id)instantiatedLogoutViewController {
-	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
++ (id)instantiatedOSMLogoutViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMLogoutViewController"];
 }
 
 + (id)instantiatedCreditsViewController {

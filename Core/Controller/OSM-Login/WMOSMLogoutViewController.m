@@ -1,22 +1,22 @@
 //
-//  WMLogoutViewController.m
+//  WMOSMLogoutViewController.m
 //  Wheelmap
 //
 //  Created by npng on 12/12/12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMLogoutViewController.h"
+#import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
 
-@interface WMLogoutViewController ()
+@interface WMOSMLogoutViewController ()
 {
     WMDataManager* dataManager;
 }
 @end
 
-@implementation WMLogoutViewController
+@implementation WMOSMLogoutViewController
 
 - (void)viewDidLoad
 {
