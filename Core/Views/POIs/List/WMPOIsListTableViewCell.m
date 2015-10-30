@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMNodeListCell.h"
+#import "WMPOIsListTableViewCell.h"
 
 
-@implementation WMNodeListCell
+@implementation WMPOIsListTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

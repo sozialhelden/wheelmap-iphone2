@@ -7,7 +7,7 @@
 //
 
 #import "WMPOIsListViewController.h"
-#import "WMNodeListCell.h"
+#import "WMPOIsListTableViewCell.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
@@ -66,7 +66,7 @@
     
     self.view.backgroundColor = [UIColor wmGreyColor];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"WMNodeListCell" bundle:nil] forCellReuseIdentifier:@"WMNodeListCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WMPOIsListTableViewCell" bundle:nil] forCellReuseIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     self.tableView.scrollsToTop = YES;
     dataManager = [[WMDataManager alloc] init];
     
@@ -334,7 +334,7 @@
         return cell;
     }
     
-    WMNodeListCell *cell = (WMNodeListCell*)[tableView dequeueReusableCellWithIdentifier:@"WMNodeListCell"];
+    WMPOIsListTableViewCell *cell = (WMPOIsListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     Node *node = nodes[indexPath.row];
     
     // show wheelchair status

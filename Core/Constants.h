@@ -55,4 +55,6 @@
 #define K_WHEELCHAIR_STATE_YES						@"yes"
 #define K_WHEELCHAIR_STATE_NO						@"no"
 
+#define K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER		@"WMPOIsListTableViewCell"
+
 
