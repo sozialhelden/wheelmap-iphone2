@@ -11,7 +11,7 @@
 #import "WMMapViewController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMCategoryViewController.h"
-#import "WMOSMStartViewController.h"
+#import "WMOSMOnboardingViewController.h"
 #import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
@@ -201,7 +201,7 @@
 {
     WMViewController* vc;
     if (!dataManager.userIsAuthenticated) {
-        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
+        vc = [UIStoryboard instantiatedOSMOnboardingViewController];
     } else {
         vc = [UIStoryboard instantiatedOSMLogoutViewController];
     }

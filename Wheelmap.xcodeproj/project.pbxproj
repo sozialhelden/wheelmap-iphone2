@@ -588,9 +588,9 @@
 		878EC8D61BE0F7960099EDD1 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */; };
 		878EC8D71BE0F7960099EDD1 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */; };
 		878EC8D81BE0F7960099EDD1 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */; };
-		878EC8D91BE0F7960099EDD1 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89B1BE0F7960099EDD1 /* WMOSMStartViewController.m */; };
-		878EC8DA1BE0F7960099EDD1 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89B1BE0F7960099EDD1 /* WMOSMStartViewController.m */; };
-		878EC8DB1BE0F7960099EDD1 /* WMOSMStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89B1BE0F7960099EDD1 /* WMOSMStartViewController.m */; };
+		878EC8D91BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89B1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m */; };
+		878EC8DA1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89B1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m */; };
+		878EC8DB1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89B1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m */; };
 		878EC8DC1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */; };
 		878EC8DD1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */; };
 		878EC8DE1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */; };
@@ -970,8 +970,8 @@
 		878EC8971BE0F7960099EDD1 /* WMOSMDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMDescriptionViewController.m; sourceTree = "<group>"; };
 		878EC8981BE0F7960099EDD1 /* WMOSMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMLoginViewController.h; sourceTree = "<group>"; };
 		878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMLoginViewController.m; sourceTree = "<group>"; };
-		878EC89A1BE0F7960099EDD1 /* WMOSMStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMStartViewController.h; sourceTree = "<group>"; };
-		878EC89B1BE0F7960099EDD1 /* WMOSMStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMStartViewController.m; sourceTree = "<group>"; };
+		878EC89A1BE0F7960099EDD1 /* WMOSMOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMOnboardingViewController.h; sourceTree = "<group>"; };
+		878EC89B1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMOnboardingViewController.m; sourceTree = "<group>"; };
 		878EC89C1BE0F7960099EDD1 /* WMTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTermsViewController.h; sourceTree = "<group>"; };
 		878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTermsViewController.m; sourceTree = "<group>"; };
 		878EC8A01BE0F7960099EDD1 /* WMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryTableViewController.h; sourceTree = "<group>"; };
@@ -1628,8 +1628,8 @@
 				878EC8971BE0F7960099EDD1 /* WMOSMDescriptionViewController.m */,
 				878EC8981BE0F7960099EDD1 /* WMOSMLoginViewController.h */,
 				878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */,
-				878EC89A1BE0F7960099EDD1 /* WMOSMStartViewController.h */,
-				878EC89B1BE0F7960099EDD1 /* WMOSMStartViewController.m */,
+				878EC89A1BE0F7960099EDD1 /* WMOSMOnboardingViewController.h */,
+				878EC89B1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m */,
 				878EC89C1BE0F7960099EDD1 /* WMTermsViewController.h */,
 				878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */,
 			);
@@ -2636,7 +2636,7 @@
 				872FDE3D1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9131BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96C1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
-				878EC8DA1BE0F7960099EDD1 /* WMOSMStartViewController.m in Sources */,
+				878EC8DA1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB21BDFEF6D00764FC5 /* Node.m in Sources */,
 				878EC8E31BE0F7960099EDD1 /* WMCommentViewController.m in Sources */,
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -2714,7 +2714,7 @@
 				872FDE3E1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9141BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96D1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
-				878EC8DB1BE0F7960099EDD1 /* WMOSMStartViewController.m in Sources */,
+				878EC8DB1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB31BDFEF6D00764FC5 /* Node.m in Sources */,
 				878EC8E41BE0F7960099EDD1 /* WMCommentViewController.m in Sources */,
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -2792,7 +2792,7 @@
 				872FDE3C1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9121BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96B1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
-				878EC8D91BE0F7960099EDD1 /* WMOSMStartViewController.m in Sources */,
+				878EC8D91BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB11BDFEF6D00764FC5 /* Node.m in Sources */,
 				878EC8E21BE0F7960099EDD1 /* WMCommentViewController.m in Sources */,
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,

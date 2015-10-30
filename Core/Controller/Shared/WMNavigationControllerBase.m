@@ -16,7 +16,7 @@
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
-#import "WMOSMStartViewController.h"
+#import "WMOSMOnboardingViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "WMNodeTypeTableViewController.h"
 #import "Node.h"
@@ -299,7 +299,7 @@
                 yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
+        } else if ([self.popoverVC isKindOfClass:[WMOSMOnboardingViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -1263,7 +1263,7 @@
     
     WMViewController* viewController;
     if (!dataManager.userIsAuthenticated) {
-        viewController = [UIStoryboard instantiatedOSMStartViewController];
+        viewController = [UIStoryboard instantiatedOSMOnboardingViewController];
     } else {
         viewController = [UIStoryboard instantiatedOSMLogoutViewController];
     }
@@ -1503,9 +1503,9 @@
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
-    WMOSMStartViewController* osmStartViewController = [UIStoryboard instantiatedOSMStartViewController];
-    osmStartViewController.popoverButtonFrame = frame;
-    [self presentViewController:osmStartViewController animated:YES];
+    WMOSMOnboardingViewController* osmOnbaordingViewController = [UIStoryboard instantiatedOSMOnboardingViewController];
+    osmOnbaordingViewController.popoverButtonFrame = frame;
+    [self presentViewController:osmOnbaordingViewController animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

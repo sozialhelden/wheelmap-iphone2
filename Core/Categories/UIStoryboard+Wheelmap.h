@@ -25,7 +25,7 @@
 
 + (id)instantiatedAcceptTermsViewController;
 
-+ (id)instantiatedOSMStartViewController;
++ (id)instantiatedOSMOnboardingViewController;
 
 + (id)instantiatedOSMLogoutViewController;
 

@@ -1,5 +1,5 @@
 //
-//  WMOSMStartViewController.h
+//  WMOSMOnboardingViewController.h
 //  Wheelmap
 //
 //  Created by Dirk Tech on 30.04.15.
@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "WMDataManagerDelegate.h"
 
-
-@interface WMOSMStartViewController : WMViewController <UITextFieldDelegate, WMDataManagerDelegate> {
+@interface WMOSMOnboardingViewController : WMViewController <UITextFieldDelegate, WMDataManagerDelegate> {
     
     WMDataManager *dataManager;
 }
