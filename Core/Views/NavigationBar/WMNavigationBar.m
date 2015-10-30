@@ -457,11 +457,8 @@
 {
     CGFloat originX = currentLeftButton.frame.origin.x+currentLeftButton.frame.size.width;
     CGFloat width = currentRightButton.frame.origin.x - originX;
-    
-    NSLog(@"X = %f", currentRightButton.frame.origin.x);
-    
+
     titleLabel.frame = CGRectMake(originX+5, titleLabel.frame.origin.y, width-10, titleLabel.frame.size.height);
-    
 }
 
 - (NSString *)getSearchString {
@@ -740,7 +737,6 @@
     switch (networkStatus)
     {
         case NotReachable:
-            NSLog(@"INTERNET IS NOT AVAILABLE!");
             [self hideRightButton:kWMNavigationBarRightButtonStyleContributeButton];
             [self hideRightButton:kWMNavigationBarRightButtonStyleEditButton];
             [self hideRightButton:kWMNavigationBarRightButtonStyleSaveButton];

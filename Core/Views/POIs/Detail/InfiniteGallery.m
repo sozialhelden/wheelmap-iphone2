@@ -372,10 +372,8 @@
 }
 
 // The scroll view calls this method at the end of its implementations of the UIScrollView and setContentOffset:animated: and scrollRectToVisible:animated: methods, but only if animations are requested.  (i.e. if animated: YES) 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     // page order was reset in animateToPageNum
-    NSLog(@"Should only fire when the gotoPageNumber method is called!");
     
     [self loadPages];  // now that the 3 page indices have been set, loadPages will ensure they are loaded and their frames set.
     
@@ -613,11 +611,6 @@
 - (long)numberOfPagesForGallery:(InfiniteGallery*)g
 {
     return 5;
-}
-
--(void)breakpoint
-{
-    NSLog(@"Breaking for inspection");
 }
 
 @end

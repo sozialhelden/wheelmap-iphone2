@@ -129,7 +129,7 @@
 
 - (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error {
     // TODO: handle error
-    NSLog(@"Login failed! %@", error);
+    DKLog(K_VERBOSE_ONBOARDING, @"Login failed! %@", error);
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"User Credentials Error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     
     [alert show];
@@ -141,7 +141,7 @@
 
 - (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager {
     // TODO: handle success, dismiss view controller
-    NSLog(@"Login success!");
+    DKLog(K_VERBOSE_ONBOARDING, @"Login success!");
     
     if ([dataManager areUserTermsAccepted]) {
         
@@ -201,7 +201,7 @@
 }
 
 - (void) didReceiveAuthenticationData:(NSNotification*)n {
-    NSLog(@"auth Data:%@", n);
+    DKLog(K_VERBOSE_ONBOARDING, @"auth Data:%@", n);
     
     NSDictionary *userData = [[n userInfo] objectForKey:@"authData"];
     

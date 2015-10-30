@@ -22,7 +22,6 @@
 
 #define WMSearchRadius 0.004
 #define WMCacheSize 10000
-#define WMLogDataManager 0
 #define boundingBoxSize 100.0
 
 // Max number of nodes per page that should be returned for a bounding box request, based on experience.
@@ -98,7 +97,7 @@
 {
     numRunningOperations++;
     
-    if (WMLogDataManager>1) NSLog(@"number of operations: %lu", (unsigned long)numRunningOperations);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"Incremented number of operations to: %lu", (unsigned long)numRunningOperations);
     
     if (numRunningOperations==1 && [self.delegate respondsToSelector:@selector(dataManagerDidStartOperation:)]) {
         [self.delegate dataManagerDidStartOperation:self];
@@ -109,7 +108,7 @@
 {
     numRunningOperations = MAX(0, --numRunningOperations);
     
-    if (WMLogDataManager>1) NSLog(@"number of operations: %lu", (unsigned long)numRunningOperations);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"Decremented number of operations to: %lu", (unsigned long)numRunningOperations);
     
     if (numRunningOperations==0) {
         if ([self.delegate respondsToSelector:@selector(dataManagerDidStopAllOperations:)]) {
@@ -132,12 +131,10 @@
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"tile!=nil"];
     NSUInteger totalNodes = [self.mainMOC countForFetchRequest:fetchRequest error:&error];
     
-    if (WMLogDataManager>2) NSLog(@"total nodes: %lu", (unsigned long)totalNodes);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"Cleaning up cache. Total number of nodes: %lu", (unsigned long)totalNodes);
     
     if (totalNodes > WMCacheSize) {
-        
-        if (WMLogDataManager) NSLog(@"cleaning cache, total nodes: %lu", (unsigned long)totalNodes);
-        
+
         // delete oldest tiles in background
         [self.backgroundMOC performBlock:^{
             
@@ -164,7 +161,7 @@
                     
                     currentNumberOfNodes -= numNodesInTile;
                     
-                    if (WMLogDataManager>1) NSLog(@"... deleted tile with %lu nodes", (unsigned long)numNodesInTile);
+                    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"Deleted tile with %lu nodes", (unsigned long)numNodesInTile);
                 }
                 
                 // save background moc
@@ -181,7 +178,7 @@
                         if (![self.mainMOC save:&saveParentMocError]) {
                             // TODO: handle error
                         } else {
-                            if (WMLogDataManager>1) NSLog(@"... new node count=%lu, saved to main moc", (unsigned long)currentNumberOfNodes);
+                            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"New node count=%lu, saved to main moc", (unsigned long)currentNumberOfNodes);
                         }
                     }];
                 }
@@ -227,9 +224,8 @@
 
 #pragma mark - Authentication
 
-- (void)authenticateUserWithEmail:(NSString *)email password:(NSString *)password
-{
-    if (WMLogDataManager) NSLog(@"authenticate user w email:%@ pw:%@", email, password);
+- (void)authenticateUserWithEmail:(NSString *)email password:(NSString *)password {
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Authenticating user with email:%@ password:%@", email, password);
     
     if (email == nil) {
         email = @"";
@@ -250,7 +246,7 @@
                                                   [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                NSLog(@"req:%@ \nresp:%@", request, response);
+                                                DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"req:%@ \nresp:%@", request, response);
                                                 [self didReceiveAuthenticationData:JSON[@"user"] forAccount:email];
                                                 [self decrementRunningOperations];
                                             }
@@ -264,14 +260,13 @@
 {
     NSString *userToken = user[@"api_key"];
     
-    //if (WMLogDataManager)
-        NSLog(@"received user token %@", userToken);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Did receive user token %@", userToken);
     
     if (userToken) {
         
         // save token to keychain
         BOOL saveSuccess = [self.keychainWrapper saveToken:userToken forAccount:account];
-        if (WMLogDataManager) NSLog(@"saved user token to keychain with %@", saveSuccess ? @"success" : @"error");
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Saved user token to keychain with %@", saveSuccess ? @"success" : @"error");
         
         if (saveSuccess) {
             // now that we have saved a token, we can delete legacy keychain data
@@ -305,7 +300,7 @@
 {
     NSString *value = accepted ? @"true" : @"false";
     
-    NSLog(@"ACCEPTED VALUE = %@", value);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"ACCEPTED VALUE = %@", value);
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"user/accept_terms"
                                              apiKey:[self apiKey]
@@ -319,15 +314,10 @@
                                                 [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                NSLog(@"JSON: %@", JSON);
-
                                                 id user = JSON[@"user"];
                                                 id termsAccepted = user[@"terms_accepted"];
                                                 id privacyAccepted = user[@"privacy_accepted"];
                                                 BOOL termsAcc = [termsAccepted boolValue] && [privacyAccepted boolValue];
-//                                                NSLog(@"Request: %@", request.URL.absoluteString);
-//                                                NSLog(@"JSON ACCEPTED: %@ %c",termsAccepted, termsAcc);
-
                                                 if ([self.delegate respondsToSelector:@selector(dataManagerDidUpdateTermsAccepted:withValue:)]) {
                                                     [self.delegate dataManagerDidUpdateTermsAccepted:self withValue:termsAcc];
                                                 }
@@ -340,16 +330,14 @@
 
 }
 
-- (BOOL) userIsAuthenticated
-{
+- (BOOL)userIsAuthenticated {
     NSString *userToken = [self.keychainWrapper tokenForAccount:nil];
     return ([userToken length] > 0 && [self areUserTermsAccepted]);
 }
 
-- (void) removeUserAuthentication
-{
+- (void)removeUserAuthentication {
     BOOL deleteSuccess = [self.keychainWrapper deleteTokenForAccount:nil];
-    if (WMLogDataManager) NSLog(@"removed user token from keychain with %@", deleteSuccess ? @"success" : @"error");
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Removed user token from keychain with %@", deleteSuccess ? @"success" : @"error");
 }
 
 - (NSDictionary *) legacyUserCredentials
@@ -368,7 +356,6 @@
 
 - (void)userDidAcceptTerms {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"acount name:%@", [self currentUserTermsKey]);
     [defaults setValue:@"YES" forKey:[self currentUserTermsKey]];
     [defaults synchronize];
 }
@@ -381,7 +368,6 @@
 
 - (BOOL)areUserTermsAccepted {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"Terms accepted key returned %@", [defaults valueForKey:[self currentUserTermsKey]]);
     if ([defaults valueForKey:[self currentUserTermsKey]] != nil) {
         return YES;
     } else {
@@ -390,7 +376,6 @@
 }
 
 - (BOOL)isFirstLaunch {
-        
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return ![defaults boolForKey:WM_ALREADY_LAUNCHED_KEY];
 }
@@ -429,9 +414,7 @@
     NSInteger neLatId = northeast.latitude * boundingBoxSize; neLatId++;
     NSInteger neLonId = northeast.longitude * boundingBoxSize; neLonId++;
     
-    if (WMLogDataManager) {
-        NSLog(@"fetch nodes between:%.4f/%.4f - %.4f/%.4f", southwest.latitude, southwest.longitude, northeast.latitude, northeast.longitude);
-    }
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Fetch nodes between:%.4f/%.4f - %.4f/%.4f", southwest.latitude, southwest.longitude, northeast.latitude, northeast.longitude);
     
     NSAssert(swLatId < neLatId && swLonId < neLonId, @"Invalid parameters passed to fetchNodesBetweenSouthwest:northeast:");
     
@@ -441,7 +424,7 @@
         // step through grid along longitude
         for (long lon = swLonId; lon < neLonId; lon++) {
  
-            if (WMLogDataManager>1) NSLog(@"...looking for nodes in tile %li/%li", lat, lon);
+            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @".. looking for nodes in tile %li/%li", lat, lon);
             
             // check if tile is already in cache
             Tile *cachedTile = nil;
@@ -465,9 +448,7 @@
             CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
             CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
             
-            if (WMLogDataManager) {
-                NSLog(@"fetch corrected nodes between:%.4f/%.4f - %.4f/%.4f", sw.latitude, sw.longitude, ne.latitude, ne.longitude);
-            }
+            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @".. fetch corrected nodes between:%.4f/%.4f - %.4f/%.4f", sw.latitude, sw.longitude, ne.latitude, ne.longitude);
             
             // for search call fetch directly, toherwise make head request first
             if (query) {
@@ -503,17 +484,16 @@
     return [self managedObjectContext:moc cachedTileForSwLat:swLat swLon:swLon];
 }
 
-- (Tile*) managedObjectContext:(NSManagedObjectContext*)moc cachedTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon
-{
+- (Tile*)managedObjectContext:(NSManagedObjectContext*)moc cachedTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"swLat==%i && swLon==%i", swLat, swLon];
     NSArray *results = [self managedObjectContext:moc fetchObjectsOfEntity:@"Tile" withPredicate:predicate];
     
-    if (WMLogDataManager>3) {
+    if (K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_FOUR) {
         Tile* tile = [results lastObject];
-        NSLog(@".........fetched existing tile: %@ %lu", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil, (unsigned long)(tile?tile.nodes.count:0));
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_FOUR), @".........fetched existing tile: %@ %lu", tile?[NSString stringWithFormat:@"%@/%@",tile.swLat,tile.swLon]:nil, (unsigned long)(tile?tile.nodes.count:0));
         if (tile && tile.nodes.count > 0) {
             for (Node *node in tile.nodes) {
-                NSLog(@"Node lat %@ lon %@", node.lat, node.lon);
+                DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_FOUR), @"Node lat %@ lon %@", node.lat, node.lon);
                 break;
             }
         }
@@ -522,21 +502,7 @@
     return [results lastObject];
 }
 
-//- (NSArray*) managedObjectContext:(NSManagedObjectContext*)moc cachedNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast
-//{
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lat>=%f && lat<=%f && lon>=%f && lon<=%f", southwest.latitude, northeast.latitude, southwest.longitude, northeast.longitude];
-//    NSArray *results = [self managedObjectContext:moc fetchObjectsOfEntity:@"Node" withPredicate:predicate];
-//    
-//    if (WMLogDataManager>3) {
-//        NSLog(@".........fetched existing nodes: %d", results?results.count:0);
-//    }
-//    
-//    return results;
-//}
-
-
-- (Tile*) managedObjectContext:(NSManagedObjectContext*)moc createTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon
-{
+- (Tile*)managedObjectContext:(NSManagedObjectContext*)moc createTileForSwLat:(NSInteger)swLat swLon:(NSInteger)swLon {
     __block Tile *newTile = nil;
     [moc performBlockAndWait:^{
         newTile = [NSEntityDescription insertNewObjectForEntityForName:@"Tile" inManagedObjectContext:moc];
@@ -544,7 +510,7 @@
         newTile.swLon = @(swLon);
     }];
     
-    if (WMLogDataManager>2) NSLog(@"......created new tile: %@/%@", newTile.swLat, newTile.swLon);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"......created new tile: %@/%@", newTile.swLat, newTile.swLon);
     
     return newTile;
 }
@@ -553,7 +519,7 @@
 {
     
     if (self.syncInProgress) {
-        if (WMLogDataManager>1) NSLog(@"Sync in progress, do not fetch");
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"Sync in progress, do not fetch");
         return;
     }
     
@@ -578,21 +544,19 @@
                         northeast.longitude,
                         northeast.latitude];
     
-    if (WMLogDataManager) {
-        NSLog(@"Fetching rounded coordinates: %@", coords);
-        NSLog(@"Original coordinates: %@", [NSString stringWithFormat:@"%f,%f,%f,%f",
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Fetching rounded coordinates: %@", coords);
+	DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Original coordinates: %@", [NSString stringWithFormat:@"%f,%f,%f,%f",
                                         southwest.longitude,
                                         southwest.latitude,
                                         northeast.longitude,
                                         northeast.latitude]);
-    }
 
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
     parameters[@"per_page"] = @WMNodeLimit;
     if (query) parameters[@"q"] = query;
     
-    if (WMLogDataManager) NSLog(@"fetching nodes in bbox %@", coords);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"fetching nodes in bbox %@", coords);
     
     [[WMWheelmapAPI sharedInstance] requestResource:query ? @"nodes/search" : @"nodes"
                                              apiKey:[self apiKey]
@@ -604,17 +568,10 @@
                                                   [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                
-//                                                NSLog(@"JSON received %@ %@", request.URL.absoluteString, JSON);
-
-                                                
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
-//                                                NSLog(@"Received etag: %@", eTag);
-//                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
 
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:eTagID]];
-//                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
-                                                
+
                                                 if (eTagChanged) {
                                                     
                                                     if (!query) {
@@ -657,20 +614,18 @@
                         northeast.longitude,
                         northeast.latitude];
     
-    if (WMLogDataManager) {
-        NSLog(@"Fetching rounded coordinates: %@", coords);
-        NSLog(@"Original coordinates: %@", [NSString stringWithFormat:@"%f,%f,%f,%f",
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Fetching rounded coordinates: %@", coords);
+	DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Original coordinates: %@", [NSString stringWithFormat:@"%f,%f,%f,%f",
                                             southwest.longitude,
                                             southwest.latitude,
                                             northeast.longitude,
                                             northeast.latitude]);
-    }
     
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     parameters[@"bbox"] = coords;
     parameters[@"per_page"] = @WMNodeLimit;
     
-    if (WMLogDataManager) NSLog(@"fetching nodes head in bbox %@", coords);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"fetching nodes head in bbox %@", coords);
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes"
                                              apiKey:[self apiKey]
@@ -680,15 +635,9 @@
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                
-                                                
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
-//                                                NSLog(@"Received etag: %@", eTag);
-//                                                NSLog(@"Stored etag: %@", [self eTagForEntity:eTagID]);
                                                 
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:eTagID]];
-//                                                NSLog(@"Received nodes. %@",eTagChanged ? @"eTag changed":@"eTag is same");
-                                                
                                                 
                                                 if (eTagChanged) {
                                                     [self fetchRemoteNodesBetweenSouthwest:southwest northeast:northeast query:nil];
@@ -733,7 +682,7 @@
         return;
     }
     
-    if (WMLogDataManager) NSLog(@"fetchNodesWithQuery:%@", query);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"fetchNodesWithQuery:%@", query);
     
     [[WMWheelmapAPI sharedInstance] requestResource:@"nodes/search"
                                              apiKey:[self apiKey]
@@ -762,9 +711,8 @@
 
 - (void) didReceiveNodes:(NSArray *)nodes fromQuery:(NSString*)query
 {
-    if (WMLogDataManager) NSLog(@"received %lu nodes", (unsigned long)[nodes count]);
-    NSLog(@"XXXX - (void) didReceiveNodes:(NSArray*)photos forNode:(Node*)node");
-    
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"received %lu nodes", (unsigned long)[nodes count]);
+
     [self parseDataObjectInBackground:nodes
                entityName:@"Node"
               postProcess:^(id parsedNodes) {
@@ -789,14 +737,13 @@
                         [self decrementRunningOperations];
                     }
                   success:^(id parsedNodes) {
-                      if (WMLogDataManager>3) {
+                      if ((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_FOUR)) {
                           NSError *error = nil;
                           NSUInteger totalNodes = [self.mainMOC countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Node"] error:&error];
-                           NSLog(@"parsed %lu nodes. Total count is now %lu", (unsigned long)[(NSArray*)parsedNodes count], (unsigned long)totalNodes);
-                      } else if (WMLogDataManager) {
-                         NSLog(@"parsed %lu nodes", (unsigned long)[(NSArray*)parsedNodes count]);
+                           DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_FOUR), @"parsed %lu nodes. Total count is now %lu", (unsigned long)[(NSArray*)parsedNodes count], (unsigned long)totalNodes);
+                      } else if ((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE)) {
+                         DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"parsed %lu nodes", (unsigned long)[(NSArray*)parsedNodes count]);
                       }
-                      
      
                       if ([self.delegate respondsToSelector:@selector(dataManager:didReceiveNodes:)]) {
                           [self.delegate dataManager:self didReceiveNodes:parsedNodes];
@@ -819,14 +766,14 @@
         NSDate *startTime = [NSDate date];
         
         // create parser with temporary context
-        NSLog(@"------ PARSING DATA OBJECT IN BACKGROUND ------");
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"------ PARSING DATA OBJECT IN BACKGROUND ------");
         WMDataParser *parser = [[WMDataParser alloc] initWithManagedObjectContext:self.backgroundMOC];
         
         // parse data
         NSError *parseError = nil;
         id parsedObject = [parser parseDataObject:object entityName:entityName error:&parseError];
         
-        if (WMLogDataManager>2) NSLog(@"......parsed after %.2f sec", -[startTime timeIntervalSinceNow]);
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"......parsed after %.2f sec", -[startTime timeIntervalSinceNow]);
         
         if (!parsedObject) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -863,7 +810,7 @@
                     
                 } else {
                     
-                    if (WMLogDataManager>2) NSLog(@"......saved to child moc after %.2f sec", -[startTime timeIntervalSinceNow]);
+                    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"......saved to child moc after %.2f sec", -[startTime timeIntervalSinceNow]);
                     
                     [self.mainMOC performBlock:^{
                         
@@ -876,7 +823,7 @@
                             
                         } else {
                             
-                            if (WMLogDataManager>2) NSLog(@"......saved to main moc after %.2f sec", -[startTime timeIntervalSinceNow]);
+                            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"......saved to main moc after %.2f sec", -[startTime timeIntervalSinceNow]);
                             
                             // fetch result objects from main moc
                             NSMutableArray *resultObjectsInMainMoc = [NSMutableArray arrayWithCapacity:[result count]];
@@ -886,7 +833,7 @@
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 successBlock(resultObjectsInMainMoc);
-                                if (WMLogDataManager>2) NSLog(@"......finished after %.2f sec", -[startTime timeIntervalSinceNow]);
+                                DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"......finished after %.2f sec", -[startTime timeIntervalSinceNow]);
                             });
                         }
                     }];
@@ -903,11 +850,11 @@
 {
     
     if (node.wheelchair == nil) {
-        NSLog(@"Cannot update wheelchair status to null!");
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Cannot update wheelchair status to null!");
         return;
     }
     
-    if (WMLogDataManager) NSLog(@"update wheelchair status to %@", node.wheelchair);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"update wheelchair status to %@", node.wheelchair);
     
     NSDictionary* parameters = @{@"wheelchair":node.wheelchair};
     [[WMWheelmapAPI sharedInstance] requestResource:[NSString stringWithFormat:@"nodes/%@/update_wheelchair", node.id]
@@ -934,7 +881,7 @@
 
 -(void) updateNode:(Node *)node
 {
-    if (WMLogDataManager) NSLog(@"update node %@ %@", node.name, node.id);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"update node %@ %@", node.name, node.id);
         
     // if this is a put
     if (node.id) {
@@ -942,7 +889,7 @@
         // validate node
         NSError *validationError = nil;
         if (![node validateForUpdate:&validationError]) {
-            if (WMLogDataManager) [self logValidationError:validationError];
+            if (K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE) [self logValidationError:validationError];
             if ([self.delegate respondsToSelector:@selector(dataManager:updateNode:failedWithError:)]) {
                 [self.delegate dataManager:self updateNode:node failedWithError:validationError];
             }
@@ -977,19 +924,16 @@
                                                   [self decrementRunningOperations];
                                               }
                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                
-                                                NSLog(@"POST NODE TO %@ %@", request.URL.absoluteString, JSON);
-                                                
                                                 // save changes to disk if this was a put
                                                 if (node.id) {
                                                     [self.mainMOC performBlock:^{
                                                         NSError *saveParentMocError = nil;
                                                         if (![self.mainMOC save:&saveParentMocError]) {
-                                                            if (WMLogDataManager) [self logValidationError:saveParentMocError];
+                                                            if (K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE) [self logValidationError:saveParentMocError];
                                                             NSAssert(YES, @"error saving moc after node PUT");
-                                                            NSLog(@"error saving moc after node PUT");
+                                                            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"error saving moc after node PUT");
                                                         } else {
-                                                            NSLog(@"POI saved to disk");
+                                                            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"POI saved to disk");
                                                         }
                                                     }];
                                                 }
@@ -1021,16 +965,16 @@ static BOOL assetSyncInProgress = NO;
 - (void) syncResources
 {
    
-    if (WMLogDataManager) NSLog(@"syncResources");
-    if (WMLogDataManager>1) {
-        NSLog(@"... num categories: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"WMCategory" withPredicate:nil] count]);
-        NSLog(@"... num node types: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
-        NSLog(@"... num assets: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"syncResources");
+    if (K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO) {
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... num categories: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"WMCategory" withPredicate:nil] count]);
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... num node types: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil] count]);
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... num assets: %lu", (unsigned long)[[self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"Asset" withPredicate:nil] count]);
     }
     
     // make sure there's only one sync running at a time
     if (self.syncInProgress) {
-        if (WMLogDataManager>1) NSLog(@"... sync already in progress, skipping");
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... sync already in progress, skipping");
         return;
     }
     
@@ -1050,7 +994,7 @@ static BOOL assetSyncInProgress = NO;
     // check if cached assets are available on disk (could have been purged by the system)
     [self.nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
         if (nodeType.iconPath && ![[NSFileManager defaultManager] fileExistsAtPath:nodeType.iconPath]) {
-            if(WMLogDataManager>1) NSLog(@"... cached icon not found: %@", nodeType.iconPath);
+            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... cached icon not found: %@", nodeType.iconPath);
             
             // if any file is missing, reset eTag and modified date to force reload of assets
             [self setETag:nil forEntity:@"Asset"];
@@ -1064,7 +1008,7 @@ static BOOL assetSyncInProgress = NO;
         }
     }];
     
-    NSLog(@"RE-SYNC RESOUCES!");
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"RE-SYNC RESOUCES!");
     
     //
     // no asset on local device available and no internet connection -> we can not sync resources.
@@ -1103,7 +1047,7 @@ static BOOL assetSyncInProgress = NO;
                                                eTag:localeChanged ? nil : [self eTagForEntity:@"WMCategory"]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if (WMLogDataManager>1) NSLog(@"... error loading categories");
+                                                  DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... error loading categories");
                                                   categorySyncInProgress = NO;
                                                   [self syncOperationFailedWithError:error];
                                                   [self finishSync];
@@ -1113,11 +1057,10 @@ static BOOL assetSyncInProgress = NO;
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
                                                 id categories = JSON[@"categories"];
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:@"WMCategory"]];
-                                                if (WMLogDataManager>1) NSLog(@"... received %lu categories, %@", (unsigned long)[categories count], eTagChanged?@"eTag changed":@"eTag is same");
+                                                DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... received %lu categories, %@", (unsigned long)[categories count], eTagChanged?@"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged && categories) {
-                                                    NSLog(@"XXXX - syncRessources");
-                                                 
+
                                                     [self parseDataObjectInBackground:categories
                                                                            entityName:@"WMCategory"
                                                                           postProcess:nil
@@ -1147,7 +1090,7 @@ static BOOL assetSyncInProgress = NO;
                                                eTag:localeChanged ? nil : [self eTagForEntity:@"NodeType"]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if (WMLogDataManager>1) NSLog(@"... error loading node types");
+                                                  DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... error loading node types");
                                                   nodeTypeSyncInProgress = NO;
                                                   [self syncOperationFailedWithError:error];
                                                   [self finishSync];
@@ -1157,7 +1100,7 @@ static BOOL assetSyncInProgress = NO;
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
                                                 id nodeTypes = JSON[@"node_types"];
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:@"NodeType"]];
-                                                if (WMLogDataManager>1) NSLog(@"... received %lu node types %@", (unsigned long)[nodeTypes count], eTagChanged?@"eTag changed":@"eTag is same");
+                                                DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... received %lu node types %@", (unsigned long)[nodeTypes count], eTagChanged?@"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged && nodeTypes) {
                                                     
@@ -1190,7 +1133,7 @@ static BOOL assetSyncInProgress = NO;
                                                eTag:[self eTagForEntity:@"Asset"]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                  if (WMLogDataManager>1) NSLog(@"... error loading assets");
+                                                  DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... error loading assets");
                                                   assetSyncInProgress = NO;
                                                   [self syncOperationFailedWithError:error];
                                                   [self finishSync];
@@ -1200,7 +1143,7 @@ static BOOL assetSyncInProgress = NO;
                                                 NSString *eTag = [response allHeaderFields][@"ETag"];
                                                 id assets = JSON[@"assets"];
                                                 BOOL eTagChanged = ![eTag isEqual:[self eTagForEntity:@"Asset"]];
-                                                if (WMLogDataManager>1) NSLog(@"... received %lu assets %@", (unsigned long)[assets count], eTagChanged?@"eTag changed":@"eTag is same");
+                                                DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... received %lu assets %@", (unsigned long)[assets count], eTagChanged?@"eTag changed":@"eTag is same");
                                                 
                                                 if (eTagChanged && assets) {
                                                     
@@ -1249,7 +1192,7 @@ static BOOL assetSyncInProgress = NO;
 
 - (void) downloadFilesForAsset:(Asset*)asset
 {
-    if (WMLogDataManager>1) NSLog(@"... download file for asset %@ from %@", asset.name, asset.url);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... download file for asset %@ from %@", asset.name, asset.url);
 
     // use /tmp dir for archive download
     NSString *path = [NSTemporaryDirectory() stringByAppendingFormat:@"%@.zip", asset.name];
@@ -1257,13 +1200,13 @@ static BOOL assetSyncInProgress = NO;
     [[WMWheelmapAPI sharedInstance] downloadFile:[NSURL URLWithString:asset.url]
                                           toPath:path
                                            error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                               if (WMLogDataManager) NSLog(@"... file download error");
+                                               DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"... file download error");
                                                assetSyncInProgress = NO;
                                                [self syncOperationFailedWithError:error];
                                                [self finishSync];
                                            }
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response) {
-                                             if (WMLogDataManager) NSLog(@"... download success");
+                                             DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"... download success");
                                              // get path where file should be unzipped
                                              NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
                                              NSString *destinationPath = [paths objectAtIndex:0];
@@ -1275,7 +1218,7 @@ static BOOL assetSyncInProgress = NO;
                                              NSError *error = nil;
                                              if (![SSZipArchive unzipFileAtPath:path toDestination:destinationPath overwrite:YES password:nil error:&error delegate:self]) {
                                                  
-                                                 if (WMLogDataManager>1) NSLog(@"... unzipping failed");
+                                                 DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"... unzipping failed");
                                                  // NOTE: any files in the destination dir that are not used by the new data will
                                                  // remain on disk. however, since this is in the caches dir, if this dir gets too big,
                                                  // it will eventually be cleaned up by the system. the app should then reload all assets.
@@ -1312,14 +1255,14 @@ static BOOL assetSyncInProgress = NO;
                     if (nodeType.icon) {
                         iconPath = iconPaths[nodeType.icon];
                         
-                    } else if (WMLogDataManager>1) {
-                        NSLog(@"... no icon set for nodeType %@", nodeType.identifier);
+                    } else if (K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO) {
+                        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... no icon set for nodeType %@", nodeType.identifier);
                     }
                     
                     nodeType.iconPath = iconPath;
                         
-                    if (WMLogDataManager>1 && !iconPath) {
-                        NSLog(@"... icon %@ not found for nodeType %@", nodeType.icon, nodeType.identifier);
+                    if ((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO) && !iconPath) {
+                        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... icon %@ not found for nodeType %@", nodeType.icon, nodeType.identifier);
                     }
                 }];
                 
@@ -1344,17 +1287,17 @@ static BOOL assetSyncInProgress = NO;
         }
         
         if (syncErrors) {
-            if (WMLogDataManager>1) NSLog(@"... finished sync with %lu errors", (unsigned long)[syncErrors count]);
+            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... finished sync with %lu errors", (unsigned long)[syncErrors count]);
             if ([self.delegate respondsToSelector:@selector(dataManager:didFinishSyncingResourcesWithErrors:)]) {
                 [self.delegate dataManager:self didFinishSyncingResourcesWithErrors:syncErrors];
             }
         } else {
-            if (WMLogDataManager>1) NSLog(@"... finished sync with no errors");
+            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... finished sync with no errors");
             
-            if (WMLogDataManager) {
+            if (K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE) {
                 NSArray *categories = [self managedObjectContext:self.mainMOC  fetchObjectsOfEntity:@"WMCategory" withPredicate:nil];
                 NSArray *nodeTypes = [self managedObjectContext:self.mainMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
-                NSLog(@"counting %lu NodeType, %lu Category", (unsigned long)[categories count], (unsigned long)[nodeTypes count]);
+                DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"counting %lu NodeType, %lu Category", (unsigned long)[categories count], (unsigned long)[nodeTypes count]);
             }
             
             if ([self.delegate respondsToSelector:@selector(dataManagerDidFinishSyncingResources:)]) {
@@ -1373,17 +1316,17 @@ static BOOL assetSyncInProgress = NO;
 {
     NSString *filename = [destinationPath lastPathComponent];
     [iconPaths setObject:destinationPath forKey:filename];
-    if (WMLogDataManager>2) NSLog(@"...... unzipped %@", filename);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"...... unzipped %@", filename);
 }
 
 - (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath
 {
-    if (WMLogDataManager) NSLog(@"... did unzip archive");    
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"... did unzip archive");
     
     // delete downloaded zip file from tmp folder
     NSError *error = nil;
     if (![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
-        if (WMLogDataManager>1) NSLog(@"... can't delete temp file %@", path);
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... can't delete temp file %@", path);
         [self syncOperationFailedWithError:error];
     }
     
@@ -1495,7 +1438,7 @@ static BOOL assetSyncInProgress = NO;
 {
     
     if (![self isInternetConnectionAvailable]) {
-        NSLog(@"Fetching node count failed. No internet available.");
+        DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Fetching node count failed. No internet available.");
         [self.delegate dataManager:self fetchTotalNodeCountFailedWithError:nil];
         return;
     }
@@ -1560,13 +1503,13 @@ static BOOL assetSyncInProgress = NO;
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nodeCount forKey:WM_NODE_COUNT_KEY];
-    NSLog(@"Setting total node count to file: %@", nodeCount);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Setting total node count to file: %@", nodeCount);
     [defaults synchronize];
 }
 
 - (NSNumber *)totalNodeCountFromUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"Getting total node count from file: %@", [defaults objectForKey:WM_NODE_COUNT_KEY]);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Getting total node count from file: %@", [defaults objectForKey:WM_NODE_COUNT_KEY]);
     return [defaults objectForKey:WM_NODE_COUNT_KEY];
 }
 
@@ -1644,9 +1587,6 @@ static BOOL assetSyncInProgress = NO;
         // if we can't add store to coordinator...
         NSError *error = nil;
         if (!_persistentStore) {
-            
-//            NSLog(@"cannot add persistent store");
-            
             // ... we ignore the error, and if the file already exists but is not compatible, we try to replace it with a new store file
             if ([[NSFileManager defaultManager] fileExistsAtPath:persistentStoreURL.path]) {
                 
@@ -1655,9 +1595,6 @@ static BOOL assetSyncInProgress = NO;
                 
                 // if meta data can't be read or model is not compatible
                 if (!metaData || ![managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:metaData]) {
-                    
-//                    NSLog(@"persistent store meta data can't be read or is not compatible");
-                    
                     // if old store file can be removed
                     if ([[NSFileManager defaultManager] removeItemAtPath:persistentStoreURL.path error:&error]) {
                         
@@ -1666,7 +1603,7 @@ static BOOL assetSyncInProgress = NO;
                                                                                     configuration:nil
                                                                                               URL:persistentStoreURL
                                                                                           options:nil
-                                                                                            error:&error];
+																						error:&error];
                     }
                 }
             }
@@ -1674,7 +1611,7 @@ static BOOL assetSyncInProgress = NO;
         
         if (error) {
             // this is an unrecoverable error, so we show an alert and crash
-            NSLog(@"cannot add persistent store, aborting");
+            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"cannot add persistent store, aborting");
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Fatal Error" message:@"Could not create local database" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             
@@ -1795,7 +1732,7 @@ static BOOL assetSyncInProgress = NO;
         if (![self.mainMOC save:&error]) {
             [self logValidationError:error];
         } else {
-            if (WMLogDataManager) NSLog(@"Context saved");
+            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Context saved");
         }
     }];
 }
@@ -1813,7 +1750,7 @@ static BOOL assetSyncInProgress = NO;
     }
     NSString *entityName;
     NSString *object_id;
-    if (WMLogDataManager) NSLog(@"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
 }
 
 #pragma mark - Filter settings
@@ -1839,7 +1776,7 @@ static BOOL assetSyncInProgress = NO;
     if ([defaults valueForKey:WMFilterStatusKeyGreen] == nil) {
         return YES;
     }
-    NSLog(@"Green status is %d", [[defaults valueForKey:WMFilterStatusKeyGreen] boolValue]);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Green status is %d", [[defaults valueForKey:WMFilterStatusKeyGreen] boolValue]);
     return [[defaults valueForKey:WMFilterStatusKeyGreen] boolValue];
 }
 
@@ -1849,7 +1786,7 @@ static BOOL assetSyncInProgress = NO;
     if ([defaults valueForKey:WMFilterStatusKeyYellow] == nil) {
         return YES;
     }
-    NSLog(@"Yellow status is %d", [[defaults valueForKey:WMFilterStatusKeyYellow] boolValue]);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Yellow status is %d", [[defaults valueForKey:WMFilterStatusKeyYellow] boolValue]);
     return [[defaults valueForKey:WMFilterStatusKeyYellow] boolValue];
 }
 
@@ -1859,7 +1796,7 @@ static BOOL assetSyncInProgress = NO;
     if ([defaults valueForKey:WMFilterStatusKeyRed] == nil) {
         return YES;
     }
-    NSLog(@"Red status is %d", [[defaults valueForKey:WMFilterStatusKeyRed] boolValue]);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Red status is %d", [[defaults valueForKey:WMFilterStatusKeyRed] boolValue]);
     return [[defaults valueForKey:WMFilterStatusKeyRed] boolValue];
 }
 
@@ -1869,7 +1806,7 @@ static BOOL assetSyncInProgress = NO;
     if ([defaults valueForKey:WMFilterStatusKeyNone] == nil) {
         return YES;
     }
-    NSLog(@"None status is %d", [[defaults valueForKey:WMFilterStatusKeyNone] boolValue]);
+    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"None status is %d", [[defaults valueForKey:WMFilterStatusKeyNone] boolValue]);
     return [[defaults valueForKey:WMFilterStatusKeyNone] boolValue];
 }
 @end

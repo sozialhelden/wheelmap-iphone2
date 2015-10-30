@@ -270,13 +270,13 @@
         
     }
     
-    NSLog(@"NODE TYPE = %@", self.currentNodeType);
+    DKLog(K_VERBOSE_EDIT_POI, @"NODE TYPE = %@", self.currentNodeType);
 }
 
 - (void)nodeTypeChosen:(NodeType*)nodeType {
     self.currentNodeType= nodeType;
     
-    NSLog(@"NODE TYPE = %@", self.currentNodeType);
+    DKLog(K_VERBOSE_EDIT_POI, @"NODE TYPE = %@", self.currentNodeType);
     
     [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
 }
@@ -379,7 +379,7 @@
 
 - (void) saveEditedData {
     
-    NSLog(@"Node: %@ %@", self.node.lat, self.node.lon);
+    DKLog(K_VERBOSE_EDIT_POI, @"Node: %@ %@", self.node.lat, self.node.lon);
     
     if (!self.node.lat || !self.node.lon) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PleaseSetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
@@ -410,8 +410,7 @@
 - (void) dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
-    NSLog(@"XXXXXXXX FINISHED");
-    
+
     if (UIDevice.isIPad == YES) {
         [self dismissViewControllerAnimated:YES];
     }
@@ -425,7 +424,6 @@
 }
 
 - (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
-    NSLog(@"XXXXXXXX Failed %@", error);
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     

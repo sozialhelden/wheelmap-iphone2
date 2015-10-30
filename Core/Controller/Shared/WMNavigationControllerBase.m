@@ -342,9 +342,6 @@
 
 - (void) dataManager:(WMDataManager *)dataManager didReceiveNodes:(NSArray *)nodesParam
 {
-    
-    NSLog(@"DATA MANAGER RECEIVED NODES");
-    
     nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
     if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
@@ -354,8 +351,6 @@
 
 - (void) refreshNodeListFromCreateNode
 {
-    NSLog(@"--- REFRESH NODE LIST AFTER ADDING NODE ---");
-    
     if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
         [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
@@ -363,8 +358,6 @@
 
 - (void) refreshNodeList
 {
-    NSLog(@"--- REFRESH NODE LIST ---");
-    
     if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
         [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
@@ -372,9 +365,6 @@
 
 - (void) refreshNodeListWithArray:(NSArray*)array
 {
-    
-    NSLog(@"--- REFRESH NODE LIST WITH ARRAY ---");
-    
     nodes = array;
     for (UIViewController* vc in self.viewControllers) {
         if ([vc conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
@@ -391,14 +381,11 @@
         [alert show];
     }
     
-    NSLog(@"error %@", error.localizedDescription);
     [self refreshNodeList];
 }
 
 - (void)dataManagerDidFinishSyncingResources:(WMDataManager *)aDataManager
 {
-    NSLog(@"dataManagerDidFinishSyncingResources");
-    
     if ([self.topViewController isKindOfClass:[WMDashboardViewController class]]) {
         WMDashboardViewController* vc = (WMDashboardViewController*)self.topViewController;
         [vc showUIObjectsAnimated:YES];
@@ -415,8 +402,6 @@
 
 -(void)dataManager:(WMDataManager *)dataManager didFinishSyncingResourcesWithErrors:(NSArray *)errors
 {
-    NSLog(@"syncResourcesFailedWithError");
-    
     if (!fetchNodesAlertShowing) {
         fetchNodesAlertShowing = YES;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchNodesFails", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
@@ -468,13 +453,11 @@
     switch (networkStatus)
     {
         case NotReachable:
-            NSLog(@"INTERNET IS NOT AVAILABLE!");
             [self.customToolBar hideButton:kWMToolBarButtonSearch];
             
             break;
             
         default:
-            NSLog(@"INTERNET IS RE-ACTIVATED!");
             [self.customToolBar showButton:kWMToolBarButtonSearch];
             
             break;
@@ -495,12 +478,9 @@
 }
 
 - (NSArray*)filteredNodeListForUseCase:(WMPOIsListViewControllerUseCase)useCase {
-    NSLog(@"OLD NODE LIST = %lu", (unsigned long)nodes.count);
-    
     // filter nodes here
     NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
-    //    NSLog(@"Filter Status %@", self.wheelChairFilterStatus);
-    
+
     NSArray *nodesCopy = [NSArray arrayWithArray:nodes];
     
     for (Node* node in nodesCopy) {
@@ -512,38 +492,15 @@
 				if (![newNodeList containsObject:node]) {
 					[newNodeList addObject:node];
 				}
-        } else {
-            //            NSLog(@"Filtered out Node %@ %@ %@ %@", node.name, node.id, wheelChairStatus, categoryID);
         }
     }
-    
-    // this prevents array containing multiple entries of the same node
-    NSLog(@"NEW NODE LIST = %lu", (unsigned long)newNodeList.count);
     
     return newNodeList;
 }
 
-//-(void)updateNodesNear:(CLLocationCoordinate2D)coord
-//{
-//    NSLog(@"UPDATE NODES NEAR");
-//
-//    nodes = [dataManager fetchNodesNear:coord];
-//    [self refreshNodeList];
-//}
-//
-//-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord
-//{
-//    NSLog(@"UPDATE NODES NEAR WITHOUT WHEEL");
-//
-//    nodes = [dataManager fetchNodesNear:coord];
-//    [self refreshNodeList];
-//}
-
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
-    
-    NSLog(@"UPDATE WITH REGION");
-    // we do not show here the loading wheel since this methods is always called by map view controller, and the vc has its own loading wheel,
+	// we do not show here the loading wheel since this methods is always called by map view controller, and the vc has its own loading wheel,
     // which allows user interaction while loading nodes.
     // [self showLoadingWheel];
     CLLocationCoordinate2D southWest;
@@ -559,9 +516,7 @@
 {
     
     lastQuery = query;
-    
-    NSLog(@"UPDATE WITH QUERY");
-    
+
     nodes = @[];
     [dataManager fetchNodesWithQuery:query];
     [self refreshNodeList];
@@ -571,9 +526,7 @@
 {
     
     lastQuery = query;
-    
-    NSLog(@"UPDATE WITH QUERY AND REGION");
-    
+
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
     southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
@@ -585,9 +538,6 @@
 
 -(void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region
 {
-    
-    NSLog(@"UPDATE WITH LAST QUERY AND REGION");
-    
     CLLocationCoordinate2D southWest;
     CLLocationCoordinate2D northEast;
     southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
@@ -663,17 +613,13 @@
 	if ((locations != nil) && (locations.count > 0)) {
 		self.currentLocation = locations.firstObject;
 	}
-
-	NSLog(@"Location is updated! New location: %@", self.currentLocation);
 }
 
 -(void)updateUserLocation
 {
-    NSLog(@"CLLOCATIONMANAGER:%@ and delegate: %@", self.locationManager, self.locationManager.delegate);
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager startMonitoringSignificantLocationChanges];
     } else {
-        NSLog(@"[CLLocataionManager] location service is disabled!");
         [self locationManager:self.locationManager didFailWithError:nil];
     }
 }
@@ -875,7 +821,6 @@
         [self hidePopover:categoryFilterPopover];
     } else if ([vc isKindOfClass:[WMEditPOIWheelchairStatusViewController class]]) {
         WMEditPOIWheelchairStatusViewController* wheelchairStatusVC = (WMEditPOIWheelchairStatusViewController*)vc;
-        NSLog(@"WheelChairStatusViewController usecase: %d", wheelchairStatusVC.useCase);
         if (wheelchairStatusVC.useCase == kWMWheelChairStatusViewControllerUseCasePutNode) {
             rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
             leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
@@ -954,8 +899,6 @@
 
 -(void)pressedContributeButton:(WMNavigationBar *)navigationBar
 {
-    NSLog(@"[NavigationControllerBase] pressed contribute button!");
-    
     contributePressed = YES;
     
     if (![dataManager userIsAuthenticated]) {
@@ -1121,9 +1064,7 @@
 {
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
-    
-    NSLog(@"[ToolBar] update current location button is pressed!");
-    
+
     if (![CLLocationManager locationServicesEnabled]) {
         [self locationManager:self.locationManager didFailWithError:nil];
         return;
@@ -1174,7 +1115,6 @@
         }
     }
     
-    NSLog(@"[ToolBar] global search button is pressed!");
     if (selected) {
         [self.customNavigationBar showSearchBar];
         
@@ -1230,7 +1170,6 @@
 
 -(void)pressedWheelChairStatusFilterButton:(WMToolBar *)toolBar
 {
-    NSLog(@"[ToolBar] wheelchair status filter buttton is pressed!");
     if (!categoryFilterPopover.hidden) {
         [self hidePopover:categoryFilterPopover];
     }
@@ -1244,8 +1183,6 @@
 
 -(void)pressedCategoryFilterButton:(WMToolBar *)toolBar
 {
-    NSLog(@"[ToolBar] category filter button is pressed!");
-    
     if (!wheelChairFilterPopover.hidden) {
         [self hidePopover:wheelChairFilterPopover];
     }

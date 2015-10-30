@@ -32,13 +32,10 @@
             case SLComposeViewControllerResultCancelled:
             default:
             {
-                NSLog(@"Cancelled.....");
-                
             }
                 break;
             case SLComposeViewControllerResultDone:
             {
-                NSLog(@"Posted....");
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@""
                                                                  message:NSLocalizedString(@"FacebookSuccess", nil)
                                                                 delegate:nil
@@ -68,13 +65,10 @@
             case SLComposeViewControllerResultCancelled:
             default:
             {
-                NSLog(@"Cancelled.....");
-                
             }
                 break;
             case SLComposeViewControllerResultDone:
             {
-                NSLog(@"Posted....");
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@""
                                                                  message:NSLocalizedString(@"TweetSuccess", nil)
                                                                 delegate:nil
@@ -111,11 +105,7 @@
     if (result == MFMailComposeResultSent) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"MailSendSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
-    } else if (result == MFMailComposeResultCancelled) {
-        NSLog(@"email was canceled");
-    }
-    else {
-        NSLog(@"email was not sent: %@", error.localizedDescription);
+    } else {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"MailSendFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
 
         [alert show];
@@ -134,8 +124,6 @@
         
         controller.messageComposeDelegate = self;
         [self.baseVC presentViewController:controller animated:YES completion:nil];
-    } else {
-        NSLog(@"SMS service is not available!");
     }
 }
 
@@ -143,11 +131,7 @@
     if (result == MessageComposeResultSent) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SMSSendSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
-    } else if (result == MessageComposeResultCancelled) {
-        NSLog(@"SMS was canceled");
-    }
-    else {
-        NSLog(@"SMS was not sent");
+	} else {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"SMSSendFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         
         [alert show];

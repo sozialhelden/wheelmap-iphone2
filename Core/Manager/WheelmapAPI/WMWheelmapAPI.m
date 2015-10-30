@@ -76,7 +76,17 @@
     if (eTag) [request setValue:eTag forHTTPHeaderField:@"If-None-Match"];
         
     // create request operation
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:successBlock failure:errorBlock];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+		DKLog(K_VERBOSE_API_SUCCESS, @"Successfully requested %@ with response: %@", request.URL, response);
+		if (successBlock != nil) {
+			successBlock(request, response, JSON);
+		}
+	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+		DKLog(K_VERBOSE_API_FAILURE, @"Failure requesting %@ with response: %@", request.URL, response);
+		if (errorBlock != nil) {
+			errorBlock(request, response, error, JSON);
+		}
+	}];
     
     // start if necessary
     if (startImmediately) [self enqueueHTTPRequestOperation:operation];

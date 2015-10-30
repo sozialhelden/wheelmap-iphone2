@@ -59,8 +59,7 @@
         lat = [navCtrl.lastVisibleMapCenterLat doubleValue];
         lon = [navCtrl.lastVisibleMapCenterLng doubleValue];
     }
-    NSLog(@"Get region center = %f %f", lat, lon);
-    
+
     return MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, lon) , MKCoordinateSpanMake(DEFAULT_SEARCH_SPAN_LAT, DEFAULT_SEARCH_SPAN_LONG));
 }
 
@@ -219,9 +218,7 @@
     } else {
         nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
-    
-    NSLog(@"NEW NODE LIST: %lu", (unsigned long)nodes.count);
-    
+
     dispatch_async(backgroundQueue, ^(void) {
         
         NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];
@@ -400,10 +397,10 @@
         [(WMPOIIPadNavigationController *)self.navigationController mapWasMoved:mapView.region.center];
     }
     
-    NSLog(@"Current Use Case %d", self.useCase);
+    DKLog(K_VERBOSE_MAP, @"Current Use Case %d", self.useCase);
     
     if (mapView.region.span.latitudeDelta > MIN_SPAN_DELTA || mapView.region.span.longitudeDelta > MIN_SPAN_DELTA) {
-        NSLog(@"Map is not enough zoomed in to show POIs.");
+        DKLog(K_VERBOSE_MAP, @"Map is not enough zoomed in to show POIs.");
         
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         for (id<MKAnnotation> annotation in oldAnnotations) {
@@ -451,7 +448,7 @@
             
             // if delta is small, do nothing
             if (portionOfChangedCenter  < 0.24) {
-                NSLog(@"MINIMAL CHANGE. DO NOT UPDATE MAP! %f", portionOfChangedCenter);
+                DKLog(K_VERBOSE_MAP, @"MINIMAL CHANGE. DO NOT UPDATE MAP! %f", portionOfChangedCenter);
                 shouldUpdateMap = NO;
             }
         }
@@ -503,7 +500,7 @@
     //
     if (error)
     {
-        NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+        DKLog(K_VERBOSE_MAP, @"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
     }
     else
     {
@@ -518,7 +515,7 @@
     //
     if (error)
     {
-        NSLog(@"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+        DKLog(K_VERBOSE_MAP, @"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
     }
     else
     {
@@ -536,7 +533,7 @@
 {
     if (self.mapInteractionInfoLabel.tag == 1)  // indicator is already visible
     {
-        NSLog(@"Map UI Advisor is already visibile");
+        DKLog(K_VERBOSE_MAP, @"Map UI Advisor is already visibile");
         return;
     }
     

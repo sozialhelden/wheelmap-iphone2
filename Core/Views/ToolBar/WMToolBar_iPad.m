@@ -111,11 +111,7 @@
 }
 
 #pragma mark - WMDataManager Delegate
--(void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count
-{
-    
-    NSLog(@"Got new node count %@", count);
-    
+- (void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     NSString *formattedCount = [formatter stringFromNumber:count];
@@ -135,10 +131,7 @@
     
 }
 
--(void)dataManager:(WMDataManager *)dataManager fetchTotalNodeCountFailedWithError:(NSError *)error
-{
-    NSLog(@"[Error] getting total count failed with error %@", error);
-    
+- (void)dataManager:(WMDataManager *)dataManager fetchTotalNodeCountFailedWithError:(NSError *)error {
     NSNumber *totalCountFromFile = [dataManager totalNodeCountFromUserDefaults];
     if (totalCountFromFile != nil) {
         

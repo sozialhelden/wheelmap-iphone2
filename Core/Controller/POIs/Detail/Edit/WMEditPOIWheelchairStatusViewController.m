@@ -223,7 +223,7 @@
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"WheelchairStatusChangeFailed", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     
-    NSLog(@"PUT THE NODE WHEELCHAIR STATUS FAILED! %@", error);
+    DKLog(K_VERBOSE_EDIT_POI, @"PUT THE NODE WHEELCHAIR STATUS FAILED! %@", error);
 }
 
 @end

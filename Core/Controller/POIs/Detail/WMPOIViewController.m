@@ -628,8 +628,6 @@
 
 - (void)enlargeMapButtonPressed {
     if (self.mapViewOpen) {
-        NSLog(@"XXXXXXXX map is closing");
-        
         [UIView animateWithDuration:0.3
                               delay:0.0
                             options:UIViewAnimationCurveEaseOut
@@ -644,7 +642,6 @@
                              self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height-MAPOPENADDITION);
                          }
                          completion:^(BOOL finished) {
-                             NSLog(@"XXXXXXXX DONE CLOSING");
                              self.mapViewOpen = NO;
                              self.mapView.scrollEnabled = NO;
                              self.mapView.zoomEnabled = NO;
@@ -652,8 +649,6 @@
          ];
         
     } else {
-        NSLog(@"XXXXXXXX map is opening");
-        
         [UIView animateWithDuration:0.3
                               delay:0.0
                             options:UIViewAnimationCurveEaseIn
@@ -668,14 +663,12 @@
                              self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height+MAPOPENADDITION);
                          }
                          completion:^(BOOL finished) {
-                             NSLog(@"XXXXXXXX DONE OPENING");
                              self.mapViewOpen = YES;
                              self.mapView.scrollEnabled = YES;
                              self.mapView.zoomEnabled = YES;
                          }
          ];
-        
-    }
+	}
 }
 
 #pragma mark - MBXRasterTileOverlayDelegate implementation
@@ -685,7 +678,7 @@
     //
     if (error)
     {
-        NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+        DKLog(K_VERBOSE_MAP, @"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
     }
     else
     {
@@ -699,7 +692,7 @@
     //
     if (error)
     {
-        NSLog(@"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+        DKLog(K_VERBOSE_MAP, @"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
     }
     else
     {
@@ -847,9 +840,7 @@
     }
     
     imageReadyToUpload = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    NSLog(@"[LOG] UPLOAD THE PICKED IMAGE!");
-    
+
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"ConfirmImageUpload", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
     
     [alert show];
@@ -880,9 +871,7 @@
 - (void)dataManager:(WMDataManager *)aDataManager didUploadImageForNode:(Node *)node {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUuploadSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
-    
-    NSLog(@"[LOG] photo upload success!");
-    
+
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
     [navCtrl hideLoadingWheel];
 }
@@ -890,16 +879,12 @@
 - (void)dataManager:(WMDataManager *)dataManager uploadImageForNode:(Node *)node failedWithError:(NSError *)error {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUploadFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
-    
-    NSLog(@"[LOG] photo upload failed! %@", error);
-    
+
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
     [navCtrl hideLoadingWheel];
 }
 
 - (void)dataManager:(WMDataManager *)dataManager didReceivePhotosForNode:(Node *)node {
-    NSLog(@"updated photos: %@", node.photos);
-    
     for (Photo* photo in node.photos) {
         for (Image* image in photo.images) {
             if ([image.type caseInsensitiveCompare:@"thumb_iphone_retina"] == NSOrderedSame) {
@@ -915,7 +900,6 @@
 }
 
 - (void)dataManager:(WMDataManager *)dataManager fetchPhotosFailedWithError:(NSError *)error {
-    NSLog(@"[LOG] fetching photo urls failed with error %@", error);
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchingPhotoURLFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     

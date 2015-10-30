@@ -52,22 +52,18 @@
 }
 
 - (IBAction)twitterButtonPressed:(id)sender {
-    NSLog(@"Twitter Button pressed");
     [sharingManager tweet:self.shareLocationLabel.text];
 }
 
 - (IBAction)facebookButtonPressed:(id)sender {
-    NSLog(@"Facebook Button pressed");
     [sharingManager facebookPosting:self.shareURlString];
 }
 
 - (IBAction)smsButtonPressed:(id)sender {
-    NSLog(@"SMS Button pressed");
     [sharingManager sendSMSwithBody:self.shareLocationLabel.text];
 }
 
 - (IBAction)emailButtonPressed:(id)sender {
-    NSLog(@"EMail Button pressed");
     [sharingManager sendMailWithSubject:NSLocalizedString(@"ShareLocationLabel", nil) andBody:self.shareLocationLabel.text];
 }
 

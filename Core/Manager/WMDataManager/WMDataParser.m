@@ -29,9 +29,7 @@
 {
     NSParameterAssert(object);
     NSParameterAssert(entityName);
-    
-//    if (WMLogDataParser) NSLog(@"parsing %@ %@", entityName, dispatch_get_current_queue() == dispatch_get_main_queue() ? @"on main queue" : @"on background queue");
-    
+        
     id parsedObject = nil;
     
     if ([object isKindOfClass:[NSArray class]]) {
@@ -87,7 +85,7 @@
     NSEntityDescription *descr = entityDescriptionsByName[entityName];
     
     if (!descr) {
-        if (WMLogDataParser>1) NSLog(@"... no entity description for %@", entityName);
+        DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... no entity description for %@", entityName);
         
     } else {
         
@@ -99,7 +97,7 @@
             NSNumber *object_id = data[@"id"];
                         
             if (!object_id || ![object_id isKindOfClass:[NSNumber class]]) {
-                if (WMLogDataParser>1) NSLog(@"... received object with invalid id");
+                DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... received object with invalid id");
                 return nil;
             }
             
@@ -115,11 +113,11 @@
         
         // if there is no object to update, create new object for entity name
         if (!objectExisted) {
-            if (WMLogDataParser>1) NSLog(@"... creating %@", entityName);
+            DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... creating %@", entityName);
             object = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
             
         } else {
-            if (WMLogDataParser>1) NSLog(@"... updating %@", entityName);
+            DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... updating %@", entityName);
         }
         
         // copy all attributes to the object
@@ -130,7 +128,7 @@
             
             // abort if an attribute cannot be converted
             if (!conversionSuccess) {
-                if (WMLogDataParser>1) NSLog(@"... property conversion failed for key %@", key);
+                DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @"... property conversion failed for key %@", key);
                 *stop = YES;
             }
         }];
@@ -172,7 +170,7 @@
  */
 - (BOOL) managedObject:(NSManagedObject*)managedObject convertAndSetValue:(id)value forKey:(NSString*)key
 {
-    if (WMLogDataParser>2) NSLog(@"...... setting value %@ for key %@", value, key);
+    DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"...... setting value %@ for key %@", value, key);
     
     if (value == [NSNull null]) {
         value = nil;
@@ -218,7 +216,7 @@
                 break;
                 
             default:
-                if (WMLogDataParser>2) NSLog(@"...... Unexpected attribute type %lu in entity %@", type, managedObject.entity.name);
+                DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"...... Unexpected attribute type %lu in entity %@", type, managedObject.entity.name);
                 return NO;
         }
         
@@ -282,7 +280,7 @@
         
     } else {
         // the property is not part of the local data model and will be ignored
-        if (WMLogDataParser>2) NSLog(@"...... ignored property %@ on entity %@", key, managedObject.entity.name);
+        DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_THREE), @"...... ignored property %@ on entity %@", key, managedObject.entity.name);
     }
     
     return YES;
@@ -301,7 +299,7 @@
     }
     NSString *entityName;
     NSString *object_id;
-    if (WMLogDataParser) NSLog(@"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
+    DKLog((K_VERBOSE_DATA_PARSER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Error: %@.%@ couldn't be validated. Validation error keys: %@", entityName, object_id, validationErrorKey);
 }
 
 

@@ -115,7 +115,6 @@
 -(void)dataManager:(WMDataManager *)dataManager updateTermsAcceptedFailedWithError:(NSError *)error
 {
     self.loadingWheel.hidden = YES;
-    NSLog(@"TermsAccepted Could Not Updated: %@", error);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"TermsCouldNotUpdate", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
 
     [alert show];
