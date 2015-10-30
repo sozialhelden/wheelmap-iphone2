@@ -11,14 +11,14 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
 #import "WMPOIViewController.h"
-#import "WMWheelchairStatusViewController.h"
+#import "WMPOIWheelchairStatusViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
 #import "WMOSMOnboardingViewController.h"
-#import "WMSetMarkerViewController.h"
-#import "WMNodeTypeTableViewController.h"
+#import "WMEditPOIPositionViewController.h"
+#import "WMEditPOITypeViewController.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMCategory.h"
@@ -875,8 +875,8 @@
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
-    } else if ([vc isKindOfClass:[WMWheelchairStatusViewController class]]) {
-        WMWheelchairStatusViewController* wheelchairStatusVC = (WMWheelchairStatusViewController*)vc;
+    } else if ([vc isKindOfClass:[WMPOIWheelchairStatusViewController class]]) {
+        WMPOIWheelchairStatusViewController* wheelchairStatusVC = (WMPOIWheelchairStatusViewController*)vc;
         NSLog(@"WheelChairStatusViewController usecase: %d", wheelchairStatusVC.useCase);
         if (wheelchairStatusVC.useCase == kWMWheelChairStatusViewControllerUseCasePutNode) {
             rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
@@ -901,8 +901,8 @@
         [self hidePopover:categoryFilterPopover];
         
     } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
-               [vc isKindOfClass:[WMSetMarkerViewController class]] ||
-               [vc isKindOfClass:[WMNodeTypeTableViewController class]]) {
+               [vc isKindOfClass:[WMEditPOIPositionViewController class]] ||
+               [vc isKindOfClass:[WMEditPOITypeViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     
@@ -1015,8 +1015,8 @@
 -(void)pressedSaveButton:(WMNavigationBar *)navigationBar
 {
     WMViewController* currentViewController = [self.viewControllers lastObject];
-    if ([currentViewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
-        [(WMWheelchairStatusViewController*)currentViewController saveAccessStatus];
+    if ([currentViewController isKindOfClass:[WMPOIWheelchairStatusViewController class]]) {
+        [(WMPOIWheelchairStatusViewController*)currentViewController saveAccessStatus];
     }
     if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
         [(WMEditPOIViewController*)currentViewController saveEditedData];

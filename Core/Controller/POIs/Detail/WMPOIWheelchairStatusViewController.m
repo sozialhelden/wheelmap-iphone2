@@ -1,25 +1,24 @@
 //
-//  WMWheelchairStatusViewController.m
+//  WMPOIWheelchairStatusViewController.m
 //  Wheelmap
 //
 //  Created by Dorian Roy on 26.11.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMWheelchairStatusViewController.h"
+#import "WMPOIWheelchairStatusViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WMPOIIPadNavigationController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMNodeListViewController.h"
 
-@interface WMWheelchairStatusViewController ()
+@interface WMPOIWheelchairStatusViewController ()
 
 @end
 
-@implementation WMWheelchairStatusViewController
+@implementation WMPOIWheelchairStatusViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -28,8 +27,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -103,8 +101,7 @@
 	self.preferredContentSize = CGSizeMake(320, 480);
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-    
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
@@ -114,9 +111,7 @@
     [self updateCheckMarks];
 }
 
-
-- (void) updateCheckMarks {
-    
+- (void)updateCheckMarks {
     if ([self.wheelchairAccess isEqualToString:K_WHEELCHAIR_STATE_YES]) {
         self.yesCheckMarkImageView.hidden = NO;
         self.limitedCheckMarkImageView.hidden = YES;
@@ -140,21 +135,18 @@
     }
 }
 
-- (UIImageView*) createButtonViewWithHealine: (NSString*) headline image: (UIImage*) image andString: (NSString*) contentString {
-    
+- (UIImageView*)createButtonViewWithHealine: (NSString*) headline image: (UIImage*) image andString: (NSString*) contentString {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     imageView.image = [image stretchableImageWithLeftCapWidth:0 topCapHeight:50];
     
     WMLabel *headlineLabel = [[WMLabel alloc] initWithFrame:CGRectMake(40, 10, 230, 22)];
     [headlineLabel setText:headline];
-    //headlineLabel.backgroundColor = [UIColor orangeColor];
     headlineLabel.font = [UIFont boldSystemFontOfSize:15];
     headlineLabel.textColor = [UIColor whiteColor];
     headlineLabel.textAlignment = NSTextAlignmentLeft;
     [imageView addSubview:headlineLabel];
     
     WMLabel *contentTextField = [[WMLabel alloc] initWithFrame:CGRectMake(10, headlineLabel.frame.origin.y + headlineLabel.frame.size.height + 5, 280, 80)];
-    //  contentTextField.backgroundColor = [UIColor blueColor];
     contentTextField.font = [UIFont systemFontOfSize:14];
     contentTextField.textColor = [UIColor whiteColor];
     contentTextField.numberOfLines = 0;
@@ -169,7 +161,7 @@
     return imageView;
 }
 
-- (UIImageView*) createCheckMarkImageView {
+- (UIImageView*)createCheckMarkImageView {
     UIImage *checkMark = [UIImage imageNamed:@"details_label-checked.png"];
     UIImageView *checkMarkView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 8, checkMark.size.width, checkMark.size.height)];
     checkMarkView.image = checkMark;
@@ -184,8 +176,7 @@
     [super viewDidUnload];
 }
 
-- (void) accessButtonPressed:(id)sender {
-    
+- (void)accessButtonPressed:(id)sender {
     UIButton *button = (UIButton*) sender;
     if (button.tag == 0) {
         self.wheelchairAccess = K_WHEELCHAIR_STATE_YES;
@@ -200,21 +191,17 @@
     }
 }
 
-- (void) saveAccessStatus
-{
+- (void)saveAccessStatus {
     [self.delegate accessButtonPressed:self.wheelchairAccess];
-    //[self.navigationController popViewControllerAnimated:YES];
     [dataManager updateWheelchairStatusOfNode:self.node];
     
     [progressWheel startAnimating];
     progressWheel.hidden = NO;
 }
 
-
 #pragma mark - Data Manager Delegate
 
--(void)dataManager:(WMDataManager *)dataManager didUpdateWheelchairStatusOfNode:(Node *)node
-{
+- (void)dataManager:(WMDataManager *)dataManager didUpdateWheelchairStatusOfNode:(Node *)node {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     
@@ -230,8 +217,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)dataManager:(WMDataManager *)dataManager updateWheelchairStatusOfNode:(Node *)node failedWithError:(NSError *)error
-{
+- (void)dataManager:(WMDataManager *)dataManager updateWheelchairStatusOfNode:(Node *)node failedWithError:(NSError *)error {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"WheelchairStatusChangeFailed", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];

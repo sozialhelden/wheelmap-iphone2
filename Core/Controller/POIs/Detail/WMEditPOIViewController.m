@@ -9,12 +9,12 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WMEditPOIViewController.h"
-#import "WMWheelchairStatusViewController.h"
+#import "WMPOIWheelchairStatusViewController.h"
 #import "WMPOIViewController.h"
-#import "WMSetMarkerViewController.h"
+#import "WMEditPOIPositionViewController.h"
 #import "NodeType.h"
 #import "WMEditPOICategoryViewController.h"
-#import "WMNodeTypeTableViewController.h"
+#import "WMEditPOITypeViewController.h"
 #import "WMDataManagerDelegate.h"
 #import "WMCategory.h"
 #import "Node.h"
@@ -294,7 +294,7 @@
 - (IBAction)showAccessOptions:(id)sender {
     [self buttonPressed];
     
-    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+    WMPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIWheelchairStatusViewController"];
     vc.hideSaveButton = YES;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
     vc.navigationBarTitle = vc.title;
@@ -307,7 +307,7 @@
 - (IBAction)setNodeType:(id)sender {
     [self buttonPressed];
     
-    WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
+    WMEditPOITypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOITypeViewController"];
     vc.title =  NSLocalizedString(@"NavBarTitleSetNodeType", nil);
     vc.navigationBarTitle = vc.title;
     vc.delegate = self;
@@ -350,7 +350,7 @@
     [self.websiteTextField resignFirstResponder];
     [self.phoneTextField resignFirstResponder];
     
-    WMSetMarkerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMSetMarkerViewController"];
+    WMEditPOIPositionViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIPositionViewController"];
     vc.node = self.node;
     vc.delegate = self;
     vc.currentCoordinate = self.currentCoordinate;

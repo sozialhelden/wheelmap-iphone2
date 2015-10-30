@@ -1,5 +1,5 @@
 //
-//  WMNodeTypeTableViewController.h
+//  WMEditPOITypeViewController.h
 //  Wheelmap
 //
 //  Created by Andrea Gerlach on 12.12.12.
@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "NodeType.h"
-@interface WMNodeTypeTableViewController : WMTableViewController
+
+@interface WMEditPOITypeViewController : WMTableViewController
 
 @property (nonatomic, strong) NSArray *		nodeArray;
 @property (strong, nonatomic) id			delegate;
 @property (strong, nonatomic) NodeType *	currentNodeType;
+
 @end

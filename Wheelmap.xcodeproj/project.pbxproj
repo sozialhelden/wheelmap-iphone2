@@ -612,18 +612,18 @@
 		878EC8EE1BE0F7960099EDD1 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AB1BE0F7960099EDD1 /* WMInfinitePhotoViewController.m */; };
 		878EC8EF1BE0F7960099EDD1 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AB1BE0F7960099EDD1 /* WMInfinitePhotoViewController.m */; };
 		878EC8F01BE0F7960099EDD1 /* WMInfinitePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AB1BE0F7960099EDD1 /* WMInfinitePhotoViewController.m */; };
-		878EC8F11BE0F7960099EDD1 /* WMNodeTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AD1BE0F7960099EDD1 /* WMNodeTypeTableViewController.m */; };
-		878EC8F21BE0F7960099EDD1 /* WMNodeTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AD1BE0F7960099EDD1 /* WMNodeTypeTableViewController.m */; };
-		878EC8F31BE0F7960099EDD1 /* WMNodeTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AD1BE0F7960099EDD1 /* WMNodeTypeTableViewController.m */; };
-		878EC8F41BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AF1BE0F7960099EDD1 /* WMSetMarkerViewController.m */; };
-		878EC8F51BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AF1BE0F7960099EDD1 /* WMSetMarkerViewController.m */; };
-		878EC8F61BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AF1BE0F7960099EDD1 /* WMSetMarkerViewController.m */; };
+		878EC8F11BE0F7960099EDD1 /* WMEditPOITypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AD1BE0F7960099EDD1 /* WMEditPOITypeViewController.m */; };
+		878EC8F21BE0F7960099EDD1 /* WMEditPOITypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AD1BE0F7960099EDD1 /* WMEditPOITypeViewController.m */; };
+		878EC8F31BE0F7960099EDD1 /* WMEditPOITypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AD1BE0F7960099EDD1 /* WMEditPOITypeViewController.m */; };
+		878EC8F41BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AF1BE0F7960099EDD1 /* WMEditPOIPositionViewController.m */; };
+		878EC8F51BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AF1BE0F7960099EDD1 /* WMEditPOIPositionViewController.m */; };
+		878EC8F61BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8AF1BE0F7960099EDD1 /* WMEditPOIPositionViewController.m */; };
 		878EC8F71BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B11BE0F7960099EDD1 /* WMShareSocialViewController.m */; };
 		878EC8F81BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B11BE0F7960099EDD1 /* WMShareSocialViewController.m */; };
 		878EC8F91BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B11BE0F7960099EDD1 /* WMShareSocialViewController.m */; };
-		878EC8FA1BE0F7960099EDD1 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMWheelchairStatusViewController.m */; };
-		878EC8FB1BE0F7960099EDD1 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMWheelchairStatusViewController.m */; };
-		878EC8FC1BE0F7960099EDD1 /* WMWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMWheelchairStatusViewController.m */; };
+		878EC8FA1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */; };
+		878EC8FB1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */; };
+		878EC8FC1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */; };
 		878EC8FD1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */; };
 		878EC8FE1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */; };
 		878EC8FF1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */; };
@@ -986,14 +986,14 @@
 		878EC8A91BE0F7960099EDD1 /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
 		878EC8AA1BE0F7960099EDD1 /* WMInfinitePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInfinitePhotoViewController.h; sourceTree = "<group>"; };
 		878EC8AB1BE0F7960099EDD1 /* WMInfinitePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInfinitePhotoViewController.m; sourceTree = "<group>"; };
-		878EC8AC1BE0F7960099EDD1 /* WMNodeTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeTypeTableViewController.h; sourceTree = "<group>"; };
-		878EC8AD1BE0F7960099EDD1 /* WMNodeTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeTypeTableViewController.m; sourceTree = "<group>"; };
-		878EC8AE1BE0F7960099EDD1 /* WMSetMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSetMarkerViewController.h; sourceTree = "<group>"; };
-		878EC8AF1BE0F7960099EDD1 /* WMSetMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSetMarkerViewController.m; sourceTree = "<group>"; };
+		878EC8AC1BE0F7960099EDD1 /* WMEditPOITypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOITypeViewController.h; sourceTree = "<group>"; };
+		878EC8AD1BE0F7960099EDD1 /* WMEditPOITypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOITypeViewController.m; sourceTree = "<group>"; };
+		878EC8AE1BE0F7960099EDD1 /* WMEditPOIPositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIPositionViewController.h; sourceTree = "<group>"; };
+		878EC8AF1BE0F7960099EDD1 /* WMEditPOIPositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIPositionViewController.m; sourceTree = "<group>"; };
 		878EC8B01BE0F7960099EDD1 /* WMShareSocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMShareSocialViewController.h; sourceTree = "<group>"; };
 		878EC8B11BE0F7960099EDD1 /* WMShareSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShareSocialViewController.m; sourceTree = "<group>"; };
-		878EC8B21BE0F7960099EDD1 /* WMWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusViewController.h; sourceTree = "<group>"; };
-		878EC8B31BE0F7960099EDD1 /* WMWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusViewController.m; sourceTree = "<group>"; };
+		878EC8B21BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIWheelchairStatusViewController.h; sourceTree = "<group>"; };
+		878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIWheelchairStatusViewController.m; sourceTree = "<group>"; };
 		878EC8B51BE0F7960099EDD1 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
 		878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryViewController.m; sourceTree = "<group>"; };
 		878EC8B71BE0F7960099EDD1 /* WMNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListViewController.h; sourceTree = "<group>"; };
@@ -1661,14 +1661,14 @@
 				878EC8A91BE0F7960099EDD1 /* WMEditPOIViewController.m */,
 				878EC8AA1BE0F7960099EDD1 /* WMInfinitePhotoViewController.h */,
 				878EC8AB1BE0F7960099EDD1 /* WMInfinitePhotoViewController.m */,
-				878EC8AC1BE0F7960099EDD1 /* WMNodeTypeTableViewController.h */,
-				878EC8AD1BE0F7960099EDD1 /* WMNodeTypeTableViewController.m */,
-				878EC8AE1BE0F7960099EDD1 /* WMSetMarkerViewController.h */,
-				878EC8AF1BE0F7960099EDD1 /* WMSetMarkerViewController.m */,
+				878EC8AC1BE0F7960099EDD1 /* WMEditPOITypeViewController.h */,
+				878EC8AD1BE0F7960099EDD1 /* WMEditPOITypeViewController.m */,
+				878EC8AE1BE0F7960099EDD1 /* WMEditPOIPositionViewController.h */,
+				878EC8AF1BE0F7960099EDD1 /* WMEditPOIPositionViewController.m */,
 				878EC8B01BE0F7960099EDD1 /* WMShareSocialViewController.h */,
 				878EC8B11BE0F7960099EDD1 /* WMShareSocialViewController.m */,
-				878EC8B21BE0F7960099EDD1 /* WMWheelchairStatusViewController.h */,
-				878EC8B31BE0F7960099EDD1 /* WMWheelchairStatusViewController.m */,
+				878EC8B21BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.h */,
+				878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -2631,7 +2631,7 @@
 				878EC9041BE0F7960099EDD1 /* WMMapViewController.m in Sources */,
 				878EC8DD1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */,
 				872FDE491BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				878EC8F21BE0F7960099EDD1 /* WMNodeTypeTableViewController.m in Sources */,
+				878EC8F21BE0F7960099EDD1 /* WMEditPOITypeViewController.m in Sources */,
 				872FDEBE1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE3D1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9131BE0F7960099EDD1 /* WMViewController.m in Sources */,
@@ -2650,7 +2650,7 @@
 				872FDF201BDFEF9900764FC5 /* zip.c in Sources */,
 				872FDE431BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */,
 				872FDF171BDFEF9900764FC5 /* ioapi.c in Sources */,
-				878EC8FB1BE0F7960099EDD1 /* WMWheelchairStatusViewController.m in Sources */,
+				878EC8FB1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */,
 				878EC9601BE0F9200099EDD1 /* WMNodeListCell.m in Sources */,
 				878EC8FE1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */,
 				878EC90A1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
@@ -2664,7 +2664,7 @@
 				878EC8F81BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */,
 				878EC9011BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
 				872FDF2F1BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
-				878EC8F51BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */,
+				878EC8F51BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */,
 				87F841691BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				878EC94B1BE0F9200099EDD1 /* WMCategoryFilterTableViewCell.m in Sources */,
 			);
@@ -2709,7 +2709,7 @@
 				878EC9051BE0F7960099EDD1 /* WMMapViewController.m in Sources */,
 				878EC8DE1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */,
 				872FDE4A1BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				878EC8F31BE0F7960099EDD1 /* WMNodeTypeTableViewController.m in Sources */,
+				878EC8F31BE0F7960099EDD1 /* WMEditPOITypeViewController.m in Sources */,
 				872FDEBF1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE3E1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9141BE0F7960099EDD1 /* WMViewController.m in Sources */,
@@ -2728,7 +2728,7 @@
 				872FDF211BDFEF9900764FC5 /* zip.c in Sources */,
 				872FDE441BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */,
 				872FDF181BDFEF9900764FC5 /* ioapi.c in Sources */,
-				878EC8FC1BE0F7960099EDD1 /* WMWheelchairStatusViewController.m in Sources */,
+				878EC8FC1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */,
 				878EC9611BE0F9200099EDD1 /* WMNodeListCell.m in Sources */,
 				878EC8FF1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */,
 				878EC90B1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
@@ -2742,7 +2742,7 @@
 				878EC8F91BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */,
 				878EC9021BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
 				872FDF301BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
-				878EC8F61BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */,
+				878EC8F61BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */,
 				87F8416A1BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				878EC94C1BE0F9200099EDD1 /* WMCategoryFilterTableViewCell.m in Sources */,
 			);
@@ -2787,7 +2787,7 @@
 				878EC9031BE0F7960099EDD1 /* WMMapViewController.m in Sources */,
 				878EC8DC1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */,
 				872FDE481BDFEF6D00764FC5 /* UIToolbar+CustomSize.m in Sources */,
-				878EC8F11BE0F7960099EDD1 /* WMNodeTypeTableViewController.m in Sources */,
+				878EC8F11BE0F7960099EDD1 /* WMEditPOITypeViewController.m in Sources */,
 				872FDEBD1BDFEF6D00764FC5 /* WMCategory.m in Sources */,
 				872FDE3C1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9121BE0F7960099EDD1 /* WMViewController.m in Sources */,
@@ -2806,7 +2806,7 @@
 				872FDF1F1BDFEF9900764FC5 /* zip.c in Sources */,
 				872FDE421BDFEF6D00764FC5 /* UINavigationBar+customSize.m in Sources */,
 				872FDF161BDFEF9900764FC5 /* ioapi.c in Sources */,
-				878EC8FA1BE0F7960099EDD1 /* WMWheelchairStatusViewController.m in Sources */,
+				878EC8FA1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */,
 				878EC95F1BE0F9200099EDD1 /* WMNodeListCell.m in Sources */,
 				878EC8FD1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */,
 				878EC9091BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
@@ -2820,7 +2820,7 @@
 				878EC8F71BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */,
 				878EC9001BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
 				872FDF2E1BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
-				878EC8F41BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */,
+				878EC8F41BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */,
 				87F841681BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				878EC94A1BE0F9200099EDD1 /* WMCategoryFilterTableViewCell.m in Sources */,
 			);

@@ -13,7 +13,7 @@
 #import "NodeType.h"
 #import "Image.h"
 #import "Photo.h"
-#import "WMWheelchairStatusViewController.h"
+#import "WMPOIWheelchairStatusViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMEditPOICommentViewController.h"
 #import "WMEditPOIViewController.h"
@@ -967,7 +967,7 @@
 }
 
 - (void)showAccessOptions {
-    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+    WMPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIWheelchairStatusViewController"];
     vc.delegate = self;
     vc.node = self.node;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", @"");
