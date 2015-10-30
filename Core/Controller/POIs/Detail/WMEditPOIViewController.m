@@ -11,7 +11,7 @@
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMPOIViewController.h"
-#import "WMSetMarkerViewController.h"
+#import "WMEditPOIPositionViewController.h"
 #import "NodeType.h"
 #import "WMEditPOICategoryViewController.h"
 #import "WMEditPOITypeViewController.h"
@@ -350,7 +350,7 @@
     [self.websiteTextField resignFirstResponder];
     [self.phoneTextField resignFirstResponder];
     
-    WMSetMarkerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMSetMarkerViewController"];
+    WMEditPOIPositionViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIPositionViewController"];
     vc.node = self.node;
     vc.delegate = self;
     vc.currentCoordinate = self.currentCoordinate;

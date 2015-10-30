@@ -17,7 +17,7 @@
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
 #import "WMOSMOnboardingViewController.h"
-#import "WMSetMarkerViewController.h"
+#import "WMEditPOIPositionViewController.h"
 #import "WMEditPOITypeViewController.h"
 #import "Node.h"
 #import "NodeType.h"
@@ -901,7 +901,7 @@
         [self hidePopover:categoryFilterPopover];
         
     } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
-               [vc isKindOfClass:[WMSetMarkerViewController class]] ||
+               [vc isKindOfClass:[WMEditPOIPositionViewController class]] ||
                [vc isKindOfClass:[WMEditPOITypeViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }

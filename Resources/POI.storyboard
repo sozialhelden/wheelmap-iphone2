@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="-177" y="-80"/>
         </scene>
-        <!--Set Marker View Controller-->
+        <!--EditPOI Position View Controller-->
         <scene sceneID="ZmF-X1-ewc">
             <objects>
-                <viewController storyboardIdentifier="WMSetMarkerViewController" hidesBottomBarWhenPushed="YES" id="JFG-yB-Ols" customClass="WMSetMarkerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMEditPOIPositionViewController" hidesBottomBarWhenPushed="YES" id="JFG-yB-Ols" customClass="WMEditPOIPositionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lvy-W1-lps"/>
                         <viewControllerLayoutGuide type="bottom" id="xll-qb-u7C"/>

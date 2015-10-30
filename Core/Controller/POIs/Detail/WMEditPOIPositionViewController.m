@@ -1,35 +1,25 @@
 //
-//  WMSetMarkerViewController.m
+//  WMEditPOIPositionViewController.m
 //  Wheelmap
 //
 //  Created by Andrea Gerlach on 04.12.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMSetMarkerViewController.h"
+#import "WMEditPOIPositionViewController.h"
 #import "WMMapAnnotation.h"
 #import "WMNavigationControllerBase.h"
 #import "WMEditPOIViewController.h"
 
-@interface WMSetMarkerViewController ()
-{
+@interface WMEditPOIPositionViewController () {
     CLLocationManager* locationManager;
 }
+
 @end
 
-@implementation WMSetMarkerViewController
+@implementation WMEditPOIPositionViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -59,26 +49,16 @@
     self.currentAnnotation.coordinate = self.currentCoordinate;
     
     [self setMapToCoordinate:self.initialCoordinate];
-    
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-//    locationManager = [[CLLocationManager alloc] init];
-//    locationManager.delegate = self;
-//    locationManager.distanceFilter = 50.0f;
-//	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-//    [locationManager startUpdatingLocation];
     
     self.title = NSLocalizedString(@"NavBarTitleSetMarker", nil);
     self.navigationBarTitle = self.title;
-    
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     UIImageView* accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 80, self.view.frame.size.width-20, 60)];
@@ -98,23 +78,10 @@
     accesoryHeader.transform = CGAffineTransformMakeTranslation(0, 10);
     [self.view addSubview:accesoryHeader];
     
-    [UIView animateWithDuration:0.5 animations:^(void)
-    {
-        accesoryHeader.alpha = 1.0;
-        accesoryHeader.transform = CGAffineTransformMakeTranslation(0, 0);
-    }
-                    completion:^(BOOL finished)
-    {
-              
-    }
-    ];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [UIView animateWithDuration:0.5 animations:^(void) {
+		accesoryHeader.alpha = 1.0;
+        accesoryHeader.transform = CGAffineTransformMakeTranslation(0, 0);}
+					 completion:nil];
 }
 
 - (void)viewDidUnload {
@@ -132,8 +99,8 @@
 }
 
 #pragma mark - CLLocationManager Delegates
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation* newLocation = [locations objectAtIndex:0];
     // region to display
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
@@ -167,8 +134,7 @@
     return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
-{
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     if (newState == MKAnnotationViewDragStateEnding) {
         self.currentCoordinate = view.annotation.coordinate;
         if ([self.delegate respondsToSelector:@selector(markerSet:)]) {
@@ -179,16 +145,14 @@
         }
     }
 }
+
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         NSString *reuseId = @"";
         MKPinAnnotationView *annotationView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
         if (!annotationView) {
             annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-//            annotationView.centerOffset = CGPointMake(10, -27);
         }
-//        annotationView.image = [UIImage imageNamed:@"set-marker_icon.png"];
         annotationView.animatesDrop=YES;
         annotationView.draggable = YES;
         [annotationView setSelected:YES animated:NO];
@@ -199,33 +163,26 @@
 
 #pragma mark - MBXRasterTileOverlayDelegate implementation
 
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error
-{
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error {
     // This delegate callback is for centering the map once the map metadata has been loaded
     //
-    if (error)
-    {
+    if (error) {
         NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
     }
 }
 
 
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error
-{
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error {
     // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
     //
-    if (error)
-    {
+    if (error) {
         NSLog(@"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-    }
-    else
-    {
+	} else {
         [_mapView addAnnotations:markers];
     }
 }
 
-- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay
-{
+- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
