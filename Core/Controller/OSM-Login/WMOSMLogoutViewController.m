@@ -1,25 +1,24 @@
 //
-//  WMLogoutViewController.m
+//  WMOSMLogoutViewController.m
 //  Wheelmap
 //
 //  Created by npng on 12/12/12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMLogoutViewController.h"
+#import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
 
-@interface WMLogoutViewController ()
+@interface WMOSMLogoutViewController ()
 {
     WMDataManager* dataManager;
 }
 @end
 
-@implementation WMLogoutViewController
+@implementation WMOSMLogoutViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -38,15 +37,7 @@
     [self.view addGestureRecognizer:tapGR];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(IBAction)pressedLogoutButton:(id)sender
-{
-    
+-(IBAction)pressedLogoutButton:(id)sender {
     [dataManager removeUserAuthentication];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -54,10 +45,9 @@
     }
     
     [self dismissViewControllerAnimated:YES];
-    
 }
--(IBAction)pressedCancelButton:(id)sender
-{
+
+-(IBAction)pressedCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES];
 }
 

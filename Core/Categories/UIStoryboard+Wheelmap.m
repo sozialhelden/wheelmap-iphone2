@@ -52,16 +52,16 @@
 	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
 }
 
-+ (id)instantiatedLogoutViewController {
-	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
++ (id)instantiatedOSMLogoutViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMLogoutViewController"];
 }
 
 + (id)instantiatedCreditsViewController {
 	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
 }
 
-+ (id)instantiatedDescribeViewController {
-	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMDescribeViewController"];
++ (id)instantiatedDescriptionViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMDescriptionViewController"];
 }
 
 + (id)instantiatedOSMLoginViewController {

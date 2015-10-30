@@ -12,7 +12,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMCategoryViewController.h"
 #import "WMOSMStartViewController.h"
-#import "WMLogoutViewController.h"
+#import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
 #import "WMWheelmapAPI.h"
@@ -203,7 +203,7 @@
     if (!dataManager.userIsAuthenticated) {
         vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
     } else {
-        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
+        vc = [UIStoryboard instantiatedOSMLogoutViewController];
     }
     
     [self.navigationController presentViewController:vc animated:YES completion:nil];

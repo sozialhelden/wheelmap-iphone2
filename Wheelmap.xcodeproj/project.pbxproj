@@ -579,12 +579,12 @@
 		878EC8CD1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */; };
 		878EC8CE1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */; };
 		878EC8CF1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */; };
-		878EC8D01BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */; };
-		878EC8D11BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */; };
-		878EC8D21BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */; };
-		878EC8D31BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */; };
-		878EC8D41BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */; };
-		878EC8D51BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */; };
+		878EC8D01BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */; };
+		878EC8D11BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */; };
+		878EC8D21BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */; };
+		878EC8D31BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescriptionViewController.m */; };
+		878EC8D41BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescriptionViewController.m */; };
+		878EC8D51BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8971BE0F7960099EDD1 /* WMOSMDescriptionViewController.m */; };
 		878EC8D61BE0F7960099EDD1 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */; };
 		878EC8D71BE0F7960099EDD1 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */; };
 		878EC8D81BE0F7960099EDD1 /* WMOSMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */; };
@@ -964,10 +964,10 @@
 		878EC8901BE0F7960099EDD1 /* WMDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardViewController.m; sourceTree = "<group>"; };
 		878EC8921BE0F7960099EDD1 /* WMAcceptTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAcceptTermsViewController.h; sourceTree = "<group>"; };
 		878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAcceptTermsViewController.m; sourceTree = "<group>"; };
-		878EC8941BE0F7960099EDD1 /* WMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogoutViewController.h; sourceTree = "<group>"; };
-		878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogoutViewController.m; sourceTree = "<group>"; };
-		878EC8961BE0F7960099EDD1 /* WMOSMDescribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMDescribeViewController.h; sourceTree = "<group>"; };
-		878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMDescribeViewController.m; sourceTree = "<group>"; };
+		878EC8941BE0F7960099EDD1 /* WMOSMLogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMLogoutViewController.h; sourceTree = "<group>"; };
+		878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMLogoutViewController.m; sourceTree = "<group>"; };
+		878EC8961BE0F7960099EDD1 /* WMOSMDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMDescriptionViewController.h; sourceTree = "<group>"; };
+		878EC8971BE0F7960099EDD1 /* WMOSMDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMDescriptionViewController.m; sourceTree = "<group>"; };
 		878EC8981BE0F7960099EDD1 /* WMOSMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMLoginViewController.h; sourceTree = "<group>"; };
 		878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMLoginViewController.m; sourceTree = "<group>"; };
 		878EC89A1BE0F7960099EDD1 /* WMOSMStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOSMStartViewController.h; sourceTree = "<group>"; };
@@ -1622,10 +1622,10 @@
 			children = (
 				878EC8921BE0F7960099EDD1 /* WMAcceptTermsViewController.h */,
 				878EC8931BE0F7960099EDD1 /* WMAcceptTermsViewController.m */,
-				878EC8941BE0F7960099EDD1 /* WMLogoutViewController.h */,
-				878EC8951BE0F7960099EDD1 /* WMLogoutViewController.m */,
-				878EC8961BE0F7960099EDD1 /* WMOSMDescribeViewController.h */,
-				878EC8971BE0F7960099EDD1 /* WMOSMDescribeViewController.m */,
+				878EC8941BE0F7960099EDD1 /* WMOSMLogoutViewController.h */,
+				878EC8951BE0F7960099EDD1 /* WMOSMLogoutViewController.m */,
+				878EC8961BE0F7960099EDD1 /* WMOSMDescriptionViewController.h */,
+				878EC8971BE0F7960099EDD1 /* WMOSMDescriptionViewController.m */,
 				878EC8981BE0F7960099EDD1 /* WMOSMLoginViewController.h */,
 				878EC8991BE0F7960099EDD1 /* WMOSMLoginViewController.m */,
 				878EC89A1BE0F7960099EDD1 /* WMOSMStartViewController.h */,
@@ -2599,7 +2599,7 @@
 				872FDED01BDFEF6D00764FC5 /* WMSharingManager.m in Sources */,
 				878EC94E1BE0F9200099EDD1 /* WMNavigationBar.m in Sources */,
 				872FDEB81BDFEF6D00764FC5 /* Photo.m in Sources */,
-				878EC8D41BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */,
+				878EC8D41BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */,
 				872FDF1A1BDFEF9900764FC5 /* mztools.c in Sources */,
 				878EC9661BE0F9200099EDD1 /* WMButton.m in Sources */,
 				872FDE4C1BDFEF6D00764FC5 /* UIView+Geometry.m in Sources */,
@@ -2642,7 +2642,7 @@
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDF231BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9721BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
-				878EC8D11BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */,
+				878EC8D11BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC8E01BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
 				878EC9481BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAC1BDFEF6D00764FC5 /* Asset.m in Sources */,
@@ -2677,7 +2677,7 @@
 				872FDED11BDFEF6D00764FC5 /* WMSharingManager.m in Sources */,
 				878EC94F1BE0F9200099EDD1 /* WMNavigationBar.m in Sources */,
 				872FDEB91BDFEF6D00764FC5 /* Photo.m in Sources */,
-				878EC8D51BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */,
+				878EC8D51BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */,
 				872FDF1B1BDFEF9900764FC5 /* mztools.c in Sources */,
 				878EC9671BE0F9200099EDD1 /* WMButton.m in Sources */,
 				872FDE4D1BDFEF6D00764FC5 /* UIView+Geometry.m in Sources */,
@@ -2720,7 +2720,7 @@
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDF241BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9731BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
-				878EC8D21BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */,
+				878EC8D21BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC8E11BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
 				878EC9491BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAD1BDFEF6D00764FC5 /* Asset.m in Sources */,
@@ -2755,7 +2755,7 @@
 				872FDECF1BDFEF6D00764FC5 /* WMSharingManager.m in Sources */,
 				878EC94D1BE0F9200099EDD1 /* WMNavigationBar.m in Sources */,
 				872FDEB71BDFEF6D00764FC5 /* Photo.m in Sources */,
-				878EC8D31BE0F7960099EDD1 /* WMOSMDescribeViewController.m in Sources */,
+				878EC8D31BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */,
 				872FDF191BDFEF9900764FC5 /* mztools.c in Sources */,
 				878EC9651BE0F9200099EDD1 /* WMButton.m in Sources */,
 				872FDE4B1BDFEF6D00764FC5 /* UIView+Geometry.m in Sources */,
@@ -2798,7 +2798,7 @@
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,
 				872FDF221BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9711BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
-				878EC8D01BE0F7960099EDD1 /* WMLogoutViewController.m in Sources */,
+				878EC8D01BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC8DF1BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
 				878EC9471BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAB1BDFEF6D00764FC5 /* Asset.m in Sources */,
