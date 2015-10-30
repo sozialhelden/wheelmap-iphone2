@@ -13,6 +13,7 @@
     #import <Foundation/Foundation.h>
 
 	#import "Constants.h"
+	#import "WMProtocols.h"
 
     // Import all of the custom widgets
 	#import "WMLabel.h"
@@ -49,22 +50,6 @@
 #define GET_APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication] delegate]
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
-// enums
-typedef enum {
-    kDotTypeGreen,
-    kDotTypeYellow,
-    kDotTypeRed,
-    kDotTypeNone
-} DotType;
-
-typedef enum {
-    kWMPOIsListViewControllerUseCaseNormal,
-    kWMPOIsListViewControllerUseCaseGlobalSearch,
-    kWMPOIsListViewControllerUseCaseSearchOnDemand,
-    kWMPOIsListViewControllerUseCaseContribute,
-    kWMPOIsListViewControllerUseCaseCategory
-} WMPOIsListViewControllerUseCase;
 
 #define UI_USER_INTERFACE_IDIOM() \
 ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] ? \

@@ -57,4 +57,19 @@
 
 #define K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER		@"WMPOIsListTableViewCell"
 
+typedef enum {
+	kDotTypeGreen,
+	kDotTypeYellow,
+	kDotTypeRed,
+	kDotTypeNone
+} DotType;
+
+typedef enum {
+	kWMPOIsListViewControllerUseCaseNormal,
+	kWMPOIsListViewControllerUseCaseGlobalSearch,
+	kWMPOIsListViewControllerUseCaseSearchOnDemand,
+	kWMPOIsListViewControllerUseCaseContribute,
+	kWMPOIsListViewControllerUseCaseCategory
+} WMPOIsListViewControllerUseCase;
+
 

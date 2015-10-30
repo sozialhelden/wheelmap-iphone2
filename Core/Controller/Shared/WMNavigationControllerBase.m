@@ -109,8 +109,8 @@
     self.lastVisibleMapSpanLng = nil;
     
     // configure initial vc from storyboard. this is necessary for iPad, since iPad's topVC is not the Dashboard!
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        id<WMNodeListView> initialNodeListView = (id<WMNodeListView>)self.topViewController;
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        id<WMPOIsListViewDelegate> initialNodeListView = (id<WMPOIsListViewDelegate>)self.topViewController;
         initialNodeListView.dataSource = self;
         initialNodeListView.delegate = self;
     }
@@ -349,8 +349,8 @@
     
     nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
 }
 
@@ -358,8 +358,8 @@
 {
     NSLog(@"--- REFRESH NODE LIST AFTER ADDING NODE ---");
     
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
 }
 
@@ -367,8 +367,8 @@
 {
     NSLog(@"--- REFRESH NODE LIST ---");
     
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
 }
 
@@ -379,8 +379,8 @@
     
     nodes = array;
     for (UIViewController* vc in self.viewControllers) {
-        if ([vc conformsToProtocol:@protocol(WMNodeListView)]) {
-            [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+        if ([vc conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+            [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
         }
     }
 }
@@ -439,7 +439,7 @@
         [self showLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(showActivityIndicator)]) {
-        [(id<WMNodeListView>)self.topViewController showActivityIndicator];
+        [(id<WMPOIsListViewDelegate>)self.topViewController showActivityIndicator];
     }
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
@@ -454,7 +454,7 @@
         [self hideLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(hideActivityIndicator)]) {
-        [(id<WMNodeListView>)self.topViewController hideActivityIndicator];
+        [(id<WMPOIsListViewDelegate>)self.topViewController hideActivityIndicator];
     }
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
@@ -604,7 +604,7 @@
 /**
  * Called only on the iPhone
  */
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectNode:(Node *)node
 {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -624,7 +624,7 @@
 /**
  * Called only on the iPhone
  */
-- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
+- (void) nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectDetailsForNode:(Node *)node
 {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -781,8 +781,8 @@
 - (void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     
-    if ([viewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        id<WMNodeListView> nodeListViewController = (id<WMNodeListView>)viewController;
+    if ([viewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        id<WMPOIsListViewDelegate> nodeListViewController = (id<WMPOIsListViewDelegate>)viewController;
         nodeListViewController.dataSource = self;
         nodeListViewController.delegate = self;
     }

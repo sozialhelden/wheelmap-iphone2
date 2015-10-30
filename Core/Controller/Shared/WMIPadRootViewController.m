@@ -97,7 +97,7 @@
 
 #pragma mark - Node List Delegate
 
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectDetailsForNode:(Node *)node
 {
     if (node == nil) {
         return;
@@ -107,7 +107,7 @@
     [self.listViewController showDetailPopoverForNode:node];
 }
 
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectNode:(Node *)node
 {
     if (node == nil) {
         return;

@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMNodeListView.h"
 #import "WMNavigationControllerBase.h"
 
-@interface WMPOIsListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+@interface WMPOIsListViewController : WMViewController <WMPOIsListViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopVerticalSpaceConstraint;

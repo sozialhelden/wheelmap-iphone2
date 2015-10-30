@@ -1042,8 +1042,7 @@
 		878EC9411BE0F9200099EDD1 /* WMToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMToolBar.m; sourceTree = "<group>"; };
 		878EC9421BE0F9200099EDD1 /* WMToolBar_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMToolBar_iPad.h; sourceTree = "<group>"; };
 		878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMToolBar_iPad.m; sourceTree = "<group>"; };
-		878EC9741BE0F92F0099EDD1 /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
-		878EC9751BE0F92F0099EDD1 /* WMNodeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListView.h; sourceTree = "<group>"; };
+		878EC9751BE0F92F0099EDD1 /* WMProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMProtocols.h; sourceTree = "<group>"; };
 		87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Wheelmap.h"; sourceTree = "<group>"; };
 		87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Wheelmap.m"; sourceTree = "<group>"; };
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -1203,8 +1202,7 @@
 				878EC91A1BE0F9200099EDD1 /* Views */,
 				872FDE131BDFEF6D00764FC5 /* SupportingFiles */,
 				872FDDAF1BDFEF6D00764FC5 /* Constants.h */,
-				878EC9741BE0F92F0099EDD1 /* WMNavigationBarDelegate.h */,
-				878EC9751BE0F92F0099EDD1 /* WMNodeListView.h */,
+				878EC9751BE0F92F0099EDD1 /* WMProtocols.h */,
 				872FDE3A1BDFEF6D00764FC5 /* WMAppDelegate.h */,
 				872FDE3B1BDFEF6D00764FC5 /* WMAppDelegate.m */,
 			);

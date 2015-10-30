@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
-#import "WMNodeListView.h"
 #import "WMNavigationBar.h"
 #import "WMNavigationBar_iPad.h"
 #import "WMToolBar.h"
@@ -24,8 +23,8 @@
 @class WMDataManager, WMPOIsListViewController;
 
 @interface WMNavigationControllerBase : UINavigationController
-<WMDataManagerDelegate, WMNodeListDataSource,
-WMNodeListDelegate, CLLocationManagerDelegate,
+<WMDataManagerDelegate, WMPOIsListDataSourceDelegate,
+WMPOIsListDelegate, CLLocationManagerDelegate,
 WMNavigationBarDelegate, WMToolBarDelegate,
 WMWheelChairStatusFilterPopoverViewDelegate,
 WMCategoryFilterPopoverViewDelegate,

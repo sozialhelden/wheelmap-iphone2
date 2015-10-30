@@ -14,7 +14,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManager.h"
 #import "WMPOIIPadNavigationController.h"
-#import "WMNodeListView.h"
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
 
