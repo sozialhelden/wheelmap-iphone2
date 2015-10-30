@@ -11,7 +11,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDetailNavigationController.h"
 #import "WMNodeListViewController.h"
-#import "WMOSMDescribeViewController.h"
+#import "WMOSMDescriptionViewController.h"
 #import "Constants.h"
 #import "WMOSMLoginViewController.h"
 #import "WMWheelmapAPI.h"
@@ -109,13 +109,13 @@
     
     [super viewDidAppear:animated];
     
-    [self showFirstStartScreen];
+    [self showDescriptionViewController];
 }
 
-- (void)showFirstStartScreen {
+- (void)showDescriptionViewController {
     if ([dataManager isFirstLaunch]) {
-        WMOSMDescribeViewController *firstStartViewController = [UIStoryboard instantiatedDescribeViewController];
-        [self presentViewController:firstStartViewController animated:YES];
+        WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
+        [self presentViewController:osmDescriptionViewController animated:YES];
         
         [dataManager firstLaunchOccurred];
     }
@@ -199,8 +199,8 @@
 
 - (IBAction)whyOSMPressed:(id)sender {
     
-    WMOSMDescribeViewController *osmDescribeViewController = [UIStoryboard instantiatedDescribeViewController];
-    [self presentViewController:osmDescribeViewController animated:YES];
+    WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
+    [self presentViewController:osmDescriptionViewController animated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

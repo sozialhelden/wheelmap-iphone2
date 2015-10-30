@@ -32,7 +32,7 @@
 #import "WMToolBar_iPad.h"
 #import "Constants.h"
 
-#import "WMOSMDescribeViewController.h"
+#import "WMOSMDescriptionViewController.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -1548,7 +1548,7 @@
                                                     permittedArrowDirections:0
                                                                     animated:animated];
         
-    } else if ([viewController isKindOfClass:[WMOSMDescribeViewController class]]) {
+    } else if ([viewController isKindOfClass:[WMOSMDescriptionViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
                                                         initWithContentViewController:viewController];
         self.popoverVC = (WMViewController *)viewController;

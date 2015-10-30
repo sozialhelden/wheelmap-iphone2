@@ -31,7 +31,7 @@
 
 + (id)instantiatedCreditsViewController;
 
-+ (id)instantiatedDescribeViewController;
++ (id)instantiatedDescriptionViewController;
 
 + (id)instantiatedOSMLoginViewController;
 

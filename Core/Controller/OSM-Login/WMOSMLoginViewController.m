@@ -10,7 +10,7 @@
 #import "WMWheelmapAPI.h"
 #import "Constants.h"
 #import "WMDataManager.h"
-#import "WMOSMDescribeViewController.h"
+#import "WMOSMDescriptionViewController.h"
 
 @implementation WMOSMLoginViewController {
     
@@ -182,9 +182,9 @@
   */
 }
 
--(IBAction)whyOSM:(id)sender{
-    WMOSMDescribeViewController *osmDescribeViewController = [UIStoryboard instantiatedDescribeViewController];
-    [self presentViewController:osmDescribeViewController animated:YES];
+-(IBAction)whyOSM:(id)sender {
+    WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
+    [self presentViewController:osmDescriptionViewController animated:YES];
 }
 
 @end

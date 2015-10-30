@@ -1111,10 +1111,10 @@
             </objects>
             <point key="canvasLocation" x="255" y="1435"/>
         </scene>
-        <!--Describe View Controller-->
+        <!--Description View Controller-->
         <scene sceneID="Wop-zA-hAT">
             <objects>
-                <viewController storyboardIdentifier="WMOSMDescribeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YlH-c5-mVW" customClass="WMOSMDescribeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMOSMDescriptionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YlH-c5-mVW" customClass="WMOSMDescriptionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Tf-Yx-kAv"/>
                         <viewControllerLayoutGuide type="bottom" id="x7p-cw-WZx"/>

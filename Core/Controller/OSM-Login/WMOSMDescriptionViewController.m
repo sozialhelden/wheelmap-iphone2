@@ -1,19 +1,18 @@
 //
-//  WMOSMDescribeViewController.m
+//  WMOSMDescriptionViewController.m
 //  Wheelmap
 //
 //  Created by Dirk Tech on 04/30/15.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMOSMDescribeViewController.h"
+#import "WMOSMDescriptionViewController.h"
 #import "WMWheelmapAPI.h"
 #import "Constants.h"
 
-@implementation WMOSMDescribeViewController
+@implementation WMOSMDescriptionViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.scrollView.backgroundColor = [UIColor wmGreyColor];
@@ -28,14 +27,7 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.okButton.frame.origin.y + self.okButton.frame.size.height + 10.0f);
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(IBAction)pressedOkButton:(id)sender
-{
+-(IBAction)pressedOkButton:(id)sender {
     [self dismissViewControllerAnimated:YES];
 }
 
