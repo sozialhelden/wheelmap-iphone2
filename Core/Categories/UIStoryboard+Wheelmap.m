@@ -48,8 +48,8 @@
 	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
 }
 
-+ (id)instantiatedOSMStartViewController {
-	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
++ (id)instantiatedOSMOnboardingViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMOnboardingViewController"];
 }
 
 + (id)instantiatedOSMLogoutViewController {

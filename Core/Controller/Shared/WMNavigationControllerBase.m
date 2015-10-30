@@ -10,13 +10,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMCategoryViewController.h"
-#import "WMOSMStartViewController.h"
+#import "WMOSMOnboardingViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "WMNodeTypeTableViewController.h"
 #import "Node.h"
@@ -25,7 +25,7 @@
 #import "WMAcceptTermsViewController.h"
 #import "WMIPadRootViewController.h"
 #import "WMNodeListViewController.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
 #import "WMOSMLogoutViewController.h"
@@ -299,7 +299,7 @@
                 yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
+        } else if ([self.popoverVC isKindOfClass:[WMOSMOnboardingViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -641,7 +641,7 @@
 
 - (void) pushDetailsViewControllerForNode:(Node*)node
 {
-    WMDetailViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
+    WMPOIViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
     detailViewController.baseController = self;
     detailViewController.node = node;
     [self pushViewController:detailViewController animated:YES];
@@ -871,7 +871,7 @@
                 break;
         }
         
-    } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
+    } else if ([vc isKindOfClass:[WMPOIViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
@@ -888,7 +888,7 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
     } else if ([vc isKindOfClass:[WMEditPOIViewController class]] ||
-               [vc isKindOfClass:[WMCommentViewController class]]) {
+               [vc isKindOfClass:[WMEditPOICommentViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
         [self hidePopover:wheelChairFilterPopover];
@@ -989,7 +989,7 @@
     editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
-        WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:editPOIViewController];
+        WMPOIIPadNavigationController *detailNavController = [[WMPOIIPadNavigationController alloc] initWithRootViewController:editPOIViewController];
         detailNavController.customNavigationBar.title = editPOIViewController.navigationBarTitle;
         
         editPOIViewController.isRootViewController = YES;
@@ -1007,8 +1007,8 @@
 -(void)pressedEditButton:(WMNavigationBar *)navigationBar
 {
     WMViewController* currentViewController = [self.viewControllers lastObject];
-    if ([currentViewController isKindOfClass:[WMDetailViewController class]]) {
-        [(WMDetailViewController*)currentViewController pushEditViewController];
+    if ([currentViewController isKindOfClass:[WMPOIViewController class]]) {
+        [(WMPOIViewController*)currentViewController pushEditViewController];
     }
 }
 
@@ -1021,8 +1021,8 @@
     if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
         [(WMEditPOIViewController*)currentViewController saveEditedData];
     }
-    if ([currentViewController isKindOfClass:[WMCommentViewController class]]) {
-        [(WMCommentViewController*)currentViewController saveEditedData];
+    if ([currentViewController isKindOfClass:[WMEditPOICommentViewController class]]) {
+        [(WMEditPOICommentViewController*)currentViewController saveEditedData];
     }
 }
 
@@ -1263,7 +1263,7 @@
     
     WMViewController* viewController;
     if (!dataManager.userIsAuthenticated) {
-        viewController = [UIStoryboard instantiatedOSMStartViewController];
+        viewController = [UIStoryboard instantiatedOSMOnboardingViewController];
     } else {
         viewController = [UIStoryboard instantiatedOSMLogoutViewController];
     }
@@ -1503,9 +1503,9 @@
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
-    WMOSMStartViewController* osmStartViewController = [UIStoryboard instantiatedOSMStartViewController];
-    osmStartViewController.popoverButtonFrame = frame;
-    [self presentViewController:osmStartViewController animated:YES];
+    WMOSMOnboardingViewController* osmOnbaordingViewController = [UIStoryboard instantiatedOSMOnboardingViewController];
+    osmOnbaordingViewController.popoverButtonFrame = frame;
+    [self presentViewController:osmOnbaordingViewController animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

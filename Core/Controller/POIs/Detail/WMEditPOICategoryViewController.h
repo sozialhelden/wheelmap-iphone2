@@ -1,5 +1,5 @@
 //
-//  WMCategoryTableViewController.h
+//  WMEditPOICategoryViewController.h
 //  Wheelmap
 //
 //  Created by Andrea Gerlach on 12.12.12.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WMCategory.h"
 
-@interface WMCategoryTableViewController : WMTableViewController
+@interface WMEditPOICategoryViewController : WMTableViewController
 
 @property (nonatomic, strong) NSArray *categoryArray;
 @property (strong, nonatomic) id delegate;

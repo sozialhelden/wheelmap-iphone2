@@ -13,7 +13,7 @@
 #import "WMNavigationControllerBase.h"
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManager.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMNodeListView.h"
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
@@ -377,12 +377,12 @@
     
     
     
-    WMDetailViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
+    WMPOIViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
     detailViewController.title = detailViewController.navigationBarTitle = NSLocalizedString(@"NavBarTitleDetail", nil);
     detailViewController.node = node;
     detailViewController.baseController = self.controllerBase;
     
-    WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:detailViewController];
+    WMPOIIPadNavigationController *detailNavController = [[WMPOIIPadNavigationController alloc] initWithRootViewController:detailViewController];
     detailNavController.listViewController = self;
     detailNavController.customNavigationBar.title = detailViewController.navigationBarTitle;
     

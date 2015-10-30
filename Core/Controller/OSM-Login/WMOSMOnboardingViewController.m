@@ -1,27 +1,26 @@
 //
-//  WMOSMStartViewController.m
+//  WMOSMOnboardingViewController.m
 //  Wheelmap
 //
 //  Created by Dirk Tech on 06.12.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMOSMStartViewController.h"
+#import "WMOSMOnboardingViewController.h"
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMNodeListViewController.h"
 #import "WMOSMDescriptionViewController.h"
 #import "Constants.h"
 #import "WMOSMLoginViewController.h"
 #import "WMWheelmapAPI.h"
 
-@implementation WMOSMStartViewController
+@implementation WMOSMOnboardingViewController
 
 @synthesize dataManager;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
@@ -29,8 +28,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     [self.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
@@ -99,12 +97,6 @@
     label.frame = newFrame;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -121,13 +113,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 - (IBAction)registerPressed:(id)sender {
 	NSString *urlPath = WM_REGISTER_LINK;
 	if (WMWheelmapAPI.isStagingBackend == YES) {
@@ -137,15 +122,13 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, urlPath]]];
 }
 
-- (IBAction)loginPressed:(id)sender
-{
+- (IBAction)loginPressed:(id)sender {
     WMOSMLoginViewController *osmLoginViewController = [UIStoryboard instantiatedOSMLoginViewController];
     [osmLoginViewController loadLoginUrl];
     [self presentViewController:osmLoginViewController animated:YES];
 }
 
-- (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error
-{
+- (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error {
     // TODO: handle error
     NSLog(@"Login failed! %@", error);
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"User Credentials Error", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
@@ -157,8 +140,7 @@
     }
 }
 
-- (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager
-{
+- (void)dataManagerDidAuthenticateUser:(WMDataManager *)aDataManager {
     // TODO: handle success, dismiss view controller
     NSLog(@"Login success!");
     
@@ -172,7 +154,7 @@
     } else {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             if (self.navigationController != nil) {
-                [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase showAcceptTermsViewController];
+                [((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase showAcceptTermsViewController];
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
                 [(WMNavigationControllerBase *)self.baseController showAcceptTermsViewController];
@@ -189,7 +171,6 @@
 }
 
 - (IBAction)donePressed:(id)sender {
-    
     if (self.navigationController != nil) {
         [self.navigationController popViewControllerAnimated:YES];
     } else {
@@ -198,7 +179,6 @@
 }
 
 - (IBAction)whyOSMPressed:(id)sender {
-    
     WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
     [self presentViewController:osmDescriptionViewController animated:YES];
 }
@@ -221,7 +201,7 @@
     [super viewDidDisappear:animated];
 }
 
-- (void) didReceiveAuthenticationData:(NSNotification*)n{
+- (void) didReceiveAuthenticationData:(NSNotification*)n {
     NSLog(@"auth Data:%@", n);
     
     NSDictionary *userData = [[n userInfo] objectForKey:@"authData"];
@@ -234,4 +214,5 @@
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+
 @end

@@ -411,10 +411,10 @@
             </objects>
             <point key="canvasLocation" x="-1137" y="728"/>
         </scene>
-        <!--Start View Controller-->
+        <!--Onboarding View Controller-->
         <scene sceneID="jdI-IH-X6j">
             <objects>
-                <viewController storyboardIdentifier="WMOSMStartViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PTd-16-DQ9" customClass="WMOSMStartViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMOSMOnboardingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PTd-16-DQ9" customClass="WMOSMOnboardingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FZF-mk-vdo"/>
                         <viewControllerLayoutGuide type="bottom" id="hki-Ol-Qu4"/>
