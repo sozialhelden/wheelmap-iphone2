@@ -13,7 +13,7 @@
 #import "WMDetailViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "NodeType.h"
-#import "WMCategoryTableViewController.h"
+#import "WMEditPOICategoryViewController.h"
 #import "WMNodeTypeTableViewController.h"
 #import "WMDataManagerDelegate.h"
 #import "WMCategory.h"
@@ -319,13 +319,13 @@
 - (IBAction)setCategory:(id)sender {
     [self buttonPressed];
     
-    WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
-    vc.title = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
-    vc.navigationBarTitle = vc.title;
-    vc.delegate = self;
-    vc.categoryArray = self.dataManager.categories;
-    vc.currentCategory = self.currentCategory;
-    [self.navigationController pushViewController:vc animated:YES];
+    WMEditPOICategoryViewController* categoryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICategoryViewController"];
+    categoryViewController.title = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
+    categoryViewController.navigationBarTitle = categoryViewController.title;
+    categoryViewController.delegate = self;
+    categoryViewController.categoryArray = self.dataManager.categories;
+    categoryViewController.currentCategory = self.currentCategory;
+    [self.navigationController pushViewController:categoryViewController animated:YES];
 }
 
 - (void) buttonPressed {

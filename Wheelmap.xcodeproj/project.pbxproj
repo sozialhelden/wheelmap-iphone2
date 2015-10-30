@@ -594,9 +594,9 @@
 		878EC8DC1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */; };
 		878EC8DD1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */; };
 		878EC8DE1BE0F7960099EDD1 /* WMTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */; };
-		878EC8DF1BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A11BE0F7960099EDD1 /* WMCategoryTableViewController.m */; };
-		878EC8E01BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A11BE0F7960099EDD1 /* WMCategoryTableViewController.m */; };
-		878EC8E11BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A11BE0F7960099EDD1 /* WMCategoryTableViewController.m */; };
+		878EC8DF1BE0F7960099EDD1 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m */; };
+		878EC8E01BE0F7960099EDD1 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m */; };
+		878EC8E11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m */; };
 		878EC8E21BE0F7960099EDD1 /* WMCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A31BE0F7960099EDD1 /* WMCommentViewController.m */; };
 		878EC8E31BE0F7960099EDD1 /* WMCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A31BE0F7960099EDD1 /* WMCommentViewController.m */; };
 		878EC8E41BE0F7960099EDD1 /* WMCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A31BE0F7960099EDD1 /* WMCommentViewController.m */; };
@@ -974,8 +974,8 @@
 		878EC89B1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOSMOnboardingViewController.m; sourceTree = "<group>"; };
 		878EC89C1BE0F7960099EDD1 /* WMTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTermsViewController.h; sourceTree = "<group>"; };
 		878EC89D1BE0F7960099EDD1 /* WMTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTermsViewController.m; sourceTree = "<group>"; };
-		878EC8A01BE0F7960099EDD1 /* WMCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryTableViewController.h; sourceTree = "<group>"; };
-		878EC8A11BE0F7960099EDD1 /* WMCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryTableViewController.m; sourceTree = "<group>"; };
+		878EC8A01BE0F7960099EDD1 /* WMEditPOICategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOICategoryViewController.h; sourceTree = "<group>"; };
+		878EC8A11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOICategoryViewController.m; sourceTree = "<group>"; };
 		878EC8A21BE0F7960099EDD1 /* WMCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCommentViewController.h; sourceTree = "<group>"; };
 		878EC8A31BE0F7960099EDD1 /* WMCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCommentViewController.m; sourceTree = "<group>"; };
 		878EC8A41BE0F7960099EDD1 /* WMDetailNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailNavigationController.h; sourceTree = "<group>"; };
@@ -1649,8 +1649,8 @@
 		878EC89F1BE0F7960099EDD1 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				878EC8A01BE0F7960099EDD1 /* WMCategoryTableViewController.h */,
-				878EC8A11BE0F7960099EDD1 /* WMCategoryTableViewController.m */,
+				878EC8A01BE0F7960099EDD1 /* WMEditPOICategoryViewController.h */,
+				878EC8A11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m */,
 				878EC8A21BE0F7960099EDD1 /* WMCommentViewController.h */,
 				878EC8A31BE0F7960099EDD1 /* WMCommentViewController.m */,
 				878EC8A41BE0F7960099EDD1 /* WMDetailNavigationController.h */,
@@ -2643,7 +2643,7 @@
 				872FDF231BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9721BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
 				878EC8D11BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
-				878EC8E01BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
+				878EC8E01BE0F7960099EDD1 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9481BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAC1BDFEF6D00764FC5 /* Asset.m in Sources */,
 				872FDECD1BDFEF6D00764FC5 /* WMDataParser.m in Sources */,
@@ -2721,7 +2721,7 @@
 				872FDF241BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9731BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
 				878EC8D21BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
-				878EC8E11BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
+				878EC8E11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9491BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAD1BDFEF6D00764FC5 /* Asset.m in Sources */,
 				872FDECE1BDFEF6D00764FC5 /* WMDataParser.m in Sources */,
@@ -2799,7 +2799,7 @@
 				872FDF221BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				878EC9711BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
 				878EC8D01BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
-				878EC8DF1BE0F7960099EDD1 /* WMCategoryTableViewController.m in Sources */,
+				878EC8DF1BE0F7960099EDD1 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9471BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
 				872FDEAB1BDFEF6D00764FC5 /* Asset.m in Sources */,
 				872FDECC1BDFEF6D00764FC5 /* WMDataParser.m in Sources */,

@@ -187,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="566" y="-80"/>
         </scene>
-        <!--Category Table View Controller-->
+        <!--EditPOI Category View Controller-->
         <scene sceneID="3D1-uu-jim">
             <objects>
-                <tableViewController storyboardIdentifier="WMCategoryTableViewController" hidesBottomBarWhenPushed="YES" id="WdI-dc-CnC" customClass="WMCategoryTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WMEditPOICategoryViewController" hidesBottomBarWhenPushed="YES" id="WdI-dc-CnC" customClass="WMEditPOICategoryViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X5B-3c-heL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
