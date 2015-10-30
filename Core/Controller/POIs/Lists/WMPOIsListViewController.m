@@ -156,7 +156,7 @@
 - (void) loadNodes
 {
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         
         if (self.useCase == kWMPOIsListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
             isAccesoryHeaderVisible = YES;

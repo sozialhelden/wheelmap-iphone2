@@ -205,7 +205,7 @@
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         if ([self.navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
             if (((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase != nil) {
                 [((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase updateNodesWithCurrentUserLocation];

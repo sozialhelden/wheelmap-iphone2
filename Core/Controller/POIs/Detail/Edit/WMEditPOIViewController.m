@@ -412,7 +412,7 @@
     [progressWheel stopAnimating];
     NSLog(@"XXXXXXXX FINISHED");
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self dismissViewControllerAnimated:YES];
     }
     
@@ -505,7 +505,7 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == NO) {
 		[self keyboardDidMove:notification];
     }
 
@@ -516,7 +516,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == NO) {
         
         if (self.keyboardIsShown) {
             return;

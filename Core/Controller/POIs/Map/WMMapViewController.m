@@ -150,7 +150,7 @@
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         for (id<MKAnnotation> annotation in oldAnnotations) {
             if (![annotation isKindOfClass:[MKUserLocation class]])
@@ -358,7 +358,7 @@
         return;
     }
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         return;
     }
     

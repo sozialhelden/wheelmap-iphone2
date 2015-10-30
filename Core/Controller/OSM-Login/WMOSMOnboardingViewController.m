@@ -134,7 +134,7 @@
     
     [alert show];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
 }
@@ -151,7 +151,7 @@
             [self dismissViewControllerAnimated:YES];
         }
     } else {
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             if (self.navigationController != nil) {
                 [((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase showAcceptTermsViewController];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -164,7 +164,7 @@
         }
     }
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
 }
@@ -187,7 +187,7 @@
     // e.g. self.myOutlet = nil;
     
     // unregister for keyboard notifications while not visible.
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad){
+    if (UIDevice.isIPad == NO){
         
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:UIKeyboardWillShowNotification

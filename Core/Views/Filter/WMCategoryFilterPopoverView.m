@@ -19,7 +19,7 @@
         
         refOrigin = refPoint;
         bgImg = [[UIImageView alloc] initWithFrame:self.bounds];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             bgImg.image = [[UIImage imageNamed:@"toolbar_category-popup.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 20, 30)];
         } else {
             bgImg.image = [[UIImage imageNamed:@"toolbar_category-popup.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 20, 10)];
@@ -52,7 +52,7 @@
     self.categoryList = categories;
     
     CGFloat tableViewHeight;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         if (self.categoryList.count > 15) {
             tableViewHeight = CELL_HEIGHT*15 - 5;
         } else {
@@ -67,14 +67,14 @@
     }
     
     CGFloat frameHeight = tableViewHeight+10;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         self.frame = CGRectMake(refOrigin.x-140, refOrigin.y-frameHeight-5, 172, frameHeight);
     } else {
         self.frame = CGRectMake(refOrigin.x-110, refOrigin.y-frameHeight-5, 132, frameHeight);
     }
     
     bgImg.frame = self.bounds;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         tableView.frame = CGRectMake(2, 5, 168, tableViewHeight-10);
     } else {
         tableView.frame = CGRectMake(2, 5, 128, tableViewHeight-10);

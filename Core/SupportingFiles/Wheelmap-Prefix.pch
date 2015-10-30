@@ -9,6 +9,7 @@
 #endif
 
 #ifdef __OBJC__
+
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
@@ -44,14 +45,5 @@
 	#import <Reachability/Reachability.h>
 	#import <AFNetworking/AFNetworking.h>
 	#import <MarqueeLabel/MarqueeLabel.h>
+
 #endif
-
-// custom defines and macro functions
-#define GET_APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication] delegate]
-
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
-#define UI_USER_INTERFACE_IDIOM() \
-([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] ? \
-[[UIDevice currentDevice] userInterfaceIdiom] : \
-UIUserInterfaceIdiomPhone)
