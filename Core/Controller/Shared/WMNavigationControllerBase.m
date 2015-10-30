@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
@@ -641,7 +641,7 @@
 
 - (void) pushDetailsViewControllerForNode:(Node*)node
 {
-    WMDetailViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
+    WMPOIViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
     detailViewController.baseController = self;
     detailViewController.node = node;
     [self pushViewController:detailViewController animated:YES];
@@ -871,7 +871,7 @@
                 break;
         }
         
-    } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
+    } else if ([vc isKindOfClass:[WMPOIViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
@@ -1007,8 +1007,8 @@
 -(void)pressedEditButton:(WMNavigationBar *)navigationBar
 {
     WMViewController* currentViewController = [self.viewControllers lastObject];
-    if ([currentViewController isKindOfClass:[WMDetailViewController class]]) {
-        [(WMDetailViewController*)currentViewController pushEditViewController];
+    if ([currentViewController isKindOfClass:[WMPOIViewController class]]) {
+        [(WMPOIViewController*)currentViewController pushEditViewController];
     }
 }
 

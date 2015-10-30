@@ -8,7 +8,7 @@
 
 #import "WMMapViewController.h"
 #import "WMMapAnnotation.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
@@ -397,7 +397,7 @@
     
     if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]]) {
         [(WMNavigationControllerBase *)self.navigationController mapWasMoved];
-    } else if ([self.navigationController isKindOfClass:[WMDetailViewController class]]) {
+    } else if ([self.navigationController isKindOfClass:[WMPOIViewController class]]) {
         [(WMPOIIPadNavigationController *)self.navigationController mapWasMoved:mapView.region.center];
     }
     

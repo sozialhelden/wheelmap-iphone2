@@ -10,7 +10,7 @@
 
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "WMSetMarkerViewController.h"
 #import "NodeType.h"
 #import "WMEditPOICategoryViewController.h"

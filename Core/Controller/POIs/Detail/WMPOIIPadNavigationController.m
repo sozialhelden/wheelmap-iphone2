@@ -7,7 +7,7 @@
 //
 
 #import "WMPOIIPadNavigationController.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMEditPOICommentViewController.h"
@@ -60,9 +60,9 @@
 		return;
 	}
 
-	if ([self.topViewController isKindOfClass:[WMDetailViewController class]] == YES) {
+	if ([self.topViewController isKindOfClass:[WMPOIViewController class]] == YES) {
 		WMEditPOIViewController* editPOIViewController = [UIStoryboard instantiatedEditPOIViewController];
-		editPOIViewController.node = ((WMDetailViewController *)self.topViewController).node;
+		editPOIViewController.node = ((WMPOIViewController *)self.topViewController).node;
 		editPOIViewController.initialCoordinate = self.initialCoordinate;
 		editPOIViewController.editView = YES;
 		editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
@@ -101,7 +101,7 @@
 
 - (void)changeScreenStatusFor:(UIViewController *)viewController {
         
-    if ([viewController isKindOfClass:[WMDetailViewController class]]) {
+    if ([viewController isKindOfClass:[WMPOIViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleNone;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
     } else if ([viewController isKindOfClass:[WMEditPOIViewController class]]) {

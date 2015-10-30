@@ -15,7 +15,7 @@
 #import "WMToolBar.h"
 #import "WMToolBar_iPad.h"
 #import "WMMapViewController.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "WMEditPOICommentViewController.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMWheelChairStatusFilterPopoverView.h"

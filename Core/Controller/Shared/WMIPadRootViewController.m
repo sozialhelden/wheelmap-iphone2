@@ -7,7 +7,7 @@
 //
 
 #import "WMIPadRootViewController.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "WMNavigationControllerBase.h"
 #import <QuartzCore/QuartzCore.h>
 

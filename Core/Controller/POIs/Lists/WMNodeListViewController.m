@@ -377,7 +377,7 @@
     
     
     
-    WMDetailViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
+    WMPOIViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
     detailViewController.title = detailViewController.navigationBarTitle = NSLocalizedString(@"NavBarTitleDetail", nil);
     detailViewController.node = node;
     detailViewController.baseController = self.controllerBase;
