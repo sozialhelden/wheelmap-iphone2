@@ -23,7 +23,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
 #import "WMNavigationControllerBase.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 

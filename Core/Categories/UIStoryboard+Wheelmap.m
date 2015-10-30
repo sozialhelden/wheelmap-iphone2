@@ -32,6 +32,10 @@
 
 #pragma mark - Instantiations
 
++ (id)instantiatedPOIsListViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMPOIsListViewController"];
+}
+
 + (id)instantiatedEditPOIViewController {
 	return [UIStoryboard.poiStoryboard instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
 }

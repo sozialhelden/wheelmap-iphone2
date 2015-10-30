@@ -65,8 +65,8 @@
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
-    self.listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 }
 
 - (void)toggleMapTypeChanged:(UIButton *)sender {
@@ -80,7 +80,7 @@
     return [self.dataSource nodeList];
 }
 
--(NSArray*)filteredNodeListForUseCaseForUseCase:(WMNodeListViewControllerUseCase)useCase {
+-(NSArray*)filteredNodeListForUseCaseForUseCase:(WMPOIsListViewControllerUseCase)useCase {
     return [self.dataSource filteredNodeListForUseCase:useCase];
 }
 

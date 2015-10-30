@@ -10,7 +10,7 @@
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
 #import "WMPOIIPadNavigationController.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMOSMDescriptionViewController.h"
 #import "Constants.h"
 #import "WMOSMLoginViewController.h"

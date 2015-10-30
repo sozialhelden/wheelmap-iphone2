@@ -7,7 +7,7 @@
 //
 
 #import "WMCategoriesListViewController.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMNavigationControllerBase.h"
 
 @implementation WMCategoriesListViewController
@@ -83,8 +83,8 @@
         }
     }
     
-    WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    nodeListVC.useCase = kWMNodeListViewControllerUseCaseCategory;
+    WMPOIsListViewController* nodeListVC = [UIStoryboard instantiatedPOIsListViewController];
+    nodeListVC.useCase = kWMPOIsListViewControllerUseCaseCategory;
     nodeListVC.navigationBarTitle = categoryName;
     
     [self.navigationController pushViewController:nodeListVC animated:YES];

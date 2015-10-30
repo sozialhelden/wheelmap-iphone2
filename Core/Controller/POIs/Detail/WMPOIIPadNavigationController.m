@@ -12,7 +12,7 @@
 #import "WMPOIWheelchairStatusViewController.h"
 #import "WMEditPOICommentViewController.h"
 #import "WMIPadRootViewController.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMAcceptTermsViewController.h"
 
 @interface WMPOIIPadNavigationController ()

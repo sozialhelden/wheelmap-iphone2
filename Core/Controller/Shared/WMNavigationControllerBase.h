@@ -21,7 +21,7 @@
 #import "WMWheelChairStatusFilterPopoverView.h"
 #import "WMCategoryFilterPopoverView.h"
 
-@class WMDataManager, WMNodeListViewController;
+@class WMDataManager, WMPOIsListViewController;
 
 @interface WMNavigationControllerBase : UINavigationController
 <WMDataManagerDelegate, WMNodeListDataSource,

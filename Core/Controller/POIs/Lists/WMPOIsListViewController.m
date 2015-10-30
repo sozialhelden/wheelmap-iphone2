@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMNodeListCell.h"
 #import "Node.h"
 #import "NodeType.h"
@@ -18,7 +18,7 @@
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
 
-@implementation WMNodeListViewController
+@implementation WMPOIsListViewController
 {
     NSArray *nodes;
     
@@ -72,7 +72,7 @@
     
     searching = NO;
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
+    if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
     
@@ -96,7 +96,7 @@
 
 -(void) initNodeType{
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
+    if (self.useCase == kWMPOIsListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         
         isAccesoryHeaderVisible = YES;
@@ -129,11 +129,11 @@
         [(WMNavigationControllerBase*)dataSource updateNodesWithCurrentUserLocation];
         [self loadNodes];
         
-    } else if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+    } else if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand) {
         [self.tableView reloadData];
         [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
-    } else if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
+    } else if (self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         [self.tableView reloadData];
         [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
@@ -148,7 +148,7 @@
         }
         [self loadNodes];
         
-        if (self.useCase == kWMNodeListViewControllerUseCaseCategory) {
+        if (self.useCase == kWMPOIsListViewControllerUseCaseCategory) {
             [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
         }
     }
@@ -159,7 +159,7 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
-        if (self.useCase == kWMNodeListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
+        if (self.useCase == kWMPOIsListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
             isAccesoryHeaderVisible = YES;
             
             accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width-20, 60)];
@@ -190,7 +190,7 @@
             
         } else {
             
-            if (self.useCase != kWMNodeListViewControllerUseCaseContribute) {
+            if (self.useCase != kWMPOIsListViewControllerUseCaseContribute) {
                 
                 isAccesoryHeaderVisible = NO;
                 
@@ -212,7 +212,7 @@
         }
     }
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
+    if (self.useCase == kWMPOIsListViewControllerUseCaseContribute) {
         NSArray* unfilteredNodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
         
@@ -272,7 +272,7 @@
 
 - (void) nodeListDidChange
 {
-    if (self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch) {
+    if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         if (receivedClearList) {
             searching = NO;
             receivedClearList = NO;

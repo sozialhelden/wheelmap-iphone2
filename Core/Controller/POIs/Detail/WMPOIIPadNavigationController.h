@@ -11,11 +11,11 @@
 #import "WMToolBar.h"
 #import <CoreLocation/CoreLocation.h>
 
-@class WMNodeListViewController;
+@class WMPOIsListViewController;
 
 @interface WMPOIIPadNavigationController : UINavigationController <WMNavigationBarDelegate>
 
-@property (nonatomic, strong) WMNodeListViewController *	listViewController;
+@property (nonatomic, strong) WMPOIsListViewController *	listViewController;
 @property (nonatomic, strong) WMNavigationBar *				customNavigationBar;
 @property (nonatomic, assign) CLLocationCoordinate2D		initialCoordinate;
 

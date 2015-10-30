@@ -627,9 +627,9 @@
 		878EC8FD1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */; };
 		878EC8FE1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */; };
 		878EC8FF1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */; };
-		878EC9001BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */; };
-		878EC9011BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */; };
-		878EC9021BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */; };
+		878EC9001BE0F7960099EDD1 /* WMPOIsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMPOIsListViewController.m */; };
+		878EC9011BE0F7960099EDD1 /* WMPOIsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMPOIsListViewController.m */; };
+		878EC9021BE0F7960099EDD1 /* WMPOIsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMPOIsListViewController.m */; };
 		878EC9031BE0F7960099EDD1 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8BB1BE0F7960099EDD1 /* WMMapViewController.m */; };
 		878EC9041BE0F7960099EDD1 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8BB1BE0F7960099EDD1 /* WMMapViewController.m */; };
 		878EC9051BE0F7960099EDD1 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8BB1BE0F7960099EDD1 /* WMMapViewController.m */; };
@@ -996,8 +996,8 @@
 		878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIWheelchairStatusViewController.m; sourceTree = "<group>"; };
 		878EC8B51BE0F7960099EDD1 /* WMCategoriesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoriesListViewController.h; sourceTree = "<group>"; };
 		878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoriesListViewController.m; sourceTree = "<group>"; };
-		878EC8B71BE0F7960099EDD1 /* WMNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListViewController.h; sourceTree = "<group>"; };
-		878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeListViewController.m; sourceTree = "<group>"; };
+		878EC8B71BE0F7960099EDD1 /* WMPOIsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIsListViewController.h; sourceTree = "<group>"; };
+		878EC8B81BE0F7960099EDD1 /* WMPOIsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIsListViewController.m; sourceTree = "<group>"; };
 		878EC8BA1BE0F7960099EDD1 /* WMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewController.h; sourceTree = "<group>"; };
 		878EC8BB1BE0F7960099EDD1 /* WMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewController.m; sourceTree = "<group>"; };
 		878EC8BD1BE0F7960099EDD1 /* WMNavigationControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationControllerBase.h; sourceTree = "<group>"; };
@@ -1678,8 +1678,8 @@
 			children = (
 				878EC8B51BE0F7960099EDD1 /* WMCategoriesListViewController.h */,
 				878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */,
-				878EC8B71BE0F7960099EDD1 /* WMNodeListViewController.h */,
-				878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */,
+				878EC8B71BE0F7960099EDD1 /* WMPOIsListViewController.h */,
+				878EC8B81BE0F7960099EDD1 /* WMPOIsListViewController.m */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
@@ -2662,7 +2662,7 @@
 				878EC95D1BE0F9200099EDD1 /* WMWheelChairStatusFilterPopoverView.m in Sources */,
 				878EC9541BE0F9200099EDD1 /* InfiniteGallery.m in Sources */,
 				878EC8F81BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */,
-				878EC9011BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
+				878EC9011BE0F7960099EDD1 /* WMPOIsListViewController.m in Sources */,
 				872FDF2F1BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
 				878EC8F51BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */,
 				87F841691BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
@@ -2740,7 +2740,7 @@
 				878EC95E1BE0F9200099EDD1 /* WMWheelChairStatusFilterPopoverView.m in Sources */,
 				878EC9551BE0F9200099EDD1 /* InfiniteGallery.m in Sources */,
 				878EC8F91BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */,
-				878EC9021BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
+				878EC9021BE0F7960099EDD1 /* WMPOIsListViewController.m in Sources */,
 				872FDF301BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
 				878EC8F61BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */,
 				87F8416A1BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
@@ -2818,7 +2818,7 @@
 				878EC95C1BE0F9200099EDD1 /* WMWheelChairStatusFilterPopoverView.m in Sources */,
 				878EC9531BE0F9200099EDD1 /* InfiniteGallery.m in Sources */,
 				878EC8F71BE0F7960099EDD1 /* WMShareSocialViewController.m in Sources */,
-				878EC9001BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
+				878EC9001BE0F7960099EDD1 /* WMPOIsListViewController.m in Sources */,
 				872FDF2E1BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
 				878EC8F41BE0F7960099EDD1 /* WMEditPOIPositionViewController.m in Sources */,
 				87F841681BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,

@@ -10,13 +10,13 @@
 #import "WMNodeListView.h"
 #import "WMNavigationControllerBase.h"
 
-@interface WMNodeListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+@interface WMPOIsListViewController : WMViewController <WMNodeListView, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopVerticalSpaceConstraint;
 
 @property (nonatomic, strong) NSNumber* selectedCategoryID;
-@property (nonatomic) WMNodeListViewControllerUseCase useCase;
+@property (nonatomic) WMPOIsListViewControllerUseCase useCase;
 @property (nonatomic, strong) WMPopoverController *popover;
 @property (nonatomic, strong) WMNavigationControllerBase *controllerBase;
 

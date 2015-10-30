@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WMPOIIPadNavigationController.h"
 #import "WMNavigationControllerBase.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 
 @interface WMPOIWheelchairStatusViewController ()
 

@@ -59,12 +59,12 @@ typedef enum {
 } DotType;
 
 typedef enum {
-    kWMNodeListViewControllerUseCaseNormal,
-    kWMNodeListViewControllerUseCaseGlobalSearch,
-    kWMNodeListViewControllerUseCaseSearchOnDemand,
-    kWMNodeListViewControllerUseCaseContribute,
-    kWMNodeListViewControllerUseCaseCategory
-} WMNodeListViewControllerUseCase;
+    kWMPOIsListViewControllerUseCaseNormal,
+    kWMPOIsListViewControllerUseCaseGlobalSearch,
+    kWMPOIsListViewControllerUseCaseSearchOnDemand,
+    kWMPOIsListViewControllerUseCaseContribute,
+    kWMPOIsListViewControllerUseCaseCategory
+} WMPOIsListViewControllerUseCase;
 
 #define UI_USER_INTERFACE_IDIOM() \
 ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] ? \

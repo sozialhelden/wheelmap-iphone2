@@ -24,7 +24,7 @@
 #import "WMCategory.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMIPadRootViewController.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
@@ -42,7 +42,7 @@
     WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
     WMCategoryFilterPopoverView* categoryFilterPopover;
     
-    WMNodeListViewController* listViewController;
+    WMPOIsListViewController* listViewController;
     
     UIView* loadingWheelContainer;  // this view will show loading whell on the center and cover child view controllers so that we avoid interactions interuptting data loading
     UIActivityIndicatorView* loadingWheel;
@@ -235,9 +235,9 @@
 
 - (void)pushList {
     if (listViewController == nil) {
-        listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
+        listViewController = [UIStoryboard instantiatedPOIsListViewController];
     }
-    listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 	[self pushViewController:listViewController animated:YES];
 }
@@ -245,7 +245,7 @@
 - (void)pushMap {
     
     if (listViewController == nil) {
-        listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
+        listViewController = [UIStoryboard instantiatedPOIsListViewController];
     }
     if (self.mapViewController == nil) {
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
@@ -255,24 +255,24 @@
 }
 
 - (void)setMapControllerToContribute {
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseContribute;
 }
 
 - (void)setMapControllerToNormal {
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 	self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 	[self.customToolBar showAllButtons];
 }
 
 - (void)setListViewControllerToNormal {
-	listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+	listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 	[self.customToolBar showAllButtons];
 }
 
 - (void)resetMapAndListToNormalUseCase {
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+    listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
     [self clearCategoryFilterStatus];
     
     [categoryFilterPopover removeFromSuperview];
@@ -435,7 +435,7 @@
 
 -(void)dataManagerDidStartOperation:(WMDataManager *)dataManager
 {
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+    if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]])
         [self showLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(showActivityIndicator)]) {
@@ -450,7 +450,7 @@
 
 -(void)dataManagerDidStopAllOperations:(WMDataManager *)dataManager
 {
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+    if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]])
         [self hideLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(hideActivityIndicator)]) {
@@ -496,7 +496,7 @@
     return nodes;
 }
 
-- (NSArray*)filteredNodeListForUseCase:(WMNodeListViewControllerUseCase)useCase {
+- (NSArray*)filteredNodeListForUseCase:(WMPOIsListViewControllerUseCase)useCase {
     NSLog(@"OLD NODE LIST = %lu", (unsigned long)nodes.count);
     
     // filter nodes here
@@ -508,7 +508,7 @@
     for (Node* node in nodesCopy) {
         NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
-        if (((useCase == kWMNodeListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN])
+        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN])
 			|| [[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES)
 			&& [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
 				if (![newNodeList containsObject:node]) {
@@ -616,7 +616,7 @@
     
     // we don"t want to push a detail view when selecting a node on the map view, so
     // we check if this message comes from a table view
-    if (node && [nodeListView isKindOfClass:[WMNodeListViewController class]]) {
+    if (node && [nodeListView isKindOfClass:[WMPOIsListViewController class]]) {
         [self pushDetailsViewControllerForNode:node];
     }
 }
@@ -692,9 +692,9 @@
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
         [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];   // this will automatically update node list!
-    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController *currentVC = (WMNodeListViewController*)self.topViewController;
-        if (currentVC.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMNodeListViewControllerUseCaseGlobalSearch)) {
+    } else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController *currentVC = (WMPOIsListViewController*)self.topViewController;
+        if (currentVC.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch)) {
             [self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
         } else {
             //            [self updateNodesNear:newLocation.coordinate];
@@ -844,27 +844,27 @@
             leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;   // single exception. this is the first level!
         }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
-    } else if ([vc isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController* nodeListVC = (WMNodeListViewController*)vc;
+    } else if ([vc isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)vc;
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         self.customToolBar.toggleButton.selected = NO;
         switch (nodeListVC.useCase) {
-            case kWMNodeListViewControllerUseCaseNormal:
+            case kWMPOIsListViewControllerUseCaseNormal:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
                 [self.customToolBar showAllButtons];
                 break;
-            case kWMNodeListViewControllerUseCaseContribute:
+            case kWMPOIsListViewControllerUseCaseContribute:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"TitleHelp", nil);
                 [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
                 //[self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
                 break;
-            case kWMNodeListViewControllerUseCaseCategory:
+            case kWMPOIsListViewControllerUseCaseCategory:
                 [self.customToolBar showButton:kWMToolBarButtonWheelChairFilter];
                 [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 break;
-            case kWMNodeListViewControllerUseCaseGlobalSearch:
-            case kWMNodeListViewControllerUseCaseSearchOnDemand:
+            case kWMPOIsListViewControllerUseCaseGlobalSearch:
+            case kWMPOIsListViewControllerUseCaseSearchOnDemand:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
             default:
@@ -1051,20 +1051,20 @@
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         WMIPadRootViewController* vc = (WMIPadRootViewController*)self.topViewController;
-        vc.listViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
-        vc.mapViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+        vc.listViewController.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
+        vc.mapViewController.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
         [self updateNodesWithQuery:query andRegion:vc.mapViewController.region];
         
-    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
-        vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+    } else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController* vc = (WMPOIsListViewController*)self.topViewController;
+        vc.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
         self.customNavigationBar.title = vc.navigationBarTitle;
         [self updateNodesWithQuery:query andRegion:self.mapViewController.region];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* vc = (WMMapViewController*)self.topViewController;
-        vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+        vc.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
         self.customNavigationBar.title = vc.navigationBarTitle;
 
@@ -1081,33 +1081,33 @@
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
     
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
+    if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
         //  the node list view is on the screen. push the map view controller
         
         WMViewController* currentVC = (WMViewController*)self.topViewController;
         self.mapViewController.navigationBarTitle = currentVC.navigationBarTitle;
 		if ([currentVC respondsToSelector:@selector(useCase)]) {
-            self.mapViewController.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
+            self.mapViewController.useCase = (WMPOIsListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
 		}
 		
 		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
 		if ([toVC isKindOfClass:[WMMapViewController class]]) {
 			// Map view controller is already there, we just have to pop fade
-			((WMMapViewController*)toVC).useCase = ((WMNodeListViewController*)self.topViewController).useCase;
-			((WMMapViewController*)toVC).navigationBarTitle = ((WMNodeListViewController*)self.topViewController).navigationBarTitle;
+			((WMMapViewController*)toVC).useCase = ((WMPOIsListViewController*)self.topViewController).useCase;
+			((WMMapViewController*)toVC).navigationBarTitle = ((WMPOIsListViewController*)self.topViewController).navigationBarTitle;
 			[self popFadeViewController];
 		} else {
-			self.mapViewController.useCase = ((WMNodeListViewController*)self.topViewController).useCase;
-			self.mapViewController.navigationBarTitle = ((WMNodeListViewController*)self.topViewController).navigationBarTitle;
+			self.mapViewController.useCase = ((WMPOIsListViewController*)self.topViewController).useCase;
+			self.mapViewController.navigationBarTitle = ((WMPOIsListViewController*)self.topViewController).navigationBarTitle;
 			[self pushFadeViewController:self.mapViewController];
 		}
 		
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         //  the map view is on the screen. pop the map view controller
 		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
-		if ([toVC isKindOfClass:[WMNodeListViewController class]]) {
-			((WMNodeListViewController*)toVC).useCase = ((WMMapViewController*)self.topViewController).useCase;
-			((WMNodeListViewController*)toVC).navigationBarTitle = ((WMMapViewController*)self.topViewController).navigationBarTitle;
+		if ([toVC isKindOfClass:[WMPOIsListViewController class]]) {
+			((WMPOIsListViewController*)toVC).useCase = ((WMMapViewController*)self.topViewController).useCase;
+			((WMPOIsListViewController*)toVC).navigationBarTitle = ((WMMapViewController*)self.topViewController).navigationBarTitle;
 			[self popFadeViewController];
 		} else {
 			// List view controller is already there, we just have to pop fade
@@ -1137,25 +1137,25 @@
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
-        if (currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        if (currentVC.listViewController.useCase == kWMPOIsListViewControllerUseCaseCategory || currentVC.listViewController.useCase == kWMPOIsListViewControllerUseCaseContribute) {
             return;
         }
-        currentVC.listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-        currentVC.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
-        if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        currentVC.listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+        currentVC.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+    } else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController* currentVC = (WMPOIsListViewController*)self.topViewController;
+        if (currentVC.useCase == kWMPOIsListViewControllerUseCaseCategory || currentVC.useCase == kWMPOIsListViewControllerUseCaseContribute) {
             return;
         }
-        currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-        if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        if (currentVC.useCase == kWMPOIsListViewControllerUseCaseCategory || currentVC.useCase == kWMPOIsListViewControllerUseCaseContribute) {
             return;
         }
-        currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
     }
@@ -1197,20 +1197,20 @@
             
             [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
         }
-        if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-            WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
-            currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+            WMPOIsListViewController* currentVC = (WMPOIsListViewController*)self.topViewController;
+            currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
             currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
             self.customNavigationBar.title = currentVC.navigationBarTitle;
         } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
             WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-            WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
-			if ([nodeListVC isKindOfClass:[WMNodeListViewController class]]) {
-				nodeListVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+            WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+			if ([nodeListVC isKindOfClass:[WMPOIsListViewController class]]) {
+				nodeListVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
 				nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 			}
 			
-            currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+            currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
             currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
             self.customNavigationBar.title = currentVC.navigationBarTitle;
         }
@@ -1307,12 +1307,12 @@
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
             if (( (WMToolBar_iPad *)toolBar).helpButton.selected == NO) {
-                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
                 [self pressedCurrentLocationButton:self.customToolBar];
             } else {
-                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
-                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMPOIsListViewControllerUseCaseContribute;
+                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMPOIsListViewControllerUseCaseContribute;
                 [self pressedCurrentLocationButton:self.customToolBar];
             }
         }
@@ -1465,7 +1465,7 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
-        if ([viewController isKindOfClass:[WMNodeListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
+        if ([viewController isKindOfClass:[WMPOIsListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
             if (navigationController.toolbarHidden == YES)
                 [navigationController setToolbarHidden:NO animated:YES];
         } else {

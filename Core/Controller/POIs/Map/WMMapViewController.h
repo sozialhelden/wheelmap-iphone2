@@ -31,7 +31,7 @@
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
 
 @property (nonatomic) MKCoordinateRegion region;
-@property WMNodeListViewControllerUseCase useCase;
+@property WMPOIsListViewControllerUseCase useCase;
 @property BOOL refreshingForFilter;
 
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;

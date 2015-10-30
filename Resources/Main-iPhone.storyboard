@@ -141,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="-686" y="-666"/>
         </scene>
-        <!--Node List View Controller-->
+        <!--Is List View Controller-->
         <scene sceneID="B4f-ns-g13">
             <objects>
-                <viewController storyboardIdentifier="WMNodeListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OrT-nw-xew" customClass="WMNodeListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMPOIsListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OrT-nw-xew" customClass="WMPOIsListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vQa-y0-LYV"/>
                         <viewControllerLayoutGuide type="bottom" id="j0N-j3-YEM"/>
