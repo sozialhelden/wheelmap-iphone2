@@ -7,19 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMNodeListView.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMMapViewController.h"
 #import "WMNavigationControllerBase.h"
 
-@class WMNodeListViewController, WMMapViewController;
+@class WMPOIsListViewController, WMMapViewController;
 
-@interface WMIPadRootViewController : UIViewController<WMNodeListView,WMNodeListDataSource, WMNodeListDelegate>
+@interface WMIPadRootViewController : UIViewController<WMPOIsListViewDelegate,WMPOIsListDataSourceDelegate, WMPOIsListDelegate>
 
-@property (nonatomic) IBOutlet UIView<WMNodeListView> *listContainerView;
-@property (nonatomic) IBOutlet UIView<WMNodeListView> *mapContainerView;
+@property (nonatomic) IBOutlet UIView<WMPOIsListViewDelegate> *listContainerView;
+@property (nonatomic) IBOutlet UIView<WMPOIsListViewDelegate> *mapContainerView;
 
-@property (nonatomic) WMNodeListViewController *listViewController;
+@property (nonatomic) WMPOIsListViewController *listViewController;
 @property (nonatomic) WMMapViewController *mapViewController;
 @property (nonatomic) WMNavigationControllerBase *controllerBase;
 

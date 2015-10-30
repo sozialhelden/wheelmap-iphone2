@@ -1,23 +1,18 @@
 //
-//  WMCategoryViewController.m
+//  WMCategoriesListViewController.m
 //  Wheelmap
 //
 //  Created by npng on 12/4/12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMCategoryViewController.h"
-#import "WMNodeListViewController.h"
+#import "WMCategoriesListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMNavigationControllerBase.h"
 
-@interface WMCategoryViewController ()
+@implementation WMCategoriesListViewController
 
-@end
-
-@implementation WMCategoryViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -33,8 +28,7 @@
     self.tableView.scrollsToTop = YES;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     if ([self.baseController isKindOfClass:[WMNavigationControllerBase class]]) {
@@ -50,25 +44,17 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - UITableView Datasource and Delegate
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return categories.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WMCategory* c = [categories objectAtIndex:indexPath.row];
     NSString* cellID = [NSString stringWithFormat:@"CategoryVCCell-%@", c.id];
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
@@ -82,16 +68,13 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WMCategory* c = [categories objectAtIndex:indexPath.row];
     NSString* categoryName = c.localized_name;
     NSNumber* categoryID = c.id;
     
     // set the filters here
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    //[navCtrl clearWheelChairFilterStatus];
-    //[navCtrl clearCategoryFilterStatus];
     for (NSNumber* key in [navCtrl.categoryFilterStatus allKeys]) {
         if ([key intValue] == [categoryID intValue]) {
             [navCtrl.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
@@ -100,8 +83,8 @@
         }
     }
     
-    WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    nodeListVC.useCase = kWMNodeListViewControllerUseCaseCategory;
+    WMPOIsListViewController* nodeListVC = [UIStoryboard instantiatedPOIsListViewController];
+    nodeListVC.useCase = kWMPOIsListViewControllerUseCaseCategory;
     nodeListVC.navigationBarTitle = categoryName;
     
     [self.navigationController pushViewController:nodeListVC animated:YES];

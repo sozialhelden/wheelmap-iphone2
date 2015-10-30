@@ -17,6 +17,8 @@
 
 #pragma mark - Instantiations
 
++ (id)instantiatedPOIsListViewController;
+
 + (id)instantiatedEditPOIViewController;
 
 + (id)instantiatedRegisterViewController;

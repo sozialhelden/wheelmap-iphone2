@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WMEditPOIViewController.h"
-#import "WMPOIWheelchairStatusViewController.h"
+#import "WMEditPOIWheelchairStatusViewController.h"
 #import "WMPOIViewController.h"
 #import "WMEditPOIPositionViewController.h"
 #import "NodeType.h"
@@ -294,7 +294,7 @@
 - (IBAction)showAccessOptions:(id)sender {
     [self buttonPressed];
     
-    WMPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIWheelchairStatusViewController"];
+    WMEditPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIWheelchairStatusViewController"];
     vc.hideSaveButton = YES;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
     vc.navigationBarTitle = vc.title;
@@ -412,7 +412,7 @@
     [progressWheel stopAnimating];
     NSLog(@"XXXXXXXX FINISHED");
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self dismissViewControllerAnimated:YES];
     }
     
@@ -505,7 +505,7 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == NO) {
 		[self keyboardDidMove:notification];
     }
 
@@ -516,7 +516,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == NO) {
         
         if (self.keyboardIsShown) {
             return;

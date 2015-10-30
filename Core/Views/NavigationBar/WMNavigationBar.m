@@ -191,7 +191,7 @@
         self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         
         // search bar
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + K_NAVIGATION_BAR_HEIGHT, self.bounds.origin.y, 320.0f - K_NAVIGATION_BAR_HEIGHT, self.bounds.size.height)];
         } else {
             searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y-20, self.bounds.size.width, self.bounds.size.height)];
@@ -220,7 +220,7 @@
         normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
         [normalBtnImg addSubview:normalBtnLabel];
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             
         } else {
             searchBarCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
@@ -233,7 +233,7 @@
         }
         
         // search text field
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, searchBarContainer.frame.size.width - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET, self.frame.size.height - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET)];
         } else {
             searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, searchBarCancelButton.frame.origin.x - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET, self.frame.size.height - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET)];

@@ -65,8 +65,8 @@
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
-    self.listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 }
 
 - (void)toggleMapTypeChanged:(UIButton *)sender {
@@ -80,7 +80,7 @@
     return [self.dataSource nodeList];
 }
 
--(NSArray*)filteredNodeListForUseCaseForUseCase:(WMNodeListViewControllerUseCase)useCase {
+-(NSArray*)filteredNodeListForUseCaseForUseCase:(WMPOIsListViewControllerUseCase)useCase {
     return [self.dataSource filteredNodeListForUseCase:useCase];
 }
 
@@ -97,7 +97,7 @@
 
 #pragma mark - Node List Delegate
 
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectDetailsForNode:(Node *)node
 {
     if (node == nil) {
         return;
@@ -107,7 +107,7 @@
     [self.listViewController showDetailPopoverForNode:node];
 }
 
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectNode:(Node *)node
 {
     if (node == nil) {
         return;

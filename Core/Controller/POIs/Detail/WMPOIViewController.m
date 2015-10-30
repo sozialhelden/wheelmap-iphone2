@@ -13,7 +13,7 @@
 #import "NodeType.h"
 #import "Image.h"
 #import "Photo.h"
-#import "WMPOIWheelchairStatusViewController.h"
+#import "WMEditPOIWheelchairStatusViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMEditPOICommentViewController.h"
 #import "WMEditPOIViewController.h"
@@ -23,7 +23,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
 #import "WMNavigationControllerBase.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 
@@ -746,7 +746,7 @@
         if (buttonIndex == 0) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if (UIDevice.isIPad == YES) {
                 
                 self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
                 
@@ -757,7 +757,7 @@
         } else if (buttonIndex == 1) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if (UIDevice.isIPad == YES) {
                 
                 self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
                 
@@ -814,7 +814,7 @@
     } else {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             
             self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
             
@@ -830,7 +830,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.imagePicker setNeedsStatusBarAppearanceUpdate];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.popOverController dismissPopoverAnimated:YES];
     }
     
@@ -842,7 +842,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.imagePicker setNeedsStatusBarAppearanceUpdate];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.popOverController dismissPopoverAnimated:YES];
     }
     
@@ -934,7 +934,7 @@
     vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
     vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
@@ -953,7 +953,7 @@
     vc.baseController = self.baseController;
     vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
@@ -967,7 +967,7 @@
 }
 
 - (void)showAccessOptions {
-    WMPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIWheelchairStatusViewController"];
+    WMEditPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIWheelchairStatusViewController"];
     vc.delegate = self;
     vc.node = self.node;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", @"");

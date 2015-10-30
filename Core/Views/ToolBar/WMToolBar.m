@@ -7,8 +7,6 @@
 //
 
 #import "WMToolBar.h"
-#import "Constants.h"
-
 
 @implementation WMToolBar
 

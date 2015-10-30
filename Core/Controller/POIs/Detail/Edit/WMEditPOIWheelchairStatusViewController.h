@@ -1,5 +1,5 @@
 //
-//  WMPOIWheelchairStatusViewController.h
+//  WMEditPOIWheelchairStatusViewController.h
 //  Wheelmap
 //
 //  Created by Dorian Roy on 26.11.12.
@@ -15,7 +15,7 @@ typedef enum {
     kWMWheelChairStatusViewControllerUseCasePutNode
 } WMWheelChairStatusViewControllerUseCase;
 
-@interface WMPOIWheelchairStatusViewController : WMViewController <WMDataManagerDelegate> {
+@interface WMEditPOIWheelchairStatusViewController : WMViewController <WMDataManagerDelegate> {
     WMDataManager* dataManager;
     
     UIActivityIndicatorView* progressWheel;
