@@ -1,5 +1,5 @@
 //
-//  WMDetailNavigationController.h
+//  WMPOIIPadNavigationController.h
 //  Wheelmap
 //
 //  Created by Michael Thomas on 23.01.13.
@@ -13,13 +13,13 @@
 
 @class WMNodeListViewController;
 
-@interface WMDetailNavigationController : UINavigationController <WMNavigationBarDelegate>
+@interface WMPOIIPadNavigationController : UINavigationController <WMNavigationBarDelegate>
 
-@property (nonatomic, strong) WMNodeListViewController* listViewController;
-@property (nonatomic, strong) WMNavigationBar* customNavigationBar;
-@property (nonatomic, assign) CLLocationCoordinate2D initialCoordinate;
+@property (nonatomic, strong) WMNodeListViewController *	listViewController;
+@property (nonatomic, strong) WMNavigationBar *				customNavigationBar;
+@property (nonatomic, assign) CLLocationCoordinate2D		initialCoordinate;
 
-- (void) showLoadingWheel;
+- (void)showLoadingWheel;
 - (void)changeScreenStatusFor:(UIViewController *)viewController;
 - (void)mapWasMoved:(CLLocationCoordinate2D)coordinate;
 

@@ -12,7 +12,7 @@
 #import "Node.h"
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Constants.h"
@@ -398,7 +398,7 @@
     if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]]) {
         [(WMNavigationControllerBase *)self.navigationController mapWasMoved];
     } else if ([self.navigationController isKindOfClass:[WMDetailViewController class]]) {
-        [(WMDetailNavigationController *)self.navigationController mapWasMoved:mapView.region.center];
+        [(WMPOIIPadNavigationController *)self.navigationController mapWasMoved:mapView.region.center];
     }
     
     NSLog(@"Current Use Case %d", self.useCase);

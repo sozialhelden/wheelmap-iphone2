@@ -25,7 +25,7 @@
 #import "WMAcceptTermsViewController.h"
 #import "WMIPadRootViewController.h"
 #import "WMNodeListViewController.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
 #import "WMOSMLogoutViewController.h"
@@ -989,7 +989,7 @@
     editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
-        WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:editPOIViewController];
+        WMPOIIPadNavigationController *detailNavController = [[WMPOIIPadNavigationController alloc] initWithRootViewController:editPOIViewController];
         detailNavController.customNavigationBar.title = editPOIViewController.navigationBarTitle;
         
         editPOIViewController.isRootViewController = YES;

@@ -9,7 +9,7 @@
 #import "WMOSMOnboardingViewController.h"
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMNodeListViewController.h"
 #import "WMOSMDescriptionViewController.h"
 #import "Constants.h"
@@ -154,7 +154,7 @@
     } else {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             if (self.navigationController != nil) {
-                [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase showAcceptTermsViewController];
+                [((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase showAcceptTermsViewController];
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
                 [(WMNavigationControllerBase *)self.baseController showAcceptTermsViewController];

@@ -1,12 +1,12 @@
 //
-//  WMDetailNavigationController.m
+//  WMPOIIPadNavigationController.m
 //  Wheelmap
 //
 //  Created by Michael Thomas on 23.01.13.
 //  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMDetailViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
@@ -15,16 +15,15 @@
 #import "WMNodeListViewController.h"
 #import "WMAcceptTermsViewController.h"
 
-@interface WMDetailNavigationController ()
+@interface WMPOIIPadNavigationController ()
 
 @end
 
-@implementation WMDetailNavigationController {
+@implementation WMPOIIPadNavigationController {
     WMDataManager *dataManager;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
@@ -44,18 +43,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)mapWasMoved:(CLLocationCoordinate2D)coordinate {
     self.initialCoordinate = coordinate;
 }
@@ -63,9 +50,10 @@
 -(void)pressedBackButton:(WMNavigationBar*)navigationBar {
     [self popViewControllerAnimated:YES];
 }
--(void)pressedDashboardButton:(WMNavigationBar*)navigationBar {}
 
--(void)pressedEditButton:(WMNavigationBar*)navigationBar {
+- (void)pressedDashboardButton:(WMNavigationBar*)navigationBar {}
+
+- (void)pressedEditButton:(WMNavigationBar*)navigationBar {
 	// Check if the user is logged in.
     if (dataManager.userIsAuthenticated == NO) {
 		[self showLoginViewController];
@@ -84,12 +72,11 @@
 	}
 }
 
-
--(void)pressedCancelButton:(WMNavigationBar*)navigationBar {
+- (void)pressedCancelButton:(WMNavigationBar*)navigationBar {
     [self popViewControllerAnimated:YES];
 }
 
--(void)pressedSaveButton:(WMNavigationBar*)navigationBar {
+- (void)pressedSaveButton:(WMNavigationBar*)navigationBar {
     WMViewController* currentViewController = [self.viewControllers lastObject];
     if ([currentViewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
         [(WMWheelchairStatusViewController*)currentViewController saveAccessStatus];
@@ -102,13 +89,13 @@
     }
 }
 
--(void)pressedContributeButton:(WMNavigationBar*)navigationBar {
+- (void)pressedContributeButton:(WMNavigationBar*)navigationBar {}
 
-}
--(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar {}
--(void)pressedSearchButton:(BOOL)selected {}
+- (void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar {}
 
--(void)searchStringIsGiven:(NSString*)query {}
+- (void)pressedSearchButton:(BOOL)selected {}
+
+- (void)searchStringIsGiven:(NSString*)query {}
 
 #pragma mark - NavigationController stack
 
@@ -150,32 +137,27 @@
     [super pushViewController:viewController animated:animated];
 }
 
--(UIViewController*)popViewControllerAnimated:(BOOL)animated
-{
+- (UIViewController*)popViewControllerAnimated:(BOOL)animated {
     UIViewController* lastViewController = [super popViewControllerAnimated:animated];
     [self changeScreenStatusFor:[self.viewControllers lastObject]];
     
     return lastViewController;
 }
 
--(NSArray*)popToRootViewControllerAnimated:(BOOL)animated
-{
+- (NSArray*)popToRootViewControllerAnimated:(BOOL)animated {
     NSArray* lastViewControllers = [super popToRootViewControllerAnimated:animated];
     [self changeScreenStatusFor:[self.viewControllers lastObject]];
     return lastViewControllers;
 }
 
--(NSArray*)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    
+- (NSArray*)popToViewController:(UIViewController *)viewController animated:(BOOL)animated {
     NSArray* lastViewControllers = [super popToViewController:viewController animated:animated];
     [self changeScreenStatusFor:[self.viewControllers lastObject]];
     
     return lastViewControllers;
 }
 
--(void)setViewControllers:(NSArray *)viewControllers animated:(BOOL)animated
-{
+- (void)setViewControllers:(NSArray *)viewControllers animated:(BOOL)animated {
     [super setViewControllers:viewControllers animated:animated];
     [self changeScreenStatusFor:[viewControllers lastObject]];
 }

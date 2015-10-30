@@ -20,7 +20,7 @@
 #import "Node.h"
 #import "NodeType.h"
 #import "WMIPadRootViewController.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 
 @interface WMEditPOIViewController ()
 
@@ -134,7 +134,7 @@
     self.title = NSLocalizedString(@"NavBarTitleEdit", nil);
     self.navigationBarTitle = self.title;
     
-    [(WMDetailNavigationController *)self.navigationController changeScreenStatusFor:self];
+    [(WMPOIIPadNavigationController *)self.navigationController changeScreenStatusFor:self];
 
     [self updateFields];
 

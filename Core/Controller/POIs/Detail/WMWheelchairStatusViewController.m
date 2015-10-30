@@ -8,7 +8,7 @@
 
 #import "WMWheelchairStatusViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMNodeListViewController.h"
 
@@ -219,9 +219,9 @@
     [progressWheel stopAnimating];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if ([self.navigationController isKindOfClass:[WMDetailNavigationController class]]) {
-            if (((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase != nil) {
-                [((WMDetailNavigationController *)self.navigationController).listViewController.controllerBase updateNodesWithCurrentUserLocation];
+        if ([self.navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
+            if (((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase != nil) {
+                [((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase updateNodesWithCurrentUserLocation];
             }
         }
     }

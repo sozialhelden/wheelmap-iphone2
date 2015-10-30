@@ -24,7 +24,7 @@
 #import "WMCategory.h"
 #import "WMNavigationControllerBase.h"
 #import "WMNodeListViewController.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 
 #define GABIFSTATUSUNKNOWN 62
@@ -554,8 +554,8 @@
 
 	if (dataManager.userIsAuthenticated == NO) {
 		WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
-		if ([navigationController isKindOfClass:[WMDetailNavigationController class]]) {
-			[(WMDetailNavigationController*)navigationController showLoginViewController];
+		if ([navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
+			[(WMPOIIPadNavigationController*)navigationController showLoginViewController];
 		} else {
 			[navigationController presentLoginScreenWithButtonFrame:self.moreInfoButton.frame];
 		}
@@ -840,9 +840,9 @@
 
 	// Check if user is authenticated
     if (dataManager.userIsAuthenticated == NO) {
-		if ([self.navigationController isKindOfClass:[WMDetailNavigationController class]] == YES) {
+		if ([self.navigationController isKindOfClass:[WMPOIIPadNavigationController class]] == YES) {
 			// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
-			WMDetailNavigationController *detailNavigationController = (WMDetailNavigationController *) self.navigationController;
+			WMPOIIPadNavigationController *detailNavigationController = (WMPOIIPadNavigationController *) self.navigationController;
 			[((WMNavigationControllerBase *)detailNavigationController.listViewController.navigationController) presentLoginScreen];
 		} else if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES) {
 			WMNavigationControllerBase *baseNavigationController = (WMNavigationControllerBase *) self.navigationController;

@@ -600,9 +600,9 @@
 		878EC8E21BE0F7960099EDD1 /* WMEditPOICommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A31BE0F7960099EDD1 /* WMEditPOICommentViewController.m */; };
 		878EC8E31BE0F7960099EDD1 /* WMEditPOICommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A31BE0F7960099EDD1 /* WMEditPOICommentViewController.m */; };
 		878EC8E41BE0F7960099EDD1 /* WMEditPOICommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A31BE0F7960099EDD1 /* WMEditPOICommentViewController.m */; };
-		878EC8E51BE0F7960099EDD1 /* WMDetailNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A51BE0F7960099EDD1 /* WMDetailNavigationController.m */; };
-		878EC8E61BE0F7960099EDD1 /* WMDetailNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A51BE0F7960099EDD1 /* WMDetailNavigationController.m */; };
-		878EC8E71BE0F7960099EDD1 /* WMDetailNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A51BE0F7960099EDD1 /* WMDetailNavigationController.m */; };
+		878EC8E51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m */; };
+		878EC8E61BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m */; };
+		878EC8E71BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m */; };
 		878EC8E81BE0F7960099EDD1 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A71BE0F7960099EDD1 /* WMDetailViewController.m */; };
 		878EC8E91BE0F7960099EDD1 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A71BE0F7960099EDD1 /* WMDetailViewController.m */; };
 		878EC8EA1BE0F7960099EDD1 /* WMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8A71BE0F7960099EDD1 /* WMDetailViewController.m */; };
@@ -978,8 +978,8 @@
 		878EC8A11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOICategoryViewController.m; sourceTree = "<group>"; };
 		878EC8A21BE0F7960099EDD1 /* WMEditPOICommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOICommentViewController.h; sourceTree = "<group>"; };
 		878EC8A31BE0F7960099EDD1 /* WMEditPOICommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOICommentViewController.m; sourceTree = "<group>"; };
-		878EC8A41BE0F7960099EDD1 /* WMDetailNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailNavigationController.h; sourceTree = "<group>"; };
-		878EC8A51BE0F7960099EDD1 /* WMDetailNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailNavigationController.m; sourceTree = "<group>"; };
+		878EC8A41BE0F7960099EDD1 /* WMPOIIPadNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIIPadNavigationController.h; sourceTree = "<group>"; };
+		878EC8A51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIIPadNavigationController.m; sourceTree = "<group>"; };
 		878EC8A61BE0F7960099EDD1 /* WMDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDetailViewController.h; sourceTree = "<group>"; };
 		878EC8A71BE0F7960099EDD1 /* WMDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDetailViewController.m; sourceTree = "<group>"; };
 		878EC8A81BE0F7960099EDD1 /* WMEditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIViewController.h; sourceTree = "<group>"; };
@@ -1653,8 +1653,8 @@
 				878EC8A11BE0F7960099EDD1 /* WMEditPOICategoryViewController.m */,
 				878EC8A21BE0F7960099EDD1 /* WMEditPOICommentViewController.h */,
 				878EC8A31BE0F7960099EDD1 /* WMEditPOICommentViewController.m */,
-				878EC8A41BE0F7960099EDD1 /* WMDetailNavigationController.h */,
-				878EC8A51BE0F7960099EDD1 /* WMDetailNavigationController.m */,
+				878EC8A41BE0F7960099EDD1 /* WMPOIIPadNavigationController.h */,
+				878EC8A51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m */,
 				878EC8A61BE0F7960099EDD1 /* WMDetailViewController.h */,
 				878EC8A71BE0F7960099EDD1 /* WMDetailViewController.m */,
 				878EC8A81BE0F7960099EDD1 /* WMEditPOIViewController.h */,
@@ -2614,7 +2614,7 @@
 				872FDF061BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
 				878EC9451BE0F9200099EDD1 /* WMDashboardButton.m in Sources */,
 				872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
-				878EC8E61BE0F7960099EDD1 /* WMDetailNavigationController.m in Sources */,
+				878EC8E61BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
 				878EC9101BE0F7960099EDD1 /* WMTableViewController.m in Sources */,
 				872FDF1D1BDFEF9900764FC5 /* unzip.c in Sources */,
 				878EC8C81BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
@@ -2692,7 +2692,7 @@
 				872FDF071BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
 				878EC9461BE0F9200099EDD1 /* WMDashboardButton.m in Sources */,
 				872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
-				878EC8E71BE0F7960099EDD1 /* WMDetailNavigationController.m in Sources */,
+				878EC8E71BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
 				878EC9111BE0F7960099EDD1 /* WMTableViewController.m in Sources */,
 				872FDF1E1BDFEF9900764FC5 /* unzip.c in Sources */,
 				878EC8C91BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
@@ -2770,7 +2770,7 @@
 				872FDF051BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
 				878EC9441BE0F9200099EDD1 /* WMDashboardButton.m in Sources */,
 				872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
-				878EC8E51BE0F7960099EDD1 /* WMDetailNavigationController.m in Sources */,
+				878EC8E51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
 				878EC90F1BE0F7960099EDD1 /* WMTableViewController.m in Sources */,
 				872FDF1C1BDFEF9900764FC5 /* unzip.c in Sources */,
 				878EC8C71BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
