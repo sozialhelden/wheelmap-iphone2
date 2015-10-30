@@ -10,7 +10,7 @@
 #import "WMDetailViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMWheelchairStatusViewController.h"
-#import "WMCommentViewController.h"
+#import "WMEditPOICommentViewController.h"
 #import "WMIPadRootViewController.h"
 #import "WMNodeListViewController.h"
 #import "WMAcceptTermsViewController.h"
@@ -97,8 +97,8 @@
     if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
         [(WMEditPOIViewController*)currentViewController saveEditedData];
     }
-    if ([currentViewController isKindOfClass:[WMCommentViewController class]]) {
-        [(WMCommentViewController*)currentViewController saveEditedData];
+    if ([currentViewController isKindOfClass:[WMEditPOICommentViewController class]]) {
+        [(WMEditPOICommentViewController*)currentViewController saveEditedData];
     }
 }
 
@@ -124,7 +124,7 @@
             self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         }
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
-    } else if ([viewController isKindOfClass:[WMCommentViewController class]]) {
+    } else if ([viewController isKindOfClass:[WMEditPOICommentViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
     } else if ([viewController isKindOfClass:[WMWheelchairStatusViewController class]]) {

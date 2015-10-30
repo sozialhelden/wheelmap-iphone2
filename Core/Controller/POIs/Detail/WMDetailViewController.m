@@ -15,7 +15,7 @@
 #import "Photo.h"
 #import "WMWheelchairStatusViewController.h"
 #import "WMShareSocialViewController.h"
-#import "WMCommentViewController.h"
+#import "WMEditPOICommentViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
 #import "WMCompassView.h"
@@ -562,7 +562,7 @@
 		return;
 	}
 
-    WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
+    WMEditPOICommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICommentViewController"];
     vc.currentNode = self.node;
     vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
     [self.navigationController pushViewController:vc animated:YES];
