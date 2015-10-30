@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="-544" y="-80"/>
         </scene>
-        <!--Wheelchair Status View Controller-->
+        <!--EditPOI Wheelchair Status View Controller-->
         <scene sceneID="bAj-UZ-YKr">
             <objects>
-                <viewController storyboardIdentifier="WMPOIWheelchairStatusViewController" hidesBottomBarWhenPushed="YES" id="asO-oM-oUu" customClass="WMPOIWheelchairStatusViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMEditPOIWheelchairStatusViewController" hidesBottomBarWhenPushed="YES" id="asO-oM-oUu" customClass="WMEditPOIWheelchairStatusViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yqy-Ap-gKJ"/>
                         <viewControllerLayoutGuide type="bottom" id="dig-ze-EXa"/>

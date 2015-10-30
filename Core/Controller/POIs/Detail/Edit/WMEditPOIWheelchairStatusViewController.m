@@ -1,22 +1,22 @@
 //
-//  WMPOIWheelchairStatusViewController.m
+//  WMEditPOIWheelchairStatusViewController.m
 //  Wheelmap
 //
 //  Created by Dorian Roy on 26.11.12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMPOIWheelchairStatusViewController.h"
+#import "WMEditPOIWheelchairStatusViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WMPOIIPadNavigationController.h"
 #import "WMNavigationControllerBase.h"
 #import "WMPOIsListViewController.h"
 
-@interface WMPOIWheelchairStatusViewController ()
+@interface WMEditPOIWheelchairStatusViewController ()
 
 @end
 
-@implementation WMPOIWheelchairStatusViewController
+@implementation WMEditPOIWheelchairStatusViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

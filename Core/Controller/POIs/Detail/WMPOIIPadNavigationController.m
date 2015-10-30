@@ -9,7 +9,7 @@
 #import "WMPOIIPadNavigationController.h"
 #import "WMPOIViewController.h"
 #import "WMEditPOIViewController.h"
-#import "WMPOIWheelchairStatusViewController.h"
+#import "WMEditPOIWheelchairStatusViewController.h"
 #import "WMEditPOICommentViewController.h"
 #import "WMIPadRootViewController.h"
 #import "WMPOIsListViewController.h"
@@ -78,8 +78,8 @@
 
 - (void)pressedSaveButton:(WMNavigationBar*)navigationBar {
     WMViewController* currentViewController = [self.viewControllers lastObject];
-    if ([currentViewController isKindOfClass:[WMPOIWheelchairStatusViewController class]]) {
-        [(WMPOIWheelchairStatusViewController*)currentViewController saveAccessStatus];
+    if ([currentViewController isKindOfClass:[WMEditPOIWheelchairStatusViewController class]]) {
+        [(WMEditPOIWheelchairStatusViewController*)currentViewController saveAccessStatus];
     }
     if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
         [(WMEditPOIViewController*)currentViewController saveEditedData];
@@ -114,9 +114,9 @@
     } else if ([viewController isKindOfClass:[WMEditPOICommentViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
-    } else if ([viewController isKindOfClass:[WMPOIWheelchairStatusViewController class]]) {
+    } else if ([viewController isKindOfClass:[WMEditPOIWheelchairStatusViewController class]]) {
         self.customNavigationBar.leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
-        if ( ((WMPOIWheelchairStatusViewController *)viewController).hideSaveButton ) {
+        if ( ((WMEditPOIWheelchairStatusViewController *)viewController).hideSaveButton ) {
             self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
         } else {
             self.customNavigationBar.rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
