@@ -696,6 +696,9 @@
 		878EC9711BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */; };
 		878EC9721BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */; };
 		878EC9731BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */; };
+		87F841681BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
+		87F841691BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
+		87F8416A1BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
 		9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */; };
@@ -1041,6 +1044,8 @@
 		878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMToolBar_iPad.m; sourceTree = "<group>"; };
 		878EC9741BE0F92F0099EDD1 /* WMNavigationBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationBarDelegate.h; sourceTree = "<group>"; };
 		878EC9751BE0F92F0099EDD1 /* WMNodeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListView.h; sourceTree = "<group>"; };
+		87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Wheelmap.h"; sourceTree = "<group>"; };
+		87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Wheelmap.m"; sourceTree = "<group>"; };
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1209,6 +1214,8 @@
 		872FDDA11BDFEF6D00764FC5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */,
+				87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */,
 				8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */,
 				8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */,
 				872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */,
@@ -2658,6 +2665,7 @@
 				878EC9011BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
 				872FDF2F1BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
 				878EC8F51BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */,
+				87F841691BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				878EC94B1BE0F9200099EDD1 /* WMCategoryFilterTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2735,6 +2743,7 @@
 				878EC9021BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
 				872FDF301BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
 				878EC8F61BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */,
+				87F8416A1BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				878EC94C1BE0F9200099EDD1 /* WMCategoryFilterTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2812,6 +2821,7 @@
 				878EC9001BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */,
 				872FDF2E1BDFEFAA00764FC5 /* WMKeychainWrapper.m in Sources */,
 				878EC8F41BE0F7960099EDD1 /* WMSetMarkerViewController.m in Sources */,
+				87F841681BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				878EC94A1BE0F9200099EDD1 /* WMCategoryFilterTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
