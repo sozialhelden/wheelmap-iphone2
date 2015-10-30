@@ -15,7 +15,7 @@
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
-#import "WMCategoryViewController.h"
+#import "WMCategoriesListViewController.h"
 #import "WMOSMOnboardingViewController.h"
 #import "WMEditPOIPositionViewController.h"
 #import "WMEditPOITypeViewController.h"
@@ -900,7 +900,7 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
         
-    } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
+    } else if ([vc isKindOfClass:[WMCategoriesListViewController class]] ||
                [vc isKindOfClass:[WMEditPOIPositionViewController class]] ||
                [vc isKindOfClass:[WMEditPOITypeViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;

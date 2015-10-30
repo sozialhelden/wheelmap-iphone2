@@ -10,7 +10,7 @@
 #import "WMNodeListViewController.h"
 #import "WMMapViewController.h"
 #import "WMNavigationControllerBase.h"
-#import "WMCategoryViewController.h"
+#import "WMCategoriesListViewController.h"
 #import "WMOSMOnboardingViewController.h"
 #import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
@@ -190,7 +190,7 @@
 
 -(IBAction)pressedCategoriesButton:(id)sender
 {
-    WMCategoryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryViewController"];
+    WMCategoriesListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoriesListViewController"];
     vc.baseController = self.navigationController;
     
     [self.navigationController pushViewController:vc animated:YES];

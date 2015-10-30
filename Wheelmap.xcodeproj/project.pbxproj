@@ -624,9 +624,9 @@
 		878EC8FA1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */; };
 		878EC8FB1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */; };
 		878EC8FC1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */; };
-		878EC8FD1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */; };
-		878EC8FE1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */; };
-		878EC8FF1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */; };
+		878EC8FD1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */; };
+		878EC8FE1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */; };
+		878EC8FF1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */; };
 		878EC9001BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */; };
 		878EC9011BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */; };
 		878EC9021BE0F7960099EDD1 /* WMNodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */; };
@@ -994,8 +994,8 @@
 		878EC8B11BE0F7960099EDD1 /* WMShareSocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMShareSocialViewController.m; sourceTree = "<group>"; };
 		878EC8B21BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		878EC8B31BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIWheelchairStatusViewController.m; sourceTree = "<group>"; };
-		878EC8B51BE0F7960099EDD1 /* WMCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryViewController.h; sourceTree = "<group>"; };
-		878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryViewController.m; sourceTree = "<group>"; };
+		878EC8B51BE0F7960099EDD1 /* WMCategoriesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoriesListViewController.h; sourceTree = "<group>"; };
+		878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoriesListViewController.m; sourceTree = "<group>"; };
 		878EC8B71BE0F7960099EDD1 /* WMNodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNodeListViewController.h; sourceTree = "<group>"; };
 		878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNodeListViewController.m; sourceTree = "<group>"; };
 		878EC8BA1BE0F7960099EDD1 /* WMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewController.h; sourceTree = "<group>"; };
@@ -1676,8 +1676,8 @@
 		878EC8B41BE0F7960099EDD1 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				878EC8B51BE0F7960099EDD1 /* WMCategoryViewController.h */,
-				878EC8B61BE0F7960099EDD1 /* WMCategoryViewController.m */,
+				878EC8B51BE0F7960099EDD1 /* WMCategoriesListViewController.h */,
+				878EC8B61BE0F7960099EDD1 /* WMCategoriesListViewController.m */,
 				878EC8B71BE0F7960099EDD1 /* WMNodeListViewController.h */,
 				878EC8B81BE0F7960099EDD1 /* WMNodeListViewController.m */,
 			);
@@ -2652,7 +2652,7 @@
 				872FDF171BDFEF9900764FC5 /* ioapi.c in Sources */,
 				878EC8FB1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */,
 				878EC9601BE0F9200099EDD1 /* WMNodeListCell.m in Sources */,
-				878EC8FE1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */,
+				878EC8FE1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */,
 				878EC90A1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				878EC9181BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
 				878EC8CB1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
@@ -2730,7 +2730,7 @@
 				872FDF181BDFEF9900764FC5 /* ioapi.c in Sources */,
 				878EC8FC1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */,
 				878EC9611BE0F9200099EDD1 /* WMNodeListCell.m in Sources */,
-				878EC8FF1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */,
+				878EC8FF1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */,
 				878EC90B1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				878EC9191BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
 				878EC8CC1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
@@ -2808,7 +2808,7 @@
 				872FDF161BDFEF9900764FC5 /* ioapi.c in Sources */,
 				878EC8FA1BE0F7960099EDD1 /* WMPOIWheelchairStatusViewController.m in Sources */,
 				878EC95F1BE0F9200099EDD1 /* WMNodeListCell.m in Sources */,
-				878EC8FD1BE0F7960099EDD1 /* WMCategoryViewController.m in Sources */,
+				878EC8FD1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */,
 				878EC9091BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				878EC9171BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
 				878EC8CA1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
