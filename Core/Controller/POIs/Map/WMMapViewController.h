@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "WMNodeListView.h"
 #import "WMDataManager.h"
 #import <MBXMapKit/MBXMapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
 @class MKMapView, Node;
 
-@interface WMMapViewController : WMViewController <WMNodeListView, MKMapViewDelegate, MBXRasterTileOverlayDelegate>
+@interface WMMapViewController : WMViewController <WMPOIsListViewDelegate, MKMapViewDelegate, MBXRasterTileOverlayDelegate>
 {
     WMDataManager *dataManager;
 }
@@ -31,7 +30,7 @@
 @property (nonatomic) IBOutlet UILabel *mapInteractionInfoLabel;
 
 @property (nonatomic) MKCoordinateRegion region;
-@property WMNodeListViewControllerUseCase useCase;
+@property WMPOIsListViewControllerUseCase useCase;
 @property BOOL refreshingForFilter;
 
 - (IBAction) toggleMapTypeChanged:(UIButton *)sender;

@@ -1,5 +1,5 @@
 //
-//  WMCategoryViewController.h
+//  WMCategoriesListViewController.h
 //  Wheelmap
 //
 //  Created by npng on 12/4/12.
@@ -9,11 +9,12 @@
 #import "WMDataManager.h"
 #import "WMCategory.h"
 
-@interface WMCategoryViewController : WMViewController <UITableViewDataSource, UITableViewDelegate>
-{
+@interface WMCategoriesListViewController : WMViewController <UITableViewDataSource, UITableViewDelegate> {
     WMDataManager* dataManager;
     
     NSArray* categories;
 }
+
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
+
 @end

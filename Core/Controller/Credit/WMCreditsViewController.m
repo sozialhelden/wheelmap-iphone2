@@ -7,7 +7,6 @@
 //
 
 #import "WMCreditsViewController.h"
-#import "Constants.h"
 
 @implementation WMCreditsViewController
 

@@ -32,6 +32,10 @@
 
 #pragma mark - Instantiations
 
++ (id)instantiatedPOIsListViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMPOIsListViewController"];
+}
+
 + (id)instantiatedEditPOIViewController {
 	return [UIStoryboard.poiStoryboard instantiateViewControllerWithIdentifier:@"WMEditPOIViewController"];
 }
@@ -48,20 +52,20 @@
 	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"AcceptTermsVC"];
 }
 
-+ (id)instantiatedOSMStartViewController {
-	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
++ (id)instantiatedOSMOnboardingViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMOnboardingViewController"];
 }
 
-+ (id)instantiatedLogoutViewController {
-	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
++ (id)instantiatedOSMLogoutViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMLogoutViewController"];
 }
 
 + (id)instantiatedCreditsViewController {
 	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMCreditsViewController"];
 }
 
-+ (id)instantiatedDescribeViewController {
-	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMDescribeViewController"];
++ (id)instantiatedDescriptionViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMDescriptionViewController"];
 }
 
 + (id)instantiatedOSMLoginViewController {

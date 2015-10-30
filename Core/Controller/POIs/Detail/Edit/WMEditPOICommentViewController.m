@@ -1,5 +1,5 @@
 //
-//  WMCommentViewController.m
+//  WMEditPOICommentViewController.m
 //  Wheelmap
 //
 //  Created by Andrea Gerlach on 03.12.12.
@@ -8,17 +8,16 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "WMCommentViewController.h"
+#import "WMEditPOICommentViewController.h"
 
 
-@interface WMCommentViewController ()
+@interface WMEditPOICommentViewController ()
 
 @end
 
-@implementation WMCommentViewController
+@implementation WMEditPOICommentViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -44,22 +43,21 @@
     self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", nil);
 }
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if ((self.currentNode.wheelchair_description != nil) && (![self.currentNode.wheelchair_description isEqualToString:@""])) {
         self.commentText.text = self.currentNode.wheelchair_description;
     }
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.title = NSLocalizedString(@"NavBarTitleComment", nil);
     self.navigationBarTitle = self.title;
 }
 
-- (void) saveEditedData {
+- (void)saveEditedData {
     if (!self.currentNode.lat || !self.currentNode.lon) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PleaseSetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [alert show];
@@ -72,12 +70,6 @@
     
     progressWheel.hidden = NO;
     [progressWheel startAnimating];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
@@ -101,7 +93,6 @@
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SaveNodeFailed", nil) message:error.wheelmapErrorDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     
     [alert show];
-    
 }
 
 @end

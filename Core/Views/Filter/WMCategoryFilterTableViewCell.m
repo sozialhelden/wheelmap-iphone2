@@ -17,7 +17,7 @@
     if (self) {
         // Initialization code
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 130, CELL_HEIGHT)];
         } else {
             titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 100, CELL_HEIGHT)];
@@ -26,7 +26,7 @@
         titleLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:titleLabel];
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             checkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(135, 0, 25, CELL_HEIGHT)];
         } else {
             checkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(105, 0, 25, CELL_HEIGHT)];

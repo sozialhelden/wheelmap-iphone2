@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "WMNavigationBar.h"
-#import "WMNavigationBarDelegate.h"
 
 @interface WMNavigationBar_iPad : WMNavigationBar {
     

@@ -1,10 +1,13 @@
 //
-//  Constants.h
+//  WMConstants.h
 //  Wheelmap
 //
 //  Created by Michael Thomas on 14.01.13.
 //  Copyright (c) 2013 Sozialhelden e.V. All rights reserved.
 //
+
+#ifndef Wheelmap_WMConstants_h
+#define Wheelmap_WMConstants_h
 
 #define LastRunVersion			@"LastRunVersion"
 #define InstallId				@"installId"
@@ -55,4 +58,21 @@
 #define K_WHEELCHAIR_STATE_YES						@"yes"
 #define K_WHEELCHAIR_STATE_NO						@"no"
 
+#define K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER		@"WMPOIsListTableViewCell"
 
+typedef enum {
+	kDotTypeGreen,
+	kDotTypeYellow,
+	kDotTypeRed,
+	kDotTypeNone
+} DotType;
+
+typedef enum {
+	kWMPOIsListViewControllerUseCaseNormal,
+	kWMPOIsListViewControllerUseCaseGlobalSearch,
+	kWMPOIsListViewControllerUseCaseSearchOnDemand,
+	kWMPOIsListViewControllerUseCaseContribute,
+	kWMPOIsListViewControllerUseCaseCategory
+} WMPOIsListViewControllerUseCase;
+
+#endif

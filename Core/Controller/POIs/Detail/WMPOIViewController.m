@@ -1,5 +1,5 @@
 //
-//  WMDetailViewController.m
+//  WMPOIViewController.m
 //  Wheelmap
 //
 //  Created by Dorian Roy on 09.11.12.
@@ -8,14 +8,14 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "Image.h"
 #import "Photo.h"
-#import "WMWheelchairStatusViewController.h"
+#import "WMEditPOIWheelchairStatusViewController.h"
 #import "WMShareSocialViewController.h"
-#import "WMCommentViewController.h"
+#import "WMEditPOICommentViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
 #import "WMCompassView.h"
@@ -23,8 +23,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
 #import "WMNavigationControllerBase.h"
-#import "WMNodeListViewController.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIsListViewController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 
 #define GABIFSTATUSUNKNOWN 62
@@ -39,12 +39,11 @@
 
 #define STARTLEFT 15
 
-@implementation WMDetailViewController
+@implementation WMPOIViewController
 
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
@@ -158,7 +157,6 @@
 }
 
 - (void)viewDidUnload {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [self setStreetLabel:nil];
@@ -167,7 +165,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:animated];
     
     self.title = NSLocalizedString(@"NavBarTitleDetail", nil);
@@ -183,12 +180,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
     [super viewDidAppear:animated];
-    
-    // self.fourButtonView.frame = CGRectMake(10, self.imageScrollView.frame.origin.y+self.imageScrollView.frame.size.height+14, 300, 75);
-    // self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.fourButtonView.frame.origin.y + self.fourButtonView.frame.size.height + 20);
-    
     
     self.poiLocation = CLLocationCoordinate2DMake(self.node.lat.doubleValue, self.node.lon.doubleValue);
     [self checkForStatusOfButtons];
@@ -202,11 +194,9 @@
     
     // change view configuration according to the network status
     [self networkStatusChanged:nil];
-    
 }
 
 #pragma mark - UI element creation
-
 
 - (UIView*) createMainInfoView {
     UIView *view = [UIView new];
@@ -229,7 +219,7 @@
     return view;
 }
 
--(UIView*) createWheelAccessView {
+- (UIView*) createWheelAccessView {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     
@@ -337,8 +327,7 @@
     return view;
 }
 
--(UIScrollView*)createImageScrollView {
-    
+- (UIScrollView*)createImageScrollView {
     self.imageViewsInScrollView = [NSMutableArray new];
     UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
     
@@ -357,7 +346,6 @@
 }
 
 - (void)createThumbnails {
-    
     for (UIView* imageView in self.imageViewsInScrollView) {
         [imageView removeFromSuperview];
     }
@@ -373,8 +361,7 @@
     self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
 }
 
-- (void) addThumbnail: (int) i {
-    
+- (void)addThumbnail: (int) i {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start+i*80+i*self.gab, 10, 85, 60)];
     imageView.layer.borderColor = [UIColor whiteColor].CGColor;
     imageView.layer.borderWidth = 2;
@@ -391,8 +378,7 @@
     [self.imageViewsInScrollView addObject:imageView];
 }
 
--(UIView*)createAdditionalButtonView {
-    
+- (UIView*)createAdditionalButtonView {
     int buttonWidth = 68;
     int buttonHeight = 62;
     int gab = 10;
@@ -439,7 +425,6 @@
 }
 
 - (UILabel*)createBelowButtonLabel: (NSString*) title {
-    
     UILabel *belowButtonLabel = [UILabel new];
     belowButtonLabel.backgroundColor = [UIColor clearColor];
     belowButtonLabel.text = title;
@@ -450,10 +435,7 @@
 }
 
 - (void)updateFields {
-    
-    
     // TEXTFIELDS
-    
     self.titleLabel.text = self.node.name ?: @"";
     NSString *nodeTypeString = self.node.node_type.localized_name ?: @"";
     NSString *catString = self.node.node_type.category.localized_name ?: @"";
@@ -480,17 +462,9 @@
     [self updateDistanceToAnnotation];
     
     self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:self.node.wheelchair]];
-    
 }
 
-
-- (void) checkForStatusOfButtons {
-    
-    //    if(self.node.wheelchair_description == nil || [self.node.wheelchair_description isEqualToString:@""]) {
-    //        self.moreInfoButton.enabled = NO;
-    //    } else {
-    //        self.moreInfoButton.enabled = YES;
-    //    }
+- (void)checkForStatusOfButtons {
     if(self.currentLocation == nil) {
         self.naviButton.enabled = NO;
     } else {
@@ -499,7 +473,6 @@
 }
 
 - (void)setWheelAccessButton {
-    
     if (![self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN] && self.askFriendsButton != nil) {
         [self.askFriendsButton removeFromSuperview];
         self.wheelAccessView.frame = CGRectMake(self.wheelAccessView.frame.origin.x, self.wheelAccessView.frame.origin.y, self.wheelAccessView.frame.size.width, self.wheelAccessView.frame.size.height-self.gabIfStatusUnknown);
@@ -508,6 +481,7 @@
         self.additionalButtonView.frame = CGRectMake(self.additionalButtonView.frame.origin.x, self.additionalButtonView.frame.origin.y-self.gabIfStatusUnknown, self.additionalButtonView.frame.size.width, self.additionalButtonView.frame.size.height);
         self.askFriendsButton = nil;
     }
+
     if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_YES]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
@@ -520,21 +494,16 @@
     } else if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
-        
-        
     }
     
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
     [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
-    
 }
-
 
 
 #pragma mark - Phone, Website, Comment, Navi
 
 - (void)call {
-    
     NSString *callString = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Call", @""), self.node.phone];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:callString delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
     actionSheet.tag = 3;
@@ -551,24 +520,23 @@
 }
 
 - (void)showCommentView {
-
 	if (dataManager.userIsAuthenticated == NO) {
 		WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
-		if ([navigationController isKindOfClass:[WMDetailNavigationController class]]) {
-			[(WMDetailNavigationController*)navigationController showLoginViewController];
+		if ([navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
+			[(WMPOIIPadNavigationController*)navigationController showLoginViewController];
 		} else {
 			[navigationController presentLoginScreenWithButtonFrame:self.moreInfoButton.frame];
 		}
 		return;
 	}
 
-    WMCommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCommentViewController"];
+    WMEditPOICommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICommentViewController"];
     vc.currentNode = self.node;
     vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)openMap {
+- (void)openMap {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
     actionSheet.tag = 1;
     [actionSheet showInView:self.view];
@@ -588,9 +556,7 @@
     return nil;
 }
 
-- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
-{
-    
+- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         Node *node = [(WMMapAnnotation*)annotation node];
         NSString *reuseId = [node.wheelchair stringByAppendingString:[node.id stringValue]];
@@ -613,11 +579,7 @@
     return nil;
 }
 
-
-
--(void)updateDistanceToAnnotation {
-    
-    
+- (void)updateDistanceToAnnotation {
     if (self.mapView.userLocation.location == nil) {
         self.distanceLabel.text = @"n/a";
         return;
@@ -636,8 +598,7 @@
     self.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
 }
 
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     self.currentLocation = userLocation;
     if (mapView.selectedAnnotations.count == 0)
         //no annotation is currently selected
@@ -654,8 +615,7 @@
     [self updateDistanceToAnnotation];
 }
 
-- (WMMapAnnotation*) annotationForNode:(Node*)node
-{
+- (WMMapAnnotation*) annotationForNode:(Node*)node {
     for (WMMapAnnotation* annotation in  self.mapView.annotations) {
         
         // filter out MKUserLocation annotation
@@ -667,7 +627,6 @@
 }
 
 - (void)enlargeMapButtonPressed {
-    
     if (self.mapViewOpen) {
         NSLog(@"XXXXXXXX map is closing");
         
@@ -721,8 +680,7 @@
 
 #pragma mark - MBXRasterTileOverlayDelegate implementation
 
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error
-{
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error {
     // This delegate callback is for centering the map once the map metadata has been loaded
     //
     if (error)
@@ -736,8 +694,7 @@
 }
 
 
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error
-{
+- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error {
     // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
     //
     if (error)
@@ -750,15 +707,13 @@
     }
 }
 
-- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay
-{
+- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 #pragma mark - ActionSheets
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag == 0) { // WEBSITE
         if (buttonIndex == 0) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.node.website]];
@@ -791,7 +746,7 @@
         if (buttonIndex == 0) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if (UIDevice.isIPad == YES) {
                 
                 self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
                 
@@ -802,7 +757,7 @@
         } else if (buttonIndex == 1) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if (UIDevice.isIPad == YES) {
                 
                 self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
                 
@@ -819,8 +774,7 @@
     }
 }
 
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // change status bar colors
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.imagePicker setNeedsStatusBarAppearanceUpdate];
@@ -829,20 +783,18 @@
 #pragma mark - PhotoUpload
 
 - (void)thumbnailTapped:(UITapGestureRecognizer*)sender {
-    
     WMInfinitePhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMInfinitePhotoViewController"];
     vc.imageURLArray = self.originalImageURLArray;
     vc.tappedImage = sender.view.tag;
     [self presentForcedModalViewController:vc animated:YES];
 }
 
-- (void) cameraButtonPressed {
-
+- (void)cameraButtonPressed {
 	// Check if user is authenticated
     if (dataManager.userIsAuthenticated == NO) {
-		if ([self.navigationController isKindOfClass:[WMDetailNavigationController class]] == YES) {
+		if ([self.navigationController isKindOfClass:[WMPOIIPadNavigationController class]] == YES) {
 			// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
-			WMDetailNavigationController *detailNavigationController = (WMDetailNavigationController *) self.navigationController;
+			WMPOIIPadNavigationController *detailNavigationController = (WMPOIIPadNavigationController *) self.navigationController;
 			[((WMNavigationControllerBase *)detailNavigationController.listViewController.navigationController) presentLoginScreen];
 		} else if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES) {
 			WMNavigationControllerBase *baseNavigationController = (WMNavigationControllerBase *) self.navigationController;
@@ -862,7 +814,7 @@
     } else {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             
             self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
             
@@ -874,12 +826,11 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
-    
     // reset status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.imagePicker setNeedsStatusBarAppearanceUpdate];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.popOverController dismissPopoverAnimated:YES];
     }
     
@@ -887,12 +838,11 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *) Picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
     // reset status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.imagePicker setNeedsStatusBarAppearanceUpdate];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.popOverController dismissPopoverAnimated:YES];
     }
     
@@ -906,8 +856,7 @@
     
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
             // cancel
@@ -927,8 +876,8 @@
 }
 
 #pragma mark - WMDataManager Delegates
--(void)dataManager:(WMDataManager *)aDataManager didUploadImageForNode:(Node *)node
-{
+
+- (void)dataManager:(WMDataManager *)aDataManager didUploadImageForNode:(Node *)node {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUuploadSuccess", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
     
@@ -938,8 +887,7 @@
     [navCtrl hideLoadingWheel];
 }
 
--(void)dataManager:(WMDataManager *)dataManager uploadImageForNode:(Node *)node failedWithError:(NSError *)error
-{
+- (void)dataManager:(WMDataManager *)dataManager uploadImageForNode:(Node *)node failedWithError:(NSError *)error {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PhotoUploadFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alert show];
     
@@ -949,8 +897,7 @@
     [navCtrl hideLoadingWheel];
 }
 
-- (void)dataManager:(WMDataManager *)dataManager didReceivePhotosForNode:(Node *)node
-{
+- (void)dataManager:(WMDataManager *)dataManager didReceivePhotosForNode:(Node *)node {
     NSLog(@"updated photos: %@", node.photos);
     
     for (Photo* photo in node.photos) {
@@ -967,8 +914,7 @@
     
 }
 
-- (void)dataManager:(WMDataManager *)dataManager fetchPhotosFailedWithError:(NSError *)error
-{
+- (void)dataManager:(WMDataManager *)dataManager fetchPhotosFailedWithError:(NSError *)error {
     NSLog(@"[LOG] fetching photo urls failed with error %@", error);
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"FetchingPhotoURLFailed", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
@@ -988,7 +934,7 @@
     vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
     vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
@@ -1002,12 +948,12 @@
     
 }
 
-- (void) askFriendsForStatusButtonPressed {
+- (void)askFriendsForStatusButtonPressed {
     WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
     vc.baseController = self.baseController;
     vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self.navigationController pushViewController:vc animated:YES];
         vc.titleView.hidden = YES;
     } else {
@@ -1020,8 +966,8 @@
     
 }
 
-- (void) showAccessOptions {
-    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+- (void)showAccessOptions {
+    WMEditPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIWheelchairStatusViewController"];
     vc.delegate = self;
     vc.node = self.node;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", @"");
@@ -1033,9 +979,7 @@
     self.node.wheelchair = wheelchairAccess;
 }
 
-
-- (void) pushEditViewController {
-    
+- (void)pushEditViewController {
     if (![dataManager userIsAuthenticated]) {
         WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
         [navCtrl presentLoginScreenWithButtonFrame:navCtrl.customNavigationBar.editButton.frame];
@@ -1050,12 +994,10 @@
 }
 
 #pragma mark - Network Status Changes
--(void)networkStatusChanged:(NSNotification*)notice
-{
+- (void)networkStatusChanged:(NSNotification*)notice {
     NetworkStatus networkStatus = [[dataManager internetReachble] currentReachabilityStatus];
     
-    switch (networkStatus)
-    {
+    switch (networkStatus) {
         case NotReachable:
             self.cameraButton.enabled = NO;
             break;
@@ -1067,27 +1009,21 @@
 }
 
 #pragma mark - AlertView stuff
-- (void)attribution:(NSString *)attribution
-{
+- (void)attribution:(NSString *)attribution {
     NSString *title = @"Attribution";
     NSString *message = attribution;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Mapbox Details", @"OSM Details", nil];
     [alert show];
 }
 
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if([alertView.title isEqualToString:@"Attribution"])
-    {
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if([alertView.title isEqualToString:@"Attribution"]) {
         // For the attribution alert dialog, open the Mapbox and OSM copyright pages when their respective buttons are pressed
         //
-        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Mapbox Details"])
-        {
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Mapbox Details"]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.mapbox.com/tos/"]];
         }
-        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"OSM Details"])
-        {
+        if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"OSM Details"]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.openstreetmap.org/copyright"]];
         }
     }

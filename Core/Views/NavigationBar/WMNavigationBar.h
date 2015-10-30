@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMNavigationBarDelegate.h"
 
 typedef enum {
     kWMNavigationBarLeftButtonStyleDashboardButton,

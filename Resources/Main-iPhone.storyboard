@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PAo-CL-fP5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PAo-CL-fP5">
     <dependencies>
         <deployment version="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -141,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="-686" y="-666"/>
         </scene>
-        <!--Node List View Controller-->
+        <!--Is List View Controller-->
         <scene sceneID="B4f-ns-g13">
             <objects>
-                <viewController storyboardIdentifier="WMNodeListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OrT-nw-xew" customClass="WMNodeListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMPOIsListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OrT-nw-xew" customClass="WMPOIsListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vQa-y0-LYV"/>
                         <viewControllerLayoutGuide type="bottom" id="j0N-j3-YEM"/>
@@ -372,10 +372,10 @@
             </objects>
             <point key="canvasLocation" x="-217" y="-666"/>
         </scene>
-        <!--Category View Controller-->
+        <!--Categories List View Controller-->
         <scene sceneID="Ayj-I3-xNd">
             <objects>
-                <viewController storyboardIdentifier="WMCategoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbL-Gz-iQ6" customClass="WMCategoryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMCategoriesListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZbL-Gz-iQ6" customClass="WMCategoriesListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7to-eJ-jPA"/>
                         <viewControllerLayoutGuide type="bottom" id="gnJ-qe-dfa"/>
@@ -411,10 +411,10 @@
             </objects>
             <point key="canvasLocation" x="-1137" y="728"/>
         </scene>
-        <!--Start View Controller-->
+        <!--Onboarding View Controller-->
         <scene sceneID="jdI-IH-X6j">
             <objects>
-                <viewController storyboardIdentifier="WMOSMStartViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PTd-16-DQ9" customClass="WMOSMStartViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMOSMOnboardingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PTd-16-DQ9" customClass="WMOSMOnboardingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FZF-mk-vdo"/>
                         <viewControllerLayoutGuide type="bottom" id="hki-Ol-Qu4"/>
@@ -896,7 +896,7 @@
         <!--Logout View Controller-->
         <scene sceneID="5hk-TW-UXO">
             <objects>
-                <viewController storyboardIdentifier="WMLogoutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PR3-Pi-pWs" customClass="WMLogoutViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMOSMLogoutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PR3-Pi-pWs" customClass="WMOSMLogoutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FSN-Ke-iVv"/>
                         <viewControllerLayoutGuide type="bottom" id="UuP-Db-D3X"/>
@@ -1111,10 +1111,10 @@
             </objects>
             <point key="canvasLocation" x="255" y="1435"/>
         </scene>
-        <!--Describe View Controller-->
+        <!--Description View Controller-->
         <scene sceneID="Wop-zA-hAT">
             <objects>
-                <viewController storyboardIdentifier="WMOSMDescribeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YlH-c5-mVW" customClass="WMOSMDescribeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMOSMDescriptionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YlH-c5-mVW" customClass="WMOSMDescriptionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Tf-Yx-kAv"/>
                         <viewControllerLayoutGuide type="bottom" id="x7p-cw-WZx"/>
@@ -1345,4 +1345,9 @@
         <image name="start_logo.png" width="180" height="45"/>
         <image name="start_searchbar.png" width="280" height="40"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

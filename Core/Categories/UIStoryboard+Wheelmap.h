@@ -17,6 +17,8 @@
 
 #pragma mark - Instantiations
 
++ (id)instantiatedPOIsListViewController;
+
 + (id)instantiatedEditPOIViewController;
 
 + (id)instantiatedRegisterViewController;
@@ -25,13 +27,13 @@
 
 + (id)instantiatedAcceptTermsViewController;
 
-+ (id)instantiatedOSMStartViewController;
++ (id)instantiatedOSMOnboardingViewController;
 
-+ (id)instantiatedLogoutViewController;
++ (id)instantiatedOSMLogoutViewController;
 
 + (id)instantiatedCreditsViewController;
 
-+ (id)instantiatedDescribeViewController;
++ (id)instantiatedDescriptionViewController;
 
 + (id)instantiatedOSMLoginViewController;
 

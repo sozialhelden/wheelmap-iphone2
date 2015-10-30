@@ -7,12 +7,12 @@
 //
 
 #import "WMDashboardViewController.h"
-#import "WMNodeListViewController.h"
+#import "WMPOIsListViewController.h"
 #import "WMMapViewController.h"
 #import "WMNavigationControllerBase.h"
-#import "WMCategoryViewController.h"
-#import "WMOSMStartViewController.h"
-#import "WMLogoutViewController.h"
+#import "WMCategoriesListViewController.h"
+#import "WMOSMOnboardingViewController.h"
+#import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
 #import "WMWheelmapAPI.h"
@@ -181,8 +181,8 @@
     //
     // we filter unknown nodes not using global filter setting!
     
-    WMNodeListViewController* nodeListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    nodeListVC.useCase = kWMNodeListViewControllerUseCaseContribute;
+    WMPOIsListViewController* nodeListVC = [UIStoryboard instantiatedPOIsListViewController];
+    nodeListVC.useCase = kWMPOIsListViewControllerUseCaseContribute;
     [(WMNavigationControllerBase *)self.navigationController setMapControllerToContribute];
     [self.navigationController pushViewController:nodeListVC animated:YES];
     [self pressedSearchCancelButton:searchCancelButton];
@@ -190,7 +190,7 @@
 
 -(IBAction)pressedCategoriesButton:(id)sender
 {
-    WMCategoryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryViewController"];
+    WMCategoriesListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoriesListViewController"];
     vc.baseController = self.navigationController;
     
     [self.navigationController pushViewController:vc animated:YES];
@@ -201,9 +201,9 @@
 {
     WMViewController* vc;
     if (!dataManager.userIsAuthenticated) {
-        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMOSMStartViewController"];
+        vc = [UIStoryboard instantiatedOSMOnboardingViewController];
     } else {
-        vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMLogoutViewController"];
+        vc = [UIStoryboard instantiatedOSMLogoutViewController];
     }
     
     [self.navigationController presentViewController:vc animated:YES completion:nil];
@@ -223,8 +223,8 @@
     if (textField.text == nil || textField.text.length == 0)
         return YES;
     
-    WMNodeListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
-    vc.useCase = kWMNodeListViewControllerUseCaseGlobalSearch;
+    WMPOIsListViewController* vc = [UIStoryboard instantiatedPOIsListViewController];
+    vc.useCase = kWMPOIsListViewControllerUseCaseGlobalSearch;
     
     [self.navigationController pushViewController:vc animated:YES];
     

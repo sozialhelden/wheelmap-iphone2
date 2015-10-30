@@ -9,18 +9,18 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WMEditPOIViewController.h"
-#import "WMWheelchairStatusViewController.h"
-#import "WMDetailViewController.h"
-#import "WMSetMarkerViewController.h"
+#import "WMEditPOIWheelchairStatusViewController.h"
+#import "WMPOIViewController.h"
+#import "WMEditPOIPositionViewController.h"
 #import "NodeType.h"
-#import "WMCategoryTableViewController.h"
-#import "WMNodeTypeTableViewController.h"
+#import "WMEditPOICategoryViewController.h"
+#import "WMEditPOITypeViewController.h"
 #import "WMDataManagerDelegate.h"
 #import "WMCategory.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMIPadRootViewController.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 
 @interface WMEditPOIViewController ()
 
@@ -134,7 +134,7 @@
     self.title = NSLocalizedString(@"NavBarTitleEdit", nil);
     self.navigationBarTitle = self.title;
     
-    [(WMDetailNavigationController *)self.navigationController changeScreenStatusFor:self];
+    [(WMPOIIPadNavigationController *)self.navigationController changeScreenStatusFor:self];
 
     [self updateFields];
 
@@ -294,7 +294,7 @@
 - (IBAction)showAccessOptions:(id)sender {
     [self buttonPressed];
     
-    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+    WMEditPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIWheelchairStatusViewController"];
     vc.hideSaveButton = YES;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
     vc.navigationBarTitle = vc.title;
@@ -307,7 +307,7 @@
 - (IBAction)setNodeType:(id)sender {
     [self buttonPressed];
     
-    WMNodeTypeTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeTypeTableViewController"];
+    WMEditPOITypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOITypeViewController"];
     vc.title =  NSLocalizedString(@"NavBarTitleSetNodeType", nil);
     vc.navigationBarTitle = vc.title;
     vc.delegate = self;
@@ -319,13 +319,13 @@
 - (IBAction)setCategory:(id)sender {
     [self buttonPressed];
     
-    WMCategoryTableViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoryTableViewController"];
-    vc.title = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
-    vc.navigationBarTitle = vc.title;
-    vc.delegate = self;
-    vc.categoryArray = self.dataManager.categories;
-    vc.currentCategory = self.currentCategory;
-    [self.navigationController pushViewController:vc animated:YES];
+    WMEditPOICategoryViewController* categoryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICategoryViewController"];
+    categoryViewController.title = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
+    categoryViewController.navigationBarTitle = categoryViewController.title;
+    categoryViewController.delegate = self;
+    categoryViewController.categoryArray = self.dataManager.categories;
+    categoryViewController.currentCategory = self.currentCategory;
+    [self.navigationController pushViewController:categoryViewController animated:YES];
 }
 
 - (void) buttonPressed {
@@ -350,7 +350,7 @@
     [self.websiteTextField resignFirstResponder];
     [self.phoneTextField resignFirstResponder];
     
-    WMSetMarkerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMSetMarkerViewController"];
+    WMEditPOIPositionViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIPositionViewController"];
     vc.node = self.node;
     vc.delegate = self;
     vc.currentCoordinate = self.currentCoordinate;
@@ -412,7 +412,7 @@
     [progressWheel stopAnimating];
     NSLog(@"XXXXXXXX FINISHED");
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self dismissViewControllerAnimated:YES];
     }
     
@@ -505,7 +505,7 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == NO) {
 		[self keyboardDidMove:notification];
     }
 
@@ -516,7 +516,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == NO) {
         
         if (self.keyboardIsShown) {
             return;

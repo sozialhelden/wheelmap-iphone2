@@ -8,14 +8,13 @@
 
 #import "WMMapViewController.h"
 #import "WMMapAnnotation.h"
-#import "WMDetailViewController.h"
+#import "WMPOIViewController.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMNavigationControllerBase.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Constants.h"
 
 #define MIN_SPAN_DELTA 0.01
 
@@ -151,7 +150,7 @@
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         for (id<MKAnnotation> annotation in oldAnnotations) {
             if (![annotation isKindOfClass:[MKUserLocation class]])
@@ -183,8 +182,8 @@
         [self.mapView setRegion:initRegion animated:NO];
     }
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch ||
-        self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand)
+    if (self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch ||
+        self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand)
     {
         // show current location button, if it is hidden
         [((WMNavigationControllerBase *)self.navigationController).customToolBar showButton:kWMToolBarButtonCurrentLocation];
@@ -207,7 +206,7 @@
     
     loadingNodes = YES;
     
-    if (self.useCase == kWMNodeListViewControllerUseCaseContribute) {
+    if (self.useCase == kWMPOIsListViewControllerUseCaseContribute) {
         NSArray* unfilteredNodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
         
@@ -359,7 +358,7 @@
         return;
     }
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         return;
     }
     
@@ -397,15 +396,11 @@
     
     if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]]) {
         [(WMNavigationControllerBase *)self.navigationController mapWasMoved];
-    } else if ([self.navigationController isKindOfClass:[WMDetailViewController class]]) {
-        [(WMDetailNavigationController *)self.navigationController mapWasMoved:mapView.region.center];
+    } else if ([self.navigationController isKindOfClass:[WMPOIViewController class]]) {
+        [(WMPOIIPadNavigationController *)self.navigationController mapWasMoved:mapView.region.center];
     }
     
     NSLog(@"Current Use Case %d", self.useCase);
-    //    if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
-    //        // do nothing
-    //        return;
-    //    }
     
     if (mapView.region.span.latitudeDelta > MIN_SPAN_DELTA || mapView.region.span.longitudeDelta > MIN_SPAN_DELTA) {
         NSLog(@"Map is not enough zoomed in to show POIs.");
@@ -463,7 +458,7 @@
         
         if (shouldUpdateMap && !dontUpdateNodeList) {
             
-            if (self.useCase == kWMNodeListViewControllerUseCaseGlobalSearch || self.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand) {
+            if (self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch || self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand) {
                 [(WMNavigationControllerBase*)self.dataSource updateNodesWithLastQueryAndRegion:mapView.region];
                 lastDisplayedMapCenter = self.mapView.region.center;
             } else {

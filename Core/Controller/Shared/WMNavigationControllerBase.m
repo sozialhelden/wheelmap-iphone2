@@ -10,29 +10,28 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
-#import "WMDetailViewController.h"
-#import "WMWheelchairStatusViewController.h"
+#import "WMPOIViewController.h"
+#import "WMEditPOIWheelchairStatusViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
-#import "WMCategoryViewController.h"
-#import "WMOSMStartViewController.h"
-#import "WMSetMarkerViewController.h"
-#import "WMNodeTypeTableViewController.h"
+#import "WMCategoriesListViewController.h"
+#import "WMOSMOnboardingViewController.h"
+#import "WMEditPOIPositionViewController.h"
+#import "WMEditPOITypeViewController.h"
 #import "Node.h"
 #import "NodeType.h"
 #import "WMCategory.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMIPadRootViewController.h"
-#import "WMNodeListViewController.h"
-#import "WMDetailNavigationController.h"
+#import "WMPOIsListViewController.h"
+#import "WMPOIIPadNavigationController.h"
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
-#import "WMLogoutViewController.h"
+#import "WMOSMLogoutViewController.h"
 #import "WMToolBar_iPad.h"
-#import "Constants.h"
 
-#import "WMOSMDescribeViewController.h"
+#import "WMOSMDescriptionViewController.h"
 
 @implementation WMNavigationControllerBase
 {
@@ -42,7 +41,7 @@
     WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
     WMCategoryFilterPopoverView* categoryFilterPopover;
     
-    WMNodeListViewController* listViewController;
+    WMPOIsListViewController* listViewController;
     
     UIView* loadingWheelContainer;  // this view will show loading whell on the center and cover child view controllers so that we avoid interactions interuptting data loading
     UIActivityIndicatorView* loadingWheel;
@@ -74,7 +73,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
     // preload map to avoid long loading times on toggle
-    if (!UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == NO) {
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
         CLLocation* newLocation = self.locationManager.location;
@@ -109,8 +108,8 @@
     self.lastVisibleMapSpanLng = nil;
     
     // configure initial vc from storyboard. this is necessary for iPad, since iPad's topVC is not the Dashboard!
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        id<WMNodeListView> initialNodeListView = (id<WMNodeListView>)self.topViewController;
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        id<WMPOIsListViewDelegate> initialNodeListView = (id<WMPOIsListViewDelegate>)self.topViewController;
         initialNodeListView.dataSource = self;
         initialNodeListView.delegate = self;
     }
@@ -166,7 +165,7 @@
     // set custom nagivation and tool bars
     self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, K_NAVIGATION_BAR_HEIGHT);
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         self.customNavigationBar = [[WMNavigationBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
         self.customNavigationBar.searchBarEnabled = YES;
     } else {
@@ -177,7 +176,7 @@
     self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height-K_TOOLBAR_BAR_HEIGHT, self.view.frame.size.width, K_TOOLBAR_BAR_HEIGHT);
     self.toolbar.backgroundColor = [UIColor whiteColor];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         self.customToolBar = [[WMToolBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
     } else {
         self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, self.toolbar.frame.size.height-K_TOOLBAR_BAR_HEIGHT, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
@@ -204,7 +203,7 @@
     categoryFilterPopover.hidden = YES;
     [self.view addSubview:categoryFilterPopover];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         if ([self.customToolBar isKindOfClass:[WMToolBar_iPad class]]) {
             [(WMToolBar_iPad *)self.customToolBar updateLoginButton];
         }
@@ -213,11 +212,10 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.view.backgroundColor = UIColorFromRGB(0x304152);
+    self.view.backgroundColor = [UIColor colorFromHexString:@"304152"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -227,7 +225,7 @@
     // this will update screen
     [self networkStatusChanged:nil];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         [self refreshPopoverPositions:[[UIApplication sharedApplication] statusBarOrientation]];
     }
     
@@ -235,9 +233,9 @@
 
 - (void)pushList {
     if (listViewController == nil) {
-        listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
+        listViewController = [UIStoryboard instantiatedPOIsListViewController];
     }
-    listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 	[self pushViewController:listViewController animated:YES];
 }
@@ -245,7 +243,7 @@
 - (void)pushMap {
     
     if (listViewController == nil) {
-        listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMNodeListViewController"];
+        listViewController = [UIStoryboard instantiatedPOIsListViewController];
     }
     if (self.mapViewController == nil) {
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
@@ -255,24 +253,24 @@
 }
 
 - (void)setMapControllerToContribute {
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseContribute;
 }
 
 - (void)setMapControllerToNormal {
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 	self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 	[self.customToolBar showAllButtons];
 }
 
 - (void)setListViewControllerToNormal {
-	listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+	listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
 	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 	[self.customToolBar showAllButtons];
 }
 
 - (void)resetMapAndListToNormalUseCase {
-    self.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+    self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+    listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
     [self clearCategoryFilterStatus];
     
     [categoryFilterPopover removeFromSuperview];
@@ -299,7 +297,7 @@
                 yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
             }
             self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMOSMStartViewController class]] || [self.popoverVC isKindOfClass:[WMLogoutViewController class]]) {
+        } else if ([self.popoverVC isKindOfClass:[WMOSMOnboardingViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
             CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
             CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
             if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -320,7 +318,7 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         return YES;
     }
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
@@ -349,8 +347,8 @@
     
     nodes = [nodes arrayByAddingObjectsFromArray:nodesParam];
     
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
 }
 
@@ -358,8 +356,8 @@
 {
     NSLog(@"--- REFRESH NODE LIST AFTER ADDING NODE ---");
     
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
 }
 
@@ -367,8 +365,8 @@
 {
     NSLog(@"--- REFRESH NODE LIST ---");
     
-    if ([self.topViewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+    if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
 }
 
@@ -379,8 +377,8 @@
     
     nodes = array;
     for (UIViewController* vc in self.viewControllers) {
-        if ([vc conformsToProtocol:@protocol(WMNodeListView)]) {
-            [(id<WMNodeListView>)self.topViewController nodeListDidChange];
+        if ([vc conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+            [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
         }
     }
 }
@@ -435,11 +433,11 @@
 
 -(void)dataManagerDidStartOperation:(WMDataManager *)dataManager
 {
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+    if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]])
         [self showLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(showActivityIndicator)]) {
-        [(id<WMNodeListView>)self.topViewController showActivityIndicator];
+        [(id<WMPOIsListViewDelegate>)self.topViewController showActivityIndicator];
     }
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
@@ -450,11 +448,11 @@
 
 -(void)dataManagerDidStopAllOperations:(WMDataManager *)dataManager
 {
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]])
+    if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]])
         [self hideLoadingWheel];
     
     if ([self.topViewController respondsToSelector:@selector(hideActivityIndicator)]) {
-        [(id<WMNodeListView>)self.topViewController hideActivityIndicator];
+        [(id<WMPOIsListViewDelegate>)self.topViewController hideActivityIndicator];
     }
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
@@ -496,7 +494,7 @@
     return nodes;
 }
 
-- (NSArray*)filteredNodeListForUseCase:(WMNodeListViewControllerUseCase)useCase {
+- (NSArray*)filteredNodeListForUseCase:(WMPOIsListViewControllerUseCase)useCase {
     NSLog(@"OLD NODE LIST = %lu", (unsigned long)nodes.count);
     
     // filter nodes here
@@ -508,7 +506,7 @@
     for (Node* node in nodesCopy) {
         NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
-        if (((useCase == kWMNodeListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN])
+        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN])
 			|| [[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES)
 			&& [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
 				if (![newNodeList containsObject:node]) {
@@ -604,10 +602,10 @@
 /**
  * Called only on the iPhone
  */
-- (void)nodeListView:(id<WMNodeListView>)nodeListView didSelectNode:(Node *)node
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectNode:(Node *)node
 {
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             [(WMIPadRootViewController *)self.topViewController nodeListView:nodeListView didSelectNode:node];
         }
@@ -616,7 +614,7 @@
     
     // we don"t want to push a detail view when selecting a node on the map view, so
     // we check if this message comes from a table view
-    if (node && [nodeListView isKindOfClass:[WMNodeListViewController class]]) {
+    if (node && [nodeListView isKindOfClass:[WMPOIsListViewController class]]) {
         [self pushDetailsViewControllerForNode:node];
     }
 }
@@ -624,10 +622,10 @@
 /**
  * Called only on the iPhone
  */
-- (void) nodeListView:(id<WMNodeListView>)nodeListView didSelectDetailsForNode:(Node *)node
+- (void) nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectDetailsForNode:(Node *)node
 {
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             [(WMIPadRootViewController *)self.topViewController nodeListView:nodeListView didSelectDetailsForNode:node];
         }
@@ -641,7 +639,7 @@
 
 - (void) pushDetailsViewControllerForNode:(Node*)node
 {
-    WMDetailViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
+    WMPOIViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
     detailViewController.baseController = self;
     detailViewController.node = node;
     [self pushViewController:detailViewController animated:YES];
@@ -683,7 +681,7 @@
 -(void)updateNodesWithCurrentUserLocation
 {
     CLLocation* newLocation = self.currentLocation;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         if ([self.topViewController isKindOfClass:WMIPadRootViewController.class]) {
             [(WMIPadRootViewController *)self.topViewController gotNewUserLocation:newLocation];
         }
@@ -692,9 +690,9 @@
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
         [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];   // this will automatically update node list!
-    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController *currentVC = (WMNodeListViewController*)self.topViewController;
-        if (currentVC.useCase == kWMNodeListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMNodeListViewControllerUseCaseGlobalSearch)) {
+    } else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController *currentVC = (WMPOIsListViewController*)self.topViewController;
+        if (currentVC.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch)) {
             [self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
         } else {
             //            [self updateNodesNear:newLocation.coordinate];
@@ -781,8 +779,8 @@
 - (void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     
-    if ([viewController conformsToProtocol:@protocol(WMNodeListView)]) {
-        id<WMNodeListView> nodeListViewController = (id<WMNodeListView>)viewController;
+    if ([viewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
+        id<WMPOIsListViewDelegate> nodeListViewController = (id<WMPOIsListViewDelegate>)viewController;
         nodeListViewController.dataSource = self;
         nodeListViewController.delegate = self;
     }
@@ -844,39 +842,39 @@
             leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;   // single exception. this is the first level!
         }
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
-    } else if ([vc isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController* nodeListVC = (WMNodeListViewController*)vc;
+    } else if ([vc isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)vc;
         rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
         self.customToolBar.toggleButton.selected = NO;
         switch (nodeListVC.useCase) {
-            case kWMNodeListViewControllerUseCaseNormal:
+            case kWMPOIsListViewControllerUseCaseNormal:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
                 [self.customToolBar showAllButtons];
                 break;
-            case kWMNodeListViewControllerUseCaseContribute:
+            case kWMPOIsListViewControllerUseCaseContribute:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"TitleHelp", nil);
                 [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
                 //[self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
                 break;
-            case kWMNodeListViewControllerUseCaseCategory:
+            case kWMPOIsListViewControllerUseCaseCategory:
                 [self.customToolBar showButton:kWMToolBarButtonWheelChairFilter];
                 [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
                 break;
-            case kWMNodeListViewControllerUseCaseGlobalSearch:
-            case kWMNodeListViewControllerUseCaseSearchOnDemand:
+            case kWMPOIsListViewControllerUseCaseGlobalSearch:
+            case kWMPOIsListViewControllerUseCaseSearchOnDemand:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
             default:
                 break;
         }
         
-    } else if ([vc isKindOfClass:[WMDetailViewController class]]) {
+    } else if ([vc isKindOfClass:[WMPOIViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
-    } else if ([vc isKindOfClass:[WMWheelchairStatusViewController class]]) {
-        WMWheelchairStatusViewController* wheelchairStatusVC = (WMWheelchairStatusViewController*)vc;
+    } else if ([vc isKindOfClass:[WMEditPOIWheelchairStatusViewController class]]) {
+        WMEditPOIWheelchairStatusViewController* wheelchairStatusVC = (WMEditPOIWheelchairStatusViewController*)vc;
         NSLog(@"WheelChairStatusViewController usecase: %d", wheelchairStatusVC.useCase);
         if (wheelchairStatusVC.useCase == kWMWheelChairStatusViewControllerUseCasePutNode) {
             rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
@@ -888,7 +886,7 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
     } else if ([vc isKindOfClass:[WMEditPOIViewController class]] ||
-               [vc isKindOfClass:[WMCommentViewController class]]) {
+               [vc isKindOfClass:[WMEditPOICommentViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
         [self hidePopover:wheelChairFilterPopover];
@@ -900,9 +898,9 @@
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
         
-    } else if ([vc isKindOfClass:[WMCategoryViewController class]] ||
-               [vc isKindOfClass:[WMSetMarkerViewController class]] ||
-               [vc isKindOfClass:[WMNodeTypeTableViewController class]]) {
+    } else if ([vc isKindOfClass:[WMCategoriesListViewController class]] ||
+               [vc isKindOfClass:[WMEditPOIPositionViewController class]] ||
+               [vc isKindOfClass:[WMEditPOITypeViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
     }
     
@@ -976,7 +974,7 @@
 	WMEditPOIViewController *editPOIViewController = [UIStoryboard instantiatedEditPOIViewController];
     if (mapViewWasMoved) {
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UIDevice.isIPad == YES) {
             if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
                 editPOIViewController.initialCoordinate = ((WMIPadRootViewController *)self.topViewController).mapViewController.region.center;
             }
@@ -987,9 +985,9 @@
         editPOIViewController.initialCoordinate = self.currentLocation.coordinate;
     }
     editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         
-        WMDetailNavigationController *detailNavController = [[WMDetailNavigationController alloc] initWithRootViewController:editPOIViewController];
+        WMPOIIPadNavigationController *detailNavController = [[WMPOIIPadNavigationController alloc] initWithRootViewController:editPOIViewController];
         detailNavController.customNavigationBar.title = editPOIViewController.navigationBarTitle;
         
         editPOIViewController.isRootViewController = YES;
@@ -1007,22 +1005,22 @@
 -(void)pressedEditButton:(WMNavigationBar *)navigationBar
 {
     WMViewController* currentViewController = [self.viewControllers lastObject];
-    if ([currentViewController isKindOfClass:[WMDetailViewController class]]) {
-        [(WMDetailViewController*)currentViewController pushEditViewController];
+    if ([currentViewController isKindOfClass:[WMPOIViewController class]]) {
+        [(WMPOIViewController*)currentViewController pushEditViewController];
     }
 }
 
 -(void)pressedSaveButton:(WMNavigationBar *)navigationBar
 {
     WMViewController* currentViewController = [self.viewControllers lastObject];
-    if ([currentViewController isKindOfClass:[WMWheelchairStatusViewController class]]) {
-        [(WMWheelchairStatusViewController*)currentViewController saveAccessStatus];
+    if ([currentViewController isKindOfClass:[WMEditPOIWheelchairStatusViewController class]]) {
+        [(WMEditPOIWheelchairStatusViewController*)currentViewController saveAccessStatus];
     }
     if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
         [(WMEditPOIViewController*)currentViewController saveEditedData];
     }
-    if ([currentViewController isKindOfClass:[WMCommentViewController class]]) {
-        [(WMCommentViewController*)currentViewController saveEditedData];
+    if ([currentViewController isKindOfClass:[WMEditPOICommentViewController class]]) {
+        [(WMEditPOICommentViewController*)currentViewController saveEditedData];
     }
 }
 
@@ -1045,26 +1043,26 @@
         return;
     }
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [self.customToolBar isKindOfClass:WMToolBar_iPad.class]) {
+    if (UIDevice.isIPad == YES && [self.customToolBar isKindOfClass:WMToolBar_iPad.class]) {
         ((WMToolBar_iPad *)self.customToolBar).helpButton.selected = NO;
     }
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         WMIPadRootViewController* vc = (WMIPadRootViewController*)self.topViewController;
-        vc.listViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
-        vc.mapViewController.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+        vc.listViewController.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
+        vc.mapViewController.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
         [self updateNodesWithQuery:query andRegion:vc.mapViewController.region];
         
-    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController* vc = (WMNodeListViewController*)self.topViewController;
-        vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+    } else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController* vc = (WMPOIsListViewController*)self.topViewController;
+        vc.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);
         self.customNavigationBar.title = vc.navigationBarTitle;
         [self updateNodesWithQuery:query andRegion:self.mapViewController.region];
         
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* vc = (WMMapViewController*)self.topViewController;
-        vc.useCase = kWMNodeListViewControllerUseCaseSearchOnDemand;
+        vc.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
         self.customNavigationBar.title = vc.navigationBarTitle;
 
@@ -1081,33 +1079,33 @@
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
     
-    if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
+    if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
         //  the node list view is on the screen. push the map view controller
         
         WMViewController* currentVC = (WMViewController*)self.topViewController;
         self.mapViewController.navigationBarTitle = currentVC.navigationBarTitle;
 		if ([currentVC respondsToSelector:@selector(useCase)]) {
-            self.mapViewController.useCase = (WMNodeListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
+            self.mapViewController.useCase = (WMPOIsListViewControllerUseCase)[currentVC performSelector:@selector(useCase)];
 		}
 		
 		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
 		if ([toVC isKindOfClass:[WMMapViewController class]]) {
 			// Map view controller is already there, we just have to pop fade
-			((WMMapViewController*)toVC).useCase = ((WMNodeListViewController*)self.topViewController).useCase;
-			((WMMapViewController*)toVC).navigationBarTitle = ((WMNodeListViewController*)self.topViewController).navigationBarTitle;
+			((WMMapViewController*)toVC).useCase = ((WMPOIsListViewController*)self.topViewController).useCase;
+			((WMMapViewController*)toVC).navigationBarTitle = ((WMPOIsListViewController*)self.topViewController).navigationBarTitle;
 			[self popFadeViewController];
 		} else {
-			self.mapViewController.useCase = ((WMNodeListViewController*)self.topViewController).useCase;
-			self.mapViewController.navigationBarTitle = ((WMNodeListViewController*)self.topViewController).navigationBarTitle;
+			self.mapViewController.useCase = ((WMPOIsListViewController*)self.topViewController).useCase;
+			self.mapViewController.navigationBarTitle = ((WMPOIsListViewController*)self.topViewController).navigationBarTitle;
 			[self pushFadeViewController:self.mapViewController];
 		}
 		
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         //  the map view is on the screen. pop the map view controller
 		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
-		if ([toVC isKindOfClass:[WMNodeListViewController class]]) {
-			((WMNodeListViewController*)toVC).useCase = ((WMMapViewController*)self.topViewController).useCase;
-			((WMNodeListViewController*)toVC).navigationBarTitle = ((WMMapViewController*)self.topViewController).navigationBarTitle;
+		if ([toVC isKindOfClass:[WMPOIsListViewController class]]) {
+			((WMPOIsListViewController*)toVC).useCase = ((WMMapViewController*)self.topViewController).useCase;
+			((WMPOIsListViewController*)toVC).navigationBarTitle = ((WMMapViewController*)self.topViewController).navigationBarTitle;
 			[self popFadeViewController];
 		} else {
 			// List view controller is already there, we just have to pop fade
@@ -1137,25 +1135,25 @@
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
-        if (currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.listViewController.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        if (currentVC.listViewController.useCase == kWMPOIsListViewControllerUseCaseCategory || currentVC.listViewController.useCase == kWMPOIsListViewControllerUseCaseContribute) {
             return;
         }
-        currentVC.listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-        currentVC.mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-    } else if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-        WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
-        if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        currentVC.listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+        currentVC.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+    } else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+        WMPOIsListViewController* currentVC = (WMPOIsListViewController*)self.topViewController;
+        if (currentVC.useCase == kWMPOIsListViewControllerUseCaseCategory || currentVC.useCase == kWMPOIsListViewControllerUseCaseContribute) {
             return;
         }
-        currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
     } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-        if (currentVC.useCase == kWMNodeListViewControllerUseCaseCategory || currentVC.useCase == kWMNodeListViewControllerUseCaseContribute) {
+        if (currentVC.useCase == kWMPOIsListViewControllerUseCaseCategory || currentVC.useCase == kWMPOIsListViewControllerUseCaseContribute) {
             return;
         }
-        currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
     }
@@ -1168,7 +1166,7 @@
     [self hidePopover:wheelChairFilterPopover];
     [self hidePopover:categoryFilterPopover];
     
-    if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+    if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if (!selected) {
             if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
                 [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
@@ -1180,7 +1178,7 @@
     if (selected) {
         [self.customNavigationBar showSearchBar];
         
-        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             if (!selected) {
                 if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
                     [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
@@ -1191,26 +1189,26 @@
         }
     } else {
         
-        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
             [currentVC pressedSearchButton:selected];
             
             [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
         }
-        if ([self.topViewController isKindOfClass:[WMNodeListViewController class]]) {
-            WMNodeListViewController* currentVC = (WMNodeListViewController*)self.topViewController;
-            currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+        if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+            WMPOIsListViewController* currentVC = (WMPOIsListViewController*)self.topViewController;
+            currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
             currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
             self.customNavigationBar.title = currentVC.navigationBarTitle;
         } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
             WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-            WMNodeListViewController* nodeListVC = (WMNodeListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
-			if ([nodeListVC isKindOfClass:[WMNodeListViewController class]]) {
-				nodeListVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+            WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+			if ([nodeListVC isKindOfClass:[WMPOIsListViewController class]]) {
+				nodeListVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
 				nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
 			}
 			
-            currentVC.useCase = kWMNodeListViewControllerUseCaseNormal;
+            currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
             currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
             self.customNavigationBar.title = currentVC.navigationBarTitle;
         }
@@ -1263,9 +1261,9 @@
     
     WMViewController* viewController;
     if (!dataManager.userIsAuthenticated) {
-        viewController = [UIStoryboard instantiatedOSMStartViewController];
+        viewController = [UIStoryboard instantiatedOSMOnboardingViewController];
     } else {
-        viewController = [UIStoryboard instantiatedLogoutViewController];
+        viewController = [UIStoryboard instantiatedOSMLogoutViewController];
     }
     
     viewController.baseController = self;
@@ -1307,12 +1305,12 @@
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
             if (( (WMToolBar_iPad *)toolBar).helpButton.selected == NO) {
-                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
-                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseNormal;
+                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
+                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
                 [self pressedCurrentLocationButton:self.customToolBar];
             } else {
-                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
-                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMNodeListViewControllerUseCaseContribute;
+                ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMPOIsListViewControllerUseCaseContribute;
+                ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMPOIsListViewControllerUseCaseContribute;
                 [self pressedCurrentLocationButton:self.customToolBar];
             }
         }
@@ -1462,10 +1460,9 @@
 #pragma mark - UINavigationController delegate
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+    if (UIDevice.isIPad == NO) {
         
-        if ([viewController isKindOfClass:[WMNodeListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
+        if ([viewController isKindOfClass:[WMPOIsListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
             if (navigationController.toolbarHidden == YES)
                 [navigationController setToolbarHidden:NO animated:YES];
         } else {
@@ -1503,9 +1500,9 @@
 
 -(void)presentLoginScreenWithButtonFrame:(CGRect)frame;
 {
-    WMOSMStartViewController* osmStartViewController = [UIStoryboard instantiatedOSMStartViewController];
-    osmStartViewController.popoverButtonFrame = frame;
-    [self presentViewController:osmStartViewController animated:YES];
+    WMOSMOnboardingViewController* osmOnbaordingViewController = [UIStoryboard instantiatedOSMOnboardingViewController];
+    osmOnbaordingViewController.popoverButtonFrame = frame;
+    [self presentViewController:osmOnbaordingViewController animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -1519,7 +1516,7 @@
 }
 
 - (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         
         if ([modalViewController isKindOfClass:[WMViewController class]]) {
             [self dismissViewControllerAnimated:NO completion:nil];
@@ -1548,7 +1545,7 @@
                                                     permittedArrowDirections:0
                                                                     animated:animated];
         
-    } else if ([viewController isKindOfClass:[WMOSMDescribeViewController class]]) {
+    } else if ([viewController isKindOfClass:[WMOSMDescriptionViewController class]]) {
         ((WMViewController *)viewController).popover = [[WMPopoverController alloc]
                                                         initWithContentViewController:viewController];
         self.popoverVC = (WMViewController *)viewController;

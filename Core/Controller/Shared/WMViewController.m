@@ -32,7 +32,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+    if (UIDevice.isIPad == NO) {
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
     } else {
@@ -50,7 +50,7 @@
 {
     [super viewWillAppear:animated];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+    if (UIDevice.isIPad == NO) {
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
     } else {
@@ -96,7 +96,7 @@
 }
 
 - (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UIDevice.isIPad == YES) {
         
         UINavigationController *navigationController;
         if ([modalViewController isKindOfClass:[UINavigationController class]]) {
@@ -154,7 +154,7 @@
 }
 
 - (void)dismissViewControllerAnimated:(BOOL)animated{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
+    if (UIDevice.isIPad == YES && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
         [self.popover dismissPopoverAnimated:animated];
     } else {
         [super dismissViewControllerAnimated:animated completion:nil];

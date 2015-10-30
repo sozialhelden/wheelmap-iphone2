@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WMNodeListCell : UITableViewCell
+@interface WMPOIsListTableViewCell : UITableViewCell
 
 @property (nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) IBOutlet UILabel *nodeTypeLabel;

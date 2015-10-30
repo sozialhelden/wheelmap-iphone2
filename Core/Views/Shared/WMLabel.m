@@ -26,11 +26,11 @@
     return self;
 }
 
-- (id)initWithFrameByNodeType:(CGRect)frame nodeType:(enum WMNodeListViewControllerUseCase*)nodeType
+- (id)initWithFrameByNodeType:(CGRect)frame nodeType:(enum WMPOIsListViewControllerUseCase*)nodeType
 {
     self = [super initWithFrame:frame];
     if (self) {
-        if ((WMNodeListViewControllerUseCase)nodeType == kWMNodeListViewControllerUseCaseContribute) {
+        if ((WMPOIsListViewControllerUseCase)nodeType == kWMPOIsListViewControllerUseCaseContribute) {
             self.fontSize = 13.0;
             self.textAlignment = NSTextAlignmentLeft;
             self.numberOfLines = 3;
