@@ -791,6 +791,9 @@
 		87D26E421BD6364A0077132F /* WMCategory+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D26E411BD6364A0077132F /* WMCategory+helper.m */; };
 		87D26E431BD6364A0077132F /* WMCategory+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D26E411BD6364A0077132F /* WMCategory+helper.m */; };
 		87D26E441BD6364A0077132F /* WMCategory+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D26E411BD6364A0077132F /* WMCategory+helper.m */; };
+		87F841631BE398A20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841621BE398A20036DCE6 /* NSError+Wheelmap.m */; };
+		87F841641BE398A20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841621BE398A20036DCE6 /* NSError+Wheelmap.m */; };
+		87F841651BE398A20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841621BE398A20036DCE6 /* NSError+Wheelmap.m */; };
 		980C39F316A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		980C39F416A419360032D720 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C39F216A419360032D720 /* UIDevice+Hardware.m */; };
 		9817AF4E164D5EB700703A92 /* WMDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */; };
@@ -1205,6 +1208,8 @@
 		87910DE61BD4E79B00E0CAE0 /* WMStandardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStandardButton.m; sourceTree = "<group>"; };
 		87D26E401BD6364A0077132F /* WMCategory+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMCategory+Helper.h"; sourceTree = "<group>"; };
 		87D26E411BD6364A0077132F /* WMCategory+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WMCategory+helper.m"; sourceTree = "<group>"; };
+		87F841611BE398A20036DCE6 /* NSError+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Wheelmap.h"; sourceTree = "<group>"; };
+		87F841621BE398A20036DCE6 /* NSError+Wheelmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Wheelmap.m"; sourceTree = "<group>"; };
 		980C39F116A419360032D720 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		980C39F216A419360032D720 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		9817AF4D164D5EB700703A92 /* WMDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WMDetailView.storyboard; sourceTree = "<group>"; };
@@ -1860,6 +1865,8 @@
 		9890C536168F337900AD7C07 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				87F841611BE398A20036DCE6 /* NSError+Wheelmap.h */,
+				87F841621BE398A20036DCE6 /* NSError+Wheelmap.m */,
 				980C39F116A419360032D720 /* UIDevice+Hardware.h */,
 				980C39F216A419360032D720 /* UIDevice+Hardware.m */,
 				9890C532168F337400AD7C07 /* WMStringUtilities.h */,
@@ -3514,6 +3521,7 @@
 				0327F96116BFFB1900BA7DE7 /* SBJsonWriter.m in Sources */,
 				0327F96216BFFB1900BA7DE7 /* Facebook+Singleton.m in Sources */,
 				0327F96316BFFB1900BA7DE7 /* Facebook.m in Sources */,
+				87F841641BE398A20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				0327F96416BFFB1900BA7DE7 /* FBDialog.m in Sources */,
 				0327F96516BFFB1900BA7DE7 /* FBLoginDialog.m in Sources */,
 				0327F96616BFFB1900BA7DE7 /* FBRequest.m in Sources */,
@@ -3626,6 +3634,7 @@
 				03BD03B616A052750045D53D /* SBJsonWriter.m in Sources */,
 				03BD03B716A052750045D53D /* Facebook+Singleton.m in Sources */,
 				03BD03B816A052750045D53D /* Facebook.m in Sources */,
+				87F841651BE398A20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				03BD03B916A052750045D53D /* FBDialog.m in Sources */,
 				03BD03BA16A052750045D53D /* FBLoginDialog.m in Sources */,
 				03BD03BB16A052750045D53D /* FBRequest.m in Sources */,
@@ -3698,6 +3707,7 @@
 				98AC54AD166AA09A00E87965 /* unzip.c in Sources */,
 				98AC54AE166AA09A00E87965 /* zip.c in Sources */,
 				98AC54AF166AA09A00E87965 /* SSZipArchive.m in Sources */,
+				87F841631BE398A20036DCE6 /* NSError+Wheelmap.m in Sources */,
 				DB6E4770166B9B7A00D9CAD9 /* WMDashboardViewController.m in Sources */,
 				D5A102CD166CF27E00558BF7 /* WMCommentViewController.m in Sources */,
 				D5EE56A5166E1378008E389D /* WMEditPOIViewController.m in Sources */,
