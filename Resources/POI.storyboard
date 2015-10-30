@@ -44,7 +44,7 @@
         <!--Wheelchair Status View Controller-->
         <scene sceneID="bAj-UZ-YKr">
             <objects>
-                <viewController storyboardIdentifier="WMWheelchairStatusViewController" hidesBottomBarWhenPushed="YES" id="asO-oM-oUu" customClass="WMWheelchairStatusViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMPOIWheelchairStatusViewController" hidesBottomBarWhenPushed="YES" id="asO-oM-oUu" customClass="WMPOIWheelchairStatusViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yqy-Ap-gKJ"/>
                         <viewControllerLayoutGuide type="bottom" id="dig-ze-EXa"/>

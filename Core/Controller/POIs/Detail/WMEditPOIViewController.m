@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WMEditPOIViewController.h"
-#import "WMWheelchairStatusViewController.h"
+#import "WMPOIWheelchairStatusViewController.h"
 #import "WMPOIViewController.h"
 #import "WMEditPOIPositionViewController.h"
 #import "NodeType.h"
@@ -294,7 +294,7 @@
 - (IBAction)showAccessOptions:(id)sender {
     [self buttonPressed];
     
-    WMWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMWheelchairStatusViewController"];
+    WMPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMPOIWheelchairStatusViewController"];
     vc.hideSaveButton = YES;
     vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
     vc.navigationBarTitle = vc.title;
