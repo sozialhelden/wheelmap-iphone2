@@ -114,10 +114,10 @@
         initialNodeListView.delegate = self;
     }
     
-    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_YES,
-                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_LIMITED,
-                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_NO,
-                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_UNKNOWN,nil];
+    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_STATE_YES,
+                                   [NSNumber numberWithBool:YES], K_STATE_LIMITED,
+                                   [NSNumber numberWithBool:YES], K_STATE_NO,
+                                   [NSNumber numberWithBool:YES], K_STATE_UNKNOWN,nil];
     self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
     for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
@@ -486,7 +486,7 @@
     for (Node* node in nodesCopy) {
         NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
-        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN])
+        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_STATE_UNKNOWN])
 			|| [[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES)
 			&& [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
 				if (![newNodeList containsObject:node]) {
@@ -1301,26 +1301,26 @@
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];
     
-    NSString* wheelchairStatusString = K_WHEELCHAIR_STATE_UNKNOWN;
+    NSString* wheelchairStatusString = K_STATE_UNKNOWN;
     switch (type) {
         case kDotTypeGreen:
             self.customToolBar.wheelChairStatusFilterButton.selectedGreenDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_YES;
+            wheelchairStatusString = K_STATE_YES;
             break;
             
         case kDotTypeYellow:
             self.customToolBar.wheelChairStatusFilterButton.selectedYellowDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_LIMITED;
+            wheelchairStatusString = K_STATE_LIMITED;
             break;
             
         case kDotTypeRed:
             self.customToolBar.wheelChairStatusFilterButton.selectedRedDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_NO;
+            wheelchairStatusString = K_STATE_NO;
             break;
             
         case kDotTypeNone:
             self.customToolBar.wheelChairStatusFilterButton.selectedNoneDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_UNKNOWN;
+            wheelchairStatusString = K_STATE_UNKNOWN;
             break;
             
         default:

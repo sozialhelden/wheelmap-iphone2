@@ -139,7 +139,7 @@
     self.additionalButtonView.frame = CGRectMake(320/2-self.threeButtonWidth/2, self.startY, self.threeButtonWidth, 95);
     [self.contentView addSubview:self.additionalButtonView];
     
-    if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
     } else {
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
@@ -235,7 +235,7 @@
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.wheelAccessButton];
     
-    if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
         self.gabIfStatusUnknown = GABIFSTATUSUNKNOWN;
         
         self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -473,7 +473,7 @@
 }
 
 - (void)setWheelAccessButton {
-    if (![self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN] && self.askFriendsButton != nil) {
+    if (![self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] && self.askFriendsButton != nil) {
         [self.askFriendsButton removeFromSuperview];
         self.wheelAccessView.frame = CGRectMake(self.wheelAccessView.frame.origin.x, self.wheelAccessView.frame.origin.y, self.wheelAccessView.frame.size.width, self.wheelAccessView.frame.size.height-self.gabIfStatusUnknown);
         self.contactInfoView.frame = CGRectMake(self.contactInfoView.frame.origin.x, self.contactInfoView.frame.origin.y-self.gabIfStatusUnknown, self.contactInfoView.frame.size.width, self.contactInfoView.frame.size.height);
@@ -482,16 +482,16 @@
         self.askFriendsButton = nil;
     }
 
-    if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_YES]) {
+    if ([self.node.wheelchair isEqualToString:K_STATE_YES]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_NO]) {
+    } else if ([self.node.wheelchair isEqualToString:K_STATE_NO]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_LIMITED]) {
+    } else if ([self.node.wheelchair isEqualToString:K_STATE_LIMITED]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+    } else if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
     }
@@ -633,7 +633,7 @@
                             options:UIViewAnimationCurveEaseOut
                          animations:^{
                              self.mapView.frame = MAPVIEWCLOSEDSTATE;
-                             if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+                             if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
                                  self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
                              } else {
                                  self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
@@ -654,7 +654,7 @@
                             options:UIViewAnimationCurveEaseIn
                          animations:^{
                              self.mapView.frame = MAPVIEWOPENSTATE;
-                             if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+                             if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
                                  self.contentView.frame = CONTENTVIEWOPENMAPSTATEGAB;
                              } else {
                                  self.contentView.frame = CONTENTVIEWOPENMAPSTATE;
