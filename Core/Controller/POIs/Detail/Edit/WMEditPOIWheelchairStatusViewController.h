@@ -9,36 +9,29 @@
 #import <UIKit/UIKit.h>
 #import "Node.h"
 #import "WMDataManager.h"
+#import "WMEditPOIStatusButtonView.h"
 
 typedef enum {
     kWMWheelChairStatusViewControllerUseCasePutWheelChairStatus,
     kWMWheelChairStatusViewControllerUseCasePutNode
 } WMWheelChairStatusViewControllerUseCase;
 
-@interface WMEditPOIWheelchairStatusViewController : WMViewController <WMDataManagerDelegate> {
-    WMDataManager* dataManager;
+@interface WMEditPOIWheelchairStatusViewController : WMViewController <WMDataManagerDelegate, WMEditPOIStatusButtonViewDelegate> {
+
+	WMDataManager* dataManager;
     
-    UIActivityIndicatorView* progressWheel;
 }
 
-@property (nonatomic, strong) Node *				node;
+@property (nonatomic, strong) Node *						node;
 
-@property (strong, nonatomic) UIScrollView *		scrollView;
-@property WMWheelChairStatusViewControllerUseCase	useCase;
-@property (strong, nonatomic) IBOutlet WMButton *	yesButton;
-@property (strong, nonatomic) IBOutlet WMButton *	limitedButton;
-@property (strong, nonatomic) IBOutlet WMButton *	noButton;
+@property WMWheelChairStatusViewControllerUseCase			useCase;
 
-@property (nonatomic, strong) UIImageView *			yesCheckMarkImageView;
-@property (nonatomic, strong) UIImageView *			limitedCheckMarkImageView;
-@property (nonatomic, strong) UIImageView *			noCheckMarkImageView;
+@property (strong, nonatomic) id<WMEditPOIStatusDelegate>	delegate;
 
-@property (strong, nonatomic) id					delegate;
-@property (nonatomic, strong) NSString *			wheelchairAccess;
-@property (nonatomic) BOOL							hideSaveButton;
+@property (nonatomic, strong) NSString *					currentState;
 
-- (IBAction)accessButtonPressed:(id)sender;
+@property (nonatomic) BOOL									hideSaveButton;
 
-- (void) saveAccessStatus;
+- (void)saveAccessStatus;
 
 @end

@@ -202,7 +202,7 @@
 }
 
 
-- (void)accessButtonPressed:(NSString*)wheelchairAccess {
+- (void)didSelectStatus:(NSString*)wheelchairAccess {
     self.currentWheelchairStatus = wheelchairAccess;
     [self setWheelAccessButton];
 }

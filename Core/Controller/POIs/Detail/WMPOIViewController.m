@@ -944,7 +944,7 @@
     
 }
 
-- (IBAction)accessButtonPressed:(NSString*)wheelchairAccess {
+- (IBAction)didSelectStatus:(NSString*)wheelchairAccess {
     self.node.wheelchair = wheelchairAccess;
 }
 
