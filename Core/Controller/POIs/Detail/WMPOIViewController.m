@@ -712,24 +712,13 @@
             CLLocationCoordinate2D start = { self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude };
             CLLocationCoordinate2D destination = { self.poiLocation.latitude, self.poiLocation.longitude };
             
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
-                // Create an MKMapItem to pass to the Maps app
-                MKPlacemark *placemarkStart = [[MKPlacemark alloc] initWithCoordinate:start addressDictionary:nil];
-                MKPlacemark *placemarkDest = [[MKPlacemark alloc] initWithCoordinate:destination addressDictionary:nil];
-                MKMapItem *mapItemStart = [[MKMapItem alloc] initWithPlacemark:placemarkStart];
-                MKMapItem *mapItemDest = [[MKMapItem alloc] initWithPlacemark:placemarkDest];
-                
-                [MKMapItem openMapsWithItems:@[mapItemStart, mapItemDest] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking}];
-                
-            } else {
-                
-                NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
-                                                 start.latitude, start.longitude, destination.latitude, destination.longitude];
-                NSURL *url = [NSURL URLWithString:googleMapsURLString];
-                
-                [[UIApplication sharedApplication] openURL:url];
-            }
-            
+			// Create an MKMapItem to pass to the Maps app
+			MKPlacemark *placemarkStart = [[MKPlacemark alloc] initWithCoordinate:start addressDictionary:nil];
+			MKPlacemark *placemarkDest = [[MKPlacemark alloc] initWithCoordinate:destination addressDictionary:nil];
+			MKMapItem *mapItemStart = [[MKMapItem alloc] initWithPlacemark:placemarkStart];
+			MKMapItem *mapItemDest = [[MKMapItem alloc] initWithPlacemark:placemarkDest];
+
+			[MKMapItem openMapsWithItems:@[mapItemStart, mapItemDest] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking}];
         }
     } else if (actionSheet.tag == 2) { // PHOTOUPLOAD
         if (buttonIndex == 0) {
