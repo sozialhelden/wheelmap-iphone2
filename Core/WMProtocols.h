@@ -55,7 +55,7 @@
 @end
 
 @protocol WMEditPOIStatusDelegate <NSObject>
-- (void)didSelectStatus:(NSString *)state;
+- (void)didSelectStatus:(NSString *)state forStatusType:(WMEditPOIStatusType)statusType;
 @end
 
 @protocol WMEditPOIStatusButtonViewDelegate <NSObject>

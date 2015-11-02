@@ -64,9 +64,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="status" value="yes"/>
-            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="button" destination="Uzl-kd-Prx" id="zbW-Ge-95W"/>
                 <outlet property="checkmarkImageView" destination="OmG-hL-CRT" id="gJy-2r-l1u"/>

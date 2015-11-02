@@ -13,7 +13,7 @@
 #import "NodeType.h"
 #import "Image.h"
 #import "Photo.h"
-#import "WMEditPOIWheelchairStatusViewController.h"
+#import "WMEditPOIStateViewController.h"
 #import "WMShareSocialViewController.h"
 #import "WMEditPOICommentViewController.h"
 #import "WMEditPOIViewController.h"
@@ -936,10 +936,12 @@
 }
 
 - (void)showAccessOptions {
-    WMEditPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIWheelchairStatusViewController"];
+    WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
     vc.delegate = self;
     vc.node = self.node;
-    vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", @"");
+	vc.useCase = WMEditPOIStatusUseCasePOIUpdate;
+	vc.statusType = WMEditPOIStatusTypeWheelchair;
+    vc.title = NSLocalizedString(@"EditPOIStateHeadline", @"");
     [self.navigationController pushViewController:vc animated:YES];
     
 }

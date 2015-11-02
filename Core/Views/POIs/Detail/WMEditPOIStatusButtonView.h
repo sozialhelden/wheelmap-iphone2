@@ -12,11 +12,13 @@
 
 @property (nonatomic, weak) id<WMEditPOIStatusButtonViewDelegate>		delegate;
 
+@property (nonatomic) WMEditPOIStatusType								statusType;
+
 - (instancetype)initFromNibToView:(UIView *)view;
 
 #pragma mark - Public Setter
 
-- (void)setStatus:(NSString *)statusString;
+- (void)setCurrentStatus:(NSString *)statusString;
 - (void)setSelected:(BOOL)selected;
 
 @end

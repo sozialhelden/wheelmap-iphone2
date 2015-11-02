@@ -180,9 +180,9 @@
 		8746D34C1BE3BFF100CBD474 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D33F1BE3BFF100CBD474 /* WMEditPOIViewController.m */; };
 		8746D34D1BE3BFF100CBD474 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D33F1BE3BFF100CBD474 /* WMEditPOIViewController.m */; };
 		8746D34E1BE3BFF100CBD474 /* WMEditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D33F1BE3BFF100CBD474 /* WMEditPOIViewController.m */; };
-		8746D3511BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m */; };
-		8746D3521BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m */; };
-		8746D3531BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m */; };
+		8746D3511BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */; };
+		8746D3521BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */; };
+		8746D3531BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */; };
 		8774E4EE1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
 		8774E4EF1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
 		8774E4F01BE0D15D00A3E7EA /* NSString+Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */; };
@@ -837,8 +837,8 @@
 		8746D33D1BE3BFF100CBD474 /* WMEditPOITypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOITypeViewController.m; sourceTree = "<group>"; };
 		8746D33E1BE3BFF100CBD474 /* WMEditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIViewController.h; sourceTree = "<group>"; };
 		8746D33F1BE3BFF100CBD474 /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
-		8746D34F1BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIWheelchairStatusViewController.h; sourceTree = "<group>"; };
-		8746D3501BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIWheelchairStatusViewController.m; sourceTree = "<group>"; };
+		8746D34F1BE3C03C00CBD474 /* WMEditPOIStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIStateViewController.h; sourceTree = "<group>"; };
+		8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIStateViewController.m; sourceTree = "<group>"; };
 		8746D3541BE3CF8E00CBD474 /* WMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMDefines.h; path = Core/WMDefines.h; sourceTree = SOURCE_ROOT; };
 		8774E4EA1BE0CCDC00A3E7EA /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
 		8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Distance.h"; sourceTree = "<group>"; };
@@ -1396,8 +1396,8 @@
 		8746D3351BE3BFF100CBD474 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				8746D34F1BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.h */,
-				8746D3501BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m */,
+				8746D34F1BE3C03C00CBD474 /* WMEditPOIStateViewController.h */,
+				8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */,
 				8746D3361BE3BFF100CBD474 /* WMEditPOICategoryViewController.h */,
 				8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */,
 				8746D3381BE3BFF100CBD474 /* WMEditPOICommentViewController.h */,
@@ -2633,7 +2633,7 @@
 				878EC9571BE0F9200099EDD1 /* WMCompassView.m in Sources */,
 				872FDEC41BDFEF6D00764FC5 /* WMDataModel.xcdatamodeld in Sources */,
 				878EC95A1BE0F9200099EDD1 /* WMWheelchairStatusButton.m in Sources */,
-				8746D3521BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m in Sources */,
+				8746D3521BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */,
 				8746D34A1BE3BFF100CBD474 /* WMEditPOITypeViewController.m in Sources */,
 				872FDEB51BDFEF6D00764FC5 /* NodeType.m in Sources */,
 				8746D3441BE3BFF100CBD474 /* WMEditPOICommentViewController.m in Sources */,
@@ -2712,7 +2712,7 @@
 				878EC9581BE0F9200099EDD1 /* WMCompassView.m in Sources */,
 				872FDEC51BDFEF6D00764FC5 /* WMDataModel.xcdatamodeld in Sources */,
 				878EC95B1BE0F9200099EDD1 /* WMWheelchairStatusButton.m in Sources */,
-				8746D3531BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m in Sources */,
+				8746D3531BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */,
 				8746D34B1BE3BFF100CBD474 /* WMEditPOITypeViewController.m in Sources */,
 				872FDEB61BDFEF6D00764FC5 /* NodeType.m in Sources */,
 				8746D3451BE3BFF100CBD474 /* WMEditPOICommentViewController.m in Sources */,
@@ -2791,7 +2791,7 @@
 				878EC9561BE0F9200099EDD1 /* WMCompassView.m in Sources */,
 				872FDEC31BDFEF6D00764FC5 /* WMDataModel.xcdatamodeld in Sources */,
 				878EC9591BE0F9200099EDD1 /* WMWheelchairStatusButton.m in Sources */,
-				8746D3511BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m in Sources */,
+				8746D3511BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */,
 				8746D3491BE3BFF100CBD474 /* WMEditPOITypeViewController.m in Sources */,
 				872FDEB41BDFEF6D00764FC5 /* NodeType.m in Sources */,
 				8746D3431BE3BFF100CBD474 /* WMEditPOICommentViewController.m in Sources */,

@@ -879,13 +879,44 @@
     [self incrementRunningOperations];
 }
 
--(void) updateNode:(Node *)node
-{
+- (void)updateToiletStateOfNode:(Node *)node {
+
+	if (node.wheelchair_toilet == nil) {
+		DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Cannot update toilet state to null!");
+		return;
+	}
+
+	DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"update toilet status to %@", node.wheelchair_toilet);
+
+	NSDictionary* parameters = @{@"wheelchair_toilet":node.wheelchair};
+	[[WMWheelmapAPI sharedInstance] requestResource:[NSString stringWithFormat:@"nodes/%@/update_toilet", node.id]
+											 apiKey:[self apiKey]
+										 parameters:parameters
+											   eTag:nil
+											 method:@"PUT"
+											  error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+												  if ([self.delegate respondsToSelector:@selector(dataManager:updateToiletStatusOfNode:failedWithError:)]) {
+													  [self.delegate dataManager:self updateToiletStatusOfNode:node failedWithError:error];
+												  }
+												  [self decrementRunningOperations];
+											  }
+											success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+												if ([self.delegate respondsToSelector:@selector(dataManager:didUpdateToiletStatusOfNode:)]) {
+													[self.delegate dataManager:self didUpdateToiletStatusOfNode:node];
+												}
+												[self decrementRunningOperations];
+											}
+								   startImmediately:YES
+	 ];
+	[self incrementRunningOperations];
+}
+
+- (void)updateNode:(Node *)node {
     DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"update node %@ %@", node.name, node.id);
-        
+
     // if this is a put
     if (node.id) {
-        
+
         // validate node
         NSError *validationError = nil;
         if (![node validateForUpdate:&validationError]) {

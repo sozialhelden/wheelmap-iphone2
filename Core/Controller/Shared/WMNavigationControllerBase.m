@@ -11,7 +11,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMDataManager.h"
 #import "WMPOIViewController.h"
-#import "WMEditPOIWheelchairStatusViewController.h"
+#import "WMEditPOIStateViewController.h"
 #import "WMDashboardViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMShareSocialViewController.h"
@@ -822,9 +822,9 @@
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
         [self hidePopover:wheelChairFilterPopover];
         [self hidePopover:categoryFilterPopover];
-    } else if ([vc isKindOfClass:[WMEditPOIWheelchairStatusViewController class]]) {
-        WMEditPOIWheelchairStatusViewController* wheelchairStatusVC = (WMEditPOIWheelchairStatusViewController*)vc;
-        if (wheelchairStatusVC.useCase == kWMWheelChairStatusViewControllerUseCasePutNode) {
+    } else if ([vc isKindOfClass:[WMEditPOIStateViewController class]]) {
+        WMEditPOIStateViewController* wheelchairStatusVC = (WMEditPOIStateViewController*)vc;
+        if (wheelchairStatusVC.useCase == WMEditPOIStatusUseCasePOICreation) {
             rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
             leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         } else {
@@ -959,8 +959,8 @@
 -(void)pressedSaveButton:(WMNavigationBar *)navigationBar
 {
     WMViewController* currentViewController = [self.viewControllers lastObject];
-    if ([currentViewController isKindOfClass:[WMEditPOIWheelchairStatusViewController class]]) {
-        [(WMEditPOIWheelchairStatusViewController*)currentViewController saveAccessStatus];
+    if ([currentViewController isKindOfClass:[WMEditPOIStateViewController class]]) {
+        [(WMEditPOIStateViewController*)currentViewController saveCurrentState];
     }
     if ([currentViewController isKindOfClass:[WMEditPOIViewController class]]) {
         [(WMEditPOIViewController*)currentViewController saveEditedData];

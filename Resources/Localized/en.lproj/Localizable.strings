@@ -86,6 +86,11 @@
 "Sign Up Button" = "Sign up";
 "User Credentials Error" = "Wrong username or password. Please try again.";
 "Account Linkage Error" = "Your account is not linked to an OpenStreetMap account yet. Click OK to open the browser and change that.";
+"ToiletAccessYes" = "Rollstuhlgerechtes WC";
+"ToiletAccessUnknown" = "Status WC unbekannt";
+"ToiletAccessNo" = "Nicht Rollstuhlgerechtes WC";
+"ToiletAccessContentYes" = "● Durchgang Tür mind. 90 cm\n● Bewegungsfläche mind. 150 cm x 150 cm\n● WC-Becken mit größerer Sitzhöhe\n● Stützklappgriffe o.ä.\n● Unterfahrbares Waschbecken";
+"ToiletAccessContentNo" = "";
 "WheelchairAccessYes" = "Fully accessible";
 "WheelchairAccessLimited" = "Limited accessibility";
 "WheelchairAccessNo" = "Not accessible";
@@ -247,7 +252,7 @@
 "NoAddress" = "No address available";
 "NoWebsite" = "No website available";
 "NoPhone" = "No telephone number available";
-"WheelAccessStatusViewHeadline" = "Status";
+"EditPOIStateHeadline" = "Status";
 "NavBarEditButton" = "Edit";
 "NavBarSaveButton" = "Save";
 "TitleHelp" = "Get involved";
@@ -267,7 +272,7 @@
 "PhotoUuploadSuccess" = "The photo was uploaded successfully";
 "PhotoUuploadFailed" = "The photo could not be uploaded. Please try again";
 "FetchingPhotoURLFailed" = "The photos of this location could not be downloaded.";
-"WheelchairStatusChangeFailed" = "The wheelchair accessibility of this place could not be updated. Please try again.";
+"POIStatusChangeFailed" = "The wheelchair accessibility of this place could not be updated. Please try again.";
 "NavBarTitleSharing" = "Sharing";
 "NavBarTitleComment" = "Comment";
 "NavBarTitleEdit" = "Edit";

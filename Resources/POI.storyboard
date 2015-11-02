@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="-544" y="-80"/>
         </scene>
-        <!--EditPOI Wheelchair Status View Controller-->
+        <!--EditPOI State View Controller-->
         <scene sceneID="bAj-UZ-YKr">
             <objects>
-                <viewController storyboardIdentifier="WMEditPOIWheelchairStatusViewController" hidesBottomBarWhenPushed="YES" id="asO-oM-oUu" customClass="WMEditPOIWheelchairStatusViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WMEditPOIStateViewController" hidesBottomBarWhenPushed="YES" id="asO-oM-oUu" customClass="WMEditPOIStateViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yqy-Ap-gKJ"/>
                         <viewControllerLayoutGuide type="bottom" id="dig-ze-EXa"/>
@@ -71,11 +71,17 @@
                                                 <rect key="frame" x="0.0" y="140" width="320" height="130"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="QyY-JL-fnf"/>
+                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRg-2Z-54U">
                                                 <rect key="frame" x="0.0" y="270" width="320" height="130"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="Xds-Wa-bve"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <animations/>
@@ -85,15 +91,13 @@
                                             <constraint firstItem="TB0-Z0-BFn" firstAttribute="leading" secondItem="A3M-mN-KKM" secondAttribute="leading" id="7SC-hk-nhN"/>
                                             <constraint firstItem="cRg-2Z-54U" firstAttribute="trailing" secondItem="TB0-Z0-BFn" secondAttribute="trailing" id="7qd-P7-LHa"/>
                                             <constraint firstAttribute="height" constant="400" id="9LE-hq-1bM"/>
-                                            <constraint firstItem="TB0-Z0-BFn" firstAttribute="top" secondItem="A3M-mN-KKM" secondAttribute="top" constant="10" id="Ofa-ox-kdH"/>
+                                            <constraint firstItem="TB0-Z0-BFn" firstAttribute="top" secondItem="A3M-mN-KKM" secondAttribute="top" constant="10" id="Srq-gk-1sz"/>
                                             <constraint firstItem="cRg-2Z-54U" firstAttribute="leading" secondItem="TB0-Z0-BFn" secondAttribute="leading" id="XbR-JA-ejl"/>
-                                            <constraint firstItem="cRg-2Z-54U" firstAttribute="height" secondItem="TB0-Z0-BFn" secondAttribute="height" id="YaR-AK-g3a"/>
                                             <constraint firstItem="cRg-2Z-54U" firstAttribute="top" secondItem="mVq-ZP-21k" secondAttribute="bottom" id="ieK-wz-pNI"/>
                                             <constraint firstItem="mVq-ZP-21k" firstAttribute="top" secondItem="TB0-Z0-BFn" secondAttribute="bottom" id="lj2-FP-ILN"/>
                                             <constraint firstItem="mVq-ZP-21k" firstAttribute="leading" secondItem="TB0-Z0-BFn" secondAttribute="leading" id="luz-Ry-bCV"/>
                                             <constraint firstItem="mVq-ZP-21k" firstAttribute="trailing" secondItem="TB0-Z0-BFn" secondAttribute="trailing" id="p4Z-A2-uyH"/>
                                             <constraint firstAttribute="width" constant="320" id="wwn-fL-wX4"/>
-                                            <constraint firstItem="mVq-ZP-21k" firstAttribute="height" secondItem="TB0-Z0-BFn" secondAttribute="height" id="xCn-SU-xAv"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -134,6 +138,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="limitedButtonContainerView" destination="mVq-ZP-21k" id="7AP-Q1-e00"/>
+                        <outlet property="limitedButtonViewContainerHeightConstraint" destination="QyY-JL-fnf" id="k2c-ET-Ku9"/>
                         <outlet property="noButtonContainerView" destination="cRg-2Z-54U" id="nZ7-ja-Dyf"/>
                         <outlet property="progressWheel" destination="1no-MM-ZSH" id="DyN-dm-zo6"/>
                         <outlet property="scrollViewContentHeightConstraint" destination="9LE-hq-1bM" id="XWy-HR-vaY"/>
@@ -325,14 +330,14 @@
                         <viewControllerLayoutGuide type="bottom" id="4F0-kh-icV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mZh-TE-LRg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="582"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="782"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kol-Qg-2kf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="572"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kol-Qg-2kf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="782"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MzP-lO-vRP">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="582"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="639"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-78-2mX">
                                                 <rect key="frame" x="10" y="20" width="300" height="44"/>
@@ -510,11 +515,30 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="showAccessOptions:" destination="1Xb-3o-iQI" eventType="touchUpInside" id="qR6-Ma-4CW"/>
+                                                    <action selector="wheelchairStateButtonPressed:" destination="1Xb-3o-iQI" eventType="touchUpInside" id="9Jn-sp-CH9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4n-8C-9AZ">
+                                                <rect key="frame" x="10" y="282" width="300" height="46"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="cKc-CF-OoC"/>
+                                                    <constraint firstAttribute="height" constant="46" id="t4S-Ak-ME6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="toiletStateButtonPressed:" destination="1Xb-3o-iQI" eventType="touchUpInside" id="Ixx-6Q-0jX"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWF-qW-7h8">
-                                                <rect key="frame" x="10" y="282" width="300" height="44"/>
+                                                <rect key="frame" x="10" y="336" width="300" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBU-77-clI">
                                                         <rect key="frame" x="11" y="11" width="66" height="21"/>
@@ -565,7 +589,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hh9-bX-bLJ">
-                                                <rect key="frame" x="10" y="334" width="300" height="127"/>
+                                                <rect key="frame" x="10" y="388" width="300" height="127"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWc-zO-Ea6">
                                                         <rect key="frame" x="11" y="11" width="66" height="21"/>
@@ -641,7 +665,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jwv-2z-c8z">
-                                                <rect key="frame" x="10" y="469" width="300" height="44"/>
+                                                <rect key="frame" x="10" y="523" width="300" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dml-0c-S6C">
                                                         <rect key="frame" x="11" y="11" width="66" height="21"/>
@@ -677,7 +701,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Zw-QS-fm9">
-                                                <rect key="frame" x="10" y="521" width="300" height="44"/>
+                                                <rect key="frame" x="10" y="575" width="300" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIz-YD-fFe">
                                                         <rect key="frame" x="11" y="11" width="66" height="21"/>
@@ -724,13 +748,15 @@
                                             <constraint firstItem="9Zw-QS-fm9" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="6Cz-12-wY1"/>
                                             <constraint firstItem="eNS-bB-JWp" firstAttribute="top" secondItem="Jme-78-2mX" secondAttribute="bottom" constant="8" id="Ajv-VK-kTK"/>
                                             <constraint firstItem="jwv-2z-c8z" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="C3K-Kv-GiI"/>
+                                            <constraint firstItem="e4n-8C-9AZ" firstAttribute="leading" secondItem="ZVI-ZZ-KmM" secondAttribute="leading" id="C7X-Q3-pKH"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="leading" secondItem="TWF-qW-7h8" secondAttribute="leading" id="EU7-iD-Q8r"/>
                                             <constraint firstItem="9Zw-QS-fm9" firstAttribute="top" secondItem="jwv-2z-c8z" secondAttribute="bottom" constant="8" id="G3B-oq-4Dy"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="leading" secondItem="MzP-lO-vRP" secondAttribute="leading" constant="10" id="GEy-Kc-xz7"/>
                                             <constraint firstItem="hh9-bX-bLJ" firstAttribute="top" secondItem="TWF-qW-7h8" secondAttribute="bottom" constant="8" id="GlU-tO-otT"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="trailing" secondItem="L3O-FC-oIZ" secondAttribute="trailing" id="H5o-SA-wfo"/>
+                                            <constraint firstItem="TWF-qW-7h8" firstAttribute="top" secondItem="e4n-8C-9AZ" secondAttribute="bottom" constant="8" id="I3A-id-U2o"/>
                                             <constraint firstItem="ZVI-ZZ-KmM" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="JQF-lL-8fE"/>
-                                            <constraint firstAttribute="height" constant="582" id="MjO-aG-YWQ"/>
+                                            <constraint firstAttribute="height" constant="639" id="MjO-aG-YWQ"/>
                                             <constraint firstItem="ZVI-ZZ-KmM" firstAttribute="top" secondItem="MmX-iU-Qfr" secondAttribute="bottom" constant="8" id="O1U-oI-7JK"/>
                                             <constraint firstAttribute="width" constant="320" id="PZt-mo-GTa"/>
                                             <constraint firstAttribute="bottom" secondItem="9Zw-QS-fm9" secondAttribute="bottom" constant="20" id="Rce-TN-prN"/>
@@ -739,9 +765,10 @@
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="trailing" secondItem="TWF-qW-7h8" secondAttribute="trailing" id="XRk-M5-WzN"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="leading" secondItem="hh9-bX-bLJ" secondAttribute="leading" id="d7H-3J-fRz"/>
                                             <constraint firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" constant="10" id="dJb-Ux-WVy"/>
-                                            <constraint firstItem="TWF-qW-7h8" firstAttribute="top" secondItem="ZVI-ZZ-KmM" secondAttribute="bottom" constant="8" id="gKO-7y-Xwv"/>
                                             <constraint firstItem="9Zw-QS-fm9" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="hvt-bC-T56"/>
+                                            <constraint firstItem="e4n-8C-9AZ" firstAttribute="top" secondItem="ZVI-ZZ-KmM" secondAttribute="bottom" constant="8" id="j0g-uA-TDd"/>
                                             <constraint firstItem="eNS-bB-JWp" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="kSY-Et-bqY"/>
+                                            <constraint firstItem="e4n-8C-9AZ" firstAttribute="trailing" secondItem="ZVI-ZZ-KmM" secondAttribute="trailing" id="m97-lJ-WSb"/>
                                             <constraint firstItem="jwv-2z-c8z" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="r46-kf-xWO"/>
                                             <constraint firstItem="MmX-iU-Qfr" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="tuO-GO-IVC"/>
                                             <constraint firstItem="MmX-iU-Qfr" firstAttribute="top" secondItem="L3O-FC-oIZ" secondAttribute="bottom" constant="8" id="vbS-Jv-IJx"/>
@@ -770,7 +797,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="582"/>
+                    <size key="freeformSize" width="320" height="782"/>
                     <connections>
                         <outlet property="addressInputView" destination="hh9-bX-bLJ" id="WvO-fZ-YLp"/>
                         <outlet property="addressLabel" destination="aWc-zO-Ea6" id="Xah-H2-6jF"/>
@@ -805,6 +832,7 @@
                         <outlet property="setMarkerButton" destination="Jl0-Wj-XXq" id="gBI-qj-hfW"/>
                         <outlet property="setNodeTypeButton" destination="h43-3s-YeO" id="iOA-Ad-G5t"/>
                         <outlet property="streetTextField" destination="RvQ-Ln-pIF" id="XIx-Ws-J77"/>
+                        <outlet property="toiletAccessButton" destination="e4n-8C-9AZ" id="J9V-b4-PTr"/>
                         <outlet property="websiteInputView" destination="jwv-2z-c8z" id="vLY-eF-d4V"/>
                         <outlet property="websiteLabel" destination="Dml-0c-S6C" id="6fe-Fz-SDo"/>
                         <outlet property="websiteTextField" destination="0LY-40-ieY" id="yfM-Bv-ExR"/>
