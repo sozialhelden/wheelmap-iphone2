@@ -71,12 +71,6 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     DKLog(K_VERBOSE_ONBOARDING, @"WebView loading failed: %@",error.localizedDescription);
 }

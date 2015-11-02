@@ -45,11 +45,6 @@
     self.navigationBarTitle = self.title;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)twitterButtonPressed:(id)sender {
     [sharingManager tweet:self.shareLocationLabel.text];
@@ -69,17 +64,6 @@
 
 - (IBAction)closeButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES];
-}
-
-- (void)viewDidUnload {
-    [self setScrollView:nil];
-    [self setShareLocationLabel:nil];
-    [self setSmsButton:nil];
-    [self setTwitterButton:nil];
-    [self setFacebookButton:nil];
-    [self setEmailButton:nil];
-    [self setSmsButton:nil];
-    [super viewDidUnload];
 }
 
 // sharing viewcontrollers are always presented modally, so don't override for ipad

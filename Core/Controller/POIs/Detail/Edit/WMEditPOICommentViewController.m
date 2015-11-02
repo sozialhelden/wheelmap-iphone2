@@ -72,12 +72,6 @@
     [progressWheel startAnimating];
 }
 
-- (void)viewDidUnload {
-    [self setCommentText:nil];
-    [self setCommentLabel:nil];
-    [super viewDidUnload];
-}
-
 - (void) dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];

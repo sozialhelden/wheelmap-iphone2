@@ -114,13 +114,6 @@
     [self showUIObjectsAnimated:YES];
 }
 
--(void)viewDidUnload
-{
-    [super viewDidUnload];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -135,11 +128,8 @@
     }
 }
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 -(void)pressedSearchCancelButton:(WMButton*)btn

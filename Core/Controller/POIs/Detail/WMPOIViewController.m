@@ -156,14 +156,6 @@
 	self.preferredContentSize = self.scrollView.contentSize;
 }
 
-- (void)viewDidUnload {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [self setStreetLabel:nil];
-    [self setPostcodeAndCityLabel:nil];
-    [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -194,6 +186,10 @@
     
     // change view configuration according to the network status
     [self networkStatusChanged:nil];
+}
+
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 #pragma mark - UI element creation

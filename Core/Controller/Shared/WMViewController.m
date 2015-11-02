@@ -60,12 +60,6 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)setTitle:(NSString *)title
 {
     [super setTitle:title];

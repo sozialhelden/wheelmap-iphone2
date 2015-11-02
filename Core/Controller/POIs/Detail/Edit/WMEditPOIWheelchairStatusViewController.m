@@ -169,13 +169,6 @@
     return checkMarkView;
 }
 
-- (void)viewDidUnload {
-    [self setYesButton:nil];
-    [self setLimitedButton:nil];
-    [self setNoButton:nil];
-    [super viewDidUnload];
-}
-
 - (void)accessButtonPressed:(id)sender {
     UIButton *button = (UIButton*) sender;
     if (button.tag == 0) {
