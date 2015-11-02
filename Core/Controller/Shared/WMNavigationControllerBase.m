@@ -595,17 +595,10 @@
     [self pushViewController:detailViewController animated:YES];
 }
 
-
 #pragma mark - Location Manager Delegate
 
--(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
-                                                        message:NSLocalizedString(@"No Loc Error Message", @"")
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                              otherButtonTitles:nil];
-    [alertView show];
+-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+	[self locationManagerDidFail];
 }
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -620,12 +613,22 @@
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager startMonitoringSignificantLocationChanges];
     } else {
-        [self locationManager:self.locationManager didFailWithError:nil];
+		[self locationManagerDidFail];
     }
 }
 
--(void)updateNodesWithCurrentUserLocation
-{
+#pragma mark - Location Helper
+
+- (void)locationManagerDidFail {
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
+														message:NSLocalizedString(@"No Loc Error Message", @"")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+											  otherButtonTitles:nil];
+	[alertView show];
+}
+
+- (void)updateNodesWithCurrentUserLocation {
     CLLocation* newLocation = self.currentLocation;
     if (UIDevice.isIPad == YES) {
         if ([self.topViewController isKindOfClass:WMIPadRootViewController.class]) {
@@ -1066,7 +1069,7 @@
     [self hidePopover:categoryFilterPopover];
 
     if (![CLLocationManager locationServicesEnabled]) {
-        [self locationManager:self.locationManager didFailWithError:nil];
+		[self locationManagerDidFail];
         return;
     }
     

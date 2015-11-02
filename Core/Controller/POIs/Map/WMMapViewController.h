@@ -14,7 +14,7 @@
 
 @class MKMapView, Node;
 
-@interface WMMapViewController : WMViewController <WMPOIsListViewDelegate, MKMapViewDelegate, MBXRasterTileOverlayDelegate>
+@interface WMMapViewController : WMViewController <WMPOIsListViewDelegate, MKMapViewDelegate, MBXRasterTileOverlayDelegate, CLLocationManagerDelegate>
 {
     WMDataManager *dataManager;
 }

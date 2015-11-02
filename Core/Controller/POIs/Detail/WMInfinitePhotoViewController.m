@@ -40,7 +40,6 @@
     self.infiniteGallery = [[InfiniteGallery alloc] initWithFrame:self.galleryView.bounds];
     
     self.infiniteGallery.dataSource = self;
-    self.infiniteGallery.delegate = self;
     
     [self.galleryView addSubview:self.infiniteGallery];
 }
