@@ -84,11 +84,6 @@
 					 completion:nil];
 }
 
-- (void)viewDidUnload {
-    [self setMapView:nil];
-    [super viewDidUnload];
-}
-
 - (void)setMapToCoordinate:(CLLocationCoordinate2D)coordinate {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 100, 320);
     // display the region

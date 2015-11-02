@@ -160,71 +160,25 @@
     self.phoneTextField.text = self.node.phone;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc {
+	// unregister for keyboard notifications while not visible.
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+	// unregister for keyboard notifications while not visible.
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
-
-- (void)viewDidUnload {
-    
-    
-    [self setSetCategoryButton:nil];
-    [self setNodeTypeInputView:nil];
-    [self setNodeTypeLabel:nil];
-    [self setSetNodeTypeButton:nil];
-    [super viewDidUnload];
-    [self setScrollView:nil];
-    [self setNameInputView:nil];
-    [self setCategoryInputView:nil];
-    [self setPositionInputView:nil];
-    [self setInfoInputView:nil];
-    [self setAddressInputView:nil];
-    [self setAddressInputView:nil];
-    [self setWebsiteInputView:nil];
-    [self setWebsiteInputView:nil];
-    [self setPhoneInputView:nil];
-    [self setWheelAccessButton:nil];
-    [self setNameTextField:nil];
-    [self setWebsiteTextField:nil];
-    [self setPhoneTextField:nil];
-    [self setNameLabel:nil];
-    [self setCategoryLabel:nil];
-    [self setPosition:nil];
-    [self setInfoLabel:nil];
-    [self setWebsiteLabel:nil];
-    [self setPhoneLabel:nil];
-    [self setAddressLabel:nil];
-    [self setStreetTextField:nil];
-    [self setHousenumberTextField:nil];
-    [self setPostcodeTextField:nil];
-    [self setCityTextField:nil];
-    [self setSetMarkerButton:nil];
-    [self setInfoTextView:nil];
-    
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
-
 
 - (void)setWheelAccessButton {
     
-    if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_YES]) {
+    if ([self.currentWheelchairStatus isEqualToString:K_STATE_YES]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_NO]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:K_STATE_NO]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_LIMITED]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:K_STATE_LIMITED]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+    } else if ([self.currentWheelchairStatus isEqualToString:K_STATE_UNKNOWN]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
     } else {
@@ -431,20 +385,6 @@
     
     [alert show];
     
-}
-
-- (void)dealloc {
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

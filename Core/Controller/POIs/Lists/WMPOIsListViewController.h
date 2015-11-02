@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) NSNumber* selectedCategoryID;
 @property (nonatomic) WMPOIsListViewControllerUseCase useCase;
-@property (nonatomic, strong) WMPopoverController *popover;
 @property (nonatomic, strong) WMNavigationControllerBase *controllerBase;
 
 - (void) showDetailPopoverForNode:(Node *)node;

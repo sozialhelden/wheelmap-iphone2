@@ -31,9 +31,6 @@
 @property (nonatomic) MBXRasterTileOverlay *			rasterOverlay;
 @property (assign) BOOL									mapViewOpen;
 
-#pragma mark - CONTENT VIEW
-@property (nonatomic, strong) UIView *					contentView;
-
 #pragma mark - MAIN INFO VIEW
 @property (nonatomic, strong) UIView *					mainInfoView;
 @property (nonatomic, strong) UILabel *					titleLabel;

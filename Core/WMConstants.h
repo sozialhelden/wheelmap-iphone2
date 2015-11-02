@@ -53,10 +53,10 @@
 
 #define K_DB_KEY_CATEGORY_LOCALIZED_NAME			@"localized_name"
 
-#define K_WHEELCHAIR_STATE_UNKNOWN					@"unknown"
-#define K_WHEELCHAIR_STATE_LIMITED					@"limited"
-#define K_WHEELCHAIR_STATE_YES						@"yes"
-#define K_WHEELCHAIR_STATE_NO						@"no"
+#define K_STATE_UNKNOWN								@"unknown"
+#define K_STATE_LIMITED								@"limited"
+#define K_STATE_YES									@"yes"
+#define K_STATE_NO									@"no"
 
 #define K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER		@"WMPOIsListTableViewCell"
 

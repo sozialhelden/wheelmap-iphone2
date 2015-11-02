@@ -79,15 +79,9 @@
     return [self.dataSource nodeList];
 }
 
--(NSArray*)filteredNodeListForUseCaseForUseCase:(WMPOIsListViewControllerUseCase)useCase {
+- (NSArray*)filteredNodeListForUseCase:(WMPOIsListViewControllerUseCase)useCase {
     return [self.dataSource filteredNodeListForUseCase:useCase];
 }
-
-//-(void)updateNodesNear:(CLLocationCoordinate2D)coord
-//{
-//    [(WMNavigationControllerBase*)self.dataSource updateNodesNear:coord];
-//
-//}
 
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region
 {
@@ -101,7 +95,6 @@
     if (node == nil) {
         return;
     }
-    //    [self.mapViewController showDetailPopoverForNode:node];
     [self.listViewController selectNode:node];
     [self.listViewController showDetailPopoverForNode:node];
 }
@@ -114,11 +107,9 @@
     // highlight node in both views
     [self.listViewController selectNode:node];
     [self.listViewController showDetailPopoverForNode:node];
-    //    [self.mapViewController selectNode:node];
     [self.mapViewController zoomInForNode:node];
     
 }
-
 
 #pragma mark - Node List Protocol
 

@@ -13,8 +13,7 @@
 @synthesize fontSize = _fontSize;
 @synthesize fontType = _fontType;
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -26,11 +25,10 @@
     return self;
 }
 
-- (id)initWithFrameByNodeType:(CGRect)frame nodeType:(enum WMPOIsListViewControllerUseCase*)nodeType
-{
+- (id)initWithFrameByNodeType:(CGRect)frame nodeType:(WMPOIsListViewControllerUseCase)nodeType {
     self = [super initWithFrame:frame];
     if (self) {
-        if ((WMPOIsListViewControllerUseCase)nodeType == kWMPOIsListViewControllerUseCaseContribute) {
+        if (nodeType == kWMPOIsListViewControllerUseCaseContribute) {
             self.fontSize = 13.0;
             self.textAlignment = NSTextAlignmentLeft;
             self.numberOfLines = 3;
@@ -42,23 +40,18 @@
     return self;
 }
 
+#pragma mark - Font Size and Types
 
-
-#pragma mark -
-#pragma mark Font Size and Types
--(void)setFontSize:(CGFloat)fontSize
-{
+- (void)setFontSize:(CGFloat)fontSize {
     _fontSize = fontSize;
     self.font = [UIFont fontWithName:self.font.fontName size:fontSize];
 }
 
--(CGFloat)fontSize
-{
+- (CGFloat)fontSize {
     return _fontSize;
 }
 
--(void)setFontType:(WMLabelFontType)fontType
-{
+- (void)setFontType:(WMLabelFontType)fontType {
     _fontType = fontType;
     NSString* fontName;
     switch (fontType) {
@@ -79,8 +72,7 @@
     self.font = [UIFont fontWithName:fontName size:self.fontSize];
 }
 
--(WMLabelFontType)fontType
-{
+- (WMLabelFontType)fontType {
     return _fontType;
 }
 
@@ -93,12 +85,10 @@
                                                     attributes:@{NSFontAttributeName:self.font}
                                                        context:nil].size;
 
-    
     //adjust the label the the new height.
     CGRect newFrame = self.frame;
     newFrame.size.height = expectedLabelSize.height;
     self.frame = newFrame;
 }
-
 
 @end

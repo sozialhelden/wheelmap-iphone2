@@ -40,7 +40,6 @@
     self.infiniteGallery = [[InfiniteGallery alloc] initWithFrame:self.galleryView.bounds];
     
     self.infiniteGallery.dataSource = self;
-    self.infiniteGallery.delegate = self;
     
     [self.galleryView addSubview:self.infiniteGallery];
 }
@@ -48,12 +47,6 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.infiniteGallery gotoPageNumber:self.tappedImage];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark InfiniteGallery
@@ -74,11 +67,6 @@
     return imageView;
 }
 
-
-- (void)viewDidUnload {
-    [self setGalleryView:nil];
-    [super viewDidUnload];
-}
 - (IBAction)closeButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES];
     

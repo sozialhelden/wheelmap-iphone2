@@ -114,10 +114,10 @@
         initialNodeListView.delegate = self;
     }
     
-    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_YES,
-                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_LIMITED,
-                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_NO,
-                                   [NSNumber numberWithBool:YES], K_WHEELCHAIR_STATE_UNKNOWN,nil];
+    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_STATE_YES,
+                                   [NSNumber numberWithBool:YES], K_STATE_LIMITED,
+                                   [NSNumber numberWithBool:YES], K_STATE_NO,
+                                   [NSNumber numberWithBool:YES], K_STATE_UNKNOWN,nil];
     self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
     for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
@@ -486,7 +486,7 @@
     for (Node* node in nodesCopy) {
         NSNumber* categoryID = node.node_type.category.id;
         NSString* wheelChairStatus = node.wheelchair;
-        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN])
+        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_STATE_UNKNOWN])
 			|| [[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES)
 			&& [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
 				if (![newNodeList containsObject:node]) {
@@ -595,17 +595,10 @@
     [self pushViewController:detailViewController animated:YES];
 }
 
-
 #pragma mark - Location Manager Delegate
 
--(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
-                                                        message:NSLocalizedString(@"No Loc Error Message", @"")
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                              otherButtonTitles:nil];
-    [alertView show];
+-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+	[self locationManagerDidFail];
 }
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -620,12 +613,22 @@
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager startMonitoringSignificantLocationChanges];
     } else {
-        [self locationManager:self.locationManager didFailWithError:nil];
+		[self locationManagerDidFail];
     }
 }
 
--(void)updateNodesWithCurrentUserLocation
-{
+#pragma mark - Location Helper
+
+- (void)locationManagerDidFail {
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
+														message:NSLocalizedString(@"No Loc Error Message", @"")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+											  otherButtonTitles:nil];
+	[alertView show];
+}
+
+- (void)updateNodesWithCurrentUserLocation {
     CLLocation* newLocation = self.currentLocation;
     if (UIDevice.isIPad == YES) {
         if ([self.topViewController isKindOfClass:WMIPadRootViewController.class]) {
@@ -1066,7 +1069,7 @@
     [self hidePopover:categoryFilterPopover];
 
     if (![CLLocationManager locationServicesEnabled]) {
-        [self locationManager:self.locationManager didFailWithError:nil];
+		[self locationManagerDidFail];
         return;
     }
     
@@ -1301,26 +1304,26 @@
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];
     
-    NSString* wheelchairStatusString = K_WHEELCHAIR_STATE_UNKNOWN;
+    NSString* wheelchairStatusString = K_STATE_UNKNOWN;
     switch (type) {
         case kDotTypeGreen:
             self.customToolBar.wheelChairStatusFilterButton.selectedGreenDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_YES;
+            wheelchairStatusString = K_STATE_YES;
             break;
             
         case kDotTypeYellow:
             self.customToolBar.wheelChairStatusFilterButton.selectedYellowDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_LIMITED;
+            wheelchairStatusString = K_STATE_LIMITED;
             break;
             
         case kDotTypeRed:
             self.customToolBar.wheelChairStatusFilterButton.selectedRedDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_NO;
+            wheelchairStatusString = K_STATE_NO;
             break;
             
         case kDotTypeNone:
             self.customToolBar.wheelChairStatusFilterButton.selectedNoneDot = selected;
-            wheelchairStatusString = K_WHEELCHAIR_STATE_UNKNOWN;
+            wheelchairStatusString = K_STATE_UNKNOWN;
             break;
             
         default:

@@ -76,12 +76,6 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.acceptButton.frame.origin.y + self.acceptButton.frame.size.height + 20.0f);
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(IBAction)pressedAcceptButton:(id)sender {
     
     if (!self.checkBoxTermsButton.selected || !self.checkBoxDataButton.selected) {

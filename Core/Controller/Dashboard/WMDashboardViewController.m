@@ -114,13 +114,6 @@
     [self showUIObjectsAnimated:YES];
 }
 
--(void)viewDidUnload
-{
-    [super viewDidUnload];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -135,11 +128,8 @@
     }
 }
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 -(void)pressedSearchCancelButton:(WMButton*)btn
@@ -281,7 +271,7 @@
 
 #pragma mark - WMDataManager Delegate
 
-- (void) dataManager:(WMDataManager *)dataManager didReceiveTotalNodeCount:(NSNumber *)count {
+- (void) dataManager:(WMDataManager *)aDataManager didReceiveTotalNodeCount:(NSNumber *)count {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     NSString *formattedCount = [formatter stringFromNumber:count];
@@ -301,8 +291,8 @@
     
 }
 
-- (void)dataManager:(WMDataManager *)dataManager fetchTotalNodeCountFailedWithError:(NSError *)error {
-    NSNumber *totalCountFromFile = [dataManager totalNodeCountFromUserDefaults];
+- (void)dataManager:(WMDataManager *)aDataManager fetchTotalNodeCountFailedWithError:(NSError *)error {
+    NSNumber *totalCountFromFile = [aDataManager totalNodeCountFromUserDefaults];
     if (totalCountFromFile != nil) {
         
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];

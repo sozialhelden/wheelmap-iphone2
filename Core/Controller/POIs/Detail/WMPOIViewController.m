@@ -139,7 +139,7 @@
     self.additionalButtonView.frame = CGRectMake(320/2-self.threeButtonWidth/2, self.startY, self.threeButtonWidth, 95);
     [self.contentView addSubview:self.additionalButtonView];
     
-    if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
     } else {
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
@@ -154,14 +154,6 @@
 
 	// Set the preferred content size to make sure the popover controller has the right size.
 	self.preferredContentSize = self.scrollView.contentSize;
-}
-
-- (void)viewDidUnload {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [self setStreetLabel:nil];
-    [self setPostcodeAndCityLabel:nil];
-    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -194,6 +186,10 @@
     
     // change view configuration according to the network status
     [self networkStatusChanged:nil];
+}
+
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 #pragma mark - UI element creation
@@ -235,7 +231,7 @@
     [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.wheelAccessButton];
     
-    if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
         self.gabIfStatusUnknown = GABIFSTATUSUNKNOWN;
         
         self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -473,7 +469,7 @@
 }
 
 - (void)setWheelAccessButton {
-    if (![self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN] && self.askFriendsButton != nil) {
+    if (![self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] && self.askFriendsButton != nil) {
         [self.askFriendsButton removeFromSuperview];
         self.wheelAccessView.frame = CGRectMake(self.wheelAccessView.frame.origin.x, self.wheelAccessView.frame.origin.y, self.wheelAccessView.frame.size.width, self.wheelAccessView.frame.size.height-self.gabIfStatusUnknown);
         self.contactInfoView.frame = CGRectMake(self.contactInfoView.frame.origin.x, self.contactInfoView.frame.origin.y-self.gabIfStatusUnknown, self.contactInfoView.frame.size.width, self.contactInfoView.frame.size.height);
@@ -482,16 +478,16 @@
         self.askFriendsButton = nil;
     }
 
-    if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_YES]) {
+    if ([self.node.wheelchair isEqualToString:K_STATE_YES]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_NO]) {
+    } else if ([self.node.wheelchair isEqualToString:K_STATE_NO]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_LIMITED]) {
+    } else if ([self.node.wheelchair isEqualToString:K_STATE_LIMITED]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+    } else if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
         self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
     }
@@ -633,7 +629,7 @@
                             options:UIViewAnimationCurveEaseOut
                          animations:^{
                              self.mapView.frame = MAPVIEWCLOSEDSTATE;
-                             if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+                             if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
                                  self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
                              } else {
                                  self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
@@ -654,7 +650,7 @@
                             options:UIViewAnimationCurveEaseIn
                          animations:^{
                              self.mapView.frame = MAPVIEWOPENSTATE;
-                             if ([self.node.wheelchair isEqualToString:K_WHEELCHAIR_STATE_UNKNOWN]) {
+                             if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
                                  self.contentView.frame = CONTENTVIEWOPENMAPSTATEGAB;
                              } else {
                                  self.contentView.frame = CONTENTVIEWOPENMAPSTATE;
@@ -716,24 +712,13 @@
             CLLocationCoordinate2D start = { self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude };
             CLLocationCoordinate2D destination = { self.poiLocation.latitude, self.poiLocation.longitude };
             
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
-                // Create an MKMapItem to pass to the Maps app
-                MKPlacemark *placemarkStart = [[MKPlacemark alloc] initWithCoordinate:start addressDictionary:nil];
-                MKPlacemark *placemarkDest = [[MKPlacemark alloc] initWithCoordinate:destination addressDictionary:nil];
-                MKMapItem *mapItemStart = [[MKMapItem alloc] initWithPlacemark:placemarkStart];
-                MKMapItem *mapItemDest = [[MKMapItem alloc] initWithPlacemark:placemarkDest];
-                
-                [MKMapItem openMapsWithItems:@[mapItemStart, mapItemDest] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking}];
-                
-            } else {
-                
-                NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
-                                                 start.latitude, start.longitude, destination.latitude, destination.longitude];
-                NSURL *url = [NSURL URLWithString:googleMapsURLString];
-                
-                [[UIApplication sharedApplication] openURL:url];
-            }
-            
+			// Create an MKMapItem to pass to the Maps app
+			MKPlacemark *placemarkStart = [[MKPlacemark alloc] initWithCoordinate:start addressDictionary:nil];
+			MKPlacemark *placemarkDest = [[MKPlacemark alloc] initWithCoordinate:destination addressDictionary:nil];
+			MKMapItem *mapItemStart = [[MKMapItem alloc] initWithPlacemark:placemarkStart];
+			MKMapItem *mapItemDest = [[MKMapItem alloc] initWithPlacemark:placemarkDest];
+
+			[MKMapItem openMapsWithItems:@[mapItemStart, mapItemDest] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking}];
         }
     } else if (actionSheet.tag == 2) { // PHOTOUPLOAD
         if (buttonIndex == 0) {
