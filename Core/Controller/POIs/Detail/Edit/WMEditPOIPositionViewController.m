@@ -167,7 +167,7 @@
     // This delegate callback is for centering the map once the map metadata has been loaded
     //
     if (error) {
-        NSLog(@"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+        DKLog(K_VERBOSE_MAP, @"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
     }
 }
 
@@ -176,7 +176,7 @@
     // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
     //
     if (error) {
-        NSLog(@"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
+        DKLog(K_VERBOSE_MAP, @"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
 	} else {
         [_mapView addAnnotations:markers];
     }

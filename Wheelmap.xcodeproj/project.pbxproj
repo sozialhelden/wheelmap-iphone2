@@ -833,6 +833,7 @@
 		8746D33F1BE3BFF100CBD474 /* WMEditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIViewController.m; sourceTree = "<group>"; };
 		8746D34F1BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIWheelchairStatusViewController.h; sourceTree = "<group>"; };
 		8746D3501BE3C03C00CBD474 /* WMEditPOIWheelchairStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIWheelchairStatusViewController.m; sourceTree = "<group>"; };
+		8746D3541BE3CF8E00CBD474 /* WMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMDefines.h; path = Core/WMDefines.h; sourceTree = SOURCE_ROOT; };
 		8774E4EA1BE0CCDC00A3E7EA /* WMResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMResourceManager.h; sourceTree = "<group>"; };
 		8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Distance.h"; sourceTree = "<group>"; };
 		8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Distance.m"; sourceTree = "<group>"; };
@@ -1201,6 +1202,7 @@
 				878EC88A1BE0F7960099EDD1 /* Controller */,
 				878EC91A1BE0F9200099EDD1 /* Views */,
 				872FDE131BDFEF6D00764FC5 /* SupportingFiles */,
+				8746D3541BE3CF8E00CBD474 /* WMDefines.h */,
 				872FDDAF1BDFEF6D00764FC5 /* WMConstants.h */,
 				878EC9751BE0F92F0099EDD1 /* WMProtocols.h */,
 				872FDE3A1BDFEF6D00764FC5 /* WMAppDelegate.h */,

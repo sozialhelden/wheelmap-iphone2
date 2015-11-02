@@ -180,7 +180,6 @@
              {
                  [UIView animateWithDuration:0.5 animations:^(void)
                   {
-                      NSLog(@"accesoryHeader frame: %@", NSStringFromCGRect(accesoryHeader.frame));
                       accesoryHeader.alpha = 1.0;
                   }
                                   completion:nil
@@ -239,8 +238,6 @@
                 nodesTemp = nil;
                 
                 [self.tableView reloadData];
-                
-                NSLog(@"NUMBER OF NODES = %lu", (unsigned long)nodes.count);
             });
         });
     }
@@ -368,13 +365,9 @@
 
 - (void) showDetailPopoverForNode:(Node *)node
 {
-    
     if (node == nil) {
-        NSLog(@"NODE IS NIL");
         return;
     }
-    
-    
     
     WMPOIViewController *detailViewController = [UIStoryboard instantiatedDetailViewController];
     detailViewController.title = detailViewController.navigationBarTitle = NSLocalizedString(@"NavBarTitleDetail", nil);

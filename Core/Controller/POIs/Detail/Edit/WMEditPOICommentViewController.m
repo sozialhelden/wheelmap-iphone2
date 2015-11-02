@@ -81,12 +81,10 @@
 - (void) dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
-    NSLog(@"XXXXXXXX FINISHED");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
-    NSLog(@"XXXXXXXX Failed %@", error);
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     

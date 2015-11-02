@@ -47,49 +47,27 @@
     
     if (urlString != nil) {
         NSURL *url = [NSURL URLWithString:urlString];
-        
-        NSLog(@"Loading URL %@", url);
-        
+
         [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-    }/* else {
-        [self loadRegisterUrl];
-    }*/
-    
+    }
 }
 
 - (void)loadRegisterUrl {
     self.titleLabel.text = NSLocalizedString(@"RegisterNew", nil);
 
 	urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, WM_REGISTER_LINK];
-    
-    //NSURL *url = [NSURL URLWithString:urlString];
-    
-    //NSLog(@"Loading URL %@", url);
-    
-	//[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-    
 }
 
 - (void)loadLoginUrl {
     self.titleLabel.text = @"";
 
     urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, WEB_LOGIN_LINK];
-    
-    //NSURL *url = [NSURL URLWithString:urlString];
-    //NSLog(@"Loading URL %@", url);
-
-	//[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)loadForgotPasswordUrl {
     self.titleLabel.text = @"";
 
     urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, FORGOT_PASSWORD_LINK];
-    
-    //NSURL *url = [NSURL URLWithString:urlString];
-    //NSLog(@"Loading URL %@", url);
-
-	//[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 
@@ -100,17 +78,15 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    NSLog(@"WebView loading failed: %@",error.localizedDescription);
+    DKLog(K_VERBOSE_ONBOARDING, @"WebView loading failed: %@",error.localizedDescription);
 }
 
--(IBAction)pressedCancelButton:(id)sender
-{
+- (IBAction)pressedCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES];
 }
 
--(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
-    NSLog(@"req: %@\n", request.URL.scheme);
     if([request.URL.absoluteString containsString:@"www.facebook.com"]){
         return NO;
     }
@@ -165,20 +141,12 @@
             [request2 setHTTPMethod:@"GET"];
             // set the new headers
             [request2 setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"installId"] forHTTPHeaderField:@"Install-ID"];
-            NSLog(@"install id; %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"installId"]);
+            DKLog(K_VERBOSE_ONBOARDING, @"install id; %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"installId"]);
             // reload the request
             [webView loadRequest:request2];
         });
     });
     return NO;
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView{
- /*
-    if([webView.request.URL.absoluteString containsString:@"/users/signed_in_token"]){
-
-    }
-  */
 }
 
 -(IBAction)whyOSM:(id)sender {

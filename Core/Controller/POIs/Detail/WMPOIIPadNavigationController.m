@@ -68,7 +68,7 @@
 		editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
 		[self pushViewController:editPOIViewController animated:YES];
 	}else {
-		NSLog(@"ERROR! Pushing Edit screen from sth. different than Detail screen");
+		DKLog(K_VERBOSE_NAVIGATION, @"ERROR! Pushing Edit screen from sth. different than Detail screen");
 	}
 }
 

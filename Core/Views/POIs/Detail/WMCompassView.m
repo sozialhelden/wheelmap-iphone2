@@ -69,7 +69,6 @@
 }
 
 - (void) startUpdating:(NSNotification*)notification {
-    NSLog(@"Starting");
     if(IS_OS_8_OR_LATER) {
         [self.locationManager requestWhenInUseAuthorization];
     }
@@ -78,7 +77,6 @@
 }
           
 - (void) stopUpdating:(NSNotification*)notification {
-    NSLog(@"Stopping");
     [self.locationManager stopUpdatingHeading];
     [self.locationManager stopUpdatingLocation];
 }
@@ -110,9 +108,6 @@
 	NSInteger magneticAngle = newHeading.magneticHeading;
     NSInteger trueAngle = newHeading.trueHeading;
 
-    
-   // NSLog(@"XXXXX name: %@ // degrees: %f // heading: %d \n ", self.node.name, newDegrees, trueAngle);
-    
     //This is set by a switch in my apps settings //
     
     NSUserDefaults *prefs= [NSUserDefaults standardUserDefaults];
@@ -121,15 +116,11 @@
     float newAngle;
     
     if (magneticNorth == YES) {
-        //  NSLog(@"using magnetic north");
-        
         newAngle = newDegrees-magneticAngle;
         
         CGAffineTransform rotate = CGAffineTransformMakeRotation(degreesToRadians(newAngle));
         [self.compassContainer setTransform:rotate];
-    } else {
-        // NSLog(@"using true north");
-        
+    } else {        
         newAngle = newDegrees-trueAngle;
         
         CGAffineTransform rotate = CGAffineTransformMakeRotation(degreesToRadians(newAngle));
