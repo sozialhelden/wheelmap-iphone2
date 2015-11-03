@@ -21,6 +21,17 @@
 	return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+	self = [NSBundle.mainBundle loadNibNamed:@"WMPOIStateButtonView" owner:self options:nil].firstObject;
+
+	if (self != nil) {
+		self.translatesAutoresizingMaskIntoConstraints = YES;
+		self.frame = frame;
+		[self initDefaultValues];
+	}
+	return self;
+}
+
 - (instancetype)initFromNibToView:(UIView *)view {
 	self = [NSBundle.mainBundle loadNibNamed:@"WMPOIStateButtonView" owner:self options:nil].firstObject;
 

@@ -31,10 +31,10 @@
 #define MAPOPENADDITION 266
 #define MAPVIEWCLOSEDSTATE CGRectMake(0, 0, 320, 110)
 #define MAPVIEWOPENSTATE CGRectMake(0, 0, 320, 110+MAPOPENADDITION)
-#define CONTENTVIEWCLOSEDMAPSTATE CGRectMake(0, 110+2, 320, 420)
-#define CONTENTVIEWOPENMAPSTATE CGRectMake(0, 110+MAPOPENADDITION+2, 320, 420)
-#define CONTENTVIEWCLOSEDMAPSTATEGAB CGRectMake(0, 110+2, 320, 420+GABIFSTATUSUNKNOWN)
-#define CONTENTVIEWOPENMAPSTATEGAB CGRectMake(0, 110+MAPOPENADDITION+2, 320, 420+GABIFSTATUSUNKNOWN)
+#define CONTENTVIEWCLOSEDMAPSTATE CGRectMake(0, 110+2, 320, 460)
+#define CONTENTVIEWOPENMAPSTATE CGRectMake(0, 110+MAPOPENADDITION+2, 320, 460)
+#define CONTENTVIEWCLOSEDMAPSTATEGAB CGRectMake(0, 110+2, 320, 460+GABIFSTATUSUNKNOWN)
+#define CONTENTVIEWOPENMAPSTATEGAB CGRectMake(0, 110+MAPOPENADDITION+2, 320, 460+GABIFSTATUSUNKNOWN)
 
 
 #define STARTLEFT 15
@@ -108,15 +108,49 @@
     self.mainInfoView.frame = CGRectMake(0, self.startY, 320, 50);
     [self.contentView addSubview:self.mainInfoView];
     
-    self.startY += self.mainInfoView.bounds.size.height+2;
-    
+    self.startY += self.mainInfoView.bounds.size.height+10;
+
     // WHEEL ACCESS AND ASK FRIENDS BUTTON VIEW
-    self.wheelAccessView = [self createWheelAccessView];
-    self.wheelAccessView.frame = CGRectMake(0, self.startY, 320, 65 + self.gabIfStatusUnknown);
-    [self.contentView addSubview:self.wheelAccessView];
-    
-    self.startY += self.wheelAccessView.bounds.size.height+2;
-    
+	BOOL showAskFriendsButton = NO;
+	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == YES
+		|| [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == YES) {
+		showAskFriendsButton = YES;
+		self.gabIfStatusUnknown = GABIFSTATUSUNKNOWN;
+	}
+	self.wheelchairStateButtonView = [[WMPOIStateButtonView alloc] initWithFrame:CGRectMake(10, self.startY, 300, 46)];
+	self.wheelchairStateButtonView.statusType = WMEditPOIStatusTypeWheelchair;
+	self.wheelchairStateButtonView.statusString = self.node.wheelchair;
+	self.wheelchairStateButtonView.showStateDelegate = self;
+    [self.contentView addSubview:self.wheelchairStateButtonView];
+
+	self.startY += self.wheelchairStateButtonView.bounds.size.height+10;
+
+	self.toiletStateButtonContainerView = [[UIView alloc] initWithFrame:CGRectMake(10, self.startY, 300, 46 + self.gabIfStatusUnknown)];
+	self.toiletStateButtonView = [[WMPOIStateButtonView alloc] initWithFrame:CGRectMake(0, 0, 300, 46)];
+	self.toiletStateButtonView.statusType = WMEditPOIStatusTypeToilet;
+	self.toiletStateButtonView.statusString = self.node.wheelchair_toilet;
+	self.toiletStateButtonView.showStateDelegate = self;
+	[self.toiletStateButtonContainerView addSubview:self.toiletStateButtonView];
+
+	if (showAskFriendsButton == YES) {
+		self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
+		[self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+		[self.askFriendsButton setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
+		self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
+		self.askFriendsButton.titleLabel.numberOfLines = 2;
+		[self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
+		[self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+		self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
+		self.askFriendsButton.frame = CGRectMake(10, self.gabIfStatusUnknown-10, 300.0f-20.0f, buttonImage.size.height);
+		[self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+
+		[self.toiletStateButtonContainerView addSubview:self.askFriendsButton];
+	}
+	[self.contentView addSubview:self.toiletStateButtonContainerView];
+
+	self.startY += self.toiletStateButtonContainerView.bounds.size.height+10;
+
     // CONTACT INFO VIEW
     self.contactInfoView = [self createContactInfoView];
     self.contactInfoView.frame = CGRectMake(10, self.startY, 300, 100);
@@ -139,7 +173,8 @@
     self.additionalButtonView.frame = CGRectMake(320/2-self.threeButtonWidth/2, self.startY, self.threeButtonWidth, 95);
     [self.contentView addSubview:self.additionalButtonView];
     
-    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
+    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == YES
+		|| [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == YES) {
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
     } else {
         self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
@@ -213,42 +248,6 @@
     [view addSubview:self.nodeTypeLabel];
     
     return view;
-}
-
-- (UIView*) createWheelAccessView {
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    
-    [self setWheelAccessButton];
-    self.wheelAccessButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.wheelAccessButton.frame = CGRectMake(10, 10, self.accessImage.size.width, self.accessImage.size.height);
-    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
-    [self.wheelAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
-    self.wheelAccessButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
-    [self.wheelAccessButton addTarget:self action:@selector(showAccessOptions) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.wheelAccessButton];
-    
-    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
-        self.gabIfStatusUnknown = GABIFSTATUSUNKNOWN;
-        
-        self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
-        [self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-        [self.askFriendsButton setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
-        self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
-        self.askFriendsButton.titleLabel.numberOfLines = 2;
-        [self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
-        [self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
-        self.askFriendsButton.frame = CGRectMake(20, self.gabIfStatusUnknown, 320.0f-40.0f, buttonImage.size.height);
-        [self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        
-        [view addSubview:self.askFriendsButton];
-    }
-    return  view;
 }
 
 - (UIView*)createContactInfoView {
@@ -454,7 +453,7 @@
     self.phoneLabel.text = self.node.phone ?: NSLocalizedString(@"NoPhone", nil);
     
     [self checkForStatusOfButtons];
-    [self setWheelAccessButton];
+    [self updatePOIStateButtonViews];
     [self updateDistanceToAnnotation];
     
     self.annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:self.node.wheelchair]];
@@ -468,34 +467,22 @@
     }
 }
 
-- (void)setWheelAccessButton {
-    if (![self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] && self.askFriendsButton != nil) {
-        [self.askFriendsButton removeFromSuperview];
-        self.wheelAccessView.frame = CGRectMake(self.wheelAccessView.frame.origin.x, self.wheelAccessView.frame.origin.y, self.wheelAccessView.frame.size.width, self.wheelAccessView.frame.size.height-self.gabIfStatusUnknown);
-        self.contactInfoView.frame = CGRectMake(self.contactInfoView.frame.origin.x, self.contactInfoView.frame.origin.y-self.gabIfStatusUnknown, self.contactInfoView.frame.size.width, self.contactInfoView.frame.size.height);
-        self.imageScrollView.frame = CGRectMake(self.imageScrollView.frame.origin.x, self.imageScrollView.frame.origin.y-self.gabIfStatusUnknown, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
-        self.additionalButtonView.frame = CGRectMake(self.additionalButtonView.frame.origin.x, self.additionalButtonView.frame.origin.y-self.gabIfStatusUnknown, self.additionalButtonView.frame.size.width, self.additionalButtonView.frame.size.height);
-        self.askFriendsButton = nil;
-    }
+- (void)updatePOIStateButtonViews {
+	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == NO
+		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO
+		&& self.askFriendsButton != nil) {
+		[self.askFriendsButton removeFromSuperview];
 
-    if ([self.node.wheelchair isEqualToString:K_STATE_YES]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_STATE_NO]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_STATE_LIMITED]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
-    }
-    
-    [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
-    [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
+		self.toiletStateButtonContainerView.frame = CGRectMake(self.toiletStateButtonContainerView.frame.origin.x, self.toiletStateButtonContainerView.frame.origin.y, self.toiletStateButtonContainerView.frame.size.width, self.toiletStateButtonContainerView.frame.size.height-self.gabIfStatusUnknown);
+		self.contactInfoView.frame = CGRectMake(self.contactInfoView.frame.origin.x, self.contactInfoView.frame.origin.y-self.gabIfStatusUnknown, self.contactInfoView.frame.size.width, self.contactInfoView.frame.size.height);
+		self.imageScrollView.frame = CGRectMake(self.imageScrollView.frame.origin.x, self.imageScrollView.frame.origin.y-self.gabIfStatusUnknown, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
+		self.additionalButtonView.frame = CGRectMake(self.additionalButtonView.frame.origin.x, self.additionalButtonView.frame.origin.y-self.gabIfStatusUnknown, self.additionalButtonView.frame.size.width, self.additionalButtonView.frame.size.height);
+		self.askFriendsButton = nil;
+	}
+
+	self.wheelchairStateButtonView.statusString = self.node.wheelchair;
+	self.toiletStateButtonView.statusString = self.node.wheelchair_toilet;
 }
-
 
 #pragma mark - Phone, Website, Comment, Navi
 
@@ -504,8 +491,6 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:callString delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
     actionSheet.tag = 3;
     [actionSheet showInView:self.view];
-    
-    
 }
 
 - (void)openWebpage {
@@ -998,6 +983,27 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.openstreetmap.org/copyright"]];
         }
     }
+}
+
+#pragma mark - WMPOIStateButtonViewDelegate
+
+- (void)didPressedEditStateButton:(NSString *)state forStateType:(WMEditPOIStatusType)stateType {
+
+	WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
+	vc.hideSaveButton = YES;
+	vc.title = NSLocalizedString(@"EditPOIStateHeadline", nil);
+	vc.navigationBarTitle = vc.title;
+	vc.delegate = self;
+	vc.node = self.node;
+	vc.useCase = WMEditPOIStatusUseCasePOIUpdate;
+	if (stateType == WMEditPOIStatusTypeWheelchair) {
+		vc.statusType = WMEditPOIStatusTypeWheelchair;
+		[vc setCurrentState:self.node.wheelchair];
+	} else if (stateType == WMEditPOIStatusTypeToilet) {
+		vc.statusType = WMEditPOIStatusTypeToilet;
+		[vc setCurrentState:self.node.wheelchair_toilet];
+	}
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
