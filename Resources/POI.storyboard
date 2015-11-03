@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3BP-Lp-3Qn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3BP-Lp-3Qn">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -60,7 +60,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TB0-Z0-BFn">
-                                                <rect key="frame" x="0.0" y="10" width="320" height="130"/>
+                                                <rect key="frame" x="10" y="10" width="300" height="130"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -68,7 +68,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-ZP-21k">
-                                                <rect key="frame" x="0.0" y="140" width="320" height="130"/>
+                                                <rect key="frame" x="10" y="140" width="300" height="130"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -76,7 +76,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRg-2Z-54U">
-                                                <rect key="frame" x="0.0" y="270" width="320" height="130"/>
+                                                <rect key="frame" x="10" y="270" width="300" height="130"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -87,8 +87,8 @@
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="TB0-Z0-BFn" secondAttribute="trailing" id="7EA-Si-ylX"/>
-                                            <constraint firstItem="TB0-Z0-BFn" firstAttribute="leading" secondItem="A3M-mN-KKM" secondAttribute="leading" id="7SC-hk-nhN"/>
+                                            <constraint firstAttribute="trailing" secondItem="TB0-Z0-BFn" secondAttribute="trailing" constant="10" id="7EA-Si-ylX"/>
+                                            <constraint firstItem="TB0-Z0-BFn" firstAttribute="leading" secondItem="A3M-mN-KKM" secondAttribute="leading" constant="10" id="7SC-hk-nhN"/>
                                             <constraint firstItem="cRg-2Z-54U" firstAttribute="trailing" secondItem="TB0-Z0-BFn" secondAttribute="trailing" id="7qd-P7-LHa"/>
                                             <constraint firstAttribute="height" constant="400" id="9LE-hq-1bM"/>
                                             <constraint firstItem="TB0-Z0-BFn" firstAttribute="top" secondItem="A3M-mN-KKM" secondAttribute="top" constant="10" id="Srq-gk-1sz"/>
@@ -499,44 +499,22 @@
                                                     <constraint firstAttribute="centerY" secondItem="1Bm-PJ-Wrz" secondAttribute="centerY" id="xDz-HU-XeY"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVI-ZZ-KmM">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdd-uB-9Dv" userLabel="Wheelchair State Container View">
                                                 <rect key="frame" x="10" y="228" width="300" height="46"/>
                                                 <animations/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="46" id="7l3-Gw-Z55"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="UpZ-6j-0bP"/>
+                                                    <constraint firstAttribute="height" constant="46" id="Yii-HA-Xdb"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="wheelchairStateButtonPressed:" destination="1Xb-3o-iQI" eventType="touchUpInside" id="9Jn-sp-CH9"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4n-8C-9AZ">
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ1-TJ-ccM" userLabel="Toilet State Container View">
                                                 <rect key="frame" x="10" y="282" width="300" height="46"/>
                                                 <animations/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="cKc-CF-OoC"/>
-                                                    <constraint firstAttribute="height" constant="46" id="t4S-Ak-ME6"/>
+                                                    <constraint firstAttribute="height" constant="46" id="asv-E6-Jne"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="toiletStateButtonPressed:" destination="1Xb-3o-iQI" eventType="touchUpInside" id="Ixx-6Q-0jX"/>
-                                                </connections>
-                                            </button>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWF-qW-7h8">
                                                 <rect key="frame" x="10" y="336" width="300" height="44"/>
                                                 <subviews>
@@ -722,7 +700,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                                     </textField>
                                                 </subviews>
                                                 <animations/>
@@ -741,34 +719,34 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="L3O-FC-oIZ" firstAttribute="top" secondItem="eNS-bB-JWp" secondAttribute="bottom" constant="8" id="0RO-wG-vuO"/>
-                                            <constraint firstItem="ZVI-ZZ-KmM" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="1bD-jr-K7Y"/>
                                             <constraint firstItem="eNS-bB-JWp" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="276-fG-lJf"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="top" secondItem="MzP-lO-vRP" secondAttribute="top" constant="20" id="3m8-WX-gM7"/>
                                             <constraint firstItem="MmX-iU-Qfr" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="5Cw-LM-Dro"/>
                                             <constraint firstItem="9Zw-QS-fm9" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="6Cz-12-wY1"/>
+                                            <constraint firstItem="ZQ1-TJ-ccM" firstAttribute="leading" secondItem="jdd-uB-9Dv" secondAttribute="leading" id="6bb-KF-2eD"/>
                                             <constraint firstItem="eNS-bB-JWp" firstAttribute="top" secondItem="Jme-78-2mX" secondAttribute="bottom" constant="8" id="Ajv-VK-kTK"/>
+                                            <constraint firstItem="TWF-qW-7h8" firstAttribute="top" secondItem="ZQ1-TJ-ccM" secondAttribute="bottom" constant="8" id="Bxa-NA-Heg"/>
                                             <constraint firstItem="jwv-2z-c8z" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="C3K-Kv-GiI"/>
-                                            <constraint firstItem="e4n-8C-9AZ" firstAttribute="leading" secondItem="ZVI-ZZ-KmM" secondAttribute="leading" id="C7X-Q3-pKH"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="leading" secondItem="TWF-qW-7h8" secondAttribute="leading" id="EU7-iD-Q8r"/>
                                             <constraint firstItem="9Zw-QS-fm9" firstAttribute="top" secondItem="jwv-2z-c8z" secondAttribute="bottom" constant="8" id="G3B-oq-4Dy"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="leading" secondItem="MzP-lO-vRP" secondAttribute="leading" constant="10" id="GEy-Kc-xz7"/>
                                             <constraint firstItem="hh9-bX-bLJ" firstAttribute="top" secondItem="TWF-qW-7h8" secondAttribute="bottom" constant="8" id="GlU-tO-otT"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="trailing" secondItem="L3O-FC-oIZ" secondAttribute="trailing" id="H5o-SA-wfo"/>
-                                            <constraint firstItem="TWF-qW-7h8" firstAttribute="top" secondItem="e4n-8C-9AZ" secondAttribute="bottom" constant="8" id="I3A-id-U2o"/>
-                                            <constraint firstItem="ZVI-ZZ-KmM" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="JQF-lL-8fE"/>
+                                            <constraint firstItem="jdd-uB-9Dv" firstAttribute="top" secondItem="MmX-iU-Qfr" secondAttribute="bottom" constant="8" id="JeC-3l-Yt9"/>
                                             <constraint firstAttribute="height" constant="639" id="MjO-aG-YWQ"/>
-                                            <constraint firstItem="ZVI-ZZ-KmM" firstAttribute="top" secondItem="MmX-iU-Qfr" secondAttribute="bottom" constant="8" id="O1U-oI-7JK"/>
                                             <constraint firstAttribute="width" constant="320" id="PZt-mo-GTa"/>
                                             <constraint firstAttribute="bottom" secondItem="9Zw-QS-fm9" secondAttribute="bottom" constant="20" id="Rce-TN-prN"/>
                                             <constraint firstItem="jwv-2z-c8z" firstAttribute="top" secondItem="hh9-bX-bLJ" secondAttribute="bottom" constant="8" id="UND-7z-eu4"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="leading" secondItem="L3O-FC-oIZ" secondAttribute="leading" id="Vn2-EH-bha"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="trailing" secondItem="TWF-qW-7h8" secondAttribute="trailing" id="XRk-M5-WzN"/>
+                                            <constraint firstItem="ZQ1-TJ-ccM" firstAttribute="top" secondItem="jdd-uB-9Dv" secondAttribute="bottom" constant="8" id="XWX-EJ-EkQ"/>
+                                            <constraint firstItem="MmX-iU-Qfr" firstAttribute="trailing" secondItem="jdd-uB-9Dv" secondAttribute="trailing" id="cJD-f9-rRA"/>
                                             <constraint firstItem="Jme-78-2mX" firstAttribute="leading" secondItem="hh9-bX-bLJ" secondAttribute="leading" id="d7H-3J-fRz"/>
                                             <constraint firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" constant="10" id="dJb-Ux-WVy"/>
+                                            <constraint firstItem="MmX-iU-Qfr" firstAttribute="leading" secondItem="jdd-uB-9Dv" secondAttribute="leading" id="fUc-6S-PQt"/>
                                             <constraint firstItem="9Zw-QS-fm9" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="hvt-bC-T56"/>
-                                            <constraint firstItem="e4n-8C-9AZ" firstAttribute="top" secondItem="ZVI-ZZ-KmM" secondAttribute="bottom" constant="8" id="j0g-uA-TDd"/>
                                             <constraint firstItem="eNS-bB-JWp" firstAttribute="trailing" secondItem="Jme-78-2mX" secondAttribute="trailing" id="kSY-Et-bqY"/>
-                                            <constraint firstItem="e4n-8C-9AZ" firstAttribute="trailing" secondItem="ZVI-ZZ-KmM" secondAttribute="trailing" id="m97-lJ-WSb"/>
+                                            <constraint firstItem="ZQ1-TJ-ccM" firstAttribute="trailing" secondItem="jdd-uB-9Dv" secondAttribute="trailing" id="mWI-E3-2sk"/>
                                             <constraint firstItem="jwv-2z-c8z" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="r46-kf-xWO"/>
                                             <constraint firstItem="MmX-iU-Qfr" firstAttribute="leading" secondItem="Jme-78-2mX" secondAttribute="leading" id="tuO-GO-IVC"/>
                                             <constraint firstItem="MmX-iU-Qfr" firstAttribute="top" secondItem="L3O-FC-oIZ" secondAttribute="bottom" constant="8" id="vbS-Jv-IJx"/>
@@ -832,11 +810,11 @@
                         <outlet property="setMarkerButton" destination="Jl0-Wj-XXq" id="gBI-qj-hfW"/>
                         <outlet property="setNodeTypeButton" destination="h43-3s-YeO" id="iOA-Ad-G5t"/>
                         <outlet property="streetTextField" destination="RvQ-Ln-pIF" id="XIx-Ws-J77"/>
-                        <outlet property="toiletAccessButton" destination="e4n-8C-9AZ" id="J9V-b4-PTr"/>
+                        <outlet property="toiletStateButtonContainerView" destination="ZQ1-TJ-ccM" id="mbm-zU-QqC"/>
                         <outlet property="websiteInputView" destination="jwv-2z-c8z" id="vLY-eF-d4V"/>
                         <outlet property="websiteLabel" destination="Dml-0c-S6C" id="6fe-Fz-SDo"/>
                         <outlet property="websiteTextField" destination="0LY-40-ieY" id="yfM-Bv-ExR"/>
-                        <outlet property="wheelAccessButton" destination="ZVI-ZZ-KmM" id="QbF-Lw-9eq"/>
+                        <outlet property="wheelchairStateButtonContainerView" destination="jdd-uB-9Dv" id="Nvr-YN-je9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wPz-2U-Zpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1180,4 +1158,9 @@
         <image name="Social_btn-twitter.png" width="290" height="50"/>
         <image name="textfield_-share.png" width="290" height="120"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

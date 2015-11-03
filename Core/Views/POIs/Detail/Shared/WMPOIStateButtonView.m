@@ -1,27 +1,14 @@
 //
-//  WMEditPOIStatusButtonView.m
+//  WMPOIStateButtonView.m
 //  Wheelmap
 //
-//  Created by SMF on 02.11.15.
-//  Copyright © 2015 Sozialhelden e.V. All rights reserved.
+//  Created by Hans Seiffert on 03.11.15.
+//
 //
 
-#import "WMEditPOIStatusButtonView.h"
+#import "WMPOIStateButtonView.h"
 
-@interface WMEditPOIStatusButtonView ()
-
-@property (weak, nonatomic) IBOutlet UIButton *							button;
-@property (weak, nonatomic) IBOutlet UIImageView *						checkmarkImageView;
-
-@property (weak, nonatomic) IBOutlet WMLabel *							titleLabel;
-@property (weak, nonatomic) IBOutlet WMLabel *							descriptionLabel;
-
-@property (nonatomic) BOOL												selected;
-@property (strong, nonatomic) NSString *								statusString;
-
-@end
-
-@implementation WMEditPOIStatusButtonView
+@implementation WMPOIStateButtonView
 
 #pragma mark - Initialization
 
@@ -34,8 +21,19 @@
 	return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+	self = [NSBundle.mainBundle loadNibNamed:@"WMPOIStateButtonView" owner:self options:nil].firstObject;
+
+	if (self != nil) {
+		self.translatesAutoresizingMaskIntoConstraints = YES;
+		self.frame = frame;
+		[self initDefaultValues];
+	}
+	return self;
+}
+
 - (instancetype)initFromNibToView:(UIView *)view {
-	self = [NSBundle.mainBundle loadNibNamed:@"WMEditPOIStatusButtonView" owner:self options:nil].firstObject;
+	self = [NSBundle.mainBundle loadNibNamed:@"WMPOIStateButtonView" owner:self options:nil].firstObject;
 
 	if (self != nil) {
 		self.frame = view.bounds;
@@ -89,26 +87,18 @@
 }
 
 - (void)initDefaultValues {
-	self.selected = NO;
 	self.statusString = K_STATE_YES;
 }
 
 #pragma mark - Public Setter
 
+- (void)setStatusString:(NSString *)statusString {
+	_statusString = statusString;
+
+	[self updateViewContent];
+}
 - (void)setStatusType:(WMEditPOIStatusType)statusType {
 	_statusType = statusType;
-
-	[self updateViewContent];
-}
-
-- (void)setCurrentStatus:(NSString *)statusString {
-	self.statusString = statusString;
-
-	[self updateViewContent];
-}
-
-- (void)setSelected:(BOOL)selected {
-	_selected = selected;
 
 	[self updateViewContent];
 }
@@ -116,29 +106,29 @@
 #pragma mark - IBOutlet actions
 
 - (IBAction)buttonPressed:(id)sender {
-	if (self.delegate != nil) {
-		[self.delegate didSelectStatus:self.statusString];
+	if (self.showStateDelegate != nil) {
+		[self.showStateDelegate didPressedEditStateButton:self.statusString forStateType:self.statusType];
 	}
 }
 
 #pragma mark - Helper
 
 - (void)updateViewContent {
-	[self.button setImage:[self imageForStatus:self.statusString] forState:UIControlStateNormal];
+	[self.button setBackgroundImage:[self imageForStatus:self.statusString] forState:UIControlStateNormal];
 	self.titleLabel.text = [self titleForStatus:self.statusString];
-	self.descriptionLabel.text = [self descriptionForStatus:self.statusString];
-	self.checkmarkImageView.hidden = !self.selected;
 }
 
 #pragma mark - Content helper
 
 - (UIImage *)imageForStatus:(NSString *)statusString {
 	if ([statusString isEqualToString:K_STATE_LIMITED]) {
-		return [UIImage imageNamed:@"details_label-limited"];
+		return [UIImage imageNamed:@"details_btn-status-limited"];
 	} else if ([statusString isEqualToString:K_STATE_NO]) {
-		return [UIImage imageNamed:@"details_label-no.png"];
+		return [UIImage imageNamed:@"details_btn-status-no.png"];
 	} else if ([statusString isEqualToString:K_STATE_YES]) {
-		return [UIImage imageNamed:@"details_label-yes.png"];
+		return [UIImage imageNamed:@"details_btn-status-yes.png"];
+	} else if ([statusString isEqualToString:K_STATE_UNKNOWN]) {
+		return [UIImage imageNamed:@"details_btn-status-unknown.png"];
 	} else {
 		return nil;
 	}
@@ -152,31 +142,16 @@
 			return L(@"WheelchairAccessNo");
 		} else if ([statusString isEqualToString:K_STATE_YES]) {
 			return L(@"WheelchairAccessYes");
+		} else if ([statusString isEqualToString:K_STATE_UNKNOWN]) {
+			return L(@"WheelchairAccessUnkown");
 		}
 	} else if (self.statusType == WMEditPOIStatusTypeToilet) {
 		if ([statusString isEqualToString:K_STATE_NO]) {
 			return L(@"ToiletAccessNo");
 		} else if ([statusString isEqualToString:K_STATE_YES]) {
 			return L(@"ToiletAccessYes");
-		}
-	}
-	return nil;
-}
-
-- (NSString *)descriptionForStatus:(NSString *)statusString {
-	if (self.statusType == WMEditPOIStatusTypeWheelchair) {
-		if ([statusString isEqualToString:K_STATE_LIMITED]) {
-			return L(@"WheelchairAccessContentLimited");
-		} else if ([statusString isEqualToString:K_STATE_NO]) {
-			return L(@"WheelchairAccessContentNo");
-		} else if ([statusString isEqualToString:K_STATE_YES]) {
-			return L(@"WheelchairAccessContentYes");
-		}
-	} else if (self.statusType == WMEditPOIStatusTypeToilet) {
-		if ([statusString isEqualToString:K_STATE_NO]) {
-			return L(@"ToiletAccessContentNo");
-		} else if ([statusString isEqualToString:K_STATE_YES]) {
-			return L(@"ToiletAccessContentYes");
+		} else if ([statusString isEqualToString:K_STATE_UNKNOWN]) {
+			return L(@"ToiletAccessUnknown");
 		}
 	}
 	return nil;

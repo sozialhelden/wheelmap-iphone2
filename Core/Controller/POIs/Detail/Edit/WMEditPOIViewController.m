@@ -75,15 +75,15 @@
     
     
     // WHEEL ACCESS
-    self.wheelAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
-    [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+	self.wheelchairStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.wheelchairStateButtonContainerView];
+	self.wheelchairStateButtonView.statusType = WMEditPOIStatusTypeWheelchair;
+	self.wheelchairStateButtonView.statusString = self.currentWheelchairState;
+	self.wheelchairStateButtonView.showStateDelegate = self;
 
-	self.toiletAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-	self.toiletAccessButton.titleLabel.textColor = [UIColor whiteColor];
-	[self.toiletAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-	[self.toiletAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+	self.toiletStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.toiletStateButtonContainerView];
+	self.toiletStateButtonView.statusType = WMEditPOIStatusTypeToilet;
+	self.toiletStateButtonView.statusString = self.currentToiletState;
+	self.toiletStateButtonView.showStateDelegate = self;
 
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
     self.nodeTypeLabel.text = NSLocalizedString(@"EditPOIViewNodeTypeLabel", @"");
@@ -109,8 +109,8 @@
         [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    [self setWheelAccessButton];
-	[self setToiletAccessButton];
+    [self.wheelchairStateButtonView updateViewContent];
+	[self.toiletStateButtonView updateViewContent];
 
     [self styleInputView:self.nameInputView];
     [self styleInputView:self.nodeTypeInputView];
@@ -154,8 +154,8 @@
     self.nameTextField.text = self.node.name;
     [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
     [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
-    [self setWheelAccessButton];
-	[self setToiletAccessButton];
+    self.wheelchairStateButtonView.statusString = self.currentWheelchairState;
+	self.toiletStateButtonView.statusString = self.currentToiletState;
     self.infoTextView.text = self.node.wheelchair_description;
 	// Show the infoTextView if no info is set.
 	self.infoPlaceholderTextView.hidden = !(self.infoTextView.text == nil || self.infoTextView.text.length == 0);
@@ -174,64 +174,12 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)setWheelAccessButton {
-
-	NSString * stateTitleString = nil;
-    if ([self.currentWheelchairState isEqualToString:K_STATE_YES]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
-        stateTitleString = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.currentWheelchairState isEqualToString:K_STATE_NO]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
-        stateTitleString = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.currentWheelchairState isEqualToString:K_STATE_LIMITED]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
-        stateTitleString = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
-        stateTitleString = NSLocalizedString(@"WheelchairAccessUnknown", @"");
-    }
-    
-    [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
-    [self.wheelAccessButton setTitle:stateTitleString forState:UIControlStateNormal];
-    [self.wheelAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
-}
-
-- (void)setToiletAccessButton {
-
-	NSString * stateTitleString = nil;
-	if ([self.currentToiletState isEqualToString:K_STATE_YES]) {
-		self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
-		stateTitleString = NSLocalizedString(@"ToiletAccessYes", @"");
-	} else if ([self.currentToiletState isEqualToString:K_STATE_NO]) {
-		self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
-		stateTitleString = NSLocalizedString(@"ToiletAccessNo", @"");
-	} else {
-		self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
-		stateTitleString = NSLocalizedString(@"ToiletAccessUnknown", @"");
-	}
-
-	[self.toiletAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
-	[self.toiletAccessButton setTitle:stateTitleString forState:UIControlStateNormal];
-	[self.toiletAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
-}
-
 - (void) styleInputView: (UIView*) inputView {
     [inputView.layer setCornerRadius:5.0f];
     [inputView.layer setMasksToBounds:YES];
     inputView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     inputView.layer.borderWidth = 1.0f;
     
-}
-
-
-- (void)didSelectStatus:(NSString*)state forStatusType:(WMEditPOIStatusType)statusType {
-	if (statusType == WMEditPOIStatusTypeWheelchair) {
-		self.currentWheelchairState = state;
-		[self setWheelAccessButton];
-	} else if (statusType == WMEditPOIStatusTypeToilet) {
-		self.currentToiletState = state;
-		[self setToiletAccessButton];
-	}
 }
 
 - (void)categoryChosen:(WMCategory *)category {
@@ -270,20 +218,6 @@
     
     [self.setMarkerButton setTitle:[NSString stringWithFormat:@"(%0.5f, %0.5f)", coord.latitude, coord.longitude] forState:UIControlStateNormal];
     [self saveCurrentEntriesToCurrentNode];
-}
-
-- (IBAction)wheelchairStateButtonPressed:(id)sender {
-    [self buttonPressed];
-    
-    WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
-    vc.hideSaveButton = YES;
-    vc.title = NSLocalizedString(@"EditPOIStateHeadline", nil);
-    vc.navigationBarTitle = vc.title;
-    vc.delegate = self;
-    vc.node = self.node;
-    vc.useCase = WMEditPOIStatusUseCasePOICreation;
-	vc.statusType = WMEditPOIStatusTypeWheelchair;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)toiletStateButtonPressed:(id)sender {
@@ -525,6 +459,40 @@
 	[self.scrollView layoutIfNeeded];
 
 	[UIView commitAnimations];
+}
+
+#pragma mark - WMEditPOIStateDelegate
+
+- (void)didSelectStatus:(NSString*)state forStatusType:(WMEditPOIStatusType)statusType {
+	if (statusType == WMEditPOIStatusTypeWheelchair) {
+		self.currentWheelchairState = state;
+		self.wheelchairStateButtonView.statusString = state;
+	} else if (statusType == WMEditPOIStatusTypeToilet) {
+		self.currentToiletState = state;
+		self.toiletStateButtonView.statusString = state;
+	}
+}
+
+#pragma mark - WMPOIStateButtonViewDelegate
+
+- (void)didPressedEditStateButton:(NSString *)state forStateType:(WMEditPOIStatusType)stateType {
+	[self buttonPressed];
+
+	WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
+	vc.hideSaveButton = YES;
+	vc.title = NSLocalizedString(@"EditPOIStateHeadline", nil);
+	vc.navigationBarTitle = vc.title;
+	vc.delegate = self;
+	vc.node = self.node;
+	vc.useCase = WMEditPOIStatusUseCasePOICreation;
+	if (stateType == WMEditPOIStatusTypeWheelchair) {
+		vc.statusType = WMEditPOIStatusTypeWheelchair;
+		[vc setCurrentState:self.currentWheelchairState];
+	} else if (stateType == WMEditPOIStatusTypeToilet) {
+		vc.statusType = WMEditPOIStatusTypeToilet;
+		[vc setCurrentState:self.currentToiletState];
+	}
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

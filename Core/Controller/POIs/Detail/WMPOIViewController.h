@@ -13,10 +13,11 @@
 #import "WMMapAnnotation.h"
 #import "WMDataManager.h"
 #import "MBXMapKit.h"
+#import "WMPOIStateButtonView.h"
 
 @class Node;
 
-@interface WMPOIViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, MBXRasterTileOverlayDelegate, MBXOfflineMapDownloaderDelegate, WMEditPOIStatusDelegate> {
+@interface WMPOIViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, MBXRasterTileOverlayDelegate, MBXOfflineMapDownloaderDelegate, WMEditPOIStateDelegate, WMPOIStateButtonViewDelegate> {
     WMDataManager* dataManager;
     UIImage* imageReadyToUpload;
 }
@@ -37,10 +38,9 @@
 @property (nonatomic, strong) UILabel *					nodeTypeLabel;
 
 #pragma mark - WHEEL ACCESS AND ASK FRIENDS BUTTON VIEW
-@property (nonatomic, strong) UIView *					wheelAccessView;
-@property (nonatomic, strong) UIButton *				wheelAccessButton;
-@property (nonatomic, strong) UIImage *					accessImage;
-@property (nonatomic, strong) NSString *				wheelchairAccess;
+@property (nonatomic, strong) WMPOIStateButtonView *	wheelchairStateButtonView;
+@property (nonatomic, strong) WMPOIStateButtonView *	toiletStateButtonView;
+@property (nonatomic, strong) UIView *					toiletStateButtonContainerView;
 @property (nonatomic, strong) UIButton *				askFriendsButton;
 @property (assign) int									gabIfStatusUnknown;
 

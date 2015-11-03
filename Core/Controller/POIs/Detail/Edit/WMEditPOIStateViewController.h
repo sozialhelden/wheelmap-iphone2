@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Node.h"
 #import "WMDataManager.h"
-#import "WMEditPOIStatusButtonView.h"
+#import "WMEditPOIStateButtonView.h"
 
-@interface WMEditPOIStateViewController : WMViewController <WMDataManagerDelegate, WMEditPOIStatusButtonViewDelegate> {
+@interface WMEditPOIStateViewController : WMViewController <WMDataManagerDelegate, WMEditPOIStateButtonViewDelegate> {
 
 	WMDataManager* dataManager;
     
 }
 
-@property (strong, nonatomic) id<WMEditPOIStatusDelegate>		delegate;
+@property (strong, nonatomic) id<WMEditPOIStateDelegate>		delegate;
 
 @property (nonatomic, strong) Node *							node;
 

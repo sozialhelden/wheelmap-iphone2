@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "WMDataManagerDelegate.h"
+#import "WMPOIStateButtonView.h"
 
 @class Node, WMCategory, NodeType;
 
-@interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate, WMEditPOIStatusDelegate> {
+@interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate, WMEditPOIStateDelegate, WMPOIStateButtonViewDelegate> {
     UIActivityIndicatorView* progressWheel;
 }
 
@@ -47,8 +48,10 @@
 @property (assign) BOOL										editView;
 
 #pragma mark - State Access Buttons
-@property (weak, nonatomic) IBOutlet UIButton *				wheelAccessButton;
-@property (weak, nonatomic) IBOutlet UIButton *				toiletAccessButton;
+@property (weak, nonatomic) IBOutlet UIView *				wheelchairStateButtonContainerView;
+@property (strong, nonatomic) WMPOIStateButtonView *		wheelchairStateButtonView;
+@property (weak, nonatomic) IBOutlet UIView *				toiletStateButtonContainerView;
+@property (strong, nonatomic) WMPOIStateButtonView *		toiletStateButtonView;
 
 #pragma mark - Wheelchair Description
 @property (weak, nonatomic) IBOutlet UIView *				infoInputView;

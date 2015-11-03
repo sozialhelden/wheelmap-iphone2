@@ -19,9 +19,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *				limitedButtonViewContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *							noButtonContainerView;
 
-@property (weak, nonatomic) WMEditPOIStatusButtonView *					yesButtonView;
-@property (weak, nonatomic) WMEditPOIStatusButtonView *					limitedButtonView;
-@property (weak, nonatomic) WMEditPOIStatusButtonView *					noButtonView;
+@property (weak, nonatomic) WMEditPOIStateButtonView *					yesButtonView;
+@property (weak, nonatomic) WMEditPOIStateButtonView *					limitedButtonView;
+@property (weak, nonatomic) WMEditPOIStateButtonView *					noButtonView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *				scrollViewContentWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *				scrollViewContentHeightConstraint;
@@ -66,20 +66,20 @@
 #pragma mark - Initialization
 
 - (void)addStateButtons {
-	self.yesButtonView = (WMEditPOIStatusButtonView *) [[WMEditPOIStatusButtonView alloc] initFromNibToView:self.yesButtonContainerView];
+	self.yesButtonView = (WMEditPOIStateButtonView *) [[WMEditPOIStateButtonView alloc] initFromNibToView:self.yesButtonContainerView];
 	self.yesButtonView.statusType = self.statusType;
-	[self.yesButtonView setCurrentStatus:K_STATE_YES];
-	self.yesButtonView.delegate = self;
+	self.yesButtonView.statusString = K_STATE_YES;
+	self.yesButtonView.editStateDelegate = self;
 
-	self.limitedButtonView = (WMEditPOIStatusButtonView *) [[WMEditPOIStatusButtonView alloc] initFromNibToView:self.limitedButtonContainerView];
+	self.limitedButtonView = (WMEditPOIStateButtonView *) [[WMEditPOIStateButtonView alloc] initFromNibToView:self.limitedButtonContainerView];
 	self.limitedButtonView.statusType = self.statusType;
-	[self.limitedButtonView setCurrentStatus:K_STATE_LIMITED];
-	self.limitedButtonView.delegate = self;
+	self.limitedButtonView.statusString = K_STATE_LIMITED;
+	self.limitedButtonView.editStateDelegate = self;
 
-	self.noButtonView = (WMEditPOIStatusButtonView *) [[WMEditPOIStatusButtonView alloc] initFromNibToView:self.noButtonContainerView];
+	self.noButtonView = (WMEditPOIStateButtonView *) [[WMEditPOIStateButtonView alloc] initFromNibToView:self.noButtonContainerView];
 	self.noButtonView.statusType = self.statusType;
-	[self.noButtonView setCurrentStatus:K_STATE_NO];
-	self.noButtonView.delegate = self;
+	self.noButtonView.statusString = K_STATE_NO;
+	self.noButtonView.editStateDelegate = self;
 }
 
 #pragma mark - Public methods
@@ -164,7 +164,7 @@
 	[[[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"POIStatusChangeFailed", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
-#pragma mark - WMEditPOIStatusButtonViewDelegate
+#pragma mark - WMEditPOIStateButtonViewDelegate
 
 - (void)didSelectStatus:(NSString *)state {
 	self.currentState = state;
