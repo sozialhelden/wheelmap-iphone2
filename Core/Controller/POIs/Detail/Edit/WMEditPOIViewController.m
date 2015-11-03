@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WMEditPOIViewController.h"
-#import "WMEditPOIWheelchairStatusViewController.h"
+#import "WMEditPOIStateViewController.h"
 #import "WMPOIViewController.h"
 #import "WMEditPOIPositionViewController.h"
 #import "NodeType.h"
@@ -46,8 +46,9 @@
 	// Do any additional setup after loading the view.
     self.currentCategory = self.node.node_type.category;
     self.currentNodeType = self.node.node_type;
-    self.currentWheelchairStatus = self.node.wheelchair;
-    self.nameTextField.delegate = self;
+    self.currentWheelchairState = self.node.wheelchair;
+	self.currentToiletState = self.node.wheelchair_toilet;
+	self.nameTextField.delegate = self;
     self.infoTextView.delegate = self;
     self.streetTextField.delegate = self;
     self.housenumberTextField.delegate = self;
@@ -78,7 +79,12 @@
     self.wheelAccessButton.titleLabel.textColor = [UIColor whiteColor];
     [self.wheelAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.wheelAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
-    
+
+	self.toiletAccessButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+	self.toiletAccessButton.titleLabel.textColor = [UIColor whiteColor];
+	[self.toiletAccessButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+	[self.toiletAccessButton setContentEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+
     self.nameLabel.text = NSLocalizedString(@"EditPOIViewNameLabel", @"");
     self.nodeTypeLabel.text = NSLocalizedString(@"EditPOIViewNodeTypeLabel", @"");
     self.categoryLabel.text = NSLocalizedString(@"EditPOIViewCategoryLabel", @"");
@@ -104,8 +110,8 @@
     }
     
     [self setWheelAccessButton];
-    
-    
+	[self setToiletAccessButton];
+
     [self styleInputView:self.nameInputView];
     [self styleInputView:self.nodeTypeInputView];
     [self styleInputView:self.categoryInputView];
@@ -149,6 +155,7 @@
     [self.setNodeTypeButton setTitle:self.currentNodeType.localized_name forState:UIControlStateNormal];
     [self.setCategoryButton setTitle:self.currentCategory.localized_name forState:UIControlStateNormal];
     [self setWheelAccessButton];
+	[self setToiletAccessButton];
     self.infoTextView.text = self.node.wheelchair_description;
 	// Show the infoTextView if no info is set.
 	self.infoPlaceholderTextView.hidden = !(self.infoTextView.text == nil || self.infoTextView.text.length == 0);
@@ -168,29 +175,44 @@
 }
 
 - (void)setWheelAccessButton {
-    
-    if ([self.currentWheelchairStatus isEqualToString:K_STATE_YES]) {
+
+	NSString * stateTitleString = nil;
+    if ([self.currentWheelchairState isEqualToString:K_STATE_YES]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessYes", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:K_STATE_NO]) {
+        stateTitleString = NSLocalizedString(@"WheelchairAccessYes", @"");
+    } else if ([self.currentWheelchairState isEqualToString:K_STATE_NO]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessNo", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:K_STATE_LIMITED]) {
+        stateTitleString = NSLocalizedString(@"WheelchairAccessNo", @"");
+    } else if ([self.currentWheelchairState isEqualToString:K_STATE_LIMITED]) {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-limited.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessLimited", @"");
-    } else if ([self.currentWheelchairStatus isEqualToString:K_STATE_UNKNOWN]) {
-        self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
+        stateTitleString = NSLocalizedString(@"WheelchairAccessLimited", @"");
     } else {
         self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
-        self.wheelchairAccess = NSLocalizedString(@"WheelchairAccessUnknown", @"");
+        stateTitleString = NSLocalizedString(@"WheelchairAccessUnknown", @"");
     }
     
     [self.wheelAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
-    [self.wheelAccessButton setTitle:self.wheelchairAccess forState:UIControlStateNormal];
+    [self.wheelAccessButton setTitle:stateTitleString forState:UIControlStateNormal];
     [self.wheelAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
-    
-    
+}
+
+- (void)setToiletAccessButton {
+
+	NSString * stateTitleString = nil;
+	if ([self.currentToiletState isEqualToString:K_STATE_YES]) {
+		self.accessImage = [UIImage imageNamed:@"details_btn-status-yes.png"];
+		stateTitleString = NSLocalizedString(@"ToiletAccessYes", @"");
+	} else if ([self.currentToiletState isEqualToString:K_STATE_NO]) {
+		self.accessImage = [UIImage imageNamed:@"details_btn-status-no.png"];
+		stateTitleString = NSLocalizedString(@"ToiletAccessNo", @"");
+	} else {
+		self.accessImage = [UIImage imageNamed:@"details_btn-status-unknown.png"];
+		stateTitleString = NSLocalizedString(@"ToiletAccessUnknown", @"");
+	}
+
+	[self.toiletAccessButton setBackgroundImage: self.accessImage forState: UIControlStateNormal];
+	[self.toiletAccessButton setTitle:stateTitleString forState:UIControlStateNormal];
+	[self.toiletAccessButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 15)];
 }
 
 - (void) styleInputView: (UIView*) inputView {
@@ -202,9 +224,14 @@
 }
 
 
-- (void)accessButtonPressed:(NSString*)wheelchairAccess {
-    self.currentWheelchairStatus = wheelchairAccess;
-    [self setWheelAccessButton];
+- (void)didSelectStatus:(NSString*)state forStatusType:(WMEditPOIStatusType)statusType {
+	if (statusType == WMEditPOIStatusTypeWheelchair) {
+		self.currentWheelchairState = state;
+		[self setWheelAccessButton];
+	} else if (statusType == WMEditPOIStatusTypeToilet) {
+		self.currentToiletState = state;
+		[self setToiletAccessButton];
+	}
 }
 
 - (void)categoryChosen:(WMCategory *)category {
@@ -245,17 +272,32 @@
     [self saveCurrentEntriesToCurrentNode];
 }
 
-- (IBAction)showAccessOptions:(id)sender {
+- (IBAction)wheelchairStateButtonPressed:(id)sender {
     [self buttonPressed];
     
-    WMEditPOIWheelchairStatusViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIWheelchairStatusViewController"];
+    WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
     vc.hideSaveButton = YES;
-    vc.title = NSLocalizedString(@"WheelAccessStatusViewHeadline", nil);
+    vc.title = NSLocalizedString(@"EditPOIStateHeadline", nil);
     vc.navigationBarTitle = vc.title;
     vc.delegate = self;
     vc.node = self.node;
-    vc.useCase = kWMWheelChairStatusViewControllerUseCasePutNode;
+    vc.useCase = WMEditPOIStatusUseCasePOICreation;
+	vc.statusType = WMEditPOIStatusTypeWheelchair;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)toiletStateButtonPressed:(id)sender {
+	[self buttonPressed];
+
+	WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
+	vc.hideSaveButton = YES;
+	vc.title = NSLocalizedString(@"EditPOIStateHeadline", nil);
+	vc.navigationBarTitle = vc.title;
+	vc.delegate = self;
+	vc.node = self.node;
+	vc.useCase = WMEditPOIStatusUseCasePOICreation;
+	vc.statusType = WMEditPOIStatusTypeToilet;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)setNodeType:(id)sender {
@@ -317,7 +359,8 @@
     
     self.node.name = self.nameTextField.text;
     self.node.node_type = self.currentNodeType;
-    self.node.wheelchair = self.currentWheelchairStatus;
+    self.node.wheelchair = self.currentWheelchairState;
+	self.node.wheelchair_toilet = self.currentToiletState;
     self.node.wheelchair_description = self.infoTextView.text;
     self.node.street = self.streetTextField.text;
     self.node.housenumber = self.housenumberTextField.text;

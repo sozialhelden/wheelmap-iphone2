@@ -75,4 +75,15 @@ typedef enum {
 	kWMPOIsListViewControllerUseCaseCategory
 } WMPOIsListViewControllerUseCase;
 
+typedef enum {
+	WMEditPOIStatusUseCasePOICreation,
+	WMEditPOIStatusUseCasePOIUpdate
+} WMEditPOIStatusUseCase;
+
+typedef enum {
+	WMEditPOIStatusTypeWheelchair,
+	WMEditPOIStatusTypeToilet
+} WMEditPOIStatusType;
+
+
 #endif

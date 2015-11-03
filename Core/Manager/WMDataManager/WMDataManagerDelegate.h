@@ -32,6 +32,9 @@
 - (void) dataManager:(WMDataManager *)dataManager didUpdateWheelchairStatusOfNode:(Node *)node;
 - (void) dataManager:(WMDataManager *)dataManager updateWheelchairStatusOfNode:(Node *)node failedWithError:(NSError *)error;
 
+- (void) dataManager:(WMDataManager *)dataManager didUpdateToiletStatusOfNode:(Node *)node;
+- (void) dataManager:(WMDataManager *)dataManager updateToiletStatusOfNode:(Node *)node failedWithError:(NSError *)error;
+
 - (void) dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node;
 - (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error;
 

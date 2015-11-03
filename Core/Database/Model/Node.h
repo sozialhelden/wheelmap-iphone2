@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString * website;
 @property (nonatomic, retain) NSString * wheelchair;
 @property (nonatomic, retain) NSString * wheelchair_description;
+@property (nonatomic, retain) NSString * wheelchair_toilet;
 @property (nonatomic, retain) NodeType *node_type;
 @property (nonatomic, retain) NSSet *photos;
 @property (nonatomic, retain) Tile *tile;

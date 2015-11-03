@@ -26,6 +26,7 @@
 @dynamic website;
 @dynamic wheelchair;
 @dynamic wheelchair_description;
+@dynamic wheelchair_toilet;
 @dynamic node_type;
 @dynamic photos;
 @dynamic tile;

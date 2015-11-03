@@ -26,6 +26,7 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wheelchair" optional="YES" attributeType="String" defaultValueString="unknown" regularExpressionString="^yes$|^no$|^limited$|^unknown$" syncable="YES"/>
         <attribute name="wheelchair_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wheelchair_toilet" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="node_type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NodeType" inverseName="node" inverseEntity="NodeType" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="node" inverseEntity="Photo" syncable="YES"/>
         <relationship name="tile" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Tile" inverseName="nodes" inverseEntity="Tile" syncable="YES"/>
@@ -60,7 +61,7 @@
     <elements>
         <element name="Asset" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Node" positionX="160" positionY="192" width="128" height="270"/>
+        <element name="Node" positionX="160" positionY="192" width="128" height="285"/>
         <element name="NodeType" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Tile" positionX="160" positionY="192" width="128" height="105"/>

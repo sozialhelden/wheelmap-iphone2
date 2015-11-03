@@ -48,9 +48,10 @@
                           northeast:(CLLocationCoordinate2D)northeast
                               query:(NSString*)query;
 
-- (void) syncResources;
-- (void) updateWheelchairStatusOfNode:(Node*)node;
-- (void) updateNode:(Node*)node;
+- (void)syncResources;
+- (void)updateWheelchairStatusOfNode:(Node*)node;
+- (void)updateToiletStateOfNode:(Node *)node;
+- (void)updateNode:(Node*)node;
 
 - (void) fetchPhotosForNode:(Node*)node;
 - (void) uploadImage:(UIImage*)image forNode:(Node*)node;

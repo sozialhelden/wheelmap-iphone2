@@ -16,7 +16,7 @@
 #import "WMMapViewController.h"
 #import "WMPOIViewController.h"
 #import "WMEditPOICommentViewController.h"
-#import "WMEditPOIWheelchairStatusViewController.h"
+#import "WMEditPOIStateViewController.h"
 #import "WMWheelChairStatusFilterPopoverView.h"
 #import "WMCategoryFilterPopoverView.h"
 
