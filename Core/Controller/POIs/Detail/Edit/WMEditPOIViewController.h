@@ -12,7 +12,7 @@
 
 @class Node, WMCategory, NodeType;
 
-@interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate> {
+@interface WMEditPOIViewController : WMViewController <UITextFieldDelegate, UITextViewDelegate, WMDataManagerDelegate, WMEditPOIStatusDelegate> {
     UIActivityIndicatorView* progressWheel;
 }
 
@@ -46,8 +46,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *				setMarkerButton;
 @property (assign) BOOL										editView;
 
-#pragma mark - Wheelchair Access Button
+#pragma mark - State Access Buttons
 @property (weak, nonatomic) IBOutlet UIButton *				wheelAccessButton;
+@property (weak, nonatomic) IBOutlet UIButton *				toiletAccessButton;
 
 #pragma mark - Wheelchair Description
 @property (weak, nonatomic) IBOutlet UIView *				infoInputView;
@@ -81,10 +82,10 @@
 @property (nonatomic) Node *								node;
 @property (nonatomic, assign) BOOL							keyboardIsShown;
 @property (nonatomic, strong) UIImage *						accessImage;
-@property (nonatomic, strong) NSString *					wheelchairAccess;
+@property (nonatomic, strong) NSString *					currentWheelchairState;
+@property (nonatomic, strong) NSString *					currentToiletState;
 @property (nonatomic, strong) WMCategory *					currentCategory;
 @property (nonatomic, strong) NodeType *					currentNodeType;
-@property (nonatomic, strong) NSString *					currentWheelchairStatus;
 @property (nonatomic, strong) NSString *					currentInfoFieldText;
 @property (nonatomic, assign) CLLocationCoordinate2D		currentCoordinate;
 @property (nonatomic, assign) CLLocationCoordinate2D		initialCoordinate;
@@ -94,7 +95,6 @@
 
 - (IBAction)setNodeType:(id)sender;
 - (IBAction)setCategory:(id)sender;
-- (IBAction)showAccessOptions:(id)sender;
 - (void)categoryChosen:(WMCategory*)category;
 - (void)nodeTypeChosen:(NodeType*)nodeType;
 - (void)markerSet:(CLLocationCoordinate2D)coord;

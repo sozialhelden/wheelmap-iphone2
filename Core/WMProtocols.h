@@ -54,4 +54,12 @@
 -(void)searchStringIsGiven:(NSString*)query;
 @end
 
+@protocol WMEditPOIStatusDelegate <NSObject>
+- (void)didSelectStatus:(NSString *)state forStatusType:(WMEditPOIStatusType)statusType;
+@end
+
+@protocol WMEditPOIStatusButtonViewDelegate <NSObject>
+- (void)didSelectStatus:(NSString *)state;
+@end
+
 #endif
