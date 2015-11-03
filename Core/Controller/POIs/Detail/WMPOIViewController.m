@@ -946,7 +946,7 @@
     
 }
 
-- (IBAction)didSelectStatus:(NSString*)wheelchairAccess {
+- (IBAction)didSelectStatus:(NSString*)wheelchairAccess forStatusType:(WMEditPOIStatusType)statusType {
     self.node.wheelchair = wheelchairAccess;
 }
 
