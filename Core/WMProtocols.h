@@ -55,7 +55,7 @@
 @end
 
 @protocol WMEditPOIStateDelegate <NSObject>
-- (void)didSelectStatus:(NSString *)state forStatusType:(WMEditPOIStatusType)statusType;
+- (void)didSelectStatus:(NSString *)state forStatusType:(WMPOIStateType)statusType;
 @end
 
 @protocol WMEditPOIStateButtonViewDelegate <NSObject>
@@ -63,7 +63,11 @@
 @end
 
 @protocol WMPOIStateButtonViewDelegate <NSObject>
-- (void)didPressedEditStateButton:(NSString *)state forStateType:(WMEditPOIStatusType)stateType;
+- (void)didPressedEditStateButton:(NSString *)state forStateType:(WMPOIStateType)stateType;
+@end
+
+@protocol WMPOIStateFilterPopoverViewDelegate <NSObject>
+- (void)didSelect:(BOOL)selected dot:(DotType)dotType forStateType:(WMPOIStateType)stateType;
 @end
 
 #endif

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WMToolBar.h"
-#import "WMWheelchairStatusButton.h"
+#import "WMPOIStateFilterButton.h"
 #import "WMDataManager.h"
 
 @class WMToolBar_iPad;

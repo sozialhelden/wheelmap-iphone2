@@ -38,16 +38,29 @@
 // ETags aren't working et the moment. If you enable ist, please check if they are sent valid from the backend
 #define K_USE_ETAGS				NO
 
-#define K_NAVIGATION_BAR_HEIGHT					44.0f
-#define K_NAVIGATION_BAR_SEARCH_OFFSET			5.0f
+#define K_UD_POI_WHEELCHAIR_STATE_YES_KEY			@"WheelchairFilterStatusYes"
+#define K_UD_POI_WHEELCHAIR_STATE_LIMITED_KEY		@"WheelchairFilterStatusLimited"
+#define K_UD_POI_WHEELCHAIR_STATE_NO_KEY			@"WheelchairFilterStatusNo"
+#define K_UD_POI_WHEELCHAIR_STATE_UNKNOWN_KEY		@"WheelchairFilterStatusUnkown"
 
-#define K_TOOLBAR_BAR_HEIGHT					49.0f
-#define K_TOOLBAR_BUTTONS_WITH					58.0f
-#define K_TOOLBAR_TOOGLE_BUTTON_OFFSET			5.0f
+#define K_UD_POI_TOILET_STATE_YES_KEY				@"ToiletFilterStatusYes"
+#define K_UD_POI_TOILET_STATE_LIMITED_KEY			@"ToiletFilterStatusLimited"
+#define K_UD_POI_TOILET_STATE_NO_KEY				@"ToiletFilterStatusNo"
+#define K_UD_POI_TOILET_STATE_UNKNOWN_KEY			@"ToiletFilterStatusUknown"
 
-#define K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET		4.0f
+#define K_NAVIGATION_BAR_HEIGHT						44.0f
+#define K_NAVIGATION_BAR_SEARCH_OFFSET				5.0f
 
-#define K_ANIMATION_DURATION_SHORT				0.3f
+#define K_TOOLBAR_BAR_HEIGHT						49.0f
+#define K_TOOLBAR_BUTTONS_WITH						58.0f
+#define K_TOOLBAR_TOOGLE_BUTTON_OFFSET				5.0f
+
+#define K_POI_STATUS_FILTER_POPOVER_VIEW_HEIGHT		65.0f
+#define K_POI_STATUS_FILTER_POPOVER_BUTTON_WIDTH	50.0f
+
+#define K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET			4.0f
+
+#define K_ANIMATION_DURATION_SHORT					0.3f
 
 #define K_DATA_KEY_ETAGS							@"eTags"
 
@@ -61,10 +74,10 @@
 #define K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER		@"WMPOIsListTableViewCell"
 
 typedef enum {
-	kDotTypeGreen,
-	kDotTypeYellow,
-	kDotTypeRed,
-	kDotTypeNone
+	kDotTypeYes,
+	kDotTypeLimited,
+	kDotTypeNo,
+	kDotTypeUnknown
 } DotType;
 
 typedef enum {
@@ -76,14 +89,14 @@ typedef enum {
 } WMPOIsListViewControllerUseCase;
 
 typedef enum {
-	WMEditPOIStatusUseCasePOICreation,
-	WMEditPOIStatusUseCasePOIUpdate
-} WMEditPOIStatusUseCase;
+	WMEditPOIStateUseCasePOICreation,
+	WMEditPOIStateUseCasePOIUpdate
+} WMEditPOIStateUseCase;
 
 typedef enum {
-	WMEditPOIStatusTypeWheelchair,
-	WMEditPOIStatusTypeToilet
-} WMEditPOIStatusType;
+	WMPOIStateTypeWheelchair,
+	WMPOIStateTypeToilet
+} WMPOIStateType;
 
 
 #endif

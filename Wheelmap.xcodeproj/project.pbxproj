@@ -63,6 +63,9 @@
 		2EA5AB16280C161522CCBB3D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
 		757E60E31BCC123A00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E21BCC123A00E31CFB /* libPods.a */; };
 		757E60E91BCC12AB00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E81BCC12AB00E31CFB /* libPods.a */; };
+		8724E9EA1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */; };
+		8724E9EB1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */; };
+		8724E9EC1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */; };
 		872FD96B1BDFD69E00764FC5 /* WMConfig-Beta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 872FD9681BDFD13900764FC5 /* WMConfig-Beta.plist */; };
 		872FD96C1BDFD6A100764FC5 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 872FD9671BDFD13900764FC5 /* WMConfig-Alpha.plist */; };
 		872FD96D1BDFD6A500764FC5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 872FD9691BDFD13900764FC5 /* WMConfig.plist */; };
@@ -699,12 +702,12 @@
 		87A897AD1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */; };
 		87A897AE1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */; };
 		87A897AF1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */; };
-		87B4D0431BE8DA7A00EB770B /* WMWheelchairStatusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMWheelchairStatusButton.m */; };
-		87B4D0441BE8DA7A00EB770B /* WMWheelchairStatusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMWheelchairStatusButton.m */; };
-		87B4D0451BE8DA7A00EB770B /* WMWheelchairStatusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMWheelchairStatusButton.m */; };
-		87B4D0461BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m */; };
-		87B4D0471BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m */; };
-		87B4D0481BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m */; };
+		87B4D0431BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */; };
+		87B4D0441BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */; };
+		87B4D0451BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */; };
+		87B4D0461BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */; };
+		87B4D0471BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */; };
+		87B4D0481BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */; };
 		87B4D04C1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
 		87B4D04D1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
 		87B4D04E1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
@@ -744,6 +747,7 @@
 		4CBBC713638AECD9B081B892 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		757E60E21BCC123A00E31CFB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		757E60E81BCC12AB00E31CFB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateFilterPopoverView.xib; sourceTree = "<group>"; };
 		872FD9641BDFD13900764FC5 /* Wheelmap-Alpha-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Wheelmap-Alpha-Info.plist"; path = "PLists/Wheelmap-Alpha-Info.plist"; sourceTree = "<group>"; };
 		872FD9661BDFD13900764FC5 /* Wheelmap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Wheelmap-Info.plist"; path = "PLists/Wheelmap-Info.plist"; sourceTree = "<group>"; };
 		872FD9671BDFD13900764FC5 /* WMConfig-Alpha.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "WMConfig-Alpha.plist"; path = "PLists/WMConfig-Alpha.plist"; sourceTree = "<group>"; };
@@ -1057,10 +1061,10 @@
 		878EC9751BE0F92F0099EDD1 /* WMProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMProtocols.h; sourceTree = "<group>"; };
 		87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMEditPOIStateButtonView.xib; sourceTree = "<group>"; };
 		87A897B01BE7948A006CC1AF /* WMDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WMDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
-		87B4D03F1BE8DA7A00EB770B /* WMWheelchairStatusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelchairStatusButton.h; sourceTree = "<group>"; };
-		87B4D0401BE8DA7A00EB770B /* WMWheelchairStatusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelchairStatusButton.m; sourceTree = "<group>"; };
-		87B4D0411BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMWheelChairStatusFilterPopoverView.h; sourceTree = "<group>"; };
-		87B4D0421BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMWheelChairStatusFilterPopoverView.m; sourceTree = "<group>"; };
+		87B4D03F1BE8DA7A00EB770B /* WMPOIStateFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIStateFilterButton.h; sourceTree = "<group>"; };
+		87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIStateFilterButton.m; sourceTree = "<group>"; };
+		87B4D0411BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIStateFilterPopoverView.h; sourceTree = "<group>"; };
+		87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIStateFilterPopoverView.m; sourceTree = "<group>"; };
 		87B4D04A1BE8DA9F00EB770B /* WMEditPOIStateButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMEditPOIStateButtonView.h; path = Edit/WMEditPOIStateButtonView.h; sourceTree = "<group>"; };
 		87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMEditPOIStateButtonView.m; path = Edit/WMEditPOIStateButtonView.m; sourceTree = "<group>"; };
 		87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Wheelmap.h"; sourceTree = "<group>"; };
@@ -1202,6 +1206,7 @@
 				872FDD501BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib */,
 				87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */,
 				876E8F2A1BE8DBE100B4E2CD /* WMPOIStateButtonView.xib */,
+				8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -1853,10 +1858,10 @@
 				878EC9411BE0F9200099EDD1 /* WMToolBar.m */,
 				878EC9421BE0F9200099EDD1 /* WMToolBar_iPad.h */,
 				878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */,
-				87B4D03F1BE8DA7A00EB770B /* WMWheelchairStatusButton.h */,
-				87B4D0401BE8DA7A00EB770B /* WMWheelchairStatusButton.m */,
-				87B4D0411BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.h */,
-				87B4D0421BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m */,
+				87B4D03F1BE8DA7A00EB770B /* WMPOIStateFilterButton.h */,
+				87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */,
+				87B4D0411BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.h */,
+				87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */,
 			);
 			path = ToolBar;
 			sourceTree = "<group>";
@@ -2181,6 +2186,7 @@
 				8774E6981BE0D93800A3E7EA /* Social_btn-twitter@2x.png in Resources */,
 				8774E5A81BE0D93800A3E7EA /* start_icon-logged-in@2x.png in Resources */,
 				8774E5B71BE0D93800A3E7EA /* start_logo_staging.png in Resources */,
+				8724E9EB1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */,
 				8774E66B1BE0D93800A3E7EA /* marker_no@2x.png in Resources */,
 				8774E6681BE0D93800A3E7EA /* marker_limited@2x.png in Resources */,
 				8774E6711BE0D93800A3E7EA /* marker_unknown@2x.png in Resources */,
@@ -2331,6 +2337,7 @@
 				8774E5A91BE0D93800A3E7EA /* start_icon-logged-in@2x.png in Resources */,
 				8774E5B81BE0D93800A3E7EA /* start_logo_staging.png in Resources */,
 				8774E66C1BE0D93800A3E7EA /* marker_no@2x.png in Resources */,
+				8724E9EC1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */,
 				8774E6691BE0D93800A3E7EA /* marker_limited@2x.png in Resources */,
 				8774E6721BE0D93800A3E7EA /* marker_unknown@2x.png in Resources */,
 				8774E6541BE0D93800A3E7EA /* more-buttons_share@2x.png in Resources */,
@@ -2481,6 +2488,7 @@
 				8774E6971BE0D93800A3E7EA /* Social_btn-twitter@2x.png in Resources */,
 				8774E5A71BE0D93800A3E7EA /* start_icon-logged-in@2x.png in Resources */,
 				8774E5B61BE0D93800A3E7EA /* start_logo_staging.png in Resources */,
+				8724E9EA1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */,
 				8774E66A1BE0D93800A3E7EA /* marker_no@2x.png in Resources */,
 				8774E6671BE0D93800A3E7EA /* marker_limited@2x.png in Resources */,
 				8774E6701BE0D93800A3E7EA /* marker_unknown@2x.png in Resources */,
@@ -2681,7 +2689,7 @@
 				878EC9631BE0F9200099EDD1 /* WMMapAnnotation.m in Sources */,
 				878EC8CE1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */,
 				878EC8E91BE0F7960099EDD1 /* WMPOIViewController.m in Sources */,
-				87B4D0441BE8DA7A00EB770B /* WMWheelchairStatusButton.m in Sources */,
+				87B4D0441BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */,
 				878EC9071BE0F7960099EDD1 /* WMNavigationControllerBase.m in Sources */,
 				8774E4EF1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				878EC9691BE0F9200099EDD1 /* WMLabel.m in Sources */,
@@ -2709,7 +2717,7 @@
 				872FDF171BDFEF9900764FC5 /* ioapi.c in Sources */,
 				878EC9601BE0F9200099EDD1 /* WMPOIsListTableViewCell.m in Sources */,
 				87B4D04D1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */,
-				87B4D0471BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m in Sources */,
+				87B4D0471BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */,
 				878EC8FE1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */,
 				878EC90A1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3411BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
@@ -2761,7 +2769,7 @@
 				878EC9641BE0F9200099EDD1 /* WMMapAnnotation.m in Sources */,
 				878EC8CF1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */,
 				878EC8EA1BE0F7960099EDD1 /* WMPOIViewController.m in Sources */,
-				87B4D0451BE8DA7A00EB770B /* WMWheelchairStatusButton.m in Sources */,
+				87B4D0451BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */,
 				878EC9081BE0F7960099EDD1 /* WMNavigationControllerBase.m in Sources */,
 				8774E4F01BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				878EC96A1BE0F9200099EDD1 /* WMLabel.m in Sources */,
@@ -2789,7 +2797,7 @@
 				872FDF181BDFEF9900764FC5 /* ioapi.c in Sources */,
 				878EC9611BE0F9200099EDD1 /* WMPOIsListTableViewCell.m in Sources */,
 				87B4D04E1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */,
-				87B4D0481BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m in Sources */,
+				87B4D0481BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */,
 				878EC8FF1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */,
 				878EC90B1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3421BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
@@ -2841,7 +2849,7 @@
 				878EC9621BE0F9200099EDD1 /* WMMapAnnotation.m in Sources */,
 				878EC8CD1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */,
 				878EC8E81BE0F7960099EDD1 /* WMPOIViewController.m in Sources */,
-				87B4D0431BE8DA7A00EB770B /* WMWheelchairStatusButton.m in Sources */,
+				87B4D0431BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */,
 				878EC9061BE0F7960099EDD1 /* WMNavigationControllerBase.m in Sources */,
 				8774E4EE1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				878EC9681BE0F9200099EDD1 /* WMLabel.m in Sources */,
@@ -2869,7 +2877,7 @@
 				872FDF161BDFEF9900764FC5 /* ioapi.c in Sources */,
 				878EC95F1BE0F9200099EDD1 /* WMPOIsListTableViewCell.m in Sources */,
 				87B4D04C1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */,
-				87B4D0461BE8DA7A00EB770B /* WMWheelChairStatusFilterPopoverView.m in Sources */,
+				87B4D0461BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */,
 				878EC8FD1BE0F7960099EDD1 /* WMCategoriesListViewController.m in Sources */,
 				878EC9091BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3401BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,

@@ -97,7 +97,7 @@
 
 	[self updateViewContent];
 }
-- (void)setStatusType:(WMEditPOIStatusType)statusType {
+- (void)setStatusType:(WMPOIStateType)statusType {
 	_statusType = statusType;
 
 	[self updateViewContent];
@@ -135,7 +135,7 @@
 }
 
 - (NSString *)titleForStatus:(NSString *)statusString {
-	if (self.statusType == WMEditPOIStatusTypeWheelchair) {
+	if (self.statusType == WMPOIStateTypeWheelchair) {
 		if ([statusString isEqualToString:K_STATE_LIMITED]) {
 			return L(@"WheelchairAccessLimited");
 		} else if ([statusString isEqualToString:K_STATE_NO]) {
@@ -145,7 +145,7 @@
 		} else if ([statusString isEqualToString:K_STATE_UNKNOWN]) {
 			return L(@"WheelchairAccessUnkown");
 		}
-	} else if (self.statusType == WMEditPOIStatusTypeToilet) {
+	} else if (self.statusType == WMPOIStateTypeToilet) {
 		if ([statusString isEqualToString:K_STATE_NO]) {
 			return L(@"ToiletAccessNo");
 		} else if ([statusString isEqualToString:K_STATE_YES]) {

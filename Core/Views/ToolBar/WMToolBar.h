@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMWheelchairStatusButton.h"
+#import "WMPOIStateFilterButton.h"
 
 @class WMToolBar;
 
@@ -48,7 +48,7 @@ typedef enum {
 }
 
 @property (nonatomic, strong) id<WMToolBarDelegate> delegate;
-@property (nonatomic, strong) WMWheelchairStatusButton* wheelChairStatusFilterButton;
+@property (nonatomic, strong) WMPOIStateFilterButton* wheelChairStatusFilterButton;
 @property (nonatomic, strong) WMButton* toggleButton;
 @property (nonatomic) CGFloat middlePointOfWheelchairFilterButton; // this will be updated by initialisation of the button
 @property (nonatomic) CGFloat middlePointOfCategoryFilterButton; // this too

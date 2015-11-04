@@ -55,9 +55,9 @@
     self.title = NSLocalizedString(@"EditPOIStateHeadline", nil);
     self.navigationBarTitle = self.title;
 
-	if (self.statusType == WMEditPOIStatusTypeWheelchair) {
+	if (self.statusType == WMPOIStateTypeWheelchair) {
 		self.currentState = self.node.wheelchair;
-	} else if (self.statusType == WMEditPOIStatusTypeToilet) {
+	} else if (self.statusType == WMPOIStateTypeToilet) {
 		self.currentState = self.node.wheelchair_toilet;
 	}
     [self updateViewContent];
@@ -84,7 +84,7 @@
 
 #pragma mark - Public methods
 
-- (void)setStatusType:(WMEditPOIStatusType)statusType {
+- (void)setStatusType:(WMPOIStateType)statusType {
 	_statusType = statusType;
 
 	[self updateViewContent];
@@ -93,9 +93,9 @@
 - (void)saveCurrentState {
 	[self.delegate didSelectStatus:self.currentState forStatusType:self.statusType];
 
-	if (self.statusType == WMEditPOIStatusTypeWheelchair) {
+	if (self.statusType == WMPOIStateTypeWheelchair) {
 		[dataManager updateWheelchairStatusOfNode:self.node];
-	} else 	if (self.statusType == WMEditPOIStatusTypeToilet) {
+	} else 	if (self.statusType == WMPOIStateTypeToilet) {
 		[dataManager updateToiletStateOfNode:self.node];
 	}
 
@@ -109,7 +109,7 @@
 	[self.limitedButtonView setSelected:[self.currentState isEqualToString:K_STATE_LIMITED]];
 	[self.noButtonView setSelected:[self.currentState isEqualToString:K_STATE_NO]];
 
-	if (self.statusType == WMEditPOIStatusTypeToilet) {
+	if (self.statusType == WMPOIStateTypeToilet) {
 		self.limitedButtonViewContainerHeightConstraint.constant = 0;
 		[self.limitedButtonContainerView layoutIfNeeded];
 	}
@@ -169,7 +169,7 @@
 - (void)didSelectStatus:(NSString *)state {
 	self.currentState = state;
 	[self updateViewContent];
-	if (self.useCase == WMEditPOIStatusUseCasePOICreation) {
+	if (self.useCase == WMEditPOIStateUseCasePOICreation) {
 		[self.delegate didSelectStatus:self.currentState forStatusType:self.statusType];
 	}
 }

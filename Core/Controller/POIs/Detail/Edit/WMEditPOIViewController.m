@@ -76,12 +76,12 @@
     
     // WHEEL ACCESS
 	self.wheelchairStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.wheelchairStateButtonContainerView];
-	self.wheelchairStateButtonView.statusType = WMEditPOIStatusTypeWheelchair;
+	self.wheelchairStateButtonView.statusType = WMPOIStateTypeWheelchair;
 	self.wheelchairStateButtonView.statusString = self.currentWheelchairState;
 	self.wheelchairStateButtonView.showStateDelegate = self;
 
 	self.toiletStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.toiletStateButtonContainerView];
-	self.toiletStateButtonView.statusType = WMEditPOIStatusTypeToilet;
+	self.toiletStateButtonView.statusType = WMPOIStateTypeToilet;
 	self.toiletStateButtonView.statusString = self.currentToiletState;
 	self.toiletStateButtonView.showStateDelegate = self;
 
@@ -229,8 +229,8 @@
 	vc.navigationBarTitle = vc.title;
 	vc.delegate = self;
 	vc.node = self.node;
-	vc.useCase = WMEditPOIStatusUseCasePOICreation;
-	vc.statusType = WMEditPOIStatusTypeToilet;
+	vc.useCase = WMEditPOIStateUseCasePOICreation;
+	vc.statusType = WMPOIStateTypeToilet;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -463,11 +463,11 @@
 
 #pragma mark - WMEditPOIStateDelegate
 
-- (void)didSelectStatus:(NSString*)state forStatusType:(WMEditPOIStatusType)statusType {
-	if (statusType == WMEditPOIStatusTypeWheelchair) {
+- (void)didSelectStatus:(NSString*)state forStatusType:(WMPOIStateType)statusType {
+	if (statusType == WMPOIStateTypeWheelchair) {
 		self.currentWheelchairState = state;
 		self.wheelchairStateButtonView.statusString = state;
-	} else if (statusType == WMEditPOIStatusTypeToilet) {
+	} else if (statusType == WMPOIStateTypeToilet) {
 		self.currentToiletState = state;
 		self.toiletStateButtonView.statusString = state;
 	}
@@ -475,7 +475,7 @@
 
 #pragma mark - WMPOIStateButtonViewDelegate
 
-- (void)didPressedEditStateButton:(NSString *)state forStateType:(WMEditPOIStatusType)stateType {
+- (void)didPressedEditStateButton:(NSString *)state forStateType:(WMPOIStateType)stateType {
 	[self buttonPressed];
 
 	WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
@@ -484,12 +484,12 @@
 	vc.navigationBarTitle = vc.title;
 	vc.delegate = self;
 	vc.node = self.node;
-	vc.useCase = WMEditPOIStatusUseCasePOICreation;
-	if (stateType == WMEditPOIStatusTypeWheelchair) {
-		vc.statusType = WMEditPOIStatusTypeWheelchair;
+	vc.useCase = WMEditPOIStateUseCasePOICreation;
+	if (stateType == WMPOIStateTypeWheelchair) {
+		vc.statusType = WMPOIStateTypeWheelchair;
 		[vc setCurrentState:self.currentWheelchairState];
-	} else if (stateType == WMEditPOIStatusTypeToilet) {
-		vc.statusType = WMEditPOIStatusTypeToilet;
+	} else if (stateType == WMPOIStateTypeToilet) {
+		vc.statusType = WMPOIStateTypeToilet;
 		[vc setCurrentState:self.currentToiletState];
 	}
 	[self.navigationController pushViewController:vc animated:YES];

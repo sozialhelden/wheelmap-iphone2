@@ -17,7 +17,7 @@
 #import "WMPOIViewController.h"
 #import "WMEditPOICommentViewController.h"
 #import "WMEditPOIStateViewController.h"
-#import "WMWheelChairStatusFilterPopoverView.h"
+#import "WMPOIStateFilterPopoverView.h"
 #import "WMCategoryFilterPopoverView.h"
 
 @class WMDataManager, WMPOIsListViewController;
@@ -26,7 +26,7 @@
 <WMDataManagerDelegate, WMPOIsListDataSourceDelegate,
 WMPOIsListDelegate, CLLocationManagerDelegate,
 WMNavigationBarDelegate, WMToolBarDelegate,
-WMWheelChairStatusFilterPopoverViewDelegate,
+WMPOIStateFilterPopoverViewDelegate,
 WMCategoryFilterPopoverViewDelegate,
 UINavigationControllerDelegate, UIAlertViewDelegate>
 

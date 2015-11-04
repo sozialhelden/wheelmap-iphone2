@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WMPOIStateFilterPopoverView">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1K-TE-Vt6" userLabel="Yes Button" customClass="WMButton">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="55"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="mXr-vK-UQv"/>
+                        <constraint firstAttribute="height" constant="55" id="sws-vF-ci6"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="toolbar_statusfilter-yes.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="toolbar_statusfilter-yes-active.png"/>
+                    <state key="highlighted" image="toolbar_statusfilter-yes-active.png"/>
+                    <connections>
+                        <action selector="didPressStateButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="5Y4-PX-tXf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5U-zD-J4m" userLabel="Limited Button" customClass="WMButton">
+                    <rect key="frame" x="50" y="0.0" width="50" height="55"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="DzG-gh-zsB"/>
+                        <constraint firstAttribute="width" constant="50" id="gei-VI-lXw"/>
+                        <constraint firstAttribute="height" constant="55" id="tHY-ZI-oDY"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="toolbar_statusfilter-limited.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="toolbar_statusfilter-limited-active.png"/>
+                    <state key="highlighted" image="toolbar_statusfilter-limited-active.png"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="DzG-gh-zsB"/>
+                            <exclude reference="gei-VI-lXw"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="didPressStateButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Ht-wo-isK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0z-lQ-1VQ" userLabel="No Button" customClass="WMButton">
+                    <rect key="frame" x="100" y="0.0" width="50" height="55"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="2Te-7s-ReP"/>
+                        <constraint firstAttribute="height" constant="55" id="V01-Oe-9Ph"/>
+                        <constraint firstAttribute="width" constant="50" id="pna-XY-i3J"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="toolbar_statusfilter-no.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="toolbar_statusfilter-no-active.png"/>
+                    <state key="highlighted" image="toolbar_statusfilter-no-active.png"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2Te-7s-ReP"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="didPressStateButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="taJ-Nf-maM"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehB-il-0v6" userLabel="Unknown Button" customClass="WMButton">
+                    <rect key="frame" x="150" y="0.0" width="50" height="55"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="L0v-OH-1bv"/>
+                        <constraint firstAttribute="height" constant="55" id="mfj-yL-EMx"/>
+                        <constraint firstAttribute="width" constant="50" id="yty-hK-Ejp"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="toolbar_statusfilter-unknown.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="toolbar_statusfilter-unknown-active.png"/>
+                    <state key="highlighted" image="toolbar_statusfilter-unknown-active.png"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="L0v-OH-1bv"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="didPressStateButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="4dn-zA-NG5"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="I1K-TE-Vt6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0aI-4g-Kw2"/>
+                <constraint firstItem="d5U-zD-J4m" firstAttribute="leading" secondItem="I1K-TE-Vt6" secondAttribute="trailing" id="1gD-rP-XCj"/>
+                <constraint firstItem="I1K-TE-Vt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AfH-Ig-xuM"/>
+                <constraint firstAttribute="bottom" secondItem="ehB-il-0v6" secondAttribute="bottom" id="C6J-24-I0Y"/>
+                <constraint firstAttribute="bottom" secondItem="d5U-zD-J4m" secondAttribute="bottom" id="GWR-gj-p5w"/>
+                <constraint firstItem="s0z-lQ-1VQ" firstAttribute="leading" secondItem="d5U-zD-J4m" secondAttribute="trailing" id="RsS-XH-9oX"/>
+                <constraint firstAttribute="trailing" secondItem="ehB-il-0v6" secondAttribute="trailing" id="W7R-O3-fdL"/>
+                <constraint firstItem="s0z-lQ-1VQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X7w-on-8i2"/>
+                <constraint firstItem="d5U-zD-J4m" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Zo5-Jq-YqJ"/>
+                <constraint firstItem="ehB-il-0v6" firstAttribute="leading" secondItem="s0z-lQ-1VQ" secondAttribute="trailing" id="cG0-OD-S3E"/>
+                <constraint firstAttribute="bottom" secondItem="I1K-TE-Vt6" secondAttribute="bottom" id="cyH-zA-iaU"/>
+                <constraint firstItem="I1K-TE-Vt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hVS-z8-nMk"/>
+                <constraint firstItem="d5U-zD-J4m" firstAttribute="leading" secondItem="I1K-TE-Vt6" secondAttribute="trailing" id="po8-YX-9h0"/>
+                <constraint firstItem="ehB-il-0v6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="taf-bb-suO"/>
+                <constraint firstAttribute="bottom" secondItem="s0z-lQ-1VQ" secondAttribute="bottom" id="uha-VW-IkB"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="AfH-Ig-xuM"/>
+                    <exclude reference="cyH-zA-iaU"/>
+                    <exclude reference="GWR-gj-p5w"/>
+                    <exclude reference="uha-VW-IkB"/>
+                    <exclude reference="C6J-24-I0Y"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="limitedButton" destination="d5U-zD-J4m" id="bdJ-Y7-wdg"/>
+                <outlet property="noButton" destination="s0z-lQ-1VQ" id="tCL-I5-NAz"/>
+                <outlet property="unknownButton" destination="ehB-il-0v6" id="Aq6-SR-L3E"/>
+                <outlet property="yesButton" destination="I1K-TE-Vt6" id="jRW-IT-MyX"/>
+            </connections>
+            <point key="canvasLocation" x="357" y="178"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="toolbar_statusfilter-limited-active.png" width="52" height="60"/>
+        <image name="toolbar_statusfilter-limited.png" width="52" height="60"/>
+        <image name="toolbar_statusfilter-no-active.png" width="52" height="60"/>
+        <image name="toolbar_statusfilter-no.png" width="52" height="60"/>
+        <image name="toolbar_statusfilter-unknown-active.png" width="52" height="60"/>
+        <image name="toolbar_statusfilter-unknown.png" width="52" height="60"/>
+        <image name="toolbar_statusfilter-yes-active.png" width="52" height="60"/>
+        <image name="toolbar_statusfilter-yes.png" width="52" height="60"/>
+    </resources>
+</document>

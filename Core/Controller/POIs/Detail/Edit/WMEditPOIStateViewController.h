@@ -22,8 +22,8 @@
 @property (nonatomic, strong) Node *							node;
 
 @property (nonatomic, strong) NSString *						currentState;
-@property (nonatomic) WMEditPOIStatusUseCase					useCase;
-@property (nonatomic) WMEditPOIStatusType						statusType;
+@property (nonatomic) WMEditPOIStateUseCase					useCase;
+@property (nonatomic) WMPOIStateType						statusType;
 
 @property (nonatomic) BOOL										hideSaveButton;
 
