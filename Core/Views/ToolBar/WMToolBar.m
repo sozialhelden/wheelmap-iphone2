@@ -69,7 +69,7 @@
         [self addSubview:categoryFilterButton];
         self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
         
-        self.wheelChairStatusFilterButton = [[WMWheelchairStatusButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-K_TOOLBAR_BUTTONS_WITH, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT)];
+        self.wheelChairStatusFilterButton = [[WMPOIStateFilterButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-K_TOOLBAR_BUTTONS_WITH, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT)];
         self.wheelChairStatusFilterButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
         [self.wheelChairStatusFilterButton addTarget:self action:@selector(pressedWheelChairStatusFilterButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.wheelChairStatusFilterButton];
@@ -129,7 +129,7 @@
     }
 }
 
--(void)pressedWheelChairStatusFilterButton:(WMWheelchairStatusButton*)sender
+-(void)pressedWheelChairStatusFilterButton:(WMPOIStateFilterButton*)sender
 {
     if ([self.delegate respondsToSelector:@selector(pressedWheelChairStatusFilterButton:)]) {
         [self.delegate pressedWheelChairStatusFilterButton:self];

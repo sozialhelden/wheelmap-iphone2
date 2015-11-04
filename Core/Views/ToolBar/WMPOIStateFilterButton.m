@@ -1,14 +1,15 @@
 //
-//  WMWheelchairStatusButton.m
+//  WMPOIStateFilterButton.m
 //  Wheelmap
 //
 //  Created by npng on 11/28/12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMWheelchairStatusButton.h"
+#import "WMPOIStateFilterButton.h"
 
-@implementation WMWheelchairStatusButton
+@implementation WMPOIStateFilterButton
+
 @synthesize selectedGreenDot = _selectedGreenDot;
 @synthesize selectedYellowDot = _selectedYellowDot;
 @synthesize selectedRedDot = _selectedRedDot;

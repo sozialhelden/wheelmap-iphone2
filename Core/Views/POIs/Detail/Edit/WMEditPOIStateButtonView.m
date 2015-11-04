@@ -78,7 +78,7 @@
 }
 
 - (NSString *)descriptionForStatus:(NSString *)statusString {
-	if (self.statusType == WMEditPOIStatusTypeWheelchair) {
+	if (self.statusType == WMPOIStateTypeWheelchair) {
 		if ([statusString isEqualToString:K_STATE_LIMITED]) {
 			return L(@"WheelchairAccessContentLimited");
 		} else if ([statusString isEqualToString:K_STATE_NO]) {
@@ -86,7 +86,7 @@
 		} else if ([statusString isEqualToString:K_STATE_YES]) {
 			return L(@"WheelchairAccessContentYes");
 		}
-	} else if (self.statusType == WMEditPOIStatusTypeToilet) {
+	} else if (self.statusType == WMPOIStateTypeToilet) {
 		if ([statusString isEqualToString:K_STATE_NO]) {
 			return L(@"ToiletAccessContentNo");
 		} else if ([statusString isEqualToString:K_STATE_YES]) {

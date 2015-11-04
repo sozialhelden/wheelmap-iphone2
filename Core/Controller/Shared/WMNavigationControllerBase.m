@@ -38,7 +38,7 @@
     NSArray *nodes;
     WMDataManager *dataManager;
     
-    WMWheelChairStatusFilterPopoverView* wheelChairFilterPopover;
+    WMPOIStateFilterPopoverView* wheelChairFilterPopover;
     WMCategoryFilterPopoverView* categoryFilterPopover;
     
     WMPOIsListViewController* listViewController;
@@ -185,10 +185,10 @@
     [self.toolbar addSubview:self.customToolBar];
     
     // set filter popovers.
-    wheelChairFilterPopover = [[WMWheelChairStatusFilterPopoverView alloc] initWithOrigin:
+    wheelChairFilterPopover = [[WMPOIStateFilterPopoverView alloc] initWithOrigin:
                                CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170,
-                                           CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame)*2)];
-    
+                                           CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame)*2-10)];
+	wheelChairFilterPopover.stateType = WMPOIStateTypeWheelchair;
     wheelChairFilterPopover.hidden = YES;
     wheelChairFilterPopover.delegate = self;
     [wheelChairFilterPopover updateFilterButtons];
@@ -285,7 +285,7 @@
 - (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
     
     [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT)];
+    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
     
     if (self.popoverVC.popover.isShowing == YES) {
         
@@ -824,7 +824,7 @@
         [self hidePopover:categoryFilterPopover];
     } else if ([vc isKindOfClass:[WMEditPOIStateViewController class]]) {
         WMEditPOIStateViewController* wheelchairStatusVC = (WMEditPOIStateViewController*)vc;
-        if (wheelchairStatusVC.useCase == WMEditPOIStatusUseCasePOICreation) {
+        if (wheelchairStatusVC.useCase == WMEditPOIStateUseCasePOICreation) {
             rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
             leftButtonStyle = kWMNavigationBarLeftButtonStyleBackButton;
         } else {
@@ -1260,68 +1260,60 @@
 #pragma mark - Popover Management
 -(void)showPopover:(UIView*)popover
 {
-    if (popover.hidden == NO)
+	if (popover.hidden == NO) {
         return;
-    
+	}
+
     popover.alpha = 0.0;
     popover.transform = CGAffineTransformMakeTranslation(0, 10);
     popover.hidden = NO;
-    [UIView animateWithDuration:0.3 animations:^(void)
-     {
+	
+    [UIView animateWithDuration:0.3 animations:^(void) {
          popover.alpha = 1.0;
          popover.transform = CGAffineTransformMakeTranslation(0, 0);
-     }
-                     completion:^(BOOL finished)
-     {
-         
-     }
-     ];
+	} completion:nil];
 }
 
 -(void)hidePopover:(UIView*)popover
 {
-    if (popover.hidden == YES)
+	if (popover.hidden == YES) {
         return;
-    
+	}
+
     popover.alpha = 1.0;
-    [UIView animateWithDuration:0.3 animations:^(void)
-     {
+
+    [UIView animateWithDuration:0.3 animations:^(void) {
          popover.alpha = 0.0;
          popover.transform = CGAffineTransformMakeTranslation(0, 10);
-     }
-                     completion:^(BOOL finished)
-     {
+     } completion:^(BOOL finished) {
          popover.hidden = YES;
          popover.transform = CGAffineTransformMakeTranslation(0, 0);
-         
-     }
-     ];
+	 }];
 }
 
 #pragma mark - WMWheelchairStatusFilter Delegate
--(void)pressedButtonOfDotType:(DotType)type selected:(BOOL)selected
-{
+- (void)didSelect:(BOOL)selected dot:(DotType)dotType forStateType:(WMPOIStateType)stateType {
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];
     
     NSString* wheelchairStatusString = K_STATE_UNKNOWN;
-    switch (type) {
-        case kDotTypeGreen:
+    switch (dotType) {
+        case kDotTypeYes:
             self.customToolBar.wheelChairStatusFilterButton.selectedGreenDot = selected;
             wheelchairStatusString = K_STATE_YES;
             break;
             
-        case kDotTypeYellow:
+        case kDotTypeLimited:
             self.customToolBar.wheelChairStatusFilterButton.selectedYellowDot = selected;
             wheelchairStatusString = K_STATE_LIMITED;
             break;
             
-        case kDotTypeRed:
+        case kDotTypeNo:
             self.customToolBar.wheelChairStatusFilterButton.selectedRedDot = selected;
             wheelchairStatusString = K_STATE_NO;
             break;
             
-        case kDotTypeNone:
+        case kDotTypeUnknown:
             self.customToolBar.wheelChairStatusFilterButton.selectedNoneDot = selected;
             wheelchairStatusString = K_STATE_UNKNOWN;
             break;

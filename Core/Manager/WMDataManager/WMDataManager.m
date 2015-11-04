@@ -36,11 +36,6 @@
 
 // TODO: fix etag check
 
-#define WMFilterStatusKeyGreen @"FilterStatusGreen"
-#define WMFilterStatusKeyYellow @"FilterStatusYellow"
-#define WMFilterStatusKeyRed @"FilterStatusRed"
-#define WMFilterStatusKeyNone @"FilterStatusNone"
-
 #define WM_NODE_COUNT_KEY @"WMNodeCount"
 
 #define WM_ALREADY_LAUNCHED_KEY @"WMFirstLaunch"
@@ -1785,61 +1780,73 @@ static BOOL assetSyncInProgress = NO;
 }
 
 #pragma mark - Filter settings
-- (void)saveNewFilterSettingsWithGreen:(BOOL)greenSelected yellow:(BOOL)yellowSelected red:(BOOL)redSelected none:(BOOL)noneSelected {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:[NSNumber numberWithBool:greenSelected] forKey:WMFilterStatusKeyGreen];
-    [defaults setValue:[NSNumber numberWithBool:yellowSelected] forKey:WMFilterStatusKeyYellow];
-    [defaults setValue:[NSNumber numberWithBool:redSelected] forKey:WMFilterStatusKeyRed];
-    [defaults setValue:[NSNumber numberWithBool:noneSelected] forKey:WMFilterStatusKeyNone];
 
-    [defaults synchronize];
-    
-    [self getGreenFilterStatus];
-    [self getYellowFilterStatus];
-    [self getRedFilterStatus];
-    [self getNoneFilterStatus];
+#pragma mark - POI State Filter - Save
 
+- (void)savePOIWheelchairStateFilterSettingsWithYes:(BOOL)yesSelected limited:(BOOL)limitedSelected no:(BOOL)noSelected unknown:(BOOL)unknownSelected {
+    [NSUserDefaults.standardUserDefaults setValue:[NSNumber numberWithBool:yesSelected] forKey:K_UD_POI_WHEELCHAIR_STATE_YES_KEY];
+    [NSUserDefaults.standardUserDefaults setValue:[NSNumber numberWithBool:limitedSelected] forKey:K_UD_POI_WHEELCHAIR_STATE_LIMITED_KEY];
+    [NSUserDefaults.standardUserDefaults setValue:[NSNumber numberWithBool:noSelected] forKey:K_UD_POI_WHEELCHAIR_STATE_NO_KEY];
+    [NSUserDefaults.standardUserDefaults setValue:[NSNumber numberWithBool:unknownSelected] forKey:K_UD_POI_WHEELCHAIR_STATE_UNKNOWN_KEY];
+    [NSUserDefaults.standardUserDefaults synchronize];
 }
 
-- (BOOL)getGreenFilterStatus {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults valueForKey:WMFilterStatusKeyGreen] == nil) {
-        return YES;
-    }
-    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Green status is %d", [[defaults valueForKey:WMFilterStatusKeyGreen] boolValue]);
-    return [[defaults valueForKey:WMFilterStatusKeyGreen] boolValue];
+- (void)savePOIToiletStateFilterSettingsWithYes:(BOOL)yesSelected no:(BOOL)noSelected unknown:(BOOL)unknownSelected {
+	[NSUserDefaults.standardUserDefaults setValue:[NSNumber numberWithBool:yesSelected] forKey:K_UD_POI_TOILET_STATE_YES_KEY];
+	[NSUserDefaults.standardUserDefaults setValue:[NSNumber numberWithBool:noSelected] forKey:K_UD_POI_TOILET_STATE_NO_KEY];
+	[NSUserDefaults.standardUserDefaults setValue:[NSNumber numberWithBool:unknownSelected] forKey:K_UD_POI_TOILET_STATE_UNKNOWN_KEY];
+	[NSUserDefaults.standardUserDefaults synchronize];
 }
 
-- (BOOL)getYellowFilterStatus {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults valueForKey:WMFilterStatusKeyYellow] == nil) {
-        return YES;
-    }
-    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Yellow status is %d", [[defaults valueForKey:WMFilterStatusKeyYellow] boolValue]);
-    return [[defaults valueForKey:WMFilterStatusKeyYellow] boolValue];
+#pragma mark - POI State Filter - Getter
+
+- (BOOL)getPOIStateYesFilterStatus:(WMPOIStateType)stateType {
+	NSString *userDefaultsKey;
+	if (stateType == WMPOIStateTypeWheelchair) {
+		userDefaultsKey = K_UD_POI_WHEELCHAIR_STATE_YES_KEY;
+	} else {
+		userDefaultsKey = K_UD_POI_TOILET_STATE_YES_KEY;
+	}
+	return [self getPOIStateFilterStatusForKey:userDefaultsKey];
 }
 
-- (BOOL)getRedFilterStatus {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults valueForKey:WMFilterStatusKeyRed] == nil) {
-        return YES;
-    }
-    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Red status is %d", [[defaults valueForKey:WMFilterStatusKeyRed] boolValue]);
-    return [[defaults valueForKey:WMFilterStatusKeyRed] boolValue];
+- (BOOL)getPOIStateLimitedFilterStatus:(WMPOIStateType)stateType {
+	NSString *userDefaultsKey;
+	if (stateType == WMPOIStateTypeWheelchair) {
+		userDefaultsKey = K_UD_POI_WHEELCHAIR_STATE_LIMITED_KEY;
+	} else {
+		userDefaultsKey = K_UD_POI_TOILET_STATE_LIMITED_KEY;
+	}
+	return [self getPOIStateFilterStatusForKey:userDefaultsKey];
 }
 
-- (BOOL)getNoneFilterStatus {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults valueForKey:WMFilterStatusKeyNone] == nil) {
-        return YES;
-    }
-    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"None status is %d", [[defaults valueForKey:WMFilterStatusKeyNone] boolValue]);
-    return [[defaults valueForKey:WMFilterStatusKeyNone] boolValue];
+- (BOOL)getPOIStateNoFilterStatus:(WMPOIStateType)stateType {
+	NSString *userDefaultsKey;
+	if (stateType == WMPOIStateTypeWheelchair) {
+		userDefaultsKey = K_UD_POI_WHEELCHAIR_STATE_NO_KEY;
+	} else {
+		userDefaultsKey = K_UD_POI_TOILET_STATE_NO_KEY;
+	}
+	return [self getPOIStateFilterStatusForKey:userDefaultsKey];
 }
+
+- (BOOL)getPOIStateUnkownFilterStatus:(WMPOIStateType)stateType {
+	NSString *userDefaultsKey;
+	if (stateType == WMPOIStateTypeWheelchair) {
+		userDefaultsKey = K_UD_POI_WHEELCHAIR_STATE_UNKNOWN_KEY;
+	} else {
+		userDefaultsKey = K_UD_POI_TOILET_STATE_UNKNOWN_KEY;
+	}
+	return [self getPOIStateFilterStatusForKey:userDefaultsKey];
+}
+
+- (BOOL)getPOIStateFilterStatusForKey:(NSString *)key {
+	if ([NSUserDefaults.standardUserDefaults valueForKey:key] == nil) {
+		return YES;
+	}
+	return [[NSUserDefaults.standardUserDefaults valueForKey:key] boolValue];
+}
+
 @end
 
 NSString *WMDataManagerErrorDomain = @"WMDataManagerErrorDomain";

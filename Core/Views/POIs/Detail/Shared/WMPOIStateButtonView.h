@@ -17,7 +17,7 @@
 
 @property (strong, nonatomic) NSString *					statusString;
 
-@property (nonatomic) WMEditPOIStatusType					statusType;
+@property (nonatomic) WMPOIStateType					statusType;
 
 - (instancetype)initFromNibToView:(UIView *)view;
 
