@@ -14,10 +14,6 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Constants.h"
 
-@interface WMAppDelegate (HockeySDK) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
-
-@end
-
 @implementation WMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -25,14 +21,8 @@
     
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    // Override point for customization after application launch.
-    NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMOpenConfigFilename ofType:@"plist"]];
-    NSString *hockeyID = config[@"hockey_id"];
-    
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:hockeyID
-                                                           delegate:self];
-    [[BITHockeyManager sharedHockeyManager] startManager];
-    
+	[self setupHockeyApp];
+
     //Init Airship launch options
     UAConfig *takeOffOptions = [UAConfig defaultConfig];
 //    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
@@ -126,15 +116,6 @@
 //    [UAirship land];
 //}
 
-#pragma mark - BITUpdateManagerDelegate
-- (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
-#ifndef CONFIGURATION_AppStore
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
-        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
-#endif
-    return nil;
-}
-
 //- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //    // Updates the device token and registers the token with UA
 //    [[UAPush shared] registerDeviceToken:deviceToken];
@@ -143,6 +124,16 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     NSLog(@"URL = %@", url.absoluteString);
     return YES;
+}
+
+# pragma mark - Helper
+
+- (void)setupHockeyApp {
+	NSDictionary *config = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:WMOpenConfigFilename ofType:@"plist"]];
+	[BITHockeyManager.sharedHockeyManager configureWithIdentifier:config[@"hockey_id"]];
+	[BITHockeyManager.sharedHockeyManager startManager];
+	[BITHockeyManager.sharedHockeyManager.crashManager setCrashManagerStatus: BITCrashManagerStatusAutoSend];
+	[BITHockeyManager.sharedHockeyManager.authenticator authenticateInstallation];
 }
 
 @end

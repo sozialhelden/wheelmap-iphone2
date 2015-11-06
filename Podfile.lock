@@ -1,14 +1,19 @@
 PODS:
+  - HockeySDK (3.8.4):
+    - HockeySDK/AllFeaturesLib (= 3.8.4)
+  - HockeySDK/AllFeaturesLib (3.8.4)
   - MarqueeLabel (2.3.3)
   - UrbanAirship-iOS-SDK (5.1.1):
     - UrbanAirship-iOS-SDK/Core (= 5.1.1)
   - UrbanAirship-iOS-SDK/Core (5.1.1)
 
 DEPENDENCIES:
+  - HockeySDK (~> 3.8.4)
   - MarqueeLabel (~> 2.3.2)
   - UrbanAirship-iOS-SDK (~> 5.1.1)
 
 SPEC CHECKSUMS:
+  HockeySDK: 464a9eb01c42718515629d8d1d406983e5f855dc
   MarqueeLabel: a8171ed961be61ed8f21d94a5f0d569a9c45df3b
   UrbanAirship-iOS-SDK: e97975b3bacb0c772cf25f35d42e8618e66825dd
 
