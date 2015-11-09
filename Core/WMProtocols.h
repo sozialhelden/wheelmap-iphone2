@@ -40,18 +40,17 @@
 @end
 
 @class WMNavigationBar;
-
 @protocol WMNavigationBarDelegate <NSObject>
 @required
--(void)pressedBackButton:(WMNavigationBar*)navigationBar;
--(void)pressedDashboardButton:(WMNavigationBar*)navigationBar;
--(void)pressedEditButton:(WMNavigationBar*)navigationBar;
--(void)pressedCancelButton:(WMNavigationBar*)navigationBar;
--(void)pressedSaveButton:(WMNavigationBar*)navigationBar;
--(void)pressedContributeButton:(WMNavigationBar*)navigationBar;
--(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar;
--(void)pressedSearchButton:(BOOL)selected;
--(void)searchStringIsGiven:(NSString*)query;
+- (void)pressedBackButton:(WMNavigationBar*)navigationBar;
+- (void)pressedDashboardButton:(WMNavigationBar*)navigationBar;
+- (void)pressedEditButton:(WMNavigationBar*)navigationBar;
+- (void)pressedCancelButton:(WMNavigationBar*)navigationBar;
+- (void)pressedSaveButton:(WMNavigationBar*)navigationBar;
+- (void)pressedCreatePOIButton:(WMNavigationBar*)navigationBar;
+- (void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar;
+- (void)pressedSearchButton:(BOOL)selected;
+- (void)searchStringIsGiven:(NSString*)query;
 @end
 
 @protocol WMEditPOIStateDelegate <NSObject>
@@ -66,8 +65,27 @@
 - (void)didPressedEditStateButton:(NSString *)state forStateType:(WMPOIStateType)stateType;
 @end
 
+@protocol WMPOIStateFilterButtonViewDelegate <NSObject>
+- (void)didPressPOIStateFilterButtonForStateType:(WMPOIStateType)stateType;
+@end
+
 @protocol WMPOIStateFilterPopoverViewDelegate <NSObject>
 - (void)didSelect:(BOOL)selected dot:(DotType)dotType forStateType:(WMPOIStateType)stateType;
+@end
+
+@class WMToolbar;
+@protocol WMToolbarDelegate <NSObject>
+@required
+- (void)pressedMapListToggleButton:(WMToolbar*)toolBar;
+- (void)pressedCurrentLocationButton:(WMToolbar*)toolBar;
+- (void)pressedSearchButton:(BOOL)selected;
+- (void)pressedWheelchairStateFilterButton:(WMToolbar*)toolBar sourceView:(UIView *)view;
+- (void)pressedToiletStateFilterButton:(WMToolbar*)toolBar sourceView:(UIView *)view;
+- (void)pressedCategoryFilterButton:(WMToolbar*)toolBar sourceView:(UIView *)view;
+@optional
+- (void)pressedLoginButton:(WMToolbar*)toolBar;
+- (void)pressedCreditsButton:(WMToolbar*)toolBar;
+- (void)pressedContributeButton:(WMToolbar*)toolBar;
 @end
 
 #endif

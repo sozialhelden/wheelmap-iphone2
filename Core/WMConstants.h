@@ -17,7 +17,7 @@
 
 #define FORGOT_PASSWORD_LINK	@"/users/password/new"
 #define WEB_LOGIN_LINK			@"/users/auth/osm"
-#define WM_REGISTER_LINK		@"/user/new"
+#define WM_REGISTER_LINK		WEB_LOGIN_LINK
 
 #define OSM_URL					@"http://www.openstreetmap.org/"
 #define ODBL_URL				@"http://opendatacommons.org/licenses/odbl/"
@@ -55,8 +55,12 @@
 #define K_TOOLBAR_BUTTONS_WITH						58.0f
 #define K_TOOLBAR_TOOGLE_BUTTON_OFFSET				5.0f
 
+#define K_POI_STATE_FILTER_BUTTON_DOTS_WIDTH		6.0f
+#define K_POI_STATE_FILTER_BUTTON_DOTS_X_OFFSET		2.0f
+
 #define K_POI_STATUS_FILTER_POPOVER_VIEW_HEIGHT		65.0f
 #define K_POI_STATUS_FILTER_POPOVER_BUTTON_WIDTH	50.0f
+#define K_POI_STATUS_FILTER_POPOVER_MARKER_X_OFFSET	32.0f
 
 #define K_TOOLBAR_WHEELCHAIR_STATUS_OFFSET			4.0f
 

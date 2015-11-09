@@ -11,8 +11,8 @@
 #import "WMDataManagerDelegate.h"
 #import "WMNavigationBar.h"
 #import "WMNavigationBar_iPad.h"
-#import "WMToolBar.h"
-#import "WMToolBar_iPad.h"
+#import "WMToolbar.h"
+#import "WMToolbar_iPad.h"
 #import "WMMapViewController.h"
 #import "WMPOIViewController.h"
 #import "WMEditPOICommentViewController.h"
@@ -25,7 +25,7 @@
 @interface WMNavigationControllerBase : UINavigationController
 <WMDataManagerDelegate, WMPOIsListDataSourceDelegate,
 WMPOIsListDelegate, CLLocationManagerDelegate,
-WMNavigationBarDelegate, WMToolBarDelegate,
+WMNavigationBarDelegate, WMToolbarDelegate,
 WMPOIStateFilterPopoverViewDelegate,
 WMCategoryFilterPopoverViewDelegate,
 UINavigationControllerDelegate, UIAlertViewDelegate>
@@ -33,7 +33,7 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) CLLocationManager *		locationManager;
 @property (nonatomic, strong) CLLocation *				currentLocation;
 @property (nonatomic, strong) WMNavigationBar *			customNavigationBar;
-@property (nonatomic, strong) WMToolBar *				customToolBar;
+@property (nonatomic, strong) WMToolbar *				customToolBar;
 @property (nonatomic, strong) NSMutableDictionary *		wheelChairFilterStatus;
 @property (nonatomic, strong) NSMutableDictionary *		categoryFilterStatus;
 @property (nonatomic, strong) NSNumber *				lastVisibleMapCenterLat;  // this will store last visible map region, so that we can restore last nodes.

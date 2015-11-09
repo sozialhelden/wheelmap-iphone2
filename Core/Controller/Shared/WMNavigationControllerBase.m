@@ -29,7 +29,7 @@
 #import "WMAcceptTermsViewController.h"
 #import "WMCreditsViewController.h"
 #import "WMOSMLogoutViewController.h"
-#import "WMToolBar_iPad.h"
+#import "WMToolbar_iPad.h"
 
 #import "WMOSMDescriptionViewController.h"
 
@@ -38,8 +38,9 @@
     NSArray *nodes;
     WMDataManager *dataManager;
     
-    WMPOIStateFilterPopoverView* wheelChairFilterPopover;
-    WMCategoryFilterPopoverView* categoryFilterPopover;
+    WMPOIStateFilterPopoverView *		wheelchairStateFilterPopoverView;
+	WMPOIStateFilterPopoverView *		toiletStateFilterPopoverView;
+    WMCategoryFilterPopoverView *		categoryFilterPopoverView;
     
     WMPOIsListViewController* listViewController;
     
@@ -64,6 +65,8 @@
     [super viewDidLoad];
     
     self.delegate = self;
+
+	[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -177,35 +180,19 @@
     self.toolbar.backgroundColor = [UIColor whiteColor];
     
     if (UIDevice.isIPad == YES) {
-        self.customToolBar = [[WMToolBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
+        self.customToolBar = [[WMToolbar_iPad alloc] initFromNibWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
     } else {
-        self.customToolBar = [[WMToolBar alloc] initWithFrame:CGRectMake(0, self.toolbar.frame.size.height-K_TOOLBAR_BAR_HEIGHT, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
+        self.customToolBar = [[WMToolbar alloc] initFromNibWithFrame:CGRectMake(0, self.toolbar.frame.size.height-K_TOOLBAR_BAR_HEIGHT, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
     }
     self.customToolBar.delegate = self;
     [self.toolbar addSubview:self.customToolBar];
     
     // set filter popovers.
-    wheelChairFilterPopover = [[WMPOIStateFilterPopoverView alloc] initWithOrigin:
-                               CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170,
-                                           CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame)*2-10)];
-	wheelChairFilterPopover.stateType = WMPOIStateTypeWheelchair;
-    wheelChairFilterPopover.hidden = YES;
-    wheelChairFilterPopover.delegate = self;
-    [wheelChairFilterPopover updateFilterButtons];
-    [self.view addSubview:wheelChairFilterPopover];
-    
-    categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:
-                             CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton,
-                                         CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame))
-                                                                    andCategories:dataManager.categories];
-    
-    categoryFilterPopover.delegate = self;
-    categoryFilterPopover.hidden = YES;
-    [self.view addSubview:categoryFilterPopover];
+	[self createPopoverViews];
     
     if (UIDevice.isIPad == YES) {
-        if ([self.customToolBar isKindOfClass:[WMToolBar_iPad class]]) {
-            [(WMToolBar_iPad *)self.customToolBar updateLoginButton];
+        if ([self.customToolBar isKindOfClass:[WMToolbar_iPad class]]) {
+            [(WMToolbar_iPad *)self.customToolBar updateLoginButton];
         }
         
         self.customNavigationBar.title = NSLocalizedString(@"PlacesNearby", nil);
@@ -273,47 +260,13 @@
     listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
     [self clearCategoryFilterStatus];
     
-    [categoryFilterPopover removeFromSuperview];
-    categoryFilterPopover = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-    categoryFilterPopover.delegate = self;
-    categoryFilterPopover.hidden = YES;
-    [self.view addSubview:categoryFilterPopover];
+    [categoryFilterPopoverView removeFromSuperview];
+    categoryFilterPopoverView = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+    categoryFilterPopoverView.delegate = self;
+    categoryFilterPopoverView.hidden = YES;
+    [self.view addSubview:categoryFilterPopoverView];
     
     [self.customToolBar deselectCategoryButton];
-}
-
-- (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
-    
-    [categoryFilterPopover refreshViewWithRefPoint:CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-    [wheelChairFilterPopover refreshPositionWithOrigin:CGPointMake(self.customToolBar.middlePointOfWheelchairFilterButton-170, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
-    
-    if (self.popoverVC.popover.isShowing == YES) {
-        
-        [self.popoverVC.popover dismissPopoverAnimated:NO];
-        if ([self.popoverVC isKindOfClass:[WMCreditsViewController class]]) {
-            CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).infoButton.frame;
-            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
-            if (UIInterfaceOrientationIsLandscape(orientation)) {
-                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
-            }
-            self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMOSMOnboardingViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
-            CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
-            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
-            if (UIInterfaceOrientationIsLandscape(orientation)) {
-                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
-            }
-            self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        } else if ([self.popoverVC isKindOfClass:[WMEditPOIViewController class]]) {
-            CGRect buttonFrame = ((WMNavigationBar_iPad *)self.customNavigationBar).contributeButton.frame;
-            CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
-            if (UIInterfaceOrientationIsLandscape(orientation)) {
-                yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
-            }
-            self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
-        }
-        [self presentPopover:self.popoverVC animated:NO];
-    }
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -332,8 +285,7 @@
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
-- (void) dealloc
-{
+- (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -391,7 +343,7 @@
         [vc showUIObjectsAnimated:YES];
     }
     
-    [categoryFilterPopover refreshViewWithCategories:aDataManager.categories];
+    [categoryFilterPopoverView refreshViewWithCategories:aDataManager.categories];
     [self.categoryFilterStatus removeAllObjects];
     for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
@@ -453,12 +405,12 @@
     switch (networkStatus)
     {
         case NotReachable:
-            [self.customToolBar hideButton:kWMToolBarButtonSearch];
+            [self.customToolBar hideButton:kWMToolbarButtonSearch];
             
             break;
             
         default:
-            [self.customToolBar showButton:kWMToolBarButtonSearch];
+            [self.customToolBar showButton:kWMToolbarButtonSearch];
             
             break;
     }
@@ -786,15 +738,15 @@
     // special left buttons and right button should be set according to the current screen
     
     if ([vc isKindOfClass:[WMMapViewController class]]) {
-        self.customToolBar.toggleButton.selected = YES;
+        self.customToolBar.mapListToggleButton.selected = YES;
         if (self.viewControllers.count == 3) {
             leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;   // single exception. this is the first level!
         }
-        rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
+        rightButtonStyle = kWMNavigationBarRightButtonStyleCreatePOIButton;
     } else if ([vc isKindOfClass:[WMPOIsListViewController class]]) {
         WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)vc;
-        rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
-        self.customToolBar.toggleButton.selected = NO;
+        rightButtonStyle = kWMNavigationBarRightButtonStyleCreatePOIButton;
+        self.customToolBar.mapListToggleButton.selected = NO;
         switch (nodeListVC.useCase) {
             case kWMPOIsListViewControllerUseCaseNormal:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
@@ -802,13 +754,13 @@
                 break;
             case kWMPOIsListViewControllerUseCaseContribute:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"TitleHelp", nil);
-                [self.customToolBar hideButton:kWMToolBarButtonWheelChairFilter];
-                //[self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
+                [self.customToolBar hideButton:kWMToolbarButtonWheelchairStateFilter];
+                //[self.customToolBar hideButton:kWMToolbarButtonCategoryFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
                 break;
             case kWMPOIsListViewControllerUseCaseCategory:
-                [self.customToolBar showButton:kWMToolBarButtonWheelChairFilter];
-                [self.customToolBar hideButton:kWMToolBarButtonCategoryFilter];
+                [self.customToolBar showButton:kWMToolbarButtonWheelchairStateFilter];
+                [self.customToolBar hideButton:kWMToolbarButtonCategoryFilter];
                 break;
             case kWMPOIsListViewControllerUseCaseGlobalSearch:
             case kWMPOIsListViewControllerUseCaseSearchOnDemand:
@@ -820,8 +772,7 @@
         
     } else if ([vc isKindOfClass:[WMPOIViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleEditButton;
-        [self hidePopover:wheelChairFilterPopover];
-        [self hidePopover:categoryFilterPopover];
+		[self hidePopoverViews];
     } else if ([vc isKindOfClass:[WMEditPOIStateViewController class]]) {
         WMEditPOIStateViewController* wheelchairStatusVC = (WMEditPOIStateViewController*)vc;
         if (wheelchairStatusVC.useCase == WMEditPOIStateUseCasePOICreation) {
@@ -831,21 +782,16 @@
             rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
             leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
         }
-        [self hidePopover:wheelChairFilterPopover];
-        [self hidePopover:categoryFilterPopover];
+		[self hidePopoverViews];
     } else if ([vc isKindOfClass:[WMEditPOIViewController class]] ||
                [vc isKindOfClass:[WMEditPOICommentViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleSaveButton;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
-        [self hidePopover:wheelChairFilterPopover];
-        [self hidePopover:categoryFilterPopover];
-        
+		[self hidePopoverViews];
     }  else if ([vc isKindOfClass:[WMShareSocialViewController class]]) {
         rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
         leftButtonStyle = kWMNavigationBarLeftButtonStyleCancelButton;
-        [self hidePopover:wheelChairFilterPopover];
-        [self hidePopover:categoryFilterPopover];
-        
+		[self hidePopoverViews];
     } else if ([vc isKindOfClass:[WMCategoriesListViewController class]] ||
                [vc isKindOfClass:[WMEditPOIPositionViewController class]] ||
                [vc isKindOfClass:[WMEditPOITypeViewController class]]) {
@@ -872,16 +818,13 @@
 }
 
 #pragma mark - WMNavigationBar Delegate
--(void)pressedDashboardButton:(WMNavigationBar *)navigationBar
-{
+- (void)pressedDashboardButton:(WMNavigationBar *)navigationBar {
     [self.customToolBar deselectSearchButton];
     [self popToRootViewControllerAnimated:YES];
-    [self hidePopover:wheelChairFilterPopover];
-    [self hidePopover:categoryFilterPopover];
+	[self hidePopoverViews];
 }
 
--(void)pressedBackButton:(WMNavigationBar *)navigationBar
-{
+- (void)pressedBackButton:(WMNavigationBar *)navigationBar {
     if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
         // we should pop twice due to the node list view controller!
         WMViewController* targetVC = [self.viewControllers objectAtIndex:self.viewControllers.count-3];
@@ -889,23 +832,20 @@
     } else {
         [self popViewControllerAnimated:YES];
     }
-    [self hidePopover:wheelChairFilterPopover];
-    [self hidePopover:categoryFilterPopover];
-    
+	[self hidePopoverViews];
 }
 
--(void)pressedCancelButton:(WMNavigationBar *)navigationBar
-{
+- (void)pressedCancelButton:(WMNavigationBar *)navigationBar {
+
     [self popViewControllerAnimated:YES];
     
 }
 
--(void)pressedContributeButton:(WMNavigationBar *)navigationBar
-{
+- (void)pressedCreatePOIButton:(WMNavigationBar *)navigationBar {
     contributePressed = YES;
     
     if (![dataManager userIsAuthenticated]) {
-        if ([self.customToolBar isKindOfClass:[WMToolBar_iPad class]]) {
+        if ([self.customToolBar isKindOfClass:[WMToolbar_iPad class]]) {
             
 			[self presentLoginScreen];
             return;
@@ -937,7 +877,7 @@
         detailNavController.customNavigationBar.title = editPOIViewController.navigationBarTitle;
         
         editPOIViewController.isRootViewController = YES;
-        editPOIViewController.popoverButtonFrame = CGRectMake(self.customNavigationBar.contributeButton.frame.origin.x + 20.0f, self.customNavigationBar.contributeButton.frame.origin.y + 20.0f, self.customNavigationBar.contributeButton.frame.size.width, self.customNavigationBar.contributeButton.frame.size.height);
+        editPOIViewController.popoverButtonFrame = CGRectMake(self.customNavigationBar.createPOIButton.frame.origin.x + 20.0f, self.customNavigationBar.createPOIButton.frame.origin.y + 20.0f, self.customNavigationBar.createPOIButton.frame.size.width, self.customNavigationBar.createPOIButton.frame.size.height);
         
         editPOIViewController.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
         editPOIViewController.baseController = self;
@@ -948,16 +888,14 @@
     }
 }
 
--(void)pressedEditButton:(WMNavigationBar *)navigationBar
-{
+- (void)pressedEditButton:(WMNavigationBar *)navigationBar {
     WMViewController* currentViewController = [self.viewControllers lastObject];
     if ([currentViewController isKindOfClass:[WMPOIViewController class]]) {
         [(WMPOIViewController*)currentViewController pushEditViewController];
     }
 }
 
--(void)pressedSaveButton:(WMNavigationBar *)navigationBar
-{
+- (void)pressedSaveButton:(WMNavigationBar *)navigationBar {
     WMViewController* currentViewController = [self.viewControllers lastObject];
     if ([currentViewController isKindOfClass:[WMEditPOIStateViewController class]]) {
         [(WMEditPOIStateViewController*)currentViewController saveCurrentState];
@@ -970,14 +908,12 @@
     }
 }
 
--(void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar
-{
+- (void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar {
     [self.customToolBar deselectSearchButton];
     
 }
 
--(void)searchStringIsGiven:(NSString *)query
-{
+- (void)searchStringIsGiven:(NSString *)query {
     if (![dataManager isInternetConnectionAvailable]) {
         if (!fetchNodesAlertShowing) {
             fetchNodesAlertShowing = YES;
@@ -989,8 +925,8 @@
         return;
     }
     
-    if (UIDevice.isIPad == YES && [self.customToolBar isKindOfClass:WMToolBar_iPad.class]) {
-        ((WMToolBar_iPad *)self.customToolBar).helpButton.selected = NO;
+    if (UIDevice.isIPad == YES && [self.customToolBar isKindOfClass:WMToolbar_iPad.class]) {
+        ((WMToolbar_iPad *)self.customToolBar).contributeButton.selected = NO;
     }
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
@@ -1019,11 +955,9 @@
     
 }
 
-#pragma mark - WMToolBar Delegate
--(void)pressedToggleButton:(WMButton *)sender
-{
-    [self hidePopover:wheelChairFilterPopover];
-    [self hidePopover:categoryFilterPopover];
+#pragma mark - WMToolbar Delegate
+- (void)pressedMapListToggleButton:(WMButton *)sender {
+	[self hidePopoverViews];
     
     if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
         //  the node list view is on the screen. push the map view controller
@@ -1063,10 +997,8 @@
     
 }
 
--(void)pressedCurrentLocationButton:(WMToolBar *)toolBar
-{
-    [self hidePopover:wheelChairFilterPopover];
-    [self hidePopover:categoryFilterPopover];
+- (void)pressedCurrentLocationButton:(WMToolbar *)toolBar {
+	[self hidePopoverViews];
 
     if (![CLLocationManager locationServicesEnabled]) {
 		[self locationManagerDidFail];
@@ -1104,11 +1036,9 @@
     
     
 }
--(void)pressedSearchButton:(BOOL)selected
-{
-    
-    [self hidePopover:wheelChairFilterPopover];
-    [self hidePopover:categoryFilterPopover];
+
+- (void)pressedSearchButton:(BOOL)selected {
+	[self hidePopoverViews];
     
     if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if (!selected) {
@@ -1166,39 +1096,46 @@
         } else {
             [self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
         }
-        
-        
     }
 }
 
--(void)pressedWheelChairStatusFilterButton:(WMToolBar *)toolBar
-{
-    if (!categoryFilterPopover.hidden) {
-        [self hidePopover:categoryFilterPopover];
-    }
-    
-    if (wheelChairFilterPopover.hidden) {
-        [self showPopover:wheelChairFilterPopover];
+- (void)pressedWheelchairStateFilterButton:(WMToolbar *)toolBar sourceView:(UIView *)view {
+	[self hidePopoverViews];
+
+    if (wheelchairStateFilterPopoverView.hidden) {
+		wheelchairStateFilterPopoverView.stateType = wheelchairStateFilterPopoverView.stateType;
+		[wheelchairStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX+(view.frameWidth/2)-wheelchairStateFilterPopoverView.frameWidth+K_POI_STATUS_FILTER_POPOVER_MARKER_X_OFFSET, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+        [self showPopover:wheelchairStateFilterPopoverView];
     } else {
-        [self hidePopover:wheelChairFilterPopover];
+        [self hidePopover:wheelchairStateFilterPopoverView];
     }
 }
 
--(void)pressedCategoryFilterButton:(WMToolBar *)toolBar
-{
-    if (!wheelChairFilterPopover.hidden) {
-        [self hidePopover:wheelChairFilterPopover];
-    }
+- (void)pressedToiletStateFilterButton:(WMToolbar *)toolBar sourceView:(UIView *)view {
+	[self hidePopoverViews];
+
+	if (toiletStateFilterPopoverView.hidden) {
+		toiletStateFilterPopoverView.stateType = toiletStateFilterPopoverView.stateType;
+		[toiletStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX+(view.frameWidth/2)-toiletStateFilterPopoverView.frameWidth+K_POI_STATUS_FILTER_POPOVER_MARKER_X_OFFSET, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+		[self showPopover:toiletStateFilterPopoverView];
+	} else {
+		[self hidePopover:toiletStateFilterPopoverView];
+	}
+}
+
+
+- (void)pressedCategoryFilterButton:(WMToolbar *)toolBar sourceView:(UIView *)view {
+	[self hidePopoverViews];
     
-    if (categoryFilterPopover.hidden) {
-        [self showPopover:categoryFilterPopover];
+    if (categoryFilterPopoverView.hidden) {
+		[categoryFilterPopoverView refreshViewWithRefPoint:CGPointMake(view.frameX+(view.frameWidth/2), self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+		[self showPopover:categoryFilterPopoverView];
     } else {
-        [self hidePopover:categoryFilterPopover];
+        [self hidePopover:categoryFilterPopoverView];
     }
 }
 
--(void)pressedLoginButton:(WMToolBar*)toolBar {
-    
+- (void)pressedLoginButton:(WMToolbar*)toolBar {
     WMViewController* viewController;
     if (!dataManager.userIsAuthenticated) {
         viewController = [UIStoryboard instantiatedOSMOnboardingViewController];
@@ -1207,9 +1144,9 @@
     }
     
     viewController.baseController = self;
-    if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
+    if ([toolBar isKindOfClass:[WMToolbar_iPad class]]) {
         
-        CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).loginButton.frame;
+        CGRect buttonFrame = ((WMToolbar_iPad *)toolBar).loginButton.frame;
         CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
         
         if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
@@ -1222,13 +1159,13 @@
     [self presentViewController:viewController animated:YES];
 }
 
--(void)pressedInfoButton:(WMToolBar*)toolBar {
+-(void)pressedCreditsButton:(WMToolbar*)toolBar {
     
     WMViewController* creditsViewController = [UIStoryboard instantiatedCreditsViewController];
     
-    if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
+    if ([toolBar isKindOfClass:[WMToolbar_iPad class]]) {
         
-        CGRect buttonFrame = ((WMToolBar_iPad *)toolBar).infoButton.frame;
+        CGRect buttonFrame = ((WMToolbar_iPad *)toolBar).creditsButton.frame;
         CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
         
         if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
@@ -1240,11 +1177,11 @@
     [self presentViewController:creditsViewController animated:YES];
 }
 
--(void)pressedHelpButton:(WMToolBar*)toolBar {
+- (void)pressedContributeButton:(WMToolbar*)toolBar {
     
     if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
-        if ([toolBar isKindOfClass:[WMToolBar_iPad class]]) {
-            if (( (WMToolBar_iPad *)toolBar).helpButton.selected == NO) {
+        if ([toolBar isKindOfClass:[WMToolbar_iPad class]]) {
+            if (( (WMToolbar_iPad *)toolBar).contributeButton.selected == NO) {
                 ((WMIPadRootViewController *)self.topViewController).listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
                 ((WMIPadRootViewController *)self.topViewController).mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
                 [self pressedCurrentLocationButton:self.customToolBar];
@@ -1258,11 +1195,54 @@
 }
 
 #pragma mark - Popover Management
--(void)showPopover:(UIView*)popover
-{
+
+- (void)createPopoverViews {
+	wheelchairStateFilterPopoverView = [[WMPOIStateFilterPopoverView alloc] initWithOrigin:
+										CGPointMake(self.customToolBar.middlePointOfWheelchairStateFilterButton-wheelchairStateFilterPopoverView.frameWidth,
+													CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame)*2-10)];
+	wheelchairStateFilterPopoverView.stateType = WMPOIStateTypeWheelchair;
+	wheelchairStateFilterPopoverView.hidden = YES;
+	wheelchairStateFilterPopoverView.delegate = self;
+	[wheelchairStateFilterPopoverView updateFilterButtons];
+	[self.view addSubview:wheelchairStateFilterPopoverView];
+
+	toiletStateFilterPopoverView = [[WMPOIStateFilterPopoverView alloc] initWithOrigin:
+										CGPointMake(self.customToolBar.middlePointOfToiletStateFilterButton-toiletStateFilterPopoverView.frameWidth,
+													CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame)*2-10)];
+	toiletStateFilterPopoverView.stateType = WMPOIStateTypeToilet;
+	toiletStateFilterPopoverView.hidden = YES;
+	toiletStateFilterPopoverView.delegate = self;
+	[toiletStateFilterPopoverView updateFilterButtons];
+	[self.view addSubview:toiletStateFilterPopoverView];
+
+	categoryFilterPopoverView = [[WMCategoryFilterPopoverView alloc] initWithRefPoint:
+							 CGPointMake(self.customToolBar.middlePointOfCategoryFilterButton,
+										 CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.customToolBar.frame))
+																	andCategories:dataManager.categories];
+
+	categoryFilterPopoverView.delegate = self;
+	categoryFilterPopoverView.hidden = YES;
+	[self.view addSubview:categoryFilterPopoverView];
+}
+
+- (void)hidePopoverViews {
+	if (categoryFilterPopoverView.hidden == NO) {
+		[self hidePopover:categoryFilterPopoverView];
+	}
+	if (wheelchairStateFilterPopoverView.hidden == NO) {
+		[self hidePopover:wheelchairStateFilterPopoverView];
+	}
+	if (toiletStateFilterPopoverView.hidden == NO) {
+		[self hidePopover:toiletStateFilterPopoverView];
+	}
+}
+
+- (void)showPopover:(UIView*)popover {
 	if (popover.hidden == NO) {
         return;
 	}
+
+	[self refreshPopoverPositions:[[UIApplication sharedApplication] statusBarOrientation]];
 
     popover.alpha = 0.0;
     popover.transform = CGAffineTransformMakeTranslation(0, 10);
@@ -1274,8 +1254,7 @@
 	} completion:nil];
 }
 
--(void)hidePopover:(UIView*)popover
-{
+- (void)hidePopover:(UIView*)popover {
 	if (popover.hidden == YES) {
         return;
 	}
@@ -1291,6 +1270,36 @@
 	 }];
 }
 
+- (void)refreshPopoverPositions:(UIInterfaceOrientation)orientation {
+	if (self.popoverVC.popover.isShowing == YES) {
+
+		[self.popoverVC.popover dismissPopoverAnimated:NO];
+		if ([self.popoverVC isKindOfClass:[WMCreditsViewController class]]) {
+			CGRect buttonFrame = ((WMToolbar_iPad *)self.customToolBar).creditsButton.frame;
+			CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
+			if (UIInterfaceOrientationIsLandscape(orientation)) {
+				yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
+			}
+			self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+		} else if ([self.popoverVC isKindOfClass:[WMOSMOnboardingViewController class]] || [self.popoverVC isKindOfClass:[WMOSMLogoutViewController class]]) {
+			CGRect buttonFrame = ((WMToolbar_iPad *)self.customToolBar).loginButton.frame;
+			CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
+			if (UIInterfaceOrientationIsLandscape(orientation)) {
+				yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
+			}
+			self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+		} else if ([self.popoverVC isKindOfClass:[WMEditPOIViewController class]]) {
+			CGRect buttonFrame = ((WMNavigationBar_iPad *)self.customNavigationBar).createPOIButton.frame;
+			CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
+			if (UIInterfaceOrientationIsLandscape(orientation)) {
+				yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;
+			}
+			self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
+		}
+		[self presentPopover:self.popoverVC animated:NO];
+	}
+}
+
 #pragma mark - WMWheelchairStatusFilter Delegate
 - (void)didSelect:(BOOL)selected dot:(DotType)dotType forStateType:(WMPOIStateType)stateType {
     self.mapViewController.refreshingForFilter = YES;
@@ -1299,22 +1308,22 @@
     NSString* wheelchairStatusString = K_STATE_UNKNOWN;
     switch (dotType) {
         case kDotTypeYes:
-            self.customToolBar.wheelChairStatusFilterButton.selectedGreenDot = selected;
+            self.customToolBar.wheelchairStateFilterButton.selectedGreenDot = selected;
             wheelchairStatusString = K_STATE_YES;
             break;
             
         case kDotTypeLimited:
-            self.customToolBar.wheelChairStatusFilterButton.selectedYellowDot = selected;
+            self.customToolBar.wheelchairStateFilterButton.selectedYellowDot = selected;
             wheelchairStatusString = K_STATE_LIMITED;
             break;
             
         case kDotTypeNo:
-            self.customToolBar.wheelChairStatusFilterButton.selectedRedDot = selected;
+            self.customToolBar.wheelchairStateFilterButton.selectedRedDot = selected;
             wheelchairStatusString = K_STATE_NO;
             break;
             
         case kDotTypeUnknown:
-            self.customToolBar.wheelChairStatusFilterButton.selectedNoneDot = selected;
+            self.customToolBar.wheelchairStateFilterButton.selectedNoneDot = selected;
             wheelchairStatusString = K_STATE_UNKNOWN;
             break;
             
@@ -1421,7 +1430,7 @@
 #pragma mark - Show Login screen
 
 - (void)presentLoginScreen {
-	CGRect buttonFrame = ((WMToolBar_iPad *)self.customToolBar).loginButton.frame;
+	CGRect buttonFrame = ((WMToolbar_iPad *)self.customToolBar).loginButton.frame;
 
 	CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
 	if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
@@ -1507,5 +1516,8 @@
     }
 }
 
-@end
+- (void)deviceOrientationDidChange:(NSNotification *)notification {
+	[self hidePopoverViews];
+}
 
+@end
