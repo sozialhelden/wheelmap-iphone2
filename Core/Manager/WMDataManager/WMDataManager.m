@@ -1065,11 +1065,20 @@ static BOOL assetSyncInProgress = NO;
         }
     }
     [[NSUserDefaults standardUserDefaults] setObject:current_locale forKey:@"WheelMap2-PreviousLocaleString"];
-    
+
+	// Remove the country part from the string. EG. "-GB" part from "en-GB". THe backend can't handle it otherwise.
+	NSString *localeString = [[NSLocale preferredLanguages] objectAtIndex:0];
+	if (localeString != nil) {
+		NSUInteger separetorLocation = [localeString rangeOfString:@"-"].location;
+		if (separetorLocation != NSNotFound) {
+			localeString = [localeString substringToIndex:separetorLocation];
+		}
+	}
+
     // create categories request operation    
     [[WMWheelmapAPI sharedInstance] requestResource:@"categories"
                                              apiKey:[self apiKey]
-                                         parameters:@{@"locale" :[[NSLocale preferredLanguages] objectAtIndex:0]}
+                                         parameters:@{@"locale" :localeString}
                                                eTag:localeChanged ? nil : [self eTagForEntity:@"WMCategory"]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -1112,7 +1121,7 @@ static BOOL assetSyncInProgress = NO;
     // create node types request operation
     [[WMWheelmapAPI sharedInstance] requestResource:@"node_types"
                                              apiKey:[self apiKey]
-                                         parameters:@{@"locale" :[[NSLocale preferredLanguages] objectAtIndex:0]}
+                                         parameters:@{@"locale" : localeString}
                                                eTag:localeChanged ? nil : [self eTagForEntity:@"NodeType"]
                                              method:nil
                                               error:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
