@@ -16,7 +16,7 @@ typedef enum {
 } WMNavigationBarLeftButtonStyle;
 
 typedef enum {
-    kWMNavigationBarRightButtonStyleContributeButton,
+    kWMNavigationBarRightButtonStyleCreatePOIButton,
     kWMNavigationBarRightButtonStyleEditButton,
     kWMNavigationBarRightButtonStyleSaveButton,
     kWMNavigationBarRightButtonStyleCancelButton,
@@ -52,23 +52,22 @@ typedef enum {
     
 }
 
-@property (nonatomic, strong) WMButton* editButton;
-@property (nonatomic, strong) WMButton* contributeButton; // Mithilfe Button
-@property (nonatomic) WMNavigationBarLeftButtonStyle leftButtonStyle;
-@property (nonatomic) WMNavigationBarRightButtonStyle rightButtonStyle;
-@property (nonatomic, strong) NSString* title;
-@property (nonatomic, strong) id<WMNavigationBarDelegate> delegate;
-@property (nonatomic) BOOL searchBarEnabled;
+@property (nonatomic, strong) WMButton *					editButton;
+@property (nonatomic, strong) WMButton *					createPOIButton;
+@property (nonatomic) WMNavigationBarLeftButtonStyle		leftButtonStyle;
+@property (nonatomic) WMNavigationBarRightButtonStyle		rightButtonStyle;
+@property (nonatomic, strong) NSString *					title;
+@property (nonatomic, strong) id<WMNavigationBarDelegate>	delegate;
+@property (nonatomic) BOOL									searchBarEnabled;
 
 
-//-(id)initWithSize:(CGSize)size;
--(void)showSearchBar;
--(void)hideSearchBar;
+- (void)showSearchBar;
+- (void)hideSearchBar;
 - (NSString *)getSearchString;
 - (void)clearSearchText;
 
--(void)showRightButton:(WMNavigationBarRightButtonStyle)type;
--(void)hideRightButton:(WMNavigationBarRightButtonStyle)type;
+- (void)showRightButton:(WMNavigationBarRightButtonStyle)type;
+- (void)hideRightButton:(WMNavigationBarRightButtonStyle)type;
 
 - (void)adjustButtonsToPopoverPresentation;
 - (void)dismissSearchKeyboard;

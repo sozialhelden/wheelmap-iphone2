@@ -102,15 +102,15 @@
         [self addSubview:cancelButtonRight];
         
         // mithilfe button
-        self.contributeButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.contributeButton.frame = rightButtonRect;
-        self.contributeButton.backgroundColor = [UIColor clearColor];
-        [self.contributeButton setImage:[UIImage imageNamed:@"NavigationBarAddIcon"] forState:UIControlStateNormal];
-        self.contributeButton.contentMode = UIViewContentModeCenter;
-        self.contributeButton.hidden = YES;
-        [self.contributeButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
-        self.contributeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [self addSubview:self.contributeButton];
+        self.createPOIButton = [WMButton buttonWithType:UIButtonTypeCustom];
+        self.createPOIButton.frame = rightButtonRect;
+        self.createPOIButton.backgroundColor = [UIColor clearColor];
+        [self.createPOIButton setImage:[UIImage imageNamed:@"NavigationBarAddIcon"] forState:UIControlStateNormal];
+        self.createPOIButton.contentMode = UIViewContentModeCenter;
+        self.createPOIButton.hidden = YES;
+        [self.createPOIButton addTarget:self action:@selector(pressedCreatePOIButton:) forControlEvents:UIControlEventTouchUpInside];
+        self.createPOIButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [self addSubview:self.createPOIButton];
         
         
         // edit button
@@ -188,7 +188,7 @@
         
         // initial styles
         self.leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
-        self.rightButtonStyle = kWMNavigationBarRightButtonStyleContributeButton;
+        self.rightButtonStyle = kWMNavigationBarRightButtonStyleCreatePOIButton;
         
         // search bar
         if (UIDevice.isIPad == YES) {
@@ -308,10 +308,10 @@
     }
     
 }
--(void)pressedContributeButton:(WMButton*)sender
+-(void)pressedCreatePOIButton:(WMButton*)sender
 {
-    if ([self.delegate respondsToSelector:@selector(pressedContributeButton:)]) {
-        [self.delegate pressedContributeButton:self];
+    if ([self.delegate respondsToSelector:@selector(pressedCreatePOIButton:)]) {
+        [self.delegate pressedCreatePOIButton:self];
     }
     
 }
@@ -379,8 +379,8 @@
     _rightButtonStyle = rightButtonStyle;
     UIView* prevButton = currentRightButton;
     switch (rightButtonStyle) {
-        case kWMNavigationBarRightButtonStyleContributeButton:
-            currentRightButton = self.contributeButton;
+        case kWMNavigationBarRightButtonStyleCreatePOIButton:
+            currentRightButton = self.createPOIButton;
             break;
         case kWMNavigationBarRightButtonStyleEditButton:
             currentRightButton = self.editButton;
@@ -395,7 +395,7 @@
             currentRightButton = cancelButtonRight;
             break;
         default:
-            currentRightButton = self.contributeButton;
+            currentRightButton = self.createPOIButton;
             break;
     }
     // effect here!
@@ -529,8 +529,8 @@
     UIView* targetButton;
     
     switch (type) {
-        case kWMNavigationBarRightButtonStyleContributeButton:
-            targetButton = self.contributeButton;
+        case kWMNavigationBarRightButtonStyleCreatePOIButton:
+            targetButton = self.createPOIButton;
             break;
         case kWMNavigationBarRightButtonStyleEditButton:
             targetButton = self.editButton;
@@ -562,8 +562,8 @@
     UIView* targetButton;
     
     switch (type) {
-        case kWMNavigationBarRightButtonStyleContributeButton:
-            targetButton = self.contributeButton;
+        case kWMNavigationBarRightButtonStyleCreatePOIButton:
+            targetButton = self.createPOIButton;
             break;
         case kWMNavigationBarRightButtonStyleEditButton:
             targetButton = self.editButton;
@@ -737,13 +737,13 @@
     switch (networkStatus)
     {
         case NotReachable:
-            [self hideRightButton:kWMNavigationBarRightButtonStyleContributeButton];
+            [self hideRightButton:kWMNavigationBarRightButtonStyleCreatePOIButton];
             [self hideRightButton:kWMNavigationBarRightButtonStyleEditButton];
             [self hideRightButton:kWMNavigationBarRightButtonStyleSaveButton];
             break;
             
         default:
-            [self showRightButton:kWMNavigationBarRightButtonStyleContributeButton];
+            [self showRightButton:kWMNavigationBarRightButtonStyleCreatePOIButton];
             [self showRightButton:kWMNavigationBarRightButtonStyleEditButton];
             [self showRightButton:kWMNavigationBarRightButtonStyleSaveButton];
             

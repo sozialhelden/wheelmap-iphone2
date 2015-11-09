@@ -135,7 +135,7 @@
     [alert show];
     
     if (UIDevice.isIPad == YES) {
-        [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
+        [(WMToolbar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
 }
 
@@ -165,7 +165,7 @@
     }
     
     if (UIDevice.isIPad == YES) {
-        [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
+        [(WMToolbar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
 }
 

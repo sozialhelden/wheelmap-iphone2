@@ -53,7 +53,9 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
+	[UIDevice.currentDevice beginGeneratingDeviceOrientationNotifications];
+
     return YES;
 }
 

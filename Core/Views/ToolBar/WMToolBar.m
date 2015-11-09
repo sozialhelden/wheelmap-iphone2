@@ -1,252 +1,184 @@
 //
-//  WMToolBar.m
+//  WMToolbar.m
 //  Wheelmap
 //
 //  Created by npng on 11/27/12.
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMToolBar.h"
+#import "WMToolbar.h"
 
-@implementation WMToolBar
+@implementation WMToolbar
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        
-        [self setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
-        
-        currentLocationButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        currentLocationButton.frame = CGRectMake(2, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
-        [currentLocationButton setImage:[UIImage imageNamed:@"ToolbarCenterIcon"] forState:UIControlStateNormal];
-        [currentLocationButton addTarget:self action:@selector(pressedCurrentLocationButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:currentLocationButton];
-        
-        searchButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        searchButton.frame = CGRectMake(currentLocationButton.topRightX+4, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
-        [searchButton setImage:[UIImage imageNamed:@"ToolbarSearchIcon"] forState:UIControlStateNormal];
+#pragma mark - Initialization
 
-        [searchButton addTarget:self action:@selector(pressedSearchButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:searchButton];
-        
-        // toggle button uses setView:forControlState: method
-        self.toggleButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.toggleButton.frame = CGRectMake(K_TOOLBAR_BUTTONS_WITH-K_TOOLBAR_BAR_HEIGHT, K_TOOLBAR_TOOGLE_BUTTON_OFFSET, K_TOOLBAR_BAR_HEIGHT, K_TOOLBAR_BAR_HEIGHT-2*K_TOOLBAR_TOOGLE_BUTTON_OFFSET);
-        self.toggleButton.center = CGPointMake(self.center.x, self.toggleButton.center.y);
-        UIImageView* toggleBtnNormalView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
-        UIImageView* toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
-        toggleBtnListIcon.image = [UIImage imageNamed:@"ToolbarMapIcon"];
-        toggleBtnListIcon.contentMode = UIViewContentModeScaleAspectFit;
-        [toggleBtnNormalView addSubview:toggleBtnListIcon];
-        [self.toggleButton setView:toggleBtnNormalView forControlState:UIControlStateNormal];
-        
-        UIImageView* toggleBtnHighlightedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
-        toggleBtnListIcon = [[UIImageView alloc] initWithFrame:toggleBtnNormalView.bounds];
-        toggleBtnListIcon.image = [UIImage imageNamed:@"ToolbarListIcon"];
-        toggleBtnListIcon.contentMode = UIViewContentModeScaleAspectFit;
-        [toggleBtnHighlightedView addSubview:toggleBtnListIcon];
-        [self.toggleButton setView:toggleBtnHighlightedView forControlState:UIControlStateHighlighted];
-        
-        UIImageView* toggleBtnSelectedView = [[UIImageView alloc] initWithFrame:self.toggleButton.bounds];
-        UIImageView* toggleBtnMapIcon = [[UIImageView alloc] initWithFrame:toggleBtnSelectedView.bounds];
-        toggleBtnMapIcon.image = [UIImage imageNamed:@"ToolbarListIcon"];
-        toggleBtnMapIcon.contentMode = UIViewContentModeScaleAspectFit;
-        [toggleBtnSelectedView addSubview:toggleBtnMapIcon];
-        [self.toggleButton setView:toggleBtnSelectedView forControlState:UIControlStateSelected];
-        self.toggleButton.enabledToggle = YES;
-    
-        [self.toggleButton addTarget:self action:@selector(pressedToggleButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.toggleButton];
-        
-        categoryFilterButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        categoryFilterButton.frame = CGRectMake(self.frame.size.width-2-K_TOOLBAR_BUTTONS_WITH, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT);
-        [categoryFilterButton setImage:[UIImage imageNamed:@"ToolbarKategorieIcon"] forState:UIControlStateNormal];
-        [categoryFilterButton addTarget:self action:@selector(pressedCategoryFilterButton:) forControlEvents:UIControlEventTouchUpInside];
-		categoryFilterButton.contentMode = UIViewContentModeScaleAspectFit;
-        [self addSubview:categoryFilterButton];
-        self.middlePointOfCategoryFilterButton = categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
-        
-        self.wheelChairStatusFilterButton = [[WMPOIStateFilterButton alloc] initWithFrame:CGRectMake(categoryFilterButton.frame.origin.x-4-K_TOOLBAR_BUTTONS_WITH, 0, K_TOOLBAR_BUTTONS_WITH, K_TOOLBAR_BAR_HEIGHT)];
-        self.wheelChairStatusFilterButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-        [self.wheelChairStatusFilterButton addTarget:self action:@selector(pressedWheelChairStatusFilterButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.wheelChairStatusFilterButton];
-        self.middlePointOfWheelchairFilterButton = self.wheelChairStatusFilterButton.frame.origin.x+(self.wheelChairStatusFilterButton.frame.size.width/2.0);
-        
-    }
-    
-    return self;
+- (instancetype)initFromNibWithFrame:(CGRect)frame {
+	self = (WMToolbar *) [WMToolbar loadFromNib:@"WMToolbar"];
+	if (self != nil) {
+		self.frame = frame;
+		[self initPOIStateFilterButtons];
+	}
+	return self;
+}
+
+- (void)awakeFromNib {
+	[super awakeFromNib];
+
+	self.mapListToggleButton.enabledToggle = YES;
+}
+
+- (void)initPOIStateFilterButtons {
+	self.wheelchairStateFilterButton = [[WMPOIStateFilterButtonView alloc] initFromNibToView:self.wheelchairStateFilterButtonContainerView];
+	self.wheelchairStateFilterButton.statusType = WMPOIStateTypeWheelchair;
+	self.wheelchairStateFilterButton.delegate = self;
+	self.toiletStateFilterButton = [[WMPOIStateFilterButtonView alloc] initFromNibToView:self.toiletStateFilterButtonContainerView];
+	self.toiletStateFilterButton.statusType = WMPOIStateTypeToilet;
+	self.toiletStateFilterButton.delegate = self;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)mapListToggleButtonPressed:(id)sender {
+	if ([self.delegate respondsToSelector:@selector(pressedMapListToggleButton:)]) {
+		[self.delegate pressedMapListToggleButton:self];
+	}
+}
+
+- (IBAction)searchButtonPressed:(id)sender {
+	if ([self.delegate respondsToSelector:@selector(pressedSearchButton:)]) {
+		self.searchButton.selected = !self.searchButton.selected;
+		[self.delegate pressedSearchButton:self.searchButton.selected];
+	}
+}
+
+- (IBAction)categoryButtonPressed:(id)sender {
+	if ([self.delegate respondsToSelector:@selector(pressedCategoryFilterButton:sourceView:)]) {
+		[self.delegate pressedCategoryFilterButton:self sourceView:self.categoryButton];
+	}
+}
+
+#pragma mark - Public methods
+
+- (CGFloat)middlePointOfWheelchairStateFilterButton {
+	return self.wheelchairStateFilterButtonContainerView.frame.origin.x+(self.wheelchairStateFilterButtonContainerView.frame.size.width/2.0);
+}
+
+- (CGFloat)middlePointOfToiletStateFilterButton {
+	return self.toiletStateFilterButtonContainerView.frame.origin.x+(self.toiletStateFilterButtonContainerView.frame.size.width/2.0);
 }
 
 - (CGFloat)middlePointOfCategoryFilterButton {
-    return categoryFilterButton.frame.origin.x+(categoryFilterButton.frame.size.width/2.0);
+	return self.categoryButton.frame.origin.x+(self.categoryButton.frame.size.width/2.0);
 }
 
-- (CGFloat)middlePointOfWheelchairFilterButton {
-    return self.wheelChairStatusFilterButton.frame.origin.x+(self.wheelChairStatusFilterButton.frame.size.width/2.0);
+- (void)selectSearchButton {
+	self.searchButton.selected = YES;
 }
 
--(void)selectSearchButton {
-    searchButton.selected = YES;
+- (void)deselectSearchButton {
+	self.searchButton.selected = NO;
 }
 
--(void)deselectSearchButton {
-    searchButton.selected = NO;
+- (void)selectCategoryButton {
+	self.categoryButton.selected = YES;
 }
 
--(void)selectCategoryButton {
-    categoryFilterButton.selected = YES;
+- (void)deselectCategoryButton {
+	self.categoryButton.selected = NO;
 }
 
--(void)deselectCategoryButton {
-    categoryFilterButton.selected = NO;
+
+#pragma mark Show/Hide buttons
+
+-(void)showAllButtons {
+    self.searchButton.hidden = NO;
+    self.searchButton.userInteractionEnabled = YES;
+    self.wheelchairStateFilterButton.hidden = NO;
+    self.wheelchairStateFilterButton.userInteractionEnabled = YES;
+	self.toiletStateFilterButton.hidden = NO;
+	self.toiletStateFilterButton.userInteractionEnabled = YES;
+	self.categoryButton.hidden = NO;
+    self.categoryButton.userInteractionEnabled = YES;
+
+    [UIView animateWithDuration:0.3 animations:^(void) {
+        self.searchButton.alpha = 1.0;
+        self.wheelchairStateFilterButton.alpha = 1.0;
+		self.toiletStateFilterButton.alpha = 1.0;
+		self.categoryButton.alpha = 1.0;
+	} completion:nil];
 }
 
-#pragma mark -
-#pragma mark Button Handler
--(void)pressedToggleButton:(WMButton*)sender
-{
-    if ([self.delegate respondsToSelector:@selector(pressedToggleButton:)]) {
-        [self.delegate pressedToggleButton:self];
-    }
-}
-
--(void)pressedCurrentLocationButton:(WMButton*)sender
-{
-    if ([self.delegate respondsToSelector:@selector(pressedCurrentLocationButton:)]) {
-        [self.delegate pressedCurrentLocationButton:self];
-    }
-}
-
--(void)pressedSearchButton:(WMButton*)sender
-{
-    if ([self.delegate respondsToSelector:@selector(pressedSearchButton:)]) {
-        sender.selected = !sender.selected;
-        
-        [self.delegate pressedSearchButton:sender.selected];
-    }
-}
-
--(void)pressedWheelChairStatusFilterButton:(WMPOIStateFilterButton*)sender
-{
-    if ([self.delegate respondsToSelector:@selector(pressedWheelChairStatusFilterButton:)]) {
-        [self.delegate pressedWheelChairStatusFilterButton:self];
-    }
-}
-
--(void)pressedCategoryFilterButton:(WMButton*)sender
-{
-    if ([self.delegate respondsToSelector:@selector(pressedCategoryFilterButton:)]) {
-        [self.delegate pressedCategoryFilterButton:self];
-    }
-}
-
-#pragma mark - Show/Hide buttons
--(void)showAllButtons
-{
-    currentLocationButton.hidden = NO;
-    currentLocationButton.userInteractionEnabled = YES;
-    searchButton.hidden = NO;
-    searchButton.userInteractionEnabled = YES;
-    self.wheelChairStatusFilterButton.hidden = NO;
-    self.wheelChairStatusFilterButton.userInteractionEnabled = YES;
-    categoryFilterButton.hidden = NO;
-    categoryFilterButton.userInteractionEnabled = YES;
-
-    [UIView animateWithDuration:0.3 animations:^(void)
-     {
-         currentLocationButton.alpha = 1.0;
-         searchButton.alpha = 1.0;
-         self.wheelChairStatusFilterButton.alpha = 1.0;
-         categoryFilterButton.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         
-         
-     }
-     ];
-    
-}
--(void)showButton:(WMToolBarButtonType)type
-{
+- (void)showButton:(WMToolbarButtonType)type {
     UIView* targetButton;
-    
     switch (type) {
-        case kWMToolBarButtonCurrentLocation:
-            targetButton = currentLocationButton;
+        case kWMToolbarButtonSearch:
+            targetButton = self.searchButton;
             break;
-        case kWMToolBarButtonSearch:
-            targetButton = searchButton;
+        case kWMToolbarButtonWheelchairStateFilter:
+            targetButton = self.wheelchairStateFilterButton;
             break;
-        case kWMToolBarButtonWheelChairFilter:
-            targetButton = self.wheelChairStatusFilterButton;
-            break;
-        case kWMToolBarButtonCategoryFilter:
-            targetButton = categoryFilterButton;
+		case kWMToolbarButtonToiletStateFilter:
+			targetButton = self.toiletStateFilterButton;
+			break;
+        case kWMToolbarButtonCategoryFilter:
+            targetButton = self.categoryButton;
             break;
         default:
             break;
     }
     
     targetButton.userInteractionEnabled = YES;
-    [UIView animateWithDuration:0.5 animations:^(void)
-     {
+    [UIView animateWithDuration:0.5 animations:^(void) {
          targetButton.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         
-         
-     }
-     ];
-    
-    
+     } completion:nil];
 }
--(void)hideButton:(WMToolBarButtonType)type
-{
+
+- (void)hideButton:(WMToolbarButtonType)type {
     UIView* targetButton;
     
     switch (type) {
-        case kWMToolBarButtonCurrentLocation:
-            targetButton = currentLocationButton;
+        case kWMToolbarButtonSearch:
+            targetButton = self.searchButton;
             break;
-        case kWMToolBarButtonSearch:
-            targetButton = searchButton;
+        case kWMToolbarButtonWheelchairStateFilter:
+            targetButton = self.wheelchairStateFilterButton;
             break;
-        case kWMToolBarButtonWheelChairFilter:
-            targetButton = self.wheelChairStatusFilterButton;
-            break;
-        case kWMToolBarButtonCategoryFilter:
-            targetButton = categoryFilterButton;
+		case kWMToolbarButtonToiletStateFilter:
+			targetButton = self.toiletStateFilterButton;
+			break;
+        case kWMToolbarButtonCategoryFilter:
+            targetButton = self.categoryButton;
             break;
         default:
             break;
     }
-    
-    
-    [UIView animateWithDuration:0.5 animations:^(void)
-     {
-         targetButton.alpha = 0.3;
-     }
-                     completion:^(BOOL finished)
-     {
-         targetButton.userInteractionEnabled = NO;
-         
-     }
-     ];
 
+    [UIView animateWithDuration:0.5 animations:^(void) {
+         targetButton.alpha = 0.3;
+	} completion:^(BOOL finished) {
+         targetButton.userInteractionEnabled = NO;
+	}];
 }
 
-- (void)clearWheelChairStatusFilterButton
-{
-    self.wheelChairStatusFilterButton.selectedGreenDot = YES;
-    self.wheelChairStatusFilterButton.selectedYellowDot = YES;
-    self.wheelChairStatusFilterButton.selectedRedDot = YES;
-    self.wheelChairStatusFilterButton.selectedNoneDot = YES;
+- (void)clearWheelChairStatusFilterButton {
+    self.wheelchairStateFilterButton.selectedGreenDot = YES;
+    self.wheelchairStateFilterButton.selectedYellowDot = YES;
+    self.wheelchairStateFilterButton.selectedRedDot = YES;
+    self.wheelchairStateFilterButton.selectedNoneDot = YES;
+}
 
+#pragma mark - WMPOIStateFilterButtonViewView
+
+- (void)didPressPOIStateFilterButtonForStateType:(WMPOIStateType)stateType {
+	if (stateType == WMPOIStateTypeWheelchair) {
+		if ([self.delegate respondsToSelector:@selector(pressedWheelchairStateFilterButton:sourceView:)]) {
+			[self.delegate pressedWheelchairStateFilterButton:self sourceView:self.wheelchairStateFilterButtonContainerView];
+		}
+	} else if (stateType == WMPOIStateTypeToilet) {
+		if ([self.delegate respondsToSelector:@selector(pressedToiletStateFilterButton:sourceView:)]) {
+			[self.delegate pressedToiletStateFilterButton:self sourceView:self.toiletStateFilterButtonContainerView];
+		}
+	}
 }
 
 @end

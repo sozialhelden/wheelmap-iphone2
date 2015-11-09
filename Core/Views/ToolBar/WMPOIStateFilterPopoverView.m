@@ -26,7 +26,7 @@
 #pragma mark - Initialization
 
 - (id)initWithOrigin:(CGPoint)origin {
-	self = [NSBundle.mainBundle loadNibNamed:@"WMPOIStateFilterPopoverView" owner:self options:nil].firstObject;
+	self = (WMPOIStateFilterPopoverView *) [WMPOIStateFilterPopoverView loadFromNib:@"WMPOIStateFilterPopoverView"];
     if (self) {
 		self.frame = CGRectMake(origin.x, origin.y, self.calculatedFrameWidth, K_POI_STATUS_FILTER_POPOVER_VIEW_HEIGHT);
 		dataManager = [[WMDataManager alloc] init];

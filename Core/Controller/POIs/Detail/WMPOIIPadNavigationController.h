@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WMNavigationBar.h"
-#import "WMToolBar.h"
+#import "WMToolbar.h"
 #import <CoreLocation/CoreLocation.h>
 
 @class WMPOIsListViewController;

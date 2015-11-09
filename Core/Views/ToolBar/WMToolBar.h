@@ -1,5 +1,5 @@
 //
-//  WMToolBar.h
+//  WMToolbar.h
 //  Wheelmap
 //
 //  Created by npng on 11/27/12.
@@ -7,60 +7,53 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMPOIStateFilterButton.h"
+#import "WMPOIStateFilterButtonView.h"
 
-@class WMToolBar;
-
-typedef enum {
-    kWMToolBarToggleViewStateList,
-    kWMToolBarToggleViewStateMap
-} WMToolBarToggleViewState;
+@class WMToolbar;
 
 typedef enum {
-    kWMToolBarButtonCurrentLocation,
-    kWMToolBarButtonSearch,
-    kWMToolBarButtonWheelChairFilter,
-    kWMToolBarButtonCategoryFilter
-} WMToolBarButtonType;
+	kWMToolbarButtonCurrentLocation,
+    kWMToolbarButtonSearch,
+    kWMToolbarButtonWheelchairStateFilter,
+	kWMToolbarButtonToiletStateFilter,
+    kWMToolbarButtonCategoryFilter
+} WMToolbarButtonType;
 
-@protocol WMToolBarDelegate <NSObject>
+@interface WMToolbar : UIView<WMPOIStateFilterButtonViewDelegate>
 
-@required
--(void)pressedToggleButton:(WMToolBar*)toolBar;
--(void)pressedCurrentLocationButton:(WMToolBar*)toolBar;
--(void)pressedSearchButton:(BOOL)selected;
--(void)pressedWheelChairStatusFilterButton:(WMToolBar*)toolBar;
--(void)pressedCategoryFilterButton:(WMToolBar*)toolBar;
-@optional
--(void)pressedLoginButton:(WMToolBar*)toolBar;
--(void)pressedInfoButton:(WMToolBar*)toolBar;
--(void)pressedHelpButton:(WMToolBar*)toolBar;
-@end
+@property (weak, nonatomic) IBOutlet WMButton *					mapListToggleButton;
+@property (weak, nonatomic) IBOutlet WMButton *					searchButton;
+@property (weak, nonatomic) IBOutlet UIView *					wheelchairStateFilterButtonContainerView;
+@property (strong, nonatomic) WMPOIStateFilterButtonView *		wheelchairStateFilterButton;
+@property (weak, nonatomic) IBOutlet UIView *					toiletStateFilterButtonContainerView;
+@property (strong, nonatomic) WMPOIStateFilterButtonView *		toiletStateFilterButton;
+@property (weak, nonatomic) IBOutlet WMButton *					categoryButton;
 
-@interface WMToolBar : UIView
-{
-    UIImageView* backgroundImg;
-    WMButton* currentLocationButton;
-    WMButton* searchButton;
-    WMButton* categoryFilterButton;
-    
-    BOOL isVisible;
-}
+@property (nonatomic, strong) id<WMToolbarDelegate>				delegate;
 
-@property (nonatomic, strong) id<WMToolBarDelegate> delegate;
-@property (nonatomic, strong) WMPOIStateFilterButton* wheelChairStatusFilterButton;
-@property (nonatomic, strong) WMButton* toggleButton;
-@property (nonatomic) CGFloat middlePointOfWheelchairFilterButton; // this will be updated by initialisation of the button
-@property (nonatomic) CGFloat middlePointOfCategoryFilterButton; // this too
+#pragma mark - Initialization
 
--(void)showAllButtons;
--(void)showButton:(WMToolBarButtonType)type;
--(void)hideButton:(WMToolBarButtonType)type;
--(void)selectSearchButton;
--(void)deselectSearchButton;
--(void)selectCategoryButton;
--(void)deselectCategoryButton;
+- (instancetype)initFromNibWithFrame:(CGRect)frame;
 
--(void)clearWheelChairStatusFilterButton;   // this will enable all filter buttons on
+- (void)initPOIStateFilterButtons;
+
+#pragma mark - Public methods
+
+- (CGFloat)middlePointOfWheelchairStateFilterButton;
+- (CGFloat)middlePointOfToiletStateFilterButton;
+- (CGFloat)middlePointOfCategoryFilterButton;
+
+#pragma mark Show/Hide buttons
+
+- (void)showAllButtons;
+- (void)showButton:(WMToolbarButtonType)type;
+- (void)hideButton:(WMToolbarButtonType)type;
+
+- (void)selectSearchButton;
+- (void)deselectSearchButton;
+- (void)selectCategoryButton;
+- (void)deselectCategoryButton;
+
+- (void)clearWheelChairStatusFilterButton;   // this will enable all filter buttons on
 
 @end

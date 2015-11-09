@@ -693,27 +693,36 @@
 		878EC96B1BE0F9200099EDD1 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC93E1BE0F9200099EDD1 /* WMStandardButton.m */; };
 		878EC96C1BE0F9200099EDD1 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC93E1BE0F9200099EDD1 /* WMStandardButton.m */; };
 		878EC96D1BE0F9200099EDD1 /* WMStandardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC93E1BE0F9200099EDD1 /* WMStandardButton.m */; };
-		878EC96E1BE0F9200099EDD1 /* WMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9411BE0F9200099EDD1 /* WMToolBar.m */; };
-		878EC96F1BE0F9200099EDD1 /* WMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9411BE0F9200099EDD1 /* WMToolBar.m */; };
-		878EC9701BE0F9200099EDD1 /* WMToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9411BE0F9200099EDD1 /* WMToolBar.m */; };
+		878EC96E1BE0F9200099EDD1 /* WMToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9411BE0F9200099EDD1 /* WMToolbar.m */; };
+		878EC96F1BE0F9200099EDD1 /* WMToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9411BE0F9200099EDD1 /* WMToolbar.m */; };
+		878EC9701BE0F9200099EDD1 /* WMToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9411BE0F9200099EDD1 /* WMToolbar.m */; };
 		878EC9711BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */; };
 		878EC9721BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */; };
 		878EC9731BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */; };
 		87A897AD1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */; };
 		87A897AE1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */; };
 		87A897AF1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */; };
-		87B4D0431BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */; };
-		87B4D0441BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */; };
-		87B4D0451BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */; };
+		87B148E21BECDADC00146985 /* WMToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B148E11BECDADC00146985 /* WMToolbar.xib */; };
+		87B148E31BECDADC00146985 /* WMToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B148E11BECDADC00146985 /* WMToolbar.xib */; };
+		87B148E41BECDADC00146985 /* WMToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B148E11BECDADC00146985 /* WMToolbar.xib */; };
+		87B4D0431BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m */; };
+		87B4D0441BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m */; };
+		87B4D0451BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m */; };
 		87B4D0461BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */; };
 		87B4D0471BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */; };
 		87B4D0481BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */; };
 		87B4D04C1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
 		87B4D04D1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
 		87B4D04E1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
+		87C24FDD1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
+		87C24FDE1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
+		87C24FDF1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
 		87F841681BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
 		87F841691BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
 		87F8416A1BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
+		87FFF27A1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */; };
+		87FFF27B1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */; };
+		87FFF27C1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
 		9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */; };
@@ -1054,21 +1063,24 @@
 		878EC93C1BE0F9200099EDD1 /* WMLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLabel.m; sourceTree = "<group>"; };
 		878EC93D1BE0F9200099EDD1 /* WMStandardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStandardButton.h; sourceTree = "<group>"; };
 		878EC93E1BE0F9200099EDD1 /* WMStandardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStandardButton.m; sourceTree = "<group>"; };
-		878EC9401BE0F9200099EDD1 /* WMToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMToolBar.h; sourceTree = "<group>"; };
-		878EC9411BE0F9200099EDD1 /* WMToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMToolBar.m; sourceTree = "<group>"; };
-		878EC9421BE0F9200099EDD1 /* WMToolBar_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMToolBar_iPad.h; sourceTree = "<group>"; };
+		878EC9401BE0F9200099EDD1 /* WMToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMToolbar.h; sourceTree = "<group>"; };
+		878EC9411BE0F9200099EDD1 /* WMToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMToolbar.m; sourceTree = "<group>"; };
+		878EC9421BE0F9200099EDD1 /* WMToolbar_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMToolbar_iPad.h; sourceTree = "<group>"; };
 		878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMToolBar_iPad.m; sourceTree = "<group>"; };
 		878EC9751BE0F92F0099EDD1 /* WMProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMProtocols.h; sourceTree = "<group>"; };
 		87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMEditPOIStateButtonView.xib; sourceTree = "<group>"; };
 		87A897B01BE7948A006CC1AF /* WMDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WMDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
-		87B4D03F1BE8DA7A00EB770B /* WMPOIStateFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIStateFilterButton.h; sourceTree = "<group>"; };
-		87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIStateFilterButton.m; sourceTree = "<group>"; };
+		87B148E11BECDADC00146985 /* WMToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMToolbar.xib; sourceTree = "<group>"; };
+		87B4D03F1BE8DA7A00EB770B /* WMPOIStateFilterButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIStateFilterButtonView.h; sourceTree = "<group>"; };
+		87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIStateFilterButtonView.m; sourceTree = "<group>"; };
 		87B4D0411BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPOIStateFilterPopoverView.h; sourceTree = "<group>"; };
 		87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIStateFilterPopoverView.m; sourceTree = "<group>"; };
 		87B4D04A1BE8DA9F00EB770B /* WMEditPOIStateButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMEditPOIStateButtonView.h; path = Edit/WMEditPOIStateButtonView.h; sourceTree = "<group>"; };
 		87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMEditPOIStateButtonView.m; path = Edit/WMEditPOIStateButtonView.m; sourceTree = "<group>"; };
+		87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WMToolbar-iPad.xib"; sourceTree = "<group>"; };
 		87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Wheelmap.h"; sourceTree = "<group>"; };
 		87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Wheelmap.m"; sourceTree = "<group>"; };
+		87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateFilterButtonView.xib; sourceTree = "<group>"; };
 		982E68E8166A9FC10062715C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98655CC31675FD14007083DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -1205,8 +1217,11 @@
 				872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */,
 				872FDD501BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib */,
 				87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */,
+				87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */,
 				876E8F2A1BE8DBE100B4E2CD /* WMPOIStateButtonView.xib */,
 				8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */,
+				87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */,
+				87B148E11BECDADC00146985 /* WMToolbar.xib */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -1854,12 +1869,12 @@
 		878EC93F1BE0F9200099EDD1 /* ToolBar */ = {
 			isa = PBXGroup;
 			children = (
-				878EC9401BE0F9200099EDD1 /* WMToolBar.h */,
-				878EC9411BE0F9200099EDD1 /* WMToolBar.m */,
-				878EC9421BE0F9200099EDD1 /* WMToolBar_iPad.h */,
+				878EC9401BE0F9200099EDD1 /* WMToolbar.h */,
+				878EC9411BE0F9200099EDD1 /* WMToolbar.m */,
+				878EC9421BE0F9200099EDD1 /* WMToolbar_iPad.h */,
 				878EC9431BE0F9200099EDD1 /* WMToolBar_iPad.m */,
-				87B4D03F1BE8DA7A00EB770B /* WMPOIStateFilterButton.h */,
-				87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButton.m */,
+				87B4D03F1BE8DA7A00EB770B /* WMPOIStateFilterButtonView.h */,
+				87B4D0401BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m */,
 				87B4D0411BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.h */,
 				87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */,
 			);
@@ -2068,6 +2083,7 @@
 				8774E63E1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
 				8774E6381BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E6891BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
+				87FFF27B1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
 				8774E6DA1BE0D93800A3E7EA /* toolbar_indicator-orange@2x.png in Resources */,
 				8774E6951BE0D93800A3E7EA /* Social_btn-twitter.png in Resources */,
 				8774E68F1BE0D93800A3E7EA /* Social_btn-sms.png in Resources */,
@@ -2130,6 +2146,7 @@
 				8774E5CF1BE0D93800A3E7EA /* ipad_buttons_icon-search-active@2x.png in Resources */,
 				8774E5ED1BE0D93800A3E7EA /* details_btn-photoupload.png in Resources */,
 				8774E5901BE0D93800A3E7EA /* credits_license@2x.png in Resources */,
+				87C24FDE1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */,
 				8774E6021BE0D93800A3E7EA /* details_btn-status-unknown@2x.png in Resources */,
 				8774E6771BE0D93800A3E7EA /* misc_position-info.png in Resources */,
 				872FDD5B1BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib in Resources */,
@@ -2155,6 +2172,7 @@
 				8774E60E1BE0D93800A3E7EA /* details_btn-status-yes@2x.png in Resources */,
 				8774E61D1BE0D93800A3E7EA /* details_label-limited.png in Resources */,
 				8774E6A71BE0D93800A3E7EA /* ipad_buttons_loggedin.png in Resources */,
+				87B148E31BECDADC00146985 /* WMToolbar.xib in Resources */,
 				8774E58A1BE0D93800A3E7EA /* credits_bmas@2x.png in Resources */,
 				8774E63B1BE0D93800A3E7EA /* more-buttons_info@2x.png in Resources */,
 				8774E5F31BE0D93800A3E7EA /* details_btn-status-limited.png in Resources */,
@@ -2219,6 +2237,7 @@
 				8774E63F1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
 				8774E6391BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E68A1BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
+				87FFF27C1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
 				8774E6DB1BE0D93800A3E7EA /* toolbar_indicator-orange@2x.png in Resources */,
 				8774E6961BE0D93800A3E7EA /* Social_btn-twitter.png in Resources */,
 				8774E6901BE0D93800A3E7EA /* Social_btn-sms.png in Resources */,
@@ -2281,6 +2300,7 @@
 				8774E5D01BE0D93800A3E7EA /* ipad_buttons_icon-search-active@2x.png in Resources */,
 				8774E5EE1BE0D93800A3E7EA /* details_btn-photoupload.png in Resources */,
 				8774E5911BE0D93800A3E7EA /* credits_license@2x.png in Resources */,
+				87C24FDF1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */,
 				8774E6031BE0D93800A3E7EA /* details_btn-status-unknown@2x.png in Resources */,
 				8774E6781BE0D93800A3E7EA /* misc_position-info.png in Resources */,
 				872FDD5C1BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib in Resources */,
@@ -2306,6 +2326,7 @@
 				8774E60F1BE0D93800A3E7EA /* details_btn-status-yes@2x.png in Resources */,
 				8774E61E1BE0D93800A3E7EA /* details_label-limited.png in Resources */,
 				8774E6A81BE0D93800A3E7EA /* ipad_buttons_loggedin.png in Resources */,
+				87B148E41BECDADC00146985 /* WMToolbar.xib in Resources */,
 				8774E58B1BE0D93800A3E7EA /* credits_bmas@2x.png in Resources */,
 				8774E63C1BE0D93800A3E7EA /* more-buttons_info@2x.png in Resources */,
 				8774E5F41BE0D93800A3E7EA /* details_btn-status-limited.png in Resources */,
@@ -2370,6 +2391,7 @@
 				8774E63D1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
 				8774E6371BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E6881BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
+				87FFF27A1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
 				8774E6D91BE0D93800A3E7EA /* toolbar_indicator-orange@2x.png in Resources */,
 				8774E6941BE0D93800A3E7EA /* Social_btn-twitter.png in Resources */,
 				8774E68E1BE0D93800A3E7EA /* Social_btn-sms.png in Resources */,
@@ -2432,6 +2454,7 @@
 				8774E5CE1BE0D93800A3E7EA /* ipad_buttons_icon-search-active@2x.png in Resources */,
 				8774E5EC1BE0D93800A3E7EA /* details_btn-photoupload.png in Resources */,
 				8774E58F1BE0D93800A3E7EA /* credits_license@2x.png in Resources */,
+				87C24FDD1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */,
 				8774E6011BE0D93800A3E7EA /* details_btn-status-unknown@2x.png in Resources */,
 				8774E6761BE0D93800A3E7EA /* misc_position-info.png in Resources */,
 				872FDD5A1BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib in Resources */,
@@ -2457,6 +2480,7 @@
 				8774E60D1BE0D93800A3E7EA /* details_btn-status-yes@2x.png in Resources */,
 				8774E61C1BE0D93800A3E7EA /* details_label-limited.png in Resources */,
 				8774E6A61BE0D93800A3E7EA /* ipad_buttons_loggedin.png in Resources */,
+				87B148E21BECDADC00146985 /* WMToolbar.xib in Resources */,
 				8774E5891BE0D93800A3E7EA /* credits_bmas@2x.png in Resources */,
 				8774E63A1BE0D93800A3E7EA /* more-buttons_info@2x.png in Resources */,
 				8774E5F21BE0D93800A3E7EA /* details_btn-status-limited.png in Resources */,
@@ -2685,11 +2709,11 @@
 				872FDF1D1BDFEF9900764FC5 /* unzip.c in Sources */,
 				878EC8C81BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
 				872FDEC11BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
-				878EC96F1BE0F9200099EDD1 /* WMToolBar.m in Sources */,
+				878EC96F1BE0F9200099EDD1 /* WMToolbar.m in Sources */,
 				878EC9631BE0F9200099EDD1 /* WMMapAnnotation.m in Sources */,
 				878EC8CE1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */,
 				878EC8E91BE0F7960099EDD1 /* WMPOIViewController.m in Sources */,
-				87B4D0441BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */,
+				87B4D0441BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m in Sources */,
 				878EC9071BE0F7960099EDD1 /* WMNavigationControllerBase.m in Sources */,
 				8774E4EF1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				878EC9691BE0F9200099EDD1 /* WMLabel.m in Sources */,
@@ -2765,11 +2789,11 @@
 				872FDF1E1BDFEF9900764FC5 /* unzip.c in Sources */,
 				878EC8C91BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
 				872FDEC21BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
-				878EC9701BE0F9200099EDD1 /* WMToolBar.m in Sources */,
+				878EC9701BE0F9200099EDD1 /* WMToolbar.m in Sources */,
 				878EC9641BE0F9200099EDD1 /* WMMapAnnotation.m in Sources */,
 				878EC8CF1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */,
 				878EC8EA1BE0F7960099EDD1 /* WMPOIViewController.m in Sources */,
-				87B4D0451BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */,
+				87B4D0451BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m in Sources */,
 				878EC9081BE0F7960099EDD1 /* WMNavigationControllerBase.m in Sources */,
 				8774E4F01BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				878EC96A1BE0F9200099EDD1 /* WMLabel.m in Sources */,
@@ -2845,11 +2869,11 @@
 				872FDF1C1BDFEF9900764FC5 /* unzip.c in Sources */,
 				878EC8C71BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
 				872FDEC01BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
-				878EC96E1BE0F9200099EDD1 /* WMToolBar.m in Sources */,
+				878EC96E1BE0F9200099EDD1 /* WMToolbar.m in Sources */,
 				878EC9621BE0F9200099EDD1 /* WMMapAnnotation.m in Sources */,
 				878EC8CD1BE0F7960099EDD1 /* WMAcceptTermsViewController.m in Sources */,
 				878EC8E81BE0F7960099EDD1 /* WMPOIViewController.m in Sources */,
-				87B4D0431BE8DA7A00EB770B /* WMPOIStateFilterButton.m in Sources */,
+				87B4D0431BE8DA7A00EB770B /* WMPOIStateFilterButtonView.m in Sources */,
 				878EC9061BE0F7960099EDD1 /* WMNavigationControllerBase.m in Sources */,
 				8774E4EE1BE0D15D00A3E7EA /* NSString+Distance.m in Sources */,
 				878EC9681BE0F9200099EDD1 /* WMLabel.m in Sources */,

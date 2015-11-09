@@ -41,7 +41,7 @@
     [dataManager removeUserAuthentication];
     
     if (UIDevice.isIPad == YES) {
-        [(WMToolBar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
+        [(WMToolbar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
     
     [self dismissViewControllerAnimated:YES];

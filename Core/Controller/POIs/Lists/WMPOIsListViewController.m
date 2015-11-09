@@ -96,7 +96,7 @@
 -(void) initNodeType{
     
     if (self.useCase == kWMPOIsListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
-        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolbarButtonSearch];
         
         isAccesoryHeaderVisible = YES;
         
@@ -136,7 +136,7 @@
         [self.tableView reloadData];
         [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
-        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonCurrentLocation];
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolbarButtonCurrentLocation];
     }
     else {
         
@@ -148,7 +148,7 @@
         [self loadNodes];
         
         if (self.useCase == kWMPOIsListViewControllerUseCaseCategory) {
-            [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolBarButtonSearch];
+            [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolbarButtonSearch];
         }
     }
 }

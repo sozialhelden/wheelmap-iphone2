@@ -185,7 +185,7 @@
         self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand)
     {
         // show current location button, if it is hidden
-        [((WMNavigationControllerBase *)self.navigationController).customToolBar showButton:kWMToolBarButtonCurrentLocation];
+        [((WMNavigationControllerBase *)self.navigationController).customToolBar showButton:kWMToolbarButtonCurrentLocation];
     }
         [self loadNodes];// load nodes from the dataSource
 }
