@@ -759,11 +759,12 @@
             case kWMPOIsListViewControllerUseCaseContribute:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"TitleHelp", nil);
                 [self.customToolBar hideButton:kWMToolbarButtonWheelchairStateFilter];
-                //[self.customToolBar hideButton:kWMToolbarButtonCategoryFilter];
+				[self.customToolBar hideButton:kWMToolbarButtonToiletStateFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
                 break;
             case kWMPOIsListViewControllerUseCaseCategory:
                 [self.customToolBar showButton:kWMToolbarButtonWheelchairStateFilter];
+				[self.customToolBar showButton:kWMToolbarButtonToiletStateFilter];
                 [self.customToolBar hideButton:kWMToolbarButtonCategoryFilter];
                 break;
             case kWMPOIsListViewControllerUseCaseGlobalSearch:
