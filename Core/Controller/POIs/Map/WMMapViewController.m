@@ -388,6 +388,13 @@
     }
 }
 
+- (IBAction)pressedCenterLocationButton:(id)sender {
+	if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES) {
+		// Forward the button press to the navigation cotnroller. If it's not kind of WMNavigationControllerBase, we don't have to forward the event as we are in the POI detail view controller.
+		[((WMNavigationControllerBase *)self.navigationController) pressedCurrentLocationButton:nil];
+	}
+}
+
 #pragma mark - Map Interactions
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
