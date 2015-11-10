@@ -240,8 +240,11 @@
                 [self.tableView reloadData];
             });
         });
-    }
-    
+	} else {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self.tableView reloadData];
+		});
+	}
 }
 
 - (NSArray*)sortNodesByDistance:(NSArray*)nodesTemp

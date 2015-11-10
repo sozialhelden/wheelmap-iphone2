@@ -169,6 +169,7 @@
 
 - (void)clearToiletStateFilterButton {
 	self.toiletStateFilterButton.selectedGreenDot = YES;
+	self.toiletStateFilterButton.selectedYellowDot = NO; // Limited is not supported for the toilet state
 	self.toiletStateFilterButton.selectedRedDot = YES;
 	self.toiletStateFilterButton.selectedNoneDot = YES;
 }
