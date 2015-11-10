@@ -130,7 +130,8 @@
     progressWheel.layer.cornerRadius = 5.0;
     progressWheel.layer.masksToBounds = YES;
     [self.view addSubview:progressWheel];
-    
+
+	self.preferredContentSize = self.scrollViewContentView.bounds.size;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,7 +146,7 @@
     [self updateFields];
 
 	// Update the scroll view constrians
-	self.scrollViewContentWidthConstraint.constant = self.view.frame.size.width;
+	self.scrollViewContentWidthConstraint.constant = self.scrollView.frameWidth;
 	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + self.phoneInputViewBottomConstraint.constant;
 	[self.scrollView layoutIfNeeded];
 }
