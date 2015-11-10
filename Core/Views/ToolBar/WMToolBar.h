@@ -54,6 +54,7 @@ typedef enum {
 - (void)selectCategoryButton;
 - (void)deselectCategoryButton;
 
-- (void)clearWheelChairStatusFilterButton;   // this will enable all filter buttons on
+- (void)clearWheelchairStateFilterButton;   // this will enable all filter buttons on
+- (void)clearToiletStateFilterButton; // this will enable all filter buttons on
 
 @end

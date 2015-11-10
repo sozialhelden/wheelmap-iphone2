@@ -160,11 +160,17 @@
 	}];
 }
 
-- (void)clearWheelChairStatusFilterButton {
+- (void)clearWheelchairStateFilterButton {
     self.wheelchairStateFilterButton.selectedGreenDot = YES;
     self.wheelchairStateFilterButton.selectedYellowDot = YES;
     self.wheelchairStateFilterButton.selectedRedDot = YES;
     self.wheelchairStateFilterButton.selectedNoneDot = YES;
+}
+
+- (void)clearToiletStateFilterButton {
+	self.toiletStateFilterButton.selectedGreenDot = YES;
+	self.toiletStateFilterButton.selectedRedDot = YES;
+	self.toiletStateFilterButton.selectedNoneDot = YES;
 }
 
 #pragma mark - WMPOIStateFilterButtonViewView
