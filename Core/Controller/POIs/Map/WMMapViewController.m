@@ -210,7 +210,8 @@
         NSMutableArray* newNodeList = [[NSMutableArray alloc] init];
         
         for (Node* node in unfilteredNodes) {
-            if ([node.wheelchair caseInsensitiveCompare:K_STATE_UNKNOWN] == NSOrderedSame) {
+            if ([node.wheelchair caseInsensitiveCompare:K_STATE_UNKNOWN] == NSOrderedSame
+				|| [node.wheelchair_toilet caseInsensitiveCompare:K_STATE_UNKNOWN] == NSOrderedSame) {
                 [newNodeList addObject:node];
             }
         }

@@ -117,11 +117,15 @@
         initialNodeListView.delegate = self;
     }
     
-    self.wheelChairFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_STATE_YES,
-                                   [NSNumber numberWithBool:YES], K_STATE_LIMITED,
-                                   [NSNumber numberWithBool:YES], K_STATE_NO,
-                                   [NSNumber numberWithBool:YES], K_STATE_UNKNOWN,nil];
-    self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
+    self.wheelchairStateFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_STATE_YES,
+										[NSNumber numberWithBool:YES], K_STATE_LIMITED,
+										[NSNumber numberWithBool:YES], K_STATE_NO,
+										[NSNumber numberWithBool:YES], K_STATE_UNKNOWN,nil];
+	self.toiletStateFilterStatus = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], K_STATE_YES,
+									[NSNumber numberWithBool:NO], K_STATE_LIMITED,
+									[NSNumber numberWithBool:YES], K_STATE_NO,
+									[NSNumber numberWithBool:YES], K_STATE_UNKNOWN,nil];
+	self.categoryFilterStatus = [[NSMutableDictionary alloc] init];
     for (WMCategory* c in dataManager.categories) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:c.id];
     }
@@ -437,10 +441,10 @@
     
     for (Node* node in nodesCopy) {
         NSNumber* categoryID = node.node_type.category.id;
-        NSString* wheelChairStatus = node.wheelchair;
-        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && [wheelChairStatus isEqualToString:K_STATE_UNKNOWN])
-			|| [[self.wheelChairFilterStatus objectForKey:wheelChairStatus] boolValue] == YES)
-			&& [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) {
+        if (((useCase == kWMPOIsListViewControllerUseCaseContribute && ([node.wheelchair isEqualToString:K_STATE_UNKNOWN] == YES || [node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == YES)) //Is contribute mode and unknown wheelchair or toilet state?
+			|| ([[self.wheelchairStateFilterStatus objectForKey:node.wheelchair] boolValue] == YES
+				&& [[self.toiletStateFilterStatus objectForKey:node.wheelchair_toilet] boolValue] == YES)) // Are the wheelchair and toilet states filter selected?
+			&& [[self.categoryFilterStatus objectForKey:categoryID] boolValue] == YES) { // Is the category filter selected?
 				if (![newNodeList containsObject:node]) {
 					[newNodeList addObject:node];
 				}
@@ -755,11 +759,12 @@
             case kWMPOIsListViewControllerUseCaseContribute:
                 nodeListVC.navigationBarTitle = NSLocalizedString(@"TitleHelp", nil);
                 [self.customToolBar hideButton:kWMToolbarButtonWheelchairStateFilter];
-                //[self.customToolBar hideButton:kWMToolbarButtonCategoryFilter];
+				[self.customToolBar hideButton:kWMToolbarButtonToiletStateFilter];
                 rightButtonStyle = kWMNavigationBarRightButtonStyleNone;
                 break;
             case kWMPOIsListViewControllerUseCaseCategory:
                 [self.customToolBar showButton:kWMToolbarButtonWheelchairStateFilter];
+				[self.customToolBar showButton:kWMToolbarButtonToiletStateFilter];
                 [self.customToolBar hideButton:kWMToolbarButtonCategoryFilter];
                 break;
             case kWMPOIsListViewControllerUseCaseGlobalSearch:
@@ -1308,48 +1313,56 @@
     NSString* wheelchairStatusString = K_STATE_UNKNOWN;
     switch (dotType) {
         case kDotTypeYes:
-            self.customToolBar.wheelchairStateFilterButton.selectedGreenDot = selected;
+			if (stateType == WMPOIStateTypeWheelchair) {
+				self.customToolBar.wheelchairStateFilterButton.selectedGreenDot = selected;
+			} else if (stateType == WMPOIStateTypeToilet) {
+				self.customToolBar.toiletStateFilterButton.selectedGreenDot = selected;
+			}
             wheelchairStatusString = K_STATE_YES;
             break;
             
         case kDotTypeLimited:
-            self.customToolBar.wheelchairStateFilterButton.selectedYellowDot = selected;
-            wheelchairStatusString = K_STATE_LIMITED;
+			if (stateType == WMPOIStateTypeWheelchair) {
+				self.customToolBar.wheelchairStateFilterButton.selectedYellowDot = selected;
+			} else if (stateType == WMPOIStateTypeToilet) {
+				self.customToolBar.toiletStateFilterButton.selectedYellowDot = selected;
+			}
+			wheelchairStatusString = K_STATE_LIMITED;
             break;
             
         case kDotTypeNo:
-            self.customToolBar.wheelchairStateFilterButton.selectedRedDot = selected;
-            wheelchairStatusString = K_STATE_NO;
+			if (stateType == WMPOIStateTypeWheelchair) {
+				self.customToolBar.wheelchairStateFilterButton.selectedRedDot = selected;
+			} else if (stateType == WMPOIStateTypeToilet) {
+				self.customToolBar.toiletStateFilterButton.selectedRedDot = selected;
+			}
+			wheelchairStatusString = K_STATE_NO;
             break;
             
         case kDotTypeUnknown:
-            self.customToolBar.wheelchairStateFilterButton.selectedNoneDot = selected;
-            wheelchairStatusString = K_STATE_UNKNOWN;
+			if (stateType == WMPOIStateTypeWheelchair) {
+				self.customToolBar.wheelchairStateFilterButton.selectedNoneDot = selected;
+			} else if (stateType == WMPOIStateTypeToilet) {
+				self.customToolBar.toiletStateFilterButton.selectedNoneDot = selected;
+			}
+			wheelchairStatusString = K_STATE_UNKNOWN;
             break;
             
         default:
             break;
     }
-    
-    if (selected) {
-        [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:wheelchairStatusString];
-    } else {
-        [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:NO] forKey:wheelchairStatusString];
-    }
+
+	if (stateType == WMPOIStateTypeWheelchair) {
+		[self.wheelchairStateFilterStatus setObject:[NSNumber numberWithBool:selected] forKey:wheelchairStatusString];
+	} else if (stateType == WMPOIStateTypeToilet) {
+		[self.toiletStateFilterStatus setObject:[NSNumber numberWithBool:selected] forKey:wheelchairStatusString];
+	}
     
     [self refreshNodeList];
-    
-}
-
--(void)clearWheelChairFilterStatus	{
-    for (NSNumber* key in [self.wheelChairFilterStatus allKeys]) {
-        [self.wheelChairFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
-    }
 }
 
 #pragma mark -WMCategoryFilterPopoverView Delegate
--(void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected
-{
+- (void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected {
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];
     
@@ -1382,7 +1395,8 @@
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
     }
     
-    [self.customToolBar clearWheelChairStatusFilterButton];
+    [self.customToolBar clearWheelchairStateFilterButton];
+	[self.customToolBar clearToiletStateFilterButton];
 }
 
 #pragma mark - Loading Wheel Management

@@ -88,7 +88,7 @@
 
 	if (self.statusType == WMPOIStateTypeToilet) {
 		self.dotsContainerViewWidthConstraint.constant = self.calculatedFrameWidth;
-		self.limitedDotImageView.hidden = YES;
+		self.limitedDotImageView.alpha = 0;
 		[self layoutIfNeeded];
 	}
 }

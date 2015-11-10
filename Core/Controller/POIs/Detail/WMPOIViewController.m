@@ -990,7 +990,6 @@
 - (void)didPressedEditStateButton:(NSString *)state forStateType:(WMPOIStateType)stateType {
 
 	WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
-	vc.hideSaveButton = YES;
 	vc.title = NSLocalizedString(@"EditPOIStateHeadline", nil);
 	vc.navigationBarTitle = vc.title;
 	vc.delegate = self;

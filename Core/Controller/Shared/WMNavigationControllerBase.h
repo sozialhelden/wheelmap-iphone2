@@ -34,7 +34,8 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) CLLocation *				currentLocation;
 @property (nonatomic, strong) WMNavigationBar *			customNavigationBar;
 @property (nonatomic, strong) WMToolbar *				customToolBar;
-@property (nonatomic, strong) NSMutableDictionary *		wheelChairFilterStatus;
+@property (nonatomic, strong) NSMutableDictionary *		wheelchairStateFilterStatus;
+@property (nonatomic, strong) NSMutableDictionary *		toiletStateFilterStatus;
 @property (nonatomic, strong) NSMutableDictionary *		categoryFilterStatus;
 @property (nonatomic, strong) NSNumber *				lastVisibleMapCenterLat;  // this will store last visible map region, so that we can restore last nodes.
 @property (nonatomic, strong) NSNumber *				lastVisibleMapCenterLng;
@@ -64,8 +65,9 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 - (void) refreshNodeListWithArray:(NSArray*)array;  // use this method if you want to refresh list and maps with custom node array
 
--(void)clearWheelChairFilterStatus;
--(void)clearCategoryFilterStatus;
+- (void)clearWheelchairStateFilterStatus;
+- (void)clearToiletStateFilterStatus;
+- (void)clearCategoryFilterStatus;
 
 -(void)showLoadingWheel;
 -(void)hideLoadingWheel;
