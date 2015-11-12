@@ -31,6 +31,7 @@
 	#import "UIToolbar+CustomSize.h"
 	#import "UIView+Geometry.h"
 	#import "NSError+Wheelmap.h"
+	#import "UIView+RTL.h"
 
 	// Database
 	#import "WMCategory+Helper.h"
