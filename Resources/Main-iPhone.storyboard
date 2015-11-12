@@ -40,7 +40,7 @@
                                             <constraint firstAttribute="width" secondItem="sQz-5j-HYY" secondAttribute="height" multiplier="29:30" id="8vF-tV-wmS"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="justified" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
                                         <rect key="frame" x="28" y="84" width="523" height="30"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -888,19 +888,23 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjy-sA-3xx" userLabel="Loading View">
                                 <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                                 <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Qnd-Jd-ZEF">
-                                        <rect key="frame" x="142" y="228" width="37" height="37"/>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Qnd-Jd-ZEF">
+                                        <rect key="frame" x="282" y="247" width="37" height="37"/>
                                         <animations/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Qnd-Jd-ZEF" firstAttribute="centerY" secondItem="Cjy-sA-3xx" secondAttribute="centerY" id="VbO-iL-GfK"/>
+                                    <constraint firstItem="Qnd-Jd-ZEF" firstAttribute="centerX" secondItem="Cjy-sA-3xx" secondAttribute="centerX" id="yvz-S9-dQz"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqH-9e-ReQ" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="20" width="600" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-rf-DNZ">
-                                        <rect key="frame" x="89" y="14" width="143" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-rf-DNZ">
+                                        <rect key="frame" x="300" y="25" width="0.0" height="0.0"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -910,26 +914,35 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.21176470588235294" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="JEC-rf-DNZ" firstAttribute="centerX" secondItem="yqH-9e-ReQ" secondAttribute="centerX" id="5gD-yz-WWN"/>
+                                    <constraint firstItem="JEC-rf-DNZ" firstAttribute="centerY" secondItem="yqH-9e-ReQ" secondAttribute="centerY" id="Cr9-qT-43R"/>
                                     <constraint firstAttribute="height" constant="50" id="NaY-OP-L5A"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjN-Pl-zdR" customClass="UIScrollView">
                                 <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="n3e-28-PuM">
-                                        <rect key="frame" x="15" y="20" width="290" height="116"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="n3e-28-PuM">
+                                        <rect key="frame" x="15" y="20" width="570" height="100"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="750" constant="100" id="28C-BT-nbo"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXp-z8-Srh" userLabel="Terms Container">
-                                        <rect key="frame" x="0.0" y="144" width="320" height="80"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXp-z8-Srh" userLabel="Terms Container">
+                                        <rect key="frame" x="15" y="120" width="570" height="80"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnR-tq-nn8" userLabel="Checkbox">
-                                                <rect key="frame" x="9" y="18" width="44" height="45"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnR-tq-nn8" userLabel="Checkbox">
+                                                <rect key="frame" x="0.0" y="18" width="44" height="45"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="LqA-30-7KN"/>
+                                                    <constraint firstAttribute="height" constant="45" id="Wzi-3o-Dh2"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="checkbox_inactive.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -943,16 +956,16 @@
                                                     <action selector="pressedCheckboxButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="4oC-tb-PBy"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJ1-R8-SXR">
-                                                <rect key="frame" x="63" y="0.0" width="240" height="80"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SJ1-R8-SXR">
+                                                <rect key="frame" x="54" y="0.0" width="516" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
-                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpb-L2-sRw" userLabel="Text View Button">
-                                                <rect key="frame" x="53" y="0.0" width="260" height="80"/>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpb-L2-sRw" userLabel="Text View Button">
+                                                <rect key="frame" x="54" y="0.0" width="516" height="80"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal">
@@ -969,14 +982,37 @@
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="DnR-tq-nn8" firstAttribute="leading" secondItem="cXp-z8-Srh" secondAttribute="leading" id="4NI-eg-ZNl"/>
+                                            <constraint firstAttribute="bottom" secondItem="SJ1-R8-SXR" secondAttribute="bottom" id="5Hw-4Q-GwH"/>
+                                            <constraint firstItem="bpb-L2-sRw" firstAttribute="trailing" secondItem="SJ1-R8-SXR" secondAttribute="trailing" id="5zf-Ul-3c7"/>
+                                            <constraint firstItem="DnR-tq-nn8" firstAttribute="centerY" secondItem="cXp-z8-Srh" secondAttribute="centerY" id="Gen-J7-Gdi"/>
+                                            <constraint firstItem="SJ1-R8-SXR" firstAttribute="top" secondItem="cXp-z8-Srh" secondAttribute="top" id="HS0-3v-fql"/>
+                                            <constraint firstItem="bpb-L2-sRw" firstAttribute="bottom" secondItem="SJ1-R8-SXR" secondAttribute="bottom" id="JUA-pc-Fc2"/>
+                                            <constraint firstItem="bpb-L2-sRw" firstAttribute="top" secondItem="SJ1-R8-SXR" secondAttribute="top" id="Pki-k5-tOw"/>
+                                            <constraint firstItem="SJ1-R8-SXR" firstAttribute="leading" secondItem="DnR-tq-nn8" secondAttribute="trailing" constant="10" id="YVN-ts-YX6"/>
+                                            <constraint firstItem="bpb-L2-sRw" firstAttribute="leading" secondItem="SJ1-R8-SXR" secondAttribute="leading" id="Zgd-q5-x8j"/>
+                                            <constraint firstAttribute="trailing" secondItem="SJ1-R8-SXR" secondAttribute="trailing" id="n23-39-Tgf"/>
+                                            <constraint firstAttribute="height" priority="750" constant="80" id="uQa-rN-YQR"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="vzW-FJ-w0O"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="vzW-FJ-w0O"/>
+                                            </mask>
+                                        </variation>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2om-lL-kCW" userLabel="Terms Container">
-                                        <rect key="frame" x="0.0" y="232" width="320" height="80"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2om-lL-kCW" userLabel="Terms Container">
+                                        <rect key="frame" x="15" y="200" width="570" height="80"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeB-Eb-6FY" userLabel="Checkbox">
-                                                <rect key="frame" x="9" y="18" width="44" height="45"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeB-Eb-6FY" userLabel="Checkbox">
+                                                <rect key="frame" x="0.0" y="18" width="44" height="45"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="EEL-6n-6FP"/>
+                                                    <constraint firstAttribute="height" constant="45" id="Ofk-No-5Jm"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="checkbox_inactive.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -990,16 +1026,16 @@
                                                     <action selector="pressedCheckboxButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="Zh4-Xw-qKR"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hl-cM-FDp">
-                                                <rect key="frame" x="63" y="0.0" width="240" height="80"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Hl-cM-FDp">
+                                                <rect key="frame" x="54" y="0.0" width="516" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
-                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHp-FJ-teY" userLabel="Text View Button">
-                                                <rect key="frame" x="53" y="0.0" width="260" height="80"/>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHp-FJ-teY" userLabel="Text View Button">
+                                                <rect key="frame" x="54" y="0.0" width="516" height="80"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal">
@@ -1016,10 +1052,26 @@
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="5Hl-cM-FDp" firstAttribute="leading" secondItem="UeB-Eb-6FY" secondAttribute="trailing" constant="10" id="Bes-Gi-ffr"/>
+                                            <constraint firstAttribute="bottom" secondItem="5Hl-cM-FDp" secondAttribute="bottom" id="NCC-Jr-Cjr"/>
+                                            <constraint firstItem="UHp-FJ-teY" firstAttribute="leading" secondItem="5Hl-cM-FDp" secondAttribute="leading" id="V86-80-Wek"/>
+                                            <constraint firstAttribute="height" priority="750" constant="80" id="XP3-sG-PI7"/>
+                                            <constraint firstItem="UeB-Eb-6FY" firstAttribute="centerY" secondItem="2om-lL-kCW" secondAttribute="centerY" id="XhO-gs-J6d"/>
+                                            <constraint firstItem="UHp-FJ-teY" firstAttribute="top" secondItem="5Hl-cM-FDp" secondAttribute="top" id="ZGk-gh-hLA"/>
+                                            <constraint firstItem="UHp-FJ-teY" firstAttribute="bottom" secondItem="5Hl-cM-FDp" secondAttribute="bottom" id="aSR-ua-rPS"/>
+                                            <constraint firstItem="5Hl-cM-FDp" firstAttribute="top" secondItem="2om-lL-kCW" secondAttribute="top" id="iqq-fA-Xdx"/>
+                                            <constraint firstAttribute="trailing" secondItem="5Hl-cM-FDp" secondAttribute="trailing" id="k2T-rN-oib"/>
+                                            <constraint firstItem="UeB-Eb-6FY" firstAttribute="leading" secondItem="2om-lL-kCW" secondAttribute="leading" id="nMf-Vk-oni"/>
+                                            <constraint firstItem="UHp-FJ-teY" firstAttribute="trailing" secondItem="5Hl-cM-FDp" secondAttribute="trailing" id="zIu-7F-Mws"/>
+                                        </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-K8-gkg" userLabel="Decline Button" customClass="WMStandardButton">
-                                        <rect key="frame" x="10" y="324" width="100" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-K8-gkg" userLabel="Decline Button" customClass="WMStandardButton">
+                                        <rect key="frame" x="20" y="300" width="30" height="37"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="NY8-QW-bvE"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1032,9 +1084,12 @@
                                             <action selector="pressedDeclineButton:" destination="ZTH-tY-TDX" eventType="touchUpInside" id="97e-9f-fVb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A78-mf-EAG" userLabel="Accept Button" customClass="WMStandardButton">
-                                        <rect key="frame" x="210" y="324" width="100" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A78-mf-EAG" userLabel="Accept Button" customClass="WMStandardButton">
+                                        <rect key="frame" x="550" y="300" width="30" height="37"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="HfX-tl-hdI"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                         <state key="normal">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1050,6 +1105,33 @@
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cXp-z8-Srh" firstAttribute="trailing" secondItem="n3e-28-PuM" secondAttribute="trailing" id="3Ob-dv-NnY"/>
+                                    <constraint firstItem="1M1-K8-gkg" firstAttribute="leading" secondItem="jjN-Pl-zdR" secondAttribute="leading" constant="20" id="4zP-Bn-gQL"/>
+                                    <constraint firstAttribute="trailing" secondItem="cXp-z8-Srh" secondAttribute="trailing" constant="15" id="KCj-3s-p1x"/>
+                                    <constraint firstItem="cXp-z8-Srh" firstAttribute="leading" secondItem="n3e-28-PuM" secondAttribute="leading" id="Kl0-8V-PDs"/>
+                                    <constraint firstItem="2om-lL-kCW" firstAttribute="trailing" secondItem="n3e-28-PuM" secondAttribute="trailing" id="MLL-EP-yJE"/>
+                                    <constraint firstAttribute="trailing" secondItem="2om-lL-kCW" secondAttribute="trailing" constant="10" id="RQA-bo-EYD"/>
+                                    <constraint firstItem="2om-lL-kCW" firstAttribute="leading" secondItem="jjN-Pl-zdR" secondAttribute="leading" constant="10" id="S35-vA-jLE"/>
+                                    <constraint firstAttribute="trailing" secondItem="A78-mf-EAG" secondAttribute="trailing" constant="20" id="UbQ-Lq-CXE"/>
+                                    <constraint firstItem="2om-lL-kCW" firstAttribute="leading" secondItem="n3e-28-PuM" secondAttribute="leading" id="ain-KF-qtE"/>
+                                    <constraint firstItem="n3e-28-PuM" firstAttribute="leading" secondItem="jjN-Pl-zdR" secondAttribute="leading" constant="15" id="eP5-hv-7LP"/>
+                                    <constraint firstItem="cXp-z8-Srh" firstAttribute="top" secondItem="n3e-28-PuM" secondAttribute="bottom" id="fYj-eP-2cZ"/>
+                                    <constraint firstItem="2om-lL-kCW" firstAttribute="top" secondItem="cXp-z8-Srh" secondAttribute="bottom" id="nXK-a9-isr"/>
+                                    <constraint firstItem="n3e-28-PuM" firstAttribute="top" secondItem="jjN-Pl-zdR" secondAttribute="top" constant="20" id="odH-Mz-LeZ"/>
+                                    <constraint firstItem="A78-mf-EAG" firstAttribute="top" secondItem="2om-lL-kCW" secondAttribute="bottom" constant="20" id="rvp-gf-ee8"/>
+                                    <constraint firstAttribute="trailing" secondItem="n3e-28-PuM" secondAttribute="trailing" constant="15" id="u2g-I9-8hQ"/>
+                                    <constraint firstItem="1M1-K8-gkg" firstAttribute="top" secondItem="2om-lL-kCW" secondAttribute="bottom" constant="20" id="wLr-57-R69"/>
+                                    <constraint firstItem="cXp-z8-Srh" firstAttribute="leading" secondItem="jjN-Pl-zdR" secondAttribute="leading" constant="15" id="xYV-b8-J61"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KCj-3s-p1x"/>
+                                        <exclude reference="xYV-b8-J61"/>
+                                        <exclude reference="RQA-bo-EYD"/>
+                                        <exclude reference="S35-vA-jLE"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <animations/>
