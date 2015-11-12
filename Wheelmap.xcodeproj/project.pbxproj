@@ -183,6 +183,9 @@
 		8731F8191BF4FFA100BE7B9C /* UIView+RTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731F8181BF4FFA100BE7B9C /* UIView+RTL.m */; };
 		8731F81A1BF4FFA100BE7B9C /* UIView+RTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731F8181BF4FFA100BE7B9C /* UIView+RTL.m */; };
 		8731F81B1BF4FFA100BE7B9C /* UIView+RTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731F8181BF4FFA100BE7B9C /* UIView+RTL.m */; };
+		8731F81E1BF5023E00BE7B9C /* UIImage+RTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731F81D1BF5023E00BE7B9C /* UIImage+RTL.m */; };
+		8731F81F1BF5023E00BE7B9C /* UIImage+RTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731F81D1BF5023E00BE7B9C /* UIImage+RTL.m */; };
+		8731F8201BF5023E00BE7B9C /* UIImage+RTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8731F81D1BF5023E00BE7B9C /* UIImage+RTL.m */; };
 		8746D3401BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */; };
 		8746D3411BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */; };
 		8746D3421BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */; };
@@ -858,6 +861,8 @@
 		8731F8101BF4A03C00BE7B9C /* ic_search_lupe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_search_lupe@2x.png"; sourceTree = "<group>"; };
 		8731F8171BF4FFA100BE7B9C /* UIView+RTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RTL.h"; sourceTree = "<group>"; };
 		8731F8181BF4FFA100BE7B9C /* UIView+RTL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RTL.m"; sourceTree = "<group>"; };
+		8731F81C1BF5023E00BE7B9C /* UIImage+RTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RTL.h"; sourceTree = "<group>"; };
+		8731F81D1BF5023E00BE7B9C /* UIImage+RTL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RTL.m"; sourceTree = "<group>"; };
 		8746D3361BE3BFF100CBD474 /* WMEditPOICategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOICategoryViewController.h; sourceTree = "<group>"; };
 		8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOICategoryViewController.m; sourceTree = "<group>"; };
 		8746D3381BE3BFF100CBD474 /* WMEditPOICommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOICommentViewController.h; sourceTree = "<group>"; };
@@ -1269,6 +1274,8 @@
 				8774E4ED1BE0D15D00A3E7EA /* NSString+Distance.m */,
 				872FDDA31BDFEF6D00764FC5 /* UIColor+WMColor.h */,
 				872FDDA41BDFEF6D00764FC5 /* UIColor+WMColor.m */,
+				8731F81C1BF5023E00BE7B9C /* UIImage+RTL.h */,
+				8731F81D1BF5023E00BE7B9C /* UIImage+RTL.m */,
 				872FDDA71BDFEF6D00764FC5 /* UINavigationBar+customSize.h */,
 				872FDDA81BDFEF6D00764FC5 /* UINavigationBar+customSize.m */,
 				872FDDA91BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.h */,
@@ -2743,6 +2750,7 @@
 				878EC8DA1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB21BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
+				8731F81F1BF5023E00BE7B9C /* UIImage+RTL.m in Sources */,
 				872FDF231BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				8731F81A1BF4FFA100BE7B9C /* UIView+RTL.m in Sources */,
 				878EC9721BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
@@ -2823,6 +2831,7 @@
 				878EC8DB1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB31BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
+				8731F8201BF5023E00BE7B9C /* UIImage+RTL.m in Sources */,
 				872FDF241BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				8731F81B1BF4FFA100BE7B9C /* UIView+RTL.m in Sources */,
 				878EC9731BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
@@ -2903,6 +2912,7 @@
 				878EC8D91BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB11BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,
+				8731F81E1BF5023E00BE7B9C /* UIImage+RTL.m in Sources */,
 				872FDF221BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				8731F8191BF4FFA100BE7B9C /* UIView+RTL.m in Sources */,
 				878EC9711BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,

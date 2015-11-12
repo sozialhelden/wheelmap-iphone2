@@ -114,7 +114,11 @@
 #pragma mark - Helper
 
 - (void)updateViewContent {
-	[self.button setBackgroundImage:[self imageForStatus:self.statusString] forState:UIControlStateNormal];
+	UIImage *backgroundImage = [self imageForStatus:self.statusString];
+	if (self.button.isRightToLeftDirection == YES) {
+		backgroundImage = backgroundImage.rightToLeftMirrowedImage;
+	}
+	[self.button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
 	self.titleLabel.text = [self titleForStatus:self.statusString];
 }
 

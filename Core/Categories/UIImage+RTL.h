@@ -1,5 +1,5 @@
 //
-//  UIView+RTL.h
+//  UIImage+RTL.h
 //  Wheelmap
 //
 //  Created by Hans Seiffert on 12/11/15.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (RTL)
+@interface UIImage (RTL)
 
-- (BOOL)isRightToLeftDirection;
+- (UIImage *)rightToLeftMirrowedImage;
 
 @end

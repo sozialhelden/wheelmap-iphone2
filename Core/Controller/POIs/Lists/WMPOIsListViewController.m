@@ -314,7 +314,7 @@
 
 	UIImage *markerImage = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
 	if (cell.markerImageView.isRightToLeftDirection == YES) {
-		markerImage = [UIImage imageWithCGImage:markerImage.CGImage scale:1.0 orientation:UIImageOrientationUpMirrored];
+		markerImage = markerImage.rightToLeftMirrowedImage;
 	}
 	cell.markerImageView.image = markerImage;
 

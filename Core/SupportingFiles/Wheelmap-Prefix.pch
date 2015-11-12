@@ -32,6 +32,7 @@
 	#import "UIView+Geometry.h"
 	#import "NSError+Wheelmap.h"
 	#import "UIView+RTL.h"
+	#import "UIImage+RTL.h"
 
 	// Database
 	#import "WMCategory+Helper.h"
