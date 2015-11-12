@@ -19,6 +19,33 @@
 
 @interface WMDashboardViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *					logoImageView;
+
+@property (nonatomic, strong) IBOutlet UIImageView *				searchTextFieldBg;
+@property (nonatomic, strong) IBOutlet UITextField *				searchTextField;
+
+@property (weak, nonatomic) IBOutlet UIView *						nearbyButtonView;
+@property (weak, nonatomic) IBOutlet UILabel *						nearbyButtonTitleLabel;
+@property (weak, nonatomic) IBOutlet UIView *						mapButtonView;
+@property (weak, nonatomic) IBOutlet UILabel *						mapButtonTitleLabel;
+@property (weak, nonatomic) IBOutlet UIView *						categoryButtonView;
+@property (weak, nonatomic) IBOutlet UILabel *						categoriesButtonTitleLabel;
+@property (weak, nonatomic) IBOutlet UIView *						contributeButtonView;
+@property (weak, nonatomic) IBOutlet UILabel *						contributeButtonTitleLabel;
+
+@property (weak, nonatomic) IBOutlet WMButton *						cancelSearchButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *			cancelSearchButtonTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *			cancelSearchButtonWidthConstraint;
+
+@property (nonatomic, strong) IBOutlet UIButton *					creditsButton;
+@property (nonatomic, strong) IBOutlet UIButton *					loginButton;
+
+@property (nonatomic, strong) IBOutlet UILabel *					numberOfPlacesLabel;
+
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView	*	loadingWheel;
+
+@property (nonatomic) BOOL											didLayoutSubviews;
+
 @end
 
 @implementation WMDashboardViewController
@@ -34,70 +61,16 @@
     [self.navigationController setToolbarHidden:YES animated:NO];
     
     self.navigationController.hidesBottomBarWhenPushed = YES;
-    self.containerView.backgroundColor = [UIColor wmBlueColor];
-    
+
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
-    self.nearbyButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeNearby];
-    [self.nearbyButton addTarget:self action:@selector(pressedNodeListButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.mapButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 130.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeMap];
-    [self.mapButton addTarget:self action:@selector(pressedMapButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.categoriesButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(20.0f, 273.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeCategories];
-    [self.categoriesButton addTarget:self action:@selector(pressedCategoriesButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.helpButton = [[WMDashboardButton alloc] initWithFrame:CGRectMake(170.0f, 273.0f, 130.0f, 121.0f) andType:WMDashboardButtonTypeHelp];
-    [self.helpButton addTarget:self action:@selector(pressedContributeButton:) forControlEvents:UIControlEventTouchUpInside];
-    
     self.searchTextField.delegate = self;
-    self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.searchTextFieldBg.image = [self.searchTextFieldBg.image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, K_NAVIGATION_BAR_HEIGHT)];
-    searchTextFieldOriginalWidth = self.searchTextField.frame.size.width;
-    searchTextFieldBgOriginalWidth = self.searchTextFieldBg.frame.size.width;
-    
-    [self.containerView addSubview:self.nearbyButton];
-    [self.containerView addSubview:self.mapButton];
-    [self.containerView addSubview:self.categoriesButton];
-    [self.containerView addSubview:self.helpButton];
-    
     self.searchTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
     self.numberOfPlacesLabel.text = @"";
-    self.numberOfPlacesLabel.alpha = 0.0;
-    self.numberOfPlacesLabel.adjustsFontSizeToFitWidth = YES;
     [dataManager fetchTotalNodeCount];
-    
-    // search cancel button
-    UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    normalBtnLabel.fontSize = 13.0;
-    normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
-    normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-    normalBtnLabel.textColor = [UIColor whiteColor];
-    CGSize expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                    attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                                       context:nil].size;
-    if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-    normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-    normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 40);
-    normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-    [normalBtnImg addSubview:normalBtnLabel];
-    searchCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
-    searchCancelButton.frame = CGRectMake(self.searchTextFieldBg.topRightX, self.searchTextFieldBg.frame.origin.y, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-    searchCancelButton.backgroundColor = [UIColor clearColor];
-    [searchCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
-    searchCancelButton.hidden = YES;
-    [searchCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.containerView addSubview:searchCancelButton];
-    
-    self.nearbyButton.alpha = 0.0;
-    self.mapButton.alpha = 0.0;
-    self.categoriesButton.alpha = 0.0;
-    self.helpButton.alpha = 0.0;
-    self.searchTextFieldBg.alpha = 0.0;
-    self.searchTextField.alpha = 0.0;
-    self.numberOfPlacesLabel.alpha = 0.0;
-    self.creditsButton.alpha = 0.0;
-    self.loginButton.alpha = 0.0;
+
+	[self.cancelSearchButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
 
 	if (WMWheelmapAPI.isStagingBackend == YES) {
 		self.logoImageView.image = [UIImage imageNamed:@"start_logo_staging.png"];
@@ -110,12 +83,13 @@
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-    
+
+	[self hideAllViews];
+
     [self showUIObjectsAnimated:YES];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     // this will update screen
@@ -128,65 +102,71 @@
     }
 }
 
+- (void)viewDidLayoutSubviews {
+	if (self.didLayoutSubviews == NO) {
+		self.didLayoutSubviews = YES;
+
+		// Init cancel button width and adjust it's position to the base hidden position.
+		[self.cancelSearchButton layoutIfNeeded];
+		self.cancelSearchButtonWidthConstraint.constant = self.cancelSearchButton.titleLabel.bounds.size.width;
+		[self.cancelSearchButton layoutIfNeeded];
+		[self hideCancelButton];
+	}
+}
+
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
--(void)pressedSearchCancelButton:(WMButton*)btn
-{
-    // dismiss the keyboard
-    self.searchTextField.text = nil;
-    [self hideCancelButton];
-    [self.searchTextField resignFirstResponder];
-    
+#pragma mark
+
+- (void)initButtons {
+	self.nearbyButtonTitleLabel.text = L(@"DashboardNearby");
+	self.mapButtonTitleLabel.text = L(@"DashboardMap");
+	self.categoriesButtonTitleLabel.text = L(@"DashboardCategories");
+	self.contributeButtonTitleLabel.text = L(@"DashboardHelp");
 }
 
--(IBAction)pressedNodeListButton:(id)sender
-{
-    // set the filters here
-    //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    //[navCtrl clearWheelChairFilterStatus];
-    //[navCtrl clearCategoryFilterStatus];
-    [self pressedSearchCancelButton:searchCancelButton];
+#pragma mark - IBActions
+
+- (IBAction)pressedCancelSearchButton:(id)sender {
+	self.searchTextField.text = nil;
+	[self hideCancelButton];
+	[self.searchTextField resignFirstResponder];
+}
+
+- (IBAction)pressedNearbyButton:(id)sender {
+    [self pressedCancelSearchButton:self.cancelSearchButton];
 	[(WMNavigationControllerBase *)self.navigationController setListViewControllerToNormal];
     [(WMNavigationControllerBase *)self.navigationController pushList];
     
 }
 
--(IBAction)pressedMapButton:(id)sender
-{
-    // set the filters here
-    //WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
-    //[navCtrl clearWheelChairFilterStatus];
-    //[navCtrl clearCategoryFilterStatus];
-    
-    [self pressedSearchCancelButton:searchCancelButton];
+- (IBAction)pressedMapButton:(id)sender {
+    [self pressedCancelSearchButton:self.cancelSearchButton];
     [(WMNavigationControllerBase *)self.navigationController setMapControllerToNormal];
     [(WMNavigationControllerBase *)self.navigationController pushMap];
 }
 
--(IBAction)pressedContributeButton:(id)sender {
-    //
+- (IBAction)pressedContributeButton:(id)sender {
     // we filter unknown nodes not using global filter setting!
     
     WMPOIsListViewController* nodeListVC = [UIStoryboard instantiatedPOIsListViewController];
     nodeListVC.useCase = kWMPOIsListViewControllerUseCaseContribute;
     [(WMNavigationControllerBase *)self.navigationController setMapControllerToContribute];
     [self.navigationController pushViewController:nodeListVC animated:YES];
-    [self pressedSearchCancelButton:searchCancelButton];
+    [self pressedCancelSearchButton:self.cancelSearchButton];
 }
 
--(IBAction)pressedCategoriesButton:(id)sender
-{
+- (IBAction)pressedCategoriesButton:(id)sender {
     WMCategoriesListViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMCategoriesListViewController"];
     vc.baseController = self.navigationController;
     
     [self.navigationController pushViewController:vc animated:YES];
-    [self pressedSearchCancelButton:searchCancelButton];
+    [self pressedCancelSearchButton:self.cancelSearchButton];
 }
 
--(IBAction)pressedLoginButton:(id)sender
-{
+- (IBAction)pressedLoginButton:(id)sender {
     WMViewController* vc;
     if (!dataManager.userIsAuthenticated) {
         vc = [UIStoryboard instantiatedOSMOnboardingViewController];
@@ -195,16 +175,15 @@
     }
     
     [self.navigationController presentViewController:vc animated:YES completion:nil];
-    
 }
 
 #pragma mark - Search text field delegates
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     [self showCancelButton];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
     [self hideCancelButton];
@@ -223,50 +202,26 @@
 }
 
 #pragma mark - Search Cancel Button animation
--(void)showCancelButton
-{
-    searchCancelButton.alpha = 0.0;
-    searchCancelButton.hidden = NO;
-    [UIView animateWithDuration:0.3
-                          delay:0.0 options:UIViewAnimationOptionCurveEaseOut
-                     animations:^(void)
-     {
-         self.searchTextField.frame = CGRectMake(self.searchTextField.frame.origin.x, self.searchTextField.frame.origin.y, searchTextFieldOriginalWidth-searchCancelButton.frame.size.width-5, self.searchTextField.frame.size.height);
-         self.searchTextFieldBg.frame = CGRectMake(self.searchTextFieldBg.frame.origin.x, self.searchTextFieldBg.frame.origin.y, searchTextFieldBgOriginalWidth-searchCancelButton.frame.size.width-5, self.searchTextFieldBg.frame.size.height);
-         
-         searchCancelButton.transform = CGAffineTransformMakeTranslation(-searchCancelButton.frame.size.width, 0);
-         searchCancelButton.alpha = 1.0;
-         
-     }
-                     completion:^(BOOL finished)
-     {
-         
-         
-     }];
-    
+
+- (void)showCancelButton {
+	self.cancelSearchButtonTrailingConstraint.constant = 20;
+
+	[UIView animateWithDuration:0.3
+						  delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+					 animations:^(void) {
+						 [self.view layoutIfNeeded];
+					 } completion:nil];
+
 }
 
--(void)hideCancelButton
-{
-    searchCancelButton.alpha = 1.0;
-    searchCancelButton.hidden = NO;
+- (void)hideCancelButton {
+	self.cancelSearchButtonTrailingConstraint.constant = -self.cancelSearchButton.frameWidth;
+
     [UIView animateWithDuration:0.3
                           delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                     animations:^(void)
-     {
-         self.searchTextField.frame = CGRectMake(self.searchTextField.frame.origin.x, self.searchTextField.frame.origin.y, searchTextFieldOriginalWidth, self.searchTextField.frame.size.height);
-         self.searchTextFieldBg.frame = CGRectMake(self.searchTextFieldBg.frame.origin.x, self.searchTextFieldBg.frame.origin.y, searchTextFieldBgOriginalWidth, self.searchTextFieldBg.frame.size.height);
-         
-         searchCancelButton.transform = CGAffineTransformMakeTranslation(0, 0);
-         searchCancelButton.alpha = 0.0;
-         
-     }
-                     completion:^(BOOL finished)
-     {
-         searchCancelButton.hidden = YES;
-         
-     }];
-    
+                     animations:^(void) {
+						 [self.view layoutIfNeeded];
+					 } completion:nil];
 }
 
 #pragma mark - WMDataManager Delegate
@@ -279,16 +234,9 @@
     self.numberOfPlacesLabel.text = [NSString stringWithFormat:@"%@ %@", formattedCount, NSLocalizedString(@"Places", nil)];
     [UIView animateWithDuration:0.5
                           delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                     animations:^(void)
-     {
+                     animations:^(void) {
          self.numberOfPlacesLabel.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         
-         
-     }];
-    
+     } completion:nil];
 }
 
 - (void)dataManager:(WMDataManager *)aDataManager fetchTotalNodeCountFailedWithError:(NSError *)error {
@@ -304,61 +252,65 @@
     
     [UIView animateWithDuration:0.5
                           delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                     animations:^(void)
-     {
+                     animations:^(void) {
          self.numberOfPlacesLabel.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         
-         
-     }];
-    
+     } completion:nil];
 }
 
--(void)showUIObjectsAnimated:(BOOL)animated
-{
+- (void)hideAllViews {
+	self.numberOfPlacesLabel.alpha = 0.0;
+	self.nearbyButtonView.alpha = 0.0;
+	self.mapButtonView.alpha = 0.0;
+	self.categoryButtonView.alpha = 0.0;
+	self.contributeButtonView.alpha = 0.0;
+	self.searchTextFieldBg.alpha = 0.0;
+	self.searchTextField.alpha = 0.0;
+	self.cancelSearchButton.alpha = 0.0;
+	self.numberOfPlacesLabel.alpha = 0.0;
+	self.creditsButton.alpha = 0.0;
+	self.loginButton.alpha = 0.0;
+}
+
+- (void)showAllViews {
+	self.nearbyButtonView.alpha = 1.0;
+	self.mapButtonView.alpha = 1.0;
+	self.categoryButtonView.alpha = 1.0;
+	self.contributeButtonView.alpha = 1.0;
+	self.searchTextFieldBg.alpha = 1.0;
+	self.searchTextField.alpha = 1.0;
+	self.cancelSearchButton.alpha = 1.0;
+	self.numberOfPlacesLabel.alpha = 1.0;
+	self.creditsButton.alpha = 1.0;
+	self.loginButton.alpha = 1.0;
+}
+
+- (void)showUIObjectsAnimated:(BOOL)animated {
     if (isUIObjectsReadyToInteract)
         return;
     
     CGFloat duration = 0.0;
-    if (animated)
+	if (animated) {
         duration = 0.5;
+	}
     
     [self.loadingWheel stopAnimating];
     
     [UIView animateWithDuration:duration
                           delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                     animations:^(void)
-     {
-         self.nearbyButton.alpha = 1.0;
-         self.mapButton.alpha = 1.0;
-         self.categoriesButton.alpha = 1.0;
-         self.helpButton.alpha = 1.0;
-         self.searchTextFieldBg.alpha = 1.0;
-         self.searchTextField.alpha = 1.0;
-         self.numberOfPlacesLabel.alpha = 1.0;
-         self.creditsButton.alpha = 1.0;
-         self.loginButton.alpha = 1.0;
-         
-         
-     }
-                     completion:^(BOOL finished)
-     {
-         isUIObjectsReadyToInteract = YES;
-         
-         
-     }];
+                     animations:^(void) {
+						 [self showAllViews];
+					 } completion:^(BOOL finished) {
+						 isUIObjectsReadyToInteract = YES;
+					 }];
     
 }
 
 #pragma mark - Network Status Changes
--(void)networkStatusChanged:(NSNotification*)notice
-{
+
+- (void)networkStatusChanged:(NSNotification*)notice {
     NetworkStatus networkStatus = [[dataManager internetReachble] currentReachabilityStatus];
     
-    switch (networkStatus)
-    {
+    switch (networkStatus) {
         case NotReachable:
             
             self.searchTextField.placeholder = NSLocalizedString(@"NoSearchService", nil);

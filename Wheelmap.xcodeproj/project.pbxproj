@@ -168,6 +168,18 @@
 		872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
 		872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
 		872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */; };
+		8731F8091BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8071BF4A01900BE7B9C /* start_searchbar_bg.png */; };
+		8731F80A1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8071BF4A01900BE7B9C /* start_searchbar_bg.png */; };
+		8731F80B1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8071BF4A01900BE7B9C /* start_searchbar_bg.png */; };
+		8731F80C1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8081BF4A01900BE7B9C /* start_searchbar_bg@2x.png */; };
+		8731F80D1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8081BF4A01900BE7B9C /* start_searchbar_bg@2x.png */; };
+		8731F80E1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8081BF4A01900BE7B9C /* start_searchbar_bg@2x.png */; };
+		8731F8111BF4A03C00BE7B9C /* ic_search_lupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F80F1BF4A03C00BE7B9C /* ic_search_lupe.png */; };
+		8731F8121BF4A03C00BE7B9C /* ic_search_lupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F80F1BF4A03C00BE7B9C /* ic_search_lupe.png */; };
+		8731F8131BF4A03C00BE7B9C /* ic_search_lupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F80F1BF4A03C00BE7B9C /* ic_search_lupe.png */; };
+		8731F8141BF4A03C00BE7B9C /* ic_search_lupe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8101BF4A03C00BE7B9C /* ic_search_lupe@2x.png */; };
+		8731F8151BF4A03C00BE7B9C /* ic_search_lupe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8101BF4A03C00BE7B9C /* ic_search_lupe@2x.png */; };
+		8731F8161BF4A03C00BE7B9C /* ic_search_lupe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8731F8101BF4A03C00BE7B9C /* ic_search_lupe@2x.png */; };
 		8746D3401BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */; };
 		8746D3411BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */; };
 		8746D3421BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */; };
@@ -255,12 +267,6 @@
 		8774E5B91BE0D93800A3E7EA /* start_logo_staging@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5071BE0D93800A3E7EA /* start_logo_staging@2x.png */; };
 		8774E5BA1BE0D93800A3E7EA /* start_logo_staging@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5071BE0D93800A3E7EA /* start_logo_staging@2x.png */; };
 		8774E5BB1BE0D93800A3E7EA /* start_logo_staging@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5071BE0D93800A3E7EA /* start_logo_staging@2x.png */; };
-		8774E5BC1BE0D93800A3E7EA /* start_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5081BE0D93800A3E7EA /* start_searchbar.png */; };
-		8774E5BD1BE0D93800A3E7EA /* start_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5081BE0D93800A3E7EA /* start_searchbar.png */; };
-		8774E5BE1BE0D93800A3E7EA /* start_searchbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5081BE0D93800A3E7EA /* start_searchbar.png */; };
-		8774E5BF1BE0D93800A3E7EA /* start_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5091BE0D93800A3E7EA /* start_searchbar@2x.png */; };
-		8774E5C01BE0D93800A3E7EA /* start_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5091BE0D93800A3E7EA /* start_searchbar@2x.png */; };
-		8774E5C11BE0D93800A3E7EA /* start_searchbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E5091BE0D93800A3E7EA /* start_searchbar@2x.png */; };
 		8774E5C21BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E50B1BE0D93800A3E7EA /* buttons_back-btn@2x.png */; };
 		8774E5C31BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E50B1BE0D93800A3E7EA /* buttons_back-btn@2x.png */; };
 		8774E5C41BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8774E50B1BE0D93800A3E7EA /* buttons_back-btn@2x.png */; };
@@ -657,9 +663,6 @@
 		878EC9171BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9161BE0F8380099EDD1 /* WMIPadRootViewController.m */; };
 		878EC9181BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9161BE0F8380099EDD1 /* WMIPadRootViewController.m */; };
 		878EC9191BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9161BE0F8380099EDD1 /* WMIPadRootViewController.m */; };
-		878EC9441BE0F9200099EDD1 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC91D1BE0F9200099EDD1 /* WMDashboardButton.m */; };
-		878EC9451BE0F9200099EDD1 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC91D1BE0F9200099EDD1 /* WMDashboardButton.m */; };
-		878EC9461BE0F9200099EDD1 /* WMDashboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC91D1BE0F9200099EDD1 /* WMDashboardButton.m */; };
 		878EC9471BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9201BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m */; };
 		878EC9481BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9201BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m */; };
 		878EC9491BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9201BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m */; };
@@ -846,6 +849,10 @@
 		872FDF271BDFEFAA00764FC5 /* WMKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMKeychainWrapper.h; sourceTree = "<group>"; };
 		872FDF281BDFEFAA00764FC5 /* WMKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMKeychainWrapper.m; sourceTree = "<group>"; };
 		872FDF2A1BDFEFAA00764FC5 /* WMResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMResourceManager.m; sourceTree = "<group>"; };
+		8731F8071BF4A01900BE7B9C /* start_searchbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_searchbar_bg.png; sourceTree = "<group>"; };
+		8731F8081BF4A01900BE7B9C /* start_searchbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_searchbar_bg@2x.png"; sourceTree = "<group>"; };
+		8731F80F1BF4A03C00BE7B9C /* ic_search_lupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_search_lupe.png; sourceTree = "<group>"; };
+		8731F8101BF4A03C00BE7B9C /* ic_search_lupe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_search_lupe@2x.png"; sourceTree = "<group>"; };
 		8746D3361BE3BFF100CBD474 /* WMEditPOICategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOICategoryViewController.h; sourceTree = "<group>"; };
 		8746D3371BE3BFF100CBD474 /* WMEditPOICategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOICategoryViewController.m; sourceTree = "<group>"; };
 		8746D3381BE3BFF100CBD474 /* WMEditPOICommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOICommentViewController.h; sourceTree = "<group>"; };
@@ -885,8 +892,6 @@
 		8774E5051BE0D93800A3E7EA /* start_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_logo@2x.png"; sourceTree = "<group>"; };
 		8774E5061BE0D93800A3E7EA /* start_logo_staging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_logo_staging.png; sourceTree = "<group>"; };
 		8774E5071BE0D93800A3E7EA /* start_logo_staging@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_logo_staging@2x.png"; sourceTree = "<group>"; };
-		8774E5081BE0D93800A3E7EA /* start_searchbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_searchbar.png; sourceTree = "<group>"; };
-		8774E5091BE0D93800A3E7EA /* start_searchbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_searchbar@2x.png"; sourceTree = "<group>"; };
 		8774E50B1BE0D93800A3E7EA /* buttons_back-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttons_back-btn@2x.png"; sourceTree = "<group>"; };
 		8774E50C1BE0D93800A3E7EA /* ipad_buttons_credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_buttons_credits.png; sourceTree = "<group>"; };
 		8774E50D1BE0D93800A3E7EA /* ipad_buttons_credits@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad_buttons_credits@2x.png"; sourceTree = "<group>"; };
@@ -1039,8 +1044,6 @@
 		878EC8C61BE0F7960099EDD1 /* WMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
 		878EC9151BE0F8380099EDD1 /* WMIPadRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMIPadRootViewController.h; sourceTree = "<group>"; };
 		878EC9161BE0F8380099EDD1 /* WMIPadRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMIPadRootViewController.m; sourceTree = "<group>"; };
-		878EC91C1BE0F9200099EDD1 /* WMDashboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDashboardButton.h; sourceTree = "<group>"; };
-		878EC91D1BE0F9200099EDD1 /* WMDashboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDashboardButton.m; sourceTree = "<group>"; };
 		878EC91F1BE0F9200099EDD1 /* WMCategoryFilterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryFilterPopoverView.h; sourceTree = "<group>"; };
 		878EC9201BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCategoryFilterPopoverView.m; sourceTree = "<group>"; };
 		878EC9211BE0F9200099EDD1 /* WMCategoryFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCategoryFilterTableViewCell.h; sourceTree = "<group>"; };
@@ -1496,8 +1499,10 @@
 				8774E5051BE0D93800A3E7EA /* start_logo@2x.png */,
 				8774E5061BE0D93800A3E7EA /* start_logo_staging.png */,
 				8774E5071BE0D93800A3E7EA /* start_logo_staging@2x.png */,
-				8774E5081BE0D93800A3E7EA /* start_searchbar.png */,
-				8774E5091BE0D93800A3E7EA /* start_searchbar@2x.png */,
+				8731F80F1BF4A03C00BE7B9C /* ic_search_lupe.png */,
+				8731F8101BF4A03C00BE7B9C /* ic_search_lupe@2x.png */,
+				8731F8071BF4A01900BE7B9C /* start_searchbar_bg.png */,
+				8731F8081BF4A01900BE7B9C /* start_searchbar_bg@2x.png */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1784,8 +1789,6 @@
 		878EC91B1BE0F9200099EDD1 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				878EC91C1BE0F9200099EDD1 /* WMDashboardButton.h */,
-				878EC91D1BE0F9200099EDD1 /* WMDashboardButton.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2081,6 +2084,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8774E63E1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
+				8731F80A1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */,
 				8774E6381BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E6891BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
 				87FFF27B1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
@@ -2098,6 +2102,7 @@
 				8774E6C51BE0D93800A3E7EA /* toolbar_category-popup.png in Resources */,
 				8774E67D1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65C1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
+				8731F8121BF4A03C00BE7B9C /* ic_search_lupe.png in Resources */,
 				8774E66E1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
 				872FDD981BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CB1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
@@ -2152,7 +2157,6 @@
 				872FDD5B1BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib in Resources */,
 				8774E5DB1BE0D93800A3E7EA /* details-expand-map.png in Resources */,
 				8774E6D71BE0D93800A3E7EA /* toolbar_indicator-orange.png in Resources */,
-				8774E5BD1BE0D93800A3E7EA /* start_searchbar.png in Resources */,
 				8774E5C61BE0D93800A3E7EA /* ipad_buttons_credits.png in Resources */,
 				8774E6591BE0D93800A3E7EA /* textfield_-share@2x.png in Resources */,
 				8774E5FF1BE0D93800A3E7EA /* details_btn-status-unknown.png in Resources */,
@@ -2193,10 +2197,10 @@
 				8774E68C1BE0D93800A3E7EA /* Social_btn-facebook@2x.png in Resources */,
 				8774E65F1BE0D93800A3E7EA /* buttons_btn-signup@2x.png in Resources */,
 				8774E7011BE0D93800A3E7EA /* toolbar_statusfilter-unknown.png in Resources */,
-				8774E5C01BE0D93800A3E7EA /* start_searchbar@2x.png in Resources */,
 				8774E6E61BE0D93800A3E7EA /* toolbar_statusfilter-limited-active@2x.png in Resources */,
 				8774E5961BE0D93800A3E7EA /* credits_verein@2x.png in Resources */,
 				8774E5C91BE0D93800A3E7EA /* ipad_buttons_credits@2x.png in Resources */,
+				8731F8151BF4A03C00BE7B9C /* ic_search_lupe@2x.png in Resources */,
 				8774E6C81BE0D93800A3E7EA /* toolbar_category-popup@2x.png in Resources */,
 				872FDD9B1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */,
 				8774E6E31BE0D93800A3E7EA /* toolbar_statusfilter-limited-active.png in Resources */,
@@ -2212,6 +2216,7 @@
 				8774E61A1BE0D93800A3E7EA /* details_label-checked@2x.png in Resources */,
 				8774E5C31BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */,
 				8774E6741BE0D93800A3E7EA /* marker_yes@2x.png in Resources */,
+				8731F80D1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */,
 				8774E6B01BE0D93800A3E7EA /* ipad_buttons_login@2x.png in Resources */,
 				8774E69B1BE0D93800A3E7EA /* checkbox_active.png in Resources */,
 				8774E6411BE0D93800A3E7EA /* more-buttons_route-deactive@2x.png in Resources */,
@@ -2235,6 +2240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8774E63F1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
+				8731F80B1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */,
 				8774E6391BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E68A1BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
 				87FFF27C1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
@@ -2252,6 +2258,7 @@
 				8774E6C61BE0D93800A3E7EA /* toolbar_category-popup.png in Resources */,
 				8774E67E1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65D1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
+				8731F8131BF4A03C00BE7B9C /* ic_search_lupe.png in Resources */,
 				8774E66F1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
 				872FDD991BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CC1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
@@ -2306,7 +2313,6 @@
 				872FDD5C1BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib in Resources */,
 				8774E5DC1BE0D93800A3E7EA /* details-expand-map.png in Resources */,
 				8774E6D81BE0D93800A3E7EA /* toolbar_indicator-orange.png in Resources */,
-				8774E5BE1BE0D93800A3E7EA /* start_searchbar.png in Resources */,
 				8774E5C71BE0D93800A3E7EA /* ipad_buttons_credits.png in Resources */,
 				8774E65A1BE0D93800A3E7EA /* textfield_-share@2x.png in Resources */,
 				8774E6001BE0D93800A3E7EA /* details_btn-status-unknown.png in Resources */,
@@ -2346,11 +2352,11 @@
 				8774E68D1BE0D93800A3E7EA /* Social_btn-facebook@2x.png in Resources */,
 				8774E6601BE0D93800A3E7EA /* buttons_btn-signup@2x.png in Resources */,
 				8774E7021BE0D93800A3E7EA /* toolbar_statusfilter-unknown.png in Resources */,
-				8774E5C11BE0D93800A3E7EA /* start_searchbar@2x.png in Resources */,
 				8774E6E71BE0D93800A3E7EA /* toolbar_statusfilter-limited-active@2x.png in Resources */,
 				8774E5971BE0D93800A3E7EA /* credits_verein@2x.png in Resources */,
 				8774E5CA1BE0D93800A3E7EA /* ipad_buttons_credits@2x.png in Resources */,
 				8774E6C91BE0D93800A3E7EA /* toolbar_category-popup@2x.png in Resources */,
+				8731F8161BF4A03C00BE7B9C /* ic_search_lupe@2x.png in Resources */,
 				872FDD9C1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */,
 				8774E6E41BE0D93800A3E7EA /* toolbar_statusfilter-limited-active.png in Resources */,
 				8774E5881BE0D93800A3E7EA /* credits_bmas.png in Resources */,
@@ -2366,6 +2372,7 @@
 				8774E61B1BE0D93800A3E7EA /* details_label-checked@2x.png in Resources */,
 				8774E5C41BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */,
 				8774E6751BE0D93800A3E7EA /* marker_yes@2x.png in Resources */,
+				8731F80E1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */,
 				8774E6B11BE0D93800A3E7EA /* ipad_buttons_login@2x.png in Resources */,
 				8774E69C1BE0D93800A3E7EA /* checkbox_active.png in Resources */,
 				8774E6421BE0D93800A3E7EA /* more-buttons_route-deactive@2x.png in Resources */,
@@ -2389,6 +2396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8774E63D1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
+				8731F8091BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */,
 				8774E6371BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E6881BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
 				87FFF27A1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
@@ -2406,6 +2414,7 @@
 				8774E6C41BE0D93800A3E7EA /* toolbar_category-popup.png in Resources */,
 				8774E67C1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65B1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
+				8731F8111BF4A03C00BE7B9C /* ic_search_lupe.png in Resources */,
 				8774E66D1BE0D93800A3E7EA /* marker_position@2x.png in Resources */,
 				872FDD971BDFE3FB00764FC5 /* POI.storyboard in Resources */,
 				8774E6CA1BE0D93800A3E7EA /* toolbar_indicator-green.png in Resources */,
@@ -2460,7 +2469,6 @@
 				872FDD5A1BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib in Resources */,
 				8774E5DA1BE0D93800A3E7EA /* details-expand-map.png in Resources */,
 				8774E6D61BE0D93800A3E7EA /* toolbar_indicator-orange.png in Resources */,
-				8774E5BC1BE0D93800A3E7EA /* start_searchbar.png in Resources */,
 				8774E5C51BE0D93800A3E7EA /* ipad_buttons_credits.png in Resources */,
 				8774E6581BE0D93800A3E7EA /* textfield_-share@2x.png in Resources */,
 				8774E5FE1BE0D93800A3E7EA /* details_btn-status-unknown.png in Resources */,
@@ -2501,10 +2509,10 @@
 				8774E68B1BE0D93800A3E7EA /* Social_btn-facebook@2x.png in Resources */,
 				8774E65E1BE0D93800A3E7EA /* buttons_btn-signup@2x.png in Resources */,
 				8774E7001BE0D93800A3E7EA /* toolbar_statusfilter-unknown.png in Resources */,
-				8774E5BF1BE0D93800A3E7EA /* start_searchbar@2x.png in Resources */,
 				8774E6E51BE0D93800A3E7EA /* toolbar_statusfilter-limited-active@2x.png in Resources */,
 				8774E5951BE0D93800A3E7EA /* credits_verein@2x.png in Resources */,
 				8774E5C81BE0D93800A3E7EA /* ipad_buttons_credits@2x.png in Resources */,
+				8731F8141BF4A03C00BE7B9C /* ic_search_lupe@2x.png in Resources */,
 				8774E6C71BE0D93800A3E7EA /* toolbar_category-popup@2x.png in Resources */,
 				872FDD9A1BDFE3FB00764FC5 /* Main-iPad.storyboard in Resources */,
 				8774E6E21BE0D93800A3E7EA /* toolbar_statusfilter-limited-active.png in Resources */,
@@ -2520,6 +2528,7 @@
 				8774E6191BE0D93800A3E7EA /* details_label-checked@2x.png in Resources */,
 				8774E5C21BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */,
 				8774E6731BE0D93800A3E7EA /* marker_yes@2x.png in Resources */,
+				8731F80C1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */,
 				8774E6AF1BE0D93800A3E7EA /* ipad_buttons_login@2x.png in Resources */,
 				8774E69A1BE0D93800A3E7EA /* checkbox_active.png in Resources */,
 				8774E6401BE0D93800A3E7EA /* more-buttons_route-deactive@2x.png in Resources */,
@@ -2701,7 +2710,6 @@
 				8746D3441BE3BFF100CBD474 /* WMEditPOICommentViewController.m in Sources */,
 				872FDE461BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDF061BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				878EC9451BE0F9200099EDD1 /* WMDashboardButton.m in Sources */,
 				8746D34D1BE3BFF100CBD474 /* WMEditPOIViewController.m in Sources */,
 				872FDF321BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				878EC8E61BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
@@ -2781,7 +2789,6 @@
 				8746D3451BE3BFF100CBD474 /* WMEditPOICommentViewController.m in Sources */,
 				872FDE471BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDF071BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				878EC9461BE0F9200099EDD1 /* WMDashboardButton.m in Sources */,
 				8746D34E1BE3BFF100CBD474 /* WMEditPOIViewController.m in Sources */,
 				872FDF331BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				878EC8E71BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
@@ -2861,7 +2868,6 @@
 				8746D3431BE3BFF100CBD474 /* WMEditPOICommentViewController.m in Sources */,
 				872FDE451BDFEF6D00764FC5 /* UIStoryboard+Wheelmap.m in Sources */,
 				872FDF051BDFEF6D00764FC5 /* WMAppDelegate.m in Sources */,
-				878EC9441BE0F9200099EDD1 /* WMDashboardButton.m in Sources */,
 				8746D34C1BE3BFF100CBD474 /* WMEditPOIViewController.m in Sources */,
 				872FDF311BDFEFAA00764FC5 /* WMResourceManager.m in Sources */,
 				878EC8E51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
