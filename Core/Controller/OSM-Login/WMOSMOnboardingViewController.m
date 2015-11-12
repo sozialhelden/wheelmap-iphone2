@@ -15,25 +15,24 @@
 #import "WMOSMLoginViewController.h"
 #import "WMWheelmapAPI.h"
 
+@interface WMOSMOnboardingViewController ()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *		scrollViewContentWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *		scrollViewContentHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint	*		whyButtonBottomConstraint;
+
+@end
+
 @implementation WMOSMOnboardingViewController
 
 @synthesize dataManager;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
-}
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
-    
-    self.contentScrollView.scrollsToTop = YES;
-    
     dataManager = [[WMDataManager alloc] init];
     dataManager.delegate = self;
     
@@ -42,75 +41,57 @@
                                              selector:@selector(didReceiveAuthenticationData:)
                                                  name:@"didReceiveAuthenticationData"
                                                object:nil];
-    /*
-    self.titleLabel.text = NSLocalizedString(@"Sign In", nil);
-    self.topTextLabel.text = NSLocalizedString(@"Sign In Prompt", nil);
-    self.forgotPasswordTextView.text = NSLocalizedString(@"LoginScreenForgotPassword", nil);
-    self.middleTextLabel.text = NSLocalizedString(@"LoginScreenNoWheelmapAccount", nil);
-    self.webLoginLabel.text = NSLocalizedString(@"Sign In Button", nil);
-    self.bottomTextLabel.text = NSLocalizedString(@"Sign Up Prompt", nil);
-     */
-    [self.doneButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
-    /*
-    [self.loginButton setTitle:NSLocalizedString(@"Sign In Button", nil) forState:UIControlStateNormal];
-    [self.registerButton setTitle:NSLocalizedString(@"RegisterNew", nil) forState:UIControlStateNormal];
-    self.usernameTextField.placeholder = NSLocalizedString(@"UsernamePlaceholder", nil);
-    self.passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
-    */
-    // adjust labels and buttons according to content
-//    [self adjustLabelHeightToText:self.topTextLabel];
 
-    self.topTextLabel.text = NSLocalizedString(@"LoginOverOSMText", nil);
-    self.stepsLabel.text = NSLocalizedString(@"OSMAccount", nil);
+    [self.doneButton setTitle:L(@"Cancel") forState:UIControlStateNormal];
+    self.topTextLabel.text = L(@"LoginOverOSMText");
+    self.stepsLabel.text = L(@"OSMAccount");
+	self.stepsTextView.text = L(@"StepsToOSMAccount");
+    [self.loginButton setTitle:L(@"LoginOverOSM") forState:UIControlStateNormal];
+    [self.registerButton setTitle:L(@"OSMRegistration") forState:UIControlStateNormal];
+    [self.whyButton setTitle:L(@"WhyOSMAccount") forState:UIControlStateNormal];
     
-    self.stepsTextView.frame = CGRectMake(self.stepsTextView.frame.origin.x, self.stepsTextView.frame.origin.y + self.stepsTextView.frame.size.height + 10.0f, self.stepsTextView.frame.size.width, self.stepsTextView.contentSize.height);
-    
-    self.stepsTextView.frame = self.stepsTextView.frame;
-    self.stepsTextView.text = NSLocalizedString(@"StepsToOSMAccount", nil);
-    
+	self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	self.scrollViewContentHeightConstraint.constant = self.whyButton.frameY + self.whyButton.frameHeight + self.whyButtonBottomConstraint.constant;
 
-    self.loginButton.frame = CGRectMake(320.0f - self.loginButton.frame.size.width - 10.0f, self.stepsTextView.frame.origin.y + self.stepsTextView.frame.size.height + 10.0f, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
-    [self.loginButton setTitle:NSLocalizedString(@"LoginOverOSM", nil) forState:UIControlStateNormal];
-    
-    self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, self.loginButton.frame.origin.y + self.loginButton.frame.size.height + 25.0f, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
-    [self.registerButton setTitle:NSLocalizedString(@"OSMRegistration", nil) forState:UIControlStateNormal];
-    
-    [self.whyButton setTitle:NSLocalizedString(@"WhyOSMAccount", nil) forState:UIControlStateNormal];
-    
-    self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, self.registerButton.frame.origin.y + self.registerButton.frame.size.height + 20.0f);
-
-	self.preferredContentSize = CGSizeMake(320.0f, 547.0f);
-}
-
-- (void)adjustLabelHeightToText:(UILabel *)label {
-    CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
-    
-    CGSize expectedLabelSize = [label.text boundingRectWithSize:maximumLabelSize
-                                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                                     attributes:@{NSFontAttributeName:label.font}
-                                                        context:nil].size;
-    
-    //adjust the label the the new height.
-    CGRect newFrame = label.frame;
-    newFrame.size.height = expectedLabelSize.height;
-    label.frame = newFrame;
+	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
     [super viewDidAppear:animated];
     
     [self showDescriptionViewController];
 }
 
-- (void)showDescriptionViewController {
-    if ([dataManager isFirstLaunch]) {
-        WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
-        [self presentViewController:osmDescriptionViewController animated:YES];
-        
-        [dataManager firstLaunchOccurred];
-    }
+- (void)viewDidDisappear:(BOOL)animated {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
+
+	// unregister for keyboard notifications while not visible.
+	if (UIDevice.isIPad == NO){
+
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+														name:UIKeyboardWillShowNotification
+													  object:nil];
+
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+														name:UIKeyboardWillHideNotification
+													  object:nil];
+	}
+	[super viewDidDisappear:animated];
 }
+
+#pragma mark - Helper
+
+- (void)showDescriptionViewController {
+	if ([dataManager isFirstLaunch]) {
+		WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
+		[self presentViewController:osmDescriptionViewController animated:YES];
+
+		[dataManager firstLaunchOccurred];
+	}
+}
+
+#pragma mark - IBActions
 
 - (IBAction)registerPressed:(id)sender {
 	NSString *urlPath = WM_REGISTER_LINK;
@@ -126,6 +107,21 @@
     [osmLoginViewController loadLoginUrl];
     [self presentViewController:osmLoginViewController animated:YES];
 }
+
+- (IBAction)donePressed:(id)sender {
+	if (self.navigationController != nil) {
+		[self.navigationController popViewControllerAnimated:YES];
+	} else {
+		[self dismissViewControllerAnimated:YES];
+	}
+}
+
+- (IBAction)whyOSMPressed:(id)sender {
+	WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
+	[self presentViewController:osmDescriptionViewController animated:YES];
+}
+
+#pragma mark - DataManager Delegate
 
 - (void)dataManager:(WMDataManager *)dataManager userAuthenticationFailedWithError:(NSError *)error {
     // TODO: handle error
@@ -169,38 +165,7 @@
     }
 }
 
-- (IBAction)donePressed:(id)sender {
-    if (self.navigationController != nil) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        [self dismissViewControllerAnimated:YES];
-    }
-}
-
-- (IBAction)whyOSMPressed:(id)sender {
-    WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
-    [self presentViewController:osmDescriptionViewController animated:YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-    // unregister for keyboard notifications while not visible.
-    if (UIDevice.isIPad == NO){
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:UIKeyboardWillShowNotification
-                                                      object:nil];
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:UIKeyboardWillHideNotification
-                                                      object:nil];
-    }
-    [super viewDidDisappear:animated];
-}
-
-- (void) didReceiveAuthenticationData:(NSNotification*)n {
+- (void)didReceiveAuthenticationData:(NSNotification*)n {
     DKLog(K_VERBOSE_ONBOARDING, @"auth Data:%@", n);
     
     NSDictionary *userData = [[n userInfo] objectForKey:@"authData"];
