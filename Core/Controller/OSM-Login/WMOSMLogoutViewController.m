@@ -10,10 +10,11 @@
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
 
-@interface WMOSMLogoutViewController ()
-{
+@interface WMOSMLogoutViewController () {
+
     WMDataManager* dataManager;
 }
+
 @end
 
 @implementation WMOSMLogoutViewController
@@ -22,7 +23,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     dataManager = [[WMDataManager alloc] init];
     
     self.titleLabel.text = NSLocalizedString(@"Sign Out", nil);
