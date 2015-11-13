@@ -10,23 +10,9 @@
 
 @interface WMShareSocialViewController : WMViewController
 
-@property (strong, nonatomic) IBOutlet NSString *	shareURlString;
+@property (strong, nonatomic) NSString *	shareURlString;
 
-@property (nonatomic) IBOutlet UIScrollView *		scrollView;
-@property (strong, nonatomic) IBOutlet UILabel *	shareLocationLabel;
-@property (strong, nonatomic) IBOutlet UIView *		titleView;
-@property (weak, nonatomic) IBOutlet UIButton *		twitterButton;
-@property (weak, nonatomic) IBOutlet UIButton *		facebookButton;
-@property (weak, nonatomic) IBOutlet UIButton *		emailButton;
-@property (weak, nonatomic) IBOutlet UIButton *		smsButton;
-@property (weak, nonatomic) IBOutlet UIButton *		closeButton;
-@property (strong, nonatomic) IBOutlet UILabel *	titleLabel;
-
-- (IBAction)twitterButtonPressed:(id)sender;
-- (IBAction)facebookButtonPressed:(id)sender;
-- (IBAction)smsButtonPressed:(id)sender;
-- (IBAction)emailButtonPressed:(id)sender;
-- (IBAction)closeButtonPressed:(id)sender;
-
+@property (strong, nonatomic) IBOutlet UIView *					titleView;
+@property (strong, nonatomic) IBOutlet UILabel *				shareLocationLabel;
 
 @end
