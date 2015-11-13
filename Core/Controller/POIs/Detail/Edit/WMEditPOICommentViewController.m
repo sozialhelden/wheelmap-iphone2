@@ -13,34 +13,26 @@
 
 @interface WMEditPOICommentViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *						commentLabel;
+@property (weak, nonatomic) IBOutlet UITextView *					commentText;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *		activityIndicator;
+
 @end
 
 @implementation WMEditPOICommentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+
     self.dataManager = [[WMDataManager alloc] init];
     self.dataManager.delegate = self;
-    
-    self.containerView.backgroundColor = [UIColor wmGreyColor];
-    
-    // progress wheel
-    progressWheel = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    progressWheel.frame = CGRectMake(0, 0, 50, 50);
-    progressWheel.backgroundColor = [UIColor blackColor];
-    progressWheel.center = CGPointMake(self.view.center.x, self.view.center.y-40);
-    progressWheel.hidden = YES;
-    progressWheel.layer.cornerRadius = 5.0;
-    progressWheel.layer.masksToBounds = YES;
-    [self.view addSubview:progressWheel];
-    
+
     self.commentText.layer.borderWidth = 1.0f;
     self.commentText.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.commentText.layer setCornerRadius:5.0f];
     
-    self.commentLabel.text = NSLocalizedString(@"CommentViewLabel", nil);
+    self.commentLabel.text = L(@"CommentViewLabel");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -53,13 +45,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"NavBarTitleComment", nil);
+    self.title = L(@"NavBarTitleComment");
     self.navigationBarTitle = self.title;
 }
 
 - (void)saveEditedData {
     if (!self.currentNode.lat || !self.currentNode.lon) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PleaseSetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:L(@"PleaseSetMarker") delegate:nil cancelButtonTitle:L(@"OK") otherButtonTitles: nil];
         [alert show];
         return;
     }
@@ -68,21 +60,18 @@
     
     [self.dataManager updateNode:self.currentNode];
     
-    progressWheel.hidden = NO;
-    [progressWheel startAnimating];
+    self.activityIndicator.hidden = NO;
 }
 
 - (void) dataManager:(WMDataManager *)dataManager didUpdateNode:(Node *)node {
-    progressWheel.hidden = YES;
-    [progressWheel stopAnimating];
+    self.activityIndicator.hidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
-    progressWheel.hidden = YES;
-    [progressWheel stopAnimating];
-    
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SaveNodeFailed", nil) message:error.wheelmapErrorDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    self.activityIndicator.hidden = YES;
+
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:L(@"SaveNodeFailed") message:error.wheelmapErrorDescription delegate:nil cancelButtonTitle:L(@"OK") otherButtonTitles:nil];
     
     [alert show];
 }
