@@ -31,8 +31,7 @@
     BOOL hasCoordinate;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.scrollView.scrollsToTop = YES;
@@ -131,7 +130,11 @@
     progressWheel.layer.masksToBounds = YES;
     [self.view addSubview:progressWheel];
 
-	self.preferredContentSize = self.scrollViewContentView.bounds.size;
+	if (self.view.isRightToLeftDirection == YES) {
+		self.setCategoryButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+		self.setNodeTypeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+		self.setMarkerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,10 +148,14 @@
 
     [self updateFields];
 
-	// Update the scroll view constrians
-	self.scrollViewContentWidthConstraint.constant = self.scrollView.frameWidth;
-	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + self.phoneInputViewBottomConstraint.constant;
-	[self.scrollView layoutIfNeeded];
+	self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frameY + self.phoneInputView.frameHeight + self.phoneInputViewBottomConstraint.constant;
+
+	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
+}
+
+- (void)viewDidLayoutSubviews {
+
 }
 
 - (void) updateFields {
