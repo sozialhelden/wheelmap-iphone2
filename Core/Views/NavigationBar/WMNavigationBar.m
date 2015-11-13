@@ -10,314 +10,89 @@
 #import "WMWheelmapAPI.h"
 
 @implementation WMNavigationBar
-@synthesize leftButtonStyle = _leftButtonStyle;
-@synthesize rightButtonStyle = _rightButtonStyle;
-@synthesize title = _title;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        self.autoresizesSubviews = YES;
+#pragma mark - Initialization
 
-        [self setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
-        
-        currentLeftButton = nil;
-        currentRightButton = nil;
-        self.leftButtonStyle = -1;
-        self.rightButtonStyle = -1;
-        
-        // init all buttons here
-        CGRect leftButtonRect = CGRectMake(5, 3, 40, 40);
-        dashboardButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        dashboardButton.frame = leftButtonRect;
-        dashboardButton.backgroundColor = [UIColor clearColor];
-        [dashboardButton setImage:[UIImage imageNamed:@"NavigationBarDashboardIcon"] forState:UIControlStateNormal];
-        dashboardButton.contentMode = UIViewContentModeCenter;
-        dashboardButton.hidden = YES;
-        [dashboardButton addTarget:self action:@selector(pressedDashboardButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:dashboardButton];
-        
-        // back button
-        UIImageView* backBtnBgImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-        backBtnBgImg.image = [UIImage imageNamed:@"buttons_back-btn.png"];
-        backButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        backButton.frame = CGRectMake(0, 0, backBtnBgImg.frame.size.width, backBtnBgImg.frame.size.height);
-        [backButton setView:backBtnBgImg forControlState:UIControlStateNormal];
-        backButton.hidden = YES;
-        [backButton addTarget:self action:@selector(pressedBackButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:backButton];
-        
-        // cancel button
-        UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
-        normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
-        normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-        normalBtnLabel.textColor = [UIColor whiteColor];
-        CGSize expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                   options:NSStringDrawingUsesLineFragmentOrigin
-                                                attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                                   context:nil].size;
-                   //sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
-        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 37);
-        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-        [normalBtnImg addSubview:normalBtnLabel];
-        cancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        cancelButton.frame = CGRectMake(5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-        cancelButton.backgroundColor = [UIColor clearColor];
-        [cancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
-        cancelButton.hidden = YES;
-        [cancelButton addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:cancelButton];
-        
-        CGRect rightButtonRect = CGRectMake(self.frame.size.width-5-40, 5, 40, 40);
-
-        UIImageView* normalBtnImg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        WMLabel* normalBtnLabel1 = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
-        normalBtnLabel1.fontSize = 13.0;
-        normalBtnLabel1.text = NSLocalizedString(@"Cancel", nil);
-        normalBtnLabel1.textAlignment = NSTextAlignmentCenter;
-        normalBtnLabel1.textColor = [UIColor whiteColor];
-        expSize = [normalBtnLabel1.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                                  attributes:@{NSFontAttributeName:normalBtnLabel1.font}
-                                                     context:nil].size;
-                   //sizeWithFont:normalBtnLabel1.font constrainedToSize:CGSizeMake(100, 17)];
-        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-        normalBtnLabel1.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel1.frame.origin.y, expSize.width, normalBtnLabel1.frame.size.height);
-        normalBtnImg1.frame  = CGRectMake(0, 0, normalBtnLabel1.frame.size.width+10, 37);
-        normalBtnLabel1.center = CGPointMake(normalBtnImg1.center.x, normalBtnLabel1.center.y);
-        [normalBtnImg1 addSubview:normalBtnLabel1];
-        cancelButtonRight = [WMButton buttonWithType:UIButtonTypeCustom];
-        cancelButtonRight.frame = rightButtonRect;
-        cancelButtonRight.backgroundColor = [UIColor clearColor];
-        [cancelButtonRight setView:normalBtnImg1 forControlState:UIControlStateNormal];
-        cancelButtonRight.hidden = YES;
-        cancelButtonRight.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [cancelButtonRight addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:cancelButtonRight];
-        
-        // mithilfe button
-        self.createPOIButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.createPOIButton.frame = rightButtonRect;
-        self.createPOIButton.backgroundColor = [UIColor clearColor];
-        [self.createPOIButton setImage:[UIImage imageNamed:@"NavigationBarAddIcon"] forState:UIControlStateNormal];
-        self.createPOIButton.contentMode = UIViewContentModeCenter;
-        self.createPOIButton.hidden = YES;
-        [self.createPOIButton addTarget:self action:@selector(pressedCreatePOIButton:) forControlEvents:UIControlEventTouchUpInside];
-        self.createPOIButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [self addSubview:self.createPOIButton];
-        
-        
-        // edit button
-        normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
-        normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = NSLocalizedString(@"NavBarEditButton", nil);
-        normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-        normalBtnLabel.textColor = [UIColor whiteColor];
-        expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                 attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                                    context:nil].size;
-                   //sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
-        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 37);
-        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-        [normalBtnImg addSubview:normalBtnLabel];
-        
-        self.editButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        self.editButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-9, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-        self.editButton.backgroundColor = [UIColor clearColor];
-        [self.editButton setView:normalBtnImg forControlState:UIControlStateNormal];
-        self.editButton.hidden = YES;
-        self.editButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [self.editButton addTarget:self action:@selector(pressedEditButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.editButton];
-        
-        // save button
-        normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 37)];
-        normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 35)];
-        normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = NSLocalizedString(@"NavBarSaveButton", nil);
-        normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-        normalBtnLabel.textColor = [UIColor whiteColor];
-        expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                 attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                                    context:nil].size;
-                   //sizeWithFont:normalBtnLabel.font constrainedToSize:CGSizeMake(100, 17)];
-        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 37);
-        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-        [normalBtnImg addSubview:normalBtnLabel];
-        saveButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        saveButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-5, 6, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-        saveButton.backgroundColor = [UIColor clearColor];
-        saveButton.hidden = YES;
-        saveButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [saveButton setView:normalBtnImg forControlState:UIControlStateNormal];
-        [saveButton addTarget:self action:@selector(pressedSaveButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:saveButton];
-        
-        noneButton = [WMButton buttonWithType:UIButtonTypeCustom];
-        noneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        noneButton.frame = rightButtonRect;
-        noneButton.hidden = YES;
-        [self addSubview:noneButton];
-        
-        noneButtonLeft = [WMButton buttonWithType:UIButtonTypeCustom];
-        noneButtonLeft.frame = leftButtonRect;
-        noneButtonLeft.hidden = YES;
-        [self addSubview:noneButtonLeft];
-        
-        // titleLabel)
-        titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, self.bounds.size.height)];
-        titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [titleLabel setBackgroundColor:[UIColor clearColor]];
-        titleLabel.fontSize = 15.0;
-        titleLabel.fontType = kWMLabelFontTypeBold;
-        titleLabel.textColor = [UIColor whiteColor];
-        [self addSubview:titleLabel];
-        
-        // initial styles
-        self.leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
-        self.rightButtonStyle = kWMNavigationBarRightButtonStyleCreatePOIButton;
-        
-        // search bar
-        if (UIDevice.isIPad == YES) {
-            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + K_NAVIGATION_BAR_HEIGHT, self.bounds.origin.y, 320.0f - K_NAVIGATION_BAR_HEIGHT, self.bounds.size.height)];
-        } else {
-            searchBarContainer = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y-20, self.bounds.size.width, self.bounds.size.height)];
-        }
-        searchBarContainer.userInteractionEnabled = YES;
-        
-        [searchBarContainer setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
-        
-        searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height);
-        [self addSubview:searchBarContainer];
-    
-        // search cancel button
-        normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        normalBtnLabel.fontSize = 13.0;
-        normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
-        normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-        normalBtnLabel.textColor = [UIColor whiteColor];
-        expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                       attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                          context:nil].size;
-        if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-        normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-        normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 40);
-        normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-        [normalBtnImg addSubview:normalBtnLabel];
-        
-        if (UIDevice.isIPad == YES) {
-            
-        } else {
-            searchBarCancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
-            searchBarCancelButton.frame = CGRectMake(searchBarContainer.frame.size.width-5-normalBtnImg.frame.size.width, 5, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-            searchBarCancelButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-            searchBarCancelButton.backgroundColor = [UIColor clearColor];
-            [searchBarCancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
-            [searchBarCancelButton addTarget:self action:@selector(pressedSearchCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-            [searchBarContainer addSubview:searchBarCancelButton];
-        }
-        
-        // search text field
-        if (UIDevice.isIPad == YES) {
-            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, searchBarContainer.frame.size.width - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET, self.frame.size.height - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET)];
-        } else {
-            searchBarTextFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, searchBarCancelButton.frame.origin.x - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET, self.frame.size.height - 2 * K_NAVIGATION_BAR_SEARCH_OFFSET)];
-        }
-        searchBarTextFieldBg.image = [[UIImage imageNamed:@"search_searchbar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET, K_NAVIGATION_BAR_SEARCH_OFFSET)];
-        searchBarTextFieldBg.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [searchBarContainer addSubview:searchBarTextFieldBg];
-        searchBarTextFieldBg.userInteractionEnabled = YES;
-        
-        searchBarTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, searchBarTextFieldBg.frame.size.width-10, 30)];
-        searchBarTextField.placeholder = NSLocalizedString(@"SearchForPlace", nil);
-        searchBarTextField.delegate = self;
-        searchBarTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        searchBarTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        searchBarTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        searchBarTextField.returnKeyType = UIReturnKeySearch;
-        [searchBarTextFieldBg addSubview:searchBarTextField];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-        
-        
-    }
-    
-    return self;
+- (instancetype)initFromNibWithFrame:(CGRect)frame {
+	self = (WMNavigationBar *) [WMNavigationBar loadFromNib:@"WMNavigationBar"];
+	if (self != nil) {
+		self.frame = frame;
+	}
+	return self;
 }
 
-- (void)setSearchBarEnabled:(BOOL)searchBarEnabled {
-    _searchBarEnabled = searchBarEnabled;
-    if (searchBarEnabled) {
-        searchBarContainer.transform = CGAffineTransformMakeTranslation(0, 0);
-    }
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	[self initViews];
 }
 
--(void)dealloc
-{
+- (void)initViews {
+	[self.cancelButtonLeft setTitle:L(@"Cancel") forState:UIControlStateNormal];
+	[self.cancelButtonRight setTitle:L(@"Cancel") forState:UIControlStateNormal];
+	[self.editButton setTitle:L(@"NavBarEditButton") forState:UIControlStateNormal];
+	[self.saveButton setTitle:L(@"NavBarSaveButton") forState:UIControlStateNormal];
+	[self.cancelSearchButton setTitle:L(@"Cancel") forState:UIControlStateNormal];
+
+	if (self.backButton.isRightToLeftDirection == YES) {
+		[self.backButton setImage:[UIImage imageNamed:@"buttons_back-btn.png"].rightToLeftMirrowedImage forState:UIControlStateNormal];
+	}
+
+	// We have to set the button types to -1 first to make shure that the following button types are diferent to the formers ones. Otherwise the show/hide logic isn't executed.
+	self.leftButtonStyle = -1;
+	self.rightButtonStyle = -1;
+	self.leftButtonStyle = kWMNavigationBarLeftButtonStyleDashboardButton;
+	self.rightButtonStyle = kWMNavigationBarRightButtonStyleCreatePOIButton;
+
+	self.searchTextField.delegate = self;
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+}
+
+#pragma mark - View lifecycle
+
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - Button Handlers
--(void)pressedBackButton:(WMButton*)sender
-{
+#pragma mark - IBActions
+
+- (IBAction)pressedBackButton:(WMButton*)sender {
     if ([self.delegate respondsToSelector:@selector(pressedBackButton:)]) {
         [self.delegate pressedBackButton:self];
     }
-    
 }
--(void)pressedDashboardButton:(WMButton*)sender
-{
+
+- (IBAction)pressedDashboardButton:(WMButton*)sender {
     if ([self.delegate respondsToSelector:@selector(pressedDashboardButton:)]) {
         [self.delegate pressedDashboardButton:self];
     }
-    
 }
--(void)pressedEditButton:(WMButton*)sender
-{
+
+- (IBAction)pressedEditButton:(WMButton*)sender {
     if ([self.delegate respondsToSelector:@selector(pressedEditButton:)]) {
         [self.delegate pressedEditButton:self];
     }
-    
 }
--(void)pressedCancelButton:(WMButton*)sender
-{
+
+- (IBAction)pressedCancelButton:(WMButton*)sender {
     if ([self.delegate respondsToSelector:@selector(pressedCancelButton:)]) {
         [self.delegate pressedCancelButton:self];
     }
-    
 }
--(void)pressedSaveButton:(WMButton*)sender
-{
+
+- (IBAction)pressedSaveButton:(WMButton*)sender {
     if ([self.delegate respondsToSelector:@selector(pressedSaveButton:)]) {
         [self.delegate pressedSaveButton:self];
     }
-    
 }
--(void)pressedCreatePOIButton:(WMButton*)sender
-{
+
+- (IBAction)pressedAddButton:(WMButton*)sender {
     if ([self.delegate respondsToSelector:@selector(pressedCreatePOIButton:)]) {
         [self.delegate pressedCreatePOIButton:self];
     }
-    
 }
 
--(void)pressedSearchCancelButton:(WMButton*)sender
-{
+- (IBAction)pressedSearchCancelButton:(WMButton*)sender {
     [self hideSearchBar];
     if ([self.delegate respondsToSelector:@selector(pressedSearchCancelButton:)]) {
         [self.delegate pressedSearchCancelButton:self];
@@ -326,431 +101,199 @@
 
 #pragma mark - Bar Style Changes
 
--(void)setLeftButtonStyle:(WMNavigationBarLeftButtonStyle)leftButtonStyle
-{
-    if (_leftButtonStyle == leftButtonStyle) {
+- (void)setLeftButtonStyle:(WMNavigationBarLeftButtonStyle)leftButtonStyle {
+    if (self.leftButtonStyle == leftButtonStyle) {
         return; // same style do not need to update buttons!
     }
-    
     _leftButtonStyle = leftButtonStyle;
-    UIView* prevButton = currentLeftButton;
-    switch (leftButtonStyle) {
-        case kWMNavigationBarLeftButtonStyleDashboardButton:
-            currentLeftButton = dashboardButton;
-            break;
-        case kWMNavigationBarLeftButtonStyleBackButton:
-            currentLeftButton = backButton;
-            break;
-        case kWMNavigationBarLeftButtonStyleCancelButton:
-            currentLeftButton = cancelButton;
-            break;
-        case kWMNavigationBarLeftButtonStyleNone:
-            currentLeftButton = noneButtonLeft;
-            break;
 
-        default:
-            currentLeftButton = dashboardButton;
-            break;
-    }
-    // effect here!
-    currentLeftButton.alpha = 0.0;
-    currentLeftButton.hidden = NO;
-    
-    [self adjustTitleLabelFrame];
-    [UIView animateWithDuration:0.3 animations:^(void)
-     {
-         prevButton.alpha = 0.0;
-         currentLeftButton.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         prevButton.hidden = YES;
-         
-     }
-     ];
+    WMButton *previousButton = self.currentLeftButton;
+	self.currentLeftButton = [self buttonForNavigationBarLeftType:leftButtonStyle];
+	[self replaceButton:previousButton withButton:self.currentLeftButton];
 }
 
--(void)setRightButtonStyle:(WMNavigationBarRightButtonStyle)rightButtonStyle
-{
-    if (_rightButtonStyle == rightButtonStyle) {
+- (void)setRightButtonStyle:(WMNavigationBarRightButtonStyle)rightButtonStyle {
+    if (self.rightButtonStyle == rightButtonStyle) {
         return;
     }
-    
     _rightButtonStyle = rightButtonStyle;
-    UIView* prevButton = currentRightButton;
-    switch (rightButtonStyle) {
-        case kWMNavigationBarRightButtonStyleCreatePOIButton:
-            currentRightButton = self.createPOIButton;
-            break;
-        case kWMNavigationBarRightButtonStyleEditButton:
-            currentRightButton = self.editButton;
-            break;
-        case kWMNavigationBarRightButtonStyleSaveButton:
-            currentRightButton = saveButton;
-            break;
-        case kWMNavigationBarRightButtonStyleNone:
-            currentRightButton = noneButton;
-            break;
-        case kWMNavigationBarRightButtonStyleCancelButton:
-            currentRightButton = cancelButtonRight;
-            break;
-        default:
-            currentRightButton = self.createPOIButton;
-            break;
-    }
-    // effect here!
-    currentRightButton.alpha = 0.0;
-    currentRightButton.hidden = NO;
-    
-    [self adjustTitleLabelFrame];
-    [UIView animateWithDuration:0.3 animations:^(void)
-     {
-         prevButton.alpha = 0.0;
-         currentRightButton.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         prevButton.hidden = YES;
-         [self networkStatusChanged:nil];
 
-     }
-     ];
-
+	WMButton *previousButton = self.currentRightButton;
+	self.currentRightButton = [self buttonForNavigationBarRightType:rightButtonStyle];
+	[self replaceButton:previousButton withButton:self.currentRightButton];
 }
 
--(WMNavigationBarLeftButtonStyle)leftButtonStyle
-{
-    return _leftButtonStyle;
+- (void)replaceButton:(WMButton *)previousButton withButton:(WMButton *)newButton {
+	newButton.alpha = 0.0;
+	newButton.hidden = NO;
+
+	[UIView animateWithDuration:0.3 animations:^(void) {
+		previousButton.alpha = 0.0;
+		newButton.alpha = 1.0;
+	} completion:^(BOOL finished) {
+		previousButton.hidden = YES;
+	}];
 }
 
--(WMNavigationBarRightButtonStyle)rightButtonStyle
-{
-    return _rightButtonStyle;
-}
-
--(void)setTitle:(NSString *)title
-{
+- (void)setTitle:(NSString *)title {
     if ([_title isEqualToString:title] || title.length == 0) {
         return; // same string. do not need to update title!
     }
+
     _title = title;
-    titleLabel.alpha = 0.0;
-    titleLabel.text = title;
-    [UIView animateWithDuration:0.3 animations:^(void)
-     {
-         titleLabel.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-        
-         
-     }
-     ];
+
+	self.titleLabel.alpha = 0.0;
+    self.titleLabel.text = title;
+    [UIView animateWithDuration:0.3 animations:^(void) {
+         self.titleLabel.alpha = 1.0;
+     } completion:nil];
 }
 
--(NSString*)title
-{
-    return _title;
-}
-
--(void)adjustTitleLabelFrame
-{
-    CGFloat originX = currentLeftButton.frame.origin.x+currentLeftButton.frame.size.width;
-    CGFloat width = currentRightButton.frame.origin.x - originX;
-
-    titleLabel.frame = CGRectMake(originX+5, titleLabel.frame.origin.y, width-10, titleLabel.frame.size.height);
-}
+#pragma mark - Search (public)
 
 - (NSString *)getSearchString {
-    return searchBarTextField.text;
+    return self.searchTextField.text;
 }
 
 - (void)clearSearchText {
-    searchBarTextField.text = @"";
+    self.searchTextField.text = @"";
 }
 
--(void)showSearchBar
-{
+- (void)showSearchBar {
     if (isSearchBarVisible)
         return;
     
     [self toggleSearchBar];
 }
 
--(void)hideSearchBar
-{
+- (void)hideSearchBar {
     if (!isSearchBarVisible)
         return;
     
     [self toggleSearchBar];
-    
 }
--(void)toggleSearchBar
-{
-    if (isSearchBarVisible) {
-        [searchBarTextField resignFirstResponder];
-        [UIView animateWithDuration:0.3
-                              delay:0.0
-                            options:UIViewAnimationCurveEaseOut
-                         animations:^(void)
-         {
-             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, -self.frame.size.height-20);
-             titleLabel.alpha = 1.0;
-         }
-                         completion:^(BOOL finished)
-         {
-             isSearchBarVisible = NO;
-             
-             
-         }
-         ];
+
+#pragma mark - Search (private)
+
+- (void)toggleSearchBar {
+    if (isSearchBarVisible == YES) {
+        [self.searchTextField resignFirstResponder];
+
+		self.searchContainerViewTopConstraint.constant = self.searchContainerView.frameHeight;
+		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
+			[self.searchContainerView layoutIfNeeded];
+		} completion:^(BOOL finished) {
+			isSearchBarVisible = NO;
+		}];
     } else {
-        [searchBarTextField becomeFirstResponder];
-        [UIView animateWithDuration:0.3
-                              delay:0.0
-                            options:UIViewAnimationCurveEaseIn
-                         animations:^(void)
-         {
-             searchBarContainer.transform = CGAffineTransformMakeTranslation(0, 20);
-             titleLabel.alpha = 0.2;
-         }
-                         completion:^(BOOL finished)
-         {
+        [self.searchTextField becomeFirstResponder];
+
+		self.searchContainerViewTopConstraint.constant = 0;
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
+			[self.searchContainerView layoutIfNeeded];
+         } completion:^(BOOL finished) {
              isSearchBarVisible = YES;
-             
-             
-         }
-         ];
+		 }];
     }
 }
 
--(void)showRightButton:(WMNavigationBarRightButtonStyle)type
-{
-    UIView* targetButton;
-    
-    switch (type) {
-        case kWMNavigationBarRightButtonStyleCreatePOIButton:
-            targetButton = self.createPOIButton;
-            break;
-        case kWMNavigationBarRightButtonStyleEditButton:
-            targetButton = self.editButton;
-            break;
-        case kWMNavigationBarRightButtonStyleSaveButton:
-            targetButton = saveButton;
-            break;
-        default:
-            targetButton = noneButton;
-            break;
-    }
-    
-    targetButton.userInteractionEnabled = YES;
-    [UIView animateWithDuration:0.5 animations:^(void)
-     {
+#pragma mark - Buttons (public)
+
+- (void)enableRightButton:(WMNavigationBarRightButtonStyle)type {
+	UIView* targetButton = [self buttonForNavigationBarRightType:type];
+	targetButton.userInteractionEnabled = NO;
+    [UIView animateWithDuration:0.5 animations:^(void) {
          targetButton.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-
-         
-     }
-     ];
-
-    
+     } completion:nil];
 }
--(void)hideRightButton:(WMNavigationBarRightButtonStyle)type
-{
-    UIView* targetButton;
-    
-    switch (type) {
-        case kWMNavigationBarRightButtonStyleCreatePOIButton:
-            targetButton = self.createPOIButton;
-            break;
-        case kWMNavigationBarRightButtonStyleEditButton:
-            targetButton = self.editButton;
-            break;
-        case kWMNavigationBarRightButtonStyleSaveButton:
-            targetButton = saveButton;
-            break;
-        default:
-            targetButton = noneButton;
-            break;
-    }
-    
-    
-    
-    [UIView animateWithDuration:0.5 animations:^(void)
-     {
+
+- (void)disableRightButton:(WMNavigationBarRightButtonStyle)type {
+	UIView* targetButton = [self buttonForNavigationBarRightType:type];
+    [UIView animateWithDuration:0.5 animations:^(void) {
          targetButton.alpha = 0.3;
-     }
-                     completion:^(BOOL finished)
-     {
+     } completion:^(BOOL finished) {
          targetButton.userInteractionEnabled = NO;
-         
-         
-     }
-     ];
-
+     }];
 }
 
-- (void)adjustButtonsToPopoverPresentation {
-    // back button
-    UIImage *image = [[UIImage imageNamed:@"buttons_back-btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 12.f, 0, 12.f)];
+#pragma mark - Buttons (private)
 
+- (WMButton *)buttonForNavigationBarLeftType:(WMNavigationBarLeftButtonStyle)type {
+	WMButton *button;
+	switch (type) {
+		case kWMNavigationBarLeftButtonStyleDashboardButton:
+			button = self.dashboardButton;
+			break;
+		case kWMNavigationBarLeftButtonStyleBackButton:
+			button = self.backButton;
+			break;
+		case kWMNavigationBarLeftButtonStyleCancelButton:
+			button = self.cancelButtonLeft;
+			break;
+		default:
+			button = nil;
+			break;
+	}
+	return button;
+}
 
-    BOOL hidden = backButton.hidden;
-
-    [backButton removeFromSuperview];
-    
-    backButton = [WMButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 40, 30);
-	[backButton setBackgroundImage:image forState:UIControlStateNormal];
-    backButton.hidden = hidden;
-    [backButton addTarget:self action:@selector(pressedBackButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:backButton];
-    
-    // cancel button
-    hidden = cancelButton.hidden;
-    
-    [cancelButton removeFromSuperview];
-    
-    UIImageView* normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 32)];
-    WMLabel* normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    normalBtnLabel.fontSize = 13.0;
-    normalBtnLabel.text = NSLocalizedString(@"Cancel", nil);
-    normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-    normalBtnLabel.textColor = [UIColor whiteColor];
-    CGSize expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                              options:NSStringDrawingUsesLineFragmentOrigin
-                                           attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                              context:nil].size;
-    if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-    normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-    normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 32);
-    normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-    [normalBtnImg addSubview:normalBtnLabel];
-    cancelButton = [WMButton buttonWithType:UIButtonTypeCustom];
-    cancelButton.frame = CGRectMake(5, 12, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-    cancelButton.backgroundColor = [UIColor clearColor];
-    [cancelButton setView:normalBtnImg forControlState:UIControlStateNormal];
-    cancelButton.hidden = hidden;
-    [cancelButton addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:cancelButton];
-    
-    hidden = cancelButtonRight.hidden;
-    
-    [cancelButtonRight removeFromSuperview];
-    
-    cancelButtonRight = [WMButton buttonWithType:UIButtonTypeCustom];
-    cancelButtonRight.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-9, 12, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-    cancelButtonRight.backgroundColor = [UIColor clearColor];
-    [cancelButtonRight setView:normalBtnImg forControlState:UIControlStateNormal];
-    cancelButtonRight.hidden = hidden;
-    cancelButtonRight.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    [cancelButtonRight addTarget:self action:@selector(pressedCancelButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:cancelButtonRight];
-    
-    // edit button
-    hidden = self.editButton.hidden;
-    
-    [self.editButton removeFromSuperview];
-    
-    normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 32)];
-    normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    normalBtnLabel.fontSize = 13.0;
-    normalBtnLabel.text = NSLocalizedString(@"NavBarEditButton", nil);
-    normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-    normalBtnLabel.textColor = [UIColor whiteColor];
-    expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                                 context:nil].size;
-    if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-    normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-    normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 32);
-    normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-    [normalBtnImg addSubview:normalBtnLabel];
-    
-    self.editButton = [WMButton buttonWithType:UIButtonTypeCustom];
-    self.editButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-9, 12, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-    self.editButton.backgroundColor = [UIColor clearColor];
-    [self.editButton setView:normalBtnImg forControlState:UIControlStateNormal];
-    self.editButton.hidden = YES;
-    self.editButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    [self.editButton addTarget:self action:@selector(pressedEditButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.editButton];
-    
-    // save button
-    hidden = saveButton.hidden;
-    
-    [saveButton removeFromSuperview];
-    
-    normalBtnImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 32)];
-    normalBtnLabel = [[WMLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    normalBtnLabel.fontSize = 13.0;
-    normalBtnLabel.text = NSLocalizedString(@"NavBarSaveButton", nil);
-    normalBtnLabel.textAlignment = NSTextAlignmentCenter;
-    normalBtnLabel.textColor = [UIColor whiteColor];
-    expSize = [normalBtnLabel.text boundingRectWithSize:CGSizeMake(100, 17)
-                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName:normalBtnLabel.font}
-                                                 context:nil].size;
-    if (expSize.width < 40) expSize = CGSizeMake(40, expSize.height);
-    normalBtnLabel.frame = CGRectMake(normalBtnLabel.frame.origin.x, normalBtnLabel.frame.origin.y, expSize.width, normalBtnLabel.frame.size.height);
-    normalBtnImg.frame  = CGRectMake(0, 0, normalBtnLabel.frame.size.width+10, 32);
-    normalBtnLabel.center = CGPointMake(normalBtnImg.center.x, normalBtnLabel.center.y);
-    [normalBtnImg addSubview:normalBtnLabel];
-    saveButton = [WMButton buttonWithType:UIButtonTypeCustom];
-    saveButton.frame = CGRectMake(self.frame.size.width-normalBtnImg.frame.size.width-5, 12, normalBtnImg.frame.size.width, normalBtnImg.frame.size.height);
-    saveButton.backgroundColor = [UIColor clearColor];
-    saveButton.hidden = hidden;
-    saveButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    [saveButton setView:normalBtnImg forControlState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(pressedSaveButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:saveButton];
+- (WMButton *)buttonForNavigationBarRightType:(WMNavigationBarRightButtonStyle)type {
+	WMButton *button;
+	switch (type) {
+		case kWMNavigationBarRightButtonStyleCreatePOIButton:
+			button = self.addButton;
+			break;
+		case kWMNavigationBarRightButtonStyleEditButton:
+			button = self.editButton;
+			break;
+		case kWMNavigationBarRightButtonStyleSaveButton:
+			button = self.saveButton;
+			break;
+		case kWMNavigationBarRightButtonStyleCancelButton:
+			button = self.cancelButtonRight;
+			break;
+		default:
+			button = nil;
+			break;
+	}
+	return button;
 }
 
 #pragma mark - UITextField Delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self hideSearchBar];
-    [searchBarTextField resignFirstResponder];
+    [self.searchTextField resignFirstResponder];
     
     if (textField.text && textField.text.length > 0) {
         if ([self.delegate respondsToSelector:@selector(searchStringIsGiven:)]) {
             [self.delegate searchStringIsGiven:textField.text];
         }
     }
-    
-    
     return YES;
 }
 
 - (void)dismissSearchKeyboard {
-    [searchBarTextField resignFirstResponder];
+    [self.searchTextField resignFirstResponder];
 }
 
 #pragma mark - Network Status Changes
--(void)networkStatusChanged:(NSNotification*)notice
-{
+
+- (void)networkStatusChanged:(NSNotification*)notice {
     NetworkStatus networkStatus = [[[WMWheelmapAPI sharedInstance] internetReachable] currentReachabilityStatus];
     
-    switch (networkStatus)
-    {
+    switch (networkStatus) {
         case NotReachable:
-            [self hideRightButton:kWMNavigationBarRightButtonStyleCreatePOIButton];
-            [self hideRightButton:kWMNavigationBarRightButtonStyleEditButton];
-            [self hideRightButton:kWMNavigationBarRightButtonStyleSaveButton];
+            [self disableRightButton:kWMNavigationBarRightButtonStyleCreatePOIButton];
+            [self disableRightButton:kWMNavigationBarRightButtonStyleEditButton];
+            [self disableRightButton:kWMNavigationBarRightButtonStyleSaveButton];
             break;
-            
         default:
-            [self showRightButton:kWMNavigationBarRightButtonStyleCreatePOIButton];
-            [self showRightButton:kWMNavigationBarRightButtonStyleEditButton];
-            [self showRightButton:kWMNavigationBarRightButtonStyleSaveButton];
-            
+            [self enableRightButton:kWMNavigationBarRightButtonStyleCreatePOIButton];
+            [self enableRightButton:kWMNavigationBarRightButtonStyleEditButton];
+            [self enableRightButton:kWMNavigationBarRightButtonStyleSaveButton];
             break;
     }
 }
-
-
 
 @end

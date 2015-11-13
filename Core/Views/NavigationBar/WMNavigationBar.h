@@ -8,67 +8,52 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    kWMNavigationBarLeftButtonStyleDashboardButton,
-    kWMNavigationBarLeftButtonStyleBackButton,
-    kWMNavigationBarLeftButtonStyleCancelButton,
-    kWMNavigationBarLeftButtonStyleNone
-} WMNavigationBarLeftButtonStyle;
-
-typedef enum {
-    kWMNavigationBarRightButtonStyleCreatePOIButton,
-    kWMNavigationBarRightButtonStyleEditButton,
-    kWMNavigationBarRightButtonStyleSaveButton,
-    kWMNavigationBarRightButtonStyleCancelButton,
-    kWMNavigationBarRightButtonStyleNone
-} WMNavigationBarRightButtonStyle;
-
-
-
-@interface WMNavigationBar : UIView <UITextFieldDelegate>
-{
+@interface WMNavigationBar : UIView <UITextFieldDelegate> {
     UIImageView* backgroundImg; // background image
     
-    WMLabel* titleLabel;
-
-    WMButton* dashboardButton;
-    WMButton* cancelButton;
-    WMButton* cancelButtonRight;
-    WMButton* backButton;
-    WMButton* saveButton;
-    WMButton* noneButton;
-    WMButton* noneButtonLeft;
-   
-    UIView* currentLeftButton;  // both pointers hook the current button objects
-    UIView* currentRightButton;
-    
     BOOL isSearchBarVisible;
-    
-    UIImageView* searchBarContainer;
-    UIImageView* searchBarTextFieldBg;
-    UITextField* searchBarTextField;
-    WMButton* searchBarCancelButton;
-    
-    
 }
 
-@property (nonatomic, strong) WMButton *					editButton;
-@property (nonatomic, strong) WMButton *					createPOIButton;
-@property (nonatomic) WMNavigationBarLeftButtonStyle		leftButtonStyle;
-@property (nonatomic) WMNavigationBarRightButtonStyle		rightButtonStyle;
-@property (nonatomic, strong) NSString *					title;
-@property (nonatomic, strong) id<WMNavigationBarDelegate>	delegate;
-@property (nonatomic) BOOL									searchBarEnabled;
+@property (nonatomic, strong) NSString *						title;
 
+@property (nonatomic, strong) WMButton *						currentLeftButton;
+@property (nonatomic, strong) WMButton *						currentRightButton;
+
+@property (weak, nonatomic) IBOutlet WMButton *					dashboardButton;
+@property (weak, nonatomic) IBOutlet WMButton *					backButton;
+@property (weak, nonatomic) IBOutlet WMButton *					cancelButtonLeft;
+@property (weak, nonatomic) IBOutlet WMButton *					cancelButtonRight;
+@property (weak, nonatomic) IBOutlet WMButton *					addButton;
+@property (weak, nonatomic) IBOutlet WMButton *					editButton;
+@property (weak, nonatomic) IBOutlet WMButton *					saveButton;
+@property (weak, nonatomic) IBOutlet WMLabel *					titleLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *					searchContainerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *		searchContainerViewTopConstraint;
+@property (weak, nonatomic) IBOutlet UITextField *				searchTextField;
+@property (weak, nonatomic) IBOutlet WMButton *					cancelSearchButton;
+
+@property (nonatomic) WMNavigationBarLeftButtonStyle			leftButtonStyle;
+@property (nonatomic) WMNavigationBarRightButtonStyle			rightButtonStyle;
+
+@property (nonatomic, strong) id<WMNavigationBarDelegate>	delegate;
+@property (nonatomic) BOOL										searchBarEnabled;
+
+#pragma mark - Initialization
+
+- (instancetype)initFromNibWithFrame:(CGRect)frame;
+
+#pragma mark - Search
 
 - (void)showSearchBar;
 - (void)hideSearchBar;
 - (NSString *)getSearchString;
 - (void)clearSearchText;
-
-- (void)showRightButton:(WMNavigationBarRightButtonStyle)type;
-- (void)hideRightButton:(WMNavigationBarRightButtonStyle)type;
-
-- (void)adjustButtonsToPopoverPresentation;
 - (void)dismissSearchKeyboard;
+
+#pragma mark - Buttons
+
+- (void)enableRightButton:(WMNavigationBarRightButtonStyle)type;
+- (void)disableRightButton:(WMNavigationBarRightButtonStyle)type;
+
 @end

@@ -173,10 +173,10 @@
     self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, K_NAVIGATION_BAR_HEIGHT);
     
     if (UIDevice.isIPad == YES) {
-        self.customNavigationBar = [[WMNavigationBar_iPad alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
+        self.customNavigationBar = [[WMIPadMapNavigationBar alloc] initFromNibWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
         self.customNavigationBar.searchBarEnabled = YES;
     } else {
-        self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
+        self.customNavigationBar = [[WMNavigationBar alloc] initFromNibWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
     }
     self.customNavigationBar.delegate = self;
     [self.navigationBar addSubview:self.customNavigationBar];
@@ -882,7 +882,7 @@
         detailNavController.customNavigationBar.title = editPOIViewController.navigationBarTitle;
         
         editPOIViewController.isRootViewController = YES;
-        editPOIViewController.popoverButtonFrame = CGRectMake(self.customNavigationBar.createPOIButton.frame.origin.x + 20.0f, self.customNavigationBar.createPOIButton.frame.origin.y + 20.0f, self.customNavigationBar.createPOIButton.frame.size.width, self.customNavigationBar.createPOIButton.frame.size.height);
+        editPOIViewController.popoverButtonFrame = CGRectMake(self.customNavigationBar.addButton.frame.origin.x + 20.0f, self.customNavigationBar.addButton.frame.origin.y + 20.0f, self.customNavigationBar.addButton.frame.size.width, self.customNavigationBar.addButton.frame.size.height);
         
         editPOIViewController.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
         editPOIViewController.baseController = self;
@@ -1047,8 +1047,8 @@
     
     if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if (!selected) {
-            if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
-                [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
+            if ([self.customNavigationBar isKindOfClass:[WMIPadMapNavigationBar class]]) {
+                [(WMIPadMapNavigationBar *)self.customNavigationBar clearSearchText];
             }
         }
     }
@@ -1058,8 +1058,8 @@
         
         if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             if (!selected) {
-                if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
-                    [(WMNavigationBar_iPad*)self.customNavigationBar clearSearchText];
+                if ([self.customNavigationBar isKindOfClass:[WMIPadMapNavigationBar class]]) {
+                    [(WMIPadMapNavigationBar*)self.customNavigationBar clearSearchText];
                 }
             }
             [self.customNavigationBar dismissSearchKeyboard];
@@ -1294,7 +1294,7 @@
 			}
 			self.popoverVC.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
 		} else if ([self.popoverVC isKindOfClass:[WMEditPOIViewController class]]) {
-			CGRect buttonFrame = ((WMNavigationBar_iPad *)self.customNavigationBar).createPOIButton.frame;
+			CGRect buttonFrame = ((WMIPadMapNavigationBar *)self.customNavigationBar).addButton.frame;
 			CGFloat yPosition = 1024.0f - K_TOOLBAR_BAR_HEIGHT;
 			if (UIInterfaceOrientationIsLandscape(orientation)) {
 				yPosition = 768.0f - K_TOOLBAR_BAR_HEIGHT;

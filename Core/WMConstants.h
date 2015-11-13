@@ -102,5 +102,19 @@ typedef enum {
 	WMPOIStateTypeToilet
 } WMPOIStateType;
 
+typedef enum {
+	kWMNavigationBarLeftButtonStyleDashboardButton,
+	kWMNavigationBarLeftButtonStyleBackButton,
+	kWMNavigationBarLeftButtonStyleCancelButton,
+	kWMNavigationBarLeftButtonStyleNone
+} WMNavigationBarLeftButtonStyle;
+
+typedef enum {
+	kWMNavigationBarRightButtonStyleCreatePOIButton,
+	kWMNavigationBarRightButtonStyleEditButton,
+	kWMNavigationBarRightButtonStyleSaveButton,
+	kWMNavigationBarRightButtonStyleCancelButton,
+	kWMNavigationBarRightButtonStyleNone
+} WMNavigationBarRightButtonStyle;
 
 #endif
