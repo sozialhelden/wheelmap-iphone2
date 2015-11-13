@@ -22,25 +22,25 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2Y-nc-CTN" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" image="start_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-sA-MVk">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" misplaced="YES" image="start_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-sA-MVk">
                                         <rect key="frame" x="210" y="25" width="180" height="45"/>
                                         <animations/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="start_searchbar_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ha-Zh-CKZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="start_searchbar_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ha-Zh-CKZ">
                                         <rect key="frame" x="20" y="80" width="560" height="40"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Zb0-Pg-aBT"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search_lupe.png" translatesAutoresizingMaskIntoConstraints="NO" id="sQz-5j-HYY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_search_lupe.png" translatesAutoresizingMaskIntoConstraints="NO" id="sQz-5j-HYY">
                                         <rect key="frame" x="541" y="80" width="39" height="40"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sQz-5j-HYY" secondAttribute="height" multiplier="29:30" id="8vF-tV-wmS"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
                                         <rect key="frame" x="28" y="84" width="523" height="30"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -51,7 +51,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FO-Gj-e7R" userLabel="Cancel Search Button" customClass="WMButton">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FO-Gj-e7R" userLabel="Cancel Search Button" customClass="WMButton">
                                         <rect key="frame" x="600" y="84" width="200" height="30"/>
                                         <animations/>
                                         <constraints>
@@ -113,7 +113,7 @@
                                         <color key="textColor" red="0.3411764705882353" green="0.39215686274509803" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gaa-Qt-aOZ">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gaa-Qt-aOZ">
                                         <rect key="frame" x="160" y="170" width="280" height="280"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5g4-t3-kLY" userLabel="List Button View">
@@ -476,10 +476,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ls4-pj-fjq">
-                                <rect key="frame" x="564" y="568" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ls4-pj-fjq" userLabel="Info Button">
+                                <rect key="frame" x="558" y="563" width="22" height="22"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="0.15294118225574493" green="0.21176470816135406" blue="0.27058824896812439" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="iPhoneInfoButtonAction:" destination="5R3-yI-jjZ" eventType="touchUpInside" id="Dxt-5I-Gbv"/>
                                 </connections>
@@ -519,13 +520,13 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gf6-vn-txp">
-                                <rect key="frame" x="0.0" y="560" width="40" height="40"/>
+                                <rect key="frame" x="10" y="550" width="40" height="40"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6bs-Rx-Iyy"/>
                                     <constraint firstAttribute="width" constant="40" id="wuN-Ez-9EF"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="ToolbarCenterIcon"/>
+                                <state key="normal" backgroundImage="MapLocateOverlayButton"/>
                                 <connections>
                                     <action selector="pressedCenterLocationButton:" destination="5R3-yI-jjZ" eventType="touchUpInside" id="z1j-pz-els"/>
                                 </connections>
@@ -538,21 +539,21 @@
                             <constraint firstItem="ELH-9I-dmd" firstAttribute="leading" secondItem="oW3-Iu-wcE" secondAttribute="leadingMargin" constant="4" id="CJ2-JC-qMm"/>
                             <constraint firstItem="xPX-T4-pL4" firstAttribute="leading" secondItem="oW3-Iu-wcE" secondAttribute="leading" id="DOe-DJ-BZS"/>
                             <constraint firstItem="ELH-9I-dmd" firstAttribute="centerX" secondItem="oW3-Iu-wcE" secondAttribute="centerX" id="DTO-RW-Q2e"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ls4-pj-fjq" secondAttribute="trailing" constant="-6" id="Ljl-LK-eW7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ls4-pj-fjq" secondAttribute="trailing" id="Ljl-LK-eW7"/>
                             <constraint firstItem="9QP-ZG-T3L" firstAttribute="top" secondItem="xPX-T4-pL4" secondAttribute="bottom" id="R3a-gB-6Wp"/>
                             <constraint firstItem="YKE-or-2af" firstAttribute="top" secondItem="xPX-T4-pL4" secondAttribute="top" id="Ru4-m1-fFp"/>
                             <constraint firstItem="ELH-9I-dmd" firstAttribute="top" secondItem="G2a-9k-AKo" secondAttribute="bottom" constant="20" id="Tlb-BC-6Uo"/>
                             <constraint firstItem="YKE-or-2af" firstAttribute="leading" secondItem="oW3-Iu-wcE" secondAttribute="leading" id="Ugj-cu-sgB"/>
-                            <constraint firstItem="9QP-ZG-T3L" firstAttribute="top" secondItem="ls4-pj-fjq" secondAttribute="bottom" constant="10" id="WYB-jD-wvv"/>
+                            <constraint firstItem="9QP-ZG-T3L" firstAttribute="top" secondItem="ls4-pj-fjq" secondAttribute="bottom" constant="15" id="WYB-jD-wvv"/>
                             <constraint firstItem="xPX-T4-pL4" firstAttribute="top" secondItem="G2a-9k-AKo" secondAttribute="bottom" id="Yrc-Sy-TRa"/>
                             <constraint firstItem="YKE-or-2af" firstAttribute="top" secondItem="G2a-9k-AKo" secondAttribute="bottom" id="aOu-23-y9U"/>
                             <constraint firstItem="xPX-T4-pL4" firstAttribute="leading" secondItem="YKE-or-2af" secondAttribute="leading" id="fYe-Lm-5ut"/>
-                            <constraint firstItem="gf6-vn-txp" firstAttribute="leading" secondItem="oW3-Iu-wcE" secondAttribute="leading" id="irV-CP-5j1"/>
+                            <constraint firstItem="gf6-vn-txp" firstAttribute="leading" secondItem="oW3-Iu-wcE" secondAttribute="leading" constant="10" id="irV-CP-5j1"/>
                             <constraint firstItem="ELH-9I-dmd" firstAttribute="centerX" secondItem="YKE-or-2af" secondAttribute="centerX" id="l8g-tu-7Nv"/>
                             <constraint firstItem="xPX-T4-pL4" firstAttribute="bottom" secondItem="9QP-ZG-T3L" secondAttribute="top" id="suF-EO-02v"/>
                             <constraint firstAttribute="trailing" secondItem="xPX-T4-pL4" secondAttribute="trailing" id="t4q-ZM-JUP"/>
                             <constraint firstAttribute="trailing" secondItem="xPX-T4-pL4" secondAttribute="trailing" id="x34-fT-LWo"/>
-                            <constraint firstItem="9QP-ZG-T3L" firstAttribute="top" secondItem="gf6-vn-txp" secondAttribute="bottom" id="zXw-pX-dq8"/>
+                            <constraint firstItem="9QP-ZG-T3L" firstAttribute="top" secondItem="gf6-vn-txp" secondAttribute="bottom" constant="10" id="zXw-pX-dq8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -1433,10 +1434,10 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="J0i-96-pUD"/>
-                                        <exclude reference="F7f-Gn-2pw"/>
-                                        <exclude reference="J1Q-Hx-mrI"/>
                                         <exclude reference="fdB-qh-7Y7"/>
                                         <exclude reference="rHS-xi-rvc"/>
+                                        <exclude reference="F7f-Gn-2pw"/>
+                                        <exclude reference="J1Q-Hx-mrI"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -2108,7 +2109,7 @@
         <image name="DashboardHelpIcon" width="50" height="50"/>
         <image name="DashboardLocalIcon" width="50" height="50"/>
         <image name="DashboardMapIcon" width="50" height="50"/>
-        <image name="ToolbarCenterIcon" width="30" height="30"/>
+        <image name="MapLocateOverlayButton" width="35" height="35"/>
         <image name="buttons_btn-signup.png" width="290" height="50"/>
         <image name="checkbox_active.png" width="14" height="14"/>
         <image name="checkbox_inactive.png" width="14" height="14"/>
