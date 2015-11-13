@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Node.h"
 
 @interface WMPOIsListTableViewCell : UITableViewCell
 
-@property (nonatomic) IBOutlet UILabel *titleLabel;
-@property (nonatomic) IBOutlet UILabel *nodeTypeLabel;
-@property (nonatomic) IBOutlet UILabel *distanceLabel;
+@property (nonatomic) IBOutlet MarqueeLabel *	titleLabel;
+@property (nonatomic) IBOutlet MarqueeLabel *	nodeTypeLabel;
+@property (nonatomic) IBOutlet UILabel *		distanceLabel;
 
-@property (nonatomic) IBOutlet UIImageView *iconImage;
+@property (nonatomic) IBOutlet UIImageView *	markerImageView;
+@property (nonatomic) IBOutlet UIImageView *	iconImageView;
 
 @end

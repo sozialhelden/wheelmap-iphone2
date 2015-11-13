@@ -11,37 +11,34 @@
 #import "WMDataManager.h"
 #import "WMOSMDescriptionViewController.h"
 
+@interface WMOSMLoginViewController ()
+
+@property (nonatomic, weak) IBOutlet UIWebView *	webView;
+@property (nonatomic, weak) IBOutlet UILabel *		titleLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *		closeButton;
+
+@end
+
 @implementation WMOSMLoginViewController {
     
     NSString *urlString;
 }
 
+#pragma mark - View Lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
-
-    [self.navigationBar setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
     // clear the cookies first, as the webview would otherwise send the api token
     // but at this point, the user did not log into the app, so the satandard app user is sent, which is bad
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies])
-    {
+    for (cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
     
-    [self.cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
+    [self.closeButton setTitle:L(@"Cancel") forState:UIControlStateNormal];
     
     self.webView.scrollView.scrollsToTop = YES;
     
@@ -52,8 +49,10 @@
     }
 }
 
+#pragma mark - Actions
+
 - (void)loadRegisterUrl {
-    self.titleLabel.text = NSLocalizedString(@"RegisterNew", nil);
+    self.titleLabel.text = L(@"RegisterNew");
 
 	urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, WM_REGISTER_LINK];
 }
@@ -70,13 +69,16 @@
     urlString = [NSString stringWithFormat:@"%@%@", WMWheelmapAPI.baseUrl, FORGOT_PASSWORD_LINK];
 }
 
+#pragma mark - IBActions
+
+- (IBAction)pressedCancelButton:(id)sender {
+	[self dismissViewControllerAnimated:YES];
+}
+
+#pragma mark - UIWebView delegate
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     DKLog(K_VERBOSE_ONBOARDING, @"WebView loading failed: %@",error.localizedDescription);
-}
-
-- (IBAction)pressedCancelButton:(id)sender {
-    [self dismissViewControllerAnimated:YES];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -141,11 +143,6 @@
         });
     });
     return NO;
-}
-
--(IBAction)whyOSM:(id)sender {
-    WMOSMDescriptionViewController *osmDescriptionViewController = [UIStoryboard instantiatedDescriptionViewController];
-    [self presentViewController:osmDescriptionViewController animated:YES];
 }
 
 @end

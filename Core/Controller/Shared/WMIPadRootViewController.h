@@ -15,18 +15,17 @@
 
 @interface WMIPadRootViewController : UIViewController<WMPOIsListViewDelegate,WMPOIsListDataSourceDelegate, WMPOIsListDelegate>
 
-@property (nonatomic) IBOutlet UIView<WMPOIsListViewDelegate> *listContainerView;
-@property (nonatomic) IBOutlet UIView<WMPOIsListViewDelegate> *mapContainerView;
+@property (nonatomic) IBOutlet UIView<WMPOIsListViewDelegate> *	listContainerView;
+@property (nonatomic) IBOutlet UIView<WMPOIsListViewDelegate> *	mapContainerView;
 
-@property (nonatomic) WMPOIsListViewController *listViewController;
-@property (nonatomic) WMMapViewController *mapViewController;
-@property (nonatomic) WMNavigationControllerBase *controllerBase;
+@property (nonatomic) WMPOIsListViewController *				listViewController;
+@property (nonatomic) WMMapViewController *						mapViewController;
+@property (nonatomic) WMNavigationControllerBase *				controllerBase;
 
-- (IBAction)toggleListButtonTouched:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *				listShadowImageView;
 
 - (void)gotNewUserLocation:(CLLocation *)location;
-//-(void)updateNodesNear:(CLLocationCoordinate2D)coord;
--(void)updateNodesWithRegion:(MKCoordinateRegion)region;
+- (void)updateNodesWithRegion:(MKCoordinateRegion)region;
 - (void)pressedSearchButton:(BOOL)selected;
 
 - (void)toggleMapTypeChanged:(UIButton *)sender;
