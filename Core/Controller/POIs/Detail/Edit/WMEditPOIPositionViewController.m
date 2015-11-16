@@ -15,6 +15,10 @@
     CLLocationManager* locationManager;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *	infoView;
+
+@property (weak, nonatomic) IBOutlet WMLabel *	infoTextLabel;
+
 @end
 
 @implementation WMEditPOIPositionViewController
@@ -40,7 +44,7 @@
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
 
-    
+
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     [self.mapView addGestureRecognizer:tapRecognizer];
     
@@ -60,28 +64,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    UIImageView* accesoryHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 80, self.view.frame.size.width-20, 60)];
-    accesoryHeader.image = [[UIImage imageNamed:@"misc_position-info.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    accesoryHeader.center = CGPointMake(self.view.center.x, accesoryHeader.center.y);
-    
-    WMLabel* headerTextLabel = [[WMLabel alloc] initWithFrame:CGRectMake(10, 0, accesoryHeader.frame.size.width-20, 60)];
-    headerTextLabel.fontSize = 13.0;
-    headerTextLabel.textAlignment = NSTextAlignmentLeft;
-    headerTextLabel.numberOfLines = 3;
-    headerTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    headerTextLabel.textColor = [UIColor whiteColor];
-    headerTextLabel.text = NSLocalizedString(@"SetMarkerInstruction", nil);
-    [accesoryHeader addSubview:headerTextLabel];
-    
-    accesoryHeader.alpha = 0.0;
-    accesoryHeader.transform = CGAffineTransformMakeTranslation(0, 10);
-    [self.view addSubview:accesoryHeader];
-    
+
+    self.infoTextLabel.text = NSLocalizedString(@"SetMarkerInstruction", nil);
+
+    self.infoView.alpha = 0.0;
+
     [UIView animateWithDuration:0.5 animations:^(void) {
-		accesoryHeader.alpha = 1.0;
-        accesoryHeader.transform = CGAffineTransformMakeTranslation(0, 0);}
-					 completion:nil];
+		self.infoView.alpha = 1.0;
+	} completion:nil];
 }
 
 - (void)setMapToCoordinate:(CLLocationCoordinate2D)coordinate {

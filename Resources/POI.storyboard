@@ -702,10 +702,46 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </mapView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6X-vF-1yp" userLabel="Info View">
+                                <rect key="frame" x="20" y="530" width="560" height="60"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="misc_position-info.png" translatesAutoresizingMaskIntoConstraints="NO" id="2IX-Ny-l36">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uO8-bi-7AR" customClass="WMLabel">
+                                        <rect key="frame" x="10" y="7" width="540" height="47"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uO8-bi-7AR" secondAttribute="trailing" constant="10" id="17P-Qy-BnB"/>
+                                    <constraint firstItem="2IX-Ny-l36" firstAttribute="top" secondItem="S6X-vF-1yp" secondAttribute="top" id="5ew-iw-Cqo"/>
+                                    <constraint firstAttribute="trailing" secondItem="2IX-Ny-l36" secondAttribute="trailing" id="78g-gm-aHl"/>
+                                    <constraint firstItem="uO8-bi-7AR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="S6X-vF-1yp" secondAttribute="top" constant="7" id="7ZW-tR-O3K"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uO8-bi-7AR" secondAttribute="bottom" constant="6" id="Csg-mg-ftO"/>
+                                    <constraint firstItem="uO8-bi-7AR" firstAttribute="leading" secondItem="S6X-vF-1yp" secondAttribute="leading" constant="10" id="HHs-3I-kfP"/>
+                                    <constraint firstItem="uO8-bi-7AR" firstAttribute="centerX" secondItem="S6X-vF-1yp" secondAttribute="centerX" id="Nmg-rf-UyU"/>
+                                    <constraint firstAttribute="bottom" secondItem="2IX-Ny-l36" secondAttribute="bottom" id="Xv2-ZH-fF1"/>
+                                    <constraint firstItem="2IX-Ny-l36" firstAttribute="leading" secondItem="S6X-vF-1yp" secondAttribute="leading" id="f4t-D0-yOy"/>
+                                    <constraint firstAttribute="height" constant="60" id="lGc-2F-6XZ"/>
+                                    <constraint firstItem="uO8-bi-7AR" firstAttribute="centerY" secondItem="S6X-vF-1yp" secondAttribute="centerY" id="vfw-S5-Pqp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="S6X-vF-1yp" secondAttribute="trailing" constant="20" id="19z-Ht-NDg"/>
+                            <constraint firstItem="xll-qb-u7C" firstAttribute="top" secondItem="S6X-vF-1yp" secondAttribute="bottom" constant="10" id="3Qn-vM-J4R"/>
+                            <constraint firstItem="S6X-vF-1yp" firstAttribute="leading" secondItem="3Ai-3J-JV7" secondAttribute="leading" constant="20" id="LSa-EG-qoY"/>
                             <constraint firstItem="xll-qb-u7C" firstAttribute="top" secondItem="k1Q-Qz-QFO" secondAttribute="bottom" id="hBZ-0d-HS8"/>
                             <constraint firstItem="k1Q-Qz-QFO" firstAttribute="top" secondItem="3Ai-3J-JV7" secondAttribute="top" id="oG2-ys-VD7"/>
                             <constraint firstItem="k1Q-Qz-QFO" firstAttribute="leading" secondItem="3Ai-3J-JV7" secondAttribute="leading" id="xau-s6-ATB"/>
@@ -714,6 +750,8 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="infoTextLabel" destination="uO8-bi-7AR" id="saS-kC-SWC"/>
+                        <outlet property="infoView" destination="S6X-vF-1yp" id="p9w-ti-Bqt"/>
                         <outlet property="mapView" destination="k1Q-Qz-QFO" id="9VM-5O-8U7"/>
                     </connections>
                 </viewController>
@@ -1812,6 +1850,7 @@
         <image name="details-expand-map.png" width="34" height="30"/>
         <image name="details_btn-photoupload.png" width="85" height="62"/>
         <image name="details_unknown-info.png" width="270" height="60"/>
+        <image name="misc_position-info.png" width="250" height="60"/>
         <image name="more-buttons_info-deactive.png" width="68" height="62"/>
         <image name="more-buttons_info.png" width="68" height="62"/>
         <image name="more-buttons_route-deactive.png" width="68" height="62"/>
