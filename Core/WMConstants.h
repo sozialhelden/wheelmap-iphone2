@@ -76,6 +76,8 @@
 #define K_STATE_NO									@"no"
 
 #define K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER		@"WMPOIsListTableViewCell"
+#define K_POI_DETAIL_GALLERY_BUTTON_CELL_IDENTIFIER	@"galleryButtonCell"
+#define K_POI_DETAIL_GALLERY_IMAGE_CELL_IDENTIFIER	@"galleryImageCell"
 
 typedef enum {
 	kDotTypeYes,

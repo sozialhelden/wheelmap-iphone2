@@ -18,65 +18,66 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        //Compass Images
-        
-        UIImage *compass = [UIImage imageNamed:@"details_compass.png"];
-        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, compass.size.width, compass.size.height)];
-        arrowImg.image = compass;
-                                                           
-        //Compass Container
-                                                           
-        self.compassContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, compass.size.width, compass.size.height)];
-     //   [self.compassContainer.layer  insertSublayer:myCompassLayer atIndex:0];
-       
-
-        [self.compassContainer addSubview:arrowImg];
-        [self addSubview:self.compassContainer];
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.delegate=self;
-        // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
-        if (IS_OS_8_OR_LATER)
-        {
-            if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-                [self.locationManager requestWhenInUseAuthorization];
-            }
-        }
-        [self.locationManager startUpdatingLocation];
-                                                           
-        //Start the compass updates.
-        [self.locationManager startUpdatingHeading];
-
-                                                           
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdating:) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating:) name:UIApplicationDidBecomeActiveNotification object:nil];
-
-        if(IS_OS_8_OR_LATER) {
-            [self.locationManager requestWhenInUseAuthorization];
-        }
-        
-        if ([CLLocationManager locationServicesEnabled]){
-            [self.locationManager startUpdatingLocation];
-        
-            //Start the compass updates.
-            [self.locationManager startUpdatingHeading];
-        }
-        self.currentLocation = [CLLocation new];
-        
+		[self initView];
     }
     return self;
 }
 
-- (void) startUpdating:(NSNotification*)notification {
+- (void)awakeFromNib {
+	[super awakeFromNib];
+
+	[self initView];
+}
+
+- (void)initView {
+	UIImage *compass = [UIImage imageNamed:@"details_compass.png"];
+	UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, compass.size.width, compass.size.height)];
+	arrowImg.image = compass;
+
+	self.compassContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, compass.size.width, compass.size.height)];
+
+	[self.compassContainer addSubview:arrowImg];
+	[self addSubview:self.compassContainer];
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	self.locationManager.delegate=self;
+	// Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+	if (IS_OS_8_OR_LATER) {
+		if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+			[self.locationManager requestWhenInUseAuthorization];
+		}
+	}
+	[self.locationManager startUpdatingLocation];
+
+	//Start the compass updates.
+	[self.locationManager startUpdatingHeading];
+
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdating:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating:) name:UIApplicationDidBecomeActiveNotification object:nil];
+
+	if(IS_OS_8_OR_LATER) {
+		[self.locationManager requestWhenInUseAuthorization];
+	}
+
+	if ([CLLocationManager locationServicesEnabled]){
+		[self.locationManager startUpdatingLocation];
+
+		//Start the compass updates.
+		[self.locationManager startUpdatingHeading];
+	}
+	self.currentLocation = [CLLocation new];
+}
+
+- (void)startUpdating:(NSNotification*)notification {
     if(IS_OS_8_OR_LATER) {
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingHeading];
     [self.locationManager startUpdatingLocation];
 }
-          
-- (void) stopUpdating:(NSNotification*)notification {
+
+- (void)stopUpdating:(NSNotification*)notification {
     [self.locationManager stopUpdatingHeading];
     [self.locationManager stopUpdatingLocation];
 }

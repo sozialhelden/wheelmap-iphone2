@@ -732,6 +732,12 @@
 		87C24FDD1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
 		87C24FDE1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
 		87C24FDF1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
+		87D02FDA1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D02FD91BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m */; };
+		87D02FDB1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D02FD91BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m */; };
+		87D02FDC1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D02FD91BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m */; };
+		87D02FDF1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D02FDE1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m */; };
+		87D02FE01BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D02FDE1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m */; };
+		87D02FE11BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D02FDE1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m */; };
 		87F841681BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
 		87F841691BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
 		87F8416A1BE3A8E20036DCE6 /* NSError+Wheelmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */; };
@@ -1099,6 +1105,10 @@
 		87B4D04A1BE8DA9F00EB770B /* WMEditPOIStateButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMEditPOIStateButtonView.h; path = Edit/WMEditPOIStateButtonView.h; sourceTree = "<group>"; };
 		87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMEditPOIStateButtonView.m; path = Edit/WMEditPOIStateButtonView.m; sourceTree = "<group>"; };
 		87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WMToolbar-iPad.xib"; sourceTree = "<group>"; };
+		87D02FD81BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSmallGalleryImageCollectionViewCell.h; sourceTree = "<group>"; };
+		87D02FD91BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSmallGalleryImageCollectionViewCell.m; sourceTree = "<group>"; };
+		87D02FDD1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSmallGalleryButtonCollectionViewCell.h; sourceTree = "<group>"; };
+		87D02FDE1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSmallGalleryButtonCollectionViewCell.m; sourceTree = "<group>"; };
 		87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Wheelmap.h"; sourceTree = "<group>"; };
 		87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Wheelmap.m"; sourceTree = "<group>"; };
 		87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateFilterButtonView.xib; sourceTree = "<group>"; };
@@ -1854,6 +1864,10 @@
 			children = (
 				87B4D0491BE8DA8300EB770B /* Edit */,
 				876E8F241BE8DBB300B4E2CD /* Shared */,
+				87D02FD81BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.h */,
+				87D02FD91BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m */,
+				87D02FDD1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.h */,
+				87D02FDE1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m */,
 				878EC92A1BE0F9200099EDD1 /* InfiniteGallery.h */,
 				878EC92B1BE0F9200099EDD1 /* InfiniteGallery.m */,
 				878EC92C1BE0F9200099EDD1 /* WMCompassView.h */,
@@ -2745,6 +2759,7 @@
 				878EC8E61BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
 				878EC9101BE0F7960099EDD1 /* WMTableViewController.m in Sources */,
 				872FDF1D1BDFEF9900764FC5 /* unzip.c in Sources */,
+				87D02FE01BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m in Sources */,
 				878EC8C81BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
 				872FDEC11BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				878EC96F1BE0F9200099EDD1 /* WMToolbar.m in Sources */,
@@ -2763,6 +2778,7 @@
 				872FDE3D1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9131BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96C1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
+				87D02FDB1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
 				878EC8DA1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB21BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -2826,6 +2842,7 @@
 				878EC8E71BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
 				878EC9111BE0F7960099EDD1 /* WMTableViewController.m in Sources */,
 				872FDF1E1BDFEF9900764FC5 /* unzip.c in Sources */,
+				87D02FE11BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m in Sources */,
 				878EC8C91BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
 				872FDEC21BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				878EC9701BE0F9200099EDD1 /* WMToolbar.m in Sources */,
@@ -2844,6 +2861,7 @@
 				872FDE3E1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9141BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96D1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
+				87D02FDC1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
 				878EC8DB1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB31BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -2907,6 +2925,7 @@
 				878EC8E51BE0F7960099EDD1 /* WMPOIIPadNavigationController.m in Sources */,
 				878EC90F1BE0F7960099EDD1 /* WMTableViewController.m in Sources */,
 				872FDF1C1BDFEF9900764FC5 /* unzip.c in Sources */,
+				87D02FDF1BFA0218007DB76B /* WMSmallGalleryButtonCollectionViewCell.m in Sources */,
 				878EC8C71BE0F7960099EDD1 /* WMCreditsViewController.m in Sources */,
 				872FDEC01BDFEF6D00764FC5 /* WMCategory+helper.m in Sources */,
 				878EC96E1BE0F9200099EDD1 /* WMToolbar.m in Sources */,
@@ -2925,6 +2944,7 @@
 				872FDE3C1BDFEF6D00764FC5 /* UIColor+WMColor.m in Sources */,
 				878EC9121BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96B1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
+				87D02FDA1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
 				878EC8D91BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB11BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,
