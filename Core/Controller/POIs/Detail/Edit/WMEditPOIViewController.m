@@ -148,7 +148,11 @@
 
     [self updateFields];
 
-	self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	if (UIDevice.isIPad == YES) {
+		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
+	} else {
+		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	}
 	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frameY + self.phoneInputView.frameHeight + self.phoneInputViewBottomConstraint.constant;
 
 	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);

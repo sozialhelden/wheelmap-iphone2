@@ -48,6 +48,9 @@
 #define K_UD_POI_TOILET_STATE_NO_KEY				@"ToiletFilterStatusNo"
 #define K_UD_POI_TOILET_STATE_UNKNOWN_KEY			@"ToiletFilterStatusUknown"
 
+#define K_POPOVER_VIEW_WIDTH						320.0f
+#define K_POPOVER_VIEW_HEIGHT						547.0f
+
 #define K_NAVIGATION_BAR_HEIGHT						44.0f
 #define K_NAVIGATION_BAR_SEARCH_OFFSET				5.0f
 

@@ -99,13 +99,15 @@
 	self.noteButtonTitleLabel.text = L(@"DetailsView4ButtonViewInfoLabel");
 	self.directionButtonTitleLabel.text = L(@"DetailsView4ButtonViewRouteLabel");
 
-	self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	UITapGestureRecognizer *enlargeMapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enlargeMapButtonPressed)];
+	[self.mapView addGestureRecognizer:enlargeMapGestureRecognizer];
+
+	if (UIDevice.isIPad == YES) {
+		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
+	} else {
+		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	}
 	self.scrollViewContentHeightConstraint.constant = self.noteButtonTitleLabel.frameY + self.noteButtonTitleLabel.frameHeight + self.notButtonTitleLabelBottomConstraint.constant;
-
-
-    UITapGestureRecognizer *enlargeMapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enlargeMapButtonPressed)];
-    [self.mapView addGestureRecognizer:enlargeMapGestureRecognizer];
-
 
 	// Set the preferred content size to make sure the popover controller has the right size.
 	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);

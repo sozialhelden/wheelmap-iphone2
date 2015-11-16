@@ -49,17 +49,26 @@
     [self.loginButton setTitle:L(@"LoginOverOSM") forState:UIControlStateNormal];
     [self.registerButton setTitle:L(@"OSMRegistration") forState:UIControlStateNormal];
     [self.whyButton setTitle:L(@"WhyOSMAccount") forState:UIControlStateNormal];
-    
-	self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
-	self.scrollViewContentHeightConstraint.constant = self.whyButton.frameY + self.whyButton.frameHeight + self.whyButtonBottomConstraint.constant;
 
-	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self showDescriptionViewController];
+}
+
+- (void)viewDidLayoutSubviews {
+	if (UIDevice.isIPad == YES) {
+		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
+	} else {
+		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	}
+	CGRect whyButtonFrame = [self.view convertRect:self.whyButton.frame fromView:self.view];
+	self.scrollViewContentHeightConstraint.constant = whyButtonFrame.origin.y + self.whyButton.frameHeight + self.whyButtonBottomConstraint.constant;
+
+	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
