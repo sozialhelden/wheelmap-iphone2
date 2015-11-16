@@ -1732,10 +1732,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0W-uc-23X" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="1200"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="1180"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRD-j1-cUC">
-                                        <rect key="frame" x="0.0" y="70" width="600" height="1130"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="1130"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzn-JB-7Wd">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1127"/>
@@ -1994,16 +1994,8 @@
                                         </constraints>
                                         <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                     </scrollView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JxR-65-0Uv">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="3zS-0C-wrR"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsS-Tq-rDM" userLabel="Navigation Bar">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxu-V0-xeo" customClass="WMLabel">
                                                 <rect key="frame" x="300" y="25" width="0.0" height="0.0"/>
@@ -2048,16 +2040,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="pRD-j1-cUC" secondAttribute="trailing" id="CWM-Cc-aGp"/>
-                                    <constraint firstAttribute="trailing" secondItem="JxR-65-0Uv" secondAttribute="trailing" id="DGo-Le-Og4"/>
+                                    <constraint firstItem="qsS-Tq-rDM" firstAttribute="top" secondItem="I0W-uc-23X" secondAttribute="top" id="Dj1-7Z-Ibs"/>
                                     <constraint firstItem="qsS-Tq-rDM" firstAttribute="leading" secondItem="I0W-uc-23X" secondAttribute="leading" id="IHa-LU-FhW"/>
-                                    <constraint firstItem="JxR-65-0Uv" firstAttribute="top" secondItem="I0W-uc-23X" secondAttribute="top" id="KlR-2D-pPa"/>
                                     <constraint firstItem="pRD-j1-cUC" firstAttribute="top" secondItem="qsS-Tq-rDM" secondAttribute="bottom" id="Mht-BC-yay"/>
-                                    <constraint firstItem="JxR-65-0Uv" firstAttribute="leading" secondItem="I0W-uc-23X" secondAttribute="leading" id="UdG-98-hrY"/>
                                     <constraint firstItem="pRD-j1-cUC" firstAttribute="leading" secondItem="I0W-uc-23X" secondAttribute="leading" id="fkB-dG-lv1"/>
                                     <constraint firstAttribute="trailing" secondItem="qsS-Tq-rDM" secondAttribute="trailing" id="k6x-ul-sKm"/>
                                     <constraint firstItem="qsS-Tq-rDM" firstAttribute="top" secondItem="I0W-uc-23X" secondAttribute="top" constant="20" id="nQA-6h-7tP"/>
                                     <constraint firstAttribute="bottom" secondItem="pRD-j1-cUC" secondAttribute="bottom" id="oWk-af-16K"/>
-                                    <constraint firstItem="qsS-Tq-rDM" firstAttribute="top" secondItem="JxR-65-0Uv" secondAttribute="bottom" id="uv4-4U-Wbe"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -2069,6 +2058,7 @@
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="I0W-uc-23X" firstAttribute="top" secondItem="mis-fb-ugu" secondAttribute="bottom" id="El1-3B-QO6"/>
                             <constraint firstItem="LFy-zQ-Vns" firstAttribute="top" secondItem="I0W-uc-23X" secondAttribute="bottom" id="OHv-2q-feb"/>
                             <constraint firstAttribute="trailing" secondItem="I0W-uc-23X" secondAttribute="trailing" id="WTQ-qa-gWF"/>
                             <constraint firstItem="LFy-zQ-Vns" firstAttribute="top" secondItem="I0W-uc-23X" secondAttribute="bottom" id="eBV-PY-VgD"/>
@@ -2077,11 +2067,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="mXR-dQ-7VZ"/>
                                 <exclude reference="eBV-PY-VgD"/>
                             </mask>
                         </variation>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
