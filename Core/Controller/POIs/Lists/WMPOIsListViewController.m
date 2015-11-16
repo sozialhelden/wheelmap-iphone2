@@ -353,7 +353,7 @@
     
     CGRect myRect = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
     
-    [detailViewController.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [detailViewController.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
 }
 
 #pragma mark - Table view delegate
