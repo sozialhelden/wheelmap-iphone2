@@ -63,6 +63,8 @@
 		2EA5AB16280C161522CCBB3D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
 		757E60E31BCC123A00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E21BCC123A00E31CFB /* libPods.a */; };
 		757E60E91BCC12AB00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E81BCC12AB00E31CFB /* libPods.a */; };
+		8710FDF91BFBC09500D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
+		8710FDFA1BFBC09600D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8724C7001BF61B9600C1539B /* WMNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */; };
 		8724C7011BF61B9600C1539B /* WMNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */; };
 		8724C7021BF61B9600C1539B /* WMNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */; };
@@ -2347,6 +2349,7 @@
 				8774E64D1BE0D93800A3E7EA /* more-buttons_share-deactive@2x.png in Resources */,
 				8774E6CE1BE0D93800A3E7EA /* toolbar_indicator-green@2x.png in Resources */,
 				8774E6801BE0D93800A3E7EA /* navigationbar_logo@2x.png in Resources */,
+				8710FDF91BFBC09500D36259 /* WMCategoryFilterPopoverView.xib in Resources */,
 				8774E6D11BE0D93800A3E7EA /* toolbar_indicator-grey.png in Resources */,
 				8774E6B91BE0D93800A3E7EA /* toolbar_button-search-active.png in Resources */,
 				8774E6441BE0D93800A3E7EA /* more-buttons_route.png in Resources */,
@@ -2514,6 +2517,7 @@
 				8774E64E1BE0D93800A3E7EA /* more-buttons_share-deactive@2x.png in Resources */,
 				8774E6CF1BE0D93800A3E7EA /* toolbar_indicator-green@2x.png in Resources */,
 				8774E6811BE0D93800A3E7EA /* navigationbar_logo@2x.png in Resources */,
+				8710FDFA1BFBC09600D36259 /* WMCategoryFilterPopoverView.xib in Resources */,
 				8774E6D21BE0D93800A3E7EA /* toolbar_indicator-grey.png in Resources */,
 				8774E6BA1BE0D93800A3E7EA /* toolbar_button-search-active.png in Resources */,
 				8774E6451BE0D93800A3E7EA /* more-buttons_route.png in Resources */,
