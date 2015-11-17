@@ -1109,7 +1109,12 @@
 
     if (wheelchairStateFilterPopoverView.hidden) {
 		wheelchairStateFilterPopoverView.stateType = wheelchairStateFilterPopoverView.stateType;
-		[wheelchairStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX+(view.frameWidth/2)-wheelchairStateFilterPopoverView.frameWidth+K_POI_STATUS_FILTER_POPOVER_MARKER_X_OFFSET, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+
+		if (view.isRightToLeftDirection == YES) {
+			[wheelchairStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+		} else {
+			[wheelchairStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX+(view.frameWidth/2)-wheelchairStateFilterPopoverView.frameWidth+K_POI_STATUS_FILTER_POPOVER_MARKER_X_OFFSET, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+		}
         [self showPopover:wheelchairStateFilterPopoverView];
     } else {
         [self hidePopover:wheelchairStateFilterPopoverView];
@@ -1121,7 +1126,11 @@
 
 	if (toiletStateFilterPopoverView.hidden) {
 		toiletStateFilterPopoverView.stateType = toiletStateFilterPopoverView.stateType;
-		[toiletStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX+(view.frameWidth/2)-toiletStateFilterPopoverView.frameWidth+K_POI_STATUS_FILTER_POPOVER_MARKER_X_OFFSET, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+		if (view.isRightToLeftDirection == YES) {
+			[toiletStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+		} else {
+			[toiletStateFilterPopoverView refreshPositionWithOrigin:CGPointMake(view.frameX+(view.frameWidth/2)-toiletStateFilterPopoverView.frameWidth+K_POI_STATUS_FILTER_POPOVER_MARKER_X_OFFSET, self.toolbar.frame.origin.y-K_TOOLBAR_BAR_HEIGHT-10)];
+		}
 		[self showPopover:toiletStateFilterPopoverView];
 	} else {
 		[self hidePopover:toiletStateFilterPopoverView];
@@ -1133,7 +1142,11 @@
 	[self hidePopoverViews];
     
     if (categoryFilterPopoverView.hidden) {
-		[categoryFilterPopoverView refreshViewWithRefPoint:CGPointMake(view.frameX+(view.frameWidth/2), self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+		if (view.isRightToLeftDirection == YES) {
+			[categoryFilterPopoverView refreshViewWithRefPoint:CGPointMake(view.frameX, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+		} else {
+			[categoryFilterPopoverView refreshViewWithRefPoint:CGPointMake(view.frameX+(view.frameWidth/2), self.toolbar.frame.origin.y) andCategories:dataManager.categories];
+		}
 		[self showPopover:categoryFilterPopoverView];
     } else {
         [self hidePopover:categoryFilterPopoverView];
