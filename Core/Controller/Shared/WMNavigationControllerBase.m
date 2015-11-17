@@ -1142,11 +1142,8 @@
 	[self hidePopoverViews];
     
     if (categoryFilterPopoverView.hidden) {
-		if (view.isRightToLeftDirection == YES) {
-			[categoryFilterPopoverView refreshViewWithRefPoint:CGPointMake(view.frameX, self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-		} else {
-			[categoryFilterPopoverView refreshViewWithRefPoint:CGPointMake(view.frameX+(view.frameWidth/2), self.toolbar.frame.origin.y) andCategories:dataManager.categories];
-		}
+		// Set the ref point. This right-to-left upport is implemented in the WMCategoryFilterPopoverView itself
+		[categoryFilterPopoverView refreshViewWithRefPoint:CGPointMake(view.frameX+(view.frameWidth/2), self.toolbar.frame.origin.y) andCategories:dataManager.categories];
 		[self showPopover:categoryFilterPopoverView];
     } else {
         [self hidePopover:categoryFilterPopoverView];

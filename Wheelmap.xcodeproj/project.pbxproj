@@ -729,6 +729,16 @@
 		87B4D04C1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
 		87B4D04D1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
 		87B4D04E1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */; };
+		87BB808B1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
+		87BB808D1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808C1BFB2CC100E517F2 /* WMCategoryFilterCell.xib */; };
+		87BB808E1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808C1BFB2CC100E517F2 /* WMCategoryFilterCell.xib */; };
+		87BB808F1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808C1BFB2CC100E517F2 /* WMCategoryFilterCell.xib */; };
+		87BB80971BFB3E9500E517F2 /* toolbar_category-popup-rtl.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BB80951BFB3E9500E517F2 /* toolbar_category-popup-rtl.png */; };
+		87BB80981BFB3E9500E517F2 /* toolbar_category-popup-rtl.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BB80951BFB3E9500E517F2 /* toolbar_category-popup-rtl.png */; };
+		87BB80991BFB3E9500E517F2 /* toolbar_category-popup-rtl.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BB80951BFB3E9500E517F2 /* toolbar_category-popup-rtl.png */; };
+		87BB809A1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BB80961BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png */; };
+		87BB809B1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BB80961BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png */; };
+		87BB809C1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BB80961BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png */; };
 		87C24FDD1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
 		87C24FDE1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
 		87C24FDF1BECBD4E008CFDDE /* WMToolbar-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */; };
@@ -1116,6 +1126,10 @@
 		87B4D0421BE8DA7A00EB770B /* WMPOIStateFilterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPOIStateFilterPopoverView.m; sourceTree = "<group>"; };
 		87B4D04A1BE8DA9F00EB770B /* WMEditPOIStateButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMEditPOIStateButtonView.h; path = Edit/WMEditPOIStateButtonView.h; sourceTree = "<group>"; };
 		87B4D04B1BE8DA9F00EB770B /* WMEditPOIStateButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMEditPOIStateButtonView.m; path = Edit/WMEditPOIStateButtonView.m; sourceTree = "<group>"; };
+		87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMCategoryFilterPopoverView.xib; sourceTree = "<group>"; };
+		87BB808C1BFB2CC100E517F2 /* WMCategoryFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMCategoryFilterCell.xib; sourceTree = "<group>"; };
+		87BB80951BFB3E9500E517F2 /* toolbar_category-popup-rtl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_category-popup-rtl.png"; sourceTree = "<group>"; };
+		87BB80961BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_category-popup-rtl@2x.png"; sourceTree = "<group>"; };
 		87C24FDC1BECBD4E008CFDDE /* WMToolbar-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WMToolbar-iPad.xib"; sourceTree = "<group>"; };
 		87D02FD81BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSmallGalleryImageCollectionViewCell.h; sourceTree = "<group>"; };
 		87D02FD91BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSmallGalleryImageCollectionViewCell.m; sourceTree = "<group>"; };
@@ -1271,6 +1285,8 @@
 				87B148E11BECDADC00146985 /* WMToolbar.xib */,
 				8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */,
 				878324521BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib */,
+				87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */,
+				87BB808C1BFB2CC100E517F2 /* WMCategoryFilterCell.xib */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -1681,6 +1697,8 @@
 				8774E5631BE0D93800A3E7EA /* toolbar_button-search-active@2x.png */,
 				8774E5641BE0D93800A3E7EA /* toolbar_category-check.png */,
 				8774E5651BE0D93800A3E7EA /* toolbar_category-check@2x.png */,
+				87BB80951BFB3E9500E517F2 /* toolbar_category-popup-rtl.png */,
+				87BB80961BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png */,
 				8774E5661BE0D93800A3E7EA /* toolbar_category-popup.png */,
 				8774E5671BE0D93800A3E7EA /* toolbar_category-popup@2x.png */,
 				8774E5681BE0D93800A3E7EA /* toolbar_indicator-green.png */,
@@ -2141,6 +2159,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87BB809B1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */,
 				8774E63E1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
 				8731F80A1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */,
 				8774E6381BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
@@ -2246,6 +2265,7 @@
 				8774E6FE1BE0D93800A3E7EA /* toolbar_statusfilter-unknown-active@2x.png in Resources */,
 				8774E5841BE0D93800A3E7EA /* credits_authors@2x.png in Resources */,
 				8774E69E1BE0D93800A3E7EA /* checkbox_active@2x.png in Resources */,
+				87BB808E1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */,
 				8774E6861BE0D93800A3E7EA /* Social_btn-email@2x.png in Resources */,
 				8774E5F61BE0D93800A3E7EA /* details_btn-status-limited@2x.png in Resources */,
 				8774E6321BE0D93800A3E7EA /* details_unknown-info@2x.png in Resources */,
@@ -2283,6 +2303,7 @@
 				8731F80D1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */,
 				8774E6B01BE0D93800A3E7EA /* ipad_buttons_login@2x.png in Resources */,
 				8774E69B1BE0D93800A3E7EA /* checkbox_active.png in Resources */,
+				87BB80981BFB3E9500E517F2 /* toolbar_category-popup-rtl.png in Resources */,
 				8774E6411BE0D93800A3E7EA /* more-buttons_route-deactive@2x.png in Resources */,
 				8774E5DE1BE0D93800A3E7EA /* details-expand-map@2x.png in Resources */,
 				8774E6E01BE0D93800A3E7EA /* toolbar_indicator-red@2x.png in Resources */,
@@ -2303,6 +2324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87BB809C1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */,
 				8774E63F1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
 				8731F80B1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */,
 				8774E6391BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
@@ -2408,6 +2430,7 @@
 				8774E6FF1BE0D93800A3E7EA /* toolbar_statusfilter-unknown-active@2x.png in Resources */,
 				8774E5851BE0D93800A3E7EA /* credits_authors@2x.png in Resources */,
 				8774E69F1BE0D93800A3E7EA /* checkbox_active@2x.png in Resources */,
+				87BB808F1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */,
 				8774E6871BE0D93800A3E7EA /* Social_btn-email@2x.png in Resources */,
 				8774E5F71BE0D93800A3E7EA /* details_btn-status-limited@2x.png in Resources */,
 				8774E6331BE0D93800A3E7EA /* details_unknown-info@2x.png in Resources */,
@@ -2445,6 +2468,7 @@
 				8731F80E1BF4A01900BE7B9C /* start_searchbar_bg@2x.png in Resources */,
 				8774E6B11BE0D93800A3E7EA /* ipad_buttons_login@2x.png in Resources */,
 				8774E69C1BE0D93800A3E7EA /* checkbox_active.png in Resources */,
+				87BB80991BFB3E9500E517F2 /* toolbar_category-popup-rtl.png in Resources */,
 				8774E6421BE0D93800A3E7EA /* more-buttons_route-deactive@2x.png in Resources */,
 				8774E5DF1BE0D93800A3E7EA /* details-expand-map@2x.png in Resources */,
 				8774E6E11BE0D93800A3E7EA /* toolbar_indicator-red@2x.png in Resources */,
@@ -2475,6 +2499,7 @@
 				8774E6941BE0D93800A3E7EA /* Social_btn-twitter.png in Resources */,
 				8774E68E1BE0D93800A3E7EA /* Social_btn-sms.png in Resources */,
 				8774E6DC1BE0D93800A3E7EA /* toolbar_indicator-red.png in Resources */,
+				87BB808B1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib in Resources */,
 				8774E64F1BE0D93800A3E7EA /* more-buttons_share.png in Resources */,
 				8774E6491BE0D93800A3E7EA /* more-buttons_share-deactive.png in Resources */,
 				8774E7091BE0D93800A3E7EA /* toolbar_statusfilter-yes-active@2x.png in Resources */,
@@ -2547,6 +2572,7 @@
 				8774E5C51BE0D93800A3E7EA /* ipad_buttons_credits.png in Resources */,
 				8774E6581BE0D93800A3E7EA /* textfield_-share@2x.png in Resources */,
 				8774E5FE1BE0D93800A3E7EA /* details_btn-status-unknown.png in Resources */,
+				87BB809A1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */,
 				8774E70C1BE0D93800A3E7EA /* toolbar_statusfilter-yes.png in Resources */,
 				8774E5F81BE0D93800A3E7EA /* details_btn-status-no.png in Resources */,
 				8774E6A01BE0D93800A3E7EA /* checkbox_inactive.png in Resources */,
@@ -2577,6 +2603,7 @@
 				8774E6EB1BE0D93800A3E7EA /* toolbar_statusfilter-limited@2x.png in Resources */,
 				8774E58C1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B51BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
+				87BB808D1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */,
 				878324531BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib in Resources */,
 				8774E6EE1BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
 				872FD96C1BDFD6A100764FC5 /* WMConfig-Alpha.plist in Resources */,
@@ -2584,6 +2611,7 @@
 				8774E5B01BE0D93800A3E7EA /* start_logo.png in Resources */,
 				8774E68B1BE0D93800A3E7EA /* Social_btn-facebook@2x.png in Resources */,
 				8774E65E1BE0D93800A3E7EA /* buttons_btn-signup@2x.png in Resources */,
+				87BB80971BFB3E9500E517F2 /* toolbar_category-popup-rtl.png in Resources */,
 				8774E7001BE0D93800A3E7EA /* toolbar_statusfilter-unknown.png in Resources */,
 				8774E6E51BE0D93800A3E7EA /* toolbar_statusfilter-limited-active@2x.png in Resources */,
 				8774E5951BE0D93800A3E7EA /* credits_verein@2x.png in Resources */,

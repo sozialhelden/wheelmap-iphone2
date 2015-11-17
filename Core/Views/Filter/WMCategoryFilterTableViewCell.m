@@ -8,64 +8,39 @@
 
 #import "WMCategoryFilterTableViewCell.h"
 
-@implementation WMCategoryFilterTableViewCell
-@synthesize title = _title;
+#define K_CHECKMARK_WIDTH	25.0f
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+@implementation WMCategoryFilterTableViewCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (UIDevice.isIPad == YES) {
-            titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 130, CELL_HEIGHT)];
-        } else {
-            titleLabel = [[WMLabel alloc] initWithFrame:CGRectMake(5, 0, 100, CELL_HEIGHT)];
-        }
-        titleLabel.fontSize = 15.0;
-        titleLabel.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:titleLabel];
-        
-        if (UIDevice.isIPad == YES) {
-            checkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(135, 0, 25, CELL_HEIGHT)];
-        } else {
-            checkIcon = [[UIImageView alloc] initWithFrame:CGRectMake(105, 0, 25, CELL_HEIGHT)];
-        }
-        checkIcon.image = [UIImage imageNamed:@"toolbar_category-check.png"];
-        checkIcon.contentMode = UIViewContentModeCenter;
-        checkIcon.hidden = YES;
-        [self addSubview:checkIcon];
-        
-        self.isSelected = NO;
-        
+		if (self.isRightToLeftDirection == YES) {
+			// As Marquee label doesn't support right to left automatically on prior iOS9 devices, we have to do it on our own.
+			self.titleLabel.textAlignment = NSTextAlignmentRight;
+			self.checked = YES;
+		}
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+- (void)setChecked:(BOOL)checked {
+	_checked = checked;
 
-    if (selected) {
-        self.isSelected = !self.isSelected;
-        if (self.isSelected) {
-            checkIcon.hidden = NO;
-        } else {
-            checkIcon.hidden = YES;
-        }
-    }
+	if (self.checked == YES) {
+		self.checkmarkWidthConstraint.constant = K_CHECKMARK_WIDTH;
+	} else {
+		self.checkmarkWidthConstraint.constant = 0;
+	}
+	[self.checkmarkImageView layoutIfNeeded];
 }
-
 
 #pragma mark - Set Title
--(void)setTitle:(NSString *)title
-{
-    _title = title;
-    titleLabel.text = title;
-}
--(NSString*)title
-{
-    return _title;
+
+- (void)setTitle:(NSString *)title {
+	_title = title;
+    self.titleLabel.text = title;
 }
 
 @end

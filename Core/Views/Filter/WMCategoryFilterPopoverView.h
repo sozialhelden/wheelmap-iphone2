@@ -13,16 +13,19 @@
 -(void)categoryFilterStatusDidChangeForCategoryID:(NSNumber*)categoryID selected:(BOOL)selected;
 @end
 
-@interface WMCategoryFilterPopoverView : UIView <UITableViewDataSource, UITableViewDelegate>
-{
+@interface WMCategoryFilterPopoverView : UIView <UITableViewDataSource, UITableViewDelegate> {
     CGPoint refOrigin;
-    UIImageView* bgImg;
-    UITableView* tableView;
 }
 
-@property (nonatomic, strong) NSArray* categoryList;
-@property (nonatomic, strong) id<WMCategoryFilterPopoverViewDelegate> delegate;
+@property (nonatomic, strong) id<WMCategoryFilterPopoverViewDelegate>	delegate;
+
+@property (strong, nonatomic) IBOutlet UIImageView *					backgroundImageView;
+@property (strong, nonatomic) IBOutlet UITableView *					tableView;
+
+@property (nonatomic, strong) NSArray*									categoryList;
+
 - (id)initWithRefPoint:(CGPoint)refPoint andCategories:(NSArray*)categories;
+
 - (void)refreshViewWithCategories:(NSArray*)categories;
 - (void)refreshViewWithRefPoint:(CGPoint)refPoint andCategories:(NSArray *)categories;
 @end
