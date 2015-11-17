@@ -141,8 +141,8 @@
 	}
 	self.askFriendsButtonTitleLabel.text = L(@"DetailsViewAskFriendsButtonLabel");
 
-	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] != YES
-		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] != YES) {
+	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == NO
+		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO) {
 		self.askFriendsViewHeightConstraint.constant = 0;
 		[self.askFriendsView layoutIfNeeded];
 	}
@@ -244,7 +244,7 @@
 
 - (void)updatePOIStateButtonViews {
 	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == NO
-		|| [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO) {
+		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO) {
 		// No state is unknow, so we don't have to show the ask friends view
 		if (self.askFriendsViewHeightConstraint.constant == K_ASK_FRIENDS_HEIGHT) {
 			self.scrollViewContentHeightConstraint.constant -= K_ASK_FRIENDS_HEIGHT;
