@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -115,8 +115,8 @@
                 <outlet property="categoryButton" destination="faM-T3-jR8" id="cxP-Ao-tnO"/>
                 <outlet property="mapListToggleButton" destination="8G7-nU-WD9" id="cmD-fT-e9c"/>
                 <outlet property="searchButton" destination="XMi-S5-5ma" id="iKp-4j-wcD"/>
-                <outlet property="toiletStateFilterButtonContainerView" destination="dMx-M8-Qhg" id="vOc-Uv-8gR"/>
-                <outlet property="wheelchairStateFilterButtonContainerView" destination="poW-sh-Z4h" id="wSm-6B-D2A"/>
+                <outlet property="toiletStateFilterButtonContainerView" destination="poW-sh-Z4h" id="wSk-l3-V4Z"/>
+                <outlet property="wheelchairStateFilterButtonContainerView" destination="dMx-M8-Qhg" id="oLc-0J-ccQ"/>
             </connections>
             <point key="canvasLocation" x="311" y="460.5"/>
         </view>

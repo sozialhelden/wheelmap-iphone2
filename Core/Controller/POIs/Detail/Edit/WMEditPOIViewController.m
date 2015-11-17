@@ -31,8 +31,7 @@
     BOOL hasCoordinate;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.scrollView.scrollsToTop = YES;
@@ -131,7 +130,23 @@
     progressWheel.layer.masksToBounds = YES;
     [self.view addSubview:progressWheel];
 
-	self.preferredContentSize = self.scrollViewContentView.bounds.size;
+	if (self.view.isRightToLeftDirection == YES) {
+		self.setCategoryButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+		self.setNodeTypeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+		self.setMarkerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+
+		if (SYSTEM_VERSION_LESS_THAN(@"9.0") == YES) {
+			// As UITextFields doesn't support right to left automatically on prior iOS9 devices, we have to do it on our own.
+			self.nameTextField.textAlignment = NSTextAlignmentRight;
+			self.infoTextView.textAlignment = NSTextAlignmentRight;
+			self.streetTextField.textAlignment = NSTextAlignmentRight;
+			self.housenumberTextField.textAlignment = NSTextAlignmentRight;
+			self.postcodeTextField.textAlignment = NSTextAlignmentRight;
+			self.cityTextField.textAlignment = NSTextAlignmentRight;
+			self.websiteTextField.textAlignment = NSTextAlignmentRight;
+			self.phoneTextField.textAlignment = NSTextAlignmentRight;
+		}
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,10 +160,18 @@
 
     [self updateFields];
 
-	// Update the scroll view constrians
-	self.scrollViewContentWidthConstraint.constant = self.scrollView.frameWidth;
-	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frame.origin.y + self.phoneInputView.frame.size.height + self.phoneInputViewBottomConstraint.constant;
-	[self.scrollView layoutIfNeeded];
+	if (UIDevice.isIPad == YES) {
+		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
+	} else {
+		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	}
+	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frameY + self.phoneInputView.frameHeight + self.phoneInputViewBottomConstraint.constant;
+
+	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
+}
+
+- (void)viewDidLayoutSubviews {
+
 }
 
 - (void) updateFields {

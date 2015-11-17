@@ -16,10 +16,13 @@
 
 @synthesize dataSource, delegate;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	
+
+	if (self.listShadowImageView.isRightToLeftDirection == YES) {
+		self.listShadowImageView.image = self.listShadowImageView.image.rightToLeftMirrowedImage;
+	}
+
     self.listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"listViewController"];
     self.listViewController.dataSource = (WMNavigationControllerBase*)self.dataSource;
     self.listViewController.delegate = (WMNavigationControllerBase*)self.dataSource;
@@ -39,24 +42,13 @@
     [self.mapContainerView addSubview:self.mapViewController.view];
     
     self.controllerBase.mapViewController = self.mapViewController;
-    //    [(WMNavigationControllerBase *)self.navigationController updateUserLocation];
 }
 
-- (void)nodeListDidChange
-{
+#pragma mark -
+
+- (void)nodeListDidChange {
     [self.listViewController nodeListDidChange];
     [self.mapViewController nodeListDidChange];
-}
-
--(IBAction)toggleListButtonTouched:(id)sender
-{
-    [UIView animateWithDuration:0.5 animations:^{
-        CGPoint center = self.listContainerView.center;
-        center.x = -center.x;
-        self.listContainerView.center = center;
-    } completion:^(BOOL finished) {
-        
-    }];
 }
 
 - (void)gotNewUserLocation:(CLLocation *)location {
@@ -74,8 +66,7 @@
 
 #pragma mark - Node List Data Source
 
-- (NSArray*)nodeList
-{
+- (NSArray*)nodeList {
     return [self.dataSource nodeList];
 }
 
@@ -83,15 +74,13 @@
     return [self.dataSource filteredNodeListForUseCase:useCase];
 }
 
--(void)updateNodesWithRegion:(MKCoordinateRegion)region
-{
+-(void)updateNodesWithRegion:(MKCoordinateRegion)region {
     [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:region];
 }
 
 #pragma mark - Node List Delegate
 
-- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectDetailsForNode:(Node *)node
-{
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectDetailsForNode:(Node *)node {
     if (node == nil) {
         return;
     }
@@ -99,8 +88,7 @@
     [self.listViewController showDetailPopoverForNode:node];
 }
 
-- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectNode:(Node *)node
-{
+- (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectNode:(Node *)node {
     if (node == nil) {
         return;
     }
@@ -108,17 +96,14 @@
     [self.listViewController selectNode:node];
     [self.listViewController showDetailPopoverForNode:node];
     [self.mapViewController zoomInForNode:node];
-    
 }
 
 #pragma mark - Node List Protocol
 
-- (void)selectNode:(Node *)node
-{
+- (void)selectNode:(Node *)node {
 }
 
--(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WMCategoryFilterPopoverView">
+            <rect key="frame" x="0.0" y="0.0" width="190" height="321"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="toolbar_category-popup.png" translatesAutoresizingMaskIntoConstraints="NO" id="5UH-8r-dbW">
+                    <rect key="frame" x="0.0" y="0.0" width="190" height="321"/>
+                    <animations/>
+                    <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ehx-Ru-fR1">
+                    <rect key="frame" x="2" y="2" width="186" height="307"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="gA3-dH-BZ7"/>
+                        <outlet property="delegate" destination="-1" id="hC2-PL-tHJ"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ehx-Ru-fR1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="67S-Zv-2gM"/>
+                <constraint firstItem="5UH-8r-dbW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PRq-3l-zW2"/>
+                <constraint firstAttribute="trailing" secondItem="5UH-8r-dbW" secondAttribute="trailing" id="W9h-m5-l0g"/>
+                <constraint firstAttribute="trailing" secondItem="ehx-Ru-fR1" secondAttribute="trailing" constant="2" id="Z8B-MN-zHr"/>
+                <constraint firstAttribute="bottom" secondItem="ehx-Ru-fR1" secondAttribute="bottom" constant="12" id="eUN-Fy-Y5Y"/>
+                <constraint firstItem="ehx-Ru-fR1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="hLG-a6-ksJ"/>
+                <constraint firstAttribute="bottom" secondItem="5UH-8r-dbW" secondAttribute="bottom" id="j3B-Vt-rtG"/>
+                <constraint firstItem="5UH-8r-dbW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jqW-NX-XXp"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundImageView" destination="5UH-8r-dbW" id="4L8-KF-fbW"/>
+                <outlet property="tableView" destination="ehx-Ru-fR1" id="igQ-df-hy0"/>
+            </connections>
+            <point key="canvasLocation" x="206" y="477.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="toolbar_category-popup.png" width="132" height="60"/>
+    </resources>
+</document>

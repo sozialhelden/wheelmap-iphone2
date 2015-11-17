@@ -38,7 +38,9 @@
 
 @synthesize dataSource, delegate;
 
--(id)initWithCoder:(NSCoder *)aDecoder{
+#pragma mark - Initalization
+
+- (id)initWithCoder:(NSCoder *)aDecoder{
     
     if(self = [super initWithCoder:aDecoder]){
         backgroundQueue = dispatch_queue_create("de.sozialhelden.wheelmap.list", NULL);
@@ -47,8 +49,9 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+#pragma mark - View Lifecycle
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // correct cell separator insets
@@ -77,14 +80,12 @@
     
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     shouldShowNoResultIndicator = YES;
 }
 
--(void) viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:YES];
     
@@ -93,7 +94,9 @@
     
 }
 
--(void) initNodeType{
+#pragma mark - Data management
+
+- (void)initNodeType{
     
     if (self.useCase == kWMPOIsListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolbarButtonSearch];
@@ -137,8 +140,7 @@
         [self loadNodes];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar selectSearchButton];
         [((WMNavigationControllerBase *)self.navigationController).customToolBar hideButton:kWMToolbarButtonCurrentLocation];
-    }
-    else {
+    } else {
         
         NSNumber* lastMapVisibleCenterLat = [((WMNavigationControllerBase *)self.navigationController) lastVisibleMapCenterLat];
         if (!lastMapVisibleCenterLat) {
@@ -153,9 +155,7 @@
     }
 }
 
-- (void) loadNodes
-{
-    
+- (void)loadNodes{
     if (UIDevice.isIPad == YES) {
         
         if (self.useCase == kWMPOIsListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
@@ -172,18 +172,12 @@
             [self.view addSubview:accesoryHeader];
             
             self.tableViewTopVerticalSpaceConstraint.constant += 80;
-            [UIView animateWithDuration:0.3 animations:^(void)
-             {
+            [UIView animateWithDuration:0.3 animations:^(void) {
                  [self.view layoutIfNeeded];
-             }
-                             completion:^(BOOL finished)
-             {
-                 [UIView animateWithDuration:0.5 animations:^(void)
-                  {
+             } completion:^(BOOL finished) {
+                 [UIView animateWithDuration:0.5 animations:^(void) {
                       accesoryHeader.alpha = 1.0;
-                  }
-                                  completion:nil
-                  ];
+                  } completion:nil ];
              }];
             
         } else {
@@ -193,18 +187,12 @@
                 isAccesoryHeaderVisible = NO;
                 
                 self.tableViewTopVerticalSpaceConstraint.constant = 0;
-                [UIView animateWithDuration:0.3 animations:^(void)
-                 {
+                [UIView animateWithDuration:0.3 animations:^(void)  {
                      [self.view layoutIfNeeded];
-                 }
-                                 completion:^(BOOL finished)
-                 {
-                     [UIView animateWithDuration:0.5 animations:^(void)
-                      {
+                 } completion:^(BOOL finished) {
+                     [UIView animateWithDuration:0.5 animations:^(void) {
                           accesoryHeader.alpha = 0.0;
-                      }
-                                      completion:nil
-                      ];
+                      } completion:nil];
                  }];
             }
         }
@@ -247,8 +235,7 @@
 	}
 }
 
-- (NSArray*)sortNodesByDistance:(NSArray*)nodesTemp
-{
+- (NSArray*)sortNodesByDistance:(NSArray*)nodesTemp {
     CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
     
     nodesTemp = [nodesTemp sortedArrayUsingComparator:^NSComparisonResult(Node* n1, Node* n2) {
@@ -269,8 +256,7 @@
 
 #pragma mark - Node View Protocol
 
-- (void) nodeListDidChange
-{
+- (void) nodeListDidChange {
     if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         if (receivedClearList) {
             searching = NO;
@@ -283,8 +269,7 @@
     [self loadNodes];
 }
 
-- (void) selectNode:(Node *)node
-{
+- (void) selectNode:(Node *)node {
     if (node) {
         NSUInteger row = [nodes indexOfObject:node];
         if (row != NSNotFound) {
@@ -298,26 +283,17 @@
     }
 }
 
-
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
         // no search result!
         return 1;   // to infrom user about this
     }
-    
     return [nodes count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"WMNodeListCellNoResult"];
         if (!cell) {
@@ -335,22 +311,15 @@
     
     WMPOIsListTableViewCell *cell = (WMPOIsListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     Node *node = nodes[indexPath.row];
-    
-    // show wheelchair status
-    
-    for (UIView *subview in cell.iconImage.subviews) {
-        if ([subview isKindOfClass:UIImageView.class]) {
-            [subview removeFromSuperview];
-        }
-    }
-    
-    cell.iconImage.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-    UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 4, 20, 16)];
-    icon.contentMode = UIViewContentModeScaleAspectFit;
-    icon.backgroundColor = [UIColor clearColor];
-    icon.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon]; // node.node_type.iconPath is sometimes null. this is a hot fix.
-    [cell.iconImage addSubview:icon];
-    
+
+	UIImage *markerImage = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+	if (cell.markerImageView.isRightToLeftDirection == YES) {
+		markerImage = markerImage.rightToLeftMirrowedImage;
+	}
+	cell.markerImageView.image = markerImage;
+
+	cell.iconImageView.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];
+
     // show name
     cell.titleLabel.text = node.name ?: @"";
     
@@ -366,8 +335,7 @@
     return cell;
 }
 
-- (void) showDetailPopoverForNode:(Node *)node
-{
+- (void) showDetailPopoverForNode:(Node *)node {
     if (node == nil) {
         return;
     }
@@ -384,8 +352,12 @@
     detailViewController.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
     
     CGRect myRect = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
-    
-    [detailViewController.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+
+	UIPopoverArrowDirection popoverArrowDirection = UIPopoverArrowDirectionLeft;
+	if (self.view.isRightToLeftDirection) {
+		popoverArrowDirection = UIPopoverArrowDirectionRight;
+	}
+    [detailViewController.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:popoverArrowDirection animated:YES];
 }
 
 #pragma mark - Table view delegate
@@ -394,8 +366,7 @@
     return 50.0f;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.delegate respondsToSelector:@selector(nodeListView:didSelectNode:)]) {
         if (nodes.count > indexPath.row) {
             [self.delegate nodeListView:self didSelectNode:nodes[indexPath.row]];
@@ -403,15 +374,13 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.delegate respondsToSelector:@selector(nodeListView:didSelectNode:)]) {
         [self.delegate nodeListView:self didSelectNode:nil];
     }
 }
 
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     [self.delegate nodeListView:self didSelectDetailsForNode:nodes[indexPath.row]];
 }

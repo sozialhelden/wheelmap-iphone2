@@ -11,12 +11,12 @@
 
 @interface WMPOIsListViewController : WMViewController <WMPOIsListViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UITableView* tableView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopVerticalSpaceConstraint;
+@property (nonatomic, strong) IBOutlet UITableView *			tableView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *		tableViewTopVerticalSpaceConstraint;
 
-@property (nonatomic, strong) NSNumber* selectedCategoryID;
-@property (nonatomic) WMPOIsListViewControllerUseCase useCase;
-@property (nonatomic, strong) WMNavigationControllerBase *controllerBase;
+@property (nonatomic, strong) NSNumber *						selectedCategoryID;
+@property (nonatomic) WMPOIsListViewControllerUseCase			useCase;
+@property (nonatomic, strong) WMNavigationControllerBase *		controllerBase;
 
 - (void) showDetailPopoverForNode:(Node *)node;
 

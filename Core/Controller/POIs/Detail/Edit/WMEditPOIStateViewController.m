@@ -45,6 +45,11 @@
 	self.statusType = self.statusType;
 
 	// Set the preferred content size to make sure the popover controller has the right size.
+	if (UIDevice.isIPad == YES) {
+		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
+	} else {
+		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
+	}
 	self.scrollViewContentHeightConstraint.constant = self.noButtonContainerView.frame.origin.y + self.noButtonContainerView.frame.size.height + 10;
 	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
 }

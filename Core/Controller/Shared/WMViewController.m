@@ -27,8 +27,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
@@ -43,11 +42,10 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
 	// Set the preferred content size to make sure the popover controller has the right size.
-	self.preferredContentSize = CGSizeMake(320.0f, 547.0f);
+	self.preferredContentSize = CGSizeMake(K_POPOVER_VIEW_WIDTH, K_POPOVER_VIEW_HEIGHT);
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     if (UIDevice.isIPad == NO) {
@@ -60,8 +58,7 @@
 }
 
 
--(void)setTitle:(NSString *)title
-{
+- (void)setTitle:(NSString *)title {
     [super setTitle:title];
     self.navigationBarTitle = title;
 }
@@ -79,8 +76,7 @@
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
--(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 

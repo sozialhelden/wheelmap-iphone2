@@ -88,4 +88,8 @@
 - (void)pressedContributeButton:(WMToolbar*)toolBar;
 @end
 
+@protocol WMSmallGalleryButtonCollectionViewCellDelegate <NSObject>
+- (void)didPressCameraButton;
+@end
+
 #endif

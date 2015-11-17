@@ -30,6 +30,16 @@
     if (self) {
 		self.frame = CGRectMake(origin.x, origin.y, self.calculatedFrameWidth, K_POI_STATUS_FILTER_POPOVER_VIEW_HEIGHT);
 		dataManager = [[WMDataManager alloc] init];
+
+		if (self.isRightToLeftDirection == YES) {
+			// We have to adjust the following button images to support the right to left UI.
+			[self.yesButton setImage:[UIImage imageNamed:@"toolbar_statusfilter-yes-rtl.png"] forState:UIControlStateNormal];
+			[self.yesButton setImage:[UIImage imageNamed:@"toolbar_statusfilter-yes-active-rtl.png"] forState:UIControlStateSelected];
+			[self.yesButton setImage:[UIImage imageNamed:@"toolbar_statusfilter-yes-active-rtl.png"] forState:UIControlStateHighlighted];
+			[self.unknownButton setImage:[UIImage imageNamed:@"toolbar_statusfilter-unknown.png"].rightToLeftMirrowedImage forState:UIControlStateNormal];
+			[self.unknownButton setImage:[UIImage imageNamed:@"toolbar_statusfilter-unknown-active.png"].rightToLeftMirrowedImage forState:UIControlStateSelected];
+			[self.unknownButton setImage:[UIImage imageNamed:@"toolbar_statusfilter-unknown-active.png"].rightToLeftMirrowedImage forState:UIControlStateHighlighted];
+		}
     }
     return self;
 }
@@ -84,7 +94,7 @@
 		// As we have 4 icons for the wheelchair state, use a 4 times width as view width
 		width = 4 * K_POI_STATUS_FILTER_POPOVER_BUTTON_WIDTH;
 	} else {
-		// As we have 3 icons for the wheelchair state, use a 3 times width as view width
+		// As we have 3 icons for the wheelchair state, use a 3 times width as view width. The contraints of the buttons are: fixed width for the three buttons which are always visible, the fourth one has no width constraint. That's it's width will be 0 if we decrease the superview width.
 		width = 3 * K_POI_STATUS_FILTER_POPOVER_BUTTON_WIDTH;
 	}
 	return width;

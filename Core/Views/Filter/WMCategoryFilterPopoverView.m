@@ -12,110 +12,98 @@
 
 @implementation WMCategoryFilterPopoverView
 
-- (id)initWithRefPoint:(CGPoint)refPoint andCategories:(NSArray*)categories
-{
-    self = [super init];
+#define K_FRAME_WIDTH				172.0f
+#define K_ARROW_X_OFFSET			22.0f
+#define K_ARROW_X_OFFSET_RTL		30.0f
+#define K_TABLE_VIEW_Y_OFSSET		10.0f
+
+#pragma mark - Initialization
+
+- (id)initWithRefPoint:(CGPoint)refPoint andCategories:(NSArray*)categories {
+    self = (WMCategoryFilterPopoverView *) [WMCategoryFilterPopoverView loadFromNib:@"WMCategoryFilterPopoverView"];
+
     if (self) {
-        
         refOrigin = refPoint;
-        bgImg = [[UIImageView alloc] initWithFrame:self.bounds];
-        if (UIDevice.isIPad == YES) {
-            bgImg.image = [[UIImage imageNamed:@"toolbar_category-popup.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 20, 30)];
-        } else {
-            bgImg.image = [[UIImage imageNamed:@"toolbar_category-popup.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 20, 10)];
-        }
-        [self addSubview:bgImg];
-        
-        tableView = [[UITableView alloc] initWithFrame:CGRectMake(2, 5, 128, 95)];
-        tableView.backgroundColor = [UIColor clearColor];
-        tableView.showsVerticalScrollIndicator = NO;
-        tableView.dataSource = self;
-        tableView.delegate = self;
-        tableView.scrollsToTop = NO;
-        [self addSubview:tableView];
-        
+
+		self.tableView.delegate = self;
+		self.tableView.dataSource = self;
+        self.tableView.scrollsToTop = NO;
+		[self.tableView registerNib:[UINib nibWithNibName:@"WMCategoryFilterCell" bundle:nil] forCellReuseIdentifier:K_CATEGORY_FILTER_CELL];
+
         [self refreshViewWithCategories:categories];
-        
+
+		if (self.isRightToLeftDirection == YES) {
+			self.backgroundImageView.image = [UIImage imageNamed:@"toolbar_category-popup-rtl.png"];
+		}
     }
     return self;
 }
+
+#pragma mark - Public methods
 
 - (void)refreshViewWithRefPoint:(CGPoint)refPoint andCategories:(NSArray *)categories {
     refOrigin = refPoint;
     [self refreshViewWithCategories:categories];
 }
 
-- (void)refreshViewWithCategories:(NSArray*)categories
-{
-    self.categoryList = categories;
+- (void)refreshViewWithCategories:(NSArray*)categories {
     // get category list
     self.categoryList = categories;
     
     CGFloat tableViewHeight;
     if (UIDevice.isIPad == YES) {
         if (self.categoryList.count > 15) {
-            tableViewHeight = CELL_HEIGHT*15 - 5;
+            tableViewHeight = CELL_HEIGHT * 15;
         } else {
-            tableViewHeight = CELL_HEIGHT*self.categoryList.count - 5;
+            tableViewHeight = CELL_HEIGHT * self.categoryList.count;
         }
     } else {
         if (self.categoryList.count > 10) {
-            tableViewHeight = CELL_HEIGHT*10 - 5;
+            tableViewHeight = CELL_HEIGHT * 10;
         } else {
-            tableViewHeight = CELL_HEIGHT*self.categoryList.count - 5;
+            tableViewHeight = CELL_HEIGHT * self.categoryList.count;
         }
     }
     
-    CGFloat frameHeight = tableViewHeight+10;
-    if (UIDevice.isIPad == YES) {
-        self.frame = CGRectMake(refOrigin.x-140, refOrigin.y-frameHeight-5, 172, frameHeight);
+    CGFloat frameHeight = tableViewHeight + K_TABLE_VIEW_Y_OFSSET;
+	if (self.isRightToLeftDirection == YES) {
+        self.frame = CGRectMake(refOrigin.x - K_ARROW_X_OFFSET_RTL, refOrigin.y - frameHeight, K_FRAME_WIDTH, frameHeight);
     } else {
-        self.frame = CGRectMake(refOrigin.x-110, refOrigin.y-frameHeight-5, 132, frameHeight);
+		self.frame = CGRectMake(refOrigin.x - K_FRAME_WIDTH + K_ARROW_X_OFFSET, refOrigin.y - frameHeight, K_FRAME_WIDTH, frameHeight);
     }
     
-    bgImg.frame = self.bounds;
-    if (UIDevice.isIPad == YES) {
-        tableView.frame = CGRectMake(2, 5, 168, tableViewHeight-10);
-    } else {
-        tableView.frame = CGRectMake(2, 5, 128, tableViewHeight-10);
-    }
-    [tableView reloadData];
-    
+	[self layoutIfNeeded];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return CELL_HEIGHT;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section  {
     return self.categoryList.count;
 }
 
--(UITableViewCell*)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    WMCategory* c = [self.categoryList objectAtIndex:indexPath.row];
-    NSString* cellID = [NSString stringWithFormat:@"CategoryListCell-%@", c.localized_name];
-    WMCategoryFilterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];    // TODO: is this ID OK?
-    if (!cell) {
-        cell = [[WMCategoryFilterTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        WMCategory* c = [self.categoryList objectAtIndex:indexPath.row];
-        cell.title = c.localized_name;
-        cell.selected = YES;
+- (UITableViewCell*)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    WMCategoryFilterTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:K_CATEGORY_FILTER_CELL];
+    if (cell == nil) {
+        cell = [[WMCategoryFilterTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:K_CATEGORY_FILTER_CELL];
     }
-    
+
+	WMCategory* category = [self.categoryList objectAtIndex:indexPath.row];
+	cell.title = category.localized_name;
+	cell.checked = category.selected.boolValue;
+
     return cell;
 }
 
--(void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    WMCategory* c = [self.categoryList objectAtIndex:indexPath.row];
-    WMCategoryFilterTableViewCell* cell = (WMCategoryFilterTableViewCell*)[aTableView cellForRowAtIndexPath:indexPath];
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WMCategory* category = [self.categoryList objectAtIndex:indexPath.row];
+	category.selected = @(!category.selected.boolValue);
     if ([self.delegate respondsToSelector:@selector(categoryFilterStatusDidChangeForCategoryID:selected:)]) {
-        [self.delegate categoryFilterStatusDidChangeForCategoryID:c.id selected:cell.isSelected];
+        [self.delegate categoryFilterStatusDidChangeForCategoryID:category.id selected:category.selected.boolValue];
     }
     [self refreshViewWithCategories:self.categoryList];
 }

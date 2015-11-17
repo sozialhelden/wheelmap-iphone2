@@ -1,5 +1,5 @@
 //
-//  WMNavigationBar_iPad.h
+//  WMIPadMapNavigationBar.h
 //  Wheelmap
 //
 //  Created by npng on 11/27/12.
@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WMNavigationBar.h"
 
-@interface WMNavigationBar_iPad : WMNavigationBar {
-    
-    WMButton *searchButton;
-}
+@interface WMIPadMapNavigationBar : WMNavigationBar
 
 @end

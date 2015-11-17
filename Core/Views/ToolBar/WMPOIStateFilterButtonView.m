@@ -90,6 +90,9 @@
 		self.dotsContainerViewWidthConstraint.constant = self.calculatedFrameWidth;
 		self.limitedDotImageView.alpha = 0;
 		[self layoutIfNeeded];
+		self.iconImageView.image = [UIImage imageNamed:@"ToolbarToiletStateIcon"];
+	} else {
+		self.iconImageView.image = [UIImage imageNamed:@"ToolbarWheelchairStateIcon"];
 	}
 }
 

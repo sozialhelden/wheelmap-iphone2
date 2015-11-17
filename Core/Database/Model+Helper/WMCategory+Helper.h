@@ -10,6 +10,8 @@
 
 @interface WMCategory (Helper)
 
+@property (nonatomic) NSNumber *selected;
+
 - (NSArray *)sortedNodeTypes;
 
 @end

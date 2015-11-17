@@ -10,11 +10,11 @@
 #define CELL_HEIGHT 30.0
 
 @interface WMCategoryFilterTableViewCell : UITableViewCell
-{
-    WMLabel* titleLabel;
-    UIImageView* checkIcon; // this will be shown, if the cell is selected
-}
 
-@property (nonatomic, strong) NSString* title;
-@property (nonatomic) BOOL isSelected;  // we need another boolean to avoid radio-button-like behavior of the tableview.
+@property (weak, nonatomic) IBOutlet MarqueeLabel *			titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *			checkmarkImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *	checkmarkWidthConstraint;
+
+@property (nonatomic, strong) NSString *					title;
+@property (nonatomic) BOOL									checked;  // we need another boolean to avoid radio-button-like behavior of the tableview.
 @end

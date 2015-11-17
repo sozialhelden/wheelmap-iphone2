@@ -17,7 +17,7 @@
 "Sign Out" = "Sign out";
 "About Wheelmap" = "About";
 "Credits:" = "Credits:";
-"Map Credits" = "Map Data: OpenStreetMap";
+"credits.map.data.title" = "Map Data:";
 "Icons Credits" = "Icons: Yusuke Kamiyamane";
 "Dev Credits" = "iPhone Development: Dorian Roy";
 "Copyright" = "© 2010 Sozialhelden e.V. All rights reserved.";
