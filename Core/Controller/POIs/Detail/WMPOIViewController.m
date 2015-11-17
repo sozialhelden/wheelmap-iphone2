@@ -275,7 +275,7 @@
     return nil;
 }
 
-- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         Node *node = [(WMMapAnnotation*)annotation node];
         NSString *reuseId = [node.wheelchair stringByAppendingString:[node.id stringValue]];
@@ -334,7 +334,7 @@
     [self updateDistanceToAnnotation];
 }
 
-- (WMMapAnnotation*) annotationForNode:(Node*)node {
+- (WMMapAnnotation*)annotationForNode:(Node*)node {
     for (WMMapAnnotation* annotation in  self.mapView.annotations) {
         
         // filter out MKUserLocation annotation
@@ -501,7 +501,11 @@
 #pragma mark - EditPOIState delegate
 
 - (void)didSelectStatus:(NSString*)wheelchairAccess forStatusType:(WMPOIStateType)statusType {
-	self.node.wheelchair = wheelchairAccess;
+	if (statusType == WMPOIStateTypeWheelchair) {
+		self.node.wheelchair = wheelchairAccess;
+	} else if (statusType == WMPOIStateTypeToilet) {
+		self.node.wheelchair_toilet = wheelchairAccess;
+	}
 }
 
 
@@ -768,10 +772,10 @@
 	vc.useCase = WMEditPOIStateUseCasePOIUpdate;
 	if (stateType == WMPOIStateTypeWheelchair) {
 		vc.statusType = WMPOIStateTypeWheelchair;
-		[vc setCurrentState:self.node.wheelchair];
+		vc.originalState = self.node.wheelchair;
 	} else if (stateType == WMPOIStateTypeToilet) {
 		vc.statusType = WMPOIStateTypeToilet;
-		[vc setCurrentState:self.node.wheelchair_toilet];
+		vc.originalState = self.node.wheelchair_toilet;
 	}
 	[self.navigationController pushViewController:vc animated:YES];
 }
