@@ -530,11 +530,11 @@
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             
             if (UIDevice.isIPad == YES) {
-                
-                self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
 
-				UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
-                [self.popOverController presentPopoverFromRect:cameraButtonCell.contentView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				[self performBlockAfterDelay:0.3 block:^{
+					self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+					[self.popOverController presentPopoverFromRect:CGRectMake(60, 0, 0, 0) inView:self.galleryCollectionView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				}];
             } else {
                 [self presentViewController:self.imagePicker animated:YES];
             }
@@ -542,11 +542,11 @@
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             
             if (UIDevice.isIPad == YES) {
-                
-                self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
 
-				UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
-                [self.popOverController presentPopoverFromRect:cameraButtonCell.contentView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				[self performBlockAfterDelay:0.3 block:^{
+					self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+					[self.popOverController presentPopoverFromRect:CGRectMake(60, 0, 0, 0) inView:self.galleryCollectionView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				}];
             } else {
                 [self presentViewController:self.imagePicker animated:YES];
             }
