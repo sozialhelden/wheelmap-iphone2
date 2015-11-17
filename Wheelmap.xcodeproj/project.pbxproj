@@ -207,6 +207,15 @@
 		8746D3511BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */; };
 		8746D3521BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */; };
 		8746D3531BE3C03C00CBD474 /* WMEditPOIStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */; };
+		87564D471BFB829B0028993F /* WMIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87564D461BFB829B0028993F /* WMIntroViewController.m */; };
+		87564D481BFB82A20028993F /* WMIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87564D461BFB829B0028993F /* WMIntroViewController.m */; };
+		87564D491BFB82A30028993F /* WMIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87564D461BFB829B0028993F /* WMIntroViewController.m */; };
+		87564D4B1BFB82CF0028993F /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4A1BFB82CF0028993F /* Intro.storyboard */; };
+		87564D4C1BFB82CF0028993F /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4A1BFB82CF0028993F /* Intro.storyboard */; };
+		87564D4D1BFB82CF0028993F /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4A1BFB82CF0028993F /* Intro.storyboard */; };
+		87564D501BFB93000028993F /* IntroLastPageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4F1BFB93000028993F /* IntroLastPageDescription.html */; };
+		87564D511BFB93000028993F /* IntroLastPageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4F1BFB93000028993F /* IntroLastPageDescription.html */; };
+		87564D521BFB93000028993F /* IntroLastPageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4F1BFB93000028993F /* IntroLastPageDescription.html */; };
 		876E8F271BE8DBBD00B4E2CD /* WMPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */; };
 		876E8F281BE8DBBD00B4E2CD /* WMPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */; };
 		876E8F291BE8DBBD00B4E2CD /* WMPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */; };
@@ -911,6 +920,10 @@
 		8746D34F1BE3C03C00CBD474 /* WMEditPOIStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEditPOIStateViewController.h; sourceTree = "<group>"; };
 		8746D3501BE3C03C00CBD474 /* WMEditPOIStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEditPOIStateViewController.m; sourceTree = "<group>"; };
 		8746D3541BE3CF8E00CBD474 /* WMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMDefines.h; path = Core/WMDefines.h; sourceTree = SOURCE_ROOT; };
+		87564D451BFB829B0028993F /* WMIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMIntroViewController.h; path = Core/Controller/Intro/WMIntroViewController.h; sourceTree = SOURCE_ROOT; };
+		87564D461BFB829B0028993F /* WMIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMIntroViewController.m; path = Core/Controller/Intro/WMIntroViewController.m; sourceTree = SOURCE_ROOT; };
+		87564D4A1BFB82CF0028993F /* Intro.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
+		87564D4F1BFB93000028993F /* IntroLastPageDescription.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IntroLastPageDescription.html; sourceTree = "<group>"; };
 		876E8F251BE8DBBD00B4E2CD /* WMPOIStateButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMPOIStateButtonView.h; path = Shared/WMPOIStateButtonView.h; sourceTree = "<group>"; };
 		876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMPOIStateButtonView.m; path = Shared/WMPOIStateButtonView.m; sourceTree = "<group>"; };
 		876E8F2A1BE8DBE100B4E2CD /* WMPOIStateButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateButtonView.xib; sourceTree = "<group>"; };
@@ -1270,11 +1283,13 @@
 		872FD96E1BDFE0A100764FC5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				87564D4E1BFB93000028993F /* HTML */,
 				8774E4F11BE0D93800A3E7EA /* Images */,
 				872FDA651BDFE0A100764FC5 /* Images.xcassets */,
 				872FDA661BDFE0A100764FC5 /* Localized */,
 				872FDD941BDFE3FB00764FC5 /* POI.storyboard */,
 				872FDD951BDFE3FB00764FC5 /* Main-iPad.storyboard */,
+				87564D4A1BFB82CF0028993F /* Intro.storyboard */,
 				872FDD961BDFE3FB00764FC5 /* Main-iPhone.storyboard */,
 				872FDD501BDFE28A00764FC5 /* WMPOIsListTableViewCell.xib */,
 				87A897AC1BE785E3006CC1AF /* WMEditPOIStateButtonView.xib */,
@@ -1511,6 +1526,24 @@
 			path = Edit;
 			sourceTree = "<group>";
 		};
+		87564D441BFB82720028993F /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				87564D451BFB829B0028993F /* WMIntroViewController.h */,
+				87564D461BFB829B0028993F /* WMIntroViewController.m */,
+			);
+			name = Intro;
+			path = ../Views;
+			sourceTree = "<group>";
+		};
+		87564D4E1BFB93000028993F /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				87564D4F1BFB93000028993F /* IntroLastPageDescription.html */,
+			);
+			path = HTML;
+			sourceTree = "<group>";
+		};
 		876E8F241BE8DBB300B4E2CD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -1736,6 +1769,7 @@
 		878EC88A1BE0F7960099EDD1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				87564D441BFB82720028993F /* Intro */,
 				878EC88B1BE0F7960099EDD1 /* Credit */,
 				878EC88E1BE0F7960099EDD1 /* Dashboard */,
 				878EC8911BE0F7960099EDD1 /* OSM-Login */,
@@ -2162,11 +2196,13 @@
 				87BB809B1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */,
 				8774E63E1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
 				8731F80A1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */,
+				87564D511BFB93000028993F /* IntroLastPageDescription.html in Resources */,
 				8774E6381BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E6891BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
 				87FFF27B1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
 				87D02FE81BFA3DB5007DB76B /* toolbar_statusfilter-yes-active-rtl@2x.png in Resources */,
 				8774E6DA1BE0D93800A3E7EA /* toolbar_indicator-orange@2x.png in Resources */,
+				87564D4C1BFB82CF0028993F /* Intro.storyboard in Resources */,
 				8774E6951BE0D93800A3E7EA /* Social_btn-twitter.png in Resources */,
 				8774E68F1BE0D93800A3E7EA /* Social_btn-sms.png in Resources */,
 				8774E6DD1BE0D93800A3E7EA /* toolbar_indicator-red.png in Resources */,
@@ -2327,11 +2363,13 @@
 				87BB809C1BFB3E9500E517F2 /* toolbar_category-popup-rtl@2x.png in Resources */,
 				8774E63F1BE0D93800A3E7EA /* more-buttons_route-deactive.png in Resources */,
 				8731F80B1BF4A01900BE7B9C /* start_searchbar_bg.png in Resources */,
+				87564D521BFB93000028993F /* IntroLastPageDescription.html in Resources */,
 				8774E6391BE0D93800A3E7EA /* more-buttons_info.png in Resources */,
 				8774E68A1BE0D93800A3E7EA /* Social_btn-facebook.png in Resources */,
 				87FFF27C1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */,
 				87D02FE91BFA3DB5007DB76B /* toolbar_statusfilter-yes-active-rtl@2x.png in Resources */,
 				8774E6DB1BE0D93800A3E7EA /* toolbar_indicator-orange@2x.png in Resources */,
+				87564D4D1BFB82CF0028993F /* Intro.storyboard in Resources */,
 				8774E6961BE0D93800A3E7EA /* Social_btn-twitter.png in Resources */,
 				8774E6901BE0D93800A3E7EA /* Social_btn-sms.png in Resources */,
 				8774E6DE1BE0D93800A3E7EA /* toolbar_indicator-red.png in Resources */,
@@ -2508,6 +2546,7 @@
 				8774E5D11BE0D93800A3E7EA /* ipad_buttons_icon-search.png in Resources */,
 				8774E5A41BE0D93800A3E7EA /* start_icon-logged-in.png in Resources */,
 				8774E6C41BE0D93800A3E7EA /* toolbar_category-popup.png in Resources */,
+				87564D4B1BFB82CF0028993F /* Intro.storyboard in Resources */,
 				8774E67C1BE0D93800A3E7EA /* navigationbar_logo.png in Resources */,
 				8774E65B1BE0D93800A3E7EA /* buttons_btn-signup.png in Resources */,
 				8731F8111BF4A03C00BE7B9C /* ic_search_lupe.png in Resources */,
@@ -2638,6 +2677,7 @@
 				8774E6401BE0D93800A3E7EA /* more-buttons_route-deactive@2x.png in Resources */,
 				8774E5DD1BE0D93800A3E7EA /* details-expand-map@2x.png in Resources */,
 				8774E6DF1BE0D93800A3E7EA /* toolbar_indicator-red@2x.png in Resources */,
+				87564D501BFB93000028993F /* IntroLastPageDescription.html in Resources */,
 				8774E6A31BE0D93800A3E7EA /* checkbox_inactive@2x.png in Resources */,
 				8774E64C1BE0D93800A3E7EA /* more-buttons_share-deactive@2x.png in Resources */,
 				8774E6CD1BE0D93800A3E7EA /* toolbar_indicator-green@2x.png in Resources */,
@@ -2845,6 +2885,7 @@
 				8731F81F1BF5023E00BE7B9C /* UIImage+RTL.m in Sources */,
 				872FDF231BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				8731F81A1BF4FFA100BE7B9C /* UIView+RTL.m in Sources */,
+				87564D481BFB82A20028993F /* WMIntroViewController.m in Sources */,
 				878EC9721BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
 				878EC8D11BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC9481BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
@@ -2928,6 +2969,7 @@
 				8731F8201BF5023E00BE7B9C /* UIImage+RTL.m in Sources */,
 				872FDF241BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				8731F81B1BF4FFA100BE7B9C /* UIView+RTL.m in Sources */,
+				87564D491BFB82A30028993F /* WMIntroViewController.m in Sources */,
 				878EC9731BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
 				878EC8D21BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC9491BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,
@@ -3011,6 +3053,7 @@
 				8731F81E1BF5023E00BE7B9C /* UIImage+RTL.m in Sources */,
 				872FDF221BDFEF9900764FC5 /* SSZipArchive.m in Sources */,
 				8731F8191BF4FFA100BE7B9C /* UIView+RTL.m in Sources */,
+				87564D471BFB829B0028993F /* WMIntroViewController.m in Sources */,
 				878EC9711BE0F9200099EDD1 /* WMToolBar_iPad.m in Sources */,
 				878EC8D01BE0F7960099EDD1 /* WMOSMLogoutViewController.m in Sources */,
 				878EC9471BE0F9200099EDD1 /* WMCategoryFilterPopoverView.m in Sources */,

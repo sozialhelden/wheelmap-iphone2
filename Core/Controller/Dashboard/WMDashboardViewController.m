@@ -50,10 +50,11 @@
 
 @implementation WMDashboardViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+	[self showIntroPopover];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
 	// Do any additional setup after loading the view.
@@ -125,6 +126,10 @@
 	self.mapButtonTitleLabel.text = L(@"DashboardMap");
 	self.categoriesButtonTitleLabel.text = L(@"DashboardCategories");
 	self.contributeButtonTitleLabel.text = L(@"DashboardHelp");
+}
+
+- (void)showIntroPopover {
+	[self presentViewController:UIStoryboard.instantiatedIntroViewController animated:YES];
 }
 
 #pragma mark - IBActions

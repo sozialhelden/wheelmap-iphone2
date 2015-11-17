@@ -315,3 +315,15 @@
 "OSMAccount" = "You don’t have an OSM user account yet?";
 "StepsToOSMAccount" = "Four steps to log in:\n1. Click on “OSM Registration” and register an OSM user account\n2. Go to your email and click on the activation link you have been sent\n3. Open the Wheelmap app\n4. Log in with your OSM user account (username & password)";
 "OSMRegistration" = "OSM registration";
+"intro.button.next" = "Next";
+"intro.button.done" = "Done";
+"intro.start.title" = "Welcome to Wheelmap";
+"intro.start.description" = "You can search for, find and mark wheelchair accessible places here";
+"intro.search.title" = "Search for places";
+"intro.start.description" = "Find wheelchair accessible places nearby.";
+"intro.state.title" = "Mark places and toilets";
+"intro.state.description" = "You do not need to be registered for this.";
+"intro.edit.title" = "Edit places";
+"intro.edit.description" = "You must be logged in with your Profile for this.";
+"intro.last.description" = "You can find more tips and infos in the <a href=http://wheelmap.org/en/faqs/ target=\"_blank\">FAQs</a> on <a href=http://wheelmap.org/ target=\"_blank\">Wheelmap.org</a>.\nInterested from news from the community?\nCheck out the <a href=http://wheelmap.org/en/blog-2/ target=\"_blank\">blog</a> or subscribe to our <a href=http://wheelmap.org/en/news-network/newsletter-2/ target=\"_blank\">newsletter</a>!";
+"intro.last.title" = "And now: Have fun as you search, find and map!";

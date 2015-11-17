@@ -22,25 +22,25 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2Y-nc-CTN" userLabel="Container View">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" misplaced="YES" image="start_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-sA-MVk">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" image="start_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TUN-sA-MVk">
                                         <rect key="frame" x="210" y="25" width="180" height="45"/>
                                         <animations/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="start_searchbar_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ha-Zh-CKZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="start_searchbar_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ha-Zh-CKZ">
                                         <rect key="frame" x="20" y="80" width="560" height="40"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Zb0-Pg-aBT"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ic_search_lupe.png" translatesAutoresizingMaskIntoConstraints="NO" id="sQz-5j-HYY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search_lupe.png" translatesAutoresizingMaskIntoConstraints="NO" id="sQz-5j-HYY">
                                         <rect key="frame" x="541" y="80" width="39" height="40"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sQz-5j-HYY" secondAttribute="height" multiplier="29:30" id="8vF-tV-wmS"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tNJ-yc-nG9">
                                         <rect key="frame" x="28" y="84" width="523" height="30"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -51,7 +51,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FO-Gj-e7R" userLabel="Cancel Search Button" customClass="WMButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FO-Gj-e7R" userLabel="Cancel Search Button" customClass="WMButton">
                                         <rect key="frame" x="600" y="84" width="200" height="30"/>
                                         <animations/>
                                         <constraints>
@@ -113,7 +113,7 @@
                                         <color key="textColor" red="0.3411764705882353" green="0.39215686274509803" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gaa-Qt-aOZ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gaa-Qt-aOZ">
                                         <rect key="frame" x="160" y="170" width="280" height="280"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5g4-t3-kLY" userLabel="List Button View">
