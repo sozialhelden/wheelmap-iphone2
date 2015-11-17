@@ -22,6 +22,8 @@
 @property (nonatomic, strong) Node *							node;
 
 @property (nonatomic, strong) NSString *						currentState;
+@property (nonatomic, strong) NSString *						originalState;
+
 @property (nonatomic) WMEditPOIStateUseCase						useCase;
 @property (nonatomic) WMPOIStateType							statusType;
 
