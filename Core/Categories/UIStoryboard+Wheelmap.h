@@ -14,6 +14,7 @@
 + (UIStoryboard*)mainIPhoneStoryboard;
 + (UIStoryboard*)mainIPadStoryboard;
 + (UIStoryboard*)poiStoryboard;
++ (UIStoryboard*)introStoryboard;
 
 #pragma mark - Instantiations
 
@@ -36,5 +37,7 @@
 + (id)instantiatedDescriptionViewController;
 
 + (id)instantiatedOSMLoginViewController;
+
++ (id)instantiatedIntroViewController;
 
 @end

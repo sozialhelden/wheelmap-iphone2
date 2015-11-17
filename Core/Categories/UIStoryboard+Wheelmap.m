@@ -30,6 +30,11 @@
 	return [UIStoryboard storyboardWithName:@"POI" bundle:nil];
 }
 
++ (UIStoryboard*)introStoryboard {
+	return [UIStoryboard storyboardWithName:@"Intro" bundle:nil];
+}
+
+
 #pragma mark - Instantiations
 
 + (id)instantiatedPOIsListViewController {
@@ -70,6 +75,10 @@
 
 + (id)instantiatedOSMLoginViewController {
 	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMOSMLoginVC"];
+}
+
++ (id)instantiatedIntroViewController {
+	return [UIStoryboard.introStoryboard instantiateViewControllerWithIdentifier:@"WMIintroViewController"];
 }
 
 @end
