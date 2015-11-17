@@ -352,8 +352,12 @@
     detailViewController.popover = [[WMPopoverController alloc] initWithContentViewController:detailNavController];
     
     CGRect myRect = [self.tableView rectForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
-    
-    [detailViewController.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
+
+	UIPopoverArrowDirection popoverArrowDirection = UIPopoverArrowDirectionLeft;
+	if (self.view.isRightToLeftDirection) {
+		popoverArrowDirection = UIPopoverArrowDirectionRight;
+	}
+    [detailViewController.popover presentPopoverFromRect:myRect inView:self.tableView permittedArrowDirections:popoverArrowDirection animated:YES];
 }
 
 #pragma mark - Table view delegate
