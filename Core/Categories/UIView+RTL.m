@@ -14,7 +14,7 @@
 	if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
 		return ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft);
 	} else {
-		return NO;
+		return UIApplication.sharedApplication.userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft;
 	}
 }
 

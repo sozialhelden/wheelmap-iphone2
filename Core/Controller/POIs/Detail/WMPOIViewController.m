@@ -37,7 +37,7 @@
 
 @implementation WMPOIViewController
 
-#pragma mark - Life Cycle
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,55 +52,13 @@
     [dataManager fetchPhotosForNode:self.node];
 
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
-
     
-    // MAPVIEW
-    [MBXMapKit setAccessToken:K_MBX_TOKEN];
-    
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
-    self.rasterOverlay.delegate = self;
-    
-    [self.mapView addOverlay:self.rasterOverlay];
-    self.mapView.scrollEnabled = NO;
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
-
-	self.wheelchairStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.wheelchairStateButtonViewContainer];
-	self.wheelchairStateButtonView.statusType = WMPOIStateTypeWheelchair;
-	self.wheelchairStateButtonView.statusString = self.node.wheelchair;
-	self.wheelchairStateButtonView.showStateDelegate = self;
-
-	self.toiletStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.toiletStateButtonViewContainer];
-	self.toiletStateButtonView.statusType = WMPOIStateTypeToilet;
-	self.toiletStateButtonView.statusString = self.node.wheelchair_toilet;
-	self.toiletStateButtonView.showStateDelegate = self;
-
-	if (self.askFriendsButton.isRightToLeftDirection == YES) {
-		[self.askFriendsButton setImage:[UIImage imageNamed:@"details_unknown-info.png"].rightToLeftMirrowedImage forState:UIControlStateNormal];
-	}
-	self.askFriendsButtonTitleLabel.text = L(@"DetailsViewAskFriendsButtonLabel");
-
-	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] != YES
-		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] != YES) {
-		self.askFriendsViewHeightConstraint.constant = 0;
-		[self.askFriendsView layoutIfNeeded];
-	}
-
-	self.addressView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	self.addressCompassView.node = self.node;
-
-	UIImage *uploadBackgroundImage = [UIImage imageNamed:@"details_background-photoupload.png"];
-	self.galleryCollectionView.backgroundColor = [UIColor colorWithPatternImage:uploadBackgroundImage];
-
-	self.thumbnailURLArray = [[NSMutableArray alloc] init];
-	self.originalImageURLArray = [[NSMutableArray alloc] init];
-
-
-	self.shareButtonTitleLabel.text = L(@"DetailsView4ButtonViewShareLabel");
-	self.noteButtonTitleLabel.text = L(@"DetailsView4ButtonViewInfoLabel");
-	self.directionButtonTitleLabel.text = L(@"DetailsView4ButtonViewRouteLabel");
-
-	UITapGestureRecognizer *enlargeMapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enlargeMapButtonPressed)];
-	[self.mapView addGestureRecognizer:enlargeMapGestureRecognizer];
+	[self initMapView];
+	[self initPOIStateButtons];
+	[self initAskFriendsView];
+	[self initAddressView];
+	[self initGalleryView];
+	[self initAdditionalButtons];
 
 	if (UIDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
@@ -146,6 +104,75 @@
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+
+#pragma mark - Initialization
+
+
+- (void)initMapView {
+	[MBXMapKit setAccessToken:K_MBX_TOKEN];
+
+	self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
+	self.rasterOverlay.delegate = self;
+
+	[self.mapView addOverlay:self.rasterOverlay];
+	self.mapView.scrollEnabled = NO;
+	[self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+
+	UITapGestureRecognizer *enlargeMapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enlargeMapButtonPressed)];
+	[self.mapView addGestureRecognizer:enlargeMapGestureRecognizer];
+}
+
+- (void)initPOIStateButtons {
+	self.wheelchairStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.wheelchairStateButtonViewContainer];
+	self.wheelchairStateButtonView.statusType = WMPOIStateTypeWheelchair;
+	self.wheelchairStateButtonView.statusString = self.node.wheelchair;
+	self.wheelchairStateButtonView.showStateDelegate = self;
+
+	self.toiletStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.toiletStateButtonViewContainer];
+	self.toiletStateButtonView.statusType = WMPOIStateTypeToilet;
+	self.toiletStateButtonView.statusString = self.node.wheelchair_toilet;
+	self.toiletStateButtonView.showStateDelegate = self;
+}
+
+- (void)initAskFriendsView {
+	if (self.askFriendsButton.isRightToLeftDirection == YES) {
+		[self.askFriendsButton setImage:[UIImage imageNamed:@"details_unknown-info.png"].rightToLeftMirrowedImage forState:UIControlStateNormal];
+	}
+	self.askFriendsButtonTitleLabel.text = L(@"DetailsViewAskFriendsButtonLabel");
+
+	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] != YES
+		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] != YES) {
+		self.askFriendsViewHeightConstraint.constant = 0;
+		[self.askFriendsView layoutIfNeeded];
+	}
+}
+
+- (void)initAddressView {
+	self.addressView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.addressCompassView.node = self.node;
+
+	if (self.view.isRightToLeftDirection == YES && SYSTEM_VERSION_LESS_THAN(@"9.0") == YES) {
+		// As Marquee label doesn't support right to left automatically on prior iOS9 devices, we have to do it on our own.
+		self.addressStreetLabel.textAlignment = NSTextAlignmentRight;
+		self.addressPLZCityLabel.textAlignment = NSTextAlignmentRight;
+		self.addressWebsiteLabel.textAlignment = NSTextAlignmentRight;
+		self.addressPhoneTextLabel.textAlignment = NSTextAlignmentRight;
+	}
+}
+
+- (void)initGalleryView {
+	UIImage *uploadBackgroundImage = [UIImage imageNamed:@"details_background-photoupload.png"];
+	self.galleryCollectionView.backgroundColor = [UIColor colorWithPatternImage:uploadBackgroundImage];
+
+	self.thumbnailURLArray = [[NSMutableArray alloc] init];
+	self.originalImageURLArray = [[NSMutableArray alloc] init];
+}
+
+- (void)initAdditionalButtons {
+	self.shareButtonTitleLabel.text = L(@"DetailsView4ButtonViewShareLabel");
+	self.noteButtonTitleLabel.text = L(@"DetailsView4ButtonViewInfoLabel");
+	self.directionButtonTitleLabel.text = L(@"DetailsView4ButtonViewRouteLabel");
 }
 
 #pragma mark - UICollectionView delegates

@@ -134,6 +134,18 @@
 		self.setCategoryButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 		self.setNodeTypeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 		self.setMarkerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+
+		if (SYSTEM_VERSION_LESS_THAN(@"9.0") == YES) {
+			// As UITextFields doesn't support right to left automatically on prior iOS9 devices, we have to do it on our own.
+			self.nameTextField.textAlignment = NSTextAlignmentRight;
+			self.infoTextView.textAlignment = NSTextAlignmentRight;
+			self.streetTextField.textAlignment = NSTextAlignmentRight;
+			self.housenumberTextField.textAlignment = NSTextAlignmentRight;
+			self.postcodeTextField.textAlignment = NSTextAlignmentRight;
+			self.cityTextField.textAlignment = NSTextAlignmentRight;
+			self.websiteTextField.textAlignment = NSTextAlignmentRight;
+			self.phoneTextField.textAlignment = NSTextAlignmentRight;
+		}
 	}
 }
 

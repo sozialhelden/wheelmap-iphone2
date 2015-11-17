@@ -48,6 +48,12 @@
     self.pictogramsLabel.text = @"Entypo pictograms by Daniel Bruce";
 
 	[self.pictogramsLabel layoutIfNeeded];
+
+	if (self.view.isRightToLeftDirection == YES && SYSTEM_VERSION_LESS_THAN(@"9.0") == YES) {
+		// As Marquee label doesn't support right to left automatically on prior iOS9 devices, we have to do it on our own.
+		self.mapSourceLabel.textAlignment = NSTextAlignmentRight;
+		self.pictogramsLabel.textAlignment = NSTextAlignmentRight;
+	}
 }
 
 - (void)viewDidLayoutSubviews {
