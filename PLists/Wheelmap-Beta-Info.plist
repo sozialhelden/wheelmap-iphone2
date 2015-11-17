@@ -51,7 +51,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is required to find out where you are</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main-iPad</string>
+	<string>Main-iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main-iPad</string>
 	<key>UIPrerenderedIcon</key>
