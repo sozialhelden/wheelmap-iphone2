@@ -32,11 +32,10 @@
         // set custom nagivation and tool bars
         self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, K_NAVIGATION_BAR_HEIGHT);
         
-        self.customNavigationBar = [[WMNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
-        [self.customNavigationBar adjustButtonsToPopoverPresentation];
+        self.customNavigationBar = [[WMNavigationBar alloc] initFromNibWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
         self.customNavigationBar.delegate = self;
-        if ([self.customNavigationBar isKindOfClass:[WMNavigationBar_iPad class]]) {
-            ((WMNavigationBar_iPad *)self.customNavigationBar).searchBarEnabled = NO;
+        if ([self.customNavigationBar isKindOfClass:[WMIPadMapNavigationBar class]]) {
+            ((WMIPadMapNavigationBar *)self.customNavigationBar).searchBarEnabled = NO;
         }
         [self.navigationBar addSubview:self.customNavigationBar];
     }

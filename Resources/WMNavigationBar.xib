@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="WMNavigationBar">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t35-C1-qDz" customClass="WMButton">
+                    <rect key="frame" x="5" y="2" width="40" height="40"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="AKN-o1-EGO"/>
+                        <constraint firstAttribute="height" constant="40" id="KvY-6Q-hIF"/>
+                    </constraints>
+                    <state key="normal" image="NavigationBarDashboardIcon"/>
+                    <connections>
+                        <action selector="pressedDashboardButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="Dl5-2e-81i"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gdh-6y-feF" customClass="WMButton">
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="7Gi-oi-YPX"/>
+                        <constraint firstAttribute="height" constant="44" id="Bjb-6E-FHE"/>
+                    </constraints>
+                    <state key="normal" image="buttons_back-btn.png"/>
+                    <connections>
+                        <action selector="pressedBackButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="968-Vo-HuA"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="156-S3-8Fw" customClass="WMButton">
+                    <rect key="frame" x="5" y="7" width="42" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="3EN-zZ-aVf"/>
+                        <constraint firstAttribute="height" constant="30" id="Lli-xu-NMW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pressedCancelButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="SXM-fj-Aug"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dp-28-Nzm" customClass="WMButton">
+                    <rect key="frame" x="553" y="7" width="42" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="oxv-ST-iq8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pressedCancelButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="7pf-at-A2j"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRY-ag-LYc" customClass="WMButton">
+                    <rect key="frame" x="555" y="2" width="40" height="40"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="7Sb-Nm-zxR"/>
+                        <constraint firstAttribute="width" constant="40" id="xam-Ar-WXK"/>
+                    </constraints>
+                    <state key="normal" image="NavigationBarAddIcon"/>
+                    <connections>
+                        <action selector="pressedAddButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="xgP-i3-Q2Y"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3d-pE-zcf" customClass="WMButton">
+                    <rect key="frame" x="565" y="7" width="30" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="vLW-xV-Zx1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="Edit">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pressedEditButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="cg7-KF-A2G"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adk-HY-YI8" customClass="WMButton">
+                    <rect key="frame" x="565" y="7" width="30" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="i8Z-1b-hWj"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="jf3-hf-S2K"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="Save">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pressedSaveButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="dH9-8c-vzZ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Titel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-8P-SCd" customClass="WMLabel">
+                    <rect key="frame" x="284" y="13" width="33" height="18"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kq1-by-m5f" userLabel="Search Container View">
+                    <rect key="frame" x="0.0" y="-44" width="600" height="44"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="search_searchbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="FzS-JN-HLX">
+                            <rect key="frame" x="5" y="29" width="543" height="30"/>
+                            <animations/>
+                            <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="L1k-ZE-QHp">
+                            <rect key="frame" x="5" y="29" width="543" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="pZi-6c-2tR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="KyY-k9-vB8"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8Q-MG-VxS" customClass="WMButton">
+                            <rect key="frame" x="553" y="29" width="42" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="SVa-6B-9Xd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="pressedSearchCancelButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="rxB-d7-8HV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.15294118230000001" green="0.21176470820000001" blue="0.270588249" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="FzS-JN-HLX" firstAttribute="leading" secondItem="L1k-ZE-QHp" secondAttribute="leading" id="5ad-hM-xDx"/>
+                        <constraint firstItem="FzS-JN-HLX" firstAttribute="width" secondItem="L1k-ZE-QHp" secondAttribute="width" id="6Pv-zB-sXU"/>
+                        <constraint firstItem="FzS-JN-HLX" firstAttribute="height" secondItem="L1k-ZE-QHp" secondAttribute="height" id="7AJ-OF-lp0"/>
+                        <constraint firstItem="L1k-ZE-QHp" firstAttribute="centerY" secondItem="kq1-by-m5f" secondAttribute="centerY" id="9BO-QZ-wOi"/>
+                        <constraint firstItem="FzS-JN-HLX" firstAttribute="bottom" secondItem="L1k-ZE-QHp" secondAttribute="bottom" id="Qxt-wc-5xn"/>
+                        <constraint firstItem="s8Q-MG-VxS" firstAttribute="centerY" secondItem="kq1-by-m5f" secondAttribute="centerY" id="WTy-uL-JlK"/>
+                        <constraint firstAttribute="height" constant="44" id="YVg-3V-viP"/>
+                        <constraint firstAttribute="trailing" secondItem="s8Q-MG-VxS" secondAttribute="trailing" constant="5" id="cpa-Nt-zjX"/>
+                        <constraint firstItem="L1k-ZE-QHp" firstAttribute="leading" secondItem="kq1-by-m5f" secondAttribute="leading" constant="5" id="fqa-mp-Ou8"/>
+                        <constraint firstItem="FzS-JN-HLX" firstAttribute="trailing" secondItem="L1k-ZE-QHp" secondAttribute="trailing" id="j9S-cJ-Na6"/>
+                        <constraint firstItem="s8Q-MG-VxS" firstAttribute="leading" secondItem="L1k-ZE-QHp" secondAttribute="trailing" constant="5" id="pcj-6r-wfD"/>
+                        <constraint firstItem="FzS-JN-HLX" firstAttribute="top" secondItem="L1k-ZE-QHp" secondAttribute="top" id="vBq-r0-1EO"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="6Pv-zB-sXU"/>
+                            <exclude reference="7AJ-OF-lp0"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" red="0.15294118225574493" green="0.21176470816135406" blue="0.27058824896812439" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Adk-HY-YI8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0ib-gQ-rlH"/>
+                <constraint firstAttribute="trailing" secondItem="kq1-by-m5f" secondAttribute="trailing" id="39G-Mc-pVi"/>
+                <constraint firstItem="6jd-8P-SCd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="156-S3-8Fw" secondAttribute="trailing" constant="5" id="3Ss-rC-3nT"/>
+                <constraint firstAttribute="trailing" secondItem="d3d-pE-zcf" secondAttribute="trailing" constant="5" id="5zl-ta-aLx"/>
+                <constraint firstItem="kq1-by-m5f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-44" id="7nU-ls-jWl"/>
+                <constraint firstItem="gRY-ag-LYc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="InX-6Z-Ex7"/>
+                <constraint firstItem="t35-C1-qDz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="JQn-wi-yA0"/>
+                <constraint firstAttribute="trailing" secondItem="gRY-ag-LYc" secondAttribute="trailing" constant="5" id="LKV-YC-RCU"/>
+                <constraint firstItem="6jd-8P-SCd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="NDY-Ne-Syi"/>
+                <constraint firstItem="6jd-8P-SCd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="R3W-hJ-dLS"/>
+                <constraint firstItem="5dp-28-Nzm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6jd-8P-SCd" secondAttribute="trailing" constant="5" id="UMl-YB-Fua"/>
+                <constraint firstItem="156-S3-8Fw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="WYd-zf-gbr"/>
+                <constraint firstItem="t35-C1-qDz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ail-4Y-vZo"/>
+                <constraint firstItem="d3d-pE-zcf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ba6-k8-A0m"/>
+                <constraint firstItem="kq1-by-m5f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="edN-I8-8If"/>
+                <constraint firstAttribute="trailing" secondItem="5dp-28-Nzm" secondAttribute="trailing" constant="5" id="hfh-p2-eNQ"/>
+                <constraint firstItem="156-S3-8Fw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="lzW-US-Spp"/>
+                <constraint firstAttribute="bottom" secondItem="kq1-by-m5f" secondAttribute="bottom" id="mn2-1e-Nr5"/>
+                <constraint firstItem="5dp-28-Nzm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="neF-CP-bwu"/>
+                <constraint firstItem="6jd-8P-SCd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="peW-VA-nsf"/>
+                <constraint firstItem="Gdh-6y-feF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tas-Vv-s2w"/>
+                <constraint firstItem="6jd-8P-SCd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="tel-iP-Cbj"/>
+                <constraint firstAttribute="trailing" secondItem="Adk-HY-YI8" secondAttribute="trailing" constant="5" id="ynr-zn-Xcd"/>
+                <constraint firstItem="Gdh-6y-feF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zwS-4X-Lep"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="mn2-1e-Nr5"/>
+                    <exclude reference="R3W-hJ-dLS"/>
+                    <exclude reference="tel-iP-Cbj"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="addButton" destination="gRY-ag-LYc" id="U44-c5-8zk"/>
+                <outlet property="backButton" destination="Gdh-6y-feF" id="n14-4d-oeF"/>
+                <outlet property="cancelButtonLeft" destination="156-S3-8Fw" id="Rm7-zP-D81"/>
+                <outlet property="cancelButtonRight" destination="5dp-28-Nzm" id="BXG-zv-je0"/>
+                <outlet property="cancelSearchButton" destination="s8Q-MG-VxS" id="DNT-AC-u2F"/>
+                <outlet property="dashboardButton" destination="t35-C1-qDz" id="7i5-Ob-kqq"/>
+                <outlet property="editButton" destination="d3d-pE-zcf" id="AfV-CW-A5y"/>
+                <outlet property="saveButton" destination="Adk-HY-YI8" id="FaN-5a-Dsi"/>
+                <outlet property="searchContainerView" destination="kq1-by-m5f" id="5xe-GL-Toa"/>
+                <outlet property="searchContainerViewTopConstraint" destination="7nU-ls-jWl" id="kNp-ka-yQa"/>
+                <outlet property="searchTextField" destination="L1k-ZE-QHp" id="fIS-aI-JkA"/>
+                <outlet property="titleLabel" destination="6jd-8P-SCd" id="rEy-Yx-5kV"/>
+            </connections>
+            <point key="canvasLocation" x="345.5" y="317"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="NavigationBarAddIcon" width="15" height="15"/>
+        <image name="NavigationBarDashboardIcon" width="20" height="20"/>
+        <image name="buttons_back-btn.png" width="44" height="44"/>
+        <image name="search_searchbar.png" width="225" height="34"/>
+    </resources>
+</document>

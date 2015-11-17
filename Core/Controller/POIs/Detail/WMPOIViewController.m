@@ -18,7 +18,6 @@
 #import "WMEditPOICommentViewController.h"
 #import "WMEditPOIViewController.h"
 #import "WMMapAnnotation.h"
-#import "WMCompassView.h"
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
@@ -26,22 +25,19 @@
 #import "WMPOIsListViewController.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
+#import "WMSmallGalleryImageCollectionViewCell.h"
+#import "WMSmallGalleryButtonCollectionViewCell.h"
 
-#define GABIFSTATUSUNKNOWN 62
-#define MAPOPENADDITION 266
-#define MAPVIEWCLOSEDSTATE CGRectMake(0, 0, 320, 110)
-#define MAPVIEWOPENSTATE CGRectMake(0, 0, 320, 110+MAPOPENADDITION)
-#define CONTENTVIEWCLOSEDMAPSTATE CGRectMake(0, 110+2, 320, 460)
-#define CONTENTVIEWOPENMAPSTATE CGRectMake(0, 110+MAPOPENADDITION+2, 320, 460)
-#define CONTENTVIEWCLOSEDMAPSTATEGAB CGRectMake(0, 110+2, 320, 460+GABIFSTATUSUNKNOWN)
-#define CONTENTVIEWOPENMAPSTATEGAB CGRectMake(0, 110+MAPOPENADDITION+2, 320, 460+GABIFSTATUSUNKNOWN)
+#define K_GALLEY_BUTTON_INDEX_OFFSET	1
 
+#define K_MAP_HEIGHT_SMALL				120
+#define K_MAP_HEIGHT_LARGE				360
 
-#define STARTLEFT 15
+#define K_ASK_FRIENDS_HEIGHT			60
 
 @implementation WMPOIViewController
 
-#pragma mark - Life Cycle
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,141 +50,25 @@
     
     // request photo urls
     [dataManager fetchPhotosForNode:self.node];
-    
-    self.gabIfStatusUnknown = 0;
-    
+
     NSAssert(self.node, @"You need to set a node before this view controller can be presented");
     
-    self.scrollView.backgroundColor = [UIColor clearColor];
-    self.scrollView.scrollsToTop = YES;
-    self.mainView = [UIView new];
-    self.mainView.backgroundColor = [UIColor clearColor];
-    
-    // MAPVIEW
-    [MBXMapKit setAccessToken:K_MBX_TOKEN];
-    
-    self.mapView = [[MKMapView alloc] initWithFrame:MAPVIEWCLOSEDSTATE];
+	[self initMapView];
+	[self initPOIStateButtons];
+	[self initAskFriendsView];
+	[self initAddressView];
+	[self initGalleryView];
+	[self initAdditionalButtons];
 
-    self.mapView.showsBuildings = NO;
-    self.mapView.rotateEnabled = NO;
-    self.mapView.pitchEnabled = NO;
-    self.mapView.mapType = MKMapTypeStandard;
-    
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
-    self.rasterOverlay.delegate = self;
-    
-    [self.mapView addOverlay:self.rasterOverlay];
-    
-    self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.mapView.layer.borderWidth = 1.0f;
-    self.mapView.delegate = self;
-    self.mapView.scrollEnabled = NO;
-    self.mapView.zoomEnabled = NO;
-    self.mapView.showsUserLocation=YES;
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
-    [self.mainView addSubview:self.mapView];
-
-    // ENLARGE MAP BUTTON
-    UIImage *enlargeMapImage = [UIImage imageNamed:@"details-expand-map.png"];
-    self.enlargeMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.enlargeMapButton.frame = CGRectMake(10, 10, enlargeMapImage.size.width, enlargeMapImage.size.height);
-    [self.enlargeMapButton setImage: enlargeMapImage forState: UIControlStateNormal];
-    [self.enlargeMapButton addTarget:self action:@selector(enlargeMapButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.mapView addSubview:self.enlargeMapButton];
-    
-    // CONTENT VIEW
-    self.contentView = [UIView new];
-    self.contentView.backgroundColor = [UIColor clearColor];
-    [self.mainView addSubview:self.contentView];
-    
-    self.startY = 0;
-    
-    // MAIN INFO VIEW
-    self.mainInfoView = [self createMainInfoView];
-    self.mainInfoView.frame = CGRectMake(0, self.startY, 320, 50);
-    [self.contentView addSubview:self.mainInfoView];
-    
-    self.startY += self.mainInfoView.bounds.size.height+10;
-
-    // WHEEL ACCESS AND ASK FRIENDS BUTTON VIEW
-	BOOL showAskFriendsButton = NO;
-	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == YES
-		|| [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == YES) {
-		showAskFriendsButton = YES;
-		self.gabIfStatusUnknown = GABIFSTATUSUNKNOWN;
+	if (UIDevice.isIPad == YES) {
+		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
+	} else {
+		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
 	}
-	self.wheelchairStateButtonView = [[WMPOIStateButtonView alloc] initWithFrame:CGRectMake(10, self.startY, 300, 46)];
-	self.wheelchairStateButtonView.statusType = WMPOIStateTypeWheelchair;
-	self.wheelchairStateButtonView.statusString = self.node.wheelchair;
-	self.wheelchairStateButtonView.showStateDelegate = self;
-    [self.contentView addSubview:self.wheelchairStateButtonView];
-
-	self.startY += self.wheelchairStateButtonView.bounds.size.height+10;
-
-	self.toiletStateButtonContainerView = [[UIView alloc] initWithFrame:CGRectMake(10, self.startY, 300, 46 + self.gabIfStatusUnknown)];
-	self.toiletStateButtonView = [[WMPOIStateButtonView alloc] initWithFrame:CGRectMake(0, 0, 300, 46)];
-	self.toiletStateButtonView.statusType = WMPOIStateTypeToilet;
-	self.toiletStateButtonView.statusString = self.node.wheelchair_toilet;
-	self.toiletStateButtonView.showStateDelegate = self;
-	[self.toiletStateButtonContainerView addSubview:self.toiletStateButtonView];
-
-	if (showAskFriendsButton == YES) {
-		self.askFriendsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		UIImage *buttonImage = [UIImage imageNamed:@"details_unknown-info.png"];
-		[self.askFriendsButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-		[self.askFriendsButton setTitle:NSLocalizedString(@"DetailsViewAskFriendsButtonLabel", @"") forState:UIControlStateNormal];
-		self.askFriendsButton.titleLabel.font = [UIFont systemFontOfSize:13];
-		self.askFriendsButton.titleLabel.numberOfLines = 2;
-		[self.askFriendsButton setContentEdgeInsets:UIEdgeInsetsMake(5, 55, 0, 10)];
-		[self.askFriendsButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-		self.askFriendsButton.titleLabel.textColor = [UIColor darkGrayColor];
-		self.askFriendsButton.frame = CGRectMake(10, self.gabIfStatusUnknown-10, 300.0f-20.0f, buttonImage.size.height);
-		[self.askFriendsButton addTarget:self action:@selector(askFriendsForStatusButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-
-		[self.toiletStateButtonContainerView addSubview:self.askFriendsButton];
-	}
-	[self.contentView addSubview:self.toiletStateButtonContainerView];
-
-	self.startY += self.toiletStateButtonContainerView.bounds.size.height+10;
-
-    // CONTACT INFO VIEW
-    self.contactInfoView = [self createContactInfoView];
-    self.contactInfoView.frame = CGRectMake(10, self.startY, 300, 100);
-    [self.contentView addSubview:self.contactInfoView];
-    
-    self.startY += self.contactInfoView.bounds.size.height+10;
-    
-    // IMAGESCROLLVIEW
-    self.imageScrollView = [self createImageScrollView];
-    self.imageScrollView.frame = CGRectMake(0, self.startY, 320, 80);
-    [self.contentView addSubview:self.imageScrollView];
-    // [self createThumbnails];    // this will creat thumbnails with old image array. will be updated after fetching photo urls
-    
-    self.thumbnailURLArray = [[NSMutableArray alloc] init];
-    self.originalImageURLArray = [[NSMutableArray alloc] init];
-    self.startY += self.imageScrollView.bounds.size.height+2;
-    
-    // ADDITIONALINFOVIEW
-    self.additionalButtonView = [self createAdditionalButtonView];
-    self.additionalButtonView.frame = CGRectMake(320/2-self.threeButtonWidth/2, self.startY, self.threeButtonWidth, 95);
-    [self.contentView addSubview:self.additionalButtonView];
-    
-    if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == YES
-		|| [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == YES) {
-        self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
-    } else {
-        self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
-    }
-    self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height);
-    self.scrollView.contentSize = self.mainView.frame.size;
-    
-    UITapGestureRecognizer *enlargeMapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enlargeMapButtonPressed)];
-    [self.mapView addGestureRecognizer:enlargeMapRecognizer];
-    
-    [self.scrollView addSubview:self.mainView];
+	self.scrollViewContentHeightConstraint.constant = self.noteButtonTitleLabel.frameY + self.noteButtonTitleLabel.frameHeight + self.notButtonTitleLabelBottomConstraint.constant;
 
 	// Set the preferred content size to make sure the popover controller has the right size.
-	self.preferredContentSize = self.scrollView.contentSize;
+	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -203,7 +83,6 @@
     [self.mapView addAnnotation:self.annotation];
     
     [self updateFields];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -227,230 +106,126 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
-#pragma mark - UI element creation
+#pragma mark - Initialization
 
-- (UIView*) createMainInfoView {
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    
-    // NAME
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 10, self.view.bounds.size.width-STARTLEFT*2, 20)];
-    self.titleLabel.textColor = [UIColor blackColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    [view addSubview:self.titleLabel];
-    
-    // CATEGORY / NOTE TYPE
-    self.nodeTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, 32, self.view.bounds.size.width-STARTLEFT*2, 16)];
-    self.nodeTypeLabel.textColor = [UIColor darkGrayColor];
-    self.nodeTypeLabel.font = [UIFont systemFontOfSize:14];
-    self.nodeTypeLabel.backgroundColor = [UIColor clearColor];
-    [view addSubview:self.nodeTypeLabel];
-    
-    return view;
+
+- (void)initMapView {
+	[MBXMapKit setAccessToken:K_MBX_TOKEN];
+
+	self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
+	self.rasterOverlay.delegate = self;
+
+	[self.mapView addOverlay:self.rasterOverlay];
+	self.mapView.scrollEnabled = NO;
+	[self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+
+	UITapGestureRecognizer *enlargeMapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enlargeMapButtonPressed)];
+	[self.mapView addGestureRecognizer:enlargeMapGestureRecognizer];
 }
 
-- (UIView*)createContactInfoView {
-    
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    view.layer.borderWidth = 1.0f;
-    view.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [view.layer setCornerRadius:5.0f];
-    
-    int startY = 10;
-    
-    // STREET
-    self.streetLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 16)];
-    self.streetLabel.textColor = [UIColor darkGrayColor];
-    self.streetLabel.font = [UIFont boldSystemFontOfSize:13];
-    self.streetLabel.backgroundColor = [UIColor clearColor];
-    [view addSubview:self.streetLabel];
-    
-    
-    startY += 16;
-    
-    // POSTCODE AND CITY
-    self.postcodeAndCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 22)];
-    self.postcodeAndCityLabel.textColor = [UIColor darkGrayColor];
-    self.postcodeAndCityLabel.font = [UIFont boldSystemFontOfSize:13];
-    self.postcodeAndCityLabel.backgroundColor = [UIColor clearColor];
-    [view addSubview:self.postcodeAndCityLabel];
-    
-    startY += 20;
-    
-    // COMPASS
-    UIImage *compassImage = [UIImage imageNamed:@"details_compass.png"];
-    WMCompassView *compassView = [[WMCompassView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-62, startY-10, compassImage.size.width, compassImage.size.height)];
-    compassView.node = self.node;
-    compassView.backgroundColor = [UIColor clearColor];
-    [view addSubview:compassView];
-    
-    // WEBSITE
-    self.websiteLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 22)];
-    self.websiteLabel.textColor = [UIColor darkGrayColor];
-    self.websiteLabel.dataDetectorTypes = UIDataDetectorTypeLink;
-    self.websiteLabel.editable = NO;
-    self.websiteLabel.scrollEnabled = NO;
-    self.websiteLabel.font = [UIFont systemFontOfSize:13];
-    self.websiteLabel.backgroundColor = [UIColor clearColor];
-    self.websiteLabel.contentInset = UIEdgeInsetsMake(-5,-4,0,0);
-    [view addSubview:self.websiteLabel];
-    
-    startY += 25;
-    
-    // PHONE
-    self.phoneLabel = [[UITextView alloc] initWithFrame:CGRectMake(STARTLEFT, startY, 225, 22)];
-    self.phoneLabel.textColor = [UIColor darkGrayColor];
-    self.phoneLabel.font = [UIFont systemFontOfSize:13];
-    self.phoneLabel.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
-    self.phoneLabel.editable = NO;
-    self.phoneLabel.scrollEnabled = NO;
-    self.phoneLabel.backgroundColor = [UIColor clearColor];
-    self.phoneLabel.contentInset = UIEdgeInsetsMake(-5,-4,0,0);
-    [view addSubview:self.phoneLabel];
-    
-    // DISTANCE
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-80, startY, 60, 20)];
-    self.distanceLabel.textColor = [UIColor darkGrayColor];
-    self.distanceLabel.font = [UIFont systemFontOfSize:12];
-    self.distanceLabel.backgroundColor = [UIColor clearColor];
-    self.distanceLabel.textAlignment = NSTextAlignmentCenter;
-    [view addSubview:self.distanceLabel];
-    
-    return view;
+- (void)initPOIStateButtons {
+	self.wheelchairStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.wheelchairStateButtonViewContainer];
+	self.wheelchairStateButtonView.statusType = WMPOIStateTypeWheelchair;
+	self.wheelchairStateButtonView.statusString = self.node.wheelchair;
+	self.wheelchairStateButtonView.showStateDelegate = self;
+
+	self.toiletStateButtonView = [[WMPOIStateButtonView alloc] initFromNibToView:self.toiletStateButtonViewContainer];
+	self.toiletStateButtonView.statusType = WMPOIStateTypeToilet;
+	self.toiletStateButtonView.statusString = self.node.wheelchair_toilet;
+	self.toiletStateButtonView.showStateDelegate = self;
 }
 
-- (UIScrollView*)createImageScrollView {
-    self.imageViewsInScrollView = [NSMutableArray new];
-    UIImage *uploadBackground = [UIImage imageNamed:@"details_background-photoupload.png"];
-    
-    UIScrollView *scrollView = [UIScrollView new];
-    scrollView.backgroundColor = [UIColor colorWithPatternImage:uploadBackground];
-    [scrollView setShowsHorizontalScrollIndicator:NO];
-    
-    UIImage *cameraButtonImage = [UIImage imageNamed:@"details_btn-photoupload.png"];
-    self.cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.cameraButton.frame = CGRectMake(10, 9, cameraButtonImage.size.width, cameraButtonImage.size.height);
-    [self.cameraButton setImage: cameraButtonImage forState: UIControlStateNormal];
-    [self.cameraButton addTarget:self action:@selector(cameraButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    [scrollView addSubview:self.cameraButton];
-    return scrollView;
+- (void)initAskFriendsView {
+	if (self.askFriendsButton.isRightToLeftDirection == YES) {
+		[self.askFriendsButton setImage:[UIImage imageNamed:@"details_unknown-info.png"].rightToLeftMirrowedImage forState:UIControlStateNormal];
+	}
+	self.askFriendsButtonTitleLabel.text = L(@"DetailsViewAskFriendsButtonLabel");
+
+	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] != YES
+		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] != YES) {
+		self.askFriendsViewHeightConstraint.constant = 0;
+		[self.askFriendsView layoutIfNeeded];
+	}
 }
 
-- (void)createThumbnails {
-    for (UIView* imageView in self.imageViewsInScrollView) {
-        [imageView removeFromSuperview];
-    }
-    
-    self.start = 22+[UIImage imageNamed:@"details_btn-photoupload.png"].size.width;
-    self.gab = 16;
-    
-    for (int i = 0; i < self.thumbnailURLArray.count; i++) {
-        [self addThumbnail:i];
-    }
-    
-    int scrollWidth = ((self.thumbnailURLArray.count+1)*([UIImage imageNamed:@"details_btn-photoupload.png"].size.width + self.gab))+self.gab;
-    self.imageScrollView.contentSize = CGSizeMake(scrollWidth, self.imageScrollView.frame.size.height);
+- (void)initAddressView {
+	self.addressView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.addressCompassView.node = self.node;
+
+	if (self.view.isRightToLeftDirection == YES && SYSTEM_VERSION_LESS_THAN(@"9.0") == YES) {
+		// As Marquee label doesn't support right to left automatically on prior iOS9 devices, we have to do it on our own.
+		self.addressStreetLabel.textAlignment = NSTextAlignmentRight;
+		self.addressPLZCityLabel.textAlignment = NSTextAlignmentRight;
+		self.addressWebsiteLabel.textAlignment = NSTextAlignmentRight;
+		self.addressPhoneTextLabel.textAlignment = NSTextAlignmentRight;
+	}
 }
 
-- (void)addThumbnail: (int) i {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start+i*80+i*self.gab, 10, 85, 60)];
-    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    imageView.layer.borderWidth = 2;
-    imageView.tag = i;
-    imageView.userInteractionEnabled = YES;
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.clipsToBounds = YES;
-    [imageView setImageWithURL: [NSURL URLWithString:[self.thumbnailURLArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(thumbnailTapped:)];
-    [imageView addGestureRecognizer:tapRecognizer];
-    
-    [self.imageScrollView addSubview:imageView];
-    [self.imageViewsInScrollView addObject:imageView];
+- (void)initGalleryView {
+	UIImage *uploadBackgroundImage = [UIImage imageNamed:@"details_background-photoupload.png"];
+	self.galleryCollectionView.backgroundColor = [UIColor colorWithPatternImage:uploadBackgroundImage];
+
+	self.thumbnailURLArray = [[NSMutableArray alloc] init];
+	self.originalImageURLArray = [[NSMutableArray alloc] init];
 }
 
-- (UIView*)createAdditionalButtonView {
-    int buttonWidth = 68;
-    int buttonHeight = 62;
-    int gab = 10;
-    
-    self.threeButtonWidth = 3*buttonWidth + 2*gab;
-    
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    
-    // SHARELOCATION
-    self.shareLocationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.shareLocationButton.frame = CGRectMake(0, 10, buttonWidth, buttonHeight);
-    [self.shareLocationButton setImage: [UIImage imageNamed:@"more-buttons_share.png"] forState: UIControlStateNormal];
-    [self.shareLocationButton setImage: [UIImage imageNamed:@"more-buttons_share-deactive.png"] forState: UIControlStateDisabled];
-    [self.shareLocationButton addTarget:self action:@selector(shareLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.shareLocationButton];
-    UILabel *shareLocationLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewShareLabel", @"")];
-    shareLocationLabel.frame = CGRectMake(self.shareLocationButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
-    [view addSubview:shareLocationLabel];
-    
-    // MOREINFO
-    self.moreInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.moreInfoButton.frame = CGRectMake(buttonWidth+gab, 10,buttonWidth,buttonHeight);
-    [self.moreInfoButton setImage: [UIImage imageNamed:@"more-buttons_info.png"] forState: UIControlStateNormal];
-    [self.moreInfoButton setImage: [UIImage imageNamed:@"more-buttons_info-deactive.png"] forState: UIControlStateDisabled];
-    [self.moreInfoButton addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.moreInfoButton];
-    UILabel *moreInfoLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"")];
-    moreInfoLabel.frame = CGRectMake(self.moreInfoButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
-    [view addSubview:moreInfoLabel];
-    
-    // ROUTE
-    self.naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.naviButton.frame = CGRectMake(2*buttonWidth+2*gab, 10,buttonWidth,buttonHeight);
-    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route.png"] forState: UIControlStateNormal];
-    [self.naviButton setImage: [UIImage imageNamed:@"more-buttons_route-deactive.png"] forState: UIControlStateDisabled];
-    [self.naviButton addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.naviButton];
-    UILabel *routeLabel = [self createBelowButtonLabel:NSLocalizedString(@"DetailsView4ButtonViewRouteLabel", @"")];
-    routeLabel.frame = CGRectMake(self.naviButton.frame.origin.x,buttonHeight+15,buttonWidth, 16);
-    [view addSubview:routeLabel];
-    
-    return view;
+- (void)initAdditionalButtons {
+	self.shareButtonTitleLabel.text = L(@"DetailsView4ButtonViewShareLabel");
+	self.noteButtonTitleLabel.text = L(@"DetailsView4ButtonViewInfoLabel");
+	self.directionButtonTitleLabel.text = L(@"DetailsView4ButtonViewRouteLabel");
 }
 
-- (UILabel*)createBelowButtonLabel: (NSString*) title {
-    UILabel *belowButtonLabel = [UILabel new];
-    belowButtonLabel.backgroundColor = [UIColor clearColor];
-    belowButtonLabel.text = title;
-    belowButtonLabel.font = [UIFont systemFontOfSize:11];
-    belowButtonLabel.textColor = [UIColor darkGrayColor];
-    belowButtonLabel.textAlignment = NSTextAlignmentCenter;
-    return belowButtonLabel;
+#pragma mark - UICollectionView delegates
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+	UICollectionViewCell *cell;
+	if (indexPath.row == 0) {
+		WMSmallGalleryButtonCollectionViewCell *buttonCell = [collectionView dequeueReusableCellWithReuseIdentifier:K_POI_DETAIL_GALLERY_BUTTON_CELL_IDENTIFIER forIndexPath:indexPath];
+		buttonCell.delegate = self;
+		cell = buttonCell;
+	} else {
+		WMSmallGalleryImageCollectionViewCell *imageCell = [collectionView dequeueReusableCellWithReuseIdentifier:K_POI_DETAIL_GALLERY_IMAGE_CELL_IDENTIFIER forIndexPath:indexPath];
+		if ((indexPath.row - K_GALLEY_BUTTON_INDEX_OFFSET) < self.thumbnailURLArray.count) {
+			[imageCell.imageView setImageWithURL: [NSURL URLWithString:[self.thumbnailURLArray objectAtIndex:indexPath.row - K_GALLEY_BUTTON_INDEX_OFFSET]] placeholderImage:[UIImage imageNamed:@"details_background-thumbnail.png"]];
+		}
+		cell = imageCell;
+	}
+	return cell;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	return K_GALLEY_BUTTON_INDEX_OFFSET + self.thumbnailURLArray.count;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
+	if (indexPath.row > 0) {
+		[self selectedThumbnailImage:indexPath.row - K_GALLEY_BUTTON_INDEX_OFFSET];
+	}
 }
 
 - (void)updateFields {
     // TEXTFIELDS
-    self.titleLabel.text = self.node.name ?: @"";
+    self.poiNameLabel.text = self.node.name ?: @"";
     NSString *nodeTypeString = self.node.node_type.localized_name ?: @"";
     NSString *catString = self.node.node_type.category.localized_name ?: @"";
     NSString *nodeTypeAndCatString = [NSString stringWithFormat:@"%@ / %@", nodeTypeString, catString];
-    self.nodeTypeLabel.text = nodeTypeAndCatString;
+    self.poiCategoryLabel.text = nodeTypeAndCatString;
     
     
     if (self.node.street == nil && self.node.housenumber == nil && self.node.postcode == nil && self.node.city == nil) {
-        self.postcodeAndCityLabel.text = NSLocalizedString(@"NoAddress", nil);
+        self.addressPLZCityLabel.text = NSLocalizedString(@"NoAddress", nil);
     } else {
         NSString *street = self.node.street ?: @"";
         NSString *houseNumber = self.node.housenumber ?: @"";
-        self.streetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
+        self.addressStreetLabel.text = [NSString stringWithFormat:@"%@ %@", street, houseNumber];
         NSString *postcode = self.node.postcode ?: @"";
         NSString *city = self.node.city ?: @"";
-        self.postcodeAndCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
+        self.addressPLZCityLabel.text = [NSString stringWithFormat:@"%@ %@", postcode, city];
     }
     
-    self.websiteLabel.text = self.node.website ?: NSLocalizedString(@"NoWebsite", nil);
-    self.phoneLabel.text = self.node.phone ?: NSLocalizedString(@"NoPhone", nil);
+    self.addressWebsiteLabel.text = self.node.website ?: NSLocalizedString(@"NoWebsite", nil);
+    self.addressPhoneTextLabel.text = self.node.phone ?: NSLocalizedString(@"NoPhone", nil);
     
     [self checkForStatusOfButtons];
     [self updatePOIStateButtonViews];
@@ -461,76 +236,39 @@
 
 - (void)checkForStatusOfButtons {
     if(self.currentLocation == nil) {
-        self.naviButton.enabled = NO;
+        self.directionButton.enabled = NO;
     } else {
-        self.naviButton.enabled = YES;
+        self.directionButton.enabled = YES;
     }
 }
 
 - (void)updatePOIStateButtonViews {
 	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == NO
-		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO
-		&& self.askFriendsButton != nil) {
-		[self.askFriendsButton removeFromSuperview];
-
-		self.toiletStateButtonContainerView.frame = CGRectMake(self.toiletStateButtonContainerView.frame.origin.x, self.toiletStateButtonContainerView.frame.origin.y, self.toiletStateButtonContainerView.frame.size.width, self.toiletStateButtonContainerView.frame.size.height-self.gabIfStatusUnknown);
-		self.contactInfoView.frame = CGRectMake(self.contactInfoView.frame.origin.x, self.contactInfoView.frame.origin.y-self.gabIfStatusUnknown, self.contactInfoView.frame.size.width, self.contactInfoView.frame.size.height);
-		self.imageScrollView.frame = CGRectMake(self.imageScrollView.frame.origin.x, self.imageScrollView.frame.origin.y-self.gabIfStatusUnknown, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
-		self.additionalButtonView.frame = CGRectMake(self.additionalButtonView.frame.origin.x, self.additionalButtonView.frame.origin.y-self.gabIfStatusUnknown, self.additionalButtonView.frame.size.width, self.additionalButtonView.frame.size.height);
-		self.askFriendsButton = nil;
+		|| [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO) {
+		// No state is unknow, so we don't have to show the ask friends view
+		if (self.askFriendsViewHeightConstraint.constant == K_ASK_FRIENDS_HEIGHT) {
+			self.scrollViewContentHeightConstraint.constant -= K_ASK_FRIENDS_HEIGHT;
+		}
+		self.askFriendsViewHeightConstraint.constant = 0;
+	} else {
+		// At least one state is unknow, so we do have to show the ask friends view
+		if (self.askFriendsViewHeightConstraint.constant == 0) {
+			self.scrollViewContentHeightConstraint.constant += K_ASK_FRIENDS_HEIGHT;
+		}
+		self.askFriendsViewHeightConstraint.constant = K_ASK_FRIENDS_HEIGHT;
 	}
+	[self.askFriendsView layoutIfNeeded];
 
 	self.wheelchairStateButtonView.statusString = self.node.wheelchair;
 	self.toiletStateButtonView.statusString = self.node.wheelchair_toilet;
 }
-
-#pragma mark - Phone, Website, Comment, Navi
-
-- (void)call {
-    NSString *callString = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Call", @""), self.node.phone];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:callString delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
-    actionSheet.tag = 3;
-    [actionSheet showInView:self.view];
-}
-
-- (void)openWebpage {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
-    actionSheet.tag = 0;
-    [actionSheet showInView:self.view];
-    
-}
-
-- (void)showCommentView {
-	if (dataManager.userIsAuthenticated == NO) {
-		WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
-		if ([navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
-			[(WMPOIIPadNavigationController*)navigationController showLoginViewController];
-		} else {
-			[navigationController presentLoginScreenWithButtonFrame:self.moreInfoButton.frame];
-		}
-		return;
-	}
-
-    WMEditPOICommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICommentViewController"];
-    vc.currentNode = self.node;
-    vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)openMap {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
-    actionSheet.tag = 1;
-    [actionSheet showInView:self.view];
-}
-
 
 #pragma mark - Map
 // And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     // This is boilerplate code to connect tile overlay layers with suitable renderers
     //
-    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
-    {
+    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]]) {
         MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
         return renderer;
     }
@@ -562,7 +300,7 @@
 
 - (void)updateDistanceToAnnotation {
     if (self.mapView.userLocation.location == nil) {
-        self.distanceLabel.text = @"n/a";
+        self.addressDistanceLabel.text = @"n/a";
         return;
     }
     
@@ -576,7 +314,7 @@
     
     CLLocationDistance distance = [pinLocation distanceFromLocation:userLocation];
     
-    self.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
+    self.addressDistanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
@@ -607,48 +345,38 @@
     return nil;
 }
 
-- (void)enlargeMapButtonPressed {
+- (IBAction)enlargeMapButtonPressed {
     if (self.mapViewOpen) {
-        [UIView animateWithDuration:0.3
+		self.mapViewViewHeightConstraint.constant = K_MAP_HEIGHT_SMALL;
+		self.scrollViewContentHeightConstraint.constant += K_MAP_HEIGHT_SMALL - K_MAP_HEIGHT_LARGE;
+
+		[UIView animateWithDuration:0.3
                               delay:0.0
                             options:UIViewAnimationCurveEaseOut
                          animations:^{
-                             self.mapView.frame = MAPVIEWCLOSEDSTATE;
-                             if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
-                                 self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATEGAB;
-                             } else {
-                                 self.contentView.frame = CONTENTVIEWCLOSEDMAPSTATE;
-                             }
-                             self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height);
-                             self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height-MAPOPENADDITION);
-                         }
-                         completion:^(BOOL finished) {
+							 [self.view layoutIfNeeded];
+
+                         } completion:^(BOOL finished) {
                              self.mapViewOpen = NO;
                              self.mapView.scrollEnabled = NO;
                              self.mapView.zoomEnabled = NO;
-                         }
-         ];
+                         }];
         
     } else {
-        [UIView animateWithDuration:0.3
+		self.mapViewViewHeightConstraint.constant = K_MAP_HEIGHT_LARGE;
+		self.scrollViewContentHeightConstraint.constant -= K_MAP_HEIGHT_SMALL - K_MAP_HEIGHT_LARGE;
+
+		[UIView animateWithDuration:0.3
                               delay:0.0
                             options:UIViewAnimationCurveEaseIn
                          animations:^{
-                             self.mapView.frame = MAPVIEWOPENSTATE;
-                             if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN]) {
-                                 self.contentView.frame = CONTENTVIEWOPENMAPSTATEGAB;
-                             } else {
-                                 self.contentView.frame = CONTENTVIEWOPENMAPSTATE;
-                             }
-                             self.mainView.frame = CGRectMake(0, 0, 320, self.mapView.bounds.size.height+self.contentView.bounds.size.height);
-                             self.scrollView.contentSize = CGSizeMake(320, self.scrollView.contentSize.height+MAPOPENADDITION);
-                         }
-                         completion:^(BOOL finished) {
+							 [self.view layoutIfNeeded];
+
+                         } completion:^(BOOL finished) {
                              self.mapViewOpen = YES;
                              self.mapView.scrollEnabled = YES;
                              self.mapView.zoomEnabled = YES;
-                         }
-         ];
+                         }];
 	}
 }
 
@@ -685,6 +413,97 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
+#pragma mark - IBActions
+
+- (IBAction)didPressAskFriendButton:(id)sender {
+	WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
+	vc.baseController = self.baseController;
+	vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
+
+	if (UIDevice.isIPad == YES) {
+		[self.navigationController pushViewController:vc animated:YES];
+		vc.titleView.hidden = YES;
+	} else {
+		[self presentViewController:vc animated:YES];
+	}
+	NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
+	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
+	NSURL *url = [NSURL URLWithString: urlString];
+	vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+}
+
+- (IBAction)didPressAddressWebsiteButton:(id)sender {
+	if (self.node.website != nil && self.node.website.length > 0) {
+		NSURL *url = [NSURL URLWithString:self.node.website];
+		if ([UIApplication.sharedApplication canOpenURL:url]) {
+			[UIApplication.sharedApplication openURL:url];
+		}
+	}
+}
+
+- (IBAction)didPressAddressPhoneButton:(id)sender {
+	if (self.node.phone != nil && self.node.phone.length > 0) {
+		NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@", [self.node.phone stringByReplacingOccurrencesOfString:@" " withString:@""]]];
+		if ([UIApplication.sharedApplication canOpenURL:url]) {
+			[UIApplication.sharedApplication openURL:url];
+		}
+	}
+}
+
+- (IBAction)didPressShareButton:(id)sender {
+	WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
+	vc.baseController = self.baseController;
+	CGFloat xPosition = (768.0f / 2.0f) - 160.0f;
+	if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+		xPosition = (1024.0f / 2.0f) - 160.0f;
+	}
+	vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
+	vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
+
+	if (UIDevice.isIPad == YES) {
+		[self.navigationController pushViewController:vc animated:YES];
+		vc.titleView.hidden = YES;
+	} else {
+		[self presentViewController:vc animated:YES];
+	}
+	NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
+	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
+	NSURL *url = [NSURL URLWithString: urlString];
+	vc.shareURlString = url.absoluteString;
+	vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+
+}
+
+- (IBAction)didPresseNotesButton:(id)sender {
+	if (dataManager.userIsAuthenticated == NO) {
+		WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
+		if ([navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
+			[(WMPOIIPadNavigationController*)navigationController showLoginViewController];
+		} else {
+			[navigationController presentLoginScreenWithButtonFrame:self.noteButton.frame];
+		}
+		return;
+	}
+
+	WMEditPOICommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICommentViewController"];
+	vc.currentNode = self.node;
+	vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)didPressDirectionButton:(id)sender {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"LeaveApp", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+	actionSheet.tag = 1;
+	[actionSheet showInView:self.view];
+}
+
+#pragma mark - EditPOIState delegate
+
+- (void)didSelectStatus:(NSString*)wheelchairAccess forStatusType:(WMPOIStateType)statusType {
+	self.node.wheelchair = wheelchairAccess;
+}
+
+
 #pragma mark - ActionSheets
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -712,8 +531,9 @@
             if (UIDevice.isIPad == YES) {
                 
                 self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
-                
-                [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+				UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
+                [self.popOverController presentPopoverFromRect:cameraButtonCell.contentView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             } else {
                 [self presentViewController:self.imagePicker animated:YES];
             }
@@ -723,8 +543,9 @@
             if (UIDevice.isIPad == YES) {
                 
                 self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
-                
-                [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+				UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
+                [self.popOverController presentPopoverFromRect:cameraButtonCell.contentView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             } else {
                 [self presentViewController:self.imagePicker animated:YES];
             }
@@ -745,47 +566,11 @@
 
 #pragma mark - PhotoUpload
 
-- (void)thumbnailTapped:(UITapGestureRecognizer*)sender {
+- (void)selectedThumbnailImage:(NSUInteger)index {
     WMInfinitePhotoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMInfinitePhotoViewController"];
     vc.imageURLArray = self.originalImageURLArray;
-    vc.tappedImage = sender.view.tag;
+    vc.tappedImage = index;
     [self presentForcedModalViewController:vc animated:YES];
-}
-
-- (void)cameraButtonPressed {
-	// Check if user is authenticated
-    if (dataManager.userIsAuthenticated == NO) {
-		if ([self.navigationController isKindOfClass:[WMPOIIPadNavigationController class]] == YES) {
-			// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
-			WMPOIIPadNavigationController *detailNavigationController = (WMPOIIPadNavigationController *) self.navigationController;
-			[((WMNavigationControllerBase *)detailNavigationController.listViewController.navigationController) presentLoginScreen];
-		} else if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES) {
-			WMNavigationControllerBase *baseNavigationController = (WMNavigationControllerBase *) self.navigationController;
-			[baseNavigationController presentLoginScreenWithButtonFrame:self.cameraButton.frame];
-		}
-        return;
-    }
-    
-    self.imagePicker = [[UIImagePickerController alloc] init];
-    self.imagePicker.delegate = self;
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailsViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailsViewUploadOptionCamera", @""), NSLocalizedString(@"DetailsViewUploadOptionPhotoAlbum", @""), nil];
-        actionSheet.tag = 2;
-        
-        [actionSheet showInView:self.view];
-    } else {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        if (UIDevice.isIPad == YES) {
-            
-            self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
-            
-            [self.popOverController presentPopoverFromRect:self.cameraButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        } else {
-            [self presentForcedModalViewController:self.imagePicker animated:YES];
-        }
-    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) Picker {
@@ -865,7 +650,7 @@
         }
     }
     
-    [self createThumbnails];
+    [self.galleryCollectionView reloadData];
     
 }
 
@@ -876,64 +661,47 @@
     [alert show];
 }
 
-#pragma mark - Other Button Handlers
+#pragma mark - WMSmallGalleryButtonCollectionViewCell delegate
 
-- (void) shareLocationButtonPressed {
-    WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-    vc.baseController = self.baseController;
-    CGFloat xPosition = (768.0f / 2.0f) - 160.0f;
-    if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-        xPosition = (1024.0f / 2.0f) - 160.0f;
-    }
-    vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
-    vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
-    
-    if (UIDevice.isIPad == YES) {
-        [self.navigationController pushViewController:vc animated:YES];
-        vc.titleView.hidden = YES;
-    } else {
-        [self presentViewController:vc animated:YES];
-    }
-    NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
-    NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
-    NSURL *url = [NSURL URLWithString: urlString];
-	vc.shareURlString = url.absoluteString;
-    vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
-    
+- (void)didPressCameraButton {
+	// Check if user is authenticated
+	if (dataManager.userIsAuthenticated == NO) {
+		if ([self.navigationController isKindOfClass:[WMPOIIPadNavigationController class]] == YES) {
+			// The user isn't logged in. Present the login screen then. This will close the popover and open the login screen popover.
+			WMPOIIPadNavigationController *detailNavigationController = (WMPOIIPadNavigationController *) self.navigationController;
+			[((WMNavigationControllerBase *)detailNavigationController.listViewController.navigationController) presentLoginScreen];
+		} else if ([self.navigationController isKindOfClass:[WMNavigationControllerBase class]] == YES) {
+			WMNavigationControllerBase *baseNavigationController = (WMNavigationControllerBase *) self.navigationController;
+			UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
+			[baseNavigationController presentLoginScreenWithButtonFrame:cameraButtonCell.contentView.frame];
+		}
+		return;
+	}
+
+	self.imagePicker = [[UIImagePickerController alloc] init];
+	self.imagePicker.delegate = self;
+
+	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DetailsViewChoosePhotoSource", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"DetailsViewUploadOptionCamera", @""), NSLocalizedString(@"DetailsViewUploadOptionPhotoAlbum", @""), nil];
+		actionSheet.tag = 2;
+
+		[actionSheet showInView:self.view];
+	} else {
+		self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+		if (UIDevice.isIPad == YES) {
+
+			self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+
+			UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
+			[self.popOverController presentPopoverFromRect:cameraButtonCell.contentView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+		} else {
+			[self presentForcedModalViewController:self.imagePicker animated:YES];
+		}
+	}
 }
 
-- (void)askFriendsForStatusButtonPressed {
-    WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
-    vc.baseController = self.baseController;
-    vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
-    
-    if (UIDevice.isIPad == YES) {
-        [self.navigationController pushViewController:vc animated:YES];
-        vc.titleView.hidden = YES;
-    } else {
-        [self presentViewController:vc animated:YES];
-    }
-    NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
-    NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
-    NSURL *url = [NSURL URLWithString: urlString];
-    vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
-    
-}
-
-- (void)showAccessOptions {
-    WMEditPOIStateViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOIStateViewController"];
-    vc.delegate = self;
-    vc.node = self.node;
-	vc.useCase = WMEditPOIStateUseCasePOIUpdate;
-	vc.statusType = WMPOIStateTypeWheelchair;
-    vc.title = NSLocalizedString(@"EditPOIStateHeadline", @"");
-    [self.navigationController pushViewController:vc animated:YES];
-    
-}
-
-- (IBAction)didSelectStatus:(NSString*)wheelchairAccess forStatusType:(WMPOIStateType)statusType {
-    self.node.wheelchair = wheelchairAccess;
-}
+#pragma mark -
 
 - (void)pushEditViewController {
     if (![dataManager userIsAuthenticated]) {
@@ -952,14 +720,16 @@
 #pragma mark - Network Status Changes
 - (void)networkStatusChanged:(NSNotification*)notice {
     NetworkStatus networkStatus = [[dataManager internetReachble] currentReachabilityStatus];
-    
+
+	WMSmallGalleryButtonCollectionViewCell *cameraButtonCell = (WMSmallGalleryButtonCollectionViewCell *) [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
+
     switch (networkStatus) {
         case NotReachable:
-            self.cameraButton.enabled = NO;
+            cameraButtonCell.button.enabled = NO;
             break;
             
         default:
-            self.cameraButton.enabled = YES;
+            cameraButtonCell.button.enabled = YES;
             break;
     }
 }

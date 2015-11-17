@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 #import "WMNavigationBar.h"
-#import "WMNavigationBar_iPad.h"
+#import "WMIPadMapNavigationBar.h"
 #import "WMToolbar.h"
 #import "WMToolbar_iPad.h"
 #import "WMMapViewController.h"
