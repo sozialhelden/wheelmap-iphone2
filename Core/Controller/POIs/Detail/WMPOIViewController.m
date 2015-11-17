@@ -429,7 +429,7 @@
 	NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
 	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
 	NSURL *url = [NSURL URLWithString: urlString];
-	vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+	vc.shareTextString = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
 }
 
 - (IBAction)didPressAddressWebsiteButton:(id)sender {
@@ -459,6 +459,7 @@
 	}
 	vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
 	vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
+	vc.node = self.node;
 
 	if (UIDevice.isIPad == YES) {
 		[self.navigationController pushViewController:vc animated:YES];
@@ -470,7 +471,7 @@
 	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
 	NSURL *url = [NSURL URLWithString: urlString];
 	vc.shareURlString = url.absoluteString;
-	vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+	vc.shareTextString = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
 
 }
 

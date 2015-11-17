@@ -8,6 +8,7 @@
 
 #import "WMShareSocialViewController.h"
 #import "WMSharingManager.h"
+#import "Node.h"
 
 @interface WMShareSocialViewController () {
     WMSharingManager* sharingManager;
@@ -45,8 +46,9 @@
     [self.smsButton setTitle:L(@"sms") forState:UIControlStateNormal];
     
     [self.closeButton setTitle:L(@"Cancel") forState:UIControlStateNormal];
-    
-    self.titleLabel.text = L(@"NavBarTitleSharing");
+
+	self.titleLabel.text = L(@"NavBarTitleSharing");
+	self.shareLocationLabel.text = self.shareTextString;
 
 	if (UIDevice.isIPad == YES) {
 		self.navigationBarHeightConstraint.constant = 0;
@@ -74,7 +76,7 @@
 }
 
 - (IBAction)facebookButtonPressed:(id)sender {
-    [sharingManager facebookPosting:self.shareURlString];
+    [sharingManager facebookPosting:self.shareLocationLabel.text];
 }
 
 - (IBAction)smsButtonPressed:(id)sender {
@@ -82,7 +84,7 @@
 }
 
 - (IBAction)emailButtonPressed:(id)sender {
-    [sharingManager sendMailWithSubject:L(@"ShareLocationLabel") andBody:self.shareLocationLabel.text];
+    [sharingManager sendMailWithSubject:self.shareLocationLabel.text andBody:self.shareLocationLabel.text];
 }
 
 - (IBAction)closeButtonPressed:(id)sender {

@@ -378,7 +378,7 @@
     
 }
 
-- (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
+- (void)dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
     

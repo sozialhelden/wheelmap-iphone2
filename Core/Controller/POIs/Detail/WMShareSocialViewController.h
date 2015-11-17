@@ -10,7 +10,10 @@
 
 @interface WMShareSocialViewController : WMViewController
 
-@property (strong, nonatomic) NSString *	shareURlString;
+@property (strong, nonatomic) NSString *						shareURlString;
+@property (strong, nonatomic) NSString *						shareTextString;
+
+@property (strong, nonatomic) Node *							node;
 
 @property (strong, nonatomic) IBOutlet UIView *					titleView;
 @property (strong, nonatomic) IBOutlet UILabel *				shareLocationLabel;
