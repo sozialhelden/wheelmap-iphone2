@@ -554,7 +554,9 @@
 #pragma mark - Location Manager Delegate
 
 -(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	[self locationManagerDidFail];
+	if ([CLLocationManager locationServicesEnabled] == NO) {
+		[self locationManagerDidFail];
+	}
 }
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -564,8 +566,7 @@
 	}
 }
 
--(void)updateUserLocation
-{
+-(void)updateUserLocation {
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager startMonitoringSignificantLocationChanges];
     } else {
