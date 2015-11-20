@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	[self showIntroPopover];
+	[self showIntroViewControllerIfNecessary];
 
 	if (self.listShadowImageView.isRightToLeftDirection == YES) {
 		self.listShadowImageView.image = self.listShadowImageView.image.rightToLeftMirrowedImage;
@@ -47,11 +47,13 @@
     self.controllerBase.mapViewController = self.mapViewController;
 }
 
-- (void)showIntroPopover {
-	WMIntroViewController *introViewController = UIStoryboard.instantiatedIntroViewController;
-	UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:introViewController];
-	introViewController.popoverController = popoverController;
-	[popoverController presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:0 animated:YES];
+- (void)showIntroViewControllerIfNecessary {
+	if (WMHelper.shouldShowIntroViewController == YES) {
+		WMIntroViewController *introViewController = UIStoryboard.instantiatedIntroViewController;
+		UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:introViewController];
+		introViewController.popoverController = popoverController;
+		[popoverController presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:0 animated:YES];
+	}
 }
 
 #pragma mark -

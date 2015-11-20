@@ -218,6 +218,9 @@
 		87564D501BFB93000028993F /* IntroLastPageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4F1BFB93000028993F /* IntroLastPageDescription.html */; };
 		87564D511BFB93000028993F /* IntroLastPageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4F1BFB93000028993F /* IntroLastPageDescription.html */; };
 		87564D521BFB93000028993F /* IntroLastPageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 87564D4F1BFB93000028993F /* IntroLastPageDescription.html */; };
+		87691CAC1BFF22920024AC77 /* WMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87691CAB1BFF22920024AC77 /* WMHelper.m */; };
+		87691CAD1BFF22920024AC77 /* WMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87691CAB1BFF22920024AC77 /* WMHelper.m */; };
+		87691CAE1BFF22920024AC77 /* WMHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87691CAB1BFF22920024AC77 /* WMHelper.m */; };
 		876E8F271BE8DBBD00B4E2CD /* WMPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */; };
 		876E8F281BE8DBBD00B4E2CD /* WMPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */; };
 		876E8F291BE8DBBD00B4E2CD /* WMPOIStateButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */; };
@@ -926,6 +929,8 @@
 		87564D461BFB829B0028993F /* WMIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMIntroViewController.m; path = Core/Controller/Intro/WMIntroViewController.m; sourceTree = SOURCE_ROOT; };
 		87564D4A1BFB82CF0028993F /* Intro.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
 		87564D4F1BFB93000028993F /* IntroLastPageDescription.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IntroLastPageDescription.html; sourceTree = "<group>"; };
+		87691CAA1BFF22920024AC77 /* WMHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMHelper.h; path = WMHelper/WMHelper.h; sourceTree = "<group>"; };
+		87691CAB1BFF22920024AC77 /* WMHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMHelper.m; path = WMHelper/WMHelper.m; sourceTree = "<group>"; };
 		876E8F251BE8DBBD00B4E2CD /* WMPOIStateButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMPOIStateButtonView.h; path = Shared/WMPOIStateButtonView.h; sourceTree = "<group>"; };
 		876E8F261BE8DBBD00B4E2CD /* WMPOIStateButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMPOIStateButtonView.m; path = Shared/WMPOIStateButtonView.m; sourceTree = "<group>"; };
 		876E8F2A1BE8DBE100B4E2CD /* WMPOIStateButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateButtonView.xib; sourceTree = "<group>"; };
@@ -1487,6 +1492,7 @@
 			children = (
 				872FDF261BDFEFAA00764FC5 /* WMKeychainWrapper */,
 				872FDF291BDFEFAA00764FC5 /* WMResourceManager */,
+				87691CAF1BFF23EF0024AC77 /* WMHelper */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1544,6 +1550,15 @@
 				87564D4F1BFB93000028993F /* IntroLastPageDescription.html */,
 			);
 			path = HTML;
+			sourceTree = "<group>";
+		};
+		87691CAF1BFF23EF0024AC77 /* WMHelper */ = {
+			isa = PBXGroup;
+			children = (
+				87691CAA1BFF22920024AC77 /* WMHelper.h */,
+				87691CAB1BFF22920024AC77 /* WMHelper.m */,
+			);
+			name = WMHelper;
 			sourceTree = "<group>";
 		};
 		876E8F241BE8DBB300B4E2CD /* Shared */ = {
@@ -2907,6 +2922,7 @@
 				878EC90A1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3411BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9181BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				87691CAD1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CB1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBB1BDFEF6D00764FC5 /* Tile.m in Sources */,
 				872FDEC71BDFEF6D00764FC5 /* WMWheelmapAPI.m in Sources */,
@@ -2991,6 +3007,7 @@
 				878EC90B1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3421BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9191BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				87691CAE1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CC1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBC1BDFEF6D00764FC5 /* Tile.m in Sources */,
 				872FDEC81BDFEF6D00764FC5 /* WMWheelmapAPI.m in Sources */,
@@ -3075,6 +3092,7 @@
 				878EC9091BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3401BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9171BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				87691CAC1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CA1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBA1BDFEF6D00764FC5 /* Tile.m in Sources */,
 				872FDEC61BDFEF6D00764FC5 /* WMWheelmapAPI.m in Sources */,
