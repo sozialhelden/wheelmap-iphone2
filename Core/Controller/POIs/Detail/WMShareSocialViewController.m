@@ -69,6 +69,12 @@
 	self.preferredContentSize = CGSizeMake(self.scrollViewContentViewWidthConstraint.constant, self.scrollViewContentViewHeightConstraint.constant);
 }
 
+- (void)setShareTextString:(NSString *)shareTextString {
+	_shareTextString = shareTextString;
+
+	self.shareLocationLabel.text = shareTextString;
+}
+
 #pragma mark - IBAction
 
 - (IBAction)twitterButtonPressed:(id)sender {

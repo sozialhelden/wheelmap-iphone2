@@ -467,11 +467,11 @@
 	} else {
 		[self presentViewController:vc animated:YES];
 	}
-	NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
+	NSString *shareLocationLabel = L(@"ShareLocationLabel");
 	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
 	NSURL *url = [NSURL URLWithString: urlString];
 	vc.shareURlString = url.absoluteString;
-	vc.shareTextString = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+	vc.shareTextString = [NSString stringWithFormat:@"%@ \n\"%@\" - %@ #MapMyDay", shareLocationLabel, self.node.name, url];
 
 }
 
