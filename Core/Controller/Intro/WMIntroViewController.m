@@ -92,6 +92,10 @@
 #pragma mark - IBActions
 
 - (IBAction)didPressButton:(id)sender {
+	// Save the info that the inro was already seen.
+	[NSUserDefaults.standardUserDefaults setBool:YES forKey:K_UD_INTRO_ALREADY_SEEN];
+	[NSUserDefaults.standardUserDefaults synchronize];
+	// Close the into.
 	if (self.popoverController != nil) {
 		[self.popoverController dismissPopoverAnimated:YES];
 	} else {

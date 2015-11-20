@@ -53,7 +53,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	[self showIntroPopover];
+	[self showIntroViewControllerIfNecessary];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
@@ -130,8 +130,10 @@
 	self.contributeButtonTitleLabel.text = L(@"DashboardHelp");
 }
 
-- (void)showIntroPopover {
-	[self presentViewController:UIStoryboard.instantiatedIntroViewController animated:YES];
+- (void)showIntroViewControllerIfNecessary {
+	if (WMHelper.shouldShowIntroViewController == YES) {
+		[self presentViewController:UIStoryboard.instantiatedIntroViewController animated:YES];
+	}
 }
 
 #pragma mark - IBActions
