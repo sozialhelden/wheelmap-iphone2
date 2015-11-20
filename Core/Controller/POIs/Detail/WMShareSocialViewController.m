@@ -82,7 +82,7 @@
 }
 
 - (IBAction)facebookButtonPressed:(id)sender {
-    [sharingManager facebookPosting:self.shareLocationLabel.text];
+    [sharingManager facebookPosting:self.shareURlString];
 }
 
 - (IBAction)smsButtonPressed:(id)sender {
