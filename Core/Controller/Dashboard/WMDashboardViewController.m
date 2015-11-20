@@ -79,6 +79,8 @@
 		self.logoImageView.image = [UIImage imageNamed:@"start_logo.png"];
 	}
 
+	[self initButtons];
+	
     self.navigationController.navigationBar.translucent = NO;
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
