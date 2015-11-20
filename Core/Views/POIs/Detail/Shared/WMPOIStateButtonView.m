@@ -131,10 +131,8 @@
 		return [UIImage imageNamed:@"details_btn-status-no.png"];
 	} else if ([statusString isEqualToString:K_STATE_YES]) {
 		return [UIImage imageNamed:@"details_btn-status-yes.png"];
-	} else if ([statusString isEqualToString:K_STATE_UNKNOWN]) {
-		return [UIImage imageNamed:@"details_btn-status-unknown.png"];
 	} else {
-		return nil;
+		return [UIImage imageNamed:@"details_btn-status-unknown.png"];
 	}
 }
 
@@ -146,7 +144,7 @@
 			return L(@"WheelchairAccessNo");
 		} else if ([statusString isEqualToString:K_STATE_YES]) {
 			return L(@"WheelchairAccessYes");
-		} else if ([statusString isEqualToString:K_STATE_UNKNOWN]) {
+		} else {
 			return L(@"WheelchairAccessUnkown");
 		}
 	} else if (self.statusType == WMPOIStateTypeToilet) {
@@ -154,7 +152,7 @@
 			return L(@"ToiletAccessNo");
 		} else if ([statusString isEqualToString:K_STATE_YES]) {
 			return L(@"ToiletAccessYes");
-		} else if ([statusString isEqualToString:K_STATE_UNKNOWN]) {
+		} else {
 			return L(@"ToiletAccessUnknown");
 		}
 	}

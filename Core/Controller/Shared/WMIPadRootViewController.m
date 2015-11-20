@@ -10,6 +10,7 @@
 #import "WMPOIViewController.h"
 #import "WMNavigationControllerBase.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WMIntroViewController.h"
 
 @implementation WMIPadRootViewController
 
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+	[self showIntroViewControllerIfNecessary];
 
 	if (self.listShadowImageView.isRightToLeftDirection == YES) {
 		self.listShadowImageView.image = self.listShadowImageView.image.rightToLeftMirrowedImage;
@@ -42,6 +45,15 @@
     [self.mapContainerView addSubview:self.mapViewController.view];
     
     self.controllerBase.mapViewController = self.mapViewController;
+}
+
+- (void)showIntroViewControllerIfNecessary {
+	if (WMHelper.shouldShowIntroViewController == YES) {
+		WMIntroViewController *introViewController = UIStoryboard.instantiatedIntroViewController;
+		UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:introViewController];
+		introViewController.popoverController = popoverController;
+		[popoverController presentPopoverFromRect:self.view.frame inView:self.view permittedArrowDirections:0 animated:YES];
+	}
 }
 
 #pragma mark -

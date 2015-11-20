@@ -50,10 +50,11 @@
 
 @implementation WMDashboardViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+	[self showIntroViewControllerIfNecessary];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
 	// Do any additional setup after loading the view.
@@ -78,6 +79,8 @@
 		self.logoImageView.image = [UIImage imageNamed:@"start_logo.png"];
 	}
 
+	[self initButtons];
+	
     self.navigationController.navigationBar.translucent = NO;
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
@@ -125,6 +128,12 @@
 	self.mapButtonTitleLabel.text = L(@"DashboardMap");
 	self.categoriesButtonTitleLabel.text = L(@"DashboardCategories");
 	self.contributeButtonTitleLabel.text = L(@"DashboardHelp");
+}
+
+- (void)showIntroViewControllerIfNecessary {
+	if (WMHelper.shouldShowIntroViewController == YES) {
+		[self presentViewController:UIStoryboard.instantiatedIntroViewController animated:YES];
+	}
 }
 
 #pragma mark - IBActions

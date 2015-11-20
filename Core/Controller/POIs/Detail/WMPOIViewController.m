@@ -141,8 +141,8 @@
 	}
 	self.askFriendsButtonTitleLabel.text = L(@"DetailsViewAskFriendsButtonLabel");
 
-	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] != YES
-		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] != YES) {
+	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == NO
+		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO) {
 		self.askFriendsViewHeightConstraint.constant = 0;
 		[self.askFriendsView layoutIfNeeded];
 	}
@@ -244,7 +244,7 @@
 
 - (void)updatePOIStateButtonViews {
 	if ([self.node.wheelchair isEqualToString:K_STATE_UNKNOWN] == NO
-		|| [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO) {
+		&& [self.node.wheelchair_toilet isEqualToString:K_STATE_UNKNOWN] == NO) {
 		// No state is unknow, so we don't have to show the ask friends view
 		if (self.askFriendsViewHeightConstraint.constant == K_ASK_FRIENDS_HEIGHT) {
 			self.scrollViewContentHeightConstraint.constant -= K_ASK_FRIENDS_HEIGHT;
@@ -275,7 +275,7 @@
     return nil;
 }
 
-- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
         Node *node = [(WMMapAnnotation*)annotation node];
         NSString *reuseId = [node.wheelchair stringByAppendingString:[node.id stringValue]];
@@ -334,7 +334,7 @@
     [self updateDistanceToAnnotation];
 }
 
-- (WMMapAnnotation*) annotationForNode:(Node*)node {
+- (WMMapAnnotation*)annotationForNode:(Node*)node {
     for (WMMapAnnotation* annotation in  self.mapView.annotations) {
         
         // filter out MKUserLocation annotation
@@ -429,7 +429,7 @@
 	NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
 	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
 	NSURL *url = [NSURL URLWithString: urlString];
-	vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+	vc.shareTextString = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
 }
 
 - (IBAction)didPressAddressWebsiteButton:(id)sender {
@@ -459,6 +459,7 @@
 	}
 	vc.popoverButtonFrame = CGRectMake( xPosition, 150.0f, 320.0f, 500.0f);
 	vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
+	vc.node = self.node;
 
 	if (UIDevice.isIPad == YES) {
 		[self.navigationController pushViewController:vc animated:YES];
@@ -466,11 +467,11 @@
 	} else {
 		[self presentViewController:vc animated:YES];
 	}
-	NSString *shareLocationLabel = NSLocalizedString(@"ShareLocationLabel", @"");
+	NSString *shareLocationLabel = L(@"ShareLocationLabel");
 	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
 	NSURL *url = [NSURL URLWithString: urlString];
 	vc.shareURlString = url.absoluteString;
-	vc.shareLocationLabel.text = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
+	vc.shareTextString = [NSString stringWithFormat:@"%@ \n\"%@\" - %@ #MapMyDay", shareLocationLabel, self.node.name, url];
 
 }
 
@@ -500,7 +501,11 @@
 #pragma mark - EditPOIState delegate
 
 - (void)didSelectStatus:(NSString*)wheelchairAccess forStatusType:(WMPOIStateType)statusType {
-	self.node.wheelchair = wheelchairAccess;
+	if (statusType == WMPOIStateTypeWheelchair) {
+		self.node.wheelchair = wheelchairAccess;
+	} else if (statusType == WMPOIStateTypeToilet) {
+		self.node.wheelchair_toilet = wheelchairAccess;
+	}
 }
 
 
@@ -529,11 +534,11 @@
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             
             if (UIDevice.isIPad == YES) {
-                
-                self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
 
-				UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
-                [self.popOverController presentPopoverFromRect:cameraButtonCell.contentView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				[self performBlockAfterDelay:0.3 block:^{
+					self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+					[self.popOverController presentPopoverFromRect:CGRectMake(60, 0, 0, 0) inView:self.galleryCollectionView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				}];
             } else {
                 [self presentViewController:self.imagePicker animated:YES];
             }
@@ -541,11 +546,11 @@
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             
             if (UIDevice.isIPad == YES) {
-                
-                self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
 
-				UICollectionViewCell *cameraButtonCell = [self.galleryCollectionView cellForItemAtIndexPath:[[NSIndexPath alloc] initWithIndex:0]];
-                [self.popOverController presentPopoverFromRect:cameraButtonCell.contentView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				[self performBlockAfterDelay:0.3 block:^{
+					self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
+					[self.popOverController presentPopoverFromRect:CGRectMake(60, 0, 0, 0) inView:self.galleryCollectionView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+				}];
             } else {
                 [self presentViewController:self.imagePicker animated:YES];
             }
@@ -767,10 +772,10 @@
 	vc.useCase = WMEditPOIStateUseCasePOIUpdate;
 	if (stateType == WMPOIStateTypeWheelchair) {
 		vc.statusType = WMPOIStateTypeWheelchair;
-		[vc setCurrentState:self.node.wheelchair];
+		vc.originalState = self.node.wheelchair;
 	} else if (stateType == WMPOIStateTypeToilet) {
 		vc.statusType = WMPOIStateTypeToilet;
-		[vc setCurrentState:self.node.wheelchair_toilet];
+		vc.originalState = self.node.wheelchair_toilet;
 	}
 	[self.navigationController pushViewController:vc animated:YES];
 }

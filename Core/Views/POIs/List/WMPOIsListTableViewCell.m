@@ -10,5 +10,14 @@
 
 @implementation WMPOIsListTableViewCell
 
-@end
+- (void)awakeFromNib {
+	[super awakeFromNib];
 
+	if (self.isRightToLeftDirection == YES) {
+		// As Marquee label doesn't support right to left automatically on prior iOS9 devices, we have to do it on our own.
+		self.titleLabel.textAlignment = NSTextAlignmentRight;
+		self.nodeTypeLabel.textAlignment = NSTextAlignmentRight;
+	}
+}
+
+@end

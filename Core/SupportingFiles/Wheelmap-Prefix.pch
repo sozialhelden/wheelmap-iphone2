@@ -49,4 +49,6 @@
 	#import <AFNetworking/AFNetworking.h>
 	#import <MarqueeLabel/MarqueeLabel.h>
 
+	#import "WMHelper.h"
+
 #endif

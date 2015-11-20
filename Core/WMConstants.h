@@ -38,6 +38,8 @@
 // ETags aren't working et the moment. If you enable ist, please check if they are sent valid from the backend
 #define K_USE_ETAGS				NO
 
+#define K_UD_INTRO_ALREADY_SEEN						@"introAlreadySeen"
+
 #define K_UD_POI_WHEELCHAIR_STATE_YES_KEY			@"WheelchairFilterStatusYes"
 #define K_UD_POI_WHEELCHAIR_STATE_LIMITED_KEY		@"WheelchairFilterStatusLimited"
 #define K_UD_POI_WHEELCHAIR_STATE_NO_KEY			@"WheelchairFilterStatusNo"

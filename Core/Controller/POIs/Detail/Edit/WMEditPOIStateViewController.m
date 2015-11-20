@@ -95,6 +95,11 @@
 	[self updateViewContent];
 }
 
+- (void)setOriginalState:(NSString *)originalState {
+	_originalState = originalState;
+	self.currentState = originalState;
+}
+
 - (void)saveCurrentState {
 	[self.delegate didSelectStatus:self.currentState forStatusType:self.statusType];
 
@@ -129,7 +134,7 @@
 }
 
 - (void)dataManager:(WMDataManager *)dataManager updateWheelchairStatusOfNode:(Node *)node failedWithError:(NSError *)error {
-	DKLog(K_VERBOSE_EDIT_POI, @"Update of the wheelchair status failed! Error: %@", error);
+	DKLog(K_VERBOSE_EDIT_POI, @"Update of the wheelchair status failed! Error: %@", error.localizedDescription);
 
 	[self didUpdateStateFailed];
 }
@@ -141,7 +146,7 @@
 }
 
 - (void)dataManager:(WMDataManager *)dataManager updateToiletStatusOfNode:(Node *)node failedWithError:(NSError *)error {
-	DKLog(K_VERBOSE_EDIT_POI, @"Update of the toilet status failed! Error: %@", error);
+	DKLog(K_VERBOSE_EDIT_POI, @"Update of the toilet status failed! Error: %@", error.localizedDescription);
 
 	[self didUpdateStateFailed];
 }
@@ -165,6 +170,8 @@
 
 - (void)didUpdateStateFailed {
 	self.progressWheel.hidden = YES;
+
+	[self.delegate didSelectStatus:self.originalState forStatusType:self.statusType];
 
 	[[[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"POIStatusChangeFailed", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }

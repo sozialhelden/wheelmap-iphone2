@@ -68,7 +68,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
+- (void)dataManager:(WMDataManager *)dataManager updateNode:(Node *)node failedWithError:(NSError *)error {
     self.activityIndicator.hidden = YES;
 
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:L(@"SaveNodeFailed") message:error.wheelmapErrorDescription delegate:nil cancelButtonTitle:L(@"OK") otherButtonTitles:nil];

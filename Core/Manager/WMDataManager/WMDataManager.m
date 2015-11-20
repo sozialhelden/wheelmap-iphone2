@@ -883,7 +883,7 @@
 
 	DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"update toilet status to %@", node.wheelchair_toilet);
 
-	NSDictionary* parameters = @{@"wheelchair_toilet":node.wheelchair};
+	NSDictionary* parameters = @{@"wheelchair_toilet":node.wheelchair_toilet};
 	[[WMWheelmapAPI sharedInstance] requestResource:[NSString stringWithFormat:@"nodes/%@/update_toilet", node.id]
 											 apiKey:[self apiKey]
 										 parameters:parameters
