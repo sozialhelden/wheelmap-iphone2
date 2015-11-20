@@ -81,7 +81,7 @@
 	self.editPOIPageTitleLabel.text = L(@"intro.edit.title");
 	self.editPOIPageDescriptionLabel.text = L(@"intro.edit.description");
 	self.lastPageTitleLabel.text = L(@"intro.last.title");
-	[self.button setTitle:L(@"intro.button.next") forState:UIControlStateNormal];
+	[self.button setTitle:L(@"intro.button.done") forState:UIControlStateNormal];
 }
 
 - (void)initLastPageDescriptionWebview {
@@ -92,18 +92,10 @@
 #pragma mark - IBActions
 
 - (IBAction)didPressButton:(id)sender {
-	if (self.pageControl.currentPage == K_LAST_PAGE_INDEX) {
-		if (self.popoverController != nil) {
-			[self.popoverController dismissPopoverAnimated:YES];
-		} else {
-			[self dismissViewControllerAnimated:YES];
-		}
+	if (self.popoverController != nil) {
+		[self.popoverController dismissPopoverAnimated:YES];
 	} else {
-		self.pageControl.currentPage = self.pageControl.currentPage + 1;
-		[self.scrollView scrollRectToVisible:[self rectOfPage:self.pageControl.currentPage] animated:YES];
-		if (self.pageControl.currentPage == K_LAST_PAGE_INDEX) {
-			[self.button setTitle:L(@"intro.button.done") forState:UIControlStateNormal];
-		}
+		[self dismissViewControllerAnimated:YES];
 	}
 }
 
@@ -120,8 +112,15 @@
 	return agreement;
 }
 
-- (CGRect)rectOfPage:(NSUInteger)pageIndex {
-	return CGRectMake(pageIndex * self.firstPageWidthConstraint.constant, 0, self.firstPageWidthConstraint.constant, self.view.frameHeight);
+- (CGFloat)pageWidth {
+	return self.firstPageWidthConstraint.constant;
+}
+
+#pragma mark - UIScrollView delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	NSUInteger newPage = (NSUInteger) self.scrollView.contentOffset.x / self.pageWidth;
+	self.pageControl.currentPage = newPage;
 }
 
 #pragma mark - UIWebView Delegate
