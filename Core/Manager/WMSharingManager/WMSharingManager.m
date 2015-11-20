@@ -23,29 +23,7 @@
 
 - (void)facebookPosting:(NSString *)body {
     SLComposeViewController* fbController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    SLComposeViewControllerCompletionHandler __block completionHandler=
-    ^(SLComposeViewControllerResult result){
-        
-        [fbController dismissViewControllerAnimated:YES completion:nil];
-        
-        switch(result){
-            case SLComposeViewControllerResultCancelled:
-            default:
-            {
-            }
-                break;
-            case SLComposeViewControllerResultDone:
-            {
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@""
-                                                                 message:NSLocalizedString(@"FacebookSuccess", nil)
-                                                                delegate:nil
-                                                       cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                       otherButtonTitles: nil];
-                [alert show];
-            }
-                break;
-        }};
-    [fbController setCompletionHandler:completionHandler];
+    [fbController setCompletionHandler:nil];
     
     [fbController addURL:[NSURL URLWithString:body]];
 

@@ -429,6 +429,7 @@
 	NSString *shareLocationLabel = NSLocalizedString(@"AskFriendsLabel", @"");
 	NSString *urlString = [NSString stringWithFormat:@"http://wheelmap.org/nodes/%@", self.node.id];
 	NSURL *url = [NSURL URLWithString: urlString];
+	vc.shareURlString = url.absoluteString;
 	vc.shareTextString = [NSString stringWithFormat:@"%@ \n\"%@\" - %@", shareLocationLabel, self.node.name, url];
 }
 

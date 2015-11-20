@@ -145,7 +145,7 @@
 		} else if ([statusString isEqualToString:K_STATE_YES]) {
 			return L(@"WheelchairAccessYes");
 		} else {
-			return L(@"WheelchairAccessUnkown");
+			return L(@"WheelchairAccessUnknown");
 		}
 	} else if (self.statusType == WMPOIStateTypeToilet) {
 		if ([statusString isEqualToString:K_STATE_NO]) {
