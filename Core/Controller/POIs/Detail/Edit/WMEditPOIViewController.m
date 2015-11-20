@@ -389,9 +389,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    [textField resignFirstResponder];
-    
     if (textField == self.streetTextField) {
         [self.housenumberTextField becomeFirstResponder];
     } else if (textField == self.housenumberTextField) {
@@ -399,7 +396,6 @@
         
     } else if (textField == self.postcodeTextField) {
         [self.cityTextField becomeFirstResponder];
-        
     }
     
     [self saveCurrentEntriesToCurrentNode];
