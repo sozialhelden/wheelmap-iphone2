@@ -61,7 +61,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	[UIApplication.sharedApplication setStatusBarHidden:YES];
+	[UIApplication.sharedApplication setStatusBarHidden:NO];
 }
 
 #pragma mark - Initialization
