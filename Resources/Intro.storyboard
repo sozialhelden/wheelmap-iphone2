@@ -276,8 +276,8 @@
                                                                     <constraint firstAttribute="height" constant="2" id="DvD-Qu-Bob"/>
                                                                 </constraints>
                                                             </view>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigationbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="zmg-0V-piO">
-                                                                <rect key="frame" x="85" y="154" width="150" height="30"/>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zmg-0V-piO">
+                                                                <rect key="frame" x="41" y="116" width="239" height="68"/>
                                                                 <animations/>
                                                             </imageView>
                                                             <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDn-1U-tJD">
@@ -469,10 +469,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="intro_image_page_1" width="640" height="415"/>
-        <image name="intro_image_page_2" width="642" height="415"/>
-        <image name="intro_image_page_3" width="640" height="415"/>
-        <image name="intro_image_page_4" width="640" height="415"/>
-        <image name="navigationbar_logo.png" width="150" height="30"/>
+        <image name="intro_image_page_1" width="375" height="475"/>
+        <image name="intro_image_page_2" width="375" height="475"/>
+        <image name="intro_image_page_3" width="375" height="475"/>
+        <image name="intro_image_page_4" width="375" height="475"/>
+        <image name="intro_logo" width="239" height="68"/>
     </resources>
 </document>
