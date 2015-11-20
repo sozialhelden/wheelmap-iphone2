@@ -75,7 +75,7 @@
 	self.firstPageTitleLabel.text = L(@"intro.start.title");
 	self.firstPageDescriptionLabel.text = L(@"intro.start.description");
 	self.searchPageTitleLabel.text = L(@"intro.search.title");
-	self.searchPageDescriptionLabel.text = L(@"intro.start.description");
+	self.searchPageDescriptionLabel.text = L(@"intro.search.description");
 	self.markPOIPageTitleLabel.text = L(@"intro.state.title");
 	self.markPOIPageDescriptionLabel.text = L(@"intro.state.description");
 	self.editPOIPageTitleLabel.text = L(@"intro.edit.title");
