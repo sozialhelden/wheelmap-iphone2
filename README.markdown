@@ -15,12 +15,7 @@ New in version 2.0:
  - In the list view, a user can see how far away a place is from the current position of the user.
  - Bug fixes.
 
- Note: Version 2.0 requires at least iOS 5.1!
-
-
-Smartphone Version
-==================
-![Smartphone Screen][3]
+ Note: Version 2.3 requires at least iOS 7.1!
 
 License
 =======
@@ -42,4 +37,3 @@ License
 
 [1]: http://sozialhelden.de/
 [2]: http://wheelmap.org
-[3]: https://raw.github.com/sozialhelden/wheelmap-iphone2/master/screenshots/screenshot-app.png

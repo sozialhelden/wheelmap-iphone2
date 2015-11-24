@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WMToolbar_iPad">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vr4-Tg-RYt">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="49"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25N-gy-gJA" userLabel="CreditButton" customClass="WMButton">
+                            <rect key="frame" x="10" y="5" width="58" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="58" id="NlU-XW-Y9G"/>
+                            </constraints>
+                            <state key="normal" image="ipad_buttons_credits.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="creditsButtonPreseed:" destination="iN0-l3-epB" eventType="touchUpInside" id="9HO-Lc-a1h"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7m-aK-GAG" userLabel="LoginButton" customClass="WMButton">
+                            <rect key="frame" x="68" y="5" width="58" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="ipad_buttons_login.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="ipad_buttons_loggedin.png"/>
+                            <connections>
+                                <action selector="loginButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="iJv-dQ-ACv"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8G7-nU-WD9" userLabel="contributeButton" customClass="WMButton">
+                            <rect key="frame" x="468" y="5" width="58" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="58" id="OqV-yd-8JZ"/>
+                            </constraints>
+                            <state key="normal" image="ipad_buttons_mithelfen.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="toolbar_button-search-active.png"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="OqV-yd-8JZ"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="contributeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="ktM-A8-NPc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMi-S5-5ma" userLabel="currentLocationButton" customClass="WMButton">
+                            <rect key="frame" x="526" y="5" width="58" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="ToolbarCenterIcon">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="currentLocationButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="S4U-ia-wK8"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poW-sh-Z4h" userLabel="Toilet state button" customClass="WMPOIStateFilterButtonView">
+                            <rect key="frame" x="584" y="5" width="58" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMx-M8-Qhg" userLabel="Wheelchair state button" customClass="WMPOIStateFilterButtonView">
+                            <rect key="frame" x="642" y="5" width="58" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faM-T3-jR8" userLabel="CategoryButton" customClass="WMButton">
+                            <rect key="frame" x="700" y="5" width="58" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="ToolbarKategorieIcon">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="categoryButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="hFn-VE-3Zh"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXg-TT-IAE" userLabel="numberOfPlacesLabel" customClass="WMLabel">
+                            <rect key="frame" x="146" y="11" width="0.0" height="27"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="JRC-p1-yAM"/>
+                                <constraint firstAttribute="height" constant="27" id="g6b-bK-Mw8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" red="0.41568627450000001" green="0.47058823529999999" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="JRC-p1-yAM"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Staging)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t9-q7-j8q" userLabel="stagingEnvironmentDebugLabel" customClass="WMLabel">
+                            <rect key="frame" x="339" y="11" width="90" height="27"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="a7B-Kv-SmW"/>
+                                <constraint firstAttribute="height" constant="27" id="g5o-hV-y5G"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.15294118225574493" green="0.21176470816135406" blue="0.27058824896812439" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="leading" secondItem="dMx-M8-Qhg" secondAttribute="trailing" id="0bp-d7-IHQ"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="width" secondItem="dMx-M8-Qhg" secondAttribute="width" id="0sq-FO-r9T"/>
+                        <constraint firstAttribute="bottom" secondItem="8G7-nU-WD9" secondAttribute="bottom" constant="5" id="1wA-fa-uWV"/>
+                        <constraint firstAttribute="width" secondItem="8G7-nU-WD9" secondAttribute="width" multiplier="5" id="2lG-CZ-rG4"/>
+                        <constraint firstAttribute="bottom" secondItem="25N-gy-gJA" secondAttribute="bottom" constant="5" id="6Uf-Jo-1L6"/>
+                        <constraint firstItem="dMx-M8-Qhg" firstAttribute="leading" secondItem="poW-sh-Z4h" secondAttribute="trailing" id="6oD-UC-xJv"/>
+                        <constraint firstItem="25N-gy-gJA" firstAttribute="bottom" secondItem="8G7-nU-WD9" secondAttribute="bottom" id="80u-dF-Uia"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="bottom" secondItem="dMx-M8-Qhg" secondAttribute="bottom" id="B9k-vb-Sfh"/>
+                        <constraint firstItem="dMx-M8-Qhg" firstAttribute="leading" secondItem="poW-sh-Z4h" secondAttribute="trailing" id="BRf-3G-HFl"/>
+                        <constraint firstItem="p7m-aK-GAG" firstAttribute="bottom" secondItem="25N-gy-gJA" secondAttribute="bottom" id="BZp-s4-MLH"/>
+                        <constraint firstItem="LXg-TT-IAE" firstAttribute="leading" secondItem="p7m-aK-GAG" secondAttribute="trailing" constant="20" id="CKQ-lx-snc"/>
+                        <constraint firstItem="XMi-S5-5ma" firstAttribute="leading" secondItem="8G7-nU-WD9" secondAttribute="trailing" id="Dsz-XG-5bO"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="bottom" secondItem="XMi-S5-5ma" secondAttribute="bottom" id="EAK-7t-8CR"/>
+                        <constraint firstAttribute="centerY" secondItem="LXg-TT-IAE" secondAttribute="centerY" id="Ff8-sT-x40"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="bottom" secondItem="dMx-M8-Qhg" secondAttribute="bottom" id="Isc-qf-fMi"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="top" secondItem="dMx-M8-Qhg" secondAttribute="top" id="J72-Dc-u8c"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="leading" secondItem="XMi-S5-5ma" secondAttribute="trailing" id="JNj-7f-vnP"/>
+                        <constraint firstAttribute="trailing" secondItem="faM-T3-jR8" secondAttribute="trailing" constant="10" id="Khp-Ep-eV8"/>
+                        <constraint firstItem="0t9-q7-j8q" firstAttribute="centerY" secondItem="vr4-Tg-RYt" secondAttribute="centerY" id="Nnl-nc-ogy"/>
+                        <constraint firstItem="p7m-aK-GAG" firstAttribute="width" secondItem="25N-gy-gJA" secondAttribute="width" id="OCD-dk-Ux1"/>
+                        <constraint firstItem="25N-gy-gJA" firstAttribute="leading" secondItem="vr4-Tg-RYt" secondAttribute="leading" constant="10" id="PNS-Lm-lKP"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="width" secondItem="XMi-S5-5ma" secondAttribute="width" id="Rek-1V-Tr5"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="leading" secondItem="vr4-Tg-RYt" secondAttribute="leading" id="Skr-cZ-W6j"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="leading" secondItem="dMx-M8-Qhg" secondAttribute="trailing" id="VrG-PA-1gO"/>
+                        <constraint firstItem="XMi-S5-5ma" firstAttribute="leading" secondItem="8G7-nU-WD9" secondAttribute="trailing" id="WM6-nw-4Of"/>
+                        <constraint firstItem="25N-gy-gJA" firstAttribute="top" secondItem="8G7-nU-WD9" secondAttribute="top" id="bAh-wf-Zwo"/>
+                        <constraint firstItem="dMx-M8-Qhg" firstAttribute="leading" secondItem="poW-sh-Z4h" secondAttribute="trailing" id="fEb-Vd-LcA"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="leading" secondItem="XMi-S5-5ma" secondAttribute="leading" id="gFn-FB-k94"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="width" secondItem="dMx-M8-Qhg" secondAttribute="width" id="gZn-nR-KeO"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="top" secondItem="XMi-S5-5ma" secondAttribute="top" id="iCu-6E-aYi"/>
+                        <constraint firstItem="0t9-q7-j8q" firstAttribute="centerX" secondItem="vr4-Tg-RYt" secondAttribute="centerX" id="lTl-PY-lyk"/>
+                        <constraint firstItem="25N-gy-gJA" firstAttribute="width" secondItem="8G7-nU-WD9" secondAttribute="width" id="nmS-it-QUn"/>
+                        <constraint firstItem="25N-gy-gJA" firstAttribute="top" secondItem="vr4-Tg-RYt" secondAttribute="top" constant="5" id="rR2-a6-MFa"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="top" secondItem="vr4-Tg-RYt" secondAttribute="top" constant="5" id="sUr-h7-RsL"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="width" secondItem="XMi-S5-5ma" secondAttribute="width" id="t8a-Yr-wTJ"/>
+                        <constraint firstItem="p7m-aK-GAG" firstAttribute="top" secondItem="25N-gy-gJA" secondAttribute="top" id="tvk-TA-1Rh"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="top" secondItem="XMi-S5-5ma" secondAttribute="top" id="vBW-rA-VGz"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="leading" secondItem="XMi-S5-5ma" secondAttribute="trailing" id="vei-aA-age"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="top" secondItem="dMx-M8-Qhg" secondAttribute="top" id="xjP-gL-LLT"/>
+                        <constraint firstItem="p7m-aK-GAG" firstAttribute="leading" secondItem="25N-gy-gJA" secondAttribute="trailing" id="xz4-To-LDd"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="bottom" secondItem="XMi-S5-5ma" secondAttribute="bottom" id="ypF-Od-CqZ"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="1wA-fa-uWV"/>
+                            <exclude reference="2lG-CZ-rG4"/>
+                            <exclude reference="Skr-cZ-W6j"/>
+                            <exclude reference="gFn-FB-k94"/>
+                            <exclude reference="sUr-h7-RsL"/>
+                            <exclude reference="Dsz-XG-5bO"/>
+                            <exclude reference="JNj-7f-vnP"/>
+                            <exclude reference="6oD-UC-xJv"/>
+                            <exclude reference="fEb-Vd-LcA"/>
+                            <exclude reference="VrG-PA-1gO"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vr4-Tg-RYt" secondAttribute="trailing" id="6xm-of-p0a"/>
+                <constraint firstItem="vr4-Tg-RYt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Boh-he-p5W"/>
+                <constraint firstAttribute="bottom" secondItem="vr4-Tg-RYt" secondAttribute="bottom" id="Ue5-cg-KLh"/>
+                <constraint firstItem="vr4-Tg-RYt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bCp-5m-NIq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="categoryButton" destination="faM-T3-jR8" id="cxP-Ao-tnO"/>
+                <outlet property="contributeButton" destination="8G7-nU-WD9" id="Bub-Px-wD9"/>
+                <outlet property="creditsButton" destination="25N-gy-gJA" id="hIc-hL-ERF"/>
+                <outlet property="currentLocationButton" destination="XMi-S5-5ma" id="JZm-se-rDb"/>
+                <outlet property="loginButton" destination="p7m-aK-GAG" id="DkP-rR-5AU"/>
+                <outlet property="numberOfPlacesLabel" destination="LXg-TT-IAE" id="I2w-3U-I3b"/>
+                <outlet property="searchButton" destination="XMi-S5-5ma" id="iKp-4j-wcD"/>
+                <outlet property="stagingEnvironmentDebugLabel" destination="0t9-q7-j8q" id="TES-ij-9af"/>
+                <outlet property="toiletStateFilterButtonContainerView" destination="poW-sh-Z4h" id="MEr-PH-2zc"/>
+                <outlet property="wheelchairStateFilterButtonContainerView" destination="dMx-M8-Qhg" id="vCd-R6-v4Q"/>
+            </connections>
+            <point key="canvasLocation" x="311" y="460.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ToolbarCenterIcon" width="30" height="30"/>
+        <image name="ToolbarKategorieIcon" width="30" height="30"/>
+        <image name="ipad_buttons_credits.png" width="30" height="30"/>
+        <image name="ipad_buttons_loggedin.png" width="30" height="30"/>
+        <image name="ipad_buttons_login.png" width="30" height="30"/>
+        <image name="ipad_buttons_mithelfen.png" width="30" height="30"/>
+        <image name="toolbar_button-search-active.png" width="58" height="58"/>
+    </resources>
+</document>

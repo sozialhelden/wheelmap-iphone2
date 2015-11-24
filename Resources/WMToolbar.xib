@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WMToolbar">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vr4-Tg-RYt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8G7-nU-WD9" customClass="WMButton">
+                            <rect key="frame" x="0.0" y="5" width="64" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="ToolbarMapIcon">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="ToolbarListIcon"/>
+                            <state key="highlighted" image="ToolbarListIcon"/>
+                            <connections>
+                                <action selector="mapListToggleButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZWQ-zE-Txb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMi-S5-5ma" customClass="WMButton">
+                            <rect key="frame" x="64" y="5" width="64" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="ToolbarSearchIcon">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="i6f-Y3-P7p"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poW-sh-Z4h" customClass="WMPOIStateFilterButtonView">
+                            <rect key="frame" x="128" y="5" width="64" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMx-M8-Qhg" customClass="WMPOIStateFilterButtonView">
+                            <rect key="frame" x="192" y="5" width="64" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faM-T3-jR8" customClass="WMButton">
+                            <rect key="frame" x="256" y="5" width="64" height="39"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="ToolbarKategorieIcon">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="categoryButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="hFn-VE-3Zh"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.15294118225574493" green="0.21176470816135406" blue="0.27058824896812439" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="width" secondItem="dMx-M8-Qhg" secondAttribute="width" id="0sq-FO-r9T"/>
+                        <constraint firstAttribute="bottom" secondItem="8G7-nU-WD9" secondAttribute="bottom" constant="5" id="1wA-fa-uWV"/>
+                        <constraint firstAttribute="width" secondItem="8G7-nU-WD9" secondAttribute="width" multiplier="5" id="2lG-CZ-rG4"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="bottom" secondItem="dMx-M8-Qhg" secondAttribute="bottom" id="B9k-vb-Sfh"/>
+                        <constraint firstItem="dMx-M8-Qhg" firstAttribute="leading" secondItem="poW-sh-Z4h" secondAttribute="trailing" id="BRf-3G-HFl"/>
+                        <constraint firstItem="XMi-S5-5ma" firstAttribute="leading" secondItem="8G7-nU-WD9" secondAttribute="trailing" id="Dsz-XG-5bO"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="bottom" secondItem="XMi-S5-5ma" secondAttribute="bottom" id="EAK-7t-8CR"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="bottom" secondItem="dMx-M8-Qhg" secondAttribute="bottom" id="Isc-qf-fMi"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="top" secondItem="dMx-M8-Qhg" secondAttribute="top" id="J72-Dc-u8c"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="leading" secondItem="XMi-S5-5ma" secondAttribute="trailing" id="JNj-7f-vnP"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="width" secondItem="XMi-S5-5ma" secondAttribute="width" id="Rek-1V-Tr5"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="leading" secondItem="vr4-Tg-RYt" secondAttribute="leading" id="Skr-cZ-W6j"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="leading" secondItem="dMx-M8-Qhg" secondAttribute="trailing" id="VrG-PA-1gO"/>
+                        <constraint firstItem="dMx-M8-Qhg" firstAttribute="leading" secondItem="poW-sh-Z4h" secondAttribute="trailing" id="fEb-Vd-LcA"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="leading" secondItem="XMi-S5-5ma" secondAttribute="leading" id="gFn-FB-k94"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="width" secondItem="dMx-M8-Qhg" secondAttribute="width" id="gZn-nR-KeO"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="top" secondItem="XMi-S5-5ma" secondAttribute="top" id="iCu-6E-aYi"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="top" secondItem="vr4-Tg-RYt" secondAttribute="top" constant="5" id="sUr-h7-RsL"/>
+                        <constraint firstItem="8G7-nU-WD9" firstAttribute="width" secondItem="XMi-S5-5ma" secondAttribute="width" id="t8a-Yr-wTJ"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="top" secondItem="XMi-S5-5ma" secondAttribute="top" id="vBW-rA-VGz"/>
+                        <constraint firstItem="faM-T3-jR8" firstAttribute="top" secondItem="dMx-M8-Qhg" secondAttribute="top" id="xjP-gL-LLT"/>
+                        <constraint firstItem="poW-sh-Z4h" firstAttribute="bottom" secondItem="XMi-S5-5ma" secondAttribute="bottom" id="ypF-Od-CqZ"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="gFn-FB-k94"/>
+                            <exclude reference="fEb-Vd-LcA"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vr4-Tg-RYt" secondAttribute="trailing" id="6xm-of-p0a"/>
+                <constraint firstItem="vr4-Tg-RYt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Boh-he-p5W"/>
+                <constraint firstAttribute="bottom" secondItem="vr4-Tg-RYt" secondAttribute="bottom" id="Ue5-cg-KLh"/>
+                <constraint firstItem="vr4-Tg-RYt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bCp-5m-NIq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="categoryButton" destination="faM-T3-jR8" id="cxP-Ao-tnO"/>
+                <outlet property="mapListToggleButton" destination="8G7-nU-WD9" id="cmD-fT-e9c"/>
+                <outlet property="searchButton" destination="XMi-S5-5ma" id="iKp-4j-wcD"/>
+                <outlet property="toiletStateFilterButtonContainerView" destination="poW-sh-Z4h" id="wSk-l3-V4Z"/>
+                <outlet property="wheelchairStateFilterButtonContainerView" destination="dMx-M8-Qhg" id="oLc-0J-ccQ"/>
+            </connections>
+            <point key="canvasLocation" x="311" y="460.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ToolbarKategorieIcon" width="30" height="30"/>
+        <image name="ToolbarListIcon" width="30" height="30"/>
+        <image name="ToolbarMapIcon" width="30" height="30"/>
+        <image name="ToolbarSearchIcon" width="30" height="30"/>
+    </resources>
+</document>

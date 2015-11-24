@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 4.3">
+    <entity name="Asset" representedClassName="Asset" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="modified_at" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="Image" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <relationship name="photo" optional="YES" minCount="1" maxCount="1" deletionRule="Deny" destinationEntity="Photo" inverseName="images" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Node" representedClassName="Node" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="housenumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" syncable="YES"/>
+        <attribute name="lat" attributeType="Double" syncable="YES"/>
+        <attribute name="lon" attributeType="Double" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wheelchair" optional="YES" attributeType="String" defaultValueString="unknown" regularExpressionString="^yes$|^no$|^limited$|^unknown$" syncable="YES"/>
+        <attribute name="wheelchair_description" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="node_type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NodeType" inverseName="node" inverseEntity="NodeType" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="node" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="tile" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Tile" inverseName="nodes" inverseEntity="Tile" syncable="YES"/>
+    </entity>
+    <entity name="NodeType" representedClassName="NodeType" syncable="YES">
+        <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
+        <attribute name="localized_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WMCategory" inverseName="nodeType" inverseEntity="WMCategory" syncable="YES"/>
+        <relationship name="node" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Node" inverseName="node_type" inverseEntity="Node" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="taken_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="images" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="photo" inverseEntity="Image" syncable="YES"/>
+        <relationship name="node" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Node" inverseName="photos" inverseEntity="Node" syncable="YES"/>
+    </entity>
+    <entity name="Tile" representedClassName="Tile" syncable="YES">
+        <attribute name="lastModified" attributeType="Date" syncable="YES"/>
+        <attribute name="swLat" attributeType="Integer 32" minValueString="-9000" maxValueString="9000" syncable="YES"/>
+        <attribute name="swLon" attributeType="Integer 32" minValueString="-18000" maxValueString="18000" syncable="YES"/>
+        <relationship name="nodes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Node" inverseName="tile" inverseEntity="Node" syncable="YES"/>
+    </entity>
+    <entity name="WMCategory" representedClassName="WMCategory" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" syncable="YES"/>
+        <attribute name="localized_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="nodeType" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NodeType" inverseName="category" inverseEntity="NodeType" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Asset" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Node" positionX="160" positionY="192" width="128" height="270"/>
+        <element name="NodeType" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Photo" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Tile" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="WMCategory" positionX="160" positionY="192" width="128" height="105"/>
+    </elements>
+</model>
