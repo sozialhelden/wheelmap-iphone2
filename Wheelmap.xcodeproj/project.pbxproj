@@ -61,8 +61,8 @@
 		18A056DE1A6D1AF500FA88E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */; };
 		18A056DF1A6D1B0000FA88E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */; };
 		2EA5AB16280C161522CCBB3D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
-		757E60E31BCC123A00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E21BCC123A00E31CFB /* libPods.a */; };
-		757E60E91BCC12AB00E31CFB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757E60E81BCC12AB00E31CFB /* libPods.a */; };
+		75589EB21C48118D006765C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
+		75589EB31C48118D006765C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
 		8710FDF91BFBC09500D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8710FDFA1BFBC09600D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8724C7001BF61B9600C1539B /* WMNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */; };
@@ -811,8 +811,6 @@
 		1842DE8B1A697405001D52CF /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4CBBC713638AECD9B081B892 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		757E60E21BCC123A00E31CFB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		757E60E81BCC12AB00E31CFB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMNavigationBar.xib; sourceTree = "<group>"; };
 		8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateFilterPopoverView.xib; sourceTree = "<group>"; };
 		872FD9641BDFD13900764FC5 /* Wheelmap-Alpha-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Wheelmap-Alpha-Info.plist"; path = "PLists/Wheelmap-Alpha-Info.plist"; sourceTree = "<group>"; };
@@ -1186,7 +1184,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				757E60E31BCC123A00E31CFB /* libPods.a in Frameworks */,
 				0327F97416BFFB1900BA7DE7 /* libsqlite3.dylib in Frameworks */,
 				0327F97C16BFFB1900BA7DE7 /* libz.dylib in Frameworks */,
 				1842DE851A697237001D52CF /* AssetsLibrary.framework in Frameworks */,
@@ -1197,6 +1194,7 @@
 				0327F98316BFFB1900BA7DE7 /* CoreGraphics.framework in Frameworks */,
 				0327F97F16BFFB1900BA7DE7 /* CoreLocation.framework in Frameworks */,
 				0327F97316BFFB1900BA7DE7 /* CoreTelephony.framework in Frameworks */,
+				75589EB21C48118D006765C1 /* libPods.a in Frameworks */,
 				1842DE811A6971D9001D52CF /* CoreText.framework in Frameworks */,
 				0327F98216BFFB1900BA7DE7 /* Foundation.framework in Frameworks */,
 				0327F98016BFFB1900BA7DE7 /* MapKit.framework in Frameworks */,
@@ -1216,7 +1214,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				757E60E91BCC12AB00E31CFB /* libPods.a in Frameworks */,
 				03BD03C116A052750045D53D /* libsqlite3.dylib in Frameworks */,
 				03BD03C916A052750045D53D /* libz.dylib in Frameworks */,
 				1842DE861A69723F001D52CF /* AssetsLibrary.framework in Frameworks */,
@@ -1227,6 +1224,7 @@
 				03BD03D016A052750045D53D /* CoreGraphics.framework in Frameworks */,
 				03BD03CC16A052750045D53D /* CoreLocation.framework in Frameworks */,
 				03BD03C016A052750045D53D /* CoreTelephony.framework in Frameworks */,
+				75589EB31C48118D006765C1 /* libPods.a in Frameworks */,
 				1842DE821A6971E3001D52CF /* CoreText.framework in Frameworks */,
 				03BD03CF16A052750045D53D /* Foundation.framework in Frameworks */,
 				03BD03CD16A052750045D53D /* MapKit.framework in Frameworks */,
@@ -2048,8 +2046,6 @@
 		9899274E1649151300D9003B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				757E60E81BCC12AB00E31CFB /* libPods.a */,
-				757E60E21BCC123A00E31CFB /* libPods.a */,
 				18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */,
 				1842DE8B1A697405001D52CF /* JavaScriptCore.framework */,
 				1842DE871A697278001D52CF /* QuickLook.framework */,
@@ -3152,7 +3148,6 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 144;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3183,7 +3178,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
 				CURRENT_PROJECT_VERSION = 144;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3214,7 +3208,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 144;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3245,7 +3238,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
 				CURRENT_PROJECT_VERSION = 144;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3346,7 +3338,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 144;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3377,7 +3368,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
 				CURRENT_PROJECT_VERSION = 144;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
