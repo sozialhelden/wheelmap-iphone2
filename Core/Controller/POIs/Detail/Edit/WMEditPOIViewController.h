@@ -73,12 +73,15 @@
 @property (weak, nonatomic) IBOutlet UIView *				websiteInputView;
 @property (weak, nonatomic) IBOutlet UILabel *				websiteLabel;
 @property (weak, nonatomic) IBOutlet UITextField *			websiteTextField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *	webSiteInputViewBottomConstraint;
 
 #pragma mark - Phone
+/*
+ The phone editing shouldn't be possible in the current app. This is implemented by hiding the phoneInputView to provide an easy way to activate the phone editing again.
+ **/
 @property (weak, nonatomic) IBOutlet UIView *				phoneInputView;
 @property (weak, nonatomic) IBOutlet UILabel *				phoneLabel;
 @property (weak, nonatomic) IBOutlet UITextField *			phoneTextField;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *	phoneInputViewBottomConstraint;
 
 
 #pragma mark - 

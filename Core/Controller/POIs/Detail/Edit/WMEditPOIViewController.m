@@ -165,7 +165,7 @@
 	} else {
 		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
 	}
-	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frameY + self.phoneInputView.frameHeight + self.phoneInputViewBottomConstraint.constant;
+	self.scrollViewContentHeightConstraint.constant = self.phoneInputView.frameY + self.phoneInputView.frameHeight + self.webSiteInputViewBottomConstraint.constant;
 
 	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
 }
