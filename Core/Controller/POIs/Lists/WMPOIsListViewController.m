@@ -294,7 +294,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
+    if ((nodes == nil || nodes.count == 0) && shouldShowNoResultIndicator) {
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"WMNodeListCellNoResult"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WMNodeListCellNoResult"];
@@ -308,31 +308,34 @@
         }
         return cell;
     }
-    
-    WMPOIsListTableViewCell *cell = (WMPOIsListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
-    Node *node = nodes[indexPath.row];
 
-	UIImage *markerImage = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-	if (cell.markerImageView.isRightToLeftDirection == YES) {
-		markerImage = markerImage.rightToLeftMirrowedImage;
+	if (nodes != nil && indexPath.row < nodes.count) {
+		WMPOIsListTableViewCell *cell = (WMPOIsListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
+		Node *node = nodes[indexPath.row];
+
+		UIImage *markerImage = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+		if (cell.markerImageView.isRightToLeftDirection == YES) {
+			markerImage = markerImage.rightToLeftMirrowedImage;
+		}
+		cell.markerImageView.image = markerImage;
+
+		cell.iconImageView.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];
+
+		// show name
+		cell.titleLabel.text = node.name ?: @"";
+
+		// show node type
+		cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"";
+
+		// show node distance
+		CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+		CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
+		CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
+		cell.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
+		return cell;
 	}
-	cell.markerImageView.image = markerImage;
 
-	cell.iconImageView.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];
-
-    // show name
-    cell.titleLabel.text = node.name ?: @"";
-    
-    // show node type
-    cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"";
-    
-    // show node distance
-    CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
-    CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
-    CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
-    cell.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
-    
-    return cell;
+	return UITableViewCell.new;
 }
 
 - (void) showDetailPopoverForNode:(Node *)node {
