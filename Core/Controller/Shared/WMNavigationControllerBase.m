@@ -60,6 +60,15 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)init
+{
+	self = [super init];
+	if (self) {
+		self.currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+	}
+	return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -79,7 +88,7 @@
     if (UIDevice.isIPad == NO) {
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
-        CLLocation* newLocation = self.locationManager.location;
+        CLLocation* newLocation = self.locationManager.location ?: [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
         [self.mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
     }
     
@@ -90,7 +99,8 @@
         WMIPadRootViewController* vc = (WMIPadRootViewController*)self.topViewController;
         vc.controllerBase = self;
     }
-    
+
+	// Set Berlin as default / initial location before receiving the first GPS data
     self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.distanceFilter = 10.0f;
     self.locationManager.delegate = self;
