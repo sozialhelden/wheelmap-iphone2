@@ -20,7 +20,8 @@
 @implementation WMPOIsListViewController
 {
     NSArray *nodes;
-    
+
+	UIRefreshControl* refreshControl;
     UIImageView* accesoryHeader;
     BOOL isAccesoryHeaderVisible;
     
@@ -67,9 +68,17 @@
     }
     
     self.view.backgroundColor = [UIColor wmGreyColor];
+
+	refreshControl = [[UIRefreshControl alloc] init];
+	[refreshControl addTarget:self
+					   action:@selector(loadNodes)
+			 forControlEvents:UIControlEventValueChanged];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WMPOIsListTableViewCell" bundle:nil] forCellReuseIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     self.tableView.scrollsToTop = YES;
+	[self.tableView addSubview:refreshControl];
+
+
     dataManager = [[WMDataManager alloc] init];
     
     searching = NO;
@@ -77,7 +86,9 @@
     if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
-    
+
+
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -224,12 +235,13 @@
                 
                 nodes = nodesTemp;
                 nodesTemp = nil;
-                
+				[refreshControl endRefreshing];
                 [self.tableView reloadData];
             });
         });
 	} else {
 		dispatch_async(dispatch_get_main_queue(), ^{
+			[refreshControl endRefreshing];
 			[self.tableView reloadData];
 		});
 	}
