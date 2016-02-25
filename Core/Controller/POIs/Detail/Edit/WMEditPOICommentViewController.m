@@ -31,6 +31,8 @@
     self.dataManager.delegate = self;
 
 	self.commentLabel.text = L(@"CommentViewLabel");
+
+	// Setting up the comment text view
 	self.commentText.delegate = self;
     self.commentText.layer.borderWidth = 1.0f;
     self.commentText.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -54,6 +56,7 @@
 
 - (void)saveEditedData {
 
+	// In case the user is not autheticated, the SignUp invitation will popup
 	if (self.dataManager.userIsAuthenticated == NO) {
 		[self presentSignup];
 		return;
@@ -96,6 +99,13 @@
 
 #pragma mark - UITextViewDelegate
 
+/**
+ *  This method is called as soon as the user tries to write a comment by tapping on it, it will validate wether the user is loggedin and react accordinly
+ *
+ *  @param textView The textView tapped by the user
+ *
+ *  @return If the user is logged in, it will return TRUE, otherwise will return NO and will popup the onBoard ciew
+ */
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
 
 	if (self.dataManager.userIsAuthenticated == NO) {
