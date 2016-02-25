@@ -23,6 +23,12 @@
 
 // TODO: re-position popover after orientation change
 
+@interface WMMapViewController()
+
+@property (strong, nonatomic) CLLocation *userCurrentLocation;
+
+@end
+
 @implementation WMMapViewController
 {
     dispatch_queue_t backgroundQueue;
@@ -37,8 +43,6 @@
     
     float invisibleMapInteractionInfoLabelConstraint;
     float visibleMapInteractionInfoLabelConstraint;
-    
-    CLLocation* userCurrentLocation;
 }
 
 @synthesize dataSource, delegate;
@@ -101,8 +105,10 @@
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
-    
- 
+
+	// Set the default location to Berlin
+	self.userCurrentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
@@ -116,9 +122,8 @@
     self.locationManager.distanceFilter = 50.0f;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
-    
-    userCurrentLocation = self.locationManager.location;
-    [self relocateMapTo:userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
+
+    [self relocateMapTo:self.userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
 }
 
 
@@ -512,7 +517,7 @@
     }
     else
     {
-        [self.mapView setCenterCoordinate:userCurrentLocation.coordinate];
+        [self.mapView setCenterCoordinate:self.userCurrentLocation.coordinate];
     }
 }
 

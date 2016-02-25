@@ -60,13 +60,15 @@
 		[self.locationManager requestWhenInUseAuthorization];
 	}
 
+	// Set the default location to Berlin
+	self.currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+
 	if ([CLLocationManager locationServicesEnabled]){
 		[self.locationManager startUpdatingLocation];
 
 		//Start the compass updates.
 		[self.locationManager startUpdatingHeading];
 	}
-	self.currentLocation = [CLLocation new];
 }
 
 - (void)startUpdating:(NSNotification*)notification {
