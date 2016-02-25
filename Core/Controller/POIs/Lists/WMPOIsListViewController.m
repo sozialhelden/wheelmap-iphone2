@@ -69,6 +69,7 @@
     
     self.view.backgroundColor = [UIColor wmGreyColor];
 
+	// Instantiate the refreshControl and add it to the tableView as a subview
 	refreshControl = [[UIRefreshControl alloc] init];
 	[refreshControl addTarget:self
 					   action:@selector(loadNodes)
@@ -224,7 +225,8 @@
     } else {
         nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
-    
+
+	// Reloading data into tableView and dismissing the refresh control
     if (nodes.count > 0) {
         
         dispatch_async(backgroundQueue, ^(void) {
@@ -235,6 +237,7 @@
                 
                 nodes = nodesTemp;
                 nodesTemp = nil;
+
 				[refreshControl endRefreshing];
                 [self.tableView reloadData];
             });
