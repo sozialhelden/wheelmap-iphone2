@@ -17,11 +17,16 @@
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
 
+@interface WMPOIsListViewController()
+
+@property(strong, nonatomic) UIRefreshControl* refreshControl;
+
+@end
+
 @implementation WMPOIsListViewController
 {
     NSArray *nodes;
 
-	UIRefreshControl* refreshControl;
     UIImageView* accesoryHeader;
     BOOL isAccesoryHeaderVisible;
     
@@ -70,14 +75,14 @@
     self.view.backgroundColor = [UIColor wmGreyColor];
 
 	// Instantiate the refreshControl and add it to the tableView as a subview
-	refreshControl = [[UIRefreshControl alloc] init];
-	[refreshControl addTarget:self
-					   action:@selector(loadNodes)
-			 forControlEvents:UIControlEventValueChanged];
-    
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self
+							action:@selector(loadNodes)
+				  forControlEvents:UIControlEventValueChanged];
+
     [self.tableView registerNib:[UINib nibWithNibName:@"WMPOIsListTableViewCell" bundle:nil] forCellReuseIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     self.tableView.scrollsToTop = YES;
-	[self.tableView addSubview:refreshControl];
+	[self.tableView addSubview:self.refreshControl];
 
 
     dataManager = [[WMDataManager alloc] init];
@@ -238,13 +243,13 @@
                 nodes = nodesTemp;
                 nodesTemp = nil;
 
-				[refreshControl endRefreshing];
+				[self.refreshControl endRefreshing];
                 [self.tableView reloadData];
             });
         });
 	} else {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[refreshControl endRefreshing];
+			[self.refreshControl endRefreshing];
 			[self.tableView reloadData];
 		});
 	}
