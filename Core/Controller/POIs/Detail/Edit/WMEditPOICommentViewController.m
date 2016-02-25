@@ -9,9 +9,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WMEditPOICommentViewController.h"
+#import "WMNavigationControllerBase.h"
+#import "WMPOIIPadNavigationController.h"
 
 
-@interface WMEditPOICommentViewController ()
+@interface WMEditPOICommentViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *						commentLabel;
 @property (weak, nonatomic) IBOutlet UITextView *					commentText;
@@ -28,11 +30,12 @@
     self.dataManager = [[WMDataManager alloc] init];
     self.dataManager.delegate = self;
 
+	self.commentLabel.text = L(@"CommentViewLabel");
+	self.commentText.delegate = self;
     self.commentText.layer.borderWidth = 1.0f;
     self.commentText.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.commentText.layer setCornerRadius:5.0f];
-    
-    self.commentLabel.text = L(@"CommentViewLabel");
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -50,6 +53,12 @@
 }
 
 - (void)saveEditedData {
+
+	if (self.dataManager.userIsAuthenticated == NO) {
+		[self presentSignup];
+		return;
+	}
+
     if (!self.currentNode.lat || !self.currentNode.lon) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:L(@"PleaseSetMarker") delegate:nil cancelButtonTitle:L(@"OK") otherButtonTitles: nil];
         [alert show];
@@ -74,6 +83,27 @@
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:L(@"SaveNodeFailed") message:error.wheelmapErrorDescription delegate:nil cancelButtonTitle:L(@"OK") otherButtonTitles:nil];
     
     [alert show];
+}
+
+- (void)presentSignup {
+	WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
+	if ([navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
+		[(WMPOIIPadNavigationController*)navigationController showLoginViewController];
+	} else {
+		[navigationController presentLoginScreenWithButtonFrame:CGRectZero];
+	}
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+
+	if (self.dataManager.userIsAuthenticated == NO) {
+		[self presentSignup];
+		return NO;
+	} else {
+		return YES;
+	}
 }
 
 @end
