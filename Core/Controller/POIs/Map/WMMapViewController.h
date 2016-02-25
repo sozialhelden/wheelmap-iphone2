@@ -18,6 +18,7 @@
 {
     WMDataManager *dataManager;
 }
+
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) MBXRasterTileOverlay *rasterOverlay;
 @property (nonatomic, strong) CLLocationManager *locationManager;

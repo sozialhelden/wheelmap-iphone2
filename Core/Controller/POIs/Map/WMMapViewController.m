@@ -23,6 +23,12 @@
 
 // TODO: re-position popover after orientation change
 
+@interface WMMapViewController()
+
+@property (strong, nonatomic) CLLocation *userCurrentLocation;
+
+@end
+
 @implementation WMMapViewController
 {
     dispatch_queue_t backgroundQueue;
@@ -37,8 +43,6 @@
     
     float invisibleMapInteractionInfoLabelConstraint;
     float visibleMapInteractionInfoLabelConstraint;
-    
-    CLLocation* userCurrentLocation;
 }
 
 @synthesize dataSource, delegate;
@@ -103,7 +107,7 @@
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
 
 	// Set the default location to Berlin
-	userCurrentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+	self.userCurrentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
 
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -119,7 +123,7 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
 
-    [self relocateMapTo:userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
+    [self relocateMapTo:self.userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
 }
 
 
@@ -513,7 +517,7 @@
     }
     else
     {
-        [self.mapView setCenterCoordinate:userCurrentLocation.coordinate];
+        [self.mapView setCenterCoordinate:self.userCurrentLocation.coordinate];
     }
 }
 
