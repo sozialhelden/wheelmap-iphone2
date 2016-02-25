@@ -76,14 +76,11 @@
 
 	// Instantiate the refreshControl and add it to the tableView as a subview
 	self.refreshControl = [[UIRefreshControl alloc] init];
-	[self.refreshControl addTarget:self
-							action:@selector(loadNodes)
-				  forControlEvents:UIControlEventValueChanged];
+	[self.refreshControl addTarget:self action:@selector(loadNodes) forControlEvents:UIControlEventValueChanged];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"WMPOIsListTableViewCell" bundle:nil] forCellReuseIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     self.tableView.scrollsToTop = YES;
 	[self.tableView addSubview:self.refreshControl];
-
 
     dataManager = [[WMDataManager alloc] init];
     
@@ -92,9 +89,6 @@
     if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
-
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,8 +101,6 @@
     [self.navigationController setToolbarHidden:NO animated:YES];
     
     [self initNodeType];
-    
-    
 }
 
 #pragma mark - Data management
