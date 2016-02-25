@@ -64,6 +64,8 @@
 {
 	self = [super init];
 	if (self) {
+
+		// Set an initial location for the navigation. This will be overwritten when new GPS data in received
 		self.currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
 	}
 	return self;
