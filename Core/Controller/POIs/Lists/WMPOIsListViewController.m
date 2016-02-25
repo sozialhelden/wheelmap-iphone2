@@ -17,10 +17,16 @@
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
 
+@interface WMPOIsListViewController()
+
+@property(strong, nonatomic) UIRefreshControl* refreshControl;
+
+@end
+
 @implementation WMPOIsListViewController
 {
     NSArray *nodes;
-    
+
     UIImageView* accesoryHeader;
     BOOL isAccesoryHeaderVisible;
     
@@ -67,9 +73,15 @@
     }
     
     self.view.backgroundColor = [UIColor wmGreyColor];
-    
+
+	// Instantiate the refreshControl and add it to the tableView as a subview
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self action:@selector(loadNodes) forControlEvents:UIControlEventValueChanged];
+
     [self.tableView registerNib:[UINib nibWithNibName:@"WMPOIsListTableViewCell" bundle:nil] forCellReuseIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     self.tableView.scrollsToTop = YES;
+	[self.tableView addSubview:self.refreshControl];
+
     dataManager = [[WMDataManager alloc] init];
     
     searching = NO;
@@ -77,7 +89,6 @@
     if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -90,8 +101,6 @@
     [self.navigationController setToolbarHidden:NO animated:YES];
     
     [self initNodeType];
-    
-    
 }
 
 #pragma mark - Data management
@@ -213,7 +222,8 @@
     } else {
         nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
-    
+
+	// Reloading data into tableView and dismissing the refresh control
     if (nodes.count > 0) {
         
         dispatch_async(backgroundQueue, ^(void) {
@@ -224,12 +234,14 @@
                 
                 nodes = nodesTemp;
                 nodesTemp = nil;
-                
+
+				[self.refreshControl endRefreshing];
                 [self.tableView reloadData];
             });
         });
 	} else {
 		dispatch_async(dispatch_get_main_queue(), ^{
+			[self.refreshControl endRefreshing];
 			[self.tableView reloadData];
 		});
 	}
