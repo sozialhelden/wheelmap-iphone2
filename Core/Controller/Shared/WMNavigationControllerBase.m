@@ -1475,7 +1475,6 @@
     fetchNodesAlertShowing = NO;
 }
 
-
 -(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;

@@ -21,7 +21,6 @@
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
-#import "WMNavigationControllerBase.h"
 #import "WMPOIsListViewController.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
@@ -477,16 +476,6 @@
 }
 
 - (IBAction)didPresseNotesButton:(id)sender {
-	if (dataManager.userIsAuthenticated == NO) {
-		WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
-		if ([navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
-			[(WMPOIIPadNavigationController*)navigationController showLoginViewController];
-		} else {
-			[navigationController presentLoginScreenWithButtonFrame:self.noteButton.frame];
-		}
-		return;
-	}
-
 	WMEditPOICommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICommentViewController"];
 	vc.currentNode = self.node;
 	vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
