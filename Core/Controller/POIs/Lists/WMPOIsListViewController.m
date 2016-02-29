@@ -93,14 +93,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    shouldShowNoResultIndicator = YES;
+	[self initNodeType];
+	[self.refreshControl beginRefreshing];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:YES];
-    
-    [self initNodeType];
 }
 
 #pragma mark - Data management
@@ -225,13 +224,12 @@
 
 	// Reloading data into tableView and dismissing the refresh control
     if (nodes.count > 0) {
-        
         dispatch_async(backgroundQueue, ^(void) {
             
             __block NSArray *nodesTemp = [self sortNodesByDistance:[nodes copy]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                shouldShowNoResultIndicator = NO;
                 nodes = nodesTemp;
                 nodesTemp = nil;
 
@@ -241,6 +239,7 @@
         });
 	} else {
 		dispatch_async(dispatch_get_main_queue(), ^{
+			shouldShowNoResultIndicator = YES;
 			[self.refreshControl endRefreshing];
 			[self.tableView reloadData];
 		});

@@ -49,9 +49,9 @@
 
 - (MKCoordinateRegion)region {
     
-    double lat = 0.0;
-    double lon = 0.0;
-    
+	double lat;
+	double lon;
+
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.baseController;
     
     if (navCtrl.lastVisibleMapCenterLat == nil) {
@@ -460,7 +460,7 @@
             CGFloat portionOfChangedCenter = centerDistance / mapRectDiagonalSize;
             
             // if delta is small, do nothing
-            if (portionOfChangedCenter  < 0.24) {
+            if (portionOfChangedCenter  < 0.2) {
                 DKLog(K_VERBOSE_MAP, @"MINIMAL CHANGE. DO NOT UPDATE MAP! %f", portionOfChangedCenter);
                 shouldUpdateMap = NO;
             }
