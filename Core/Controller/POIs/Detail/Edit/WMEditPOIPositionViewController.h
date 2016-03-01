@@ -22,5 +22,6 @@
 @property (nonatomic, assign) CLLocationCoordinate2D	initialCoordinate;
 
 - (void)setMapToCoordinate:(CLLocationCoordinate2D)coordinate;
+- (IBAction)pressedCenterLocationButton:(id)sender;
 
 @end

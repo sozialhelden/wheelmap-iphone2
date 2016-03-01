@@ -82,7 +82,7 @@
 
 
 @property (nonatomic) CLLocationCoordinate2D					poiLocation;
-@property (nonatomic, strong) MKUserLocation *					currentLocation;
+@property (nonatomic, strong) CLLocation *						currentLocation;
 @property (nonatomic, strong) MKAnnotationView *				annotationView;
 @property (nonatomic, strong) WMMapAnnotation *					annotation;
 

@@ -1048,9 +1048,7 @@
         currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
-    }
-    
-    
+	}
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
