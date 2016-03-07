@@ -8,6 +8,7 @@
 
 #import "WMAppDelegate.h"
 #import <HockeySDK/HockeySDK.h>
+#import "ADAppRater.h"
 
 @implementation WMAppDelegate
 
@@ -15,6 +16,7 @@
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
 
 	[self setupHockeyApp];
+	[self setupAppRater];
 
     // start listening to AFNetworking operations and show/hide activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
@@ -92,6 +94,19 @@
 	[BITHockeyManager.sharedHockeyManager startManager];
 	[BITHockeyManager.sharedHockeyManager.crashManager setCrashManagerStatus: BITCrashManagerStatusAutoSend];
 	[BITHockeyManager.sharedHockeyManager.authenticator authenticateInstallation];
+}
+
+- (void)setupAppRater {
+
+	// The prompt will appear one week after the user starts using the app, and will remind every week.
+	[ADAppRater sharedInstance].currentVersionDaysUntilPrompt = 7;
+	[ADAppRater sharedInstance].currentVersionLaunchesUntilPrompt = 30;
+	[ADAppRater sharedInstance].remindWaitPeriod = 7;
+	[ADAppRater sharedInstance].promptForNewVersionIfUserRated = NO;
+	[ADAppRater sharedInstance].limitPromptFrequency = 30;
+
+	// This should be NO
+	[ADAppRater sharedInstance].previewMode = NO;
 }
 
 @end

@@ -16,6 +16,7 @@
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
+#import "ADAppRater.h"
 
 @interface WMPOIsListViewController()
 
@@ -237,6 +238,8 @@
 
 				[self.refreshControl endRefreshing];
                 [self.tableView reloadData];
+
+				[[ADAppRater sharedInstance] startRaterFlowIfCriteriaMetFromViewController:self];
             });
         });
 	} else {
