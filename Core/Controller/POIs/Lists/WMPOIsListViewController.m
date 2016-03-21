@@ -21,6 +21,8 @@
 
 @property(strong, nonatomic) UIRefreshControl* refreshControl;
 
+@property(nonatomic) BOOL shouldShowNoResultIndicator;
+
 @end
 
 @implementation WMPOIsListViewController
@@ -29,8 +31,6 @@
 
     UIImageView* accesoryHeader;
     BOOL isAccesoryHeaderVisible;
-    
-    BOOL shouldShowNoResultIndicator;
     
     WMDataManager *dataManager;
     WMMapViewController *mapView;
@@ -93,14 +93,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    shouldShowNoResultIndicator = YES;
+	[self initNodeType];
+	[self.refreshControl beginRefreshing];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:YES];
-    
-    [self initNodeType];
 }
 
 #pragma mark - Data management
@@ -225,13 +224,12 @@
 
 	// Reloading data into tableView and dismissing the refresh control
     if (nodes.count > 0) {
-        
         dispatch_async(backgroundQueue, ^(void) {
             
             __block NSArray *nodesTemp = [self sortNodesByDistance:[nodes copy]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                self.shouldShowNoResultIndicator = NO;
                 nodes = nodesTemp;
                 nodesTemp = nil;
 
@@ -241,6 +239,7 @@
         });
 	} else {
 		dispatch_async(dispatch_get_main_queue(), ^{
+			self.shouldShowNoResultIndicator = YES;
 			[self.refreshControl endRefreshing];
 			[self.tableView reloadData];
 		});
@@ -277,7 +276,7 @@
             searching = YES;
             receivedClearList = YES;
         }}
-    shouldShowNoResultIndicator = YES;
+    self.shouldShowNoResultIndicator = YES;
     [self loadNodes];
 }
 
@@ -298,15 +297,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
-        // no search result!
-        return 1;   // to infrom user about this
-    }
-    return [nodes count];
+	return ((self.shouldShowNoResultIndicator == YES) ? 1 : [nodes count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((nodes == nil || nodes.count == 0) && shouldShowNoResultIndicator) {
+
+    if (self.shouldShowNoResultIndicator == YES) {
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"WMNodeListCellNoResult"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WMNodeListCellNoResult"];
@@ -321,7 +317,8 @@
         return cell;
     }
 
-	if (nodes != nil && indexPath.row < nodes.count) {
+	if (indexPath.row < nodes.count) {
+
 		WMPOIsListTableViewCell *cell = (WMPOIsListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
 		Node *node = nodes[indexPath.row];
 
