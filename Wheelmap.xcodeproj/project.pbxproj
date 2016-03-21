@@ -2158,11 +2158,6 @@
 				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Sozialhelden e.V.";
-				TargetAttributes = {
-					9899274A1649151300D9003B = {
-						DevelopmentTeam = JZ2H644EU7;
-					};
-				};
 			};
 			buildConfigurationList = 989927451649151300D9003B /* Build configuration list for PBXProject "Wheelmap" */;
 			compatibilityVersion = "Xcode 3.2";
