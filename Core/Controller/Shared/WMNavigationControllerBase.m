@@ -60,17 +60,6 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)init
-{
-	self = [super init];
-	if (self) {
-
-		// Set an initial location for the navigation. This will be overwritten when new GPS data in received
-		self.currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
-	}
-	return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -92,6 +81,7 @@
         self.mapViewController.baseController = self;
         CLLocation* newLocation = self.locationManager.location ?: [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
         [self.mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
+		[self updateNodesWithRegion: self.mapViewController.region];
     }
     
     dataManager = [[WMDataManager alloc] init];
@@ -588,6 +578,14 @@
 
 #pragma mark - Location Helper
 
+-(CLLocation *)currentLocation {
+	if (_currentLocation == nil) {
+		_currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+	}
+
+	return _currentLocation;
+}
+
 - (void)locationManagerDidFail {
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
 														message:NSLocalizedString(@"No Loc Error Message", @"")
@@ -1050,9 +1048,7 @@
         currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
-    }
-    
-    
+	}
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
@@ -1384,7 +1380,8 @@
     [self refreshNodeList];
 }
 
-#pragma mark -WMCategoryFilterPopoverView Delegate
+#pragma mark - WMCategoryFilterPopoverView Delegate
+
 - (void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected {
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];

@@ -1281,7 +1281,7 @@ static BOOL assetSyncInProgress = NO;
         if (iconPaths) {
             
             // update in child context to keep it current
-			[self.backgroundMOC performBlockAndWait:^{
+			[self.backgroundMOC performBlock:^{
 
                 NSArray *nodeTypes = [self managedObjectContext:self.backgroundMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
                 [nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
