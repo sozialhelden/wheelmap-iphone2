@@ -29,9 +29,6 @@
 
 #define K_GALLEY_BUTTON_INDEX_OFFSET	1
 
-#define K_MAP_DEFAULT_LAT_METERS		100
-#define K_MAP_DEFAULT_LON_METERS		50
-
 #define K_MAP_HEIGHT_SMALL				120
 #define K_MAP_HEIGHT_LARGE				360
 
@@ -101,7 +98,7 @@
     [self checkForStatusOfButtons];
     
     // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.poiLocation, K_MAP_DEFAULT_LAT_METERS, K_MAP_DEFAULT_LON_METERS);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.poiLocation, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     viewRegion.center = self.poiLocation;
     
     // display the region
@@ -425,7 +422,7 @@
 #pragma mark - IBActions
 
 - (IBAction)centerMapPressed:(id)sender {
-	MKCoordinateRegion userRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, K_MAP_DEFAULT_LAT_METERS, K_MAP_DEFAULT_LON_METERS);
+	MKCoordinateRegion userRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
 
 	[self.mapView setRegion:userRegion animated:YES];
 }

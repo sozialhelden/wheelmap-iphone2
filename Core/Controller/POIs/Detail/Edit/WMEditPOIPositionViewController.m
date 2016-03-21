@@ -75,7 +75,7 @@
 }
 
 - (void)setMapToCoordinate:(CLLocationCoordinate2D)coordinate {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 100, 320);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
@@ -88,7 +88,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     self.userLocation = [locations objectAtIndex:0];
     // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, 100, 320);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
@@ -101,7 +101,7 @@
 	self.userLocation = newLocation;
 
 	// region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
@@ -117,7 +117,7 @@
  *  @param sender The object which triggered the behaviour
  */
 - (IBAction)pressedCenterLocationButton:(id)sender {
-	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, 100, 320);
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
 	[self.mapView setRegion:viewRegion animated:YES];
 }
 
