@@ -107,6 +107,13 @@
 
 	// Change to YES to show every time the app is launched
 	[Appirater setDebug:NO];
+
+	// Localize wording
+	[Appirater setCustomAlertTitle:[NSString stringWithFormat:L(@"rater.title"),APPIRATER_APP_NAME]];
+	[Appirater setCustomAlertMessage:[NSString stringWithFormat:L(@"rater.message"),APPIRATER_APP_NAME]];
+	[Appirater setCustomAlertRateButtonTitle:[NSString stringWithFormat:L(@"rater.rate"),APPIRATER_APP_NAME]];
+	[Appirater setCustomAlertRateLaterButtonTitle:L(@"rater.remind")];
+	[Appirater setCustomAlertCancelButtonTitle:L(@"rater.no")];
 }
 
 @end
