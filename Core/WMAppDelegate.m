@@ -8,7 +8,7 @@
 
 #import "WMAppDelegate.h"
 #import <HockeySDK/HockeySDK.h>
-#import "ADAppRater.h"
+#import "Appirater.h"
 
 @implementation WMAppDelegate
 
@@ -99,14 +99,14 @@
 - (void)setupAppRater {
 
 	// The prompt will appear one week after the user starts using the app, and will remind every week.
-	[ADAppRater sharedInstance].currentVersionDaysUntilPrompt = 7;
-	[ADAppRater sharedInstance].currentVersionLaunchesUntilPrompt = 30;
-	[ADAppRater sharedInstance].remindWaitPeriod = 7;
-	[ADAppRater sharedInstance].promptForNewVersionIfUserRated = NO;
-	[ADAppRater sharedInstance].limitPromptFrequency = 30;
+	[Appirater setAppId:@"399239476"];
+	[Appirater setDaysUntilPrompt:7];
+	[Appirater setUsesUntilPrompt:5];
+	[Appirater setSignificantEventsUntilPrompt:-1];
+	[Appirater setTimeBeforeReminding:6];
 
-	// This should be NO
-	[ADAppRater sharedInstance].previewMode = NO;
+	// Change to YES to show every time the app is launched
+	[Appirater setDebug:NO];
 }
 
 @end

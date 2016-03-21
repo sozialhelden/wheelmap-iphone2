@@ -16,7 +16,7 @@
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
-#import "ADAppRater.h"
+#import "Appirater.h"
 
 @interface WMPOIsListViewController()
 
@@ -237,7 +237,8 @@
 				[self.refreshControl endRefreshing];
                 [self.tableView reloadData];
 
-				[[ADAppRater sharedInstance] startRaterFlowIfCriteriaMetFromViewController:self];
+				// Show the rate popup only when good results have been loaded
+				[Appirater appLaunched:YES];
             });
         });
 	} else {
