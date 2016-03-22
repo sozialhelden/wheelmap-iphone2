@@ -1,15 +1,17 @@
 PODS:
   - AFNetworking (1.3.4)
+  - Appirater (2.0.5)
   - DKHelper (0.9.6)
-  - HockeySDK (3.8.5):
-    - HockeySDK/AllFeaturesLib (= 3.8.5)
-  - HockeySDK/AllFeaturesLib (3.8.5)
-  - MarqueeLabel (2.3.5)
+  - HockeySDK (3.8.6):
+    - HockeySDK/AllFeaturesLib (= 3.8.6)
+  - HockeySDK/AllFeaturesLib (3.8.6)
+  - MarqueeLabel (2.3.6)
   - MBXMapKit (0.8.0)
   - Reachability (3.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.4)
+  - Appirater (~> 2.0)
   - DKHelper (~> 0.9.6)
   - HockeySDK (~> 3.8.5)
   - MarqueeLabel (~> 2.3.5)
@@ -18,9 +20,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   DKHelper: 55010f62ced3d9fcc33e196e767da4c357ef90cb
-  HockeySDK: dd11a2b9da3372fd025643bee5bc10c8c613d169
-  MarqueeLabel: fd29be3b4cf5f37b01676749409679aac23eb6fa
+  HockeySDK: ab68303eec6680f6b539de65d747742dd276e934
+  MarqueeLabel: 06bf80950e01861687f4933803da1d125883ffc6
   MBXMapKit: 56040108ea7fbb87f98ea896d620e0d4290c2dbd
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
