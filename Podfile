@@ -11,3 +11,9 @@ pod 'DKHelper', '~> 0.9.6'
 pod 'MarqueeLabel', '~> 2.3.5'
 pod 'MBXMapKit', '~> 0.8.0'
 pod 'Appirater', '~> 2.0'
+
+
+post_install do | installer |
+	require 'fileutils'
+	FileUtils.cp_r('Pods/Target Support Files/Pods/Pods-acknowledgements.plist', 'Resources/Settings.bundle/Pods-acknowledgements.plist', :remove_destination => true)
+end
