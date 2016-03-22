@@ -21,7 +21,6 @@
 #import "WMInfinitePhotoViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "WMCategory.h"
-#import "WMNavigationControllerBase.h"
 #import "WMPOIsListViewController.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
@@ -34,6 +33,10 @@
 #define K_MAP_HEIGHT_LARGE				360
 
 #define K_ASK_FRIENDS_HEIGHT			60
+
+@interface WMPOIViewController()
+@property (weak, nonatomic) IBOutlet UIButton *centerMapButton;
+@end
 
 @implementation WMPOIViewController
 
@@ -69,6 +72,9 @@
 
 	// Set the preferred content size to make sure the popover controller has the right size.
 	self.preferredContentSize = CGSizeMake(self.scrollViewContentWidthConstraint.constant, self.scrollViewContentHeightConstraint.constant);
+
+	// Set Berlin as default location before getting data from GPS
+	self.currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,7 +98,7 @@
     [self checkForStatusOfButtons];
     
     // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.poiLocation, 100, 50);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.poiLocation, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     viewRegion.center = self.poiLocation;
     
     // display the region
@@ -318,7 +324,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    self.currentLocation = userLocation;
+    self.currentLocation = userLocation.location;
     if (mapView.selectedAnnotations.count == 0)
         //no annotation is currently selected
         [self updateDistanceToAnnotation];
@@ -354,8 +360,8 @@
                               delay:0.0
                             options:UIViewAnimationCurveEaseOut
                          animations:^{
+							 self.centerMapButton.alpha = 0;
 							 [self.view layoutIfNeeded];
-
                          } completion:^(BOOL finished) {
                              self.mapViewOpen = NO;
                              self.mapView.scrollEnabled = NO;
@@ -370,8 +376,8 @@
                               delay:0.0
                             options:UIViewAnimationCurveEaseIn
                          animations:^{
+							 self.centerMapButton.alpha = 1;
 							 [self.view layoutIfNeeded];
-
                          } completion:^(BOOL finished) {
                              self.mapViewOpen = YES;
                              self.mapView.scrollEnabled = YES;
@@ -414,6 +420,12 @@
 }
 
 #pragma mark - IBActions
+
+- (IBAction)centerMapPressed:(id)sender {
+	MKCoordinateRegion userRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
+
+	[self.mapView setRegion:userRegion animated:YES];
+}
 
 - (IBAction)didPressAskFriendButton:(id)sender {
 	WMShareSocialViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMShareSocialViewController"];
@@ -477,16 +489,6 @@
 }
 
 - (IBAction)didPresseNotesButton:(id)sender {
-	if (dataManager.userIsAuthenticated == NO) {
-		WMNavigationControllerBase *navigationController = (WMNavigationControllerBase*) self.navigationController;
-		if ([navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
-			[(WMPOIIPadNavigationController*)navigationController showLoginViewController];
-		} else {
-			[navigationController presentLoginScreenWithButtonFrame:self.noteButton.frame];
-		}
-		return;
-	}
-
 	WMEditPOICommentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WMEditPOICommentViewController"];
 	vc.currentNode = self.node;
 	vc.title = NSLocalizedString(@"DetailsView4ButtonViewInfoLabel", @"");
@@ -519,7 +521,7 @@
         }
     } else if (actionSheet.tag == 1) { // MAP
         if (buttonIndex == 0) {
-            CLLocationCoordinate2D start = { self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude };
+            CLLocationCoordinate2D start = { self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude };
             CLLocationCoordinate2D destination = { self.poiLocation.latitude, self.poiLocation.longitude };
             
 			// Create an MKMapItem to pass to the Maps app

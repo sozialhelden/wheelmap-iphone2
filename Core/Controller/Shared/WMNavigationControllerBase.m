@@ -79,8 +79,9 @@
     if (UIDevice.isIPad == NO) {
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
-        CLLocation* newLocation = self.locationManager.location;
+        CLLocation* newLocation = self.locationManager.location ?: [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
         [self.mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
+		[self updateNodesWithRegion: self.mapViewController.region];
     }
     
     dataManager = [[WMDataManager alloc] init];
@@ -90,7 +91,8 @@
         WMIPadRootViewController* vc = (WMIPadRootViewController*)self.topViewController;
         vc.controllerBase = self;
     }
-    
+
+	// Set Berlin as default / initial location before receiving the first GPS data
     self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.distanceFilter = 10.0f;
     self.locationManager.delegate = self;
@@ -576,6 +578,14 @@
 
 #pragma mark - Location Helper
 
+-(CLLocation *)currentLocation {
+	if (_currentLocation == nil) {
+		_currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+	}
+
+	return _currentLocation;
+}
+
 - (void)locationManagerDidFail {
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
 														message:NSLocalizedString(@"No Loc Error Message", @"")
@@ -1038,9 +1048,7 @@
         currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
-    }
-    
-    
+	}
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
@@ -1372,7 +1380,8 @@
     [self refreshNodeList];
 }
 
-#pragma mark -WMCategoryFilterPopoverView Delegate
+#pragma mark - WMCategoryFilterPopoverView Delegate
+
 - (void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected {
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];
@@ -1474,7 +1483,6 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     fetchNodesAlertShowing = NO;
 }
-
 
 -(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

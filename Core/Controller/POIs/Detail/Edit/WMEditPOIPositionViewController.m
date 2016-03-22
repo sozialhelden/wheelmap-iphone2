@@ -15,8 +15,9 @@
     CLLocationManager* locationManager;
 }
 
-@property (weak, nonatomic) IBOutlet UIView *	infoView;
+@property (strong, nonatomic) CLLocation *userLocation;
 
+@property (weak, nonatomic) IBOutlet UIView *	infoView;
 @property (weak, nonatomic) IBOutlet WMLabel *	infoTextLabel;
 
 @end
@@ -25,7 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     // MAPVIEW
     [MBXMapKit setAccessToken:K_MBX_TOKEN];
@@ -39,11 +39,10 @@
     self.rasterOverlay.delegate = self;
     
     [self.mapView addOverlay:self.rasterOverlay];
-    
     [self.mapView removeAnnotations:self.mapView.annotations];
+
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
-
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     [self.mapView addGestureRecognizer:tapRecognizer];
@@ -53,6 +52,7 @@
     self.currentAnnotation.coordinate = self.currentCoordinate;
     
     [self setMapToCoordinate:self.initialCoordinate];
+	self.userLocation = [[CLLocation new] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,7 +75,7 @@
 }
 
 - (void)setMapToCoordinate:(CLLocationCoordinate2D)coordinate {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 100, 320);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
@@ -86,9 +86,22 @@
 #pragma mark - CLLocationManager Delegates
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation* newLocation = [locations objectAtIndex:0];
+    self.userLocation = [locations objectAtIndex:0];
     // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
+    // display the region
+    [self.mapView setRegion:viewRegion animated:NO];
+    if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
+        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude);
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+
+	self.userLocation = newLocation;
+
+	// region to display
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
@@ -96,14 +109,16 @@
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
-    // display the region
-    [self.mapView setRegion:viewRegion animated:NO];
-    if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
-        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    }
+#pragma mark - Actions
+
+/**
+ *  Move the map to the last location received by the GPS
+ *
+ *  @param sender The object which triggered the behaviour
+ */
+- (IBAction)pressedCenterLocationButton:(id)sender {
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
+	[self.mapView setRegion:viewRegion animated:YES];
 }
 
 #pragma mark - MKMapView Delegate

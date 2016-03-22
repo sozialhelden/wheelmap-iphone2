@@ -53,10 +53,10 @@
 - (void)updateToiletStateOfNode:(Node *)node;
 - (void)updateNode:(Node*)node;
 
-- (void) fetchPhotosForNode:(Node*)node;
-- (void) uploadImage:(UIImage*)image forNode:(Node*)node;
+- (void)fetchPhotosForNode:(Node*)node;
+- (void)uploadImage:(UIImage*)image forNode:(Node*)node;
 
-- (void) fetchTotalNodeCount;
+- (void)fetchTotalNodeCount;
 - (NSNumber *)totalNodeCountFromUserDefaults;
 
 - (NSArray*) categories;

@@ -8,6 +8,7 @@
 
 #import "WMAppDelegate.h"
 #import <HockeySDK/HockeySDK.h>
+#import "Appirater.h"
 
 @implementation WMAppDelegate
 
@@ -15,6 +16,7 @@
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
 
 	[self setupHockeyApp];
+	[self setupAppRater];
 
     // start listening to AFNetworking operations and show/hide activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
@@ -92,6 +94,26 @@
 	[BITHockeyManager.sharedHockeyManager startManager];
 	[BITHockeyManager.sharedHockeyManager.crashManager setCrashManagerStatus: BITCrashManagerStatusAutoSend];
 	[BITHockeyManager.sharedHockeyManager.authenticator authenticateInstallation];
+}
+
+- (void)setupAppRater {
+
+	// The prompt will appear one week after the user starts using the app, and will remind every week.
+	[Appirater setAppId:@"399239476"];
+	[Appirater setDaysUntilPrompt:7];
+	[Appirater setUsesUntilPrompt:5];
+	[Appirater setSignificantEventsUntilPrompt:-1];
+	[Appirater setTimeBeforeReminding:6];
+
+	// Change to YES to show every time the app is launched
+	[Appirater setDebug:NO];
+
+	// Localize wording
+	[Appirater setCustomAlertTitle:[NSString stringWithFormat:L(@"rater.title"),APPIRATER_APP_NAME]];
+	[Appirater setCustomAlertMessage:[NSString stringWithFormat:L(@"rater.message"),APPIRATER_APP_NAME]];
+	[Appirater setCustomAlertRateButtonTitle:[NSString stringWithFormat:L(@"rater.rate"),APPIRATER_APP_NAME]];
+	[Appirater setCustomAlertRateLaterButtonTitle:L(@"rater.remind")];
+	[Appirater setCustomAlertCancelButtonTitle:L(@"rater.no")];
 }
 
 @end
