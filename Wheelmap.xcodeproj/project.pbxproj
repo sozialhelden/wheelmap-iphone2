@@ -60,6 +60,9 @@
 		18A056DD1A6D1AE700FA88E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */; };
 		18A056DE1A6D1AF500FA88E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */; };
 		18A056DF1A6D1B0000FA88E8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */; };
+		2809CDE61C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
+		2809CDE71C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
+		2809CDE81C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2EA5AB16280C161522CCBB3D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
 		75589EB21C48118D006765C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
 		75589EB31C48118D006765C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
@@ -810,6 +813,7 @@
 		1842DE871A697278001D52CF /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		1842DE8B1A697405001D52CF /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		2809CDE51C998524001A7607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4CBBC713638AECD9B081B892 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMNavigationBar.xib; sourceTree = "<group>"; };
 		8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateFilterPopoverView.xib; sourceTree = "<group>"; };
@@ -1308,6 +1312,7 @@
 				878324521BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib */,
 				87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */,
 				87BB808C1BFB2CC100E517F2 /* WMCategoryFilterCell.xib */,
+				2809CDE51C998524001A7607 /* Settings.bundle */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -2259,6 +2264,7 @@
 				8774E6BF1BE0D93800A3E7EA /* toolbar_category-check.png in Resources */,
 				8774E6231BE0D93800A3E7EA /* details_label-no.png in Resources */,
 				8774E6F21BE0D93800A3E7EA /* toolbar_statusfilter-no-active@2x.png in Resources */,
+				2809CDE71C998524001A7607 /* Settings.bundle in Resources */,
 				8774E5E11BE0D93800A3E7EA /* details_background-photoupload.png in Resources */,
 				8774E6921BE0D93800A3E7EA /* Social_btn-sms@2x.png in Resources */,
 				8774E5CC1BE0D93800A3E7EA /* ipad_buttons_icon-search-active.png in Resources */,
@@ -2427,6 +2433,7 @@
 				8774E6C01BE0D93800A3E7EA /* toolbar_category-check.png in Resources */,
 				8774E6241BE0D93800A3E7EA /* details_label-no.png in Resources */,
 				8774E6F31BE0D93800A3E7EA /* toolbar_statusfilter-no-active@2x.png in Resources */,
+				2809CDE81C998524001A7607 /* Settings.bundle in Resources */,
 				8774E5E21BE0D93800A3E7EA /* details_background-photoupload.png in Resources */,
 				8774E6931BE0D93800A3E7EA /* Social_btn-sms@2x.png in Resources */,
 				8774E5CD1BE0D93800A3E7EA /* ipad_buttons_icon-search-active.png in Resources */,
@@ -2595,6 +2602,7 @@
 				8774E6221BE0D93800A3E7EA /* details_label-no.png in Resources */,
 				8774E6F11BE0D93800A3E7EA /* toolbar_statusfilter-no-active@2x.png in Resources */,
 				8774E5E01BE0D93800A3E7EA /* details_background-photoupload.png in Resources */,
+				2809CDE61C998524001A7607 /* Settings.bundle in Resources */,
 				8774E6911BE0D93800A3E7EA /* Social_btn-sms@2x.png in Resources */,
 				8774E5CB1BE0D93800A3E7EA /* ipad_buttons_icon-search-active.png in Resources */,
 				8774E6791BE0D93800A3E7EA /* misc_position-info@2x.png in Resources */,
@@ -3147,7 +3155,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3177,7 +3185,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3207,7 +3215,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3237,7 +3245,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3273,7 +3281,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3311,7 +3319,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -3337,7 +3345,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3367,7 +3375,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 164;
+				CURRENT_PROJECT_VERSION = 178;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
