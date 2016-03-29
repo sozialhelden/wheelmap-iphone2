@@ -41,6 +41,14 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Copyright 2015. Arash Payan. This library is distributed under the terms of the MIT/X11.</string>
+			<key>Title</key>
+			<string>Appirater</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>Copyright (c) 2014 kevindelord &lt;delord.kevin@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -73,7 +81,7 @@ THE SOFTWARE.
 The Hockey SDK is provided under the following license:
 
     The MIT License
-    Copyright (c) 2012-2015 HockeyApp, Bit Stadium GmbH.
+    Copyright (c) Microsoft Corporation.
     All rights reserved.
 	
     Permission is hereby granted, free of charge, to any person
