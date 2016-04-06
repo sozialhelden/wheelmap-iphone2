@@ -45,8 +45,6 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong)  WMViewController *		popoverVC;
 
-//- (void)showFirstStartScreen;
-
 - (void)pushList;
 - (void)pushMap;
 - (void)setMapControllerToContribute;
@@ -55,18 +53,14 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 - (void)resetMapAndListToNormalUseCase;
 - (void)mapWasMoved;
 
-//-(void)updateNodesNear:(CLLocationCoordinate2D)coord;
-//-(void)updateNodesWithoutLoadingWheelNear:(CLLocationCoordinate2D)coord;
 -(void)updateNodesWithRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithQuery:(NSString*)query;
 -(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
 -(void)updateNodesWithCurrentUserLocation;
 -(void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region;
 
-- (void) refreshNodeListWithArray:(NSArray*)array;  // use this method if you want to refresh list and maps with custom node array
+- (void)refreshNodeListWithArray:(NSArray*)array;  // use this method if you want to refresh list and maps with custom node array
 
-- (void)clearWheelchairStateFilterStatus;
-- (void)clearToiletStateFilterStatus;
 - (void)clearCategoryFilterStatus;
 
 -(void)showLoadingWheel;
