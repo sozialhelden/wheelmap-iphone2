@@ -46,9 +46,6 @@
 				if (error != NULL) {
 					*error = [NSError errorWithDomain:WMDataParserErrorDomain code:WMDataParserManagedObjectCreationError userInfo:nil];
 				}
-
-                // skip rest of array
-                break;
             }
         }
         
