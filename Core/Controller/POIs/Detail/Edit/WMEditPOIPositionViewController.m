@@ -50,9 +50,18 @@
     self.currentAnnotation = (MKPointAnnotation*)[WMMapAnnotation new];
     [self. mapView addAnnotation:self.currentAnnotation];
     self.currentAnnotation.coordinate = self.currentCoordinate;
-    
-    [self setMapToCoordinate:self.initialCoordinate];
-	self.userLocation = [[CLLocation new] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+
+	if (CLLocationCoordinate2DIsValid(self.currentCoordinate) == YES) {
+		self.userLocation = [[CLLocation alloc] initWithLatitude:self.currentCoordinate.latitude longitude:self.currentCoordinate.longitude];
+	} else if (self.mapView.userLocation != nil && (self.mapView.userLocation.coordinate.longitude != 0 && self.mapView.userLocation.coordinate.latitude != 0)) {
+		self.userLocation = [[CLLocation alloc] initWithLatitude:self.mapView.userLocation.coordinate.latitude longitude:self.mapView.userLocation.coordinate.longitude];
+	} else {
+		self.userLocation = [[CLLocation new] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+	}
+	[self setMapToCoordinate:self.userLocation.coordinate];
+	if ([self.delegate respondsToSelector:@selector(markerSet:)]) {
+		[self.delegate markerSet:self.userLocation.coordinate];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -117,7 +126,7 @@
  *  @param sender The object which triggered the behaviour
  */
 - (IBAction)pressedCenterLocationButton:(id)sender {
-	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
 	[self.mapView setRegion:viewRegion animated:YES];
 }
 
