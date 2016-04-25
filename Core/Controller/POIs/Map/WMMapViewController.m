@@ -229,14 +229,19 @@
         nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
 
+	NSArray *mapViewAnnotations = self.mapView.annotations.copy;
+	if (mapViewAnnotations == nil) {
+		mapViewAnnotations = NSArray.new;
+	}
+
     dispatch_async(backgroundQueue, ^(void) {
         
         NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];
-        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
+        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:mapViewAnnotations];
         
         [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
             
-            WMMapAnnotation *annotationForNode = [self annotationForNode:node comparisonNodes:self.mapView.annotations.copy];
+            WMMapAnnotation *annotationForNode = [self annotationForNode:node comparisonNodes:mapViewAnnotations];
             if (annotationForNode != nil) {
 				// this node is already shown on the map
                 [oldAnnotations removeObject:annotationForNode];
