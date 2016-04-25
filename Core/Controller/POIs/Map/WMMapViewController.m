@@ -123,7 +123,11 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
 
-    [self relocateMapTo:self.userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
+	if (self.locationManager.location != nil) {
+		self.userCurrentLocation = self.locationManager.location;
+	}
+
+    [self relocateMapTo:self.userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];
 }
 
 
