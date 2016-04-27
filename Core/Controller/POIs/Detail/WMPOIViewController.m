@@ -340,8 +340,8 @@
     [self updateDistanceToAnnotation];
 }
 
-- (WMMapAnnotation*)annotationForNode:(Node*)node {
-    for (WMMapAnnotation* annotation in  self.mapView.annotations) {
+- (WMMapAnnotation*)annotationForNode:(Node*)node comparisonNodes:comparisonNodes {
+    for (WMMapAnnotation* annotation in  comparisonNodes) {
         
         // filter out MKUserLocation annotation
         if ([annotation isKindOfClass:[WMMapAnnotation class]] && [annotation.node isEqual:node]) {

@@ -555,12 +555,6 @@
 
 #pragma mark - Location Manager Delegate
 
--(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	if ([CLLocationManager locationServicesEnabled] == NO) {
-		[self locationManagerDidFail];
-	}
-}
-
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
 	if ((locations != nil) && (locations.count > 0)) {
@@ -571,8 +565,6 @@
 -(void)updateUserLocation {
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager startMonitoringSignificantLocationChanges];
-    } else {
-		[self locationManagerDidFail];
     }
 }
 
@@ -584,15 +576,6 @@
 	}
 
 	return _currentLocation;
-}
-
-- (void)locationManagerDidFail {
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
-														message:NSLocalizedString(@"No Loc Error Message", @"")
-													   delegate:nil
-											  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-											  otherButtonTitles:nil];
-	[alertView show];
 }
 
 - (void)updateNodesWithCurrentUserLocation {
@@ -1016,8 +999,7 @@
 - (void)pressedCurrentLocationButton:(WMToolbar *)toolBar {
 	[self hidePopoverViews];
 
-    if (![CLLocationManager locationServicesEnabled]) {
-		[self locationManagerDidFail];
+    if ([CLLocationManager locationServicesEnabled] == NO) {
         return;
     }
     

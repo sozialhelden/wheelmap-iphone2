@@ -123,7 +123,11 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
 
-    [self relocateMapTo:self.userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
+	if (self.locationManager.location != nil) {
+		self.userCurrentLocation = self.locationManager.location;
+	}
+
+    [self relocateMapTo:self.userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];
 }
 
 
@@ -225,19 +229,24 @@
         nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
 
+	NSArray *mapViewAnnotations = self.mapView.annotations.copy;
+	if (mapViewAnnotations == nil) {
+		mapViewAnnotations = NSArray.new;
+	}
+
     dispatch_async(backgroundQueue, ^(void) {
         
         NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];
-        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
+        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:mapViewAnnotations];
         
         [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
             
-            WMMapAnnotation *annotationForNode = [self annotationForNode:node];
+            WMMapAnnotation *annotationForNode = [self annotationForNode:node comparisonNodes:mapViewAnnotations];
             if (annotationForNode != nil) {
-                // this node is already shown on the map
+				// this node is already shown on the map
                 [oldAnnotations removeObject:annotationForNode];
             } else {
-                // this node is new
+				// this node is new
                 WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
                 [newAnnotations addObject:annotation];
             }
@@ -270,10 +279,9 @@
     [self attribution:_rasterOverlay.attribution];
 }
 
-- (WMMapAnnotation*) annotationForNode:(Node*)node
-{
-    for (WMMapAnnotation* annotation in  self.mapView.annotations) {
-        
+- (WMMapAnnotation*) annotationForNode:(Node*)node comparisonNodes:(NSArray *)comparisonNodes {
+
+    for (WMMapAnnotation* annotation in comparisonNodes) {
         // filter out MKUserLocation annotation
         if ([annotation isKindOfClass:[WMMapAnnotation class]] && [annotation.node isEqual:node]) {
             return annotation;
@@ -291,7 +299,7 @@
 
 - (void)selectNode:(Node *)node
 {
-    WMMapAnnotation *annotation = [self annotationForNode:node];
+    WMMapAnnotation *annotation = [self annotationForNode:node comparisonNodes:self.mapView.annotations.copy];
     [self.mapView selectAnnotation:annotation animated:YES];
 }
 

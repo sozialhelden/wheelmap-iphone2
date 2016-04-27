@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.scrollView.scrollsToTop = YES;
 
     self.scrollView.backgroundColor = [UIColor wmGreyColor];
@@ -96,18 +96,18 @@
     self.housenumberTextField.placeholder = NSLocalizedString(@"Housenumber Placeholder", nil);
     self.postcodeTextField.placeholder = NSLocalizedString(@"Postcode Placeholder", nil);
     self.cityTextField.placeholder = NSLocalizedString(@"City Placeholder", nil);
-    
-    if (self.editView) {
-        hasCoordinate = YES;
-        [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButtonDisabled", @"") forState:UIControlStateNormal];
-        self.setMarkerButton.enabled = NO;
-    } else {
-        self.node = [self.dataManager createNode];
-        hasCoordinate = NO;
-        [self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
-        [self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
+
+	[self.setMarkerButton addTarget:self action:@selector(pushToSetMarkerView) forControlEvents:UIControlEventTouchUpInside];
+	[self.setMarkerButton setTitle:NSLocalizedString(@"EditPOIViewSetMarkerButton", @"") forState:UIControlStateNormal];
+    if (self.editView == NO) {
+		self.currentCoordinate = kCLLocationCoordinate2DInvalid;
+		self.node = [self.dataManager createNode];
+		hasCoordinate = NO;
+	} else if (self.node.lat != nil && self.node.lon != nil) {
+		self.currentCoordinate = CLLocationCoordinate2DMake(self.node.lat.doubleValue, self.node.lon.doubleValue);
+		[self.setMarkerButton setTitle:[NSString stringWithFormat:@"(%0.5f, %0.5f)", self.node.lat.doubleValue, self.node.lon.doubleValue] forState:UIControlStateNormal];
+	}
+
     [self.wheelchairStateButtonView updateViewContent];
 	[self.toiletStateButtonView updateViewContent];
 
@@ -237,11 +237,7 @@
 - (void)markerSet:(CLLocationCoordinate2D)coord {
     hasCoordinate = YES;
     self.currentCoordinate = coord;
-    self.node.lat = [NSNumber numberWithDouble:coord.latitude];
-    self.node.lon = [NSNumber numberWithDouble:coord.longitude];
-    
     [self.setMarkerButton setTitle:[NSString stringWithFormat:@"(%0.5f, %0.5f)", coord.latitude, coord.longitude] forState:UIControlStateNormal];
-    [self saveCurrentEntriesToCurrentNode];
 }
 
 - (IBAction)toiletStateButtonPressed:(id)sender {
@@ -326,7 +322,7 @@
     self.node.city = self.cityTextField.text;
     self.node.website = self.websiteTextField.text;
     self.node.phone = self.phoneTextField.text;
-    if ((!self.editView) && (hasCoordinate)) {
+    if (hasCoordinate == YES) {
         self.node.lat = [NSNumber numberWithDouble:self.currentCoordinate.latitude];
         self.node.lon = [NSNumber numberWithDouble:self.currentCoordinate.longitude];
     }
