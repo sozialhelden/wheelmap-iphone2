@@ -31,6 +31,7 @@
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
+	self.mapView.showsPointsOfInterest = NO;
 
     [self.mapView removeAnnotations:self.mapView.annotations];
 

@@ -85,6 +85,7 @@
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.showsUserLocation = YES;
+	self.mapView.showsPointsOfInterest = NO;
     
     // configure mapInteractionInfoLabel
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
