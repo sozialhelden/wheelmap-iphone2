@@ -53,11 +53,16 @@ UINavigationControllerDelegate, UIAlertViewDelegate>
 - (void)resetMapAndListToNormalUseCase;
 - (void)mapWasMoved;
 
--(void)updateNodesWithRegion:(MKCoordinateRegion)region;
--(void)updateNodesWithQuery:(NSString*)query;
--(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
--(void)updateNodesWithCurrentUserLocation;
--(void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region;
+#pragma mark - Node Update
+
+- (void)updateNodesWithCurrentUserLocation;
+- (void)updateNodesWithRegion:(MKCoordinateRegion)region;
+- (void)updateNodesWithSouthWest:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast;
+- (void)updateNodesWithQuery:(NSString*)query;
+- (void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region;
+- (void)updateNodesWithQuery:(NSString*)query andSouthWest:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast;
+- (void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region;
+- (void)updateNodesWithLastQueryAndSouthWest:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast;
 
 - (void)refreshNodeListWithArray:(NSArray*)array;  // use this method if you want to refresh list and maps with custom node array
 
