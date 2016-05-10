@@ -26,19 +26,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // MAPVIEW
-    [MBXMapKit setAccessToken:K_MBX_TOKEN];
-    
+
     self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
-    
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
-    self.rasterOverlay.delegate = self;
-    
-    [self.mapView addOverlay:self.rasterOverlay];
+
     [self.mapView removeAnnotations:self.mapView.annotations];
 
     self.mapView.delegate = self;
@@ -131,17 +124,6 @@
 }
 
 #pragma mark - MKMapView Delegate
-// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    // This is boilerplate code to connect tile overlay layers with suitable renderers
-    //
-    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
-    {
-        MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
-        return renderer;
-    }
-    return nil;
-}
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     if (newState == MKAnnotationViewDragStateEnding) {
@@ -168,31 +150,6 @@
         return annotationView;
    }
    return nil;
-}
-
-#pragma mark - MBXRasterTileOverlayDelegate implementation
-
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error {
-    // This delegate callback is for centering the map once the map metadata has been loaded
-    //
-    if (error) {
-        DKLog(K_VERBOSE_MAP, @"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-    }
-}
-
-
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error {
-    // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
-    //
-    if (error) {
-        DKLog(K_VERBOSE_MAP, @"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-	} else {
-        [_mapView addAnnotations:markers];
-    }
-}
-
-- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 @end

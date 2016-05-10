@@ -9,7 +9,6 @@ pod 'Reachability', '~> 3.2'
 pod 'AFNetworking', '~> 1.3.4'
 pod 'DKHelper', '~> 0.9.6'
 pod 'MarqueeLabel', '~> 2.3.5'
-pod 'MBXMapKit', '~> 0.8.0'
 pod 'Appirater', '~> 2.0'
 
 

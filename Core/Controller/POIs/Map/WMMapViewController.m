@@ -80,15 +80,10 @@
 
 // Initiliaze Map View
 - (void) initMapView{
-    
-    [MBXMapKit setAccessToken:K_MBX_TOKEN];
-    self.mapView.showsBuildings = NO;
+	self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
-    self.rasterOverlay.delegate = self;
-    [self.mapView addOverlay:self.rasterOverlay];
     self.mapView.showsUserLocation = YES;
     
     // configure mapInteractionInfoLabel
@@ -273,12 +268,6 @@
     });
 }
 
-- (IBAction)iPhoneInfoButtonAction:(id)sender {
-    // This responds to the info button from the iPhone storyboard getting pressed
-    //
-    [self attribution:_rasterOverlay.attribution];
-}
-
 - (WMMapAnnotation*) annotationForNode:(Node*)node comparisonNodes:(NSArray *)comparisonNodes {
 
     for (WMMapAnnotation* annotation in comparisonNodes) {
@@ -323,17 +312,6 @@
 }
 
 #pragma mark - Map View Delegate
-// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    // This is boilerplate code to connect tile overlay layers with suitable renderers
-    //
-    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
-    {
-        MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
-        return renderer;
-    }
-    return nil;
-}
 
 - (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
@@ -512,42 +490,6 @@
 - (CLLocation *)soutWestMapLocation {
 	CLLocationCoordinate2D southWestCoordinates = [self.mapView convertPoint:CGPointMake(0, self.mapView.frameHeight) toCoordinateFromView:self.mapView];
 	return [[CLLocation alloc] initWithLatitude:southWestCoordinates.latitude longitude:southWestCoordinates.longitude];
-}
-
-#pragma mark - MBXRasterTileOverlayDelegate implementation
-
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error
-{
-    // This delegate callback is for centering the map once the map metadata has been loaded
-    //
-    if (error)
-    {
-        DKLog(K_VERBOSE_MAP, @"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-    }
-    else
-    {
-        [self.mapView setCenterCoordinate:self.userCurrentLocation.coordinate];
-    }
-}
-
-
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error
-{
-    // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
-    //
-    if (error)
-    {
-        DKLog(K_VERBOSE_MAP, @"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-    }
-    else
-    {
-        [_mapView addAnnotations:markers];
-    }
-}
-
-- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay
-{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 #pragma mark - Map Interaction Advisor
