@@ -12,13 +12,12 @@
 
 #import "WMMapAnnotation.h"
 #import "WMDataManager.h"
-#import "MBXMapKit.h"
 #import "WMPOIStateButtonView.h"
 #import "WMCompassView.h"
 
 @class Node;
 
-@interface WMPOIViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, MBXRasterTileOverlayDelegate, MBXOfflineMapDownloaderDelegate, WMEditPOIStateDelegate, WMPOIStateButtonViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, WMSmallGalleryButtonCollectionViewCellDelegate> {
+@interface WMPOIViewController : WMViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate, WMDataManagerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, WMEditPOIStateDelegate, WMPOIStateButtonViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, WMSmallGalleryButtonCollectionViewCellDelegate> {
     WMDataManager* dataManager;
     UIImage* imageReadyToUpload;
 }
@@ -63,7 +62,6 @@
 
 @property (nonatomic, strong) IBOutlet MKMapView *				mapView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *		mapViewViewHeightConstraint;
-@property (nonatomic) MBXRasterTileOverlay *					rasterOverlay;
 @property (assign) BOOL											mapViewOpen;
 
 #pragma mark - WHEEL ACCESS AND ASK FRIENDS BUTTON VIEW
