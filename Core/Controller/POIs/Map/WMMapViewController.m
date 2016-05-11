@@ -23,6 +23,12 @@
 
 // TODO: re-position popover after orientation change
 
+@interface WMMapViewController()
+
+@property (strong, nonatomic) CLLocation *userCurrentLocation;
+
+@end
+
 @implementation WMMapViewController
 {
     dispatch_queue_t backgroundQueue;
@@ -37,17 +43,15 @@
     
     float invisibleMapInteractionInfoLabelConstraint;
     float visibleMapInteractionInfoLabelConstraint;
-    
-    CLLocation* userCurrentLocation;
 }
 
 @synthesize dataSource, delegate;
 
 - (MKCoordinateRegion)region {
     
-    double lat = 0.0;
-    double lon = 0.0;
-    
+	double lat;
+	double lon;
+
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.baseController;
     
     if (navCtrl.lastVisibleMapCenterLat == nil) {
@@ -76,16 +80,12 @@
 
 // Initiliaze Map View
 - (void) initMapView{
-    
-    [MBXMapKit setAccessToken:K_MBX_TOKEN];
-    self.mapView.showsBuildings = NO;
+	self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
-    self.rasterOverlay.delegate = self;
-    [self.mapView addOverlay:self.rasterOverlay];
     self.mapView.showsUserLocation = YES;
+	self.mapView.showsPointsOfInterest = NO;
     
     // configure mapInteractionInfoLabel
     self.mapInteractionInfoLabel.tag = 0;   // tag 0 means that the indicator is not visible
@@ -101,8 +101,10 @@
     
     // initially hide the map interaction info label
     self.mapInteractionInfoLabelTopVerticalSpaceConstraint.constant = invisibleMapInteractionInfoLabelConstraint;
-    
- 
+
+	// Set the default location to Berlin
+	self.userCurrentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
@@ -116,9 +118,12 @@
     self.locationManager.distanceFilter = 50.0f;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startMonitoringSignificantLocationChanges];
-    
-    userCurrentLocation = self.locationManager.location;
-    [self relocateMapTo:userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.001, 0.001)];
+
+	if (self.locationManager.location != nil) {
+		self.userCurrentLocation = self.locationManager.location;
+	}
+
+    [self relocateMapTo:self.userCurrentLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];
 }
 
 
@@ -220,19 +225,24 @@
         nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
 
+	NSArray *mapViewAnnotations = self.mapView.annotations.copy;
+	if (mapViewAnnotations == nil) {
+		mapViewAnnotations = NSArray.new;
+	}
+
     dispatch_async(backgroundQueue, ^(void) {
         
         NSMutableArray* newAnnotations = [NSMutableArray arrayWithCapacity:0];
-        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
+        NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:mapViewAnnotations];
         
         [nodes enumerateObjectsUsingBlock:^(Node *node, NSUInteger idx, BOOL *stop) {
             
-            WMMapAnnotation *annotationForNode = [self annotationForNode:node];
+            WMMapAnnotation *annotationForNode = [self annotationForNode:node comparisonNodes:mapViewAnnotations];
             if (annotationForNode != nil) {
-                // this node is already shown on the map
+				// this node is already shown on the map
                 [oldAnnotations removeObject:annotationForNode];
             } else {
-                // this node is new
+				// this node is new
                 WMMapAnnotation *annotation = [[WMMapAnnotation alloc] initWithNode:node];
                 [newAnnotations addObject:annotation];
             }
@@ -259,16 +269,9 @@
     });
 }
 
-- (IBAction)iPhoneInfoButtonAction:(id)sender {
-    // This responds to the info button from the iPhone storyboard getting pressed
-    //
-    [self attribution:_rasterOverlay.attribution];
-}
+- (WMMapAnnotation*) annotationForNode:(Node*)node comparisonNodes:(NSArray *)comparisonNodes {
 
-- (WMMapAnnotation*) annotationForNode:(Node*)node
-{
-    for (WMMapAnnotation* annotation in  self.mapView.annotations) {
-        
+    for (WMMapAnnotation* annotation in comparisonNodes) {
         // filter out MKUserLocation annotation
         if ([annotation isKindOfClass:[WMMapAnnotation class]] && [annotation.node isEqual:node]) {
             return annotation;
@@ -286,7 +289,7 @@
 
 - (void)selectNode:(Node *)node
 {
-    WMMapAnnotation *annotation = [self annotationForNode:node];
+    WMMapAnnotation *annotation = [self annotationForNode:node comparisonNodes:self.mapView.annotations.copy];
     [self.mapView selectAnnotation:annotation animated:YES];
 }
 
@@ -310,22 +313,10 @@
 }
 
 #pragma mark - Map View Delegate
-// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    // This is boilerplate code to connect tile overlay layers with suitable renderers
-    //
-    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
-    {
-        MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
-        return renderer;
-    }
-    return nil;
-}
 
-- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
-{
-    
+- (MKAnnotationView*) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[WMMapAnnotation class]]) {
+		
         Node *node = [(WMMapAnnotation*)annotation node];
         NSString *reuseId = [node.wheelchair stringByAppendingString:[node.id stringValue]];
         MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
@@ -336,17 +327,17 @@
             annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         }
         annotationView.image = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-        
+
         UIImageView* icon = [[UIImageView alloc] initWithFrame:CGRectMake(1, 3, 19, 14)];
         icon.contentMode = UIViewContentModeScaleAspectFit;
         icon.backgroundColor = [UIColor clearColor];
         icon.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];
-        
+
         [annotationView addSubview:icon];
-        
+
         return annotationView;
-    }
-    
+	}
+
     return nil;
 }
 
@@ -420,7 +411,7 @@
         [self slideInMapInteractionAdvisorWithText:NSLocalizedString(@"Zoom Closer", nil)];
         [(WMNavigationControllerBase*)self.dataSource refreshNodeListWithArray:[NSArray array]];
         lastDisplayedMapCenter = CLLocationCoordinate2DMake(0, 0);
-        
+
     } else {
         [self slideOutMapInteractionAdvisor];
         
@@ -429,50 +420,39 @@
         //
         // if map region change is smaller then threshold, then we do not update the map!
         //
-        
+
+		// Get the shown map corners
+		CLLocation *northEastLocation = self.northEastMapLocation;
+		CLLocation *southWestLocation = self.soutWestMapLocation;
+
         // check how much the region has changed
-        
         CLLocation *newCenter = [[CLLocation alloc] initWithLatitude:self.mapView.region.center.latitude longitude:self.mapView.region.center.longitude];
         CLLocation *oldCenter = [[CLLocation alloc] initWithLatitude:lastDisplayedMapCenter.latitude longitude:lastDisplayedMapCenter.longitude];
         CLLocationDistance centerDistance = [newCenter distanceFromLocation:oldCenter] /1000.0; // km
-        
-        MKCoordinateRegion coordinateRegion = self.mapView.region;
-        CLLocationCoordinate2D ne =
-        CLLocationCoordinate2DMake(coordinateRegion.center.latitude
-                                   + (coordinateRegion.span.latitudeDelta/2.0),
-                                   coordinateRegion.center.longitude
-                                   - (coordinateRegion.span.longitudeDelta/2.0));
-        CLLocationCoordinate2D sw =
-        CLLocationCoordinate2DMake(coordinateRegion.center.latitude
-                                   - (coordinateRegion.span.latitudeDelta/2.0),
-                                   coordinateRegion.center.longitude
-                                   + (coordinateRegion.span.longitudeDelta/2.0));
-        
-        CLLocation *neLocation = [[CLLocation alloc] initWithLatitude:ne.latitude longitude:ne.longitude];
-        CLLocation *swLocation = [[CLLocation alloc] initWithLatitude:sw.latitude longitude:sw.longitude];
-        CLLocationDistance mapRectDiagonalSize = [neLocation distanceFromLocation:swLocation] / 1000.0; // km
+
+        CLLocationDistance mapRectDiagonalSize = [northEastLocation distanceFromLocation:southWestLocation] / 1000.0; // km
         if (mapRectDiagonalSize > 0.0) {
             CGFloat portionOfChangedCenter = centerDistance / mapRectDiagonalSize;
             
             // if delta is small, do nothing
-            if (portionOfChangedCenter  < 0.24) {
+            if (portionOfChangedCenter  < 0.2) {
                 DKLog(K_VERBOSE_MAP, @"MINIMAL CHANGE. DO NOT UPDATE MAP! %f", portionOfChangedCenter);
                 shouldUpdateMap = NO;
             }
         }
-        
+
         if (shouldUpdateMap && !dontUpdateNodeList) {
-            
+
             if (self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch || self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand) {
                 [(WMNavigationControllerBase*)self.dataSource updateNodesWithLastQueryAndRegion:mapView.region];
                 lastDisplayedMapCenter = self.mapView.region.center;
             } else {
-                [(WMNavigationControllerBase*)self.dataSource updateNodesWithRegion:mapView.region];
+				[(WMNavigationControllerBase*)self.dataSource updateNodesWithSouthWest:southWestLocation.coordinate andNorthEast:northEastLocation.coordinate];
                 lastDisplayedMapCenter = self.mapView.region.center;
             }
         }
     }
-    
+
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLat:[NSNumber numberWithDouble:self.mapView.region.center.latitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapCenterLng:[NSNumber numberWithDouble:self.mapView.region.center.longitude]];
     [(WMNavigationControllerBase*)self.dataSource setLastVisibleMapSpanLat:[NSNumber numberWithDouble:self.mapView.region.span.latitudeDelta]];
@@ -500,40 +480,17 @@
     [self.mapView setRegion:newRegion animated:YES];
     
 }
-#pragma mark - MBXRasterTileOverlayDelegate implementation
 
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error
-{
-    // This delegate callback is for centering the map once the map metadata has been loaded
-    //
-    if (error)
-    {
-        DKLog(K_VERBOSE_MAP, @"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-    }
-    else
-    {
-        [self.mapView setCenterCoordinate:userCurrentLocation.coordinate];
-    }
+#pragma mark - Map Helper
+
+- (CLLocation *)northEastMapLocation {
+	CLLocationCoordinate2D northEastCoordinates = [self.mapView convertPoint:CGPointMake(self.mapView.frameWidth, 0) toCoordinateFromView:self.mapView];
+	return [[CLLocation alloc] initWithLatitude:northEastCoordinates.latitude longitude:northEastCoordinates.longitude];
 }
 
-
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error
-{
-    // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
-    //
-    if (error)
-    {
-        DKLog(K_VERBOSE_MAP, @"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-    }
-    else
-    {
-        [_mapView addAnnotations:markers];
-    }
-}
-
-- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay
-{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+- (CLLocation *)soutWestMapLocation {
+	CLLocationCoordinate2D southWestCoordinates = [self.mapView convertPoint:CGPointMake(0, self.mapView.frameHeight) toCoordinateFromView:self.mapView];
+	return [[CLLocation alloc] initWithLatitude:southWestCoordinates.latitude longitude:southWestCoordinates.longitude];
 }
 
 #pragma mark - Map Interaction Advisor

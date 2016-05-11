@@ -41,15 +41,7 @@
             NSManagedObject *newObject = [self createOrUpdateManagedObjectWithEntityName:entityName objectData:item];
             if (newObject) {
                 resultObjectsItems = [resultObjectsItems arrayByAddingObject:newObject];
-            } else {
-                
-				if (error != NULL) {
-					*error = [NSError errorWithDomain:WMDataParserErrorDomain code:WMDataParserManagedObjectCreationError userInfo:nil];
-				}
-
-                // skip rest of array
-                break;
-            }
+			}
         }
         
         parsedObject = resultObjectsItems;

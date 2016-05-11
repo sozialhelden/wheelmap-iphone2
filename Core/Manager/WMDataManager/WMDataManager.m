@@ -383,78 +383,78 @@
 
 #pragma mark - Fetch Nodes
 
-- (NSArray*) fetchNodesNear:(CLLocationCoordinate2D)location
-{
-    // get rect of area within search radius around current location
-    // this rect won"t have the same proportions as the map area on screen
-    CLLocationCoordinate2D southwest = CLLocationCoordinate2DMake(location.latitude - WMSearchRadius, location.longitude - WMSearchRadius);
-    CLLocationCoordinate2D northeast = CLLocationCoordinate2DMake(location.latitude + WMSearchRadius, location.longitude + WMSearchRadius);
-    
-    return [self fetchNodesBetweenSouthwest:southwest northeast:northeast query:nil];
+- (void) fetchNodesForMap:(MKMapView *)mapView query:(NSString *)query {
+
+	CLLocationCoordinate2D northEastCoordinates = [mapView convertPoint:CGPointMake(mapView.frameWidth, 0) toCoordinateFromView:mapView];
+	CLLocationCoordinate2D southWestCoordinates = [mapView convertPoint:CGPointMake(0, mapView.frameHeight) toCoordinateFromView:mapView];
+
+	return [self fetchNodesForSouthWestCoordinate:southWestCoordinates northEastCoordinate:northEastCoordinates query:query];
 }
 
--(NSArray*) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest northeast:(CLLocationCoordinate2D)northeast query:(NSString *)query
-{
-    NSMutableArray *cachedNodes = [NSMutableArray array];
-   
-//    NSArray *cachedNodes = [NSArray array];
-//
-//    if (!query) {
-//        //                cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
-//        cachedNodes = [self managedObjectContext:self.mainMOC cachedNodesBetweenSouthwest:southwest northeast:northeast];
-//    }
-        
-    NSInteger swLatId = southwest.latitude * boundingBoxSize;
-    NSInteger swLonId = southwest.longitude * boundingBoxSize;
-    NSInteger neLatId = northeast.latitude * boundingBoxSize; neLatId++;
-    NSInteger neLonId = northeast.longitude * boundingBoxSize; neLonId++;
-    
-    DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"Fetch nodes between:%.4f/%.4f - %.4f/%.4f", southwest.latitude, southwest.longitude, northeast.latitude, northeast.longitude);
-    
-    NSAssert(swLatId < neLatId && swLonId < neLonId, @"Invalid parameters passed to fetchNodesBetweenSouthwest:northeast:");
-    
-    // step through grid along latitude
-    for (long lat = swLatId; lat < neLatId; lat++) {
-        
-        // step through grid along longitude
-        for (long lon = swLonId; lon < neLonId; lon++) {
- 
-            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_TWO), @".. looking for nodes in tile %li/%li", lat, lon);
-            
-            // check if tile is already in cache
-            Tile *cachedTile = nil;
-            
-            // we don"t do a local search yet, so we only try to get local results if there is no query string
-            if (!query) {
-                cachedTile = [self managedObjectContext:self.mainMOC cachedTileForSwLat:lat swLon:lon];
-            }
-            
-            if (cachedTile) {
-                [cachedNodes addObjectsFromArray:[cachedTile.nodes allObjects]];
-                
-            }
-            
-            // else request nodes for that tile
-            CLLocationDegrees swLat = (CLLocationDegrees)lat / boundingBoxSize;
-            CLLocationDegrees swLon = (CLLocationDegrees)lon / boundingBoxSize;
-            CLLocationDegrees neLat = (CLLocationDegrees)(lat+1) / boundingBoxSize;
-            CLLocationDegrees neLon = (CLLocationDegrees)(lon+1) / boundingBoxSize;
-            
-            CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(swLat, swLon);
-            CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(neLat, neLon);
-            
-            DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @".. fetch corrected nodes between:%.4f/%.4f - %.4f/%.4f", sw.latitude, sw.longitude, ne.latitude, ne.longitude);
-            
-            // for search call fetch directly, toherwise make head request first
-            if (query) {
-                [self fetchRemoteNodesBetweenSouthwest:sw northeast:ne query:query];
-            } else {
-                [self fetchRemoteNodesHeadBetweenSouthwest:sw northeast:ne];
-            }
-        }
-    }
-    
-    return cachedNodes;
+- (void)fetchNodesForSouthWestCoordinate:(CLLocationCoordinate2D)southWestCoordinates northEastCoordinate:(CLLocationCoordinate2D)northEastCoordinates query:(NSString *)query {
+
+	CLLocation *northEastLocation = [[CLLocation alloc] initWithLatitude:northEastCoordinates.latitude longitude:northEastCoordinates.longitude];
+	CLLocation *southWestLocation = [[CLLocation alloc] initWithLatitude:southWestCoordinates.latitude longitude:southWestCoordinates.longitude];
+	return [self fetchNodesForSouthWestLocation:southWestLocation northEastLocation:northEastLocation query:query];
+}
+
+
+- (void)fetchNodesForSouthWestLocation:(CLLocation *)southWestLocation northEastLocation:(CLLocation *)northEastLocation query:(NSString *)query {
+	// Fetch all nodes for the specified area + space around. This will be done with 5 tiles. One center tile and a left, top, right and bottom tile.
+
+	CLLocation *southEastLocation = [[CLLocation alloc] initWithLatitude:southWestLocation.coordinate.latitude longitude:northEastLocation.coordinate.longitude];
+	CLLocation *northWestLocation = [[CLLocation alloc] initWithLatitude:northEastLocation.coordinate.latitude longitude:southWestLocation.coordinate.longitude];
+
+	CGFloat originalAreaLongitudeDistance = [northEastLocation distanceFromLocation:northWestLocation];
+	CGFloat tileHorizontalPaddingDistance = originalAreaLongitudeDistance / 5;
+	CGFloat originalAreaLatitudeDistance = [southWestLocation distanceFromLocation:northWestLocation];
+	CGFloat tileVerticalPaddingDistance = originalAreaLatitudeDistance / 5;
+	if (tileVerticalPaddingDistance > tileHorizontalPaddingDistance) {
+		tileVerticalPaddingDistance = tileHorizontalPaddingDistance;
+	}
+
+	// fetch center tile
+	CLLocationCoordinate2D centerTileNETCoordinate = [WMHelper locationCoordinate:northEastLocation.coordinate WithLatitudeOffset:tileVerticalPaddingDistance longitudeOffset:-tileHorizontalPaddingDistance];
+	CLLocationCoordinate2D centerTileSWCoordinate = [WMHelper locationCoordinate:southWestLocation.coordinate WithLatitudeOffset:-tileVerticalPaddingDistance longitudeOffset:tileHorizontalPaddingDistance];
+
+	[self fetchNodesTileForSouthWest:centerTileSWCoordinate northEast:centerTileNETCoordinate query:query];
+
+	// fetch left tile
+	CLLocationCoordinate2D leftTileNETCoordinate = [WMHelper locationCoordinate:northWestLocation.coordinate WithLatitudeOffset:tileVerticalPaddingDistance longitudeOffset:tileHorizontalPaddingDistance];
+	CLLocationCoordinate2D leftTileSWCoordinate = [WMHelper locationCoordinate:southWestLocation.coordinate WithLatitudeOffset:-tileVerticalPaddingDistance longitudeOffset:-tileHorizontalPaddingDistance];
+
+	[self fetchNodesTileForSouthWest:leftTileSWCoordinate northEast:leftTileNETCoordinate query:query];
+
+	// fetch top tile
+	CLLocationCoordinate2D topTileNETCoordinate = [WMHelper locationCoordinate:northEastLocation.coordinate WithLatitudeOffset:-tileVerticalPaddingDistance longitudeOffset:tileHorizontalPaddingDistance];
+	CLLocationCoordinate2D topTileSWCoordinate = [WMHelper locationCoordinate:northWestLocation.coordinate WithLatitudeOffset:tileVerticalPaddingDistance longitudeOffset:-tileHorizontalPaddingDistance];
+
+	[self fetchNodesTileForSouthWest:topTileSWCoordinate northEast:topTileNETCoordinate query:query];
+
+	// fetch right tile
+	CLLocationCoordinate2D rightTileNETCoordinate = [WMHelper locationCoordinate:northEastLocation.coordinate WithLatitudeOffset:tileVerticalPaddingDistance longitudeOffset:tileHorizontalPaddingDistance];
+	CLLocationCoordinate2D rightTileSWCoordinate = [WMHelper locationCoordinate:southEastLocation.coordinate WithLatitudeOffset:-tileVerticalPaddingDistance longitudeOffset:-tileHorizontalPaddingDistance];
+
+	[self fetchNodesTileForSouthWest:rightTileSWCoordinate northEast:rightTileNETCoordinate query:query];
+
+	// fetch bottom tile
+	CLLocationCoordinate2D bottomTileNETCoordinate = [WMHelper locationCoordinate:southEastLocation.coordinate WithLatitudeOffset:-tileVerticalPaddingDistance longitudeOffset:tileHorizontalPaddingDistance];
+	CLLocationCoordinate2D bottomTileSWCoordinate = [WMHelper locationCoordinate:southWestLocation.coordinate WithLatitudeOffset:tileVerticalPaddingDistance longitudeOffset:-tileHorizontalPaddingDistance];
+
+	[self fetchNodesTileForSouthWest:bottomTileSWCoordinate northEast:bottomTileNETCoordinate query:query];
+}
+
+
+- (void)fetchNodesTileForSouthWest:(CLLocationCoordinate2D)southWest northEast:(CLLocationCoordinate2D)northEast query:(NSString *)query {
+
+	DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @".. fetch nodes tile between SW: %.4f,%.4f; NE: %.4f,%.4f", southWest.latitude, southWest.longitude, northEast.latitude, northEast.longitude);
+
+	// for search call fetch directly, toherwise make head request first
+	if (query) {
+		[self fetchRemoteNodesBetweenSouthwest:southWest northeast:northEast query:query];
+	} else {
+		[self fetchRemoteNodesHeadBetweenSouthwest:southWest northeast:northEast];
+	}
 }
 
 - (Tile*) managedObjectContext:(NSManagedObjectContext*)moc tileForLocation:(CLLocationCoordinate2D)coordinates
@@ -462,7 +462,7 @@
     // round coordinates to tile bounds
     NSInteger swLat = coordinates.latitude * 100.0;
     NSInteger swLon = coordinates.longitude * 100.0;
-    
+
     Tile *tile = [self managedObjectContext:moc cachedTileForSwLat:swLat swLon:swLon];
     
     if  (!tile) tile = [self managedObjectContext:moc createTileForSwLat:swLat swLon:swLon];
@@ -707,6 +707,7 @@
 - (void) didReceiveNodes:(NSArray *)nodes fromQuery:(NSString*)query
 {
     DKLog((K_VERBOSE_DATA_MANAGER_LEVEL >= K_VERBOSE_LOG_LEVEL_ONE), @"received %lu nodes", (unsigned long)[nodes count]);
+
 
     [self parseDataObjectInBackground:nodes
                entityName:@"Node"
@@ -1281,8 +1282,8 @@ static BOOL assetSyncInProgress = NO;
         if (iconPaths) {
             
             // update in child context to keep it current
-            [self.backgroundMOC performBlockAndWait:^{
-                
+			[self.backgroundMOC performBlock:^{
+
                 NSArray *nodeTypes = [self managedObjectContext:self.backgroundMOC fetchObjectsOfEntity:@"NodeType" withPredicate:nil];
                 [nodeTypes enumerateObjectsUsingBlock:^(NodeType *nodeType, NSUInteger idx, BOOL *stop) {
                 

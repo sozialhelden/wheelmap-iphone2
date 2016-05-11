@@ -79,8 +79,9 @@
     if (UIDevice.isIPad == NO) {
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
-        CLLocation* newLocation = self.locationManager.location;
+        CLLocation* newLocation = self.locationManager.location ?: [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
         [self.mapViewController relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.005, 0.005)];
+		[self updateNodesWithRegion:self.mapViewController.region];
     }
     
     dataManager = [[WMDataManager alloc] init];
@@ -90,7 +91,8 @@
         WMIPadRootViewController* vc = (WMIPadRootViewController*)self.topViewController;
         vc.controllerBase = self;
     }
-    
+
+	// Set Berlin as default / initial location before receiving the first GPS data
     self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.distanceFilter = 10.0f;
     self.locationManager.delegate = self;
@@ -312,8 +314,12 @@
     }
 }
 
-- (void) refreshNodeList
-{
+- (void)resetNodesList {
+	nodes = @[];
+	[self refreshNodeList];
+}
+
+- (void) refreshNodeList {
     if ([self.topViewController conformsToProtocol:@protocol(WMPOIsListViewDelegate)]) {
         [(id<WMPOIsListViewDelegate>)self.topViewController nodeListDidChange];
     }
@@ -454,53 +460,78 @@
     return newNodeList;
 }
 
--(void)updateNodesWithRegion:(MKCoordinateRegion)region
-{
+#pragma mark - Node Update
+
+- (void)updateNodesWithCurrentUserLocation {
+	CLLocation* newLocation = self.currentLocation;
+	if (UIDevice.isIPad == YES) {
+		if ([self.topViewController isKindOfClass:WMIPadRootViewController.class]) {
+			[(WMIPadRootViewController *)self.topViewController gotNewUserLocation:newLocation];
+		}
+	}
+
+	MKCoordinateSpan span = MKCoordinateSpanMake(0.003, 0.003);
+
+	if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+		WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
+		[currentVC relocateMapTo:newLocation.coordinate andSpan:span];   // this will automatically update node list!
+	} else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+		WMPOIsListViewController *currentVC = (WMPOIsListViewController*)self.topViewController;
+		if (currentVC.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch)) {
+			[self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
+		} else {
+			[self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, span)];
+		}
+	} else {
+		[self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, span)];
+	}
+
+	self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
+	self.lastVisibleMapCenterLng = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
+	self.lastVisibleMapSpanLat = @(span.latitudeDelta);
+	self.lastVisibleMapSpanLng = @(span.longitudeDelta);
+}
+
+- (void)updateNodesWithRegion:(MKCoordinateRegion)region {
+	[self updateNodesWithQuery:nil andRegion:region];
+}
+
+- (void)updateNodesWithSouthWest:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast {
 	// we do not show here the loading wheel since this methods is always called by map view controller, and the vc has its own loading wheel,
     // which allows user interaction while loading nodes.
     // [self showLoadingWheel];
-    CLLocationCoordinate2D southWest;
-    CLLocationCoordinate2D northEast;
-    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/10.0f, region.center.longitude-region.span.longitudeDelta/10.0f);
-    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/10.0f, region.center.longitude+region.span.longitudeDelta/10.0f);
-    
-    nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:nil];
-    [self refreshNodeList];
+
+	[dataManager fetchNodesForSouthWestCoordinate:southWest northEastCoordinate:northEast query:nil];
+	[self resetNodesList];
 }
 
--(void)updateNodesWithQuery:(NSString*)query
-{
-    
+- (void)updateNodesWithQuery:(NSString*)query {
     lastQuery = query;
-
-    nodes = @[];
     [dataManager fetchNodesWithQuery:query];
-    [self refreshNodeList];
+	[self resetNodesList];
 }
 
--(void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region
-{
-    
+- (void)updateNodesWithQuery:(NSString*)query andRegion:(MKCoordinateRegion)region {
+	CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
+	CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
+
+	[dataManager fetchNodesForSouthWestCoordinate:southWest northEastCoordinate:northEast query:query];
+	[self resetNodesList];
+}
+
+- (void)updateNodesWithQuery:(NSString*)query andSouthWest:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast {
     lastQuery = query;
-
-    CLLocationCoordinate2D southWest;
-    CLLocationCoordinate2D northEast;
-    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
-    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
-    
-    nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:query];
-    [self refreshNodeList];
+	[dataManager fetchNodesForSouthWestCoordinate:southWest northEastCoordinate:northEast query:query];
+	[self resetNodesList];
 }
 
--(void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region
-{
-    CLLocationCoordinate2D southWest;
-    CLLocationCoordinate2D northEast;
-    southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
-    northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
-    
-    nodes = [dataManager fetchNodesBetweenSouthwest:southWest northeast:northEast query:lastQuery];
-    [self refreshNodeList];
+- (void)updateNodesWithLastQueryAndRegion:(MKCoordinateRegion)region {
+	[self updateNodesWithQuery:lastQuery andRegion:region];
+}
+
+- (void)updateNodesWithLastQueryAndSouthWest:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast {
+	[dataManager fetchNodesForSouthWestCoordinate:southWest northEastCoordinate:northEast query:lastQuery];
+	[self resetNodesList];
 }
 
 #pragma mark - Node List Delegate
@@ -553,12 +584,6 @@
 
 #pragma mark - Location Manager Delegate
 
--(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	if ([CLLocationManager locationServicesEnabled] == NO) {
-		[self locationManagerDidFail];
-	}
-}
-
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
 	if ((locations != nil) && (locations.count > 0)) {
@@ -569,50 +594,17 @@
 -(void)updateUserLocation {
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager startMonitoringSignificantLocationChanges];
-    } else {
-		[self locationManagerDidFail];
     }
 }
 
 #pragma mark - Location Helper
 
-- (void)locationManagerDidFail {
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Loc Error Title", @"")
-														message:NSLocalizedString(@"No Loc Error Message", @"")
-													   delegate:nil
-											  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-											  otherButtonTitles:nil];
-	[alertView show];
-}
+-(CLLocation *)currentLocation {
+	if (_currentLocation == nil) {
+		_currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+	}
 
-- (void)updateNodesWithCurrentUserLocation {
-    CLLocation* newLocation = self.currentLocation;
-    if (UIDevice.isIPad == YES) {
-        if ([self.topViewController isKindOfClass:WMIPadRootViewController.class]) {
-            [(WMIPadRootViewController *)self.topViewController gotNewUserLocation:newLocation];
-        }
-    }
-    
-    if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
-        WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-        [currentVC relocateMapTo:newLocation.coordinate andSpan:MKCoordinateSpanMake(0.003, 0.003)];   // this will automatically update node list!
-    } else if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
-        WMPOIsListViewController *currentVC = (WMPOIsListViewController*)self.topViewController;
-        if (currentVC.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || (currentVC.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch)) {
-            [self updateNodesWithQuery:lastQuery andRegion:self.mapViewController.region];
-        } else {
-            //            [self updateNodesNear:newLocation.coordinate];
-            [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
-        }
-    } else {
-        //        [self updateNodesWithoutLoadingWheelNear:newLocation.coordinate];
-        [self updateNodesWithRegion:MKCoordinateRegionMake(newLocation.coordinate, MKCoordinateSpanMake(0.003, 0.003))];
-    }
-    
-    self.lastVisibleMapCenterLat = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
-    self.lastVisibleMapCenterLng = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
-    self.lastVisibleMapSpanLat = [NSNumber numberWithDouble:0.003];
-    self.lastVisibleMapSpanLng = [NSNumber numberWithDouble:0.003];
+	return _currentLocation;
 }
 
 - (void)mapWasMoved {
@@ -1006,8 +998,7 @@
 - (void)pressedCurrentLocationButton:(WMToolbar *)toolBar {
 	[self hidePopoverViews];
 
-    if (![CLLocationManager locationServicesEnabled]) {
-		[self locationManagerDidFail];
+    if ([CLLocationManager locationServicesEnabled] == NO) {
         return;
     }
     
@@ -1038,9 +1029,7 @@
         currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
         currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
-    }
-    
-    
+	}
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
@@ -1093,14 +1082,9 @@
         }
         
         if (self.lastVisibleMapCenterLat) {
-            [self updateNodesWithRegion:MKCoordinateRegionMake(
-                                                               CLLocationCoordinate2DMake([self.lastVisibleMapCenterLat doubleValue],
-                                                                                          [self.lastVisibleMapCenterLng doubleValue]),
-                                                               MKCoordinateSpanMake([self.lastVisibleMapSpanLat doubleValue],
-                                                                                    [self.lastVisibleMapSpanLng doubleValue])
-                                                               )];
+			[self updateNodesWithRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake([self.lastVisibleMapCenterLat doubleValue], [self.lastVisibleMapCenterLng doubleValue]), MKCoordinateSpanMake([self.lastVisibleMapSpanLat doubleValue], [self.lastVisibleMapSpanLng doubleValue]))];
         } else {
-            [self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
+			[self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
         }
     }
 }
@@ -1372,7 +1356,8 @@
     [self refreshNodeList];
 }
 
-#pragma mark -WMCategoryFilterPopoverView Delegate
+#pragma mark - WMCategoryFilterPopoverView Delegate
+
 - (void)categoryFilterStatusDidChangeForCategoryID:(NSNumber *)categoryID selected:(BOOL)selected {
     self.mapViewController.refreshingForFilter = YES;
     [self.mapViewController showActivityIndicator];
@@ -1474,7 +1459,6 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     fetchNodesAlertShowing = NO;
 }
-
 
 -(BOOL)shouldAutoRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

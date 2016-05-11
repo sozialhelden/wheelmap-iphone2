@@ -47,10 +47,11 @@
 - (void)pressedEditButton:(WMNavigationBar*)navigationBar;
 - (void)pressedCancelButton:(WMNavigationBar*)navigationBar;
 - (void)pressedSaveButton:(WMNavigationBar*)navigationBar;
-- (void)pressedCreatePOIButton:(WMNavigationBar*)navigationBar;
 - (void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar;
 - (void)pressedSearchButton:(BOOL)selected;
 - (void)searchStringIsGiven:(NSString*)query;
+@optional
+- (void)pressedCreatePOIButton:(WMNavigationBar*)navigationBar;
 @end
 
 @protocol WMEditPOIStateDelegate <NSObject>

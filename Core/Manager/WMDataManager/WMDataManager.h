@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WMDataManagerDelegate.h"
 #import "SSZipArchive.h"
+#import <MapKit/MapKit.h>
 
 @class Node;
 
@@ -42,21 +43,20 @@
 - (NSDictionary*) legacyUserCredentials;
 - (NSString*)currentUserName;
 
-- (NSArray*) fetchNodesNear:(CLLocationCoordinate2D)location;
-- (void) fetchNodesWithQuery:(NSString*)query;
-- (NSArray*) fetchNodesBetweenSouthwest:(CLLocationCoordinate2D)southwest
-                          northeast:(CLLocationCoordinate2D)northeast
-                              query:(NSString*)query;
+- (void)fetchNodesWithQuery:(NSString*)query;
+- (void)fetchNodesForMap:(MKMapView *)mapView query:(NSString*)query;
+- (void)fetchNodesForSouthWestCoordinate:(CLLocationCoordinate2D)southWestCoordinates northEastCoordinate:(CLLocationCoordinate2D)northEastCoordinates query:(NSString *)query;
+- (void)fetchNodesForSouthWestLocation:(CLLocation *)southWestLocation northEastLocation:(CLLocation *)northEastLocation query:(NSString *)query;
 
 - (void)syncResources;
 - (void)updateWheelchairStatusOfNode:(Node*)node;
 - (void)updateToiletStateOfNode:(Node *)node;
 - (void)updateNode:(Node*)node;
 
-- (void) fetchPhotosForNode:(Node*)node;
-- (void) uploadImage:(UIImage*)image forNode:(Node*)node;
+- (void)fetchPhotosForNode:(Node*)node;
+- (void)uploadImage:(UIImage*)image forNode:(Node*)node;
 
-- (void) fetchTotalNodeCount;
+- (void)fetchTotalNodeCount;
 - (NSNumber *)totalNodeCountFromUserDefaults;
 
 - (NSArray*) categories;

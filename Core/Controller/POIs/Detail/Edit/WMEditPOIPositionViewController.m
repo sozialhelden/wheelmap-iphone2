@@ -15,8 +15,9 @@
     CLLocationManager* locationManager;
 }
 
-@property (weak, nonatomic) IBOutlet UIView *	infoView;
+@property (strong, nonatomic) CLLocation *userLocation;
 
+@property (weak, nonatomic) IBOutlet UIView *	infoView;
 @property (weak, nonatomic) IBOutlet WMLabel *	infoTextLabel;
 
 @end
@@ -25,25 +26,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    // MAPVIEW
-    [MBXMapKit setAccessToken:K_MBX_TOKEN];
-    
+
     self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
     self.mapView.mapType = MKMapTypeStandard;
-    
-    self.rasterOverlay = [[MBXRasterTileOverlay alloc] initWithMapID:K_MBX_MAP_ID];
-    self.rasterOverlay.delegate = self;
-    
-    [self.mapView addOverlay:self.rasterOverlay];
-    
+	self.mapView.showsPointsOfInterest = NO;
+
     [self.mapView removeAnnotations:self.mapView.annotations];
+
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
-
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     [self.mapView addGestureRecognizer:tapRecognizer];
@@ -51,8 +44,18 @@
     self.currentAnnotation = (MKPointAnnotation*)[WMMapAnnotation new];
     [self. mapView addAnnotation:self.currentAnnotation];
     self.currentAnnotation.coordinate = self.currentCoordinate;
-    
-    [self setMapToCoordinate:self.initialCoordinate];
+
+	if (CLLocationCoordinate2DIsValid(self.currentCoordinate) == YES) {
+		self.userLocation = [[CLLocation alloc] initWithLatitude:self.currentCoordinate.latitude longitude:self.currentCoordinate.longitude];
+	} else if (self.mapView.userLocation != nil && (self.mapView.userLocation.coordinate.longitude != 0 && self.mapView.userLocation.coordinate.latitude != 0)) {
+		self.userLocation = [[CLLocation alloc] initWithLatitude:self.mapView.userLocation.coordinate.latitude longitude:self.mapView.userLocation.coordinate.longitude];
+	} else {
+		self.userLocation = [[CLLocation new] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
+	}
+	[self setMapToCoordinate:self.userLocation.coordinate];
+	if ([self.delegate respondsToSelector:@selector(markerSet:)]) {
+		[self.delegate markerSet:self.userLocation.coordinate];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,7 +78,7 @@
 }
 
 - (void)setMapToCoordinate:(CLLocationCoordinate2D)coordinate {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 100, 320);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
@@ -86,19 +89,22 @@
 #pragma mark - CLLocationManager Delegates
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation* newLocation = [locations objectAtIndex:0];
+    self.userLocation = [locations objectAtIndex:0];
     // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
-        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude);
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    // region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 100, 320);
+
+	self.userLocation = newLocation;
+
+	// region to display
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
     if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
@@ -106,18 +112,19 @@
     }
 }
 
-#pragma mark - MKMapView Delegate
-// And this somewhere in your class that’s mapView’s delegate (most likely a view controller).
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    // This is boilerplate code to connect tile overlay layers with suitable renderers
-    //
-    if ([overlay isKindOfClass:[MBXRasterTileOverlay class]])
-    {
-        MBXRasterTileRenderer *renderer = [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
-        return renderer;
-    }
-    return nil;
+#pragma mark - Actions
+
+/**
+ *  Move the map to the last location received by the GPS
+ *
+ *  @param sender The object which triggered the behaviour
+ */
+- (IBAction)pressedCenterLocationButton:(id)sender {
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
+	[self.mapView setRegion:viewRegion animated:YES];
 }
+
+#pragma mark - MKMapView Delegate
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     if (newState == MKAnnotationViewDragStateEnding) {
@@ -144,31 +151,6 @@
         return annotationView;
    }
    return nil;
-}
-
-#pragma mark - MBXRasterTileOverlayDelegate implementation
-
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMetadata:(NSDictionary *)metadata withError:(NSError *)error {
-    // This delegate callback is for centering the map once the map metadata has been loaded
-    //
-    if (error) {
-        DKLog(K_VERBOSE_MAP, @"Failed to load metadata for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-    }
-}
-
-
-- (void)tileOverlay:(MBXRasterTileOverlay *)overlay didLoadMarkers:(NSArray *)markers withError:(NSError *)error {
-    // This delegate callback is for adding map markers to an MKMapView once all the markers for the tile overlay have loaded
-    //
-    if (error) {
-        DKLog(K_VERBOSE_MAP, @"Failed to load markers for map ID %@ - (%@)", overlay.mapID, error?error:@"");
-	} else {
-        [_mapView addAnnotations:markers];
-    }
-}
-
-- (void)tileOverlayDidFinishLoadingMetadataAndMarkers:(MBXRasterTileOverlay *)overlay {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 @end

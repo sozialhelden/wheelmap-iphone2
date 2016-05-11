@@ -67,6 +67,10 @@
 	self.scrollViewContentViewHeightConstraint.constant = self.smsButton.frameY + self.smsButton.frameHeight + self.smsButtonBottomConstraint.constant;
 
 	self.preferredContentSize = CGSizeMake(self.scrollViewContentViewWidthConstraint.constant, self.scrollViewContentViewHeightConstraint.constant);
+
+	[super viewDidLayoutSubviews];
+
+	[self.view layoutIfNeeded];
 }
 
 - (void)setShareTextString:(NSString *)shareTextString {

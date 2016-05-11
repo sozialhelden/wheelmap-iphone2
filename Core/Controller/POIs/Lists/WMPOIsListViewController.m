@@ -16,15 +16,22 @@
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
+#import "Appirater.h"
+
+@interface WMPOIsListViewController()
+
+@property(strong, nonatomic) UIRefreshControl* refreshControl;
+
+@property(nonatomic) BOOL shouldShowNoResultIndicator;
+
+@end
 
 @implementation WMPOIsListViewController
 {
     NSArray *nodes;
-    
+
     UIImageView* accesoryHeader;
     BOOL isAccesoryHeaderVisible;
-    
-    BOOL shouldShowNoResultIndicator;
     
     WMDataManager *dataManager;
     WMMapViewController *mapView;
@@ -67,9 +74,15 @@
     }
     
     self.view.backgroundColor = [UIColor wmGreyColor];
-    
+
+	// Instantiate the refreshControl and add it to the tableView as a subview
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self action:@selector(loadNodes) forControlEvents:UIControlEventValueChanged];
+
     [self.tableView registerNib:[UINib nibWithNibName:@"WMPOIsListTableViewCell" bundle:nil] forCellReuseIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
     self.tableView.scrollsToTop = YES;
+	[self.tableView addSubview:self.refreshControl];
+
     dataManager = [[WMDataManager alloc] init];
     
     searching = NO;
@@ -77,21 +90,17 @@
     if (self.useCase == kWMPOIsListViewControllerUseCaseSearchOnDemand || self.useCase == kWMPOIsListViewControllerUseCaseGlobalSearch) {
         searching = YES;
     }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    shouldShowNoResultIndicator = YES;
+	[self initNodeType];
+	[self.refreshControl beginRefreshing];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:NO animated:YES];
-    
-    [self initNodeType];
-    
-    
 }
 
 #pragma mark - Data management
@@ -213,23 +222,29 @@
     } else {
         nodes = [self.dataSource filteredNodeListForUseCase:self.useCase];
     }
-    
+
+	// Reloading data into tableView and dismissing the refresh control
     if (nodes.count > 0) {
-        
         dispatch_async(backgroundQueue, ^(void) {
             
             __block NSArray *nodesTemp = [self sortNodesByDistance:[nodes copy]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                self.shouldShowNoResultIndicator = NO;
                 nodes = nodesTemp;
                 nodesTemp = nil;
-                
+
+				[self.refreshControl endRefreshing];
                 [self.tableView reloadData];
+
+				// Show the rate popup only when good results have been loaded
+				[Appirater appLaunched:YES];
             });
         });
 	} else {
 		dispatch_async(dispatch_get_main_queue(), ^{
+			self.shouldShowNoResultIndicator = YES;
+			[self.refreshControl endRefreshing];
 			[self.tableView reloadData];
 		});
 	}
@@ -265,7 +280,7 @@
             searching = YES;
             receivedClearList = YES;
         }}
-    shouldShowNoResultIndicator = YES;
+    self.shouldShowNoResultIndicator = YES;
     [self loadNodes];
 }
 
@@ -286,15 +301,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
-        // no search result!
-        return 1;   // to infrom user about this
-    }
-    return [nodes count];
+	return ((self.shouldShowNoResultIndicator == YES) ? 1 : [nodes count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (nodes && nodes.count == 0 && shouldShowNoResultIndicator) {
+
+    if (self.shouldShowNoResultIndicator == YES) {
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"WMNodeListCellNoResult"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WMNodeListCellNoResult"];
@@ -308,31 +320,35 @@
         }
         return cell;
     }
-    
-    WMPOIsListTableViewCell *cell = (WMPOIsListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
-    Node *node = nodes[indexPath.row];
 
-	UIImage *markerImage = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
-	if (cell.markerImageView.isRightToLeftDirection == YES) {
-		markerImage = markerImage.rightToLeftMirrowedImage;
+	if (indexPath.row < nodes.count) {
+
+		WMPOIsListTableViewCell *cell = (WMPOIsListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:K_POIS_LIST_TABLE_VIEW_CELL_IDENTIFIER];
+		Node *node = nodes[indexPath.row];
+
+		UIImage *markerImage = [UIImage imageNamed:[@"marker_" stringByAppendingString:node.wheelchair]];
+		if (cell.markerImageView.isRightToLeftDirection == YES) {
+			markerImage = markerImage.rightToLeftMirrowedImage;
+		}
+		cell.markerImageView.image = markerImage;
+
+		cell.iconImageView.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];
+
+		// show name
+		cell.titleLabel.text = node.name ?: @"";
+
+		// show node type
+		cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"";
+
+		// show node distance
+		CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
+		CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
+		CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
+		cell.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
+		return cell;
 	}
-	cell.markerImageView.image = markerImage;
 
-	cell.iconImageView.image = [[WMResourceManager sharedManager] iconForName:node.node_type.icon];
-
-    // show name
-    cell.titleLabel.text = node.name ?: @"";
-    
-    // show node type
-    cell.nodeTypeLabel.text = node.node_type.localized_name ?: @"";
-    
-    // show node distance
-    CLLocation *nodeLocation = [[CLLocation alloc] initWithLatitude:[node.lat doubleValue] longitude:[node.lon doubleValue]];
-    CLLocation* userLocation = ((WMNavigationControllerBase*)dataSource).currentLocation;
-    CLLocationDistance distance = [userLocation distanceFromLocation:nodeLocation];
-    cell.distanceLabel.text = [NSString localizedDistanceStringFromMeters:distance];
-    
-    return cell;
+	return UITableViewCell.new;
 }
 
 - (void) showDetailPopoverForNode:(Node *)node {

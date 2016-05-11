@@ -71,6 +71,12 @@
 
 #define K_ANIMATION_DURATION_SHORT					0.3f
 
+#define K_DEFAULT_LATITUDE							52.513
+#define K_DEFAULT_LONGITUDE							13.388
+
+#define K_REGION_LONGITUDE							120
+#define K_REGION_LATITUDE							100
+
 #define K_DATA_KEY_ETAGS							@"eTags"
 
 #define K_DB_KEY_CATEGORY_LOCALIZED_NAME			@"localized_name"
