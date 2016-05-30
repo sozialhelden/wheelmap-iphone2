@@ -12,12 +12,16 @@
 - (double)zoomLevel {
 	CLLocationDegrees longitudeDelta = self.region.span.longitudeDelta;
 	CGFloat mapWidthInPixels = self.bounds.size.width;
-	double zoomScale = longitudeDelta * MERCATOR_RADIUS * M_PI / (180.0 * mapWidthInPixels);
-	double zoomer = MAX_GOOGLE_LEVELS - log2( zoomScale );
-	if (zoomer < 0) {
-		zoomer = 0;
+	if (mapWidthInPixels != 0.0) {
+		double zoomScale = longitudeDelta * MERCATOR_RADIUS * M_PI / (180.0 * mapWidthInPixels);
+		double zoomer = MAX_GOOGLE_LEVELS - log2( zoomScale );
+		if (zoomer < 0) {
+			zoomer = 0;
+		}
+		return zoomer;
+	} else {
+		return 0;
 	}
-	return zoomer;
 }
 
 @end
