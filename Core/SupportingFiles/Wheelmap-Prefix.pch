@@ -33,6 +33,7 @@
 	#import "NSError+Wheelmap.h"
 	#import "UIView+RTL.h"
 	#import "UIImage+RTL.h"
+	#import "MKMapView+ZoomLevel.h"
 
 	// Database
 	#import "WMCategory+Helper.h"

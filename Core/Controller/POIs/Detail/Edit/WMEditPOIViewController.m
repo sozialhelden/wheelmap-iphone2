@@ -91,7 +91,8 @@
     self.addressLabel.text = NSLocalizedString(@"EditPOIViewAddressLabel", @"");
     self.websiteLabel.text = NSLocalizedString(@"EditPOIViewWebsiteLabel", @"");
     self.phoneLabel.text = NSLocalizedString(@"EditPOIViewPhoneLabel", @"");
-    
+	self.position.text = NSLocalizedString(@"EditPOIViewPositionLabel", nil);
+	
     self.streetTextField.placeholder = NSLocalizedString(@"Street Placeholder", nil);
     self.housenumberTextField.placeholder = NSLocalizedString(@"Housenumber Placeholder", nil);
     self.postcodeTextField.placeholder = NSLocalizedString(@"Postcode Placeholder", nil);

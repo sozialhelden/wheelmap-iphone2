@@ -63,9 +63,12 @@
 		2809CDE61C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE71C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE81C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
-		2EA5AB16280C161522CCBB3D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
-		75589EB21C48118D006765C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
-		75589EB31C48118D006765C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBBC713638AECD9B081B892 /* libPods.a */; };
+		3A99FBB21CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
+		3A99FBB31CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
+		3A99FBB41CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
+		3A99FBB51CFC82F200F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
+		3A99FBB61CFC82F300F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
+		3A99FBB71CFC82F400F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
 		8710FDF91BFBC09500D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8710FDFA1BFBC09600D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8724C7001BF61B9600C1539B /* WMNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */; };
@@ -74,9 +77,6 @@
 		8724E9EA1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */; };
 		8724E9EB1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */; };
 		8724E9EC1BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */; };
-		872FD96B1BDFD69E00764FC5 /* WMConfig-Beta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 872FD9681BDFD13900764FC5 /* WMConfig-Beta.plist */; };
-		872FD96C1BDFD6A100764FC5 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 872FD9671BDFD13900764FC5 /* WMConfig-Alpha.plist */; };
-		872FD96D1BDFD6A500764FC5 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 872FD9691BDFD13900764FC5 /* WMConfig.plist */; };
 		872FDD411BDFE0A100764FC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 872FDA651BDFE0A100764FC5 /* Images.xcassets */; };
 		872FDD421BDFE0A100764FC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 872FDA651BDFE0A100764FC5 /* Images.xcassets */; };
 		872FDD431BDFE0A100764FC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 872FDA651BDFE0A100764FC5 /* Images.xcassets */; };
@@ -783,6 +783,7 @@
 		87FFF27A1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */; };
 		87FFF27B1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */; };
 		87FFF27C1BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87FFF2791BF0D151006D57A0 /* WMPOIStateFilterButtonView.xib */; };
+		8C86588CFE5BD9CFF7E03DAF /* libPods-Wheelmap-Alpha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */; };
 		982E68E9166A9FC10062715C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 982E68E8166A9FC10062715C /* libz.dylib */; };
 		98655CC41675FD14007083DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98655CC31675FD14007083DF /* Security.framework */; };
 		9890C5961691B31E00AD7C07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9890C5951691B31E00AD7C07 /* MobileCoreServices.framework */; };
@@ -792,10 +793,12 @@
 		989927921649462E00D9003B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927911649462E00D9003B /* MapKit.framework */; };
 		989927E9164ACABD00D9003B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989927E8164ACABC00D9003B /* CoreLocation.framework */; };
 		98E3B836166523DE00C23EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E3B835166523DE00C23EBE /* CoreData.framework */; };
+		9BF3DD5E15E8D5119253BB30 /* libPods-Wheelmap-Live.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C31A228996CFB7FC4600D560 /* libPods-Wheelmap-Live.a */; };
 		DB4EB530167FC8080096CEDE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4EB52F167FC8080096CEDE /* MessageUI.framework */; };
 		DB4EB532167FC8170096CEDE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4EB531167FC8160096CEDE /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DBA6228D166A6846009FA5DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA6228C166A6846009FA5DF /* QuartzCore.framework */; };
 		DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCA979B16789B910042358C /* SystemConfiguration.framework */; };
+		F05536228D7E3BDE71903943 /* libPods-Wheelmap-Beta.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CFDB7D313E1246E72F09980 /* libPods-Wheelmap-Beta.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -805,7 +808,7 @@
 		0360BB32169DC20200E04026 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0360BB34169DC20B00E04026 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		03BD04A616A052750045D53D /* Wheelmap-Live.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wheelmap-Live.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		0E3C816C20E4227500077BC3 /* Pods-Wheelmap-Alpha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Alpha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Alpha/Pods-Wheelmap-Alpha.debug.xcconfig"; sourceTree = "<group>"; };
 		15DBF573169B72EA00EBAC2A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		1842DE7B1A69714B001D52CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1842DE7F1A6971CF001D52CF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -813,15 +816,21 @@
 		1842DE871A697278001D52CF /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		1842DE8B1A697405001D52CF /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18A056DC1A6D1AE700FA88E8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		23F6F0F27DAA8AB591F0D415 /* Pods-Wheelmap-Live.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.release.xcconfig"; sourceTree = "<group>"; };
 		2809CDE51C998524001A7607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		4CBBC713638AECD9B081B892 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.debug.xcconfig"; sourceTree = "<group>"; };
+		372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Alpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A99FBB01CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapview+ZoomLevel.h"; sourceTree = "<group>"; };
+		3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapview+ZoomLevel.m"; sourceTree = "<group>"; };
+		3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WMConfig-Alpha.plist"; path = "PLists/WMConfig-Alpha.plist"; sourceTree = "<group>"; };
+		3AA691391CFC4969009D6AA4 /* WMConfig-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WMConfig-Beta.plist"; path = "PLists/WMConfig-Beta.plist"; sourceTree = "<group>"; };
+		3AA6913A1CFC4969009D6AA4 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = PLists/WMConfig.plist; sourceTree = "<group>"; };
+		5CFDB7D313E1246E72F09980 /* libPods-Wheelmap-Beta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Beta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7814E93F40545786185EC8D4 /* Pods-Wheelmap-Alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Alpha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Alpha/Pods-Wheelmap-Alpha.release.xcconfig"; sourceTree = "<group>"; };
 		8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMNavigationBar.xib; sourceTree = "<group>"; };
 		8724E9E91BEA3DA200C77BC1 /* WMPOIStateFilterPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMPOIStateFilterPopoverView.xib; sourceTree = "<group>"; };
 		872FD9641BDFD13900764FC5 /* Wheelmap-Alpha-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Wheelmap-Alpha-Info.plist"; path = "PLists/Wheelmap-Alpha-Info.plist"; sourceTree = "<group>"; };
 		872FD9661BDFD13900764FC5 /* Wheelmap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Wheelmap-Info.plist"; path = "PLists/Wheelmap-Info.plist"; sourceTree = "<group>"; };
-		872FD9671BDFD13900764FC5 /* WMConfig-Alpha.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "WMConfig-Alpha.plist"; path = "PLists/WMConfig-Alpha.plist"; sourceTree = "<group>"; };
-		872FD9681BDFD13900764FC5 /* WMConfig-Beta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "WMConfig-Beta.plist"; path = "PLists/WMConfig-Beta.plist"; sourceTree = "<group>"; };
-		872FD9691BDFD13900764FC5 /* WMConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = PLists/WMConfig.plist; sourceTree = "<group>"; };
 		872FD96A1BDFD17D00764FC5 /* Wheelmap-Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Wheelmap-Beta-Info.plist"; path = "PLists/Wheelmap-Beta-Info.plist"; sourceTree = "<group>"; };
 		872FDA651BDFE0A100764FC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		872FDA681BDFE0A100764FC5 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1175,12 +1184,13 @@
 		989927911649462E00D9003B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		989927E8164ACABC00D9003B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		98E3B835166523DE00C23EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		9DA26444CED63501D106705A /* Pods.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.appstore.xcconfig; path = "Pods/Target Support Files/Pods/Pods.appstore.xcconfig"; sourceTree = "<group>"; };
+		B4446C8F902EF2593559E6F9 /* Pods-Wheelmap-Beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta.release.xcconfig"; sourceTree = "<group>"; };
+		C31A228996CFB7FC4600D560 /* libPods-Wheelmap-Live.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Live.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4EB52F167FC8080096CEDE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DB4EB531167FC8160096CEDE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		DBA6228C166A6846009FA5DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DBCA979B16789B910042358C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		E4E1D26DFD410DD6358525DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F8220203AE4BA497FE31DC40 /* Pods-Wheelmap-Beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Beta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1198,7 +1208,6 @@
 				0327F98316BFFB1900BA7DE7 /* CoreGraphics.framework in Frameworks */,
 				0327F97F16BFFB1900BA7DE7 /* CoreLocation.framework in Frameworks */,
 				0327F97316BFFB1900BA7DE7 /* CoreTelephony.framework in Frameworks */,
-				75589EB21C48118D006765C1 /* libPods.a in Frameworks */,
 				1842DE811A6971D9001D52CF /* CoreText.framework in Frameworks */,
 				0327F98216BFFB1900BA7DE7 /* Foundation.framework in Frameworks */,
 				0327F98016BFFB1900BA7DE7 /* MapKit.framework in Frameworks */,
@@ -1211,6 +1220,7 @@
 				0327F97B16BFFB1900BA7DE7 /* SystemConfiguration.framework in Frameworks */,
 				0327F97716BFFB1900BA7DE7 /* Twitter.framework in Frameworks */,
 				0327F98116BFFB1900BA7DE7 /* UIKit.framework in Frameworks */,
+				F05536228D7E3BDE71903943 /* libPods-Wheelmap-Beta.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,7 +1238,6 @@
 				03BD03D016A052750045D53D /* CoreGraphics.framework in Frameworks */,
 				03BD03CC16A052750045D53D /* CoreLocation.framework in Frameworks */,
 				03BD03C016A052750045D53D /* CoreTelephony.framework in Frameworks */,
-				75589EB31C48118D006765C1 /* libPods.a in Frameworks */,
 				1842DE821A6971E3001D52CF /* CoreText.framework in Frameworks */,
 				03BD03CF16A052750045D53D /* Foundation.framework in Frameworks */,
 				03BD03CD16A052750045D53D /* MapKit.framework in Frameworks */,
@@ -1241,6 +1250,7 @@
 				03BD03C816A052750045D53D /* SystemConfiguration.framework in Frameworks */,
 				03BD03C416A052750045D53D /* Twitter.framework in Frameworks */,
 				03BD03CE16A052750045D53D /* UIKit.framework in Frameworks */,
+				9BF3DD5E15E8D5119253BB30 /* libPods-Wheelmap-Live.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,7 +1280,7 @@
 				DBCA979C16789B910042358C /* SystemConfiguration.framework in Frameworks */,
 				15DBF574169B72EA00EBAC2A /* Twitter.framework in Frameworks */,
 				989927501649151300D9003B /* UIKit.framework in Frameworks */,
-				2EA5AB16280C161522CCBB3D /* libPods.a in Frameworks */,
+				8C86588CFE5BD9CFF7E03DAF /* libPods-Wheelmap-Alpha.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,9 +1293,9 @@
 				872FD9641BDFD13900764FC5 /* Wheelmap-Alpha-Info.plist */,
 				872FD96A1BDFD17D00764FC5 /* Wheelmap-Beta-Info.plist */,
 				872FD9661BDFD13900764FC5 /* Wheelmap-Info.plist */,
-				872FD9671BDFD13900764FC5 /* WMConfig-Alpha.plist */,
-				872FD9681BDFD13900764FC5 /* WMConfig-Beta.plist */,
-				872FD9691BDFD13900764FC5 /* WMConfig.plist */,
+				3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */,
+				3AA691391CFC4969009D6AA4 /* WMConfig-Beta.plist */,
+				3AA6913A1CFC4969009D6AA4 /* WMConfig.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -1346,6 +1356,8 @@
 		872FDDA11BDFEF6D00764FC5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3A99FBB01CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.h */,
+				3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */,
 				87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */,
 				87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */,
 				8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */,
@@ -2034,7 +2046,7 @@
 				872FD96E1BDFE0A100764FC5 /* Resources */,
 				9899274E1649151300D9003B /* Frameworks */,
 				9899274C1649151300D9003B /* Products */,
-				E37B4982195E8C57B162DDB7 /* Pods */,
+				CF62E6FECEC403E04662DAD1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2075,17 +2087,22 @@
 				9899274F1649151300D9003B /* UIKit.framework */,
 				989927511649151300D9003B /* Foundation.framework */,
 				989927531649151300D9003B /* CoreGraphics.framework */,
-				4CBBC713638AECD9B081B892 /* libPods.a */,
+				372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */,
+				5CFDB7D313E1246E72F09980 /* libPods-Wheelmap-Beta.a */,
+				C31A228996CFB7FC4600D560 /* libPods-Wheelmap-Live.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E37B4982195E8C57B162DDB7 /* Pods */ = {
+		CF62E6FECEC403E04662DAD1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */,
-				E4E1D26DFD410DD6358525DB /* Pods.release.xcconfig */,
-				9DA26444CED63501D106705A /* Pods.appstore.xcconfig */,
+				0E3C816C20E4227500077BC3 /* Pods-Wheelmap-Alpha.debug.xcconfig */,
+				7814E93F40545786185EC8D4 /* Pods-Wheelmap-Alpha.release.xcconfig */,
+				F8220203AE4BA497FE31DC40 /* Pods-Wheelmap-Beta.debug.xcconfig */,
+				B4446C8F902EF2593559E6F9 /* Pods-Wheelmap-Beta.release.xcconfig */,
+				2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */,
+				23F6F0F27DAA8AB591F0D415 /* Pods-Wheelmap-Live.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2097,12 +2114,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0327FA6716BFFB1900BA7DE7 /* Build configuration list for PBXNativeTarget "Wheelmap-Beta" */;
 			buildPhases = (
-				757E60E41BCC125F00E31CFB /* Check Pods Manifest.lock */,
+				8DD752CC19639F441B9B10DA /* 📦 Check Pods Manifest.lock */,
 				0327F91416BFFB1900BA7DE7 /* Sources */,
 				0327F97116BFFB1900BA7DE7 /* Frameworks */,
 				0327F98616BFFB1900BA7DE7 /* Resources */,
-				757E60E51BCC126300E31CFB /* Copy Pods Resources */,
-				87EBB3A31BDA4162000CB682 /* Embed Pods Frameworks */,
+				C3C005AABDC8DED5B9A7F1C2 /* 📦 Embed Pods Frameworks */,
+				00D65EC26119CD30BB7DB158 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2117,12 +2134,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-Live" */;
 			buildPhases = (
-				757E60E61BCC126700E31CFB /* Check Pods Manifest.lock */,
+				8F423D3BBC8BC7755FFD9987 /* 📦 Check Pods Manifest.lock */,
 				03BD036816A052750045D53D /* Sources */,
 				03BD03BE16A052750045D53D /* Frameworks */,
 				03BD03D316A052750045D53D /* Resources */,
-				757E60E71BCC126C00E31CFB /* Copy Pods Resources */,
-				87EBB3A51BDA4172000CB682 /* Embed Pods Frameworks */,
+				29061189884E026E619A5DCF /* 📦 Embed Pods Frameworks */,
+				3BDA3A0116BD0B27A8A9994F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2137,12 +2154,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 989927871649151300D9003B /* Build configuration list for PBXNativeTarget "Wheelmap-Alpha" */;
 			buildPhases = (
-				313525CDFB0FBBA39E694853 /* Check Pods Manifest.lock */,
+				B110C70EEE98F166432C9513 /* 📦 Check Pods Manifest.lock */,
 				989927471649151300D9003B /* Sources */,
 				989927481649151300D9003B /* Frameworks */,
 				989927491649151300D9003B /* Resources */,
-				840C1A3BFF1D3538880A9DD2 /* Copy Pods Resources */,
-				40CDC9BC62A90788242DB067 /* Embed Pods Frameworks */,
+				CDB6F881ED28746FC7DAFF16 /* 📦 Embed Pods Frameworks */,
+				C33D1F837C53C7BEF36DF583 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2329,9 +2346,9 @@
 				8774E6EC1BE0D93800A3E7EA /* toolbar_statusfilter-limited@2x.png in Resources */,
 				8774E58D1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B61BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
+				3A99FBB61CFC82F300F11AD1 /* WMConfig-Alpha.plist in Resources */,
 				878324541BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib in Resources */,
 				8774E6EF1BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
-				872FD96B1BDFD69E00764FC5 /* WMConfig-Beta.plist in Resources */,
 				8774E6141BE0D93800A3E7EA /* details_compass@2x.png in Resources */,
 				8774E5B11BE0D93800A3E7EA /* start_logo.png in Resources */,
 				8774E68C1BE0D93800A3E7EA /* Social_btn-facebook@2x.png in Resources */,
@@ -2498,6 +2515,7 @@
 				8774E6ED1BE0D93800A3E7EA /* toolbar_statusfilter-limited@2x.png in Resources */,
 				8774E58E1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B71BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
+				3A99FBB71CFC82F400F11AD1 /* WMConfig-Alpha.plist in Resources */,
 				878324551BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib in Resources */,
 				8774E6F01BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
 				8774E6151BE0D93800A3E7EA /* details_compass@2x.png in Resources */,
@@ -2521,7 +2539,6 @@
 				8774E6691BE0D93800A3E7EA /* marker_limited@2x.png in Resources */,
 				8774E6721BE0D93800A3E7EA /* marker_unknown@2x.png in Resources */,
 				8774E6541BE0D93800A3E7EA /* more-buttons_share@2x.png in Resources */,
-				872FD96D1BDFD6A500764FC5 /* WMConfig.plist in Resources */,
 				8774E61B1BE0D93800A3E7EA /* details_label-checked@2x.png in Resources */,
 				8774E5C41BE0D93800A3E7EA /* buttons_back-btn@2x.png in Resources */,
 				8774E6751BE0D93800A3E7EA /* marker_yes@2x.png in Resources */,
@@ -2667,9 +2684,9 @@
 				8774E58C1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B51BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
 				87BB808D1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */,
+				3A99FBB51CFC82F200F11AD1 /* WMConfig-Alpha.plist in Resources */,
 				878324531BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib in Resources */,
 				8774E6EE1BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
-				872FD96C1BDFD6A100764FC5 /* WMConfig-Alpha.plist in Resources */,
 				8774E6131BE0D93800A3E7EA /* details_compass@2x.png in Resources */,
 				8774E5B01BE0D93800A3E7EA /* start_logo.png in Resources */,
 				8774E68B1BE0D93800A3E7EA /* Social_btn-facebook@2x.png in Resources */,
@@ -2718,14 +2735,59 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		313525CDFB0FBBA39E694853 /* Check Pods Manifest.lock */ = {
+		00D65EC26119CD30BB7DB158 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29061189884E026E619A5DCF /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BDA3A0116BD0B27A8A9994F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DD752CC19639F441B9B10DA /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2733,124 +2795,79 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		40CDC9BC62A90788242DB067 /* Embed Pods Frameworks */ = {
+		8F423D3BBC8BC7755FFD9987 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		757E60E41BCC125F00E31CFB /* Check Pods Manifest.lock */ = {
+		B110C70EEE98F166432C9513 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\ncat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\nexit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		757E60E51BCC126300E31CFB /* Copy Pods Resources */ = {
+		C33D1F837C53C7BEF36DF583 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Alpha/Pods-Wheelmap-Alpha-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		757E60E61BCC126700E31CFB /* Check Pods Manifest.lock */ = {
+		C3C005AABDC8DED5B9A7F1C2 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\ncat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\nexit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		757E60E71BCC126C00E31CFB /* Copy Pods Resources */ = {
+		CDB6F881ED28746FC7DAFF16 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		840C1A3BFF1D3538880A9DD2 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		87EBB3A31BDA4162000CB682 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"";
-			showEnvVarsInLog = 0;
-		};
-		87EBB3A51BDA4172000CB682 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Alpha/Pods-Wheelmap-Alpha-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2903,6 +2920,7 @@
 				878EC9131BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96C1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
 				87D02FDB1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
+				3A99FBB31CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */,
 				878EC8DA1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB21BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -2988,6 +3006,7 @@
 				878EC9141BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96D1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
 				87D02FDC1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
+				3A99FBB41CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */,
 				878EC8DB1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB31BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -3073,6 +3092,7 @@
 				878EC9121BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96B1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
 				87D02FDA1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
+				3A99FBB21CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */,
 				878EC8D91BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB11BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -3149,13 +3169,13 @@
 /* Begin XCBuildConfiguration section */
 		0327FA6816BFFB1900BA7DE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = F8220203AE4BA497FE31DC40 /* Pods-Wheelmap-Beta.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3179,13 +3199,13 @@
 		};
 		0327FA6916BFFB1900BA7DE7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4E1D26DFD410DD6358525DB /* Pods.release.xcconfig */;
+			baseConfigurationReference = B4446C8F902EF2593559E6F9 /* Pods-Wheelmap-Beta.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3209,13 +3229,13 @@
 		};
 		03BD04A316A052750045D53D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3239,13 +3259,13 @@
 		};
 		03BD04A416A052750045D53D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4E1D26DFD410DD6358525DB /* Pods.release.xcconfig */;
+			baseConfigurationReference = 23F6F0F27DAA8AB591F0D415 /* Pods-Wheelmap-Live.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3269,7 +3289,6 @@
 		};
 		989927851649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -3281,7 +3300,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3308,7 +3327,6 @@
 		};
 		989927861649151300D9003B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4E1D26DFD410DD6358525DB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -3319,7 +3337,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -3339,13 +3357,13 @@
 		};
 		989927881649151300D9003B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 115E9BD7878F395E92E40166 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 0E3C816C20E4227500077BC3 /* Pods-Wheelmap-Alpha.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Dev";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3369,13 +3387,13 @@
 		};
 		989927891649151300D9003B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4E1D26DFD410DD6358525DB /* Pods.release.xcconfig */;
+			baseConfigurationReference = 7814E93F40545786185EC8D4 /* Pods-Wheelmap-Alpha.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Dev";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 194;
+				CURRENT_PROJECT_VERSION = 196;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";

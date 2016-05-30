@@ -588,6 +588,12 @@
 
     WMNavigationControllerBase* navCtrl = (WMNavigationControllerBase*)self.navigationController;
     [navCtrl hideLoadingWheel];
+
+	// Remove current photos and reload them
+	[self.thumbnailURLArray removeAllObjects];
+	[self.originalImageURLArray removeAllObjects];
+	[self.galleryCollectionView reloadData];
+	[dataManager fetchPhotosForNode:self.node];
 }
 
 - (void)dataManager:(WMDataManager *)dataManager uploadImageForNode:(Node *)node failedWithError:(NSError *)error {
@@ -599,7 +605,7 @@
 }
 
 - (void)dataManager:(WMDataManager *)dataManager didReceivePhotosForNode:(Node *)node {
-    for (Photo* photo in node.photos) {
+	for (Photo* photo in node.photos) {
         for (Image* image in photo.images) {
             if ([image.type caseInsensitiveCompare:@"thumb_iphone_retina"] == NSOrderedSame) {
                 [self.thumbnailURLArray addObject:image.url];
