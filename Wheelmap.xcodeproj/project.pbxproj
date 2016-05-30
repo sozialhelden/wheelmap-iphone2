@@ -69,6 +69,12 @@
 		3A99FBB51CFC82F200F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
 		3A99FBB61CFC82F300F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
 		3A99FBB71CFC82F400F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
+		3A99FBB81CFC936100F11AD1 /* WMConfig-Beta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691391CFC4969009D6AA4 /* WMConfig-Beta.plist */; };
+		3A99FBB91CFC936100F11AD1 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6913A1CFC4969009D6AA4 /* WMConfig.plist */; };
+		3A99FBBA1CFC936200F11AD1 /* WMConfig-Beta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691391CFC4969009D6AA4 /* WMConfig-Beta.plist */; };
+		3A99FBBB1CFC936200F11AD1 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6913A1CFC4969009D6AA4 /* WMConfig.plist */; };
+		3A99FBBC1CFC936300F11AD1 /* WMConfig-Beta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691391CFC4969009D6AA4 /* WMConfig-Beta.plist */; };
+		3A99FBBD1CFC936300F11AD1 /* WMConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6913A1CFC4969009D6AA4 /* WMConfig.plist */; };
 		8710FDF91BFBC09500D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8710FDFA1BFBC09600D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8724C7001BF61B9600C1539B /* WMNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */; };
@@ -2287,6 +2293,7 @@
 				8774E5CC1BE0D93800A3E7EA /* ipad_buttons_icon-search-active.png in Resources */,
 				8774E67A1BE0D93800A3E7EA /* misc_position-info@2x.png in Resources */,
 				876E8F2C1BE8DBE100B4E2CD /* WMPOIStateButtonView.xib in Resources */,
+				3A99FBBA1CFC936200F11AD1 /* WMConfig-Beta.plist in Resources */,
 				8774E6D41BE0D93800A3E7EA /* toolbar_indicator-grey@2x.png in Resources */,
 				8774E5FC1BE0D93800A3E7EA /* details_btn-status-no@2x.png in Resources */,
 				8774E6351BE0D93800A3E7EA /* more-buttons_info-deactive@2x.png in Resources */,
@@ -2330,6 +2337,7 @@
 				8774E62C1BE0D93800A3E7EA /* details_label-yes@2x.png in Resources */,
 				8774E60E1BE0D93800A3E7EA /* details_btn-status-yes@2x.png in Resources */,
 				8774E61D1BE0D93800A3E7EA /* details_label-limited.png in Resources */,
+				3A99FBBB1CFC936200F11AD1 /* WMConfig.plist in Resources */,
 				8774E6A71BE0D93800A3E7EA /* ipad_buttons_loggedin.png in Resources */,
 				87B148E31BECDADC00146985 /* WMToolbar.xib in Resources */,
 				8774E58A1BE0D93800A3E7EA /* credits_bmas@2x.png in Resources */,
@@ -2456,6 +2464,7 @@
 				8774E5CD1BE0D93800A3E7EA /* ipad_buttons_icon-search-active.png in Resources */,
 				8774E67B1BE0D93800A3E7EA /* misc_position-info@2x.png in Resources */,
 				876E8F2D1BE8DBE100B4E2CD /* WMPOIStateButtonView.xib in Resources */,
+				3A99FBBC1CFC936300F11AD1 /* WMConfig-Beta.plist in Resources */,
 				8774E6D51BE0D93800A3E7EA /* toolbar_indicator-grey@2x.png in Resources */,
 				8774E5FD1BE0D93800A3E7EA /* details_btn-status-no@2x.png in Resources */,
 				8774E6361BE0D93800A3E7EA /* more-buttons_info-deactive@2x.png in Resources */,
@@ -2499,6 +2508,7 @@
 				8774E62D1BE0D93800A3E7EA /* details_label-yes@2x.png in Resources */,
 				8774E60F1BE0D93800A3E7EA /* details_btn-status-yes@2x.png in Resources */,
 				8774E61E1BE0D93800A3E7EA /* details_label-limited.png in Resources */,
+				3A99FBBD1CFC936300F11AD1 /* WMConfig.plist in Resources */,
 				8774E6A81BE0D93800A3E7EA /* ipad_buttons_loggedin.png in Resources */,
 				87B148E41BECDADC00146985 /* WMToolbar.xib in Resources */,
 				8774E58B1BE0D93800A3E7EA /* credits_bmas@2x.png in Resources */,
@@ -2625,6 +2635,7 @@
 				8774E6791BE0D93800A3E7EA /* misc_position-info@2x.png in Resources */,
 				876E8F2B1BE8DBE100B4E2CD /* WMPOIStateButtonView.xib in Resources */,
 				8774E6D31BE0D93800A3E7EA /* toolbar_indicator-grey@2x.png in Resources */,
+				3A99FBB81CFC936100F11AD1 /* WMConfig-Beta.plist in Resources */,
 				8774E5FB1BE0D93800A3E7EA /* details_btn-status-no@2x.png in Resources */,
 				8774E6341BE0D93800A3E7EA /* more-buttons_info-deactive@2x.png in Resources */,
 				8774E6461BE0D93800A3E7EA /* more-buttons_route@2x.png in Resources */,
@@ -2668,6 +2679,7 @@
 				8774E62B1BE0D93800A3E7EA /* details_label-yes@2x.png in Resources */,
 				8774E60D1BE0D93800A3E7EA /* details_btn-status-yes@2x.png in Resources */,
 				8774E61C1BE0D93800A3E7EA /* details_label-limited.png in Resources */,
+				3A99FBB91CFC936100F11AD1 /* WMConfig.plist in Resources */,
 				8774E6A61BE0D93800A3E7EA /* ipad_buttons_loggedin.png in Resources */,
 				87B148E21BECDADC00146985 /* WMToolbar.xib in Resources */,
 				8774E5891BE0D93800A3E7EA /* credits_bmas@2x.png in Resources */,
