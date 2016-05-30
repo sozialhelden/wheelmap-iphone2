@@ -63,6 +63,12 @@
 		2809CDE61C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE71C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE81C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
+		3A99FBB21CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
+		3A99FBB31CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
+		3A99FBB41CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
+		3A99FBB51CFC82F200F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
+		3A99FBB61CFC82F300F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
+		3A99FBB71CFC82F400F11AD1 /* WMConfig-Alpha.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */; };
 		8710FDF91BFBC09500D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8710FDFA1BFBC09600D36259 /* WMCategoryFilterPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB808A1BFB26A000E517F2 /* WMCategoryFilterPopoverView.xib */; };
 		8724C7001BF61B9600C1539B /* WMNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */; };
@@ -814,6 +820,11 @@
 		2809CDE51C998524001A7607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.debug.xcconfig"; sourceTree = "<group>"; };
 		372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Alpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A99FBB01CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapview+ZoomLevel.h"; sourceTree = "<group>"; };
+		3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapview+ZoomLevel.m"; sourceTree = "<group>"; };
+		3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WMConfig-Alpha.plist"; path = "PLists/WMConfig-Alpha.plist"; sourceTree = "<group>"; };
+		3AA691391CFC4969009D6AA4 /* WMConfig-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WMConfig-Beta.plist"; path = "PLists/WMConfig-Beta.plist"; sourceTree = "<group>"; };
+		3AA6913A1CFC4969009D6AA4 /* WMConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WMConfig.plist; path = PLists/WMConfig.plist; sourceTree = "<group>"; };
 		5CFDB7D313E1246E72F09980 /* libPods-Wheelmap-Beta.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Beta.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7814E93F40545786185EC8D4 /* Pods-Wheelmap-Alpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Alpha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Alpha/Pods-Wheelmap-Alpha.release.xcconfig"; sourceTree = "<group>"; };
 		8724C6FF1BF61B9600C1539B /* WMNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMNavigationBar.xib; sourceTree = "<group>"; };
@@ -1282,6 +1293,9 @@
 				872FD9641BDFD13900764FC5 /* Wheelmap-Alpha-Info.plist */,
 				872FD96A1BDFD17D00764FC5 /* Wheelmap-Beta-Info.plist */,
 				872FD9661BDFD13900764FC5 /* Wheelmap-Info.plist */,
+				3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */,
+				3AA691391CFC4969009D6AA4 /* WMConfig-Beta.plist */,
+				3AA6913A1CFC4969009D6AA4 /* WMConfig.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -1342,6 +1356,8 @@
 		872FDDA11BDFEF6D00764FC5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3A99FBB01CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.h */,
+				3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */,
 				87F841661BE3A8E20036DCE6 /* NSError+Wheelmap.h */,
 				87F841671BE3A8E20036DCE6 /* NSError+Wheelmap.m */,
 				8774E4EC1BE0D15D00A3E7EA /* NSString+Distance.h */,
@@ -2330,6 +2346,7 @@
 				8774E6EC1BE0D93800A3E7EA /* toolbar_statusfilter-limited@2x.png in Resources */,
 				8774E58D1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B61BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
+				3A99FBB61CFC82F300F11AD1 /* WMConfig-Alpha.plist in Resources */,
 				878324541BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib in Resources */,
 				8774E6EF1BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
 				8774E6141BE0D93800A3E7EA /* details_compass@2x.png in Resources */,
@@ -2498,6 +2515,7 @@
 				8774E6ED1BE0D93800A3E7EA /* toolbar_statusfilter-limited@2x.png in Resources */,
 				8774E58E1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B71BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
+				3A99FBB71CFC82F400F11AD1 /* WMConfig-Alpha.plist in Resources */,
 				878324551BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib in Resources */,
 				8774E6F01BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
 				8774E6151BE0D93800A3E7EA /* details_compass@2x.png in Resources */,
@@ -2666,6 +2684,7 @@
 				8774E58C1BE0D93800A3E7EA /* credits_license.png in Resources */,
 				8774E6B51BE0D93800A3E7EA /* ipad_buttons_mithelfen@2x.png in Resources */,
 				87BB808D1BFB2CC100E517F2 /* WMCategoryFilterCell.xib in Resources */,
+				3A99FBB51CFC82F200F11AD1 /* WMConfig-Alpha.plist in Resources */,
 				878324531BF5F56A003C1C4C /* WMIPadMapNavigationBar.xib in Resources */,
 				8774E6EE1BE0D93800A3E7EA /* toolbar_statusfilter-no-active.png in Resources */,
 				8774E6131BE0D93800A3E7EA /* details_compass@2x.png in Resources */,
@@ -2901,6 +2920,7 @@
 				878EC9131BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96C1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
 				87D02FDB1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
+				3A99FBB31CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */,
 				878EC8DA1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB21BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAF1BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -2986,6 +3006,7 @@
 				878EC9141BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96D1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
 				87D02FDC1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
+				3A99FBB41CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */,
 				878EC8DB1BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB31BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEB01BDFEF6D00764FC5 /* Image.m in Sources */,
@@ -3071,6 +3092,7 @@
 				878EC9121BE0F7960099EDD1 /* WMViewController.m in Sources */,
 				878EC96B1BE0F9200099EDD1 /* WMStandardButton.m in Sources */,
 				87D02FDA1BF9E8B8007DB76B /* WMSmallGalleryImageCollectionViewCell.m in Sources */,
+				3A99FBB21CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */,
 				878EC8D91BE0F7960099EDD1 /* WMOSMOnboardingViewController.m in Sources */,
 				872FDEB11BDFEF6D00764FC5 /* Node.m in Sources */,
 				872FDEAE1BDFEF6D00764FC5 /* Image.m in Sources */,

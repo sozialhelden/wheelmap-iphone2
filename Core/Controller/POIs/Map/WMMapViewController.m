@@ -16,10 +16,13 @@
 #import "WMResourceManager.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define MIN_SPAN_DELTA 0.01
+#define MIN_SPAN_DELTA 				0.01
 
-#define DEFAULT_SEARCH_SPAN_LAT 0.005
-#define DEFAULT_SEARCH_SPAN_LONG 0.006
+#define DEFAULT_SEARCH_SPAN_LAT 	0.005
+#define DEFAULT_SEARCH_SPAN_LONG 	0.006
+
+#define MIN_ZOOM_LEVEL_CHANGE		0.6
+#define MIN_MAP_MOVEMENT			0.2
 
 // TODO: re-position popover after orientation change
 
@@ -37,7 +40,8 @@
     UIPopoverController *popover;
     
     CLLocationCoordinate2D lastDisplayedMapCenter;
-    
+	double lastZoomLevel;
+
     BOOL dontUpdateNodeList;
     BOOL loadingNodes;
     
@@ -431,12 +435,14 @@
         CLLocationDistance centerDistance = [newCenter distanceFromLocation:oldCenter] /1000.0; // km
 
         CLLocationDistance mapRectDiagonalSize = [northEastLocation distanceFromLocation:southWestLocation] / 1000.0; // km
-        if (mapRectDiagonalSize > 0.0) {
+
+		if (mapRectDiagonalSize > 0.0) {
             CGFloat portionOfChangedCenter = centerDistance / mapRectDiagonalSize;
-            
-            // if delta is small, do nothing
-            if (portionOfChangedCenter  < 0.2) {
-                DKLog(K_VERBOSE_MAP, @"MINIMAL CHANGE. DO NOT UPDATE MAP! %f", portionOfChangedCenter);
+
+            // if delta is small and the zoomLevel hasn't changed enough, do nothing
+			double zommLevelDifference = fabs(lastZoomLevel - mapView.zoomLevel);
+			if (portionOfChangedCenter < MIN_MAP_MOVEMENT && zommLevelDifference < MIN_ZOOM_LEVEL_CHANGE) {
+                DKLog(K_VERBOSE_MAP, @"MINIMAL CHANGE. DO NOT UPDATE MAP! portionOfChangedCenter: %f, zoomLevel: %f", portionOfChangedCenter, mapView.zoomLevel);
                 shouldUpdateMap = NO;
             }
         }
@@ -450,6 +456,8 @@
 				[(WMNavigationControllerBase*)self.dataSource updateNodesWithSouthWest:southWestLocation.coordinate andNorthEast:northEastLocation.coordinate];
                 lastDisplayedMapCenter = self.mapView.region.center;
             }
+
+			lastZoomLevel = mapView.zoomLevel;
         }
     }
 
