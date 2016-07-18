@@ -3232,8 +3232,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
+				PROVISIONING_PROFILE = "d24b7987-27b1-4c2d-9bc3-138dc196602a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "d24b7987-27b1-4c2d-9bc3-138dc196602a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3390,8 +3390,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "067886a9-4d44-4985-8e81-d4860dfaba95";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "067886a9-4d44-4985-8e81-d4860dfaba95";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3420,8 +3420,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "508df28e-cef1-4aaf-ba97-c52be8468225";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "508df28e-cef1-4aaf-ba97-c52be8468225";
+				PROVISIONING_PROFILE = "20719591-2f81-4fa5-9f16-d2c8991a2eac";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20719591-2f81-4fa5-9f16-d2c8991a2eac";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
