@@ -31,8 +31,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is required to find out where you are</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main-iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>

@@ -63,6 +63,9 @@
 		2809CDE61C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE71C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE81C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
+		3A31556C1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
+		3A31556D1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
+		3A31556E1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
 		3A99FBB21CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
 		3A99FBB31CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
 		3A99FBB41CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
@@ -826,6 +829,7 @@
 		2809CDE51C998524001A7607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.debug.xcconfig"; sourceTree = "<group>"; };
 		372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Alpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A31556F1D464783002E4A41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A99FBB01CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapview+ZoomLevel.h"; sourceTree = "<group>"; };
 		3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapview+ZoomLevel.m"; sourceTree = "<group>"; };
 		3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WMConfig-Alpha.plist"; path = "PLists/WMConfig-Alpha.plist"; sourceTree = "<group>"; };
@@ -1336,6 +1340,7 @@
 		872FDA661BDFE0A100764FC5 /* Localized */ = {
 			isa = PBXGroup;
 			children = (
+				3A3155701D464783002E4A41 /* InfoPlist.strings */,
 				872FDA671BDFE0A100764FC5 /* Localizable.strings */,
 			);
 			path = Localized;
@@ -2299,6 +2304,7 @@
 				8774E6351BE0D93800A3E7EA /* more-buttons_info-deactive@2x.png in Resources */,
 				8774E6471BE0D93800A3E7EA /* more-buttons_route@2x.png in Resources */,
 				8774E7071BE0D93800A3E7EA /* toolbar_statusfilter-yes-active.png in Resources */,
+				3A31556D1D464783002E4A41 /* InfoPlist.strings in Resources */,
 				8774E7101BE0D93800A3E7EA /* toolbar_statusfilter-yes@2x.png in Resources */,
 				8774E5811BE0D93800A3E7EA /* credits_authors.png in Resources */,
 				8774E5B41BE0D93800A3E7EA /* start_logo@2x.png in Resources */,
@@ -2470,6 +2476,7 @@
 				8774E6361BE0D93800A3E7EA /* more-buttons_info-deactive@2x.png in Resources */,
 				8774E6481BE0D93800A3E7EA /* more-buttons_route@2x.png in Resources */,
 				8774E7081BE0D93800A3E7EA /* toolbar_statusfilter-yes-active.png in Resources */,
+				3A31556E1D464783002E4A41 /* InfoPlist.strings in Resources */,
 				8774E7111BE0D93800A3E7EA /* toolbar_statusfilter-yes@2x.png in Resources */,
 				8774E5821BE0D93800A3E7EA /* credits_authors.png in Resources */,
 				8774E5B51BE0D93800A3E7EA /* start_logo@2x.png in Resources */,
@@ -2641,6 +2648,7 @@
 				8774E6461BE0D93800A3E7EA /* more-buttons_route@2x.png in Resources */,
 				8774E7061BE0D93800A3E7EA /* toolbar_statusfilter-yes-active.png in Resources */,
 				8774E70F1BE0D93800A3E7EA /* toolbar_statusfilter-yes@2x.png in Resources */,
+				3A31556C1D464783002E4A41 /* InfoPlist.strings in Resources */,
 				8774E5801BE0D93800A3E7EA /* credits_authors.png in Resources */,
 				8774E5B31BE0D93800A3E7EA /* start_logo@2x.png in Resources */,
 				8774E5921BE0D93800A3E7EA /* credits_verein.png in Resources */,
@@ -3146,6 +3154,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3A3155701D464783002E4A41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A31556F1D464783002E4A41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		872FDA671BDFE0A100764FC5 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
