@@ -31,7 +31,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    if (UIDevice.isIPad == NO) {
+    if (UIDevice.currentDevice.isIPad == NO) {
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
     } else {
@@ -48,7 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (UIDevice.isIPad == NO) {
+    if (UIDevice.currentDevice.isIPad == NO) {
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = [[UIView alloc] init];
     } else {
@@ -85,7 +85,7 @@
 }
 
 - (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         
         UINavigationController *navigationController;
         if ([modalViewController isKindOfClass:[UINavigationController class]]) {
@@ -143,7 +143,7 @@
 }
 
 - (void)dismissViewControllerAnimated:(BOOL)animated{
-    if (UIDevice.isIPad == YES && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
+    if (UIDevice.currentDevice.isIPad == YES && ![self isKindOfClass:[WMInfinitePhotoViewController class]]) {
         [self.popover dismissPopoverAnimated:animated];
     } else {
         [super dismissViewControllerAnimated:animated completion:nil];

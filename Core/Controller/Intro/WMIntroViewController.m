@@ -47,7 +47,7 @@
 	[self initTexts];
 	[self initLastPageDescriptionWebview];
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH * self.pageControl.numberOfPages;
 		self.preferredContentSize = CGSizeMake(K_POPOVER_VIEW_WIDTH, K_POPOVER_VIEW_HEIGHT);
 	} else {

@@ -161,7 +161,7 @@
 
     [self updateFields];
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
 	} else {
 		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
@@ -363,7 +363,7 @@
     progressWheel.hidden = YES;
     [progressWheel stopAnimating];
 
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [self dismissViewControllerAnimated:YES];
     }
     
@@ -437,7 +437,7 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     
-    if (UIDevice.isIPad == NO) {
+    if (UIDevice.currentDevice.isIPad == NO) {
 		[self keyboardDidMove:notification];
     }
 
@@ -448,7 +448,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     
-    if (UIDevice.isIPad == NO) {
+    if (UIDevice.currentDevice.isIPad == NO) {
         
         if (self.keyboardIsShown) {
             return;

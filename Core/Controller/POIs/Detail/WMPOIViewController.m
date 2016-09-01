@@ -63,7 +63,7 @@
 	[self initGalleryView];
 	[self initAdditionalButtons];
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
 	} else {
 		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
@@ -383,7 +383,7 @@
 	vc.baseController = self.baseController;
 	vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		[self.navigationController pushViewController:vc animated:YES];
 		vc.titleView.hidden = YES;
 	} else {
@@ -425,7 +425,7 @@
 	vc.title = vc.navigationBarTitle = NSLocalizedString(@"ShareLocationViewHeadline", @"");
 	vc.node = self.node;
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		[self.navigationController pushViewController:vc animated:YES];
 		vc.titleView.hidden = YES;
 	} else {
@@ -487,7 +487,7 @@
         if (buttonIndex == 0) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             
-            if (UIDevice.isIPad == YES) {
+            if (UIDevice.currentDevice.isIPad == YES) {
 
 				[self performBlockAfterDelay:0.3 block:^{
 					self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
@@ -499,7 +499,7 @@
         } else if (buttonIndex == 1) {
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             
-            if (UIDevice.isIPad == YES) {
+            if (UIDevice.currentDevice.isIPad == YES) {
 
 				[self performBlockAfterDelay:0.3 block:^{
 					self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
@@ -537,7 +537,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.imagePicker setNeedsStatusBarAppearanceUpdate];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [self.popOverController dismissPopoverAnimated:YES];
     }
     
@@ -549,7 +549,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.imagePicker setNeedsStatusBarAppearanceUpdate];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [self.popOverController dismissPopoverAnimated:YES];
     }
     
@@ -654,7 +654,7 @@
 	} else {
 		self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 
-		if (UIDevice.isIPad == YES) {
+		if (UIDevice.currentDevice.isIPad == YES) {
 
 			self.popOverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
 

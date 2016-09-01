@@ -11,7 +11,7 @@
 @implementation UIStoryboard (Wheelmap)
 
 + (UIStoryboard*)mainStoryboard {
-	if (UIDevice.isIPad) {
+	if (UIDevice.currentDevice.isIPad) {
 		return [UIStoryboard mainIPadStoryboard];
 	} else {
 		return [UIStoryboard mainIPhoneStoryboard];
