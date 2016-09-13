@@ -2125,12 +2125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0327FA6716BFFB1900BA7DE7 /* Build configuration list for PBXNativeTarget "Wheelmap-Beta" */;
 			buildPhases = (
-				8DD752CC19639F441B9B10DA /* 📦 Check Pods Manifest.lock */,
+				8DD752CC19639F441B9B10DA /* [CP] Check Pods Manifest.lock */,
 				0327F91416BFFB1900BA7DE7 /* Sources */,
 				0327F97116BFFB1900BA7DE7 /* Frameworks */,
 				0327F98616BFFB1900BA7DE7 /* Resources */,
-				C3C005AABDC8DED5B9A7F1C2 /* 📦 Embed Pods Frameworks */,
-				00D65EC26119CD30BB7DB158 /* 📦 Copy Pods Resources */,
+				C3C005AABDC8DED5B9A7F1C2 /* [CP] Embed Pods Frameworks */,
+				00D65EC26119CD30BB7DB158 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2145,12 +2145,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-Live" */;
 			buildPhases = (
-				8F423D3BBC8BC7755FFD9987 /* 📦 Check Pods Manifest.lock */,
+				8F423D3BBC8BC7755FFD9987 /* [CP] Check Pods Manifest.lock */,
 				03BD036816A052750045D53D /* Sources */,
 				03BD03BE16A052750045D53D /* Frameworks */,
 				03BD03D316A052750045D53D /* Resources */,
-				29061189884E026E619A5DCF /* 📦 Embed Pods Frameworks */,
-				3BDA3A0116BD0B27A8A9994F /* 📦 Copy Pods Resources */,
+				29061189884E026E619A5DCF /* [CP] Embed Pods Frameworks */,
+				3BDA3A0116BD0B27A8A9994F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2165,12 +2165,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 989927871649151300D9003B /* Build configuration list for PBXNativeTarget "Wheelmap-Alpha" */;
 			buildPhases = (
-				B110C70EEE98F166432C9513 /* 📦 Check Pods Manifest.lock */,
+				B110C70EEE98F166432C9513 /* [CP] Check Pods Manifest.lock */,
 				989927471649151300D9003B /* Sources */,
 				989927481649151300D9003B /* Frameworks */,
 				989927491649151300D9003B /* Resources */,
-				CDB6F881ED28746FC7DAFF16 /* 📦 Embed Pods Frameworks */,
-				C33D1F837C53C7BEF36DF583 /* 📦 Copy Pods Resources */,
+				CDB6F881ED28746FC7DAFF16 /* [CP] Embed Pods Frameworks */,
+				C33D1F837C53C7BEF36DF583 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2755,14 +2755,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00D65EC26119CD30BB7DB158 /* 📦 Copy Pods Resources */ = {
+		00D65EC26119CD30BB7DB158 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2770,14 +2770,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		29061189884E026E619A5DCF /* 📦 Embed Pods Frameworks */ = {
+		29061189884E026E619A5DCF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2785,14 +2785,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3BDA3A0116BD0B27A8A9994F /* 📦 Copy Pods Resources */ = {
+		3BDA3A0116BD0B27A8A9994F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2800,14 +2800,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DD752CC19639F441B9B10DA /* 📦 Check Pods Manifest.lock */ = {
+		8DD752CC19639F441B9B10DA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2815,14 +2815,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8F423D3BBC8BC7755FFD9987 /* 📦 Check Pods Manifest.lock */ = {
+		8F423D3BBC8BC7755FFD9987 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2830,14 +2830,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B110C70EEE98F166432C9513 /* 📦 Check Pods Manifest.lock */ = {
+		B110C70EEE98F166432C9513 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2845,14 +2845,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C33D1F837C53C7BEF36DF583 /* 📦 Copy Pods Resources */ = {
+		C33D1F837C53C7BEF36DF583 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2860,14 +2860,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Alpha/Pods-Wheelmap-Alpha-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C3C005AABDC8DED5B9A7F1C2 /* 📦 Embed Pods Frameworks */ = {
+		C3C005AABDC8DED5B9A7F1C2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2875,14 +2875,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CDB6F881ED28746FC7DAFF16 /* 📦 Embed Pods Frameworks */ = {
+		CDB6F881ED28746FC7DAFF16 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
