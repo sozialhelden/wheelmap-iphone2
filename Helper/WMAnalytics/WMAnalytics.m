@@ -13,7 +13,7 @@
 
 + (void)setup {
 	// Configure tracker from plist.
-	[[GAI sharedInstance] trackerWithTrackingId:K_GOOGLE_ANALYTICS_ID];
+	[GAI.sharedInstance trackerWithTrackingId:K_GOOGLE_ANALYTICS_ID];
 
 	// Optional: configure GAI options.
 	GAI.sharedInstance.trackUncaughtExceptions = YES;
