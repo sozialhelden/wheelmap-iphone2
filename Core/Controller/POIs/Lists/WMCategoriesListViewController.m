@@ -9,6 +9,7 @@
 #import "WMCategoriesListViewController.h"
 #import "WMPOIsListViewController.h"
 #import "WMNavigationControllerBase.h"
+#import "WMAnalytics.h"
 
 @implementation WMCategoriesListViewController
 
@@ -30,7 +31,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
+	[WMAnalytics trackScreen:K_CATEGORIES_SCREEN];
     if ([self.baseController isKindOfClass:[WMNavigationControllerBase class]]) {
         [(WMNavigationControllerBase *)self.baseController resetMapAndListToNormalUseCase];
     }

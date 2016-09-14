@@ -14,6 +14,7 @@
 #import "WMOSMDescriptionViewController.h"
 #import "WMOSMLoginViewController.h"
 #import "WMWheelmapAPI.h"
+#import "WMAnalytics.h"
 
 @interface WMOSMOnboardingViewController ()
 
@@ -55,7 +56,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
+	[WMAnalytics trackScreen:K_OSM_ONBOARDING_SCREEN];
     [self showDescriptionViewController];
 }
 

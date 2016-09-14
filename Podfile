@@ -11,6 +11,7 @@ def corePods
 	pod 'DKHelper', '~> 0.9.6'
 	pod 'MarqueeLabel', '~> 2.3.5'
 	pod 'Appirater', '~> 2.0'
+	pod 'Google/Analytics' #No specific version allowed
 end
 
 target 'Wheelmap-Alpha' do

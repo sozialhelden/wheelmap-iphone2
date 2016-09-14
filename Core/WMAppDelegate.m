@@ -6,21 +6,25 @@
 //  Copyright (c) 2012 Sozialhelden e.V. All rights reserved.
 //
 
-#import "WMAppDelegate.h"
-#import <HockeySDK/HockeySDK.h>
 #import "Appirater.h"
+#import "WMAnalytics.h"
+#import "WMAppDelegate.h"
+#import <Google/Analytics.h>
+#import <HockeySDK/HockeySDK.h>
+
 
 @implementation WMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
 
+	[WMAnalytics setup];
 	[self setupHockeyApp];
 	[self setupAppRater];
 
     // start listening to AFNetworking operations and show/hide activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    
+
     // check for the existence of last run version in defaults
 	// and create it if necessary
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
