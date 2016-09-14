@@ -63,6 +63,12 @@
 		2809CDE61C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE71C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE81C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
+		347534451D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
+		347534461D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
+		347534471D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
+		3495E6121D884A0700485481 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3495E6111D884A0700485481 /* GoogleService-Info.plist */; };
+		3495E6131D884A0700485481 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3495E6111D884A0700485481 /* GoogleService-Info.plist */; };
+		3495E6141D884A0700485481 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3495E6111D884A0700485481 /* GoogleService-Info.plist */; };
 		3A31556C1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
 		3A31556D1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
 		3A31556E1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
@@ -828,6 +834,9 @@
 		23F6F0F27DAA8AB591F0D415 /* Pods-Wheelmap-Live.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.release.xcconfig"; sourceTree = "<group>"; };
 		2809CDE51C998524001A7607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.debug.xcconfig"; sourceTree = "<group>"; };
+		347534431D8939FF001BDA3D /* WMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMAnalytics.h; path = WMAnalytics/WMAnalytics.h; sourceTree = "<group>"; };
+		347534441D8939FF001BDA3D /* WMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMAnalytics.m; path = WMAnalytics/WMAnalytics.m; sourceTree = "<group>"; };
+		3495E6111D884A0700485481 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Alpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A31556F1D464783002E4A41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A99FBB01CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapview+ZoomLevel.h"; sourceTree = "<group>"; };
@@ -1297,9 +1306,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		347534421D8939C2001BDA3D /* WMAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				347534431D8939FF001BDA3D /* WMAnalytics.h */,
+				347534441D8939FF001BDA3D /* WMAnalytics.m */,
+			);
+			name = WMAnalytics;
+			sourceTree = "<group>";
+		};
 		872FD9631BDFD11C00764FC5 /* PLists */ = {
 			isa = PBXGroup;
 			children = (
+				3495E6111D884A0700485481 /* GoogleService-Info.plist */,
 				872FD9641BDFD13900764FC5 /* Wheelmap-Alpha-Info.plist */,
 				872FD96A1BDFD17D00764FC5 /* Wheelmap-Beta-Info.plist */,
 				872FD9661BDFD13900764FC5 /* Wheelmap-Info.plist */,
@@ -1517,6 +1536,7 @@
 		872FDF251BDFEFAA00764FC5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				347534421D8939C2001BDA3D /* WMAnalytics */,
 				872FDF261BDFEFAA00764FC5 /* WMKeychainWrapper */,
 				872FDF291BDFEFAA00764FC5 /* WMResourceManager */,
 				87691CAF1BFF23EF0024AC77 /* WMHelper */,
@@ -2401,6 +2421,7 @@
 				8710FDF91BFBC09500D36259 /* WMCategoryFilterPopoverView.xib in Resources */,
 				8774E6D11BE0D93800A3E7EA /* toolbar_indicator-grey.png in Resources */,
 				8774E6B91BE0D93800A3E7EA /* toolbar_button-search-active.png in Resources */,
+				3495E6131D884A0700485481 /* GoogleService-Info.plist in Resources */,
 				8774E6441BE0D93800A3E7EA /* more-buttons_route.png in Resources */,
 				8774E6F51BE0D93800A3E7EA /* toolbar_statusfilter-no.png in Resources */,
 				8774E7041BE0D93800A3E7EA /* toolbar_statusfilter-unknown@2x.png in Resources */,
@@ -2573,6 +2594,7 @@
 				8710FDFA1BFBC09600D36259 /* WMCategoryFilterPopoverView.xib in Resources */,
 				8774E6D21BE0D93800A3E7EA /* toolbar_indicator-grey.png in Resources */,
 				8774E6BA1BE0D93800A3E7EA /* toolbar_button-search-active.png in Resources */,
+				3495E6141D884A0700485481 /* GoogleService-Info.plist in Resources */,
 				8774E6451BE0D93800A3E7EA /* more-buttons_route.png in Resources */,
 				8774E6F61BE0D93800A3E7EA /* toolbar_statusfilter-no.png in Resources */,
 				8774E7051BE0D93800A3E7EA /* toolbar_statusfilter-unknown@2x.png in Resources */,
@@ -2745,6 +2767,7 @@
 				8774E67F1BE0D93800A3E7EA /* navigationbar_logo@2x.png in Resources */,
 				8774E6D01BE0D93800A3E7EA /* toolbar_indicator-grey.png in Resources */,
 				8774E6B81BE0D93800A3E7EA /* toolbar_button-search-active.png in Resources */,
+				3495E6121D884A0700485481 /* GoogleService-Info.plist in Resources */,
 				8774E6431BE0D93800A3E7EA /* more-buttons_route.png in Resources */,
 				8774E6F41BE0D93800A3E7EA /* toolbar_statusfilter-no.png in Resources */,
 				8774E7031BE0D93800A3E7EA /* toolbar_statusfilter-unknown@2x.png in Resources */,
@@ -2965,6 +2988,7 @@
 				878EC90A1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3411BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9181BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				347534461D8939FF001BDA3D /* WMAnalytics.m in Sources */,
 				87691CAD1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CB1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBB1BDFEF6D00764FC5 /* Tile.m in Sources */,
@@ -3051,6 +3075,7 @@
 				878EC90B1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3421BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9191BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				347534471D8939FF001BDA3D /* WMAnalytics.m in Sources */,
 				87691CAE1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CC1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBC1BDFEF6D00764FC5 /* Tile.m in Sources */,
@@ -3137,6 +3162,7 @@
 				878EC9091BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3401BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9171BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				347534451D8939FF001BDA3D /* WMAnalytics.m in Sources */,
 				87691CAC1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CA1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBA1BDFEF6D00764FC5 /* Tile.m in Sources */,

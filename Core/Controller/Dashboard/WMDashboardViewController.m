@@ -16,6 +16,7 @@
 #import "WMDataManager.h"
 #import "WMCreditsViewController.h"
 #import "WMWheelmapAPI.h"
+#import "WMAnalytics.h"
 
 @interface WMDashboardViewController ()
 
@@ -94,6 +95,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+	[WMAnalytics trackScreen:K_HOME_SCREEN];
     
     // this will update screen
     [self networkStatusChanged:nil];
@@ -148,7 +151,6 @@
     [self pressedCancelSearchButton:self.cancelSearchButton];
 	[(WMNavigationControllerBase *)self.navigationController setListViewControllerToNormal];
     [(WMNavigationControllerBase *)self.navigationController pushList];
-    
 }
 
 - (IBAction)pressedMapButton:(id)sender {
@@ -159,7 +161,7 @@
 
 - (IBAction)pressedContributeButton:(id)sender {
     // we filter unknown nodes not using global filter setting!
-    
+
     WMPOIsListViewController* nodeListVC = [UIStoryboard instantiatedPOIsListViewController];
     nodeListVC.useCase = kWMPOIsListViewControllerUseCaseContribute;
     [(WMNavigationControllerBase *)self.navigationController setMapControllerToContribute];
@@ -176,13 +178,14 @@
 }
 
 - (IBAction)pressedLoginButton:(id)sender {
+
     WMViewController* vc;
     if (!dataManager.userIsAuthenticated) {
         vc = [UIStoryboard instantiatedOSMOnboardingViewController];
     } else {
         vc = [UIStoryboard instantiatedOSMLogoutViewController];
     }
-    
+	
     [self.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
