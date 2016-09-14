@@ -62,7 +62,7 @@
 }
 
 - (void)viewDidLayoutSubviews {
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
 	} else {
 		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
@@ -78,7 +78,7 @@
 	// e.g. self.myOutlet = nil;
 
 	// unregister for keyboard notifications while not visible.
-	if (UIDevice.isIPad == NO){
+	if (UIDevice.currentDevice.isIPad == NO){
 
 		[[NSNotificationCenter defaultCenter] removeObserver:self
 														name:UIKeyboardWillShowNotification
@@ -141,7 +141,7 @@
     
     [alert show];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [(WMToolbar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
 }
@@ -158,7 +158,7 @@
             [self dismissViewControllerAnimated:YES];
         }
     } else {
-        if (UIDevice.isIPad == YES) {
+        if (UIDevice.currentDevice.isIPad == YES) {
             if (self.navigationController != nil) {
                 [((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase showAcceptTermsViewController];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -171,7 +171,7 @@
         }
     }
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [(WMToolbar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
 }

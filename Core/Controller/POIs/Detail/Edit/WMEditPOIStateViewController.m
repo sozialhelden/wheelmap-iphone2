@@ -45,7 +45,7 @@
 	self.statusType = self.statusType;
 
 	// Set the preferred content size to make sure the popover controller has the right size.
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
 	} else {
 		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;
@@ -156,7 +156,7 @@
 - (void)didUpdateStateSucceeded {
 	self.progressWheel.hidden = YES;
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		if ([self.navigationController isKindOfClass:[WMPOIIPadNavigationController class]]) {
 			if (((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase != nil) {
 				[((WMPOIIPadNavigationController *)self.navigationController).listViewController.controllerBase updateNodesWithCurrentUserLocation];

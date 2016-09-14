@@ -46,7 +46,7 @@
 -(IBAction)pressedLogoutButton:(id)sender {
     [dataManager removeUserAuthentication];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [(WMToolbar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
     

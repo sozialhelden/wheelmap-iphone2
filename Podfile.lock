@@ -1,7 +1,7 @@
 PODS:
   - AFNetworking (1.3.4)
   - Appirater (2.0.5)
-  - DKHelper (0.9.6)
+  - DKHelper (2.2.3)
   - FirebaseAnalytics (3.3.1):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
@@ -19,25 +19,25 @@ PODS:
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
-  - HockeySDK (3.8.6):
-    - HockeySDK/AllFeaturesLib (= 3.8.6)
-  - HockeySDK/AllFeaturesLib (3.8.6)
+  - HockeySDK (4.1.0):
+    - HockeySDK/AllFeaturesLib (= 4.1.0)
+  - HockeySDK/AllFeaturesLib (4.1.0)
   - MarqueeLabel (2.3.6)
   - Reachability (3.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.4)
   - Appirater (~> 2.0)
-  - DKHelper (~> 0.9.6)
+  - DKHelper (~> 2.2.3)
   - Google/Analytics
-  - HockeySDK (~> 3.8.5)
+  - HockeySDK (~> 4.1.0)
   - MarqueeLabel (~> 2.3.5)
   - Reachability (~> 3.2)
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
-  DKHelper: 55010f62ced3d9fcc33e196e767da4c357ef90cb
+  DKHelper: f22567a185f1248641e1a2173996857b25e7e0ad
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
@@ -45,10 +45,10 @@ SPEC CHECKSUMS:
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  HockeySDK: ab68303eec6680f6b539de65d747742dd276e934
+  HockeySDK: 1249d4f1b3a9ce537a1517805bcf6fe121099d16
   MarqueeLabel: 06bf80950e01861687f4933803da1d125883ffc6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
-PODFILE CHECKSUM: 6f329f547f3d4711ea0a3ffdc9d192bb5f43bcb0
+PODFILE CHECKSUM: 072c9618b48899a412db7aea07e7d1645cb53dc5
 
 COCOAPODS: 1.0.1
