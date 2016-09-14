@@ -34,6 +34,7 @@
 #define K_HOCKEY_APP_ID								WM_CONFIG[@"hockeyAppId"]
 #define K_API_KEY									WM_CONFIG[@"appAPIKey"]
 #define K_API_BASE_URL								WM_CONFIG[@"apiBaseURL"]
+#define K_GOOGLE_ANALYTICS_ID						WM_CONFIG[@"googleAnalytics"]
 
 // ETags aren't working et the moment. If you enable ist, please check if they are sent valid from the backend
 #define K_USE_ETAGS				NO

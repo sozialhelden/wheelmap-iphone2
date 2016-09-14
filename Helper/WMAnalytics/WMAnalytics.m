@@ -12,32 +12,28 @@
 @implementation WMAnalytics
 
 + (void)setup {
-	// Configure tracker from GoogleService-Info.plist.
-	NSError *configureError;
-	[[GGLContext sharedInstance] configureWithError:&configureError];
-	NSAssert(configureError == nil, @"Error configuring Google services: %@", configureError);
+	// Configure tracker from plist.
+	[[GAI sharedInstance] trackerWithTrackingId:K_GOOGLE_ANALYTICS_ID];
 
 	// Optional: configure GAI options.
-	GAI *gai = [GAI sharedInstance];
-	gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-	//gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+	GAI.sharedInstance.trackUncaughtExceptions = YES;
 }
 
 + (void)trackScreen:(NSString *) screenName {
 
-	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	id<GAITracker> tracker = GAI.sharedInstance.defaultTracker;
 	[tracker set:kGAIScreenName value:screenName];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+	[GAI.sharedInstance dispatch];
 }
 
 + (void)trackTap:(NSString *) tapId {
 
-	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-
-	[tracker send:[[GAIDictionaryBuilder createEventWithCategory:K_ACTION_TAP
-														  action:tapId
-														   label:nil
-														   value:nil] build]];
+	[GAI.sharedInstance.defaultTracker send:[[GAIDictionaryBuilder createEventWithCategory:K_ACTION_TAP
+														  							action:tapId
+																					 label:nil
+																					 value:nil] build]];
+	[GAI.sharedInstance dispatch];
 }
 
 @end
