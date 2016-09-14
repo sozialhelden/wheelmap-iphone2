@@ -15,12 +15,12 @@
 	// Configure tracker from GoogleService-Info.plist.
 	NSError *configureError;
 	[[GGLContext sharedInstance] configureWithError:&configureError];
-	NSAssert(configureError != nil, @"Error configuring Google services: %@", configureError);
+	NSAssert(configureError == nil, @"Error configuring Google services: %@", configureError);
 
 	// Optional: configure GAI options.
 	GAI *gai = [GAI sharedInstance];
 	gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-	gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
+	//gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
 }
 
 + (void)trackScreen:(NSString *) screenName {
