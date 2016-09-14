@@ -14,6 +14,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
+#import "WMAnalytics.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MIN_SPAN_DELTA 				0.01
@@ -148,6 +149,7 @@
     [self hideActivityIndicator];
     
     self.mapView.frame = self.view.bounds;
+	[WMAnalytics trackScreen:K_MAP_SCREEN];
 }
 
 -(void) viewDidAppear:(BOOL)animated

@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, "7.1"
+platform :ios, "8.0"
 
 inhibit_all_warnings!
 
@@ -11,6 +11,7 @@ def corePods
 	pod 'DKHelper', '~> 2.2.3'
 	pod 'MarqueeLabel', '~> 2.3.5'
 	pod 'Appirater', '~> 2.0'
+	pod 'Google/Analytics' #No specific version allowed
 end
 
 target 'Wheelmap-Alpha' do

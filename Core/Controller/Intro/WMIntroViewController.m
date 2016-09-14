@@ -7,6 +7,7 @@
 //
 
 #import "WMIntroViewController.h"
+#import "WMAnalytics.h"
 
 @interface WMIntroViewController ()
 
@@ -59,6 +60,11 @@
 	self.firstPageWidthConstraint.constant = self.scrollViewContentWidthConstraint.constant / self.pageControl.numberOfPages;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[WMAnalytics trackScreen:K_SPLASH_SCREEN];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	[UIApplication.sharedApplication setStatusBarHidden:NO];
@@ -95,6 +101,7 @@
 	// Save the info that the inro was already seen.
 	[NSUserDefaults.standardUserDefaults setBool:YES forKey:K_UD_INTRO_ALREADY_SEEN];
 	[NSUserDefaults.standardUserDefaults synchronize];
+
 	// Close the into.
 	if (self.popoverController != nil) {
 		[self.popoverController dismissPopoverAnimated:YES];

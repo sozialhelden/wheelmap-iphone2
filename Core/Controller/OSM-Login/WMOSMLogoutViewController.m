@@ -9,6 +9,7 @@
 #import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
+#import "WMAnalytics.h"
 
 @interface WMOSMLogoutViewController () {
 
@@ -35,6 +36,11 @@
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressedCancelButton:)];
     [self.view addGestureRecognizer:tapGR];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[WMAnalytics trackScreen:K_OSM_LOGOUT_SCREEN];
 }
 
 -(IBAction)pressedLogoutButton:(id)sender {

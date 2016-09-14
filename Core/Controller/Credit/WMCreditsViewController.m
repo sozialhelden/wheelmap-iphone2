@@ -7,6 +7,7 @@
 //
 
 #import "WMCreditsViewController.h"
+#import "WMAnalytics.h"
 
 @interface WMCreditsViewController ()
 
@@ -54,6 +55,11 @@
 		self.mapSourceLabel.textAlignment = NSTextAlignmentRight;
 		self.pictogramsLabel.textAlignment = NSTextAlignmentRight;
 	}
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[WMAnalytics trackScreen:K_INFO_SCREEN];
 }
 
 - (void)viewDidLayoutSubviews {
