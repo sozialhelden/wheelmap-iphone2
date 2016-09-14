@@ -25,7 +25,6 @@
     // start listening to AFNetworking operations and show/hide activity indicator
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
-    
     // check for the existence of last run version in defaults
 	// and create it if necessary
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

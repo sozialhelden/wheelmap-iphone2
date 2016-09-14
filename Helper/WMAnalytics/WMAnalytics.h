@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - Screen Names
+
 #define K_SPLASH_SCREEN								@"SplashScreen"
 #define K_HOME_SCREEN								@"HomeScreen"
 #define K_NEARBY_SCREEN								@"NearbyScreen"
@@ -18,7 +20,11 @@
 #define K_OSM_LOGOUT_SCREEN							@"OSMLogoutScreen"
 #define K_INFO_SCREEN								@"InfoScreen"
 
+#pragma mark - Action types
+
 #define K_ACTION_TAP								@"Tap"
+
+#pragma mark - WMAnalytics
 
 @interface WMAnalytics : NSObject
 

@@ -98,7 +98,7 @@
 	[self initNodeType];
 	[self.refreshControl beginRefreshing];
 
-	NSString *useCase = (self.useCase == kWMPOIsListViewControllerUseCaseContribute) ? K_CONTRIBUTE_SCREEN : K_NEARBY_SCREEN;
+	NSString *useCase = ((self.useCase == kWMPOIsListViewControllerUseCaseContribute) ? K_CONTRIBUTE_SCREEN : K_NEARBY_SCREEN);
 	[WMAnalytics trackScreen:useCase];
 }
 
