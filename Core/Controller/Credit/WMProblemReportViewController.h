@@ -11,6 +11,6 @@
 
 @interface WMProblemReportViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
-@property (nonatomic, strong) CLLocation 				*lastKnownLocation;
+@property (nonatomic, strong) CLLocation				*lastKnownLocation;
 
 @end
