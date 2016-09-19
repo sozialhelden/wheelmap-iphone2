@@ -9,6 +9,19 @@
 #import "WMDataManager.h"
 #import "WMProblemReportViewController.h"
 
+@interface WMProblemReportViewController()
+
+@property (weak, nonatomic) IBOutlet WMLabel 			*navBarTitle;
+@property (weak, nonatomic) IBOutlet WMButton			*closeButton;
+@property (weak, nonatomic) IBOutlet UILabel 			*titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel 			*infoLabel;
+@property (weak, nonatomic) IBOutlet UITextView 		*textArea;
+@property (weak, nonatomic) IBOutlet UIButton 			*sendButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLayoutContraint;
+@property (weak, nonatomic) IBOutlet UIScrollView 		*scrollView;
+
+@end
+
 @implementation WMProblemReportViewController
 
 #pragma mark: - Lyfe cycle
@@ -65,7 +78,7 @@
 	mc.mailComposeDelegate = self;
 	[mc setSubject:NSLocalizedString(@"problem.report.title", nil)];
 	[mc setMessageBody:[self generateMailHTMLString] isHTML:YES];
-	[mc setToRecipients:@[@"bugs@wheelmap.org"]];
+	[mc setToRecipients:@[K_PROBLEM_REPORT_MAIL]];
 
 	// Present mail view controller on screen
 	[self presentViewController:mc animated:YES completion:NULL];
@@ -76,11 +89,11 @@
 - (NSString *)generateMailHTMLString {
 
 	BOOL gpsActive = (([CLLocationManager locationServicesEnabled] == YES) && ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied));
-	long long freeSpace = [[[[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil] objectForKey:NSFileSystemSize] longLongValue];
+	long long freeSpace = [[[[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil] objectForKey:NSFileSystemFreeSize] longLongValue];
 	WMDataManager *dataManager = [[WMDataManager alloc] init];
 	NSString *username = ((dataManager.userIsAuthenticated == NO) ? NSLocalizedString(@"problem.report.no", nil) : [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"problem.report.yes", nil), dataManager.currentUserName]);
 	NSString *latLon = (self.lastKnownLocation == nil) ? @"" : [NSString stringWithFormat:@"%f | %f", self.lastKnownLocation.coordinate.latitude, self.lastKnownLocation.coordinate.longitude];
-	NSString *freeSpaceString = [NSString stringWithFormat:@"%i MB", (int)(freeSpace / (1024.0 * 1024.0))];
+	NSString *freeSpaceString = [NSString stringWithFormat:@"%i MB", (int)(freeSpace / (K_BYTES_PREFFIX_DIVISION * K_BYTES_PREFFIX_DIVISION))];
 	NSMutableString *mailString = [[NSMutableString alloc] init];
 
 	[mailString appendFormat:@"<p><em>\"%@\"</em></p>", [self.textArea.text stringByReplacingOccurrencesOfString:@"<" withString:@""]];
@@ -121,10 +134,11 @@
 #pragma mark: - Mail delegate
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
-	
+
+	__typeof(self) __weak weakSelf = self;
 	[controller dismissViewControllerAnimated:YES completion:^{
 		if (result == MFMailComposeResultSent) {
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[weakSelf dismissViewControllerAnimated:YES completion:nil];
 		}
 	}];
 }
