@@ -76,7 +76,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
     
     // preload map to avoid long loading times on toggle
-    if (UIDevice.isIPad == NO) {
+    if (UIDevice.currentDevice.isIPad == NO) {
         self.mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WMMapViewController"];
         self.mapViewController.baseController = self;
         CLLocation* newLocation = self.locationManager.location ?: [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
@@ -174,7 +174,7 @@
     // set custom nagivation and tool bars
     self.navigationBar.frame = CGRectMake(0, self.navigationBar.frame.origin.y, self.view.frame.size.width, K_NAVIGATION_BAR_HEIGHT);
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         self.customNavigationBar = [[WMIPadMapNavigationBar alloc] initFromNibWithFrame:CGRectMake(0, 0, self.navigationBar.frame.size.width, K_NAVIGATION_BAR_HEIGHT)];
         self.customNavigationBar.searchBarEnabled = YES;
     } else {
@@ -185,7 +185,7 @@
     self.toolbar.frame = CGRectMake(0, self.view.bounds.size.height-K_TOOLBAR_BAR_HEIGHT, self.view.frame.size.width, K_TOOLBAR_BAR_HEIGHT);
     self.toolbar.backgroundColor = [UIColor whiteColor];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         self.customToolBar = [[WMToolbar_iPad alloc] initFromNibWithFrame:CGRectMake(0, 0, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
     } else {
         self.customToolBar = [[WMToolbar alloc] initFromNibWithFrame:CGRectMake(0, self.toolbar.frame.size.height-K_TOOLBAR_BAR_HEIGHT, self.toolbar.frame.size.width, K_TOOLBAR_BAR_HEIGHT)];
@@ -196,7 +196,7 @@
     // set filter popovers.
 	[self createPopoverViews];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         if ([self.customToolBar isKindOfClass:[WMToolbar_iPad class]]) {
             [(WMToolbar_iPad *)self.customToolBar updateLoginButton];
         }
@@ -218,7 +218,7 @@
     // this will update screen
     [self networkStatusChanged:nil];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [self refreshPopoverPositions:[[UIApplication sharedApplication] statusBarOrientation]];
     }
     
@@ -277,7 +277,7 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         return YES;
     }
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
@@ -464,7 +464,7 @@
 
 - (void)updateNodesWithCurrentUserLocation {
 	CLLocation* newLocation = self.currentLocation;
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		if ([self.topViewController isKindOfClass:WMIPadRootViewController.class]) {
 			[(WMIPadRootViewController *)self.topViewController gotNewUserLocation:newLocation];
 		}
@@ -542,7 +542,7 @@
 - (void)nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectNode:(Node *)node
 {
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             [(WMIPadRootViewController *)self.topViewController nodeListView:nodeListView didSelectNode:node];
         }
@@ -562,7 +562,7 @@
 - (void) nodeListView:(id<WMPOIsListViewDelegate>)nodeListView didSelectDetailsForNode:(Node *)node
 {
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             [(WMIPadRootViewController *)self.topViewController nodeListView:nodeListView didSelectDetailsForNode:node];
         }
@@ -858,7 +858,7 @@
 	WMEditPOIViewController *editPOIViewController = [UIStoryboard instantiatedEditPOIViewController];
     if (mapViewWasMoved) {
         
-        if (UIDevice.isIPad == YES) {
+        if (UIDevice.currentDevice.isIPad == YES) {
             if ([self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
                 editPOIViewController.initialCoordinate = ((WMIPadRootViewController *)self.topViewController).mapViewController.region.center;
             }
@@ -869,7 +869,7 @@
         editPOIViewController.initialCoordinate = self.currentLocation.coordinate;
     }
     editPOIViewController.title = editPOIViewController.navigationBarTitle = self.title = NSLocalizedString(@"EditPOIViewHeadline", @"");
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         
         WMPOIIPadNavigationController *detailNavController = [[WMPOIIPadNavigationController alloc] initWithRootViewController:editPOIViewController];
         detailNavController.customNavigationBar.title = editPOIViewController.navigationBarTitle;
@@ -923,7 +923,7 @@
         return;
     }
     
-    if (UIDevice.isIPad == YES && [self.customToolBar isKindOfClass:WMToolbar_iPad.class]) {
+    if (UIDevice.currentDevice.isIPad == YES && [self.customToolBar isKindOfClass:WMToolbar_iPad.class]) {
         ((WMToolbar_iPad *)self.customToolBar).contributeButton.selected = NO;
     }
     
@@ -1035,7 +1035,7 @@
 - (void)pressedSearchButton:(BOOL)selected {
 	[self hidePopoverViews];
     
-    if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+    if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
         if (!selected) {
             if ([self.customNavigationBar isKindOfClass:[WMIPadMapNavigationBar class]]) {
                 [(WMIPadMapNavigationBar *)self.customNavigationBar clearSearchText];
@@ -1046,7 +1046,7 @@
     if (selected) {
         [self.customNavigationBar showSearchBar];
         
-        if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             if (!selected) {
                 if ([self.customNavigationBar isKindOfClass:[WMIPadMapNavigationBar class]]) {
                     [(WMIPadMapNavigationBar*)self.customNavigationBar clearSearchText];
@@ -1057,7 +1057,7 @@
         }
     } else {
         
-        if ((UIDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+        if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
             WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
             [currentVC pressedSearchButton:selected];
             
@@ -1411,7 +1411,7 @@
 #pragma mark - UINavigationController delegate
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (UIDevice.isIPad == NO) {
+    if (UIDevice.currentDevice.isIPad == NO) {
         
         if ([viewController isKindOfClass:[WMPOIsListViewController class]] || [viewController isKindOfClass:[WMMapViewController class]]) {
             if (navigationController.toolbarHidden == YES)
@@ -1466,7 +1466,7 @@
 }
 
 - (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated{
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         
         if ([modalViewController isKindOfClass:[WMViewController class]]) {
             [self dismissViewControllerAnimated:NO completion:nil];

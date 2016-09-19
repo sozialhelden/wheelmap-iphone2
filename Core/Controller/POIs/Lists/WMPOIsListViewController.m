@@ -17,6 +17,7 @@
 #import "WMResourceManager.h"
 #import "WMMapViewController.h"
 #import "Appirater.h"
+#import "WMAnalytics.h"
 
 @interface WMPOIsListViewController()
 
@@ -96,6 +97,9 @@
     [super viewWillAppear:animated];
 	[self initNodeType];
 	[self.refreshControl beginRefreshing];
+
+	NSString *useCase = ((self.useCase == kWMPOIsListViewControllerUseCaseContribute) ? K_CONTRIBUTE_SCREEN : K_NEARBY_SCREEN);
+	[WMAnalytics trackScreen:useCase];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -165,7 +169,7 @@
 }
 
 - (void)loadNodes{
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         
         if (self.useCase == kWMPOIsListViewControllerUseCaseContribute && !isAccesoryHeaderVisible) {
             isAccesoryHeaderVisible = YES;

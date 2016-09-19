@@ -63,6 +63,12 @@
 		2809CDE61C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE71C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE81C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
+		347534451D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
+		347534461D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
+		347534471D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
+		3A31556C1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
+		3A31556D1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
+		3A31556E1D464783002E4A41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A3155701D464783002E4A41 /* InfoPlist.strings */; };
 		3A99FBB21CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
 		3A99FBB31CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
 		3A99FBB41CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */; };
@@ -825,7 +831,10 @@
 		23F6F0F27DAA8AB591F0D415 /* Pods-Wheelmap-Live.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.release.xcconfig"; sourceTree = "<group>"; };
 		2809CDE51C998524001A7607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.debug.xcconfig"; sourceTree = "<group>"; };
+		347534431D8939FF001BDA3D /* WMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMAnalytics.h; path = WMAnalytics/WMAnalytics.h; sourceTree = "<group>"; };
+		347534441D8939FF001BDA3D /* WMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMAnalytics.m; path = WMAnalytics/WMAnalytics.m; sourceTree = "<group>"; };
 		372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Alpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A31556F1D464783002E4A41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A99FBB01CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapview+ZoomLevel.h"; sourceTree = "<group>"; };
 		3A99FBB11CFC7F4D00F11AD1 /* MKMapview+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapview+ZoomLevel.m"; sourceTree = "<group>"; };
 		3AA691381CFC4969009D6AA4 /* WMConfig-Alpha.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "WMConfig-Alpha.plist"; path = "PLists/WMConfig-Alpha.plist"; sourceTree = "<group>"; };
@@ -1293,6 +1302,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		347534421D8939C2001BDA3D /* WMAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				347534431D8939FF001BDA3D /* WMAnalytics.h */,
+				347534441D8939FF001BDA3D /* WMAnalytics.m */,
+			);
+			name = WMAnalytics;
+			sourceTree = "<group>";
+		};
 		872FD9631BDFD11C00764FC5 /* PLists */ = {
 			isa = PBXGroup;
 			children = (
@@ -1336,6 +1354,7 @@
 		872FDA661BDFE0A100764FC5 /* Localized */ = {
 			isa = PBXGroup;
 			children = (
+				3A3155701D464783002E4A41 /* InfoPlist.strings */,
 				872FDA671BDFE0A100764FC5 /* Localizable.strings */,
 			);
 			path = Localized;
@@ -1512,6 +1531,7 @@
 		872FDF251BDFEFAA00764FC5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				347534421D8939C2001BDA3D /* WMAnalytics */,
 				872FDF261BDFEFAA00764FC5 /* WMKeychainWrapper */,
 				872FDF291BDFEFAA00764FC5 /* WMResourceManager */,
 				87691CAF1BFF23EF0024AC77 /* WMHelper */,
@@ -2120,12 +2140,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0327FA6716BFFB1900BA7DE7 /* Build configuration list for PBXNativeTarget "Wheelmap-Beta" */;
 			buildPhases = (
-				8DD752CC19639F441B9B10DA /* 📦 Check Pods Manifest.lock */,
+				8DD752CC19639F441B9B10DA /* [CP] Check Pods Manifest.lock */,
 				0327F91416BFFB1900BA7DE7 /* Sources */,
 				0327F97116BFFB1900BA7DE7 /* Frameworks */,
 				0327F98616BFFB1900BA7DE7 /* Resources */,
-				C3C005AABDC8DED5B9A7F1C2 /* 📦 Embed Pods Frameworks */,
-				00D65EC26119CD30BB7DB158 /* 📦 Copy Pods Resources */,
+				C3C005AABDC8DED5B9A7F1C2 /* [CP] Embed Pods Frameworks */,
+				00D65EC26119CD30BB7DB158 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2140,12 +2160,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03BD04A216A052750045D53D /* Build configuration list for PBXNativeTarget "Wheelmap-Live" */;
 			buildPhases = (
-				8F423D3BBC8BC7755FFD9987 /* 📦 Check Pods Manifest.lock */,
+				8F423D3BBC8BC7755FFD9987 /* [CP] Check Pods Manifest.lock */,
 				03BD036816A052750045D53D /* Sources */,
 				03BD03BE16A052750045D53D /* Frameworks */,
 				03BD03D316A052750045D53D /* Resources */,
-				29061189884E026E619A5DCF /* 📦 Embed Pods Frameworks */,
-				3BDA3A0116BD0B27A8A9994F /* 📦 Copy Pods Resources */,
+				29061189884E026E619A5DCF /* [CP] Embed Pods Frameworks */,
+				3BDA3A0116BD0B27A8A9994F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2160,12 +2180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 989927871649151300D9003B /* Build configuration list for PBXNativeTarget "Wheelmap-Alpha" */;
 			buildPhases = (
-				B110C70EEE98F166432C9513 /* 📦 Check Pods Manifest.lock */,
+				B110C70EEE98F166432C9513 /* [CP] Check Pods Manifest.lock */,
 				989927471649151300D9003B /* Sources */,
 				989927481649151300D9003B /* Frameworks */,
 				989927491649151300D9003B /* Resources */,
-				CDB6F881ED28746FC7DAFF16 /* 📦 Embed Pods Frameworks */,
-				C33D1F837C53C7BEF36DF583 /* 📦 Copy Pods Resources */,
+				CDB6F881ED28746FC7DAFF16 /* [CP] Embed Pods Frameworks */,
+				C33D1F837C53C7BEF36DF583 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2299,6 +2319,7 @@
 				8774E6351BE0D93800A3E7EA /* more-buttons_info-deactive@2x.png in Resources */,
 				8774E6471BE0D93800A3E7EA /* more-buttons_route@2x.png in Resources */,
 				8774E7071BE0D93800A3E7EA /* toolbar_statusfilter-yes-active.png in Resources */,
+				3A31556D1D464783002E4A41 /* InfoPlist.strings in Resources */,
 				8774E7101BE0D93800A3E7EA /* toolbar_statusfilter-yes@2x.png in Resources */,
 				8774E5811BE0D93800A3E7EA /* credits_authors.png in Resources */,
 				8774E5B41BE0D93800A3E7EA /* start_logo@2x.png in Resources */,
@@ -2470,6 +2491,7 @@
 				8774E6361BE0D93800A3E7EA /* more-buttons_info-deactive@2x.png in Resources */,
 				8774E6481BE0D93800A3E7EA /* more-buttons_route@2x.png in Resources */,
 				8774E7081BE0D93800A3E7EA /* toolbar_statusfilter-yes-active.png in Resources */,
+				3A31556E1D464783002E4A41 /* InfoPlist.strings in Resources */,
 				8774E7111BE0D93800A3E7EA /* toolbar_statusfilter-yes@2x.png in Resources */,
 				8774E5821BE0D93800A3E7EA /* credits_authors.png in Resources */,
 				8774E5B51BE0D93800A3E7EA /* start_logo@2x.png in Resources */,
@@ -2641,6 +2663,7 @@
 				8774E6461BE0D93800A3E7EA /* more-buttons_route@2x.png in Resources */,
 				8774E7061BE0D93800A3E7EA /* toolbar_statusfilter-yes-active.png in Resources */,
 				8774E70F1BE0D93800A3E7EA /* toolbar_statusfilter-yes@2x.png in Resources */,
+				3A31556C1D464783002E4A41 /* InfoPlist.strings in Resources */,
 				8774E5801BE0D93800A3E7EA /* credits_authors.png in Resources */,
 				8774E5B31BE0D93800A3E7EA /* start_logo@2x.png in Resources */,
 				8774E5921BE0D93800A3E7EA /* credits_verein.png in Resources */,
@@ -2747,14 +2770,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00D65EC26119CD30BB7DB158 /* 📦 Copy Pods Resources */ = {
+		00D65EC26119CD30BB7DB158 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2762,14 +2785,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		29061189884E026E619A5DCF /* 📦 Embed Pods Frameworks */ = {
+		29061189884E026E619A5DCF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2777,14 +2800,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3BDA3A0116BD0B27A8A9994F /* 📦 Copy Pods Resources */ = {
+		3BDA3A0116BD0B27A8A9994F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2792,14 +2815,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DD752CC19639F441B9B10DA /* 📦 Check Pods Manifest.lock */ = {
+		8DD752CC19639F441B9B10DA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2807,14 +2830,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8F423D3BBC8BC7755FFD9987 /* 📦 Check Pods Manifest.lock */ = {
+		8F423D3BBC8BC7755FFD9987 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2822,14 +2845,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B110C70EEE98F166432C9513 /* 📦 Check Pods Manifest.lock */ = {
+		B110C70EEE98F166432C9513 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2837,14 +2860,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C33D1F837C53C7BEF36DF583 /* 📦 Copy Pods Resources */ = {
+		C33D1F837C53C7BEF36DF583 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2852,14 +2875,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Alpha/Pods-Wheelmap-Alpha-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C3C005AABDC8DED5B9A7F1C2 /* 📦 Embed Pods Frameworks */ = {
+		C3C005AABDC8DED5B9A7F1C2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2867,14 +2890,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Beta/Pods-Wheelmap-Beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CDB6F881ED28746FC7DAFF16 /* 📦 Embed Pods Frameworks */ = {
+		CDB6F881ED28746FC7DAFF16 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2957,6 +2980,7 @@
 				878EC90A1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3411BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9181BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				347534461D8939FF001BDA3D /* WMAnalytics.m in Sources */,
 				87691CAD1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CB1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBB1BDFEF6D00764FC5 /* Tile.m in Sources */,
@@ -3043,6 +3067,7 @@
 				878EC90B1BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3421BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9191BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				347534471D8939FF001BDA3D /* WMAnalytics.m in Sources */,
 				87691CAE1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CC1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBC1BDFEF6D00764FC5 /* Tile.m in Sources */,
@@ -3129,6 +3154,7 @@
 				878EC9091BE0F7960099EDD1 /* WMPopoverController.m in Sources */,
 				8746D3401BE3BFF100CBD474 /* WMEditPOICategoryViewController.m in Sources */,
 				878EC9171BE0F8380099EDD1 /* WMIPadRootViewController.m in Sources */,
+				347534451D8939FF001BDA3D /* WMAnalytics.m in Sources */,
 				87691CAC1BFF22920024AC77 /* WMHelper.m in Sources */,
 				878EC8CA1BE0F7960099EDD1 /* WMDashboardViewController.m in Sources */,
 				872FDEBA1BDFEF6D00764FC5 /* Tile.m in Sources */,
@@ -3146,6 +3172,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3A3155701D464783002E4A41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A31556F1D464783002E4A41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		872FDA671BDFE0A100764FC5 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3187,7 +3221,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3197,7 +3231,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Beta-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
@@ -3217,7 +3251,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3227,13 +3261,13 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Beta-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.live.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1a9c137b-8787-4213-a259-73fce1b2e0fc";
+				PROVISIONING_PROFILE = "d24b7987-27b1-4c2d-9bc3-138dc196602a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "d24b7987-27b1-4c2d-9bc3-138dc196602a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3247,7 +3281,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3257,7 +3291,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
@@ -3277,7 +3311,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SOZIALHELDEN e.V.";
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3287,7 +3321,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = de.sozialhelden.wheelmap.iphone;
@@ -3312,7 +3346,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3349,7 +3383,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -3375,7 +3409,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3385,13 +3419,13 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Alpha-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "067886a9-4d44-4985-8e81-d4860dfaba95";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "067886a9-4d44-4985-8e81-d4860dfaba95";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3405,7 +3439,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Smart Mobile Factory GmbH";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Smart Mobile Factory GmbH";
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/SupportingFiles/Wheelmap-Prefix.pch";
@@ -3415,13 +3449,13 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PLists/Wheelmap-Alpha-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartmobilefactory.wheelmap2.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "508df28e-cef1-4aaf-ba97-c52be8468225";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "508df28e-cef1-4aaf-ba97-c52be8468225";
+				PROVISIONING_PROFILE = "20719591-2f81-4fa5-9f16-d2c8991a2eac";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20719591-2f81-4fa5-9f16-d2c8991a2eac";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

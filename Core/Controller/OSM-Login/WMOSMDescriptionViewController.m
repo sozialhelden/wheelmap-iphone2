@@ -39,7 +39,7 @@
 	[self.okButton setBackgroundColor:[UIColor wmNavigationBackgroundColor]];
 	self.okButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH;
 	} else {
 		self.scrollViewContentWidthConstraint.constant = self.view.frameWidth;

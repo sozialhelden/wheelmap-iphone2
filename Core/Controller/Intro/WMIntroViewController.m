@@ -7,6 +7,7 @@
 //
 
 #import "WMIntroViewController.h"
+#import "WMAnalytics.h"
 
 @interface WMIntroViewController ()
 
@@ -47,7 +48,7 @@
 	[self initTexts];
 	[self initLastPageDescriptionWebview];
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.scrollViewContentWidthConstraint.constant = K_POPOVER_VIEW_WIDTH * self.pageControl.numberOfPages;
 		self.preferredContentSize = CGSizeMake(K_POPOVER_VIEW_WIDTH, K_POPOVER_VIEW_HEIGHT);
 	} else {
@@ -57,6 +58,11 @@
 
 	// Adjust the width of the first page. The other pages will use the same width as constraint
 	self.firstPageWidthConstraint.constant = self.scrollViewContentWidthConstraint.constant / self.pageControl.numberOfPages;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[WMAnalytics trackScreen:K_SPLASH_SCREEN];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -95,6 +101,7 @@
 	// Save the info that the inro was already seen.
 	[NSUserDefaults.standardUserDefaults setBool:YES forKey:K_UD_INTRO_ALREADY_SEEN];
 	[NSUserDefaults.standardUserDefaults synchronize];
+
 	// Close the into.
 	if (self.popoverController != nil) {
 		[self.popoverController dismissPopoverAnimated:YES];

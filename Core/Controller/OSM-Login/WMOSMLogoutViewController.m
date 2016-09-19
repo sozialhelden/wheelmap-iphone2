@@ -9,6 +9,7 @@
 #import "WMOSMLogoutViewController.h"
 #import "WMDataManager.h"
 #import "WMNavigationControllerBase.h"
+#import "WMAnalytics.h"
 
 @interface WMOSMLogoutViewController () {
 
@@ -37,10 +38,15 @@
     [self.view addGestureRecognizer:tapGR];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[WMAnalytics trackScreen:K_OSM_LOGOUT_SCREEN];
+}
+
 -(IBAction)pressedLogoutButton:(id)sender {
     [dataManager removeUserAuthentication];
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         [(WMToolbar_iPad *)((WMNavigationControllerBase *)self.baseController).customToolBar updateLoginButton];
     }
     

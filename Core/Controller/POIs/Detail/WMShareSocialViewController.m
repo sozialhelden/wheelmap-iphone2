@@ -50,7 +50,7 @@
 	self.titleLabel.text = L(@"NavBarTitleSharing");
 	self.shareLocationLabel.text = self.shareTextString;
 
-	if (UIDevice.isIPad == YES) {
+	if (UIDevice.currentDevice.isIPad == YES) {
 		self.navigationBarHeightConstraint.constant = 0;
 	}
 }

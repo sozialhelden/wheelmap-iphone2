@@ -51,7 +51,7 @@
     self.categoryList = categories;
     
     CGFloat tableViewHeight;
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         if (self.categoryList.count > 15) {
             tableViewHeight = CELL_HEIGHT * 15;
         } else {

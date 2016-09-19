@@ -44,7 +44,7 @@
 	[self setDefaultHeader:@"Accept" value:@"application/json"];
     
     // set tracking headers
-    [self setDefaultHeader:@"Device-Model" value:UIDevice.platform];
+    [self setDefaultHeader:@"Device-Model" value:UIDevice.currentPlatform];
     [self setDefaultHeader:@"OS-Version" value:[[UIDevice currentDevice] systemVersion]];
     NSString *installId = [[NSUserDefaults standardUserDefaults] objectForKey: @"installId"];
     if (installId) {

@@ -1,16 +1,17 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, "7.1"
+platform :ios, "8.0"
 
 inhibit_all_warnings!
 
 def corePods
-	pod 'HockeySDK', '~> 3.8.5'
+	pod 'HockeySDK', '~> 4.1.0'
 	pod 'Reachability', '~> 3.2'
 	pod 'AFNetworking', '~> 1.3.4'
-	pod 'DKHelper', '~> 0.9.6'
+	pod 'DKHelper', '~> 2.2.3'
 	pod 'MarqueeLabel', '~> 2.3.5'
 	pod 'Appirater', '~> 2.0'
+	pod 'Google/Analytics' #No specific version allowed
 end
 
 target 'Wheelmap-Alpha' do

@@ -14,6 +14,7 @@
 #import "WMNavigationControllerBase.h"
 #import "WMPOIIPadNavigationController.h"
 #import "WMResourceManager.h"
+#import "WMAnalytics.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define MIN_SPAN_DELTA 				0.01
@@ -148,6 +149,7 @@
     [self hideActivityIndicator];
     
     self.mapView.frame = self.view.bounds;
+	[WMAnalytics trackScreen:K_MAP_SCREEN];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -158,7 +160,7 @@
     // while init the map, mapView:regionDidChange:animated called multiple times
     self.mapView.delegate = self;
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         NSMutableArray* oldAnnotations = [NSMutableArray arrayWithArray:self.mapView.annotations];
         for (id<MKAnnotation> annotation in oldAnnotations) {
             if (![annotation isKindOfClass:[MKUserLocation class]])
@@ -351,7 +353,7 @@
         return;
     }
     
-    if (UIDevice.isIPad == YES) {
+    if (UIDevice.currentDevice.isIPad == YES) {
         return;
     }
     

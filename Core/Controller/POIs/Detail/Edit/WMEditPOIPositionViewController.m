@@ -11,12 +11,10 @@
 #import "WMNavigationControllerBase.h"
 #import "WMEditPOIViewController.h"
 
-@interface WMEditPOIPositionViewController () {
-    CLLocationManager* locationManager;
-}
+@interface WMEditPOIPositionViewController ()
 
 @property (strong, nonatomic) CLLocation *userLocation;
-
+@property (strong, nonatomic) CLLocationManager * locationManager;
 @property (weak, nonatomic) IBOutlet UIView *	infoView;
 @property (weak, nonatomic) IBOutlet WMLabel *	infoTextLabel;
 
@@ -56,6 +54,11 @@
 	if ([self.delegate respondsToSelector:@selector(markerSet:)]) {
 		[self.delegate markerSet:self.userLocation.coordinate];
 	}
+
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	self.locationManager.delegate = self;
+	[self.locationManager startUpdatingLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,34 +84,25 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     [self.mapView setRegion:viewRegion animated:NO];
-    if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
-        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+    if ([self isDeltaEnoughFrom:self.currentCoordinate toLocation:coordinate] == YES) {
+        self.currentAnnotation.coordinate = coordinate;
+		self.currentCoordinate = coordinate;
     }
 }
 
 #pragma mark - CLLocationManager Delegates
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    self.userLocation = [locations objectAtIndex:0];
+
+	CLLocation *newLocation = (CLLocation *)locations.firstObject;
+	BOOL shouldUpdate = [self isDeltaEnoughFrom:newLocation.coordinate toLocation:self.userLocation.coordinate];
+    self.userLocation = newLocation;
     // region to display
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
-    [self.mapView setRegion:viewRegion animated:NO];
-    if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
+    if (shouldUpdate == YES) {
+		[self.mapView setRegion:viewRegion animated:YES];
         self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude);
-    }
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-
-	self.userLocation = newLocation;
-
-	// region to display
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
-    // display the region
-    [self.mapView setRegion:viewRegion animated:NO];
-    if (self.currentCoordinate.latitude < 0.001 && self.currentCoordinate.longitude < 0.001) {
-        self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     }
 }
 
@@ -151,6 +145,15 @@
         return annotationView;
    }
    return nil;
+}
+
+#pragma mark - Helpers
+
+- (BOOL)isDeltaEnoughFrom:(CLLocationCoordinate2D)oldLocation toLocation:(CLLocationCoordinate2D)newLocation {
+
+	float latitudeDelta = fabs(oldLocation.latitude - newLocation.latitude);
+	float longitudeDelta = fabs(oldLocation.longitude - newLocation.longitude);
+	return (latitudeDelta > 0.001 || longitudeDelta > 0.001);
 }
 
 @end
