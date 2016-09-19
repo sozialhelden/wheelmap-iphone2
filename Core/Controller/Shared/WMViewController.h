@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) UIView *						contentView;
 @property (nonatomic, strong) NSString *					navigationBarTitle;
+@property (nonatomic, strong) CLLocation *					lastKnownLocation;
 
 - (void)presentForcedModalViewController:(UIViewController *)modalViewController animated:(BOOL)animated;
 - (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated;

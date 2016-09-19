@@ -63,6 +63,9 @@
 		2809CDE61C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE71C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
 		2809CDE81C998524001A7607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2809CDE51C998524001A7607 /* Settings.bundle */; };
+		342EDA4E1D8AA95600440B54 /* WMProblemReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */; };
+		342EDA4F1D8AA95600440B54 /* WMProblemReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */; };
+		342EDA501D8AA95600440B54 /* WMProblemReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */; };
 		347534451D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
 		347534461D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
 		347534471D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
@@ -831,6 +834,8 @@
 		23F6F0F27DAA8AB591F0D415 /* Pods-Wheelmap-Live.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.release.xcconfig"; sourceTree = "<group>"; };
 		2809CDE51C998524001A7607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.debug.xcconfig"; sourceTree = "<group>"; };
+		342EDA4C1D8AA95600440B54 /* WMProblemReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMProblemReportViewController.h; sourceTree = "<group>"; };
+		342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMProblemReportViewController.m; sourceTree = "<group>"; };
 		347534431D8939FF001BDA3D /* WMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMAnalytics.h; path = WMAnalytics/WMAnalytics.h; sourceTree = "<group>"; };
 		347534441D8939FF001BDA3D /* WMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMAnalytics.m; path = WMAnalytics/WMAnalytics.m; sourceTree = "<group>"; };
 		372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Alpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1843,6 +1848,8 @@
 			children = (
 				878EC88C1BE0F7960099EDD1 /* WMCreditsViewController.h */,
 				878EC88D1BE0F7960099EDD1 /* WMCreditsViewController.m */,
+				342EDA4C1D8AA95600440B54 /* WMProblemReportViewController.h */,
+				342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */,
 			);
 			path = Credit;
 			sourceTree = "<group>";
@@ -2916,6 +2923,7 @@
 				878EC94E1BE0F9200099EDD1 /* WMNavigationBar.m in Sources */,
 				872FDEB81BDFEF6D00764FC5 /* Photo.m in Sources */,
 				878EC8D41BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */,
+				342EDA4F1D8AA95600440B54 /* WMProblemReportViewController.m in Sources */,
 				872FDF1A1BDFEF9900764FC5 /* mztools.c in Sources */,
 				878EC9661BE0F9200099EDD1 /* WMButton.m in Sources */,
 				872FDE4C1BDFEF6D00764FC5 /* UIView+Geometry.m in Sources */,
@@ -3003,6 +3011,7 @@
 				878EC94F1BE0F9200099EDD1 /* WMNavigationBar.m in Sources */,
 				872FDEB91BDFEF6D00764FC5 /* Photo.m in Sources */,
 				878EC8D51BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */,
+				342EDA501D8AA95600440B54 /* WMProblemReportViewController.m in Sources */,
 				872FDF1B1BDFEF9900764FC5 /* mztools.c in Sources */,
 				878EC9671BE0F9200099EDD1 /* WMButton.m in Sources */,
 				872FDE4D1BDFEF6D00764FC5 /* UIView+Geometry.m in Sources */,
@@ -3090,6 +3099,7 @@
 				878EC94D1BE0F9200099EDD1 /* WMNavigationBar.m in Sources */,
 				872FDEB71BDFEF6D00764FC5 /* Photo.m in Sources */,
 				878EC8D31BE0F7960099EDD1 /* WMOSMDescriptionViewController.m in Sources */,
+				342EDA4E1D8AA95600440B54 /* WMProblemReportViewController.m in Sources */,
 				872FDF191BDFEF9900764FC5 /* mztools.c in Sources */,
 				878EC9651BE0F9200099EDD1 /* WMButton.m in Sources */,
 				872FDE4B1BDFEF6D00764FC5 /* UIView+Geometry.m in Sources */,

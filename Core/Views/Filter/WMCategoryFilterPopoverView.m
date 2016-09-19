@@ -25,10 +25,11 @@
     if (self) {
         refOrigin = refPoint;
 
+		[self.tableView registerNib:[UINib nibWithNibName:@"WMCategoryFilterCell" bundle:nil] forCellReuseIdentifier:K_CATEGORY_FILTER_CELL];
+        self.tableView.scrollsToTop = NO;
+
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
-        self.tableView.scrollsToTop = NO;
-		[self.tableView registerNib:[UINib nibWithNibName:@"WMCategoryFilterCell" bundle:nil] forCellReuseIdentifier:K_CATEGORY_FILTER_CELL];
 
         [self refreshViewWithCategories:categories];
 
