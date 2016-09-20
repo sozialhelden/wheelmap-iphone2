@@ -97,7 +97,8 @@
 	NSString *mailString = K_MAIL_TEMPLATE_TEXT;
 	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_DESCRIPTION withString: self.textArea.text];
 	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_DATA_TITLE withString: NSLocalizedString(@"problem.report.data.title", nil)];
-	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_APP_VERSION withString: NSLocalizedString(@"problem.report.version.app", nil)];	[mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_APP_VERSION_VALUE withString: [[NSUserDefaults standardUserDefaults] objectForKey:LastRunVersion]];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_APP_VERSION withString: NSLocalizedString(@"problem.report.version.app", nil)];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_APP_VERSION_VALUE withString: [[NSUserDefaults standardUserDefaults] objectForKey:LastRunVersion]];
 	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_USER withString: NSLocalizedString(@"problem.report.user", nil)];
 	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_USER_VALUE withString: username];
 	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_IOS_VERSION withString: NSLocalizedString(@"problem.report.version.ios", nil)];
