@@ -40,4 +40,6 @@
 
 + (id)instantiatedIntroViewController;
 
++ (id)instantiatedProblemReportViewController;
+
 @end

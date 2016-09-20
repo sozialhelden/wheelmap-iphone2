@@ -1173,7 +1173,8 @@
         }
         creditsViewController.popoverButtonFrame = CGRectMake(buttonFrame.origin.x, yPosition, buttonFrame.size.width, buttonFrame.size.height);
     }
-    
+
+	creditsViewController.lastKnownLocation = self.currentLocation;
     [self presentViewController:creditsViewController animated:YES];
 }
 

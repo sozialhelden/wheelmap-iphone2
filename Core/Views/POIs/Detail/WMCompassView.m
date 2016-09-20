@@ -84,13 +84,8 @@
     [self.locationManager stopUpdatingLocation];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    
-    self.currentLocation = newLocation;
-}
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    
+
     self.currentLocation = [locations lastObject];
 }
 
@@ -106,7 +101,6 @@
     if (newDegrees < 0) {
         newDegrees = newDegrees + 360;
     }
-    
     
 	NSInteger magneticAngle = newHeading.magneticHeading;
     NSInteger trueAngle = newHeading.trueHeading;

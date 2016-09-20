@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -17,7 +17,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25N-gy-gJA" userLabel="CreditButton" customClass="WMButton">
                             <rect key="frame" x="10" y="5" width="58" height="39"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="58" id="NlU-XW-Y9G"/>
@@ -31,7 +30,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7m-aK-GAG" userLabel="LoginButton" customClass="WMButton">
                             <rect key="frame" x="68" y="5" width="58" height="39"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" image="ipad_buttons_login.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,7 +41,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8G7-nU-WD9" userLabel="contributeButton" customClass="WMButton">
                             <rect key="frame" x="468" y="5" width="58" height="39"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="58" id="OqV-yd-8JZ"/>
@@ -63,7 +60,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMi-S5-5ma" userLabel="currentLocationButton" customClass="WMButton">
                             <rect key="frame" x="526" y="5" width="58" height="39"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" image="ToolbarCenterIcon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,7 +70,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poW-sh-Z4h" userLabel="Toilet state button" customClass="WMPOIStateFilterButtonView">
                             <rect key="frame" x="584" y="5" width="58" height="39"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,7 +77,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMx-M8-Qhg" userLabel="Wheelchair state button" customClass="WMPOIStateFilterButtonView">
                             <rect key="frame" x="642" y="5" width="58" height="39"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,7 +84,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faM-T3-jR8" userLabel="CategoryButton" customClass="WMButton">
                             <rect key="frame" x="700" y="5" width="58" height="39"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" image="ToolbarKategorieIcon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,7 +94,6 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXg-TT-IAE" userLabel="numberOfPlacesLabel" customClass="WMLabel">
                             <rect key="frame" x="146" y="11" width="0.0" height="27"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="110" id="JRC-p1-yAM"/>
                                 <constraint firstAttribute="height" constant="27" id="g6b-bK-Mw8"/>
@@ -117,7 +109,6 @@
                         </label>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Staging)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t9-q7-j8q" userLabel="stagingEnvironmentDebugLabel" customClass="WMLabel">
                             <rect key="frame" x="339" y="11" width="90" height="27"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="90" id="a7B-Kv-SmW"/>
                                 <constraint firstAttribute="height" constant="27" id="g5o-hV-y5G"/>
@@ -127,7 +118,6 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" red="0.15294118225574493" green="0.21176470816135406" blue="0.27058824896812439" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="faM-T3-jR8" firstAttribute="leading" secondItem="dMx-M8-Qhg" secondAttribute="trailing" id="0bp-d7-IHQ"/>
@@ -188,7 +178,6 @@
                     </variation>
                 </view>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="vr4-Tg-RYt" secondAttribute="trailing" id="6xm-of-p0a"/>
