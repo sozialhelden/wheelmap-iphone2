@@ -128,7 +128,7 @@
 	newButton.hidden = NO;
 
 	__weak typeof (self) weakSelf = self;
-	[UIView animateWithDuration:0.3 animations:^(void) {
+	[UIView animateWithDuration:K_ANIMATION_DURATION_SHORT animations:^(void) {
 		previousButton.alpha = 0.0;
 		newButton.alpha = 1.0;
 	} completion:^(BOOL finished) {
