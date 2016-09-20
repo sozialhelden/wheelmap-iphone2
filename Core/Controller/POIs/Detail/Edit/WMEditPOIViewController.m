@@ -347,8 +347,8 @@
         return;
     }
 
-	if (!self.node.lat || !self.node.lon) {
-		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PleaseSetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+	if ((self.node.lat == nil) || (self.node.lon == nil)) {
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Alert.Message.SetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
 		[alert show];
 		return;
 	}
