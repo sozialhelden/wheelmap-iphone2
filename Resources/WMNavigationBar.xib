@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +13,6 @@
             <subviews>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t35-C1-qDz" customClass="WMButton">
                     <rect key="frame" x="5" y="2" width="40" height="40"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="AKN-o1-EGO"/>
                         <constraint firstAttribute="height" constant="40" id="KvY-6Q-hIF"/>
@@ -24,7 +24,6 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gdh-6y-feF" customClass="WMButton">
                     <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="7Gi-oi-YPX"/>
                         <constraint firstAttribute="height" constant="44" id="Bjb-6E-FHE"/>
@@ -36,7 +35,6 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="156-S3-8Fw" customClass="WMButton">
                     <rect key="frame" x="5" y="7" width="42" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="3EN-zZ-aVf"/>
                         <constraint firstAttribute="height" constant="30" id="Lli-xu-NMW"/>
@@ -51,7 +49,6 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dp-28-Nzm" customClass="WMButton">
                     <rect key="frame" x="553" y="7" width="42" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="oxv-ST-iq8"/>
                     </constraints>
@@ -65,7 +62,6 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRY-ag-LYc" customClass="WMButton">
                     <rect key="frame" x="555" y="2" width="40" height="40"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="7Sb-Nm-zxR"/>
                         <constraint firstAttribute="width" constant="40" id="xam-Ar-WXK"/>
@@ -77,7 +73,6 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3d-pE-zcf" customClass="WMButton">
                     <rect key="frame" x="565" y="7" width="30" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="vLW-xV-Zx1"/>
                     </constraints>
@@ -91,7 +86,6 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adk-HY-YI8" customClass="WMButton">
                     <rect key="frame" x="565" y="7" width="30" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="i8Z-1b-hWj"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="jf3-hf-S2K"/>
@@ -104,9 +98,8 @@
                         <action selector="pressedSaveButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="dH9-8c-vzZ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Titel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-8P-SCd" customClass="WMLabel">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-8P-SCd" customClass="WMLabel">
                     <rect key="frame" x="284" y="13" width="33" height="18"/>
-                    <animations/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -116,12 +109,10 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="search_searchbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="FzS-JN-HLX">
                             <rect key="frame" x="5" y="29" width="543" height="30"/>
-                            <animations/>
                             <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="L1k-ZE-QHp">
                             <rect key="frame" x="5" y="29" width="543" height="30"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="pZi-6c-2tR"/>
                             </constraints>
@@ -133,7 +124,6 @@
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8Q-MG-VxS" customClass="WMButton">
                             <rect key="frame" x="553" y="29" width="42" height="30"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="SVa-6B-9Xd"/>
                             </constraints>
@@ -146,7 +136,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" red="0.15294118230000001" green="0.21176470820000001" blue="0.270588249" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="FzS-JN-HLX" firstAttribute="leading" secondItem="L1k-ZE-QHp" secondAttribute="leading" id="5ad-hM-xDx"/>
@@ -170,7 +159,6 @@
                     </variation>
                 </view>
             </subviews>
-            <animations/>
             <color key="backgroundColor" red="0.15294118225574493" green="0.21176470816135406" blue="0.27058824896812439" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Adk-HY-YI8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0ib-gQ-rlH"/>
