@@ -192,7 +192,6 @@
 - (IBAction)pressedCredits:(id)sender {
 	WMNavigationControllerBase *baseNavigation = (WMNavigationControllerBase *)self.navigationController;
 	[baseNavigation pressedCreditsButton:nil];
-
 }
 
 #pragma mark - Search text field delegates
