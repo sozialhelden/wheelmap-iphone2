@@ -94,19 +94,18 @@
 	NSString *freeSpaceString = [NSString stringWithFormat:@"%i MB", (int)(freeSpace / (K_BYTES_PREFFIX_DIVISION * K_BYTES_PREFFIX_DIVISION))];
 	NSString *gpsString = ((gpsActive == YES) ? [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"problem.report.yes", nil), latLon] : NSLocalizedString(@"problem.report.no", nil));
 
-	NSMutableString *mailString = [[NSMutableString alloc] initWithString:K_MAIL_TEMPLATE_TEXT];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_DESCRIPTION withString: self.textArea.text options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_DATA_TITLE withString: NSLocalizedString(@"problem.report.data.title", nil) options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_APP_VERSION withString: NSLocalizedString(@"problem.report.version.app", nil) options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_APP_VERSION_VALUE withString: [[NSUserDefaults standardUserDefaults] objectForKey:LastRunVersion] options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_USER withString: NSLocalizedString(@"problem.report.user", nil) options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_USER_VALUE withString: username options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_IOS_VERSION withString: NSLocalizedString(@"problem.report.version.ios", nil) options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_IOS_VERSION_VALUE withString: [[UIDevice currentDevice] systemVersion] options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_FREE_SPACE withString: NSLocalizedString(@"problem.report.free.space", nil) options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_FREE_SPACE_VALUE withString: freeSpaceString options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_GPS withString: NSLocalizedString(@"problem.report.gps", nil) options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
-	[mailString replaceOccurrencesOfString:K_MAIL_FIELD_GPS_VALUE withString: gpsString options:NSLiteralSearch range:NSMakeRange(0, [mailString length])];
+	NSString *mailString = K_MAIL_TEMPLATE_TEXT;
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_DESCRIPTION withString: self.textArea.text];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_DATA_TITLE withString: NSLocalizedString(@"problem.report.data.title", nil)];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_APP_VERSION withString: NSLocalizedString(@"problem.report.version.app", nil)];	[mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_APP_VERSION_VALUE withString: [[NSUserDefaults standardUserDefaults] objectForKey:LastRunVersion]];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_USER withString: NSLocalizedString(@"problem.report.user", nil)];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_USER_VALUE withString: username];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_IOS_VERSION withString: NSLocalizedString(@"problem.report.version.ios", nil)];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_IOS_VERSION_VALUE withString: [[UIDevice currentDevice] systemVersion]];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_FREE_SPACE withString: NSLocalizedString(@"problem.report.free.space", nil)];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_FREE_SPACE_VALUE withString: freeSpaceString];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_GPS withString: NSLocalizedString(@"problem.report.gps", nil)];
+	mailString = [mailString stringByReplacingOccurrencesOfString:K_MAIL_FIELD_GPS_VALUE withString: gpsString];
 
 	return mailString;
 }
