@@ -45,7 +45,7 @@
 
 	self.searchTextField.delegate = self;
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonsForNetworkStatus:) name:kReachabilityChangedNotification object:nil];
 }
 
 #pragma mark - View lifecycle
@@ -127,11 +127,13 @@
 	newButton.alpha = 0.0;
 	newButton.hidden = NO;
 
-	[UIView animateWithDuration:0.3 animations:^(void) {
+	__weak typeof (self) weakSelf = self;
+	[UIView animateWithDuration:K_ANIMATION_DURATION_SHORT animations:^(void) {
 		previousButton.alpha = 0.0;
 		newButton.alpha = 1.0;
 	} completion:^(BOOL finished) {
 		previousButton.hidden = YES;
+		[weakSelf updateButtonsForNetworkStatus:nil];
 	}];
 }
 
@@ -201,7 +203,7 @@
 
 - (void)enableRightButton:(WMNavigationBarRightButtonStyle)type {
 	UIView* targetButton = [self buttonForNavigationBarRightType:type];
-	targetButton.userInteractionEnabled = NO;
+	targetButton.userInteractionEnabled = YES;
     [UIView animateWithDuration:0.5 animations:^(void) {
          targetButton.alpha = 1.0;
      } completion:nil];
@@ -279,7 +281,7 @@
 
 #pragma mark - Network Status Changes
 
-- (void)networkStatusChanged:(NSNotification*)notice {
+- (void)updateButtonsForNetworkStatus:(NSNotification*)notice {
     NetworkStatus networkStatus = [[[WMWheelmapAPI sharedInstance] internetReachable] currentReachabilityStatus];
     
     switch (networkStatus) {
