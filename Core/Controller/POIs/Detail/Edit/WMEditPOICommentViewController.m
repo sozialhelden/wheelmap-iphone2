@@ -63,7 +63,7 @@
 	}
 
     if (!self.currentNode.lat || !self.currentNode.lon) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:L(@"PleaseSetMarker") delegate:nil cancelButtonTitle:L(@"OK") otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:L(@"Alert.Message.SetMarker") delegate:nil cancelButtonTitle:L(@"OK") otherButtonTitles: nil];
         [alert show];
         return;
     }

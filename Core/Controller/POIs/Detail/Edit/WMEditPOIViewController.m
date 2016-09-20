@@ -333,12 +333,6 @@
     
     DKLog(K_VERBOSE_EDIT_POI, @"Node: %@ %@", self.node.lat, self.node.lon);
     
-    if (!self.node.lat || !self.node.lon) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"PleaseSetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
-        [alert show];
-        return;
-    }
-    
     [self saveCurrentEntriesToCurrentNode];
     
     if (!self.editView && (self.node.name == nil || self.node.name.length < 1)) {
@@ -352,7 +346,13 @@
         [alert show];
         return;
     }
-    
+
+	if ((self.node.lat == nil) || (self.node.lon == nil)) {
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Alert.Message.SetMarker", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+		[alert show];
+		return;
+	}
+
     [self.dataManager updateNode:self.node];
     
     progressWheel.hidden = NO;
