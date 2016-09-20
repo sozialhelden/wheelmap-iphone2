@@ -95,6 +95,21 @@
 #define K_POI_DETAIL_GALLERY_IMAGE_CELL_IDENTIFIER	@"galleryImageCell"
 #define K_CATEGORY_FILTER_CELL						@"categoryFilterCell"
 
+#define K_MAIL_TEMPLATE_FILE						[[NSBundle mainBundle] pathForResource:@"ProblemMailTemplate" ofType:@"html"]
+#define K_MAIL_TEMPLATE_TEXT						[NSString stringWithContentsOfFile:K_MAIL_TEMPLATE_FILE encoding:NSUTF8StringEncoding error:nil]
+#define K_MAIL_FIELD_DESCRIPTION					@"USER_DESCRIPTION"
+#define K_MAIL_FIELD_DATA_TITLE						@"DATA_TITLE"
+#define K_MAIL_FIELD_APP_VERSION					@"APP_VERSION_TITLE"
+#define K_MAIL_FIELD_APP_VERSION_VALUE				@"APP_VERSION_VALUE"
+#define K_MAIL_FIELD_USER							@"USER_TITLE"
+#define K_MAIL_FIELD_USER_VALUE						@"USER_VALUE"
+#define K_MAIL_FIELD_IOS_VERSION					@"IOS_VERSION_TITLE"
+#define K_MAIL_FIELD_IOS_VERSION_VALUE				@"IOS_VERSION_VALUE"
+#define K_MAIL_FIELD_FREE_SPACE						@"FREE_SPACE_TITLE"
+#define K_MAIL_FIELD_FREE_SPACE_VALUE				@"FREE_SPACE_VALUE"
+#define K_MAIL_FIELD_GPS							@"GPS_TITLE"
+#define K_MAIL_FIELD_GPS_VALUE						@"GPS_VALUE"
+
 typedef enum {
 	kDotTypeYes,
 	kDotTypeLimited,

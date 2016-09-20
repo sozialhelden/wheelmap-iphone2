@@ -66,6 +66,9 @@
 		342EDA4E1D8AA95600440B54 /* WMProblemReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */; };
 		342EDA4F1D8AA95600440B54 /* WMProblemReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */; };
 		342EDA501D8AA95600440B54 /* WMProblemReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */; };
+		346893F11D9137AB00E7B1BA /* ProblemMailTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 346893F01D9137AB00E7B1BA /* ProblemMailTemplate.html */; };
+		346893F21D9137B300E7B1BA /* ProblemMailTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 346893F01D9137AB00E7B1BA /* ProblemMailTemplate.html */; };
+		346893F31D9137B300E7B1BA /* ProblemMailTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 346893F01D9137AB00E7B1BA /* ProblemMailTemplate.html */; };
 		347534451D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
 		347534461D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
 		347534471D8939FF001BDA3D /* WMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 347534441D8939FF001BDA3D /* WMAnalytics.m */; };
@@ -836,6 +839,7 @@
 		2AF7FD624E15A97893608CFA /* Pods-Wheelmap-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wheelmap-Live.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live.debug.xcconfig"; sourceTree = "<group>"; };
 		342EDA4C1D8AA95600440B54 /* WMProblemReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMProblemReportViewController.h; sourceTree = "<group>"; };
 		342EDA4D1D8AA95600440B54 /* WMProblemReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMProblemReportViewController.m; sourceTree = "<group>"; };
+		346893F01D9137AB00E7B1BA /* ProblemMailTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ProblemMailTemplate.html; sourceTree = "<group>"; };
 		347534431D8939FF001BDA3D /* WMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMAnalytics.h; path = WMAnalytics/WMAnalytics.h; sourceTree = "<group>"; };
 		347534441D8939FF001BDA3D /* WMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMAnalytics.m; path = WMAnalytics/WMAnalytics.m; sourceTree = "<group>"; };
 		372F4BCC518B59155B903BAD /* libPods-Wheelmap-Alpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wheelmap-Alpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1594,6 +1598,7 @@
 		87564D4E1BFB93000028993F /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				346893F01D9137AB00E7B1BA /* ProblemMailTemplate.html */,
 				87564D4F1BFB93000028993F /* IntroLastPageDescription.html */,
 			);
 			path = HTML;
@@ -2301,6 +2306,7 @@
 				87D02FF51BFA44E2007DB76B /* toolbar_statusfilter-yes-rtl.png in Resources */,
 				8774E5D51BE0D93800A3E7EA /* ipad_buttons_icon-search@2x.png in Resources */,
 				8774E6651BE0D93800A3E7EA /* list_shadow@2x.png in Resources */,
+				346893F21D9137B300E7B1BA /* ProblemMailTemplate.html in Resources */,
 				8774E5991BE0D93800A3E7EA /* start_btn-grid.png in Resources */,
 				8774E5BA1BE0D93800A3E7EA /* start_logo_staging@2x.png in Resources */,
 				8774E5EA1BE0D93800A3E7EA /* details_background-thumbnail@2x.png in Resources */,
@@ -2473,6 +2479,7 @@
 				87D02FF61BFA44E2007DB76B /* toolbar_statusfilter-yes-rtl.png in Resources */,
 				8774E5D61BE0D93800A3E7EA /* ipad_buttons_icon-search@2x.png in Resources */,
 				8774E6661BE0D93800A3E7EA /* list_shadow@2x.png in Resources */,
+				346893F31D9137B300E7B1BA /* ProblemMailTemplate.html in Resources */,
 				8774E59A1BE0D93800A3E7EA /* start_btn-grid.png in Resources */,
 				8774E5BB1BE0D93800A3E7EA /* start_logo_staging@2x.png in Resources */,
 				8774E5EB1BE0D93800A3E7EA /* details_background-thumbnail@2x.png in Resources */,
@@ -2645,6 +2652,7 @@
 				8774E5D41BE0D93800A3E7EA /* ipad_buttons_icon-search@2x.png in Resources */,
 				8774E6641BE0D93800A3E7EA /* list_shadow@2x.png in Resources */,
 				8774E5981BE0D93800A3E7EA /* start_btn-grid.png in Resources */,
+				346893F11D9137AB00E7B1BA /* ProblemMailTemplate.html in Resources */,
 				8774E5B91BE0D93800A3E7EA /* start_logo_staging@2x.png in Resources */,
 				8774E5E91BE0D93800A3E7EA /* details_background-thumbnail@2x.png in Resources */,
 				8774E5E31BE0D93800A3E7EA /* details_background-photoupload@2x.png in Resources */,
