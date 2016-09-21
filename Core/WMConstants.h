@@ -110,6 +110,11 @@
 #define K_MAIL_FIELD_GPS							@"GPS_TITLE"
 #define K_MAIL_FIELD_GPS_VALUE						@"GPS_VALUE"
 
+#define DEFAULT_SEARCH_SPAN_LAT 					0.005
+#define DEFAULT_SEARCH_SPAN_LONG 					0.006
+
+#define NODE_INDEX_GAP								2
+
 typedef enum {
 	kDotTypeYes,
 	kDotTypeLimited,

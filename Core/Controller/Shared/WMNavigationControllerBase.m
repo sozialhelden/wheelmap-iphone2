@@ -506,7 +506,7 @@
 }
 
 - (void)updateNodesWithQuery:(NSString*)query {
-    lastQuery = query;
+    self->lastQuery = query;
     [dataManager fetchNodesWithQuery:query];
 	[self resetNodesList];
 }
@@ -515,13 +515,13 @@
 	CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
 	CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
 
-	lastQuery = query;
+	self->lastQuery = query;
 	[dataManager fetchNodesForSouthWestCoordinate:southWest northEastCoordinate:northEast query:query];
 	[self resetNodesList];
 }
 
 - (void)updateNodesWithQuery:(NSString*)query andSouthWest:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast {
-    lastQuery = query;
+    self->lastQuery = query;
 	[dataManager fetchNodesForSouthWestCoordinate:southWest northEastCoordinate:northEast query:query];
 	[self resetNodesList];
 }
@@ -923,7 +923,7 @@
 		self.customNavigationBar.title = currentVC.navigationBarTitle;
 	} else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
 		WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-		WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+		WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)[self.viewControllers objectAtIndex: (self.viewControllers.count - NODE_INDEX_GAP)];
 		if ([nodeListVC isKindOfClass:[WMPOIsListViewController class]]) {
 			nodeListVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
 			nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
@@ -937,7 +937,7 @@
 	if (self.lastVisibleMapCenterLat) {
 		[self updateNodesWithRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake([self.lastVisibleMapCenterLat doubleValue], [self.lastVisibleMapCenterLng doubleValue]), MKCoordinateSpanMake([self.lastVisibleMapSpanLat doubleValue], [self.lastVisibleMapSpanLng doubleValue]))];
 	} else {
-		[self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
+		[self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(DEFAULT_SEARCH_SPAN_LAT, DEFAULT_SEARCH_SPAN_LONG))];
 	}
 
     [self.customToolBar deselectSearchButton];
