@@ -515,6 +515,7 @@
 	CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(region.center.latitude-region.span.latitudeDelta/2.0f, region.center.longitude-region.span.longitudeDelta/2.0f);
 	CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(region.center.latitude+region.span.latitudeDelta/2.0f, region.center.longitude+region.span.longitudeDelta/2.0f);
 
+	lastQuery = query;
 	[dataManager fetchNodesForSouthWestCoordinate:southWest northEastCoordinate:northEast query:query];
 	[self resetNodesList];
 }
@@ -939,9 +940,7 @@
 		[self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
 	}
 
-
     [self.customToolBar deselectSearchButton];
-
 }
 
 - (void)searchStringIsGiven:(NSString *)query {
