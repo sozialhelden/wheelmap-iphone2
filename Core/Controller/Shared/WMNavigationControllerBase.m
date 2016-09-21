@@ -201,7 +201,7 @@
             [(WMToolbar_iPad *)self.customToolBar updateLoginButton];
         }
         
-        self.customNavigationBar.title = NSLocalizedString(@"PlacesNearby", nil);
+        self.customNavigationBar.title = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
     }
 }
 
@@ -229,7 +229,7 @@
         listViewController = [UIStoryboard instantiatedPOIsListViewController];
     }
     listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
-	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+	listViewController.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
 	[self pushViewController:listViewController animated:YES];
 }
 
@@ -251,13 +251,13 @@
 
 - (void)setMapControllerToNormal {
     self.mapViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
-	self.mapViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+	self.mapViewController.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
 	[self.customToolBar showAllButtons];
 }
 
 - (void)setListViewControllerToNormal {
 	listViewController.useCase = kWMPOIsListViewControllerUseCaseNormal;
-	listViewController.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+	listViewController.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
 	[self.customToolBar showAllButtons];
 }
 
@@ -747,7 +747,7 @@
         self.customToolBar.mapListToggleButton.selected = NO;
         switch (nodeListVC.useCase) {
             case kWMPOIsListViewControllerUseCaseNormal:
-                nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+                nodeListVC.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
                 [self.customToolBar showAllButtons];
                 break;
             case kWMPOIsListViewControllerUseCaseContribute:
@@ -909,28 +909,28 @@
 
 - (void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar {
 
-	if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+	if ((UIDevice.currentDevice.isIPad == YES) && ([self.topViewController isKindOfClass:[WMIPadRootViewController class]] == YES)) {
 		WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
 		[currentVC pressedSearchButton:NO];
 
 		[self searchStringIsGiven:[self.customNavigationBar getSearchString]];
 	}
 
-	if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+	if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]] == YES) {
 		WMPOIsListViewController* currentVC = (WMPOIsListViewController*)self.topViewController;
 		currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-		currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+		currentVC.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
 		self.customNavigationBar.title = currentVC.navigationBarTitle;
-	} else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+	} else if ([self.topViewController isKindOfClass:[WMMapViewController class]] == YES) {
 		WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
 		WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)[self.viewControllers objectAtIndex: (self.viewControllers.count - NODE_INDEX_GAP)];
 		if ([nodeListVC isKindOfClass:[WMPOIsListViewController class]]) {
 			nodeListVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-			nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+			nodeListVC.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
 		}
 
 		currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-		currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+		currentVC.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
 		self.customNavigationBar.title = currentVC.navigationBarTitle;
 	}
 
@@ -972,7 +972,7 @@
         self.customNavigationBar.title = vc.navigationBarTitle;
         [self updateNodesWithQuery:query andRegion:self.mapViewController.region];
         
-    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]] == YES) {
         WMMapViewController* vc = (WMMapViewController*)self.topViewController;
         vc.useCase = kWMPOIsListViewControllerUseCaseSearchOnDemand;
         vc.navigationBarTitle = NSLocalizedString(@"SearchResult", nil);;
@@ -1010,7 +1010,7 @@
 			[self pushFadeViewController:self.mapViewController];
 		}
 		
-    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]] == YES) {
         //  the map view is on the screen. pop the map view controller
 		WMViewController* toVC = [self.viewControllers objectAtIndex:self.viewControllers.count-2];
 		if ([toVC isKindOfClass:[WMPOIsListViewController class]]) {
@@ -1051,15 +1051,15 @@
             return;
         }
         currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-        currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+        currentVC.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
-    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+    } else if ([self.topViewController isKindOfClass:[WMMapViewController class]] == YES) {
         WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
         if (currentVC.useCase == kWMPOIsListViewControllerUseCaseCategory || currentVC.useCase == kWMPOIsListViewControllerUseCaseContribute) {
             return;
         }
         currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-        currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+        currentVC.navigationBarTitle = NSLocalizedString(@"Places.Nearby.Navigation.Title", nil);
         self.customNavigationBar.title = currentVC.navigationBarTitle;
 	}
 }
