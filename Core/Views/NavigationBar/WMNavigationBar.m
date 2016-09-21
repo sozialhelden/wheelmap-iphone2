@@ -266,12 +266,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self hideSearchBar];
     [self.searchTextField resignFirstResponder];
-    
-    if (textField.text && textField.text.length > 0) {
-        if ([self.delegate respondsToSelector:@selector(searchStringIsGiven:)]) {
-            [self.delegate searchStringIsGiven:textField.text];
-        }
-    }
+
+	if ([self.delegate respondsToSelector:@selector(searchStringIsGiven:)]) {
+		[self.delegate searchStringIsGiven: ((textField.text.length > 0) ? textField.text : nil)];
+	}
+
     return YES;
 }
 
