@@ -294,6 +294,7 @@
                                     <constraint firstItem="sQz-5j-HYY" firstAttribute="top" secondItem="5ha-Zh-CKZ" secondAttribute="top" id="3y1-EW-QEu"/>
                                     <constraint firstAttribute="trailing" secondItem="wJJ-fI-xar" secondAttribute="trailing" constant="20" id="5xp-0f-dcM"/>
                                     <constraint firstAttribute="bottom" secondItem="wJJ-fI-xar" secondAttribute="bottom" constant="10" id="6o1-JL-sVb"/>
+                                    <constraint firstItem="5ha-Zh-CKZ" firstAttribute="leading" secondItem="tNJ-yc-nG9" secondAttribute="leading" constant="-8" id="8Ix-he-Tt4"/>
                                     <constraint firstItem="5FO-Gj-e7R" firstAttribute="top" secondItem="tNJ-yc-nG9" secondAttribute="top" id="8fu-Sa-GuW"/>
                                     <constraint firstItem="5ha-Zh-CKZ" firstAttribute="top" secondItem="TUN-sA-MVk" secondAttribute="bottom" constant="10" id="9GO-Zj-72W"/>
                                     <constraint firstItem="wJJ-fI-xar" firstAttribute="bottom" secondItem="l6u-5v-jvR" secondAttribute="bottom" id="IVo-9t-dOg"/>
@@ -310,7 +311,6 @@
                                     <constraint firstItem="tNJ-yc-nG9" firstAttribute="top" secondItem="TUN-sA-MVk" secondAttribute="bottom" constant="14" id="jDP-d9-qDB"/>
                                     <constraint firstItem="wJJ-fI-xar" firstAttribute="top" secondItem="41a-ZN-xe8" secondAttribute="top" id="kdj-kV-FAo"/>
                                     <constraint firstItem="Gaa-Qt-aOZ" firstAttribute="centerY" secondItem="H2Y-nc-CTN" secondAttribute="centerY" id="l2h-tz-mk0"/>
-                                    <constraint firstItem="tNJ-yc-nG9" firstAttribute="leading" secondItem="H2Y-nc-CTN" secondAttribute="leading" constant="28" id="mCc-9u-bg2"/>
                                     <constraint firstAttribute="bottom" secondItem="41a-ZN-xe8" secondAttribute="bottom" constant="12" id="mlZ-UZ-KOD"/>
                                     <constraint firstItem="Gaa-Qt-aOZ" firstAttribute="top" secondItem="5ha-Zh-CKZ" secondAttribute="bottom" priority="750" constant="50" id="mnk-Ht-dV5"/>
                                     <constraint firstItem="l6u-5v-jvR" firstAttribute="leading" secondItem="41a-ZN-xe8" secondAttribute="trailing" constant="10" id="mzx-2a-pQK"/>

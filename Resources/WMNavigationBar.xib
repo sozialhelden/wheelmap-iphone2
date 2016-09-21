@@ -105,7 +105,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kq1-by-m5f" userLabel="Search Container View">
-                    <rect key="frame" x="0.0" y="-44" width="600" height="44"/>
+                    <rect key="frame" x="5" y="-44" width="595" height="44"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="search_searchbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="FzS-JN-HLX">
                             <rect key="frame" x="5" y="29" width="543" height="30"/>
@@ -138,7 +138,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.15294118230000001" green="0.21176470820000001" blue="0.270588249" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="FzS-JN-HLX" firstAttribute="leading" secondItem="L1k-ZE-QHp" secondAttribute="leading" id="5ad-hM-xDx"/>
+                        <constraint firstItem="FzS-JN-HLX" firstAttribute="leading" secondItem="L1k-ZE-QHp" secondAttribute="leading" constant="-5" id="5ad-hM-xDx"/>
                         <constraint firstItem="FzS-JN-HLX" firstAttribute="width" secondItem="L1k-ZE-QHp" secondAttribute="width" id="6Pv-zB-sXU"/>
                         <constraint firstItem="FzS-JN-HLX" firstAttribute="height" secondItem="L1k-ZE-QHp" secondAttribute="height" id="7AJ-OF-lp0"/>
                         <constraint firstItem="L1k-ZE-QHp" firstAttribute="centerY" secondItem="kq1-by-m5f" secondAttribute="centerY" id="9BO-QZ-wOi"/>
@@ -175,7 +175,7 @@
                 <constraint firstItem="156-S3-8Fw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="WYd-zf-gbr"/>
                 <constraint firstItem="t35-C1-qDz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ail-4Y-vZo"/>
                 <constraint firstItem="d3d-pE-zcf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ba6-k8-A0m"/>
-                <constraint firstItem="kq1-by-m5f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="edN-I8-8If"/>
+                <constraint firstItem="kq1-by-m5f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="edN-I8-8If"/>
                 <constraint firstAttribute="trailing" secondItem="5dp-28-Nzm" secondAttribute="trailing" constant="5" id="hfh-p2-eNQ"/>
                 <constraint firstItem="156-S3-8Fw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="lzW-US-Spp"/>
                 <constraint firstAttribute="bottom" secondItem="kq1-by-m5f" secondAttribute="bottom" id="mn2-1e-Nr5"/>

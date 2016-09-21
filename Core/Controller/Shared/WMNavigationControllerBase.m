@@ -907,8 +907,41 @@
 }
 
 - (void)pressedSearchCancelButton:(WMNavigationBar *)navigationBar {
+
+	if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
+		WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
+		[currentVC pressedSearchButton:NO];
+
+		[self searchStringIsGiven:[self.customNavigationBar getSearchString]];
+	}
+
+	if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
+		WMPOIsListViewController* currentVC = (WMPOIsListViewController*)self.topViewController;
+		currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
+		currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+		self.customNavigationBar.title = currentVC.navigationBarTitle;
+	} else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
+		WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
+		WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
+		if ([nodeListVC isKindOfClass:[WMPOIsListViewController class]]) {
+			nodeListVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
+			nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+		}
+
+		currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
+		currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
+		self.customNavigationBar.title = currentVC.navigationBarTitle;
+	}
+
+	if (self.lastVisibleMapCenterLat) {
+		[self updateNodesWithRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake([self.lastVisibleMapCenterLat doubleValue], [self.lastVisibleMapCenterLng doubleValue]), MKCoordinateSpanMake([self.lastVisibleMapSpanLat doubleValue], [self.lastVisibleMapSpanLng doubleValue]))];
+	} else {
+		[self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
+	}
+
+
     [self.customToolBar deselectSearchButton];
-    
+
 }
 
 - (void)searchStringIsGiven:(NSString *)query {
@@ -1033,60 +1066,9 @@
 }
 
 - (void)pressedSearchButton:(BOOL)selected {
+
 	[self hidePopoverViews];
-    
-    if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
-        if (!selected) {
-            if ([self.customNavigationBar isKindOfClass:[WMIPadMapNavigationBar class]]) {
-                [(WMIPadMapNavigationBar *)self.customNavigationBar clearSearchText];
-            }
-        }
-    }
-    
-    if (selected) {
-        [self.customNavigationBar showSearchBar];
-        
-        if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
-            if (!selected) {
-                if ([self.customNavigationBar isKindOfClass:[WMIPadMapNavigationBar class]]) {
-                    [(WMIPadMapNavigationBar*)self.customNavigationBar clearSearchText];
-                }
-            }
-            [self.customNavigationBar dismissSearchKeyboard];
-            [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
-        }
-    } else {
-        
-        if ((UIDevice.currentDevice.isIPad == YES) && [self.topViewController isKindOfClass:[WMIPadRootViewController class]]) {
-            WMIPadRootViewController* currentVC = (WMIPadRootViewController*)self.topViewController;
-            [currentVC pressedSearchButton:selected];
-            
-            [self searchStringIsGiven:[self.customNavigationBar getSearchString]];
-        }
-        if ([self.topViewController isKindOfClass:[WMPOIsListViewController class]]) {
-            WMPOIsListViewController* currentVC = (WMPOIsListViewController*)self.topViewController;
-            currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-            currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-            self.customNavigationBar.title = currentVC.navigationBarTitle;
-        } else if ([self.topViewController isKindOfClass:[WMMapViewController class]]) {
-            WMMapViewController* currentVC = (WMMapViewController*)self.topViewController;
-            WMPOIsListViewController* nodeListVC = (WMPOIsListViewController*)[self.viewControllers objectAtIndex:self.viewControllers.count-2];
-			if ([nodeListVC isKindOfClass:[WMPOIsListViewController class]]) {
-				nodeListVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-				nodeListVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-			}
-			
-            currentVC.useCase = kWMPOIsListViewControllerUseCaseNormal;
-            currentVC.navigationBarTitle = NSLocalizedString(@"PlacesNearby", nil);
-            self.customNavigationBar.title = currentVC.navigationBarTitle;
-        }
-        
-        if (self.lastVisibleMapCenterLat) {
-			[self updateNodesWithRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake([self.lastVisibleMapCenterLat doubleValue], [self.lastVisibleMapCenterLng doubleValue]), MKCoordinateSpanMake([self.lastVisibleMapSpanLat doubleValue], [self.lastVisibleMapSpanLng doubleValue]))];
-        } else {
-			[self updateNodesWithRegion:MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.005, 0.005))];
-        }
-    }
+	[self.customNavigationBar showSearchBar];
 }
 
 - (void)pressedWheelchairStateFilterButton:(WMToolbar *)toolBar sourceView:(UIView *)view {
