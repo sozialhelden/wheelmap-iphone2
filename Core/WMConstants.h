@@ -73,6 +73,8 @@
 
 #define K_ANIMATION_DURATION_SHORT					0.3f
 
+#define K_REPORT_BOTTOM_MARGIN						20
+
 #define K_DEFAULT_LATITUDE							52.513
 #define K_DEFAULT_LONGITUDE							13.388
 
