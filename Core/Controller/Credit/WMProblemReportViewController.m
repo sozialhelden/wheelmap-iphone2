@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextView			*textArea;
 @property (weak, nonatomic) IBOutlet UIButton			*sendButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLayoutContraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonBottomLayoutContraint;
 @property (weak, nonatomic) IBOutlet UIScrollView		*scrollView;
 
 @end
@@ -120,6 +121,7 @@
 	float keyboardHeight = [keyboardSizeValue CGRectValue].size.height;
 	float scrollOffset = (self.infoLabel.frameY + self.infoLabel.frameHeight);
 	self.bottomLayoutContraint.constant = keyboardHeight;
+	self.buttonBottomLayoutContraint.constant = (keyboardHeight + K_REPORT_BOTTOM_MARGIN);
 
 	[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
 		[self.view layoutIfNeeded];
@@ -130,6 +132,7 @@
 -(void)keyboardWillHide: (NSNotification *)notification {
 
 	self.bottomLayoutContraint.constant = 0;
+	self.buttonBottomLayoutContraint.constant = K_REPORT_BOTTOM_MARGIN;
 	[UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
 		[self.view layoutIfNeeded];
 	}];
