@@ -13,7 +13,7 @@
 -(void)categoryFilterStatusDidChangeForCategoryID:(NSNumber*)categoryID selected:(BOOL)selected;
 @end
 
-@interface WMCategoryFilterPopoverView : UIView <UITableViewDataSource, UITableViewDelegate> {
+@interface WMCategoryFilterPopoverView : UIView <UITableViewDelegate, UITableViewDataSource> {
     CGPoint refOrigin;
 }
 

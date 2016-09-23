@@ -81,4 +81,8 @@
 	return [UIStoryboard.introStoryboard instantiateViewControllerWithIdentifier:@"WMIintroViewController"];
 }
 
++ (id)instantiatedProblemReportViewController {
+	return [UIStoryboard.mainIPhoneStoryboard instantiateViewControllerWithIdentifier:@"WMProblemReportViewController"];
+}
+
 @end
