@@ -1,0 +1,3 @@
+[submodule "Submodules/SMF-iOS-CommonProjectSetupFiles"]
+	path = Submodules/SMF-iOS-CommonProjectSetupFiles
+	url = git@github.com:smartmobilefactory/SMF-iOS-CommonProjectSetupFiles.git
