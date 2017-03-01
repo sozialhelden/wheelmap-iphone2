@@ -2158,6 +2158,7 @@
 				0327F98616BFFB1900BA7DE7 /* Resources */,
 				C3C005AABDC8DED5B9A7F1C2 /* [CP] Embed Pods Frameworks */,
 				00D65EC26119CD30BB7DB158 /* [CP] Copy Pods Resources */,
+				3A91ACCF1E6723DC00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 			);
 			buildRules = (
 			);
@@ -2178,6 +2179,7 @@
 				03BD03D316A052750045D53D /* Resources */,
 				29061189884E026E619A5DCF /* [CP] Embed Pods Frameworks */,
 				3BDA3A0116BD0B27A8A9994F /* [CP] Copy Pods Resources */,
+				3A91ACD01E6723E100DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 			);
 			buildRules = (
 			);
@@ -2198,6 +2200,7 @@
 				989927491649151300D9003B /* Resources */,
 				CDB6F881ED28746FC7DAFF16 /* [CP] Embed Pods Frameworks */,
 				C33D1F837C53C7BEF36DF583 /* [CP] Copy Pods Resources */,
+				3A91ACCE1E6723AA00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 			);
 			buildRules = (
 			);
@@ -2814,6 +2817,48 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wheelmap-Live/Pods-Wheelmap-Live-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3A91ACCE1E6723AA00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "SMF-iOS-CommonProjectSetupFiles";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Submodules/SMF-iOS-CommonProjectSetupFiles/setup-common-project-files.sh\" --buildconfig \"${CONFIGURATION} --no-swiftlint\"";
+		};
+		3A91ACCF1E6723DC00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "SMF-iOS-CommonProjectSetupFiles";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Submodules/SMF-iOS-CommonProjectSetupFiles/setup-common-project-files.sh\" --buildconfig \"${CONFIGURATION} --no-swiftlint\"";
+		};
+		3A91ACD01E6723E100DD3C59 /* SMF-iOS-CommonProjectSetupFiles */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "SMF-iOS-CommonProjectSetupFiles";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Submodules/SMF-iOS-CommonProjectSetupFiles/setup-common-project-files.sh\" --buildconfig \"${CONFIGURATION} --no-swiftlint\"";
 		};
 		3BDA3A0116BD0B27A8A9994F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
