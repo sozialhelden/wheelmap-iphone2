@@ -1,6 +1,6 @@
 {
 	"syntax_version": "1",
-	"xcode_version": "8.2.1",
+	"xcode_version": "7.3.1",
 	"programming_language": "Obj-C",
 	"fastlane_build_jobs_level": "Enterprise"
 }
