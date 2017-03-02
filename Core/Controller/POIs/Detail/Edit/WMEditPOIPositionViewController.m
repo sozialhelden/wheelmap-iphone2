@@ -17,6 +17,8 @@
 @property (strong, nonatomic) CLLocationManager * locationManager;
 @property (weak, nonatomic) IBOutlet UIView *	infoView;
 @property (weak, nonatomic) IBOutlet WMLabel *	infoTextLabel;
+@property (nonatomic) Boolean shouldReCenterPinOnBeginning;
+@property (nonatomic) Boolean diddReCenterPinOnBeginning;
 
 @end
 
@@ -25,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	self.shouldReCenterPinOnBeginning = YES;
+	self.diddReCenterPinOnBeginning = NO;
+	
     self.mapView.showsBuildings = NO;
     self.mapView.rotateEnabled = NO;
     self.mapView.pitchEnabled = NO;
@@ -45,6 +50,8 @@
 
 	if (CLLocationCoordinate2DIsValid(self.currentCoordinate) == YES) {
 		self.userLocation = [[CLLocation alloc] initWithLatitude:self.currentCoordinate.latitude longitude:self.currentCoordinate.longitude];
+		// As the user lcoation was already set we don't want to recenter it during the opening
+		self.shouldReCenterPinOnBeginning = NO;
 	} else if (self.mapView.userLocation != nil && (self.mapView.userLocation.coordinate.longitude != 0 && self.mapView.userLocation.coordinate.latitude != 0)) {
 		self.userLocation = [[CLLocation alloc] initWithLatitude:self.mapView.userLocation.coordinate.latitude longitude:self.mapView.userLocation.coordinate.longitude];
 	} else {
@@ -95,14 +102,18 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
 
 	CLLocation *newLocation = (CLLocation *)locations.firstObject;
-	BOOL shouldUpdate = [self isDeltaEnoughFrom:newLocation.coordinate toLocation:self.userLocation.coordinate];
+	BOOL shouldUpdate = (self.shouldReCenterPinOnBeginning == YES && self.diddReCenterPinOnBeginning == NO);
     self.userLocation = newLocation;
     // region to display
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.userLocation.coordinate, K_REGION_LATITUDE, K_REGION_LONGITUDE);
     // display the region
     if (shouldUpdate == YES) {
+		self.diddReCenterPinOnBeginning = YES;
 		[self.mapView setRegion:viewRegion animated:YES];
         self.currentAnnotation.coordinate = CLLocationCoordinate2DMake(self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude);
+		if ([self.delegate respondsToSelector:@selector(markerSet:)]) {
+			[self.delegate markerSet:self.currentAnnotation.coordinate];
+		}
     }
 }
 
