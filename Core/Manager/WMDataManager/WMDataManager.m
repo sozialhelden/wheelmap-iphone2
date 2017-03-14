@@ -935,6 +935,7 @@
         @"street" : node.street ?: [NSNull null],
         @"website" : node.website ?: [NSNull null],
         @"wheelchair" : node.wheelchair ?: [NSNull null],
+		@"wheelchair_toilet" : node.wheelchair_toilet ?: [NSNull null],
         @"wheelchair_description" : node.wheelchair_description ?: [NSNull null],
         @"type" : node.node_type.identifier ?: [NSNull null]
     };
