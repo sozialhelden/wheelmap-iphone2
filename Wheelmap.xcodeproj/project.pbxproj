@@ -2154,11 +2154,11 @@
 			buildPhases = (
 				8DD752CC19639F441B9B10DA /* [CP] Check Pods Manifest.lock */,
 				0327F91416BFFB1900BA7DE7 /* Sources */,
+				3A91ACCF1E6723DC00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 				0327F97116BFFB1900BA7DE7 /* Frameworks */,
 				0327F98616BFFB1900BA7DE7 /* Resources */,
 				C3C005AABDC8DED5B9A7F1C2 /* [CP] Embed Pods Frameworks */,
 				00D65EC26119CD30BB7DB158 /* [CP] Copy Pods Resources */,
-				3A91ACCF1E6723DC00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 			);
 			buildRules = (
 			);
@@ -2175,11 +2175,11 @@
 			buildPhases = (
 				8F423D3BBC8BC7755FFD9987 /* [CP] Check Pods Manifest.lock */,
 				03BD036816A052750045D53D /* Sources */,
+				3A91ACD01E6723E100DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 				03BD03BE16A052750045D53D /* Frameworks */,
 				03BD03D316A052750045D53D /* Resources */,
 				29061189884E026E619A5DCF /* [CP] Embed Pods Frameworks */,
 				3BDA3A0116BD0B27A8A9994F /* [CP] Copy Pods Resources */,
-				3A91ACD01E6723E100DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 			);
 			buildRules = (
 			);
@@ -2196,11 +2196,11 @@
 			buildPhases = (
 				B110C70EEE98F166432C9513 /* [CP] Check Pods Manifest.lock */,
 				989927471649151300D9003B /* Sources */,
+				3A91ACCE1E6723AA00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 				989927481649151300D9003B /* Frameworks */,
 				989927491649151300D9003B /* Resources */,
 				CDB6F881ED28746FC7DAFF16 /* [CP] Embed Pods Frameworks */,
 				C33D1F837C53C7BEF36DF583 /* [CP] Copy Pods Resources */,
-				3A91ACCE1E6723AA00DD3C59 /* SMF-iOS-CommonProjectSetupFiles */,
 			);
 			buildRules = (
 			);
