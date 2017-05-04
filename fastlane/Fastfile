@@ -1,164 +1,69 @@
-PROJECT_NAME = "Wheelmap"
-
-TARGETS_DICT = {
-  "Alpha" => {
-    "BUNDLE_IDENTIFIER" => "com.smartmobilefactory.wheelmap2.enterprise",
-    "SCHEME_NAME" => "Wheelmap-Alpha",
-    "HOCKEY_ID" => "e9092b2c04cebaec2c0b074407fc60ef",
-    "CODE_SIGNING_IDENTITY" => "iPhone Distribution: Smart Mobile Factory GmbH"
-    },
-    "Beta" => {
-      "BUNDLE_IDENTIFIER" => "com.smartmobilefactory.wheelmap2.live.enterprise",
-      "SCHEME_NAME" => "Wheelmap-Beta",
-      "HOCKEY_ID" => "a497d6f99aeba1c0b71399bb91089fd6",
-      "CODE_SIGNING_IDENTITY" => "iPhone Distribution: Smart Mobile Factory GmbH"
-    }
-  }
-
 default_platform :ios
 
 platform :ios do
+
+  build_variants_config = JSON.parse(File.read('BuildVariants.json'))
+  project_config = build_variants_config["project"]
+
   before_all do
+    import_from_git(url: "git@github.com:smartmobilefactory/SMF-iOS-Fastlane-Commons.git")
+  end
+
+  desc "Clean, build the development variant and run the unit tests"
+  lane :check_pr do
+
+    # Setup the parameters
+    build_variant_config = build_variants_config["targets"]["alpha"]
+
+    # Install Pods
     cocoapods
+
+    # Build only the IPA to test if the project is compiling
+    smf_archive_ipa(
+      project_config: project_config,
+      build_variant_config: build_variant_config
+    )
   end
 
-  desc "Clean, build the development variant and run the unit tests"
-  lane :build do
+  desc "Build and upload a new version to HockeyApp"
+  lane :deploy_app do |options|
 
-    app_identifier = TARGETS_DICT["Alpha"]["BUNDLE_IDENTIFIER"]
-    
-    unlock_keychain(path: "login.keychain", password: ENV["LOGIN"])
-    
-    sigh(
-      skip_certificate_verification:true,
-      app_identifier: app_identifier
-    )
+    # Setup the options parameter
+    build_variant = options[:build_variant].downcase
+    branch = options[:branch]
 
-    unlock_keychain(path: "jenkins.keychain", password: ENV["JENKINS"])
+    # Set the build variant to be able to read it during the exception emails
+    ENV["SMF_BUILD_VARIANT"] = build_variant
 
-    gym(
-      workspace: "#{PROJECT_NAME}.xcworkspace",
-      configuration: "Release",
-      scheme: TARGETS_DICT["Alpha"]["SCHEME_NAME"]
-    )
+    # Install Pods
+    cocoapods
+
+    # Deploy the app with HockeyApp etc.
+    smf_deploy_app(
+      build_variant: build_variant,
+      build_variants_config: build_variants_config,
+      branch: branch
+      )
 
   end
 
-  lane :releasing_pr_phase do |options|
-
-    ENV["BUILD_VARIANT"] = options[:build_variant]
-    ENV["BRANCH"] = options[:branch]
-    
-    buildVariant = ENV["BUILD_VARIANT"] 
-    buildVariantDict = TARGETS_DICT[buildVariant]
-    ENV["IPA_FILENAME"] = "#{buildVariantDict["SCHEME_NAME"]}.ipa"
-    ENV["APP_IDENTIFER"] = buildVariantDict["BUNDLE_IDENTIFIER"]
-    ENV["SCHEME"] = buildVariantDict["SCHEME_NAME"]
-    ENV["HOCKEYAPP_ID"] = buildVariantDict["HOCKEY_ID"]
-
-    case buildVariant 
-    when "/Alpha/"
-      ENV["CHANGELOG"] =  changelog_from_git_commits(include_merges: false, pretty: '- (%an) %s')
-    else
-      if TARGETS_DICT.key?(buildVariant)
-        ENV["CHANGELOG"] =  changelog_from_git_commits(tag_match_pattern: '*#{buildVariant}*',include_merges: false, pretty: '- (%an) %s')
-      else
-        puts "No valid target"
-      end
+  after_all do |lane|
+    if lane == :deploy_app      
+      smf_handle_success(
+        build_variant: ENV["SMF_BUILD_VARIANT"],
+        project_config: project_config
+        )
     end
-
-    increment_build_number  
-
-    unlock_keychain(path: "login.keychain", password: ENV["LOGIN"])
-
-    sigh(
-      skip_certificate_verification:true,
-      app_identifier: ENV["APP_IDENTIFER"]
-    )
-
-    unlock_keychain(path: "jenkins.keychain", password: ENV["JENKINS"])
-
-    gym(
-      clean: true,
-      workspace: "#{PROJECT_NAME}.xcworkspace",
-      scheme: ENV["SCHEME"],
-      output_directory: "build",
-      archive_path:"build/",
-      output_name: ENV["IPA_FILENAME"],
-      configuration: 'Release',
-      codesigning_identity: buildVariantDict["CODE_SIGNING_IDENTITY"],
-    )
-
-    #Print .ipa path
-    puts "IPA: "+lane_context[SharedValues::IPA_OUTPUT_PATH]+"".green
-
-    hockey(
-      api_token: ENV["HOCKEYAPP_API_TOKEN"],
-      ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
-      notify: "0",
-      notes: ENV["CHANGELOG"],
-      public_identifier: ENV["HOCKEYAPP_ID"]
-    ) 
-
-    # Disable the download of the former non Alpha app on Hockey App
-    unless buildVariant.include? "Alpha"
-      if (Actions.lane_context[Actions::SharedValues::HOCKEY_BUILD_INFORMATION]['id'] > 1)
-        previous_version_id  = Actions.lane_context[Actions::SharedValues::HOCKEY_BUILD_INFORMATION]['id'] - 1
-
-        UI.important("HERE IS THE ID OF THE Current VERSION #{Actions.lane_context[Actions::SharedValues::HOCKEY_BUILD_INFORMATION]['id']}")
-        UI.important("HERE IS THE ID OF THE Previous VERSION #{previous_version_id}")
-
-        disable_hockey_download(
-          api_token: ENV["HOCKEYAPP_API_TOKEN"],
-          public_identifier: ENV["HOCKEYAPP_ID"],
-          version_id: "#{previous_version_id}"
-          )
-      end
-    end
-
-    clean_build_artifacts
-
-    version = get_build_number(xcodeproj: "#{PROJECT_NAME}.xcodeproj")
-    puts version
-
-    commit_version_bump(
-      xcodeproj: "#{PROJECT_NAME}.xcodeproj",
-      message: "Increment build number to #{version}"
-    )
-
-    # Tag the increment build number commit
-    if git_tag_exists(tag: "build/"+ENV["BUILD_VARIANT"]+"_b"+version)
-      UI.message("Git tag already existed")
-    else
-      add_git_tag(
-      tag: "build/"+ENV["BUILD_VARIANT"]+"_b"+version
-    )
-    end
-    
-    push_to_git_remote(
-      remote: 'origin',
-      local_branch: ENV["BRANCH"],
-      remote_branch: ENV["BRANCH"],
-      force: false,
-      tags: true
-    )
-
-    clean_build_artifacts
-    
-    # Create and push the metaJSON files
-    if buildVariant.include? "Alpha"
-      desc "Create the meta JSON files"
-      sh "cd .. && Submodules/SMF-iOS-CommonProjectSetupFiles/MetaJSON/update-and-push-meta-jsons.sh \"#{ENV["BRANCH"]}\"|| true"
-    end
-  
   end
 
-  desc "Clean, build the development variant and run the unit tests"
-  lane :screen do
-    snapshot(reinstall_app: true,
-      app_identifier: TARGETS_DICT["Alpha"]["BUNDLE_IDENTIFIER"]
-    )
-    frameit 
+  error do |lane, exception|
+    if lane == :deploy_app
+      smf_handle_exception(
+        build_variant: ENV["SMF_BUILD_VARIANT"],
+        project_config: project_config,
+        exception: exception,
+        )
+    end
   end
 
 end

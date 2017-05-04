@@ -1,0 +1,21 @@
+{
+	"project": {
+		"project_name"				: "Wheelmap"
+	},
+	"targets": {
+		"alpha": {
+			"scheme"				: "Wheelmap-Alpha",
+			"bundle_identifier"		: "com.smartmobilefactory.wheelmap2.enterprise",
+			"hockeyapp_id"			: "e9092b2c04cebaec2c0b074407fc60ef",
+			"team_id"				: "JZ2H644EU7",
+			"code_signing_identity"	: "iPhone Distribution: Smart Mobile Factory GmbH"
+		},
+		"beta": {
+			"scheme"				: "Wheelmap-Beta",
+			"bundle_identifier"		: "com.smartmobilefactory.wheelmap2.live.enterprise",
+			"hockeyapp_id"			: "a497d6f99aeba1c0b71399bb91089fd6",
+			"team_id"				: "JZ2H644EU7",
+			"code_signing_identity"	: "iPhone Distribution: Smart Mobile Factory GmbH"
+		}
+	}
+}
