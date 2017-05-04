@@ -342,7 +342,7 @@
 
 		[UIView animateWithDuration:0.3
                               delay:0.0
-                            options:UIViewAnimationCurveEaseOut
+                            options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
 							 self.centerMapButton.alpha = 0;
 							 [self.view layoutIfNeeded];
@@ -358,7 +358,7 @@
 
 		[UIView animateWithDuration:0.3
                               delay:0.0
-                            options:UIViewAnimationCurveEaseIn
+                            options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
 							 self.centerMapButton.alpha = 1;
 							 [self.view layoutIfNeeded];

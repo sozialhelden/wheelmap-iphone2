@@ -5,4 +5,5 @@ External/**
 Submodules/**
 Generated/**
 Core/Model/CoreData/**
+Database/Model/**
 fastlane/**

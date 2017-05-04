@@ -10,7 +10,6 @@
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define RAD_TO_DEG(r) ((r) * (180 / M_PI))
-#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @implementation WMCompassView
 
@@ -41,11 +40,8 @@
 	self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	self.locationManager.delegate=self;
-	// Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
-	if (IS_OS_8_OR_LATER) {
-		if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-			[self.locationManager requestWhenInUseAuthorization];
-		}
+	if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+		[self.locationManager requestWhenInUseAuthorization];
 	}
 	[self.locationManager startUpdatingLocation];
 
@@ -56,9 +52,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdating:) name:UIApplicationDidEnterBackgroundNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating:) name:UIApplicationDidBecomeActiveNotification object:nil];
 
-	if(IS_OS_8_OR_LATER) {
-		[self.locationManager requestWhenInUseAuthorization];
-	}
+	[self.locationManager requestWhenInUseAuthorization];
 
 	// Set the default location to Berlin
 	self.currentLocation = [[CLLocation alloc] initWithLatitude:K_DEFAULT_LATITUDE longitude:K_DEFAULT_LONGITUDE];
@@ -72,9 +66,7 @@
 }
 
 - (void)startUpdating:(NSNotification*)notification {
-    if(IS_OS_8_OR_LATER) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
+	[self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingHeading];
     [self.locationManager startUpdatingLocation];
 }
