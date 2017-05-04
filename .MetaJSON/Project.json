@@ -6,8 +6,8 @@
 	},
 	"bitcode_enabled": "yes",
 	"idfa_appearances": [
-		"/build/.xcarchive.xcarchive/BCSymbolMaps/144B154E-0858-3B72-A88C-03735C3B010A.bcsymbolmap",
-		"/build/.xcarchive.xcarchive/BCSymbolMaps/D2EF772C-7A1B-3B53-9ED7-CB58DB457C8B.bcsymbolmap",
+		"/build/.xcarchive.xcarchive/BCSymbolMaps/309E43DD-45A3-3D56-8CBD-D9DF25B7839C.bcsymbolmap",
+		"/build/.xcarchive.xcarchive/BCSymbolMaps/3D198D11-21DC-34E5-AB7C-0B7757F33569.bcsymbolmap",
 		"Binary file /Users/smf/nodeJenkins/workspace/Wheelmap-Upload/build/.xcarchive.xcarchive/dSYMs/Wheelmap-Alpha.app.dSYM/Contents/Resources/DWARF/Wheelmap-Alpha matches",
 		"Binary file /Users/smf/nodeJenkins/workspace/Wheelmap-Upload/build/.xcarchive.xcarchive/Products/Applications/Wheelmap-Alpha.app/Wheelmap-Alpha matches",
 		"Binary file /Users/smf/nodeJenkins/workspace/Wheelmap-Upload/Pods/FirebaseAnalytics/Frameworks/frameworks/FirebaseAnalytics.framework/FirebaseAnalytics matches"
@@ -28,7 +28,7 @@
 		}
 	],
 	"swift_lint_integration": "none",
-	"xcode_version": "8.3",
+	"xcode_version": "8.3.2",
 	"programming_language": "Obj-C",
 	"fastlane_build_jobs_level": "Enterprise"
 }
