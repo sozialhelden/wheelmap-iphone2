@@ -182,7 +182,7 @@
         [self.searchTextField resignFirstResponder];
 
 		self.searchContainerViewTopConstraint.constant = self.searchContainerView.frameHeight;
-		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
+		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^(void) {
 			[self.searchContainerView layoutIfNeeded];
 		} completion:^(BOOL finished) {
 			isSearchBarVisible = NO;
@@ -191,7 +191,7 @@
         [self.searchTextField becomeFirstResponder];
 
 		self.searchContainerViewTopConstraint.constant = 0;
-        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^(void) {
 			[self.searchContainerView layoutIfNeeded];
          } completion:^(BOOL finished) {
              isSearchBarVisible = YES;
