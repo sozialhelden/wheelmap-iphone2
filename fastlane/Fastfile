@@ -7,21 +7,19 @@ platform :ios do
 
   before_all do
     import_from_git(url: "git@github.com:smartmobilefactory/SMF-iOS-Fastlane-Commons.git")
+
+    # Install Pods
+    cocoapods
   end
 
   desc "Clean, build the development variant and run the unit tests"
   lane :check_pr do
 
-    # Setup the parameters
-    build_variant_config = build_variants_config["targets"]["alpha"]
-
-    # Install Pods
-    cocoapods
-
     # Build only the IPA to test if the project is compiling
     smf_archive_ipa(
       project_config: project_config,
-      build_variant_config: build_variant_config
+      build_variant: "alpha",
+      build_variants_config: build_variants_config
     )
   end
 
@@ -34,9 +32,6 @@ platform :ios do
 
     # Set the build variant to be able to read it during the exception emails
     ENV["SMF_BUILD_VARIANT"] = build_variant
-
-    # Install Pods
-    cocoapods
 
     # Deploy the app with HockeyApp etc.
     smf_deploy_app(
