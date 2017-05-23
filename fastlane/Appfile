@@ -2,6 +2,8 @@ apple_id "development@smfhq.com" # Your Apple email address
 
 team_id "JZ2H644EU7"  # Developer Portal Team ID
 
+itc_team_id "422407"  # iTunes Connect Team ID
+
 # you can even provide different app identifiers, Apple IDs and team names per lane:
 # More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md
 

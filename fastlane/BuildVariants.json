@@ -16,6 +16,13 @@
 			"hockeyapp_id"			: "a497d6f99aeba1c0b71399bb91089fd6",
 			"team_id"				: "JZ2H644EU7",
 			"code_signing_identity"	: "iPhone Distribution: Smart Mobile Factory GmbH"
+		},
+		"live": {
+			"scheme"				: "Wheelmap-Beta",
+			"bundle_identifier"		: "de.sozialhelden.wheelmap.iphone",
+			"hockeyapp_id"			: "d2cd147ddf161ad05ba9ec30d2e55b55",
+			"team_id"				: "LY797X36V6",
+			"code_signing_identity"	: "iPhone Distribution: SOZIALHELDEN e.V. (LY797X36V6)"
 		}
 	}
 }
