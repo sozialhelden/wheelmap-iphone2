@@ -40,6 +40,11 @@ platform :ios do
       branch: branch
       )
 
+      # Upload the app to Testflight.
+    if build_variant == "live"
+      smf_upload_ipa_to_testflight
+    end
+
   end
 
   after_all do |lane|
