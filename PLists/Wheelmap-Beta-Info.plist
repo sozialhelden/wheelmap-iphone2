@@ -20,6 +20,8 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>3.0.4</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera access is needed to be able to add newly created pictures to POIs</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
