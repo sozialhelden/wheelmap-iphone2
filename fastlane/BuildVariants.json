@@ -18,7 +18,7 @@
 			"code_signing_identity"	: "iPhone Distribution: Smart Mobile Factory GmbH"
 		},
 		"live": {
-			"scheme"				: "Wheelmap-Beta",
+			"scheme"				: "Wheelmap-Live",
 			"bundle_identifier"		: "de.sozialhelden.wheelmap.iphone",
 			"hockeyapp_id"			: "d2cd147ddf161ad05ba9ec30d2e55b55",
 			"team_id"				: "LY797X36V6",
