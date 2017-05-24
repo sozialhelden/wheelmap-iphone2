@@ -6,8 +6,8 @@
 	},
 	"bitcode_enabled": "yes",
 	"idfa_appearances": [
-		"/build/.xcarchive.xcarchive/BCSymbolMaps/1867B155-7FC3-358B-B2DD-1AEA4565652B.bcsymbolmap",
-		"/build/.xcarchive.xcarchive/BCSymbolMaps/4AEDF62E-E992-3A29-BE97-AFDFAFAF9AAB.bcsymbolmap",
+		"/build/.xcarchive.xcarchive/BCSymbolMaps/25828381-CDF9-35F4-BE51-460A5D7C51CE.bcsymbolmap",
+		"/build/.xcarchive.xcarchive/BCSymbolMaps/EE05AAB6-1720-3F44-BCC2-8E9122F64C9F.bcsymbolmap",
 		"Binary file /Users/smf/nodeJenkins/workspace/Wheelmap-Upload/build/.xcarchive.xcarchive/dSYMs/Wheelmap-Alpha.app.dSYM/Contents/Resources/DWARF/Wheelmap-Alpha matches",
 		"Binary file /Users/smf/nodeJenkins/workspace/Wheelmap-Upload/build/.xcarchive.xcarchive/Products/Applications/Wheelmap-Alpha.app/Wheelmap-Alpha matches",
 		"Binary file /Users/smf/nodeJenkins/workspace/Wheelmap-Upload/Pods/FirebaseAnalytics/Frameworks/frameworks/FirebaseAnalytics.framework/FirebaseAnalytics matches"
