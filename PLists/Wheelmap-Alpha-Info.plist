@@ -23,7 +23,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>224</string>
+	<string>225</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera access is needed to be able to add newly created pictures to POIs</string>
 	<key>LSRequiresIPhoneOS</key>
