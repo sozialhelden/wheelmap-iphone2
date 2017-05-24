@@ -1369,7 +1369,11 @@
     for (NSNumber* key in [self.categoryFilterStatus allKeys]) {
         [self.categoryFilterStatus setObject:[NSNumber numberWithBool:YES] forKey:key];
     }
-    
+
+	for (WMCategory* category in dataManager.categories) {
+		category.selected = @(1);
+	}
+
     [self.customToolBar clearWheelchairStateFilterButton];
 	[self.customToolBar clearToiletStateFilterButton];
 }
